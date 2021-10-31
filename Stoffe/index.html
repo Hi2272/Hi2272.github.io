@@ -4,7 +4,7 @@
 <head>
   <script src="https://unpkg.com/konva@8.2.3/konva.min.js"></script>
   <meta charset="utf-8" />
-  <title>Stoffe im Teilchenmodell</title>
+  <title>Stoffe und Teilchen</title>
   <style>
     body {
       margin: 0;
@@ -25,7 +25,6 @@
       font-size: medium;
       font-family: Arial, Helvetica, sans-serif;
       text-align: center;
-      height: 10%;
     }
 
     #container {
@@ -34,7 +33,6 @@
       border-width: 3px;
       padding: 5px;
       margin: 5px;
-      height: 80%;
     }
 
     footer {
@@ -55,7 +53,6 @@
 
 <body>
   <header>
-   <h1>Stoffe im Teilchenmodell</h1>
     Ziehe die Textbausteine in folgendes Diagramm. <br>
     <button id="Button" onClick="pruefen()" style="visibility: hidden;">Prüfen</button>
 
@@ -68,14 +65,16 @@
     </div>
   </footer>
 
-
   <script>
+
+
     var snap = true;   // snap = true -> Abfrage-Modus
-    //var snap = false;    // snap = false -> Programmier-Modus, Koordinaten werden ausgegeben
+    // var snap = false;    // snap = false -> Programmier-Modus, Koordinaten werden ausgegeben
 
     var nummer = 0;    // 
     var width = window.innerWidth;
     var height = window.innerHeight;
+
 
     var stage = new Konva.Stage({
       container: 'container',
@@ -88,13 +87,13 @@
 
     var txt = [
       // Hier die Koordinaten einfügen
-      { x: 0.3814516129032258, y: 0.027633851468048358, text: 'Stoff', pos: [0] },
-      { x: 0.4806451612903226, y: 0.38687392055267705, text: 'Verbindung', pos: [1] },
-      { x: 0.03870967741935484, y: 0.39723661485319517, text: 'homogen', pos: [2] },
-      { x: 0.2685483870967742, y: 0.39378238341968913, text: 'heterogen', pos: [3] },
-      { x: 0.7104838709677419, y: 0.3955094991364421, text: 'Element', pos: [4] },
-      { x: 0.14758064516129032, y: 0.231433506044905, text: 'Stoffgemisch', pos: [5] },
-      { x: 0.6040322580645161, y: 0.24870466321243523, text: 'Reinstoff', pos: [6] }
+      { x: 0.709, y: 0.497, text: 'Element', pos: [0] },
+      { x: 0.044, y: 0.493, text: 'homogen', pos: [1] },
+      { x: 0.265, y: 0.486, text: 'heterogen', pos: [2] },
+      { x: 0.393, y: 0.028, text: 'Stoff', pos: [3] },
+      { x: 0.141, y: 0.283, text: 'Stoffgemisch', pos: [4] },
+      { x: 0.602, y: 0.303, text: 'Reinstoff', pos: [5] },
+      { x: 0.477, y: 0.481, text: 'Verbindung', pos: [6] },
     ];
 
     var text = new Array();
@@ -113,9 +112,8 @@
         Funktion, die beim Ende des Drag-Vorgangs aufgerufen wird
         */
         var obj = e.target;
-        var x = obj.x() / layer.width();
-        var y = obj.y() / layer.height();
-
+        var x = Math.round(obj.x() / layer.width() * 1000) / 1000;
+        var y = Math.round(obj.y() / layer.height() * 1000) / 1000;
         if (!snap) {    // snap false => Koordinaten ausgeben
           document.getElementById("ausgabe").innerHTML = document.getElementById("ausgabe").innerHTML +
             "<br>" + "{x:" + x + ",y:" + y + ",text:'" + obj.text() + "',pos:[" + nummer + "]},";
@@ -156,13 +154,28 @@
 
     var imageObj = new Image();
     imageObj.onload = function () {
+      console.log("Ausrichtungstest");
+      if (width < height) {
+        alert("Die Seite ist auf eine Darstellung in Querformat optimiert.\n" +
+          "Bitte drehen Sie Ihr Gerät und laden Sie die Seite neu!");
+      }
+
+      console.log(layer.width() + " " + layer.height());
       var img = new Konva.Image({
         x: 0,
         y: 0,
         image: imageObj,
-        height: layer.width() * 0.8 / width * height,
-        width: layer.width() * 0.8,
       });
+
+      // Bild auf 80% der Seitenbreite vergrößern
+      var w = img.width();
+      var h = img.height();
+      var f = layer.width() * 0.8 / w;  // Vergrößerungsfaktor 
+
+      img.width(f * w);
+      img.height(f * h);
+
+      stage.height(img.height());  // Höhe der Zeichenflaeche anpassen
 
       // add the shape to the layer
       layer.add(img);
@@ -170,13 +183,12 @@
     imageObj.src = 'Stoffe.png';
 
 
-
-
     // add the layer to the stage
     stage.add(layer);
     stage.add(layerText);
 
     function pruefen() {
+      var anzGefunden = 0;
       console.log("Prüfung");
       for (i1 = 0; i1 < text.length; i1++) { // Alle Textbausteine durchlaufen
         var t1 = text[i1];
@@ -185,22 +197,27 @@
           var t2 = txt[i2];
           if (t2.text == t1.text()) {  // Text stimmt überein
             console.log(t1.text());
-            for (i3 = 0; i3 < t2.pos.length; i3++) {
+            for (i3 = 0; i3 < t2.pos.length; i3++) {  // Alle alternativen Positionen durchlaufen
               console.log(i3);
               var t3 = txt[t2.pos[i3]];
               var dx = Math.abs(t1.x() - t3.x * layer.width());
               var dy = Math.abs(t1.y() - t3.y * layer.height());
               console.log(t1.text() + " " + t3.text + " " + dx + " " + dy)
               if (dx < 2 && dy < 2) {
-                console.log(t1.text() + " gefunden!");
                 gefunden = true;
                 t1.fill('green');
+                anzGefunden++;
               } else if (!gefunden) {
                 t1.fill('red');
               }
             }
           }
         }
+      }
+      if (anzGefunden == text.length) {
+        alert("Super, du hast die Aufgabe vollständig gelöst!");
+      } else {
+        alert("Die grünen Begriffe sind richtig - die roten musst du noht korrigieren!");
       }
     }
 
