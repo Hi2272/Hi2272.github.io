@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://unpkg.com/konva@8.2.3/konva.min.js"></script>
+  <meta charset="utf-8" />
+  <title>Stoffe im Teilchenmodell</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      color: darkslateblue;
+      font-size: x-large;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+    }
+
+    html {
+      height: 100%
+    }
+
+    header {
+      color: darkslateblue;
+      font-size: medium;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+      height: 10%;
+    }
+
+    #container {
+      border: darkslateblue;
+      border-style: double;
+      border-width: 3px;
+      padding: 5px;
+      margin: 5px;
+      height: 80%;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      margin: 10px;
+      height: 10%;
+    }
+
+    button {
+      font-size: large;
+      color: darkslateblue;
+
+    }
+  </style>
+
+</head>
+
+<body>
+  <header>
+   <h1>Stoffe im Teilchenmodell</h1>
+    Ziehe die Textbausteine in folgendes Diagramm. <br>
+    <button id="Button" onClick="pruefen()" style="visibility: hidden;">Prüfen</button>
+
+  </header>
+  <section>
+    <div id="container"></div>
+  </section>
+  <footer>
+    <div id="ausgabe">
+    </div>
+  </footer>
+
+
+  <script>
+    var snap = true;   // snap = true -> Abfrage-Modus
+    //var snap = false;    // snap = false -> Programmier-Modus, Koordinaten werden ausgegeben
+
+    var nummer = 0;    // 
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    var stage = new Konva.Stage({
+      container: 'container',
+      width: width,
+      height: height,
+    });
+
+    var layer = new Konva.Layer();
+    var layerText = new Konva.Layer();
+
+    var txt = [
+      // Hier die Koordinaten einfügen
+      { x: 0.3814516129032258, y: 0.027633851468048358, text: 'Stoff', pos: [0] },
+      { x: 0.4806451612903226, y: 0.38687392055267705, text: 'Verbindung', pos: [1] },
+      { x: 0.03870967741935484, y: 0.39723661485319517, text: 'homogen', pos: [2] },
+      { x: 0.2685483870967742, y: 0.39378238341968913, text: 'heterogen', pos: [3] },
+      { x: 0.7104838709677419, y: 0.3955094991364421, text: 'Element', pos: [4] },
+      { x: 0.14758064516129032, y: 0.231433506044905, text: 'Stoffgemisch', pos: [5] },
+      { x: 0.6040322580645161, y: 0.24870466321243523, text: 'Reinstoff', pos: [6] }
+    ];
+
+    var text = new Array();
+    for (i = 0; i < txt.length; i++) {
+      text[i] = new Konva.Text({
+        x: width * 0.8 + 5,
+        text: txt[i].text,
+        fill: 'blue',
+        fontSize: 4 + Math.round(width / 80),
+      });
+      text[i].y(i * text[i].height() * 2);
+      text[i].draggable('true');
+      layerText.add(text[i]);
+      text[i].on('dragend', function (e) {
+        /*
+        Funktion, die beim Ende des Drag-Vorgangs aufgerufen wird
+        */
+        var obj = e.target;
+        var x = obj.x() / layer.width();
+        var y = obj.y() / layer.height();
+
+        if (!snap) {    // snap false => Koordinaten ausgeben
+          document.getElementById("ausgabe").innerHTML = document.getElementById("ausgabe").innerHTML +
+            "<br>" + "{x:" + x + ",y:" + y + ",text:'" + obj.text() + "',pos:[" + nummer + "]},";
+          nummer++;
+        } else {   // snap true => Texte auf die nächstliegende Koordinate schieben
+          if (x < 0.8) {   // Snap-Funktion gilt nicht, wenn die Karte nach rechts gezogen
+            var n = 9999;
+            var mindist = layer.width() * layer.width() + layer.height() * layer.height();
+            for (i = 0; i < txt.length; i++) {
+              dist = (x - txt[i].x) * (x - txt[i].x) + (y - txt[i].y) * (y - txt[i].y);
+              if (dist < mindist) {
+                mindist = dist;
+                n = i;
+              }
+            }
+            if (n != 9999) {  // Hier wird auf die Koordinaten geschoben
+              this.x(txt[n].x * layer.width());
+              this.y(txt[n].y * layer.height());
+            } else {
+              console.log("Objekt nicht gefunden!");
+            }
+          }
+          var alle = true;
+          for (i = 0; i < text.length; i++) {
+            if (text[i].x() / layer.width() > 0.8) {
+              alle = false;
+              i = 99;
+            }
+          }
+          if (alle) {
+            console.log("True");
+            document.getElementById("Button").style.visibility = "visible";
+          }
+
+        }
+      });
+    }
+
+    var imageObj = new Image();
+    imageObj.onload = function () {
+      var img = new Konva.Image({
+        x: 0,
+        y: 0,
+        image: imageObj,
+        height: layer.width() * 0.8 / width * height,
+        width: layer.width() * 0.8,
+      });
+
+      // add the shape to the layer
+      layer.add(img);
+    };
+    imageObj.src = 'Stoffe.png';
+
+
+
+
+    // add the layer to the stage
+    stage.add(layer);
+    stage.add(layerText);
+
+    function pruefen() {
+      console.log("Prüfung");
+      for (i1 = 0; i1 < text.length; i1++) { // Alle Textbausteine durchlaufen
+        var t1 = text[i1];
+        gefunden = false;
+        for (i2 = 0; i2 < txt.length; i2++) {
+          var t2 = txt[i2];
+          if (t2.text == t1.text()) {  // Text stimmt überein
+            console.log(t1.text());
+            for (i3 = 0; i3 < t2.pos.length; i3++) {
+              console.log(i3);
+              var t3 = txt[t2.pos[i3]];
+              var dx = Math.abs(t1.x() - t3.x * layer.width());
+              var dy = Math.abs(t1.y() - t3.y * layer.height());
+              console.log(t1.text() + " " + t3.text + " " + dx + " " + dy)
+              if (dx < 2 && dy < 2) {
+                console.log(t1.text() + " gefunden!");
+                gefunden = true;
+                t1.fill('green');
+              } else if (!gefunden) {
+                t1.fill('red');
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>
