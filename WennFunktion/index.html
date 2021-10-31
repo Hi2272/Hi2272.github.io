@@ -72,8 +72,8 @@
   </footer>
 
   <script>
-     var snap = true;   // snap = true -> Abfrage-Modus
-    //var snap = false;    // snap = false -> Programmier-Modus, Koordinaten werden ausgegeben
+    var snap = true;   // snap = true -> Abfrage-Modus
+   // var snap = false;    // snap = false -> Programmier-Modus, Koordinaten werden ausgegeben
 
     var nummer = 0;    // 
     var width = window.innerWidth;
@@ -90,16 +90,16 @@
 
     var txt = [
       // Hier die Koordinaten einfügen
-      { x: 0.2411290322580645, y: 0.4110535405872193, text: 'WAHR/FALSCH', pos: [0] },
-      { x: 0.6580645161290323, y: 0.2003454231433506, text: '0.19', pos: [1] },
-      { x: 0.3411290322580645, y: 0.024179620034542316, text: '"g"', pos: [2, 9] },
-      { x: 0.3903225806451613, y: 0.4075993091537133, text: 'Wahr-Alternative', pos: [3] },
-      { x: 0.4459677419354839, y: 0.20552677029360966, text: '0', pos: [4] },
-      { x: 0.4064516129032258, y: 0.5716753022452504, text: 'WENN', pos: [5] },
-      { x: 0.5693548387096774, y: 0.4075993091537133, text: 'Falsch-Alternative', pos: [6] },
-      { x: 0.22580645161290322, y: 0.23316062176165803, text: '=', pos: [7] },
-      { x: 0.42338709677419356, y: 0.7426597582037997, text: 'E2', pos: [8] },
-      { x: 0.09758064516129032, y: 0.027633851468048358, text: 'D1', pos: [2,9] }
+      { x: 0.236, y: 0.514, text: 'WAHR/FALSCH', pos: [0] },
+      { x: 0.565, y: 0.5, text: 'Falsch-Alternative', pos: [1] },
+      { x: 0.395, y: 0.512, text: 'Wahr-Alternative', pos: [2] },
+      { x: 0.402, y: 0.718, text: 'WENN', pos: [3] },
+      { x: 0.23, y: 0.293, text: '=', pos: [4] },
+      { x: 0.102, y: 0.033, text: 'D1', pos: [5, 6] },
+      { x: 0.341, y: 0.027, text: '"g"', pos: [5, 6] },
+      { x: 0.652, y: 0.262, text: '0.19', pos: [7] },
+      { x: 0.444, y: 0.271, text: '0', pos: [8] },
+      { x: 0.423, y: 0.921, text: 'E2', pos: [9] }
     ];
 
     var text = new Array();
@@ -118,8 +118,8 @@
         Funktion, die beim Ende des Drag-Vorgangs aufgerufen wird
         */
         var obj = e.target;
-        var x = obj.x() / layer.width();
-        var y = obj.y() / layer.height();
+        var x = Math.round(obj.x() / layer.width() * 1000) / 1000;
+        var y = Math.round(obj.y() / layer.height() * 1000) / 1000;
         if (!snap) {    // snap false => Koordinaten ausgeben
           document.getElementById("ausgabe").innerHTML = document.getElementById("ausgabe").innerHTML +
             "<br>" + "{x:" + x + ",y:" + y + ",text:'" + obj.text() + "',pos:[" + nummer + "]},";
@@ -160,13 +160,22 @@
 
     var imageObj = new Image();
     imageObj.onload = function () {
+      console.log(layer.width() + " " + layer.height());
       var img = new Konva.Image({
         x: 0,
         y: 0,
         image: imageObj,
-        height: layer.width() * 0.8 / width * height,
-        width: layer.width() * 0.8,
       });
+
+      // Bild auf 80% der Seitenbreite vergrößern
+      var w = img.width();
+      var h = img.height();
+      var  f = layer.width() * 0.8 / w;  // Vergrößerungsfaktor 
+      
+      img.width(f * w);
+      img.height(f * h);
+
+      stage.height(img.height());  // Höhe der Zeichenflaeche anpassen
 
       // add the shape to the layer
       layer.add(img);
