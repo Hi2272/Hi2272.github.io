@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://unpkg.com/konva@8.2.3/konva.min.js"></script>
+  <meta charset="utf-8" />
+  <title>Datenflussdiagramm</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      color: darkslateblue;
+      font-size: x-large;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+    }
+
+    html {
+      height: 100%
+    }
+
+    header {
+      color: darkslateblue;
+      font-size: medium;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+      height: 10%;
+    }
+
+    #container {
+      border: darkslateblue;
+      border-style: double;
+      border-width: 3px;
+      padding: 5px;
+      margin: 5px;
+      height: 80%;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      margin: 10px;
+      height: 10%;
+    }
+
+    button {
+      font-size: large;
+      color: darkslateblue;
+
+    }
+  </style>
+
+</head>
+
+<body>
+  <header>
+    In einem Tabellenblatt steht in der Zelle D1 entweder ein "z",
+    wenn die Preise für einen Zwischenhändler mit 0% Umsatzsteuer angegeben werden,
+    oder ein "e", wenn die Preise mit 19% Umsatzsteuer angegeben sind.
+    Der Umsatzsteuersatz soll in Zelle E2 ausgegeben werden.<br>
+    Ziehe die Textbausteine in folgendes Datenflussdiagramm. <br>
+    <button id="Button" onClick="pruefen()" style="visibility: hidden;">Prüfen</button>
+
+  </header>
+  <section>
+    <div id="container"></div>
+  </section>
+  <footer>
+    <div id="ausgabe">
+    </div>
+  </footer>
+
+
+  <script>
+    var snap = true;   // snap = true -> Abfrage-Modus
+    // var snap=false;    // snap = false -> Programmier-Modus, Koordinaten werden ausgegeben
+
+    var nummer = 0;    // 
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    var stage = new Konva.Stage({
+      container: 'container',
+      width: width,
+      height: height,
+    });
+
+    var layer = new Konva.Layer();
+    var layerText = new Konva.Layer();
+
+    var txt = [
+      // Hier die Koordinaten einfügen
+      { x: 0.07338709677419354, y: 0.025906735751295335, text: 'D1', pos: [0, 1] },
+      { x: 0.3548387096774194, y: 0.02072538860103627, text: '"g"', pos: [0, 1] },
+      { x: 0.22580645161290322, y: 0.22625215889464595, text: '=', pos: [2] },
+      { x: 0.44516129032258067, y: 0.20725388601036268, text: '0', pos: [3] },
+      { x: 0.6556451612903226, y: 0.20379965457685664, text: '0.19', pos: [4] },
+      { x: 0.22048387096774194, y: 0.40241796200345425, text: 'WAHR/FALSCH', pos: [5] },
+      { x: 0.3879032258064516, y: 0.40241796200345425, text: 'Wahr-Alternative', pos: [6] },
+      { x: 0.5504838709677419, y: 0.40241796200345425, text: 'Falsch-Alternative', pos: [7] },
+      { x: 0.40403225806451615, y: 0.5768566493955095, text: 'WENN', pos: [8] },
+      { x: 0.41854838709677417, y: 0.7495682210708118, text: 'E2', pos: [9] }
+    ];
+
+    var text = new Array();
+    for (i = 0; i < txt.length; i++) {
+      text[i] = new Konva.Text({
+        x: width * 0.8 + 5,
+        text: txt[i].text,
+        fill: 'blue',
+        fontSize: 4+Math.round(width/80),
+      });
+      text[i].y(i * text[i].height() * 2);
+      text[i].draggable('true');
+      layerText.add(text[i]);
+      text[i].on('dragend', function (e) {
+        /*
+        Funktion, die beim Ende des Drag-Vorgangs aufgerufen wird
+        */
+        if (!snap) {    // snap false => Koordinaten ausgeben
+          document.getElementById("ausgabe").innerHTML = document.getElementById("ausgabe").innerHTML +
+            "<br>" + "{x:" + x + ",y:" + y + ",text:'" + obj.text() + "',pos:[" + nummer + "]},";
+          nummer++;
+        } else {   // snap true => Texte auf die nächstliegende Koordinate schieben
+          var obj = e.target;
+          var x = obj.x() / layer.width();
+          var y = obj.y() / layer.height();
+          if (x < 0.8) {   // Snap-Funktion gilt nicht, wenn die Karte nach rechts gezogen
+            var n = 9999;
+            var mindist = layer.width() * layer.width() + layer.height() * layer.height();
+            for (i = 0; i < txt.length; i++) {
+              dist = (x - txt[i].x) * (x - txt[i].x) + (y - txt[i].y) * (y - txt[i].y);
+              if (dist < mindist) {
+                mindist = dist;
+                n = i;
+              }
+            }
+            if (n != 9999) {  // Hier wird auf die Koordinaten geschoben
+              this.x(txt[n].x * layer.width());
+              this.y(txt[n].y * layer.height());
+            } else {
+              console.log("Objekt nicht gefunden!");
+            }
+          }
+          var alle = true;
+          for (i = 0; i < text.length; i++) {
+            if (text[i].x()/layer.width() > 0.8) {
+              alle = false;
+              i = 99;
+            }
+          }
+          if (alle) {
+            console.log("True");
+            document.getElementById("Button").style.visibility= "visible";
+          }
+
+        }
+      });
+    }
+
+    var imageObj = new Image();
+    imageObj.onload = function () {
+      var img = new Konva.Image({
+        x: 0,
+        y: 0,
+        image: imageObj,
+        height: layer.width() * 0.8 / width * height,
+        width: layer.width() * 0.8,
+      });
+
+      // add the shape to the layer
+      layer.add(img);
+    };
+    imageObj.src = 'Datenfluss.png';
+
+
+    // add the layer to the stage
+    stage.add(layer);
+    stage.add(layerText);
+
+    function pruefen() {
+      console.log("Prüfung");
+      for (i1 = 0; i1 < text.length; i1++) { // Alle Textbausteine durchlaufen
+        var t1 = text[i1];
+        gefunden = false;
+        for (i2 = 0; i2 < txt.length; i2++) {
+          var t2 = txt[i2];
+          if (t2.text == t1.text()) {  // Text stimmt überein
+            console.log(t1.text());
+            for (i3 = 0; i3 < t2.pos.length; i3++) {
+              console.log(i3);
+              var t3 = txt[t2.pos[i3]];
+              var dx = Math.abs(t1.x() - t3.x * layer.width());
+              var dy = Math.abs(t1.y() - t3.y * layer.height());
+              console.log(t1.text() + " " + t3.text + " " + dx + " " + dy)
+              if (dx < 2 && dy < 2) {
+                console.log(t1.text() + " gefunden!");
+                gefunden = true;
+                t1.fill('green');
+              } else if (!gefunden) {
+                t1.fill('red');
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>
