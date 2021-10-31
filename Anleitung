@@ -31,6 +31,19 @@ Die Textbausteine möglichst in einer vermischten Reihenfolge auf die Positionen
 
 3.	Übertragen der Koordinaten
 Im Browser die ausgegebenen Daten kopieren und in den Quellcode ab Zeile 47 einfügen.
+Wenn Textbausteine an mehreren Positionen richtig sind, müssen diese im Feld pos eingetragen werden:
+      { x: 0.36, y: 0.457, text: 'mRNS', pos: [0] },
+      { x: 0.416, y: 0.728, text: 'am Ribosom', pos: [1,5,7] },
+      { x: 0.367, y: 0.071, text: 'DNS', pos: [2] },
+      { x: 0.357, y: 0.89, text: 'Protein', pos: [3] },
+      { x: 0.267, y: 0.23, text: 'Transkription', pos: [6,4] },
+      { x: 0.265, y: 0.679, text: 'Translation', pos: [1,5,7] },
+      { x: 0.405, y: 0.228, text: 'im Zellkern', pos: [6,4] },
+      { x: 0.417, y: 0.627, text: 'im Zellplasma', pos: [1,5,7] }
+      
+      => am Ribosom (1), Translation (5) und im Zellplasma (7) können die Plätze tauschen
+      Transkription(4) und im Zellkern(6) auch.
+      
 In Zeile 29 snap=false wieder auskommentieren 
 index.html speichern.
 
