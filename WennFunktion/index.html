@@ -4,13 +4,17 @@
 <head>
   <script src="https://unpkg.com/konva@8.2.3/konva.min.js"></script>
   <meta charset="utf-8" />
-  <title>Stoffe und Teilchen</title>
+  <title>>Datenflussdiagramm</title>
   <link rel="stylesheet" href="Style.css">
 </head>
 
 <body>
   <header>
-    Ziehe die Textbausteine in folgendes Diagramm. <br>
+    In einem Tabellenblatt steht in der Zelle D1 ein "z",
+    wenn die Preise für einen Zwischenhändler mit 0% Umsatzsteuer angegeben werden.
+    Sonst werden die Preise mit 19% Umsatzsteuer angegeben.
+    Der Umsatzsteuersatz soll in Zelle E2 ausgegeben werden.<br>
+    Ziehe die Textbausteine in folgendes Datenflussdiagramm. <br>
     <button id="Button" onClick="pruefen()" style="visibility: hidden;">Prüfen</button>
 
   </header>
@@ -50,7 +54,7 @@
       { x: 0.402, y: 0.718, text: 'WENN', pos: [3] },
       { x: 0.23, y: 0.293, text: '=', pos: [4] },
       { x: 0.102, y: 0.033, text: 'D1', pos: [5, 6] },
-      { x: 0.341, y: 0.027, text: '"g"', pos: [5, 6] },
+      { x: 0.341, y: 0.027, text: '"z"', pos: [5, 6] },
       { x: 0.652, y: 0.262, text: '0.19', pos: [7] },
       { x: 0.444, y: 0.271, text: '0', pos: [8] },
       { x: 0.423, y: 0.921, text: 'E2', pos: [9] }
