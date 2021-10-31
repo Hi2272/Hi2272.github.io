@@ -25,8 +25,7 @@
       font-size: medium;
       font-family: Arial, Helvetica, sans-serif;
       text-align: center;
-      height: 10%;
-    }
+   }
 
     #container {
       border: darkslateblue;
@@ -34,7 +33,6 @@
       border-width: 3px;
       padding: 5px;
       margin: 5px;
-      height: 80%;
     }
 
     footer {
@@ -72,13 +70,16 @@
   </footer>
 
   <script>
+    
+    
     var snap = true;   // snap = true -> Abfrage-Modus
    // var snap = false;    // snap = false -> Programmier-Modus, Koordinaten werden ausgegeben
 
     var nummer = 0;    // 
     var width = window.innerWidth;
     var height = window.innerHeight;
-
+   
+    
     var stage = new Konva.Stage({
       container: 'container',
       width: width,
@@ -160,6 +161,12 @@
 
     var imageObj = new Image();
     imageObj.onload = function () {
+      console.log("Ausrichtungstest");
+        if (width<height){
+          alert("Die Seite ist auf eine Darstellung in Querformat optimiert.\n"+
+          "Bitte drehen Sie Ihr Gerät und laden Sie die Seite neu!");
+        } 
+    
       console.log(layer.width() + " " + layer.height());
       var img = new Konva.Image({
         x: 0,
@@ -188,6 +195,7 @@
     stage.add(layerText);
 
     function pruefen() {
+      var anzGefunden=0;
       console.log("Prüfung");
       for (i1 = 0; i1 < text.length; i1++) { // Alle Textbausteine durchlaufen
         var t1 = text[i1];
@@ -196,22 +204,27 @@
           var t2 = txt[i2];
           if (t2.text == t1.text()) {  // Text stimmt überein
             console.log(t1.text());
-            for (i3 = 0; i3 < t2.pos.length; i3++) {
+            for (i3 = 0; i3 < t2.pos.length; i3++) {  // Alle alternativen Positionen durchlaufen
               console.log(i3);
               var t3 = txt[t2.pos[i3]];
               var dx = Math.abs(t1.x() - t3.x * layer.width());
               var dy = Math.abs(t1.y() - t3.y * layer.height());
               console.log(t1.text() + " " + t3.text + " " + dx + " " + dy)
               if (dx < 2 && dy < 2) {
-                console.log(t1.text() + " gefunden!");
                 gefunden = true;
                 t1.fill('green');
+                anzGefunden++;
               } else if (!gefunden) {
                 t1.fill('red');
               }
             }
           }
         }
+      }
+      if (anzGefunden==text.length){
+        alert("Super, du hast die Aufgabe vollständig gelöst!");
+      } else {
+        alert("Die grünen Begriffe sind richtig - die roten musst du noht korrigieren!");
       }
     }
 
