@@ -4,60 +4,13 @@
 <head>
   <script src="https://unpkg.com/konva@8.2.3/konva.min.js"></script>
   <meta charset="utf-8" />
-  <title>Datenflussdiagramm</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-      color: darkslateblue;
-      font-size: x-large;
-      font-family: Arial, Helvetica, sans-serif;
-      text-align: center;
-    }
-
-    html {
-      height: 100%
-    }
-
-    header {
-      color: darkslateblue;
-      font-size: medium;
-      font-family: Arial, Helvetica, sans-serif;
-      text-align: center;
-   }
-
-    #container {
-      border: darkslateblue;
-      border-style: double;
-      border-width: 3px;
-      padding: 5px;
-      margin: 5px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px;
-      margin: 10px;
-      height: 10%;
-    }
-
-    button {
-      font-size: large;
-      color: darkslateblue;
-
-    }
-  </style>
-
+  <title>Stoffe und Teilchen</title>
+  <link rel="stylesheet" href="Style.css">
 </head>
 
 <body>
   <header>
-    In einem Tabellenblatt steht in der Zelle D1 entweder ein "z",
-    wenn die Preise für einen Zwischenhändler mit 0% Umsatzsteuer angegeben werden,
-    oder ein "e", wenn die Preise mit 19% Umsatzsteuer angegeben sind.
-    Der Umsatzsteuersatz soll in Zelle E2 ausgegeben werden.<br>
-    Ziehe die Textbausteine in folgendes Datenflussdiagramm. <br>
+    Ziehe die Textbausteine in folgendes Diagramm. <br>
     <button id="Button" onClick="pruefen()" style="visibility: hidden;">Prüfen</button>
 
   </header>
@@ -70,16 +23,16 @@
   </footer>
 
   <script>
-    
-    
+    var dateiname = "Datenfluss.png";
+    var copyright = "Quelle des Bildes: eigene Zeichnung, Rainer Hille 2021";
     var snap = true;   // snap = true -> Abfrage-Modus
-   // var snap = false;    // snap = false -> Programmier-Modus, Koordinaten werden ausgegeben
+    // var snap = false;    // snap = false -> Programmier-Modus, Koordinaten werden ausgegeben
 
     var nummer = 0;    // 
     var width = window.innerWidth;
     var height = window.innerHeight;
-   
-    
+
+
     var stage = new Konva.Stage({
       container: 'container',
       width: width,
@@ -90,7 +43,7 @@
     var layerText = new Konva.Layer();
 
     var txt = [
-      // Hier die Koordinaten einfügen
+      // Hier die Textbausteine einfügen
       { x: 0.236, y: 0.514, text: 'WAHR/FALSCH', pos: [0] },
       { x: 0.565, y: 0.5, text: 'Falsch-Alternative', pos: [1] },
       { x: 0.395, y: 0.512, text: 'Wahr-Alternative', pos: [2] },
@@ -103,10 +56,20 @@
       { x: 0.423, y: 0.921, text: 'E2', pos: [9] }
     ];
 
+    textCopyRight = new Konva.Text({
+      x: width*0.8+5,   // y wird später ersetzt
+      width: width*0.2,
+      fill: 'blue',
+      fontSize: 9,
+      text: copyright,
+    });
+    layerText.add(textCopyRight);
+
     var text = new Array();
     for (i = 0; i < txt.length; i++) {
       text[i] = new Konva.Text({
         x: width * 0.8 + 5,
+        width: width*0.2,
         text: txt[i].text,
         fill: 'blue',
         fontSize: 4 + Math.round(width / 80),
@@ -162,11 +125,11 @@
     var imageObj = new Image();
     imageObj.onload = function () {
       console.log("Ausrichtungstest");
-        if (width<height){
-          alert("Die Seite ist auf eine Darstellung in Querformat optimiert.\n"+
+      if (width < height) {
+        alert("Die Seite ist auf eine Darstellung in Querformat optimiert.\n" +
           "Bitte drehen Sie Ihr Gerät und laden Sie die Seite neu!");
-        } 
-    
+      }
+
       console.log(layer.width() + " " + layer.height());
       var img = new Konva.Image({
         x: 0,
@@ -177,17 +140,19 @@
       // Bild auf 80% der Seitenbreite vergrößern
       var w = img.width();
       var h = img.height();
-      var  f = layer.width() * 0.8 / w;  // Vergrößerungsfaktor 
-      
+      var f = layer.width() * 0.8 / w;  // Vergrößerungsfaktor 
+
       img.width(f * w);
       img.height(f * h);
 
       stage.height(img.height());  // Höhe der Zeichenflaeche anpassen
 
+      textCopyRight.y(stage.height()-20);
       // add the shape to the layer
       layer.add(img);
+
     };
-    imageObj.src = 'Datenfluss.png';
+    imageObj.src = dateiname;
 
 
     // add the layer to the stage
@@ -195,7 +160,7 @@
     stage.add(layerText);
 
     function pruefen() {
-      var anzGefunden=0;
+      var anzGefunden = 0;
       console.log("Prüfung");
       for (i1 = 0; i1 < text.length; i1++) { // Alle Textbausteine durchlaufen
         var t1 = text[i1];
@@ -221,10 +186,10 @@
           }
         }
       }
-      if (anzGefunden==text.length){
+      if (anzGefunden == text.length) {
         alert("Super, du hast die Aufgabe vollständig gelöst!");
       } else {
-        alert("Die grünen Begriffe sind richtig - die roten musst du noch korrigieren!");
+        alert("Die grünen Begriffe sind richtig - die roten musst du noht korrigieren!");
       }
     }
 
