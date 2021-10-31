@@ -1,0 +1,37 @@
+1.	Anpassungen am Code
+Zeile	Änderung
+
+7	Title ändern:   <title>Stoffe und Teilchen</title>
+
+13	Aufgabenstellung und Anleitung einfügen
+Ziehe die Textbausteine in folgendes Diagramm. <br>
+
+26	Dateiname der png-Datei eintragen
+var dateiname="Stoffe.png";
+
+27	Quellenangabe des Bildes eintragen
+var copyright="Quelle des Bildes: eigene Zeichnung, Rainer Hille 2021";
+
+29	// vor var snap=false; löschen
+var snap = true;   // snap = true -> Abfrage-Modus
+    // var snap = false;    // snap = false -> Programmier-Modus, Koordinaten werden ausgegeben
+
+47	Textbausteine eintragen:
+      { x: 0.709, y: 0.497, text: 'Element', pos: [0] },
+      { x: 0.044, y: 0.493, text: 'homogen', pos: [1] },
+      { x: 0.265, y: 0.486, text: 'heterogen', pos: [2] },
+Nur text-Attribute ändern, x,y,pos werden später automatisch gesetzt.
+
+2.	Ermitteln der Koordinaten
+
+index.html speichern und im Browser öffnen
+Textbausteine an die richtige Stelle im Arbeitsblatt ziehen. 
+Unterhalb des Arbeitsblattes werden die Koordinaten ausgegeben.
+Die Textbausteine möglichst in einer vermischten Reihenfolge auf die Positionen ziehen.
+
+3.	Übertragen der Koordinaten
+Im Browser die ausgegebenen Daten kopieren und in den Quellcode ab Zeile 47 einfügen.
+In Zeile 29 snap=false wieder auskommentieren 
+index.html speichern.
+
+
