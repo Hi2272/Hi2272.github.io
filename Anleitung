@@ -1,36 +1,37 @@
-1.	Anpassungen am Code
-Zeile	Änderung
+Eigene Arbeitsblätter erstellen
 
-7	Title ändern:   <title>Stoffe und Teilchen</title>
+1. PNG-Datei des Arbeitsblattes in den Ordner schieben
+2 data.json anpassen:
 
-13	Aufgabenstellung und Anleitung einfügen
-Ziehe die Textbausteine in folgendes Diagramm. <br>
+{   "snap":false,  // das Programm befindet sich im Erstellungsmodus
 
-26	Dateiname der png-Datei eintragen
-var dateiname="Stoffe.png";
+    "dateiname":  "DATEINAME DER PNG-DATEI",
+    "copyright":"QUELLENANGABE DES BILDES",
+    "titel":"TITEL DER HTML-SEITE UND ÜBERSCHRIFT",
+    "angabe":"AUFGABENSTELLUNG",
+    "positionsmarken":true,   BEI TRUE MARKIEREN KLEINE QUADRATE DIE MÖGLICHEN POSITIONEN, BEI FALSE NICHT
 
-27	Quellenangabe des Bildes eintragen
-var copyright="Quelle des Bildes: eigene Zeichnung, Rainer Hille 2021";
+    HIER: text-Attribute anpassen (max. 10 Stück), x,y, pos werden später gesetzt
+    "txt":[
+      { "x": 0.36, "y": 0.457, "text": "mRNS", "pos": [0] },
+      { "x": 0.416, "y": 0.728, "text": "am Ribosom", "pos": [1,5,7] },
+      { "x": 0.367, "y": 0.071, "text": "DNS", "pos": [2] },
+      { "x": 0.357, "y": 0.89, "text": "Protein", "pos": [3] },
+      { "x": 0.267, "y": 0.23, "text": "Transkription", "pos": [6,4] },
+      { "x": 0.265, "y": 0.679, "text": "Translation", "pos": [1,5,7] },
+      { "x": 0.405, "y": 0.228, "text": "im Zellkern", "pos": [6,4] },
+      { "x": 0.417, "y": 0.627, "text": "im Zellplasma", "pos": [1,5,7] }
+]}
 
-29	// vor var snap=false; löschen
-var snap = true;   // snap = true -> Abfrage-Modus
-    // var snap = false;    // snap = false -> Programmier-Modus, Koordinaten werden ausgegeben
-
-47	Textbausteine eintragen:
-      { x: 0.709, y: 0.497, text: 'Element', pos: [0] },
-      { x: 0.044, y: 0.493, text: 'homogen', pos: [1] },
-      { x: 0.265, y: 0.486, text: 'heterogen', pos: [2] },
-Nur text-Attribute ändern, x,y,pos werden später automatisch gesetzt.
-
-2.	Ermitteln der Koordinaten
+3.	Ermitteln der Koordinaten
 
 index.html speichern und im Browser öffnen
 Textbausteine an die richtige Stelle im Arbeitsblatt ziehen. 
 Unterhalb des Arbeitsblattes werden die Koordinaten ausgegeben.
 Die Textbausteine möglichst in einer vermischten Reihenfolge auf die Positionen ziehen.
 
-3.	Übertragen der Koordinaten
-Im Browser die ausgegebenen Daten kopieren und in den Quellcode ab Zeile 47 einfügen.
+3.	Übertragen der Koordinaten in "data.json"
+Im Browser die ausgegebenen Daten kopieren und in die data.json-Datei einfügen.
 Wenn Textbausteine an mehreren Positionen richtig sind, müssen diese im Feld pos eingetragen werden:
       { x: 0.36, y: 0.457, text: 'mRNS', pos: [0] },
       { x: 0.416, y: 0.728, text: 'am Ribosom', pos: [1,5,7] },
@@ -44,7 +45,6 @@ Wenn Textbausteine an mehreren Positionen richtig sind, müssen diese im Feld po
       => am Ribosom (1), Translation (5) und im Zellplasma (7) können die Plätze tauschen
       Transkription(4) und im Zellkern(6) auch.
       
-In Zeile 29 snap=false wieder auskommentieren 
-index.html speichern.
-
+4. Einrasten aktivieren
+"snap": true
 
