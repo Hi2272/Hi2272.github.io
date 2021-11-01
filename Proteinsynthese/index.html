@@ -279,9 +279,9 @@
 
 
     }
-    var pathName = window.location.pathname;
-
-    xmlhttp.open("GET", "/data.json");
+    var href=window.location.href;
+    href=href.substring(0,href.lastIndexOf("/"));
+    xmlhttp.open("GET", href+"/data.json");
     xmlhttp.send();
 
 
