@@ -1,0 +1,20 @@
+{   "snap":true,
+
+    "dateiname":"Datenfluss.png",
+    "copyright":"Quelle des Bildes: eigene Zeichnung",
+    "titel":"Wenn Funktion",
+    "angabe":"In einem Tabellenblatt steht in der Zelle D1 ein 'z',wenn die Preise für einen Zwischenhändler mit 0% Umsatzsteuer angegeben werden. Sonst werden 19% Umsatzsteuer angegeben.<br> Der Umsatzsteuersatz soll in Zelle E2 ausgegeben werden.<br>Ziehe die Textbausteine an die passenden Stellen im Diagramm.",
+    "positionsmarken":true,
+
+    "txt":[
+      { "x": 0.236, "y": 0.514, "text": "WAHR/FALSCH", "pos": [0] },
+      { "x": 0.565, "y": 0.5, "text": "Falsch-Alternative", "pos": [1] },
+      { "x": 0.395, "y": 0.512, "text": "Wahr-Alternative", "pos": [2] },
+      { "x": 0.402, "y": 0.718, "text": "WENN", "pos": [3] },
+      { "x": 0.23, "y": 0.293, "text": "=", "pos": [4] },
+      { "x": 0.102, "y": 0.033, "text": "D1", "pos": [5, 6] },
+      { "x": 0.341, "y": 0.027, "text": "'z'", "pos": [5, 6] },
+      { "x": 0.652, "y": 0.262, "text": "0.19", "pos": [7] },
+      { "x": 0.444, "y": 0.271, "text": "0", "pos": [8] },
+      { "x": 0.423, "y": 0.921, "text": "E2", "pos": [9] }
+]}

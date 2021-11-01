@@ -19,13 +19,7 @@ body {
     text-align: center;
   }
 
-  #container {
-    border: darkslateblue;
-    border-style: double;
-    border-width: 3px;
-    padding: 5px;
-    margin: 5px;
-  }
+ 
 
   footer {
     text-align: center;
