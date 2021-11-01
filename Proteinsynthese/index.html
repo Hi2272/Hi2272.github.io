@@ -279,8 +279,9 @@
 
 
     }
+    var pathName = window.location.pathname;
 
-    xmlhttp.open("GET", "/Proteinsynthese/data.json");
+    xmlhttp.open("GET", pathname+"/data.json");
     xmlhttp.send();
 
 
