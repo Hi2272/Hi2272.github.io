@@ -45,24 +45,42 @@ xmlhttp.onload = function () {
     var layerText = new Konva.Layer();
 
     /* 
-    Copyright-Vermerk
+    Button für Copyright-Vermerk
     */
-
-    var textCopyRight = new Konva.Text({
+    var btnCopyRight = new Konva.Label({
         x: width * 0.8 + 5,   // y wird später ersetzt
         width: width * 0.2,
-        fill: 'blue',
-        fontSize: 9,
-        text: copyright,
+        opacity: 0.75
     });
-    layerText.add(textCopyRight);
+    btnCopyRight.add(new Konva.Tag({
+        fill: 'black',
+        lineJoin: 'round',
+        shadowColor: 'black',
+        shadowBlur: 10,
+        shadowOffset: 10,
+        shadowOpacity: 0.5
+    }));
+
+
+    btnCopyRight.add(new Konva.Text({
+        text: 'Quellenhinweis',
+        fontFamily: 'Calibri',
+        fontSize: 18,
+        padding: 5,
+        fill: 'white'
+    }));
+
+    layerText.add(btnCopyRight);
+
+    btnCopyRight.on('click', () => quelleAngeben());
+    btnCopyRight.on('tap', () => quelleAngeben());
 
     /*
     Schaltfläche zum Prüfen des Ergebnisses
     */
 
     var button = new Konva.Label({
-        x: 5,
+        x: width * 0.8 + 5,
         y: 5,
         opacity: 0  // Unsichtbar zu Beginn
     });
@@ -85,7 +103,7 @@ xmlhttp.onload = function () {
     }));
 
     button.on('click', () => pruefen());
-
+    button.on('tap', () => pruefen());
     /* 
     Textbausteine zeichnen
     */
@@ -156,8 +174,8 @@ xmlhttp.onload = function () {
     var imageObj = new Image();
     imageObj.onload = function () {
         if (width < height) {
-            alert("Die Seite ist auf eine Darstellung in Querformat optimiert.\n" +
-                "Bitte drehen Sie Ihr Gerät und laden Sie die Seite neu!");
+            ausgabe("Die Seite ist auf eine Darstellung in Querformat optimiert.<br>" +
+                "Bitte drehen Sie Ihr Gerät und laden Sie die Seite neu!", 3000, "error");
         }
 
         var img = new Konva.Image({
@@ -186,7 +204,7 @@ xmlhttp.onload = function () {
             }
         );
         layer.add(rect);
-        textCopyRight.y(stage.height() - 20);
+        btnCopyRight.y(stage.height() - 25);
         // add the shape to the layer
         layer.add(img);
 
@@ -213,6 +231,22 @@ xmlhttp.onload = function () {
     stage.add(layer);
     stage.add(layerText);
 
+    function ausgabe(title, msg, dauer, type) {
+        VanillaToasts.create({
+            title: title,
+            text: msg,
+            timeout: dauer,
+            type: type,
+        });
+    }
+    function quelleAngeben() {
+        ausgabe("Quellenangabe", "Bildquelle: <br>" + copyright + "<br><br>"
+            + "Programmierung: <br>2021 Rainer Hille<br><br>"
+            + "Unter Verwendung von <br>"
+            + "<a href='https://konvajs.org'>Konva.js</a><br>"
+            + "<a href='https://www.cssscript.com/toast-style-web-notifications-in-vanilla-javascript-vanillatoasts/'>VanillaToasts.js</a>"
+            + "", 3000, "info");
+    }
     function pruefen() {
         if (button.opacity() > 0) { // Button muss sichtbar sein!
             var anzGefunden = 0;
@@ -242,16 +276,16 @@ xmlhttp.onload = function () {
                 }
             }
             if (anzGefunden == text.length) {
-                alert("Super, du hast die Aufgabe vollständig gelöst!");
+                ausgabe("Gratulation", "Super, du hast die Aufgabe vollständig gelöst!", 3000, "success");
             } else {
-                alert("Die grünen Begriffe sind richtig - die roten musst du noht korrigieren!");
+                ausgabe("Hinweis", "Die grünen Begriffe sind richtig - die roten musst du noch korrigieren!", 3000, "error");
             }
         }
     }
 
-
-
 }
+
+
 var href = window.location.href;
 href = href.substring(0, href.lastIndexOf("/"));
 xmlhttp.open("GET", href + "/data.json");
