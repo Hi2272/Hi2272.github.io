@@ -1,0 +1,17 @@
+{   "snap":true,
+
+    "dateiname":"Stoffe.png",
+    "copyright":"Quelle des Bildes: eigene Zeichnung",
+    "titel":"Stoffe und Teilchen",
+    "angabe":"Ziehen Sie die Textbausteine in das Diagramm.",
+    "positionsmarken":true,
+
+    "txt":[
+      { "x": 0.709, "y": 0.497, "text": "Element", "pos": [0] },
+      { "x": 0.044, "y": 0.493, "text": "homogen", "pos": [1] },
+      { "x": 0.265, "y": 0.486, "text": "heterogen", "pos": [2] },
+      { "x": 0.393, "y": 0.028, "text": "Stoff", "pos": [3] },
+      { "x": 0.141, "y": 0.283, "text": "Stoffgemisch", "pos": [4] },
+      { "x": 0.602, "y": 0.303, "text": "Reinstoff", "pos": [5] },
+      { "x": 0.477, "y": 0.481, "text": "Verbindung", "pos": [6] }
+]}
