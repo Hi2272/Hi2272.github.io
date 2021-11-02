@@ -116,12 +116,18 @@ xmlhttp.onload = function () {
             fill: 'blue',
             fontSize: 4 + Math.round(width / 80),
         });
-
-        if (text[i].text().length < 4) {   // Sehr kurze Wörter werden verlängert, um sie besser zu greifen
+        // Breite setzen
+        if (text[i].width()<width*0.1) {   // Sehr kurze Wörter werden verlängert, um sie besser zu greifen
             text[i].width(width * 0.1)
+        } else if (text[i].width()>=width*0.2-20) { // Sehr lange Wörter werden umgebrochen
+            text[i].width(width * 0.2-20);
         }
-
-        text[i].y(i * text[i].height() * 2 + 3);
+        // y-Positionen setzen
+        if (i==0){
+            text[i].y(10);  
+        } else {
+            text[i].y(text[i-1].y()+ text[i-1].height()+10);    
+        }
         text[i].draggable('true');
         layerText.add(text[i]);
 
