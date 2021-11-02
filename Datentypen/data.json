@@ -1,0 +1,23 @@
+{   "snap":false,
+
+    "dateiname":"Datenfluss.png",
+    "copyright":"eigene Zeichnung",
+    "titel":"Datentyp und Zahlenformat",
+    "angabe":"Ziehe die Textbausteine an die passenden Stellen im Diagramm.",
+    "positionsmarken":true,
+
+    "txt":[
+      { "x": 0.236, "y": 0.514, "text": "Datentyp: legt fest, wie der Wert gespeichert wird", "pos": [0] },
+      { "x": 0.565, "y": 0.5, "text": "Text", "pos": [1] },
+      { "x": 0.395, "y": 0.512, "text": "Zahl", "pos": [2] },
+      { "x": 0.402, "y": 0.718, "text": "Zahlenformat: legt fest, wie die Zahl in der Tabelle dargestellt wird", "pos": [3] },
+      { "x": 0.23, "y": 0.293, "text": "Zahl", "pos": [4] },
+      { "x": 0.102, "y": 0.033, "text": "Währung", "pos": [5, 6] },
+      { "x": 0.341, "y": 0.027, "text": "Prozent", "pos": [5, 6] },
+      { "x": 0.652, "y": 0.262, "text": "Datum", "pos": [7] },
+      { "x": 0.444, "y": 0.271, "text": "Uhrzeit", "pos": [8] },
+      { "x": 0.423, "y": 0.921, "text": "hat einen", "pos": [9],
+      { "x": 0.423, "y": 0.921, "text": "hat ein", "pos": [9]
+
+	  }
+]}
