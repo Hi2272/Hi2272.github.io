@@ -1,6 +1,13 @@
 Eigene Arbeitsblätter erstellen
 
-1. PNG-Datei des Arbeitsblattes in den Ordner schieben
+Vorbereitung: Installation von VisualStudioCode und dem Plugin LiveServer
+
+1. Neuer Ordner erstellen
+   a) index.html mit Bezug auf lokales Skript textdrag.js hineinkopieren
+   b) data.json hineinkopieren
+   c) textdrag.js hineinkopieren
+   c) PNG-Datei des Arbeitsblattes in den Ordner schieben
+   
 2 data.json anpassen:
 
 {   "snap":false,  // das Programm befindet sich im Erstellungsmodus
@@ -25,12 +32,13 @@ Eigene Arbeitsblätter erstellen
 
 3.	Ermitteln der Koordinaten
 
-index.html speichern und im Browser öffnen
+index.html in VisualStudioCode öffnen
+Rechtsklick "Open with Live Server"
 Textbausteine an die richtige Stelle im Arbeitsblatt ziehen. 
 Unterhalb des Arbeitsblattes werden die Koordinaten ausgegeben.
 Die Textbausteine möglichst in einer vermischten Reihenfolge auf die Positionen ziehen.
 
-3.	Übertragen der Koordinaten in "data.json"
+4.	Übertragen der Koordinaten in "data.json"
 Im Browser die ausgegebenen Daten kopieren und in die data.json-Datei einfügen.
 Wenn Textbausteine an mehreren Positionen richtig sind, müssen diese im Feld pos eingetragen werden:
       { x: 0.36, y: 0.457, text: 'mRNS', pos: [0] },
@@ -45,6 +53,15 @@ Wenn Textbausteine an mehreren Positionen richtig sind, müssen diese im Feld po
       => am Ribosom (1), Translation (5) und im Zellplasma (7) können die Plätze tauschen
       Transkription(4) und im Zellkern(6) auch.
       
-4. Einrasten aktivieren
+5. Einrasten aktivieren
 "snap": true
 
+6. index.html durch Version mit Bezug auf Online Skript ersetzen
+ Zeile 30: <script src="https://Hi2272.github.io/textdrag.js"></script>
+ 
+ 7. textdrag.js löschen
+ 
+ 8. Ordner auf Github-Server kopieren
+ 9. Index.html verlinken
+ 
+ 
