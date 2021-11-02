@@ -7,11 +7,8 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
   }
-    html {
-    height: 100%
-  }
 
-  header {
+header {
     color: darkslateblue;
     font-size: medium;
     font-family: Arial, Helvetica, sans-serif;
@@ -25,10 +22,4 @@ body {
     padding: 10px;
     margin: 10px;
     height: 10%;
-  }
-
-  button {
-    font-size: large;
-    color: darkslateblue;
-
   }
