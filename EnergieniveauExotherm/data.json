@@ -1,0 +1,21 @@
+{   "snap":true,
+
+    "dateiname":"EnergieExotherm.png",
+    "copyright":"eigene Zeichnung",
+    "titel":"Energieniveauschema",
+    "angabe":"Ziehe die Textbausteine an die passenden Stellen im Diagramm.",
+    "positionsmarken":true,
+
+    "txt":[
+      {"x":0.033 ,"y":0.061,"text":"Energie","pos":[0]},
+      {"x":0.623 ,"y":0.924,"text":"Reaktionskoordinate","pos":[1]},
+      {"x":0.548 ,"y":0.167,"text":"Aktivierungsenergie ohne Kat.","pos":[2]},
+      {"x":0.529 ,"y":0.343,"text":"Aktivierungsenergie mit Kat.","pos":[3]},
+      {"x":0.094 ,"y":0.493,"text":"Edukte","pos":[4,8]},
+      {"x":0.348 ,"y":0.088,"text":"Übergangszustand","pos":[5,6]},
+      {"x":0.386 ,"y":0.127,"text":"instabil","pos":[5,6]},
+      {"x":0.608 ,"y":0.874,"text":"stabil","pos":[7,10]},
+      {"x":0.095 ,"y":0.564,"text":"metastabil","pos":[4,8]},
+      {"x":0.544 ,"y":0.599,"text":"Reaktionsenergie","pos":[9]},
+      {"x":0.592 ,"y":0.812,"text":"Produkte","pos":[7,10]}
+]}
