@@ -3,10 +3,9 @@ Eigene Arbeitsblätter erstellen
 Vorbereitung: Installation von VisualStudioCode und dem Plugin LiveServer
 
 1. Neuer Ordner erstellen
-   a) index.html mit Bezug auf lokales Skript textdrag.js hineinkopieren
-   b) data.json hineinkopieren
-   c) textdrag.js hineinkopieren
-   c) PNG-Datei des Arbeitsblattes in den Ordner schieben
+   a) data.json hineinkopieren
+   b) PNG-Datei des Arbeitsblattes in den Ordner schieben
+   c) index.html hineinkopieren
    
 2 data.json anpassen:
 
@@ -56,12 +55,7 @@ Wenn Textbausteine an mehreren Positionen richtig sind, müssen diese im Feld po
 5. Einrasten aktivieren
 "snap": true
 
-6. index.html durch Version mit Bezug auf Online Skript ersetzen
- Zeile 30: <script src="https://Hi2272.github.io/textdrag.js"></script>
- 
- 7. textdrag.js löschen
- 
- 8. Ordner auf Github-Server kopieren
- 9. Index.html verlinken
+6. Ordner auf Github-Server kopieren
+7. Index.html verlinken
  
  
