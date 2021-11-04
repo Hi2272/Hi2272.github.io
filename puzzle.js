@@ -24,8 +24,6 @@ xmlhttp.onload = function () {
     var anzX = jsonData.anzX;            // Zahl der Puzzle-Teile in x-Richtung
     var anzY = jsonData.anzY;            // Zahl der Puzzle-Teile in y-Richtung
 
-
-
     var nummer = 0;
 
     var puzzle = new Array();
@@ -50,6 +48,7 @@ xmlhttp.onload = function () {
 
     var layer = new Konva.Layer();
     var layerDrag = new Konva.Layer();
+    var layerButton=new Konva.Layer();
 
     /* 
     Button für Copyright-Vermerk
@@ -77,7 +76,7 @@ xmlhttp.onload = function () {
         fill: 'white'
     }));
 
-    layerDrag.add(btnCopyRight);
+    layerButton.add(btnCopyRight);
 
     btnCopyRight.on('click', () => quelleAngeben());
     btnCopyRight.on('tap', () => quelleAngeben());
@@ -91,7 +90,6 @@ xmlhttp.onload = function () {
         y: 5,
         opacity: 0  // Unsichtbar zu Beginn
     });
-    layerDrag.add(button);
     button.add(new Konva.Tag({
         fill: 'black',
         lineJoin: 'round',
@@ -111,7 +109,8 @@ xmlhttp.onload = function () {
 
     button.on('click', () => pruefen());
     button.on('tap', () => pruefen());
-
+    layerButton.add(button);
+   
 
     // Bild laden
 
@@ -207,7 +206,7 @@ xmlhttp.onload = function () {
                         var alle = true;
                         for (x = 0; x < anzX; x++) {
                             for (y = 0; y < anzY; y++) {
-                                if (puzzle[x][y].x() > layer.width() / 2) {
+                                if (puzzle[x][y].x() > (layer.width() / 2-dx/2)) {
                                     alle = false;
                                     y = anzY + 1; x = anzX + 1;
                                 }
@@ -257,7 +256,8 @@ xmlhttp.onload = function () {
         );
         layer.add(rect);
         btnCopyRight.y(stage.height() - 25);
-
+        btnCopyRight.x(stage.width()-btnCopyRight.width()-10);    
+        button.x(stage.width()-button.width()-10);
 
         /*
         kleine Rechtecke für die möglichen Positionen einfügen
@@ -282,6 +282,7 @@ xmlhttp.onload = function () {
     // add the layer to the stage
     stage.add(layer);
     stage.add(layerDrag);
+    stage.add(layerButton);
 
     /*
     Ausgabe von Text in toast 
