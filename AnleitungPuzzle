@@ -1,0 +1,21 @@
+Eigene Arbeitsblätter erstellen
+
+Vorbereitung: Installation von VisualStudioCode und dem Plugin LiveServer
+
+1. Neuer Ordner erstellen
+   a) data.json hineinkopieren
+   b) PNG-Datei des Arbeitsblattes in den Ordner schieben
+   c) index.html hineinkopieren
+   
+2 data.json anpassen:
+    "dateiname":  "DATEINAME DER PNG-DATEI",
+    "copyright":"QUELLENANGABE DES BILDES",
+    "titel":"TITEL DER HTML-SEITE UND ÜBERSCHRIFT",
+    "angabe":"AUFGABENSTELLUNG",
+    "anzX": Zahl der horizontalen Puzzleteile,
+    "anzY": Zahl der vertikalen Puzzleteile
+ 
+3. Ordner auf Github-Server kopieren
+4. Index.html verlinken
+ 
+ 
