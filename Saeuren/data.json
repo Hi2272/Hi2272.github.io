@@ -5,6 +5,7 @@
     "titel":"Energieniveauschema",
     "angabe":"Ziehe die Textbausteine an die passenden Stellen in der Tabelle.",
     "positionsmarken":true,
+    
 
     "txt":[
       {"x":0.180 ,"y":0.364,"text":"Schweflige Säure","pos":[0]},
