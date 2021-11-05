@@ -5,7 +5,12 @@
     "angabe":"Setze das Puzzle auf der linken Seite zusammen.",
 
     "anzX":3,
-    "anzY":3
+    "anzY":3,
+
+    "startkarten": [
+      {"x":0,"y":0}
+     
+    ]
    
   
   }

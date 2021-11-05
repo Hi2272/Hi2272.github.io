@@ -24,6 +24,8 @@ xmlhttp.onload = function () {
     var anzX = jsonData.anzX;            // Zahl der Puzzle-Teile in x-Richtung
     var anzY = jsonData.anzY;            // Zahl der Puzzle-Teile in y-Richtung
 
+    
+    var startkarten = jsonData.startkarten;  // Beim Start feststehende Karten
     var nummer = 0;
 
     var puzzle = new Array();
@@ -244,6 +246,14 @@ xmlhttp.onload = function () {
             puzzle[x2][y2].y(tmpY);
         }
 
+        // Startkarten setzen
+
+        for (i=0;i<startkarten.length;i++){
+            console.log(i);console.log(startkarten[i].x)
+            puzzle[startkarten[i].x][startkarten[i].y].x(startkarten[i].x*dx);
+            puzzle[startkarten[i].x][startkarten[i].y].y(startkarten[i].y*dy);
+        }
+        
         // Rahmen um Zeichenfläche ziehen
         var rect = new Konva.Rect(
             {
