@@ -14,7 +14,10 @@ Vorbereitung: Installation von VisualStudioCode und dem Plugin LiveServer
     "angabe":"AUFGABENSTELLUNG",
     "anzX": Zahl der horizontalen Puzzleteile,
     "anzY": Zahl der vertikalen Puzzleteile
- 
+    "startkarten": {x,y}-Koordinaten der Karten, die zu Beginn bereits am richtigen Platz sind
+                   Wenn keine Karten vorgeben werden sollen, steht hier []
+                   Sonst können hier beliebig viele Paare stehen [{0,0},{1,1},{2,2}]
+                   
 3. Ordner auf Github-Server kopieren
 4. Index.html verlinken
  
