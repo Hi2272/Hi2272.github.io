@@ -2,6 +2,8 @@
 
 # Informatik
 [WennFunktion](/WennFunktion/index.html)  
+[UND und ODER](/UNDoderODER/index.html)  
+
 
 # Chemie
 [Stoffe im Teilchenmodell - Beschriftung](/Stoffe/index.html)  
