@@ -115,13 +115,14 @@ xmlhttp.onload = function () {
             text: txt[i].text,
             fill: 'blue',
             fontSize: 4 + Math.round(width / 80),
-            align: 'center'
+            align: 'left'
         });
         // Breite setzen
         if (text[i].width()<width*0.1) {   // Sehr kurze Wörter werden verlängert, um sie besser zu greifen
             text[i].width(width * 0.1)
         } else if (text[i].width()>=width*0.2-20) { // Sehr lange Wörter werden umgebrochen
             text[i].width(width * 0.2-20);
+            text[i].align('center');
         }
         // y-Positionen setzen
         if (i==0){
