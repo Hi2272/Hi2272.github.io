@@ -274,8 +274,11 @@ xmlhttp.onload = function () {
                                 gefunden = true;
                                 t1.fill('green');
                                 anzGefunden++;
+                                i3=t2.pos.length;
+                                i2=txt.length;
                             } else if (!gefunden) {
                                 t1.fill('red');
+                   
                             }
                         }
                     }
