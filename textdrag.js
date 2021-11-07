@@ -115,6 +115,7 @@ xmlhttp.onload = function () {
             text: txt[i].text,
             fill: 'blue',
             fontSize: 4 + Math.round(width / 80),
+            align: 'center'
         });
         // Breite setzen
         if (text[i].width()<width*0.1) {   // Sehr kurze Wörter werden verlängert, um sie besser zu greifen
