@@ -3,6 +3,7 @@
 # Informatik
 [WennFunktion](/WennFunktion/index.html)  
 [UND und ODER](/UNDoderODER/index.html)  
+[NICHT](/NICHT/index.html)  
 
 
 # Chemie
