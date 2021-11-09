@@ -12,9 +12,6 @@
 
 [Wichtige Säuren und ihre Anionen](/Saeuren/index.html)  
 
-[Oxidationszahlen](/Oxidationszahlen/index.html)  
-
-
 [Energieniveauschema exotherme Reaktion](/EnergieniveauExotherm/index.html)  
 [Energieniveauschema endotherme Reaktion](/EnergieniveauEndotherm/index.html)  
 
