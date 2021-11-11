@@ -1,0 +1,12 @@
+Der Unterschied zu textdrag.js besteht darin,
+dass die Textbausteine auf der linken Seite kopiert werden.
+Bausteine können damit mehrfach verwendet werden.
+
+In der Datei "Data.json" müssen unter kaertchen die Namen der möglichen Begriffe angegeben werden:
+"kaertchen":
+    [
+        "wahr","falsch","müssen beide Aussagen","muss mindestens eine der beiden Aussagen"
+    ],
+  
+Die Datei index.html sollte aus dem Verzeichnis UNDoderODER kopiert werden.
+  
