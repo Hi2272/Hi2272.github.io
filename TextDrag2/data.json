@@ -1,0 +1,27 @@
+{   "snap":true,
+
+    "dateiname":"Screenshot_1.png",
+    "copyright":"eigene Zeichnung",
+    "titel":"Logische Funktionen: UND und ODER",
+    "angabe":"Ziehe die Textbausteine an die passenden Stellen in der Tabelle.",
+    "positionsmarken":true,
+    
+    "kaertchen":
+    [
+        "wahr","falsch","müssen beide Aussagen","muss mindestens eine der beiden Aussagen"
+    ],
+
+    "txt":[
+     
+{"x":0.275 ,"y":0.154,"text":"wahr","pos":[0,1,2,3]},
+{"x":0.699 ,"y":0.158,"text":"wahr","pos":[0,1,2,3]},
+{"x":0.702 ,"y":0.263,"text":"wahr","pos":[0,1,2,3]},
+{"x":0.701 ,"y":0.367,"text":"wahr","pos":[0,1,2,3]},
+{"x":0.698 ,"y":0.472,"text":"falsch","pos":[4,5,6,7]},
+{"x":0.273 ,"y":0.263,"text":"falsch","pos":[4,5,6,7]},
+{"x":0.273 ,"y":0.373,"text":"falsch","pos":[4,5,6,7]},
+{"x":0.269 ,"y":0.466,"text":"falsch","pos":[4,5,6,7]},
+{"x":0.098 ,"y":0.733,"text":"müssen beide Aussagen","pos":[8]},
+{"x":0.528 ,"y":0.708,"text":"muss mindestens eine der beiden Aussagen","pos":[9]}
+      
+]}
