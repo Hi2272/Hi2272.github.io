@@ -84,7 +84,6 @@ xmlhttp.onload = function () {
     */
 
     var button = new Konva.Label({
-        x: width * 0.8 + 5,
         y: 5,
         opacity: 0  // Unsichtbar zu Beginn
     });
@@ -108,6 +107,8 @@ xmlhttp.onload = function () {
 
     button.on('click', () => pruefen());
     button.on('tap', () => pruefen());
+    button.x(width - 15 - button.width());
+
     /* 
     Textbausteine zeichnen
     */
@@ -202,30 +203,21 @@ xmlhttp.onload = function () {
     };
     imageObj.src = dateiname;
 
-    
-    var imgMuelleimer = new Konva.Image({
-        x: xStart+20,
-        y: height-100,
-        height=80,
-        width=100,
-        image: imageMuell,
-    });
 
-    imageMuell.src="https://Hi2272.github.io/Muelleimer.png"
     // add the layer to the stage
     stage.add(layer);
     stage.add(layerText);
 
     function dragstart(e) {
         var obj = e.target;
-        if (Math.abs(obj.x() - xStart)<2) {
+        if (Math.abs(obj.x() - xStart) < 2) {
             var nr = text.length;
             console.log("dragstart" + nr);
             text[nr] = new Konva.Text({
                 x: xStart,
                 y: obj.y(),
                 text: obj.text(),
-                width:obj.width(),
+                width: obj.width(),
                 fill: 'blue',
                 fontSize: 4 + Math.round(width / 80),
                 align: obj.align(),
@@ -236,7 +228,7 @@ xmlhttp.onload = function () {
 
             layerText.add(text[nr]);
             console.log("dragstart ausgeführt: " + text.length);
-     
+
         }
     }
 
@@ -245,11 +237,26 @@ xmlhttp.onload = function () {
         var x = Math.round(obj.x() / layer.width() * 1000) / 1000;
         var y = Math.round(obj.y() / layer.height() * 1000) / 1000;
         if (!snap) {    // snap false => Koordinaten ausgeben
-            document.getElementById("ausgabe").innerHTML = document.getElementById("ausgabe").innerHTML +
-                "<br>" + '{"x":' + x + ' ,"y":' + y + ',"text":"' + obj.text() + '","pos":[' + nummer + ']},';
-            nummer++;
+            document.getElementById("ausgabe").style.visibility="visible";
+            var s="";
+            var lsg="";
+            var nummer=0;
+            for (i=0;i<text.length;i++){
+                if (text[i].x()<xStart){
+                    if (s!=""){ s=s+ "<br>";}
+                    s=s 
+                    + '{"x":'  + Math.round(text[i].x() / layer.width() * 1000) / 1000 
+                    + ' ,"y":' +  Math.round(text[i].y() / layer.height() * 1000) / 1000
+                    + ',"text":"' + text[i].text() + '","pos":[' + nummer + ']},';
+                    lsg=lsg+text[i].text();
+                    nummer++;
+                }
+            }
+            s=s.substring(0,s.length-1);
+            document.getElementById("txt").innerHTML = s;
+            document.getElementById("loesung").innerHTML='"'+lsg+'"';
         } else {   // snap true => Texte auf die nächstliegende Koordinate schieben
-
+            
             if (x < 0.8) {   // Snap-Funktion gilt nicht, wenn die Karte nach rechts gezogen
                 var n = 9999;
                 var mindist = layer.width() * layer.width() + layer.height() * layer.height();
@@ -269,19 +276,19 @@ xmlhttp.onload = function () {
             } else { // Textbaustein nach rechts gezogen => wird gelöscht
                 console.log("Löschen");
                 var nr = 0;
-                dx=Math.abs(text[nr].x() - obj.x());
-                dy=Math.abs(text[nr].y()- obj.y());
-                console.log(nr+": "+dx+" "+dy);
-                while (dx > 2  && dy  > 2  && nr < text.length-1) {
+                dx = Math.abs(text[nr].x() - obj.x());
+                dy = Math.abs(text[nr].y() - obj.y());
+                console.log(nr + ": " + dx + " " + dy);
+                while (dx > 2 && dy > 2 && nr < text.length - 1) {
                     nr++;
-                    dx=Math.abs(text[nr].x() - obj.x());
-                    dy=Math.abs(text[nr].y()- obj.y());
-                    console.log(nr+": "+dx+" "+dy);
-                   
+                    dx = Math.abs(text[nr].x() - obj.x());
+                    dy = Math.abs(text[nr].y() - obj.y());
+                    console.log(nr + ": " + dx + " " + dy);
+
                 }
-                if (dx<2 && dy<2) {
+                if (dx < 2 && dy < 2) {
                     text[nr].destroy();
-             
+
                     for (n = nr + 1; n < text.length; n++) {
                         text[n - 1] = text[n];
                     }
@@ -323,32 +330,34 @@ xmlhttp.onload = function () {
             console.log("Prüfung");
             for (i1 = 0; i1 < text.length; i1++) { // Alle Textbausteine durchlaufen
                 var t1 = text[i1];
-                gefunden = false;
-                for (i2 = 0; i2 < txt.length; i2++) {
-                    var t2 = txt[i2];
-                    if (t2.text == t1.text()) {  // Text stimmt überein
-                        console.log(t1.text());
-                        for (i3 = 0; i3 < t2.pos.length; i3++) {  // Alle alternativen Positionen durchlaufen
-                            console.log(i3);
-                            var t3 = txt[t2.pos[i3]];
-                            var dx = Math.abs(t1.x() - t3.x * layer.width());
-                            var dy = Math.abs(t1.y() - t3.y * layer.height());
-                            console.log(t1.text() + " " + t3.text + " " + dx + " " + dy)
-                            if (dx < 2 && dy < 2) {
-                                gefunden = true;
-                                t1.fill('green');
-                                anzGefunden++;
-                                i3 = t2.pos.length;
-                                i2 = txt.length;
-                            } else if (!gefunden) {
-                                t1.fill('red');
+                if (t1.x() < xStart) { // Startkärtchen werden nicht durchsucht!
+                    gefunden = false;
+                    for (i2 = 0; i2 < txt.length; i2++) {
+                        var t2 = txt[i2];
+                        if (t2.text == t1.text()) {  // Text stimmt überein
+                            console.log(t1.text());
+                            for (i3 = 0; i3 < t2.pos.length; i3++) {  // Alle alternativen Positionen durchlaufen
+                                console.log(i3);
+                                var t3 = txt[t2.pos[i3]];
+                                var dx = Math.abs(t1.x() - t3.x * layer.width());
+                                var dy = Math.abs(t1.y() - t3.y * layer.height());
+                                console.log(t1.text() + " " + t3.text + " " + dx + " " + dy)
+                                if (dx < 2 && dy < 2) {
+                                    gefunden = true;
+                                    t1.fill('green');
+                                    anzGefunden++;
+                                    i3 = t2.pos.length;
+                                    i2 = txt.length;
+                                } else if (!gefunden) {
+                                    t1.fill('red');
 
+                                }
                             }
                         }
                     }
                 }
             }
-            if (anzGefunden == text.length) {
+            if (anzGefunden == text.length - kaertchen.length) {
                 ausgabe("Gratulation", "Super, du hast die Aufgabe vollständig gelöst!", 3000, "success");
             } else {
                 ausgabe("Hinweis", "Die grünen Begriffe sind richtig - die roten musst du noch korrigieren!", 3000, "error");
