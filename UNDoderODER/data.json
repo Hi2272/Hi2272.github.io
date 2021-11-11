@@ -5,8 +5,13 @@
     "titel":"Logische Funktionen: UND und ODER",
     "angabe":"Ziehe die Textbausteine an die passenden Stellen in der Tabelle.",
     "positionsmarken":true,
-    
-
+  
+      
+    "kaertchen":
+    [
+        "wahr","falsch","müssen beide Aussagen","muss mindestens eine der beiden Aussagen"
+    ],
+  
     "txt":[
      
 {"x":0.275 ,"y":0.154,"text":"wahr","pos":[0,1,2,3]},
