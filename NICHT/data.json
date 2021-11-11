@@ -6,6 +6,12 @@
     "angabe":"Ziehe die Textbausteine an die passenden Stellen in der Tabelle.",
     "positionsmarken":true,
     
+       
+    "kaertchen":
+    [
+        "wahr","falsch"
+    ],
+  
 
     "txt":[
      
