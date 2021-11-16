@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Atombau</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font: 1em sans-serif;
+            align-items: center;
+            justify-content: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        button {
+            height: 25px;
+            width: 50px;
+        }
+    </style>
+
+    <script>
+        'use strict';
+
+        var editierModus = false;
+        //var editierModus = true;
+
+        var fragen = [
+            { z: 1, a: 2, l: 0, bew: 0 },
+            { z: 2, a: 4, l: 0, bew: 0 },
+            { z: 2, a: 4, l: 2, bew: 0 },
+            { z: 3, a: 7, l: 0, bew: 0 },
+            { z: 3, a: 7, l: 1, bew: 0 },
+            { z: 6, a: 12, l: 0, bew: 0 },
+            { z: 6, a: 14, l: 0, bew: 0 },
+            { z: 7, a: 14, l: 0, bew: 0 },
+            { z: 8, a: 16, l: 0, bew: 0 },
+            { z: 8, a: 16, l: -2, bew: 0 },
+            { z: 8, a: 18, l: 0, bew: 0 },
+            { z: 9, a: 19, l: 0, bew: 0 },
+            { z: 9, a: 19, l: -1, bew: 0 },
+            { z: 10, a: 20, l: 0, bew: 0 },
+            { z: 11, a: 23, l: 0, bew: 0 },
+            { z: 11, a: 23, l: 1, bew: 0 },
+            { z: 12, a: 24, l: 0, bew: 0 },
+            { z: 12, a: 24, l: 2, bew: 0 },
+            { z: 12, a: 25, l: 0, bew: 0 },
+            { z: 12, a: 25, l: 2, bew: 0 },
+            { z: 13, a: 27, l: 0, bew: 0 },
+            { z: 13, a: 27, l: 3, bew: 0 },
+            { z: 15, a: 31, l: 0, bew: 0 },
+            { z: 17, a: 35, l: 0, bew: 0 },
+            { z: 17, a: 37, l: 0, bew: 0 },
+            { z: 17, a: 35, l: -1, bew: 0 },
+            { z: 17, a: 37, l: -1, bew: 0 },
+            { z: 17, a: 35, l: 0, bew: 0 },
+            { z: 26, a: 54, l: 0, bew: 0 },
+            { z: 26, a: 56, l: 0, bew: 0 },
+            { z: 29, a: 63, l: 0, bew: 0 },
+            { z: 29, a: 63, l: 2, bew: 0 },
+            { z: 30, a: 64, l: 0, bew: 0 },
+            { z: 30, a: 64, l: 2, bew: 0 },
+            { z: 35, a: 79, l: 0, bew: 0 },
+            { z: 35, a: 79, l: -1, bew: 0 },
+            { z: 35, a: 81, l: 0, bew: 0 },
+            { z: 35, a: 81, l: -1, bew: 0 },
+            { z: 38, a: 94, l: 0, bew: 0 },
+            { z: 53, a: 127, l: 0, bew: 0 },
+            { z: 53, a: 127, l: -1, bew: 0 },
+            { z: 53, a: 131, l: 0, bew: 0 },
+            { z: 56, a: 154, l: 0, bew: 0 },
+            { z: 92, a: 235, l: 0, bew: 0 },
+            { z: 92, a: 238, l: 0, bew: 0 },
+            { z: 94, a: 239, l: 0, bew: 0 }
+
+        ];
+
+
+        var symbole = ['X', 'H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og'];
+
+        var nr = 0;
+        var protonenZahl = 1;
+        var neutronenZahl = 0;
+        var elektronenZahl = 0;
+
+        var automatik = true;
+
+        var pkte = 1000;
+        var anz = 0;
+        var richtig = 0;
+        var aufAnhieb = true;
+
+        function testmodus() {
+            if (automatik) {
+                automatik = false;
+                document.getElementById("testmodus").innerHTML = "Lernmodus";
+                loesungLoeschen();
+                document.getElementById("Mitte").innerHTML = "Im Testmodus<br>erscheint die<br>Lösung erst beim<br>Klick auf <br><b>Weiter</b>";
+            } else {
+                automatik = true;
+                document.getElementById("testmodus").innerHTML = "Testmodus";
+                loesungZeichnen();
+                document.getElementById("Mitte").innerHTML = "Im Lernmodus<br>erscheint<br>rechts<br>eine vorläufige<br>Lösung";
+            }
+        }
+
+        function start() {
+            punkte(0);
+            if (editierModus == false) {
+                // Fragen mischen nur wenn Editiermodus abgeschaltet ist.
+                for (var i = 0; i < fragen.length; i++) {
+                    var x = fragen[i];
+                    var y = Math.floor(Math.random() * fragen.length);
+                    fragen[i] = fragen[y];
+                    fragen[y] = x;
+                }
+            }
+            nr = 0;
+            neueFrage();
+        }
+
+        function bewertungSort() {
+            fragen.sort(function (a, b) {
+                return a.bew - b.bew;
+            });
+        }
+
+        function neueFrage() {
+            anz++;
+            aufAnhieb = true;
+            var frageAlt = fragen[nr];
+            if (editierModus == false) {
+                while (frageAlt.a + frageAlt.l + frageAlt.z == fragen[nr].a + fragen[nr].l + fragen[nr].z) {
+                    nr = Math.floor(Math.random() * 5);  // Zufallszahl 0 bis 9 = erste Fragen mit schlechtester Bewertung
+                }
+            } else {
+                nr = 0;
+            }
+            protonenZahl = 1;
+            neutronenZahl = 0;
+            elektronenZahl = 0;
+            frageZeichnen();
+            if (automatik) {
+                loesungZeichnen();
+            } else {
+                loesungLoeschen();
+            }
+            document.getElementById("protonenZahl").focus();
+            document.getElementById("protonenZahl").select();
+        }
+
+
+        function protonenAendern(z) {
+            protonenZahl = protonenZahl + z;
+            if (protonenZahl < 1) { protonenZahl = 1; }
+            document.getElementById("protonenZahl").value = protonenZahl.toString();
+            if (automatik) { loesungZeichnen(); }
+        }
+
+        function neutronenAendern(z) {
+            neutronenZahl = neutronenZahl + z;
+            if (neutronenZahl < 0) { neutronenZahl = 0; }
+            document.getElementById("neutronenZahl").value = neutronenZahl.toString();
+            if (automatik) { loesungZeichnen(); }
+
+        }
+
+        function elektronenAendern(z) {
+            elektronenZahl = elektronenZahl + z;
+            if (elektronenZahl < 0) { elektronenZahl = 0; }
+            document.getElementById("elektronenZahl").value = elektronenZahl.toString();
+            if (automatik) { loesungZeichnen(); }
+
+        }
+
+        function zeichnen(sA, sZ, sL, sSymbol, z, n, e) {
+            document.getElementById(sA).innerHTML = (z + n).toString();
+            document.getElementById(sZ).innerHTML = z.toString();
+            document.getElementById(sSymbol).innerHTML = symbole[z];
+
+            var l = z - e;
+            var s = "";
+            if (l > 0) { s = l.toString() + "+"; }
+            else if (l == 0) { s = ""; }
+            else {
+                l = Math.abs(l);
+                s = l.toString() + "-";
+            }
+            document.getElementById(sL).innerHTML = s;
+
+            document.getElementById("protonenZahl").value = protonenZahl.toString();
+            document.getElementById("elektronenZahl").value = elektronenZahl.toString();
+            document.getElementById("neutronenZahl").value = neutronenZahl.toString();
+
+        }
+
+        function frageZeichnen() {
+            zeichnen("A", "Z", "L", "Symbol", fragen[nr].z, fragen[nr].a - fragen[nr].z, fragen[nr].z - fragen[nr].l);
+        }
+
+        function loesungZeichnen() {
+            zeichnen("LA", "LZ", "LL", "LSymbol", protonenZahl, neutronenZahl, elektronenZahl);
+        }
+
+        function loesungLoeschen() {
+            zeichnen("LA", "LZ", "LL", "LSymbol", 0, 0, 0);
+        }
+
+        function punkte(p) {
+            pkte = pkte + p;
+            document.getElementById("Punkte").innerHTML = pkte.toString() + " Punkte";
+            if (anz > 0) {
+                var prozent = Math.floor(richtig * 100 / anz);
+                document.getElementById("anz").innerHTML = anz.toString() + " Fragen: " + prozent.toString() + " % richtig";
+            } else {
+                document.getElementById("anz").innerHTML = " ";
+
+            }
+        }
+
+        function weiter() {
+            loesungZeichnen();
+            if (protonenZahl == fragen[nr].z
+                && neutronenZahl + protonenZahl == fragen[nr].a
+                && protonenZahl - elektronenZahl == fragen[nr].l) {
+                alert("Super!\nAuf zur nächsten Frage.");
+                if (aufAnhieb) {
+                    richtig++;
+                }
+                punkte(100);
+                fragen[nr].bew++;
+                bewertungSort();
+                neueFrage();
+            } else {
+                alert("Leider nicht richtig!");
+                if (!automatik) { loesungLoeschen(); }
+                fragen[nr].bew--;
+                punkte(-100);
+                aufAnhieb = false;
+            }
+        }
+
+        function hilfe() {
+            alert(
+                "Bauen Sie das im schwarzen Rahmen dargestellte Teilchen auf, " +
+                "indem Sie die Zahl der Protonen, Neutronen und Elektronen " +
+                "durch Klicken auf die entsprechenden Schaltflächen einstellen.\n\n" +
+                "Im Lernmodus sehen Sie das Ergebnis automatisch im hellblauen Rahmen.\n\n" +
+                "Im Testmodus müssen Sie die Zahlen selbst berechnen:\n\n" +
+                "Links unten steht die Ordnungszahl Z:\n" +
+                "-\tsie entspricht der Protonenzahl.\n" +
+                "-\tund der Elektronenzahl bei ungeladenen Teilchen.\n" +
+                "\nLinks oben steht die Massenzahl A:\n" +
+                "-\tsie entspricht der Summen der Protonen- und Neutronenzahl.\n" +
+                "-\tDie Neutronenzahl entspricht daher der Differenz aus Massenzahl und Ordnungszahl.\n" +
+                "\nRechts oben steht die Ladung des Teilchens:\n" +
+                "-\tIst sie positiv, so sind im Kern mehr Protonen als Elektronen in der Hülle.\n" +
+                "-\tIst sie negativ, so sind in der Hülle mehr Elektronen als Protonen im Kern.\n"
+            );
+        }
+
+        function zahlAuslesen(quelle, zahl) {
+            var s = document.getElementById(quelle).value;
+            var i = Number(s);
+
+            if (isNaN(s)) {
+                alert("Bitte nur Ziffern eingeben!");
+                i = 9999;
+            }
+            if (i < 0) {
+                alert("Bitte nur positive ganze Zahlen eingeben!");
+                i = 9999;
+            }
+            if (i - Math.floor(i) > 0) {
+                alert("Bitte nur ganze Zahlen eingeben!");
+                i = 9999;
+            }
+            if (i != 9999) {
+                document.getElementById(quelle).value = i;
+                return i;
+            } else {
+                document.getElementById(quelle).value = zahl;
+                document.getElementById(quelle).focus();
+                return zahl;
+            }
+        }
+
+        function protonenLesen() {
+            protonenZahl = zahlAuslesen("protonenZahl", protonenZahl);
+            if (automatik) { loesungZeichnen(); }
+
+        }
+
+
+        function neutronenLesen() {
+            neutronenZahl = zahlAuslesen("neutronenZahl", neutronenZahl);
+            if (automatik) { loesungZeichnen(); }
+
+        }
+
+        function elektronenLesen() {
+            elektronenZahl = zahlAuslesen("elektronenZahl", elektronenZahl);
+            if (automatik) { loesungZeichnen(); }
+
+            document.getElementById("Weiter").focus();
+        }
+
+    </script>
+</head>
+
+<body onload="start()">
+
+    <table style="border:thick solid #AAAAAA; align-self:center; ">
+        <tr>
+            <td colspan="6">
+                <h2>Baue dieses Teilchen:</h2>
+            </td>
+        </tr>
+        <tr>
+            <td colspan=2 id="Punkte" style="text-align: left;"></td>
+            <td colspan=4 id="anz" style="text-align: right;"></td>
+        </tr>
+        <tr>
+            <td colspan=2 style="border:thick solid #000000; color: #000000;">
+                <table>
+                    <tr>
+                        <td style="text-align: right" id="A">1</td>
+                        <td style="font-size:3em" id="Symbol" rowspan="2">H</td>
+                        <td id="L">1+</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right" id="Z">1</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+            <td colspan=2 style="color: #AAAAFF;" id="Mitte">Im Lernmodus<br>erscheint<br>rechts<br>die
+                vorläufige<br>Lösung</td>
+            <td colspan=2 style="border:thick solid #AAAAFF; color: #AAAAFF;">
+                <table>
+                    <tr>
+                        <td style="text-align: right" id="LA">A</td>
+                        <td style="font-size:3em" id="LSymbol" rowspan="2">X</td>
+                        <td id="LL">n+</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right" id="LZ">Z</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        <tr style="font-weight: bold;">
+            <td colspan="4">Kern</td>
+            <td colspan="2"> Hülle</td>
+        </tr>
+        <tr style="font-weight: bold;">
+            <td colspan="2" style="color: #AA0000">
+                <input onchange="protonenLesen()" value="1" id="protonenZahl" type="text" style="width:2em" tabindex="1"></input>
+                Protonen</td>
+            <td colspan="2" style="color: #00AA00">
+                <input onchange="neutronenLesen()" value="0" style="width:2em" type="text" ; id="neutronenZahl" tabindex="2"></input>
+                Neutronen</td>
+            <td colspan="2" style="color: #0000AA">
+                <input onchange="elektronenLesen()" value="0" type="text" style="width:2em" id="elektronenZahl" tabindex="3"></input>
+                Elektronen</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button style="background:#FFAAAA" onclick="protonenAendern(1)">+1</button>
+                <button style="background:#FFAAAA" onclick="protonenAendern(10)">+10</button>
+            </td>
+            <td colspan="2">
+                <button style="background:#AAFFAA" onclick="neutronenAendern(1)">+1</button>
+                <button style="background:#AAFFAA" onclick="neutronenAendern(10)">+10</button>
+            </td>
+            <td colspan="2">
+                <button style="background:#AAAAFF" onclick="elektronenAendern(1)">+1</button>
+                <button style="background:#AAAAFF" onclick="elektronenAendern(10)">+10</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button style="background:#FFAAAA" onclick="protonenAendern(-1)">-1</button>
+                <button style="background:#FFAAAA" onclick="protonenAendern(-10)">-10</button>
+            </td>
+            <td colspan="2">
+                <button style="background:#AAFFAA" onclick="neutronenAendern(-1)">-1</button>
+                <button style="background:#AAFFAA" onclick="neutronenAendern(-10)">-10</button>
+            </td>
+            <td colspan="2">
+                <button style="background:#AAAAFF" onclick="elektronenAendern(-1)">-1 </button>
+                <button style="background:#AAAAFF" onclick="elektronenAendern(-10)">-10</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <button style="width:100px" id="testmodus" onclick="testmodus()">Testmodus</button>
+            </td>
+            <td colspan="2" style="text-align: center;">
+                <button style="width:100px" onclick="hilfe()">Hilfe</button>
+            </td>
+            <td colspan="2" style="text-align: center;">
+                <button id="Weiter" style="width:100px" onclick="weiter()" tabindex="4">Weiter</button>
+            </td>
+
+        </tr>
+        <tr>
+            <td style="font-size: small;" colspan="6">
+                2020 Rainer Hille Gymnasium Waldkraiburg
+            </td>
+        </tr>
+
+    </table>
+</body>
+
+</html>
