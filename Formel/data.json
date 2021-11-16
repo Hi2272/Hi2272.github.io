@@ -1,0 +1,25 @@
+{   "snap":true,
+
+    "copyright":"2021 Rainer Hille",
+    "titel":"Formelgleichungen",
+    "untertitel":"Ziehe die Bausteine an die passenden Stellen in der Gleichung.",
+    "positionsmarken":true,
+    
+    "aufgabe":[
+        { "text": "Gleiche die Synthese von Wasser aus:",
+          "angabe": {"edukte":["H2","O2"],
+                     "produkte":["H2O"]},
+          "loesung":{"edukte":["2 H2","O2"],
+                     "produkte":["2 H2O"]}}
+
+
+          ],
+
+    "kaertchen":
+    [
+        "1","2","3","4","+","-","H","Li","Be","B","C","N","O","F","Na","Mg","Al","Si","P","S","Cl",
+        "K","Ca","Br","I","Zn","Cu","Ag",
+        "H2","N2","O2","F2","Cl2","Br2","I2",
+        "H2O","NH3","CH4","H2S","HF","HCl","HBr","HI","NaCl","KCl","MgCl2","AlCl3","FeCl3"
+    ]
+}

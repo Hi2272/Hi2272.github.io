@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>PSE</title>
+
+<style>
+body {font-family: sans-serif}
+
+table {	font-size: 120%; 
+		text-align:center;
+		border-collapse: collapse; 
+		width: auto;
+		height:auto;
+		}
+
+table.visible {visibility:visible}
+table.hidden {visibility:hidden}		
+
+td 	{	padding: 0;
+		background-color: white;
+	}
+		
+.Tab1 { font-size:100%}
+
+.td1{   width:auto;
+	height:auto;
+	padding: 2px;
+	text-align:left;
+	}
+.td2{   width:auto;
+	height:auto;
+	padding: 2px;
+	text-align:left;
+        font-size:80%;
+}
+        
+button 	{margin: -1px -1px; 
+	padding: 0; 
+	width: calc(100% + 2px); 
+	height: calc(100% + 2px);
+	border: 2px solid black;
+	background-color: #00bbff; 
+	color: white;
+	text-align: center;
+	font-size: 140%;
+}
+
+.button1{background-color: #0000ff; }
+.button2{background-color: #00aaff; }
+.button3{background-color: #ffffff; }
+.button4{background-color: #00aaff;
+         color: #00aaff;}
+.button5{background-color: #aaaaaa;
+         color: #cccccc;}
+h1{ font-size:150%;
+    font-weight: bold;
+    margin-bottom: 0em;
+    margin-top:0em;}
+
+</style>
+</head>
+
+<script>
+    
+const pse=["Wasserstoff","H",1,1,1,1
+,"Helium","He",1,1,18,1
+,"Lithium","Li",1,2,1,1
+,"Beryllium","Be",1,2,2,1
+,"Bor","B",1,2,13,1
+,"Kohlenstoff","C",1,2,14,1
+,"Stickstoff","N",1,2,15,1
+,"Sauerstoff","O",1,2,16,1
+,"Fluor","F",1,2,17,1
+,"Neon","Ne",1,2,18,1
+,"Natrium","Na",3,3,1,1
+,"Magnesium","Mg",3,3,2,1
+,"Aluminium","Al",3,3,13,1
+,"Silicium","Si",3,3,14,1
+,"Phosphor","P",3,3,15,1
+,"Schwefel","S",3,3,16,1
+,"Chlor","Cl",3,3,17,1
+,"Argon","Ar",3,3,18,1
+,"Kalium","K",4,4,1,1
+,"Calcium","Ca",4,4,2,1
+,"Scandium","Sc",11,4,3,0
+,"Titan","Ti",11,4,4,0
+,"Vanadium","V",11,4,5,0
+,"Chrom","Cr",11,4,6,1
+,"Mangan","Mn",11,4,7,1
+,"Eisen","Fe",11,4,8,1
+,"Kobalt","Co",11,4,9,1
+,"Nickel","Ni",11,4,10,1
+,"Kupfer","Cu",11,4,11,1
+,"Zink","Zn",11,4,12,1
+,"Gallium","Ga",4,4,13,0
+,"Germanium","Ge",4,4,14,0
+,"Arsen","As",4,4,15,0
+,"Selen","Se",4,4,16,0
+,"Brom","Br",4,4,17,1
+,"Krypton","Kr",4,4,18,0
+,"Rubidium","Rb",5,5,1,1
+,"Strontium","Sr",5,5,2,1
+,"Yttrium","Y",12,5,3,0
+,"Zirconium","Zr",12,5,4,0
+,"Niobium","Nb",12,5,5,0
+,"Molybdän","Mo",12,5,6,0
+,"Technetium","Tc",12,5,7,0
+,"Ruthenium","Ru",12,5,8,0
+,"Rhodium","Rh",12,5,9,0
+,"Palladium","Pd",12,5,10,0
+,"Silber","Ag",12,5,11,1
+,"Cadmium","Cd",12,5,12,1
+,"Indium","In",5,5,13,0
+,"Zinn","Sn",5,5,14,1
+,"Antimon","Sb",5,5,15,0
+,"Tellur","Te",5,5,16,0
+,"lod","I",5,5,17,1
+,"Xenon","Xe",5,5,18,0
+,"Cäsium","Cs",6,6,1,1
+,"Barium","Ba",6,6,2,1
+,"Lanthan","La",13,6,3,0
+,"Cer","Ce",20,9,4,0
+,"Praseodym","Pr",20,9,5,0
+,"Neodym","Nd",20,9,6,0
+,"Promethium","Pm",20,9,7,0
+,"Samarium","Sm",20,9,8,0
+,"Europium","Eu",20,9,9,0
+,"Gadolinium","Gd",20,9,10,0
+,"Terbium","Tb",20,9,11,0
+,"Dysprosium","Dy",20,9,12,0
+,"Holmium","Ho",20,9,13,0
+,"Erbium","Er",20,9,14,0
+,"Thulium","Tm",20,9,15,0
+,"Ytterbium","Yb",20,9,16,0
+,"Lutetium","Lu",20,9,17,0
+,"Hafnium","Hf",13,6,4,0
+,"Tantal","Ta",13,6,5,0
+,"Wolfram","W",13,6,6,0
+,"Rhenium","Re",13,6,7,0
+,"Osmium","Os",13,6,8,0
+,"Iridium","Ir",13,6,9,0
+,"Platin","Pt",13,6,10,1
+,"Gold","Au",13,6,11,1
+,"Quecksilber","Hg",13,6,12,1
+,"Thallium","Tl",6,6,13,0
+,"Blei","Pb",6,6,14,1
+,"Bismut","Bi",6,6,15,0
+,"Polonium","Po",6,6,16,0
+,"Astat","At",6,6,17,0
+,"Radon","Rn",6,6,18,0
+,"Francium","Fr",7,7,1,0
+,"Radium","Ra",7,7,2,0
+,"Actinium","Ac",14,7,3,0
+,"Thorium","Th",21,10,4,0
+,"Protactinium","Pa",21,10,5,0
+,"Uran","U",21,10,6,0
+,"Neptunium","Np",21,10,7,0
+,"Plutonium","Pu",21,10,8,0
+,"Americium","Am",21,10,9,0
+,"Curium","Cm",21,10,10,0
+,"Berkelium","Bk",21,10,11,0
+,"Californium","Cf",21,10,12,0
+,"Einsteinium","Es",21,10,13,0
+,"Fermium","Fm",21,10,14,0
+,"Mendelevium","Md",21,10,15,0
+,"Nobelium","No",21,10,16,0
+,"Lawrencium","Lr",21,10,17,0
+,"Rutherfordium","Rf",14,7,4,0
+,"Dubnium","Db",14,7,5,0
+,"Seaborgium","Sg",14,7,6,0
+,"Bohrium","Bh",14,7,7,0
+,"Hassium","Hs",14,7,8,0
+,"Meitnerium","Mt",14,7,9,0
+,"Darmstadtium","Ds",14,7,10,0
+,"Roentgenium","Rg",14,7,11,0
+,"Copernicium","Cn",14,7,12,0
+,"Nihonium","Nh",7,7,13,0
+,"Flerovium","Fl",7,7,14,0
+,"Moscovium","Mc",7,7,15,0
+,"Livemorium","Lv",7,7,16,0
+,"Tennessine","Ts",7,7,17,0
+,"Oganesson","Og",7,7,18,0
+];
+
+var nr;
+var anzahl;
+var richtig;
+var falsch;
+var nummer;
+var frage = [];
+var schwere_elemente;
+
+function start() {
+    node = document.getElementById("Tab1");
+    node.parentNode.insertBefore(createTable(11, 19,"PSE"), node );
+    // Alle Checkboxen aus
+    var x = document.getElementsByName("Check");
+    for (var i=0;i<x.length;i++){x[i].checked=false;}
+	var x = document.getElementsByName("Check_Gr");
+    for (var i=0;i<x.length;i++){x[i].checked=false;}
+	
+    
+    anzahl=0;nummer=0;richtig=0;falsch=0;schwere_elemente=0;
+    // Zu Beginn immer normal + Grundwissen
+    document.getElementById("modus_normal").checked=true;
+    document.getElementById("Wahl_GW").checked=true;
+    document.getElementById("schwer").checked=false;
+
+    Aufbau(40);
+}
+    function Aufbau(w){
+	anzahl=0;falsch=0;richtig=0;nummer=0;
+      //  alert(schwere_elemente);
+        for (var i=0;i<118;i++){
+            frage[i]=new Array(2);
+            frage[i][0]=11000;
+            frage[i][1]=0;
+        }
+	for (var i=0;i<118;i++){
+		var anzeige=false;
+		if (w===40){  // Grundwissen
+                    if (pse[i*6+5]===1){anzeige=true;}
+		}
+		if (w===99){// gesamtes PSE
+			anzeige=true;
+		}
+		if (w===10){//Teile des PSE --> Perioden abprüfen
+                    
+			if 	(pse[i*6+2]===1)	{anzeige=document.getElementById("Periode1").checked;}
+			else if (pse[i*6+2]===2) {anzeige=document.getElementById("Periode1").checked;}
+			else if (pse[i*6+2]===3) {anzeige=document.getElementById("Periode3").checked;}
+			else if (pse[i*6+2]===4) {anzeige=document.getElementById("Periode4").checked;}
+			else if (pse[i*6+2]===5) {anzeige=document.getElementById("Periode5").checked;}
+			else if (pse[i*6+2]===6) {anzeige=document.getElementById("Periode6").checked;}
+			else if (pse[i*6+2]===7) {anzeige=document.getElementById("Periode7").checked;}
+			
+			else if (pse[i*6+2]===11){anzeige=document.getElementById("Neben1").checked;}
+			else if (pse[i*6+2]===12){anzeige=document.getElementById("Neben2").checked;}
+			else if (pse[i*6+2]===13){anzeige=document.getElementById("Neben3").checked;}
+			else if (pse[i*6+2]===14){anzeige=document.getElementById("Neben4").checked;}
+
+			else if (pse[i*6+2]===20){anzeige=document.getElementById("Lanthanoide").checked;}
+			else if (pse[i*6+2]===21){anzeige=document.getElementById("Actinoide").checked;}
+			else {alert("Fehler :i="+i+"Element: "+pse[i*6+2]);}
+		
+                    if (anzeige===false) {
+                    // Hauptgruppennummern abprüfen
+                    	if 	(pse[i*6+4]===1)	{anzeige=document.getElementById("Gruppe1").checked;}
+			else if (pse[i*6+4]===2) {anzeige=document.getElementById("Gruppe2").checked;}
+			else if ((pse[i*6+4]===13)&&(pse[i*6+2]<20)) {anzeige=document.getElementById("Gruppe3").checked;}
+			else if ((pse[i*6+4]===14)&&(pse[i*6+2]<20)) {anzeige=document.getElementById("Gruppe4").checked;}
+                    	else if ((pse[i*6+4]===15)&&(pse[i*6+2]<20)) {anzeige=document.getElementById("Gruppe5").checked;}
+			else if ((pse[i*6+4]===16)&&(pse[i*6+2]<20)) {anzeige=document.getElementById("Gruppe6").checked;}
+			else if ((pse[i*6+4]===17)&&(pse[i*6+2]<20)) {anzeige=document.getElementById("Gruppe7").checked;}
+                        else if ((pse[i*6+4]===18)&&(pse[i*6+2]<20)) {anzeige=document.getElementById("Gruppe8").checked;}
+                    }
+                }
+                if (i>94+schwere_elemente*24){anzeige=false;}
+		if (anzeige===true){
+                    frage[anzahl][0]=Math.floor(Math.random()*10000);
+                    frage[anzahl][1]=i;
+                    anzahl=anzahl+1;
+                }
+                Element_anzeigen(anzeige,i);
+       }
+   	// Fragen zufällig sortieren
+        frage=frage.sort(function(a,b) {return a[0] - b[0];  });
+        // Periodennummern
+        var tabelle=document.getElementById("PSE");
+	for (var ze=1;ze<8;ze++){
+        	tabelle.rows[ze].cells[0].innerHTML=ze+'. ';
+                
+	}
+	// Hauptgruppennummern
+	for (var sp=1;sp<3;sp++){
+		tabelle.rows[0].cells[sp].innerHTML=sp;
+	}
+	for (var sp=13;sp<19;sp++){
+		tabelle.rows[0].cells[sp].innerHTML=sp-10;
+	}
+	// Erstes Element auswählen
+        
+        nr=frage[0][1];
+    	document.getElementById("Frage").innerHTML="<b>"+pse[nr*6]+"</b>";
+        document.getElementById("Prozent").innerHTML="";
+        document.getElementById("Antwort").innerHTML="";                           
+}
+
+
+function createTable(row, col, id) {
+
+    var myTable     = document.createElement("table");
+        var mytablebody = document.createElement("tbody");
+
+        for(var j = 0; j < row; j++) {
+            mycurrent_row = document.createElement("tr");
+            for(var i = 0; i < col; i++) {
+                    mycurrent_cell = document.createElement("td");  
+				    currenttext = document.createTextNode("");
+                    mycurrent_cell.appendChild(currenttext);
+                    mycurrent_row.appendChild(mycurrent_cell);
+            }
+            mytablebody.appendChild(mycurrent_row);
+    }
+    myTable.appendChild(mytablebody);
+    myTable.setAttribute("ID", id);
+    return myTable;
+} 
+
+function Prozent_Ausgabe(){
+    var p=richtig/(richtig+falsch)*100;
+    p=Math.round(p*100)/100;
+    if ((richtig+falsch)>1){var s="en.";}else{var s=".";}
+    if (nummer<anzahl-2){s=s+" Noch "+(anzahl-nummer-1)+" Fragen.";}
+    document.getElementById("Prozent").innerHTML=p+"% richtig! Bei "+(richtig+falsch)+" Versuch"+s;
+}
+
+function myFunction(x) {
+	var sp=x.cellIndex;
+	var ze=x.parentNode.rowIndex;
+	for (var j=0;j<118;j++){
+		if ((sp===pse[j*6+4])&(ze===pse[j*6+3])) {
+			if (j===nr) {
+				// richtige Antwort
+				document.getElementById("Antwort").innerHTML='<font color="green">'+'Richtig!';
+                                richtig=richtig+1;
+                                Prozent_Ausgabe();
+				// Alte Frage unsichtbar bei leichtem Modus
+                                if ((document.getElementById("modus_leicht").checked===true)||
+                                    (document.getElementById("modus_schwer").checked===true))    
+                            {
+                                    var tabelle=document.getElementById("PSE");
+                                    tabelle.rows[pse[nr*6+3]].cells[pse[nr*6+4]].innerHTML='<button '+'class = "button5"'+'>'+pse[nr*6+1]+'</button>';
+                                }
+                                // Neue Frage suchen
+                                nummer=nummer+1;
+                                if (nummer<anzahl){
+                                    nr=frage[nummer][1];
+                                    document.getElementById("Frage").innerHTML="<b>"+pse[nr*6]+"</b>";
+                                } else {
+                                    alert("Die Übung ist abgeschlossen! "+document.getElementById("Prozent").innerHTML);
+                                    if (document.getElementById("Wahl_GW").checked===true){Wahl_GW();}
+                                    else if (document.getElementById("Wahl_all").checked===true){Wahl_all();}
+                                    else {Wahl_aus();}
+                                    
+                                }
+			}	
+			else {
+				// Falsche Antwort
+                               falsch=falsch+1;
+                               Prozent_Ausgabe(); 
+                                document.getElementById("Antwort").innerHTML=
+                                        '<font color="red">'+'Falsch! '+pse[j*6+1]+' ist das Symbol für '+pse[j*6]+'.';
+				}
+		}
+	}
+}
+
+function Wahl_GW(){
+var s=document.getElementById("Wahl2");
+s.style.visibility='hidden';
+Aufbau(40);
+}
+
+function Wahl_all(){
+var s=document.getElementById("Wahl2");
+s.style.visibility='hidden';
+Aufbau(99);
+}
+
+function Wahl_aus(){
+var s=document.getElementById("Wahl2");
+s.style.visibility='visible';
+Aufbau(10);
+}
+
+function Modus(){
+    for (var i=0;i<anzahl;i++){
+        Element_anzeigen(true,frage[i][1]);
+    }
+}
+function Schwere_Elemente(){
+   // alert("Schwere Elemente");
+    if (document.getElementById("schwer").checked===true){
+        schwere_elemente=1;
+       // alert("Geklickt");
+    }else{
+        schwere_elemente=0;
+       // alert("Nicht geklickt");
+    }
+   // alert(document.getElementById("Wahl_all").checked);
+    if (document.getElementById("Wahl_GW").checked){
+   //     alert("Grundwissen");
+        Aufbau(40);}
+    if (document.getElementById("Wahl_all").checked){
+    //    alert("Alle ELemente");
+        Aufbau(99);}
+    if (document.getElementById("Wahl_aus").checked){
+    //    alert("Auswahl");
+        Aufbau(10);}
+    
+    
+    
+}
+    
+    
+function Element_anzeigen(anzeige,i){
+        var s='class = "button1"';	
+        if (anzeige===false){
+            s='class = "button3"';
+        }else{
+            if (pse[i*6+5]!==1){s='class = "button2"';}  // Grundwissenselement
+            if (document.getElementById("modus_schwer").checked===true){
+                s='class = "button4"';}
+            if (document.getElementById("modus_extrem").checked===true){
+                s='class = "button3"';}
+            
+        }
+        var tabelle=document.getElementById("PSE");
+        tabelle.rows[pse[i*6+3]].cells[pse[i*6+4]].innerHTML='<button '+s+'>'+pse[i*6+1]+'</button>';
+	tabelle.rows[pse[i*6+3]].cells[pse[i*6+4]].onclick=function(){myFunction(this);};
+}
+
+</script>
+<noscript>Sie müssen JavaScript aktivieren, um das Periodensystem nutzen zu können!</noscript>
+
+<body onload="javascript:start()"> 
+
+    <div align="center">    
+        <h1>Periodensystem der Elemente</h1>
+        <small>2017-2020 Rainer Hille, Gymnasium Waldkraiburg,<br> 
+            (<a href="https://www.youtube.com/watch?v=1UQQhjimPuU" target="_blank">Video zur Bedienung</a>
+            ,  <a href="https://www.youtube.com/watch?v=0G0Ujf1Wus8" target="_blank">Video zum Ändern des Grundwissens</a>)
+        </small>    
+        <hr>
+        <table class="Tab1" id="Wahl">
+            <tr>
+                <td class="td1"><input type="radio" onclick="Wahl_GW()" checked name="Wahl" id="Wahl_GW" >Grundwissen</td>
+                <td class="td1"><input type="radio" onclick="Wahl_all()" name="Wahl" id="Wahl_all">Alle Elemente</td>
+                <td class="td1"><input type="radio" onclick="Wahl_aus()" name="Wahl" id="Wahl_aus">Ausgewählte Elemente</td>
+                <td class="td1">|  Modus:</td>
+                <td class="td1"><input type="radio" name="modus" onClick="Modus()" id="modus_leicht">einfach</td>
+                <td class="td1"><input type="radio" name="modus" onClick="Modus()" id="modus_normal" checked="true">normal</td>
+                <td class="td1"><input type="radio" name="modus" onClick="Modus()" id="modus_schwer" >schwer</td>
+                <td class="td1"><input type="radio" name="modus" onClick="Modus()" id="modus_extrem" >extrem</td>
+                <td class="td1">|</td>
+                <td class="td1"> <input type="checkbox" name="schwer" id="schwer" onClick="Schwere_Elemente()"> Elemente nach Am</td>
+
+            </tr>
+        </table>
+        <table class="hidden" id="Wahl2" >	
+            <tr>
+                <td class="td1">Hauptgruppen:</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Gruppe1" name="Check_Gr" checked="false" >1.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Gruppe2" name="Check_Gr" checked="false" >2.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Gruppe3" name="Check_Gr" checked="false" >3.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Gruppe4" name="Check_Gr" checked="false" >4.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Gruppe5" name="Check_Gr" checked="false" >5.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Gruppe6" name="Check_Gr" checked="false" >6.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Gruppe7" name="Check_Gr" checked="false" >7.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Gruppe8" name="Check_Gr" checked="false" >8.</td>
+                <td class="td1">Perioden:</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Periode1" name="Check" checked="false" >1.+2.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Periode3" name="Check" checked="false">3.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Periode4" name="Check" checked="false">4.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Periode5" name="Check" checked="false">5.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Periode6" name="Check" checked="false">6.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Periode7" name="Check" checked="false">7.</td>
+            </tr>
+            <tr>
+                <td class="td1">Nebengruppen-Zeilen:</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Neben1">1.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Neben2">2.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Neben3">3.</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Neben4">4.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Lanthanoide">Lanthanoide</td>
+                <td class="td1"><input type="checkbox" onclick="Aufbau(10)" id="Actinoide">Actinoide</td>
+            </tr>
+	</table>
+        <hr>
+        <table id="Tab1">
+            <tr><td class="td1">Klicken Sie das Symbol für das Element</td><td class="td1" id="Frage"> </td><td class="td1"> an!</td></tr>
+        </table>    
+        <table><tr><td class="td1" id = "Antwort"></td><td class="td2" id="Prozent"></td></tr></table>
+        
+    </div>    
+</body>
+</html>

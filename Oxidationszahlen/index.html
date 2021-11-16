@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Oxidationszahl</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font: 3em sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+
+        button {
+            height: 10vmin;
+            width: 20vmin;
+        }
+
+        input {
+            width: 3em;
+            height: 1em;
+            font-size: 1em;
+            text-align: center;
+        }
+    </style>
+
+<noscript>Sie müssen JavaScript aktivieren, um das Programm nutzen zu können!</noscript>
+
+
+    <script>
+        /* Fragenliste:
+            name = Name des Teilchens
+            f = Formel ohne Ladungen
+            l = Ladung des Teilchens
+            o = Oxidationszahlen der Atome
+            bew = Bewertungszahl: sinkt bei Fehlern, steigt bei richtigen Antworten, zunächst immer 0
+        */
+
+        var fragen = [
+            { name: "Sulfat-Ion", f: ["S", "O4", ""], l: -2, o: ["+6", "-2", ""], bew: 0 },
+            { name: "Hydrogensulfat-Ion", f: ["H", "S", "O4"], l: -1, o: ["+1", "+6", "-2"], bew: 0 },
+            { name: "Schwefelsäure-Molekül", f: ["H2", "S", "O4"], l: 0, o: ["+1", "+6", "-2"], bew: 0 },
+            { name: "Sulfit-Ion", f: ["S", "O3", ""], l: -2, o: ["+4", "-2", ""], bew: 0 },
+            { name: "Hydrogensulfit-Ion", f: ["H", "S", "O3"], l: -1, o: ["+1", "+4", "-2"], bew: 0 },
+            { name: "Schweflige Säure-Molekül", f: ["H2", "S", "O3"], l: 0, o: ["+1", "+4", "-2"], bew: 0 },
+            { name: "Sulfid-Ion", f: ["S", "", ""], l: -2, o: ["-2", "", ""], bew: 0 },
+            { name: "Schwefel-Molekül", f: ["S8", "", ""], l: 0, o: ["0", "", ""], bew: 0 },
+            { name: "Schwefeldioxid-Molekül", f: ["S", "O2", ""], l: 0, o: ["+4", "-2", ""], bew: 0 },
+            { name: "Schwefeltrioxid-Molekül", f: ["S", "O3", ""], l: 0, o: ["+6", "-2", ""], bew: 0 },
+
+            { name: "Phosphat-Ion", f: ["P", "O4", ""], l: -3, o: ["+5", "-2", ""], bew: 0 },
+            { name: "Hydrogenphosphat-Ion", f: ["H", "P", "O4"], l: -2, o: ["+1", "+5", "-2"], bew: 0 },
+            { name: "Dihydrogenphosphat-Ion", f: ["H2", "P", "O4"], l: -1, o: ["+1", "+5", "-2"], bew: 0 },
+            { name: "Phosphor-Molekül", f: ["P4", "", ""], l: 0, o: ["0", "", ""], bew: 0 },
+
+            { name: "Nitrat-Ion", f: ["N", "O3", ""], l: -1, o: ["+5", "-2", ""], bew: 0 },
+            { name: "Nitrit-Ion", f: ["N", "O2", ""], l: -1, o: ["+3", "-2", ""], bew: 0 },
+            { name: "Distickstoffmonooxid-Molekül", f: ["N2", "O", ""], l: 0, o: ["+1", "-2", ""], bew: 0 },
+            { name: "Distickstofftriooxid-Molekül", f: ["N2", "O3", ""], l: 0, o: ["+3", "-2", ""], bew: 0 },
+            { name: "Distickstoffpentaoxid-Molekül", f: ["N2", "O5", ""], l: 0, o: ["+5", "-2", ""], bew: 0 },
+            { name: "Stickstoffdioxid-Molekül", f: ["N", "O2", ""], l: 0, o: ["+4", "-2", ""], bew: 0 },
+            { name: "Stickstoffmonooxid-Molekül", f: ["N", "O", ""], l: 0, o: ["+2", "-2", ""], bew: 0 },
+            { name: "Ammoniak-Molekül", f: ["N", "H3", ""], l: 0, o: ["-3", "+1", ""], bew: 0 },
+            { name: "Ammonium-Ion", f: ["N", "H4", ""], l: 1, o: ["-3", "+1", ""], bew: 0 },
+            { name: "Stickstoff-Molekül", f: ["N2", "", ""], l: 0, o: ["0", "", ""], bew: 0 },
+
+            { name: "Sauerstoff-Molekül", f: ["O2", "", ""], l: 0, o: ["0", "", ""], bew: 0 },
+            { name: "Ozon-Molekül", f: ["O3", "", ""], l: 0, o: ["0", "", ""], bew: 0 },
+            { name: "Wasser-Molekül", f: ["H2", "O", ""], l: 0, o: ["+1", "-2", ""], bew: 0 },
+            { name: "Wasserstoffperoxid-Molekül", f: ["H2", "O2", ""], l: 0, o: ["+1", "-1", ""], bew: 0 },
+
+            { name: "Kohlenstoffdioxid-Molekül", f: ["C", "O2", ""], l: 0, o: ["+4", "-2", ""], bew: 0 },
+            { name: "Kohlenstoffmonooxid-Molekül", f: ["C", "O", ""], l: 0, o: ["+2", "-2", ""], bew: 0 },
+            { name: "Kohlenstoff-Atom", f: ["C", "", ""], l: 0, o: ["0", "", ""], bew: 0 },
+            { name: "Carbonat-Ion", f: ["C", "O3", ""], l: -2, o: ["+4", "-2", ""], bew: 0 },
+            { name: "Hydrogencarbonat-Ion", f: ["H", "C", "O3"], l: -1, o: ["+1", "+4", "-2"], bew: 0 },
+            { name: "Carbid-Ion", f: ["C2", "", ""], l: -2, o: ["-1", "", ""], bew: 0 },
+
+            { name: "Chlor-Molekül", f: ["Cl2", "", ""], l: 0, o: ["0", "", ""], bew: 0 },
+            { name: "Chlorid-Ion", f: ["Cl", "", ""], l: -1, o: ["-1", "", ""], bew: 0 },
+            { name: "Dichlormonooxid", f: ["Cl2", "O", ""], l: 0, o: ["+1", "-2", ""], bew: 0 },
+            { name: "Dichlortrioxid", f: ["Cl2", "O3", ""], l: 0, o: ["+3", "-2", ""], bew: 0 },
+            { name: "Dichlorpentaoxid", f: ["Cl2", "O5", ""], l: 0, o: ["+5", "-2", ""], bew: 0 },
+            { name: "Hypochlorige Säure", f: ["H", "Cl", "O"], l: 0, o: ["+1", "+1", "-2"], bew: 0 },
+            { name: "Chlorige Säure", f: ["H", "Cl", "O2"], l: 0, o: ["+1", "+3", "-2"], bew: 0 },
+            { name: "Chlorsäure", f: ["H", "Cl", "O3"], l: 0, o: ["+1", "+5", "-2"], bew: 0 },
+            { name: "Perchlorsäure", f: ["H", "Cl", "O4"], l: 0, o: ["+1", "+7", "-2"], bew: 0 },
+            { name: "Hypochlorit-Ion", f: ["Cl", "O",""], l: -1, o: ["+1", "-2", ""], bew: 0 },
+            { name: "Chlorit-Ion", f: ["Cl", "O2",""], l: -1, o: ["+3", "-2", ""], bew: 0 },
+            { name: "Chlorat-Ion", f: ["Cl", "O3",""], l: -1, o: ["+5", "-2", ""], bew: 0 },
+            { name: "Perchlorat-Ion", f: ["Cl", "O4",""], l: -1, o: ["+7", "-2", ""], bew: 0 },
+           
+            { name: "Eisen-II-Ion", f: ["Fe", "", ""], l: 2, o: ["+2", "", ""], bew: 0 },
+            { name: "Eisen-III-Ion", f: ["Fe", "", ""], l: 3, o: ["+3", "", ""], bew: 0 },
+
+            { name: "Silber-Ion", f: ["Ag", "", ""], l: 1, o: ["+1", "", ""], bew: 0 },
+            { name: "Silberoxid", f: ["Ag2", "O", ""], l: 0, o: ["+1", "-2", ""], bew: 0 },
+
+            { name: "Permanganat-Ion", f: ["Mn", "O4", ""], l: -1, o: ["+7", "-2", ""], bew: 0 },
+            { name: "Braunstein", f: ["Mn", "O2", ""], l: 0, o: ["+4", "-2", ""], bew: 0 },
+            { name: "Mangan-II-Ion", f: ["Mn", "", ""], l: 2, o: ["+2", "", ""], bew: 0 },
+
+            { name: "Dichromat-Ion", f: ["Cr2", "O7", ""], l: -2, o: ["+6", "-2", ""], bew: 0 },
+            { name: "Chromat-Ion", f: ["Cr", "O4", ""], l: -2, o: ["+6", "-2", ""], bew: 0 },
+            { name: "Chrom-III-Ion", f: ["Cr", "", ""], l: 3, o: ["+3", "", ""], bew: 0 }
+        ]
+
+
+        var pkte = 1000;
+
+        function punkte(i) {
+            pkte = pkte + i;
+            document.getElementById("Punkte").innerHTML = pkte.toString() + "<br>Punkte";
+        }
+
+        function fehler(s) {
+            alert(s);
+            punkte(-50);
+            fragen[nr].bew = fragen[nr].bew - 1;
+        }
+
+        function formelKurz(s) {
+            var s1 = "";
+            for (var j = 0; j < s.length; j++) {
+                var s2 = s.substr(j, 1);
+                if (s2 >= "1" && s2 <= "9") {
+                    s1 = s1 + "<sub>" + s2 + "</sub>";
+                } else {
+                    s1 = s1 + s2;
+                }
+            }
+            return s1;
+        }
+
+        function ladung(l) {
+            var s1 = "";
+            if (l > 0) {
+                if (l == 1) {
+                    s1 = s1 + "<sup>+</sup";
+                } else {
+                    s1 = s1 + "<sup>" + l.toString() + "+" + "</sup>";
+                }
+            } else if (l < 0) {
+                if (l == -1) {
+                    s1 = s1 + "<sup>-</sup";
+                } else {
+                    s1 = s1 + "<sup>" + Math.abs(l.toString()) + "-" + "</sup>";
+                }
+            }
+            return s1;
+        }
+
+        function formelLang(nr) {
+            var s1 = "";
+            for (var i = 0; i < 3; i++) {
+                s1 = s1 + formelKurz(fragen[nr].f[i]);
+            }
+            s1 = s1 + ladung(fragen[nr].l);
+            return s1;
+
+        }
+
+
+        function frageSchreiben(nr) {
+            document.getElementById("Frage").innerHTML = fragen[nr].name;
+            document.getElementById("Formel").innerHTML = formelLang(nr);
+            for (var i = 0; i < 3; i++) {
+                var s = i.toString();
+                if (fragen[nr].f[i] == "") {
+                    document.getElementById("f" + s.trim()).hidden = true;
+                    document.getElementById("i" + s.trim()).hidden = true;
+
+                } else {
+                    document.getElementById("i" + s.trim()).hidden = false;
+                    document.getElementById("i" + s.trim()).value = "";
+
+                    document.getElementById("f" + s.trim()).hidden = false;
+
+                    document.getElementById("f" + s.trim()).innerHTML = formelKurz(fragen[nr].f[i]);
+                }
+            }
+            document.getElementById("f3").innerHTML = ladung(fragen[nr].l);
+            document.getElementById("i0").focus();
+        }
+
+
+        function auswertenEingabe(n) {
+
+            var s = n.toString();
+            s = "i" + s.trim();
+            var oxz = document.getElementById(s).value.trim();
+            var f = "";  // FehlerString
+            // Suche nach Buchstaben
+            for (var i = 0; i < oxz.length; i++) {
+                if ((oxz.substr(i, 1) < "0" || oxz.substr(i, 1) > "9") && (oxz.substr(i, 1) != "+" && oxz.substr(i, 1) != "-")) {
+                    f = "Bitte verwende nur Ziffern und Vorzeichen für Oxidationszahlen!";
+                }
+            }
+            // Pruefe auf Vorzeichen
+            if (oxz.substr(0, 1) != "+" && oxz.substr(0, 1) != "-" && oxz != "0") {
+                if (f == "") { f = "Alle Oxidationszahlen außer 0 beginnen stets mit einem Vorzeichen!"; }
+            }
+
+            if (f != "") { // Fehlerhafte Eingabe -> Abbruch
+                fehler(f);
+            } else { // keine Zeichenfehler --> Check der Eingabe
+                if (oxz != fragen[nr].o[n]) { // Falsche Antwort}
+                    var s1 = n.toString();
+                    var s1 = "f" + s1.trim();
+                    if (document.getElementById(s1).innerHTML.substr(0, 1) == "O") { // Sauerstoff
+                        if (fragen[nr].o[n] != "-2") {// Hinweis auf Ausnahmen
+                            f = "Hier liegt eine Ausnahme vor.\nSauerstoffatome haben meist, aber nicht immer die Oxidationszahl -2.";
+                        } else {
+                            f = "Beachte die Grundregel: Sauerstoffatome haben meist die Oxidationszahl -2:\n" +
+                                "Ausnahmen: \n" +
+                                "1. Sauerstoffatome in Peroxiden: -1 \n" +
+                                "2. Sauerstoffatome im Sauerstoffmolekül: 0";
+                        }
+                    } else if (document.getElementById(s1).innerHTML.substr(0, 1) == "H") { // Wasserstoff
+                        if (fragen[nr].o[n] != "+1") {// Hinweis auf Ausnahmen
+                            f = "Hier liegt eine Ausnahme vor.\nWasserstoffatome haben meist, aber nicht immer die Oxidationszahl +1.";
+                        } else {
+                            f = "Beachte die Grundregel: Wasserstoffatome haben meist die Oxidationszahl +1:\n" +
+                                "Ausnahmen: \n" +
+                                "1. Hydrid-Ionen: -1 \n" +
+                                "2. Wasserstoffatome im Wasserstoffmolekül: 0";
+
+                        }
+                    } else { // anderes Atom --> komplexere Fehlersuche
+                        // Sind H und O bereits mit OZ belegt?
+                        for (var i = 0; i < 3; i++) {
+                            var s1 = document.getElementById("f" + i.toString().trim()).innerHTML.substr(0, 1);
+                            var s2 = document.getElementById("i" + i.toString().trim()).value;
+
+                            if ((s1 == "H") && (s2 == "")) { f = f + "Trage immer zuerst die bekannte Oxidationszahl der Wasserstoffatome ein!\n"; }
+                            if ((s1 == "O") && (s2 == "")) { f = f + "Trage immer zuerst die bekannte Oxidationszahl der Sauerstoffatome ein!\n"; }
+                        }
+                    }
+                }
+            }
+            if (f != "") {
+                fehler(f);
+                document.getElementById(s).focus();
+            }
+            return (f == "");
+
+        }
+
+
+        function auswertenWeiter() {
+            var f = "";  // FehlerString
+            var ladung = 0;
+            for (var i = 0; i < 3; i++) {
+                var oz = parseInt(document.getElementById("i" + i.toString().trim()).value);
+                var ind = 1;
+                var s1 = "f" + i.toString().trim();
+                if (document.getElementById(s1).hidden == false) {
+                    s1 = document.getElementById(s1).innerHTML;
+                    if (s1.substr(s1.length - 1) == ">") {
+                        s1 = s1.substr(s1.length - 7, 1);
+                        ind = parseInt(s1);
+                    }
+                    ladung = ladung + oz * ind;
+                }
+            }
+            if (ladung != fragen[nr].l) {
+                f = "Regel: Die Summe der Oxidationszahlen entspricht der Außenladung." +
+                    "\n\nZur Kontrolle musst du die Oxidationszahl jedes Atoms mit der Anzahl dieser Atome" +
+                    "\n(=Index des Atoms) multiplizieren." +
+                    "\nDie Summe dieser Zahlen muss der Außenladung des Teilchens entsprechen." +
+                    "\n\n Bei dir beträgt diese Summe: " + ladung.toString() +
+                    "\n Die Außenladung beträgt aber: " + fragen[nr].l.toString();
+                fehler(f);
+
+            }
+            return (f == "");
+        }
+
+        function neueFrage() {
+            var frageAlt = fragen[nr];
+            while (frageAlt.name == fragen[nr].name) {
+                nr = Math.floor(Math.random() * 9);  // Zufallszahl 0 bis 9 = erste Fragen mit schlechtester Bewertung
+            }
+        frageSchreiben(nr);
+        }
+
+        function start() {
+            document.getElementById("Intro").hidden = true;
+            for (var i = 0; i < fragen.length; i++) {
+                var x = fragen[i];
+                var y = Math.floor(Math.random() * fragen.length);
+                fragen[i] = fragen[y];
+                fragen[y] = x;
+            }
+
+            nr = 1;
+            neueFrage();
+            punkte(0);
+            document.getElementById("Weiter").hidden = false;
+
+        }
+
+        function bewertungSort() {
+            fragen.sort(function (a, b) {
+                return a.bew - b.bew;
+            });
+        }
+
+        function weiter() {
+            var r = true;
+            /*    for (var i = 0; i < 3; i++) {
+                    var s = "i" + i.toString();
+    
+                    if (document.getElementById(s).hidden == false) {
+                        if (auswerten(i) == false) { r = false; };
+                    }
+                }
+    */
+            r = auswertenWeiter();
+            if (r) {
+                punkte(100);
+                fragen[nr].bew++;
+                bewertungSort();
+                neueFrage();
+            }
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <table>
+        <tr id="Intro" style="font-size: medium;">
+            <td>
+                <h1>Oxidationszahlen</h1>
+                <hr>
+                <hr>
+                Mit diesem Übungsprogramm kann das Erstellen von Oxidationszahlen<br>
+                in Summenformeln geübt werden.<br>
+                <br>
+                Tippe hierzu in die Felder über den Atomen die Oxidationszahl als <br>
+                - arabische Zahl,<br>
+                - mit Vorzeichen (+2 statt 2, -2, 0).<br>
+                <br>
+                Deine Eingabe wird direkt beim Verlassen des Eingabefeldes geprüft.<br>
+                <br>
+                Unter dieser Adresse kannst du dir ein kurzes Anleitungsvideo ansehen:<br>
+                <a href="https://www.youtube.com/watch?v=SzDrP1txCAM" target="_blank">Anleitungsvideo</a>
+                
+                <br><br>
+                <hr>
+                <hr>
+                <br><br>
+                <button id="Start" onclick="start()">Start</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" id="Frage"></td>
+        </tr>
+        <tr>
+            <td colspan="4" id="Formel"> </td>
+        </tr>
+        <tr>
+            <td><input id="i0" value="" onchange="auswertenEingabe(0)" hidden>
+                </input>
+            </td>
+            <td><input id="i1" value="" onchange="auswertenEingabe(1)" hidden>
+                </input>
+            </td>
+            <td><input id="i2" value="" onchange="auswertenEingabe(2)" hidden>
+                </input>
+            </td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td id="f0"></td>
+            <td id="f1"></td>
+            <td id="f2"></td>
+            <td id="f3"></td>
+        </tr>
+        <tr>
+            <td style="font-size:medium" id="Punkte"></td>
+            <td><button id="Weiter" onclick="weiter()" hidden>Weiter</button></td>
+            <td style="font-size: x-small;">2020 Rainer Hille<br>Gymnasium Waldkraiburg</td>
+        </tr>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Salzformeln</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font: 1em sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        canvas {
+            width: 100%;
+            height: 400px;
+            border: solid black;
+        }
+
+        button {
+            height: 25px;
+            width: 100px;
+        }
+    </style>
+
+    <script>
+        'use strict';
+
+//                            0                     1            2                 3               4                 5                 6                    7                 8                          9                               10                           11                          12                              13                          14                                 15                16                 17            18                   19                    20               21                 22                23        
+        var ionenNamen = [ "Fluorid",        "Chlorid",       "Bromid",         "Iodid",         "Oxid",           "Sulfid",        "Nitrid",          "Phosphid",       "Nitrat",                     "Nitrit",                    "Carbonat"                    ,"Sulfat",                   "Sulfit"                     ,"Phosphat",                   "Ammonium",                        "Lithium",         "Natrium",        "Kalium",        "Calcium",         "Magnesium",       "Aluminium",       "Eisen-II",        "Eisen-III",       "Silber"];
+        var ionenFormel = ["F<sup>-</sup>", "Cl<sup>-</sup>", "Br<sup>-</sup>", "I<sup>-</sup>", "O<sup>2-</sup>", "S<sup>2-</sup>","N<sup>3-</sup>", "P<sup>3-</sup>","NO<sub>3</sub><sup>-</sup>", "NO<sub>2</sub><sup>-</sup>", "CO<sub>3</sub><sup>2-</sup>","SO<sub>4</sub><sup>2-</sup>","SO<sub>3</sub><sup>2-</sup>","PO<sub>4</sub><sup>3-</sup>" ,"NH<sub>4</sub><sup>+</sup>",      "Li<sup>+</sup>",  "Na<sup>+</sup>", "K<sup>+</sup>", "Ca<sup>2+</sup>", "Mg<sup>2+</sup>", "Al<sup>3+</sup>", "Fe<sup>2+</sup>", "Fe<sup>3+</sup>", "Ag<sup>+</sup>"];
+        var ionenLadung = [ - 1,                - 1,             - 1,             - 1,            - 2,               - 2,             -3,               -3,                     -1   ,                     -1                 ,    -2                    ,         -2,                         -2,                          -3,                                  1,                              1,                   1,               1,               2,                  2,                 3,                 2,               3,                  1];
+
+
+        var frageKationenNummer = 0;
+        var frageAnionenNummer = 0;
+
+        var frageKationenZahl = 0;
+        var frageAnionenZahl = 0;
+        var antwortAnionenZahl = 0;
+        var antwortKationenZahl = 0;
+        var automatik = true;
+        var reaktionspfeil = " --- ";
+
+        var pkte = 1000;
+        var nr=0;
+
+        window.addEventListener("keypress", tastenAuswerten);
+        window.addEventListener("keydown", steuertastenAuswerten);
+
+        setTimeout(function () { document.getElementById('pruefen').focus(); }, 100);
+
+
+        function wechselAuto() {
+            if (automatik) {
+                automatik = false;
+                document.getElementById("wechsel").innerHTML = "Wechsel in<br>Lernmodus";
+                document.getElementById("pruefen").innerHTML = "Formel<br>prüfen"
+                document.getElementById("beschriftung").innerHTML = "Testmodus: Tippen Sie die Formel ein.";
+                reaktionspfeil = " → ";
+
+            } else {
+                automatik = true;
+                document.getElementById("wechsel").innerHTML = "Wechsel in<br>Testmodus";
+                document.getElementById("pruefen").innerHTML = "Weiter"
+                document.getElementById("beschriftung").innerHTML = "Lernmodus: Hier erscheint die Formel";
+                reaktionspfeil = " --- ";
+
+                autoFormel();
+            }
+            neueFrage();
+            frageSchreiben();
+            document.getElementById("pruefen").focus();
+        }
+        function steuertastenAuswerten(tast) {
+            if (automatik == false) {
+
+                var nr = tast.keyCode;
+                var s1 = document.getElementById("tippFeld").innerHTML;
+
+                if (nr == 8) {    //  DEL-Taste
+                    if (s1.length > 0) {
+                        if (s1.endsWith('>')) { // Ziffer <sub>x</sub>}
+                            s1 = s1.substr(0, s1.length - 12);
+                        } else {
+                            s1 = s1.substr(0, s1.length - 1);
+                        }
+                        document.getElementById("tippFeld").innerHTML = s1;
+                    }
+                }
+            }
+        }
+
+        function tastenAuswerten(tast) {
+            if (automatik == false) {
+                var s = String.fromCharCode(tast.keyCode);
+                if (s >= '0' && s <= '9') { s = "<sub>" + s + "</sub>"; }
+                var s1 = document.getElementById("tippFeld").innerHTML
+                if (s1.substr(0, 5) == "Testm") { s1 = ""; }
+                s1 = s1 + s;
+                document.getElementById("tippFeld").innerHTML = s1;
+            }
+        }
+
+
+        function drawFormel(nr) {
+            var element = document.getElementById('canvas');
+            var context = element.getContext('2d');
+            context.textBaseline = 'middle';
+
+            var text = ionenFormel[nr];
+            //  text=text.substr(6,text.length-6);  // HTML-Tags abschneiden
+            //  text=text.substr(0,text.length-7);
+            var ladung = ionenLadung[nr];
+            var dy = Math.abs(ladung) * 40;  // Höhe des Fensters einstellen
+            var x = 0;
+            var y = 0;
+            if (ladung < 0) {
+                x = 200;
+                y = antwortAnionenZahl * dy;
+                context.fillStyle = "#BBBBFF";
+                context.strokeStyle = "#4444FF";
+
+            } else {
+                x = 0;
+                y = antwortKationenZahl * dy;
+                context.fillStyle = "#FFBBBB";
+                context.strokeStyle = "#FF4444";
+
+            }
+
+
+            context.fillRect(x + 2, y + 2, 200 - 4, dy - 4);
+            context.strokeRect(x + 2, y + 2, 200 - 4, dy - 4);
+
+            if (x < 200) { context.fillStyle = "#FF4444"; } else { context.fillStyle = "#4444FF"; }
+
+            context.font = '15px Arial';
+
+            var measure = context.measureText(s);
+            var width = measure.width.toFixed(0);
+            x = x + 120 - width / 2;
+
+
+            y = y + dy / 2 + 3;
+            var y0 = y;
+
+            for (var i = 0; i < text.length; i++) {
+                y = y0;
+                s1 = "";
+                var s = text.charAt(i);
+                if (s == '<') {
+                    var s1 = text.substr(i, 5);
+                    if (s1 == "<sub>") {
+                        y = y + 10;
+                        i = i + 5;
+                    } else {
+                        y = y - 15;
+                        i = i + 5;
+                    }
+                    s1 = "";
+                    s = "";
+                    while (s1 != "<") {
+                        s1 = text.charAt(i);
+                        s = s + s1;
+                        i = i + 1;
+                    }
+                    i = i + 4;
+                    s = s.substr(0, s.length - 1);
+                }
+                context.fillText(s, x, y);
+                var measure = context.measureText(s);
+                var width = measure.width.toFixed(0);
+                var dx = Number(width);
+                x = x + dx;
+            }
+        }
+
+
+        /**
+         * zeigt den Text s im unteren Feld an
+         */
+        function textAusgabe(s) {
+            document.getElementById("titelFeld").innerHTML = s;
+        }
+
+        /**
+         *  Verändert die Punktezahl um i und zeigt das Ergebnis an!
+        */
+
+        function punkte(i) {
+            pkte = pkte + i;
+            document.getElementById("pkte").innerHTML = pkte.toString();
+        }
+        /** 
+         * wird durch Druck auf die Taste "Formel prüfen" aufgerufen
+         * und vergleicht die dargestellte Formel mit der Vorgabe
+         */
+
+        function formelPruefen() {
+            if (antwortAnionenZahl < frageAnionenZahl) {
+                textAusgabe("Du hast zu wenig Anionen");
+                punkte(-50);
+            }
+            if (antwortKationenZahl < frageKationenZahl) {
+                textAusgabe("Du hast zu wenig Kationen");
+                punkte(-50);
+            }
+            if ((antwortKationenZahl == frageKationenZahl) && (antwortAnionenZahl == frageAnionenZahl)) {
+                textAusgabe("Richtig - Tippe jetzt die Formel ein!");
+                punkte(100);
+            }
+        }
+
+        /** Schreibt die angeklickten IOnen automatisch in die untere Zeile
+        */
+
+        function drawIonen() {
+            var formel = "";
+            if (antwortKationenZahl > 1) {
+                formel = antwortKationenZahl.toString() + " ";
+            }
+            if (antwortKationenZahl > 0) {
+                formel = formel + ionenFormel[frageKationenNummer];
+            }
+            if (antwortAnionenZahl > 0 && antwortKationenZahl > 0) {
+                formel = formel + " + ";
+            }
+            if (antwortAnionenZahl > 1) {
+                formel = formel + antwortAnionenZahl.toString() + " ";
+            }
+            if (antwortAnionenZahl > 0) {
+                formel = formel + ionenFormel[frageAnionenNummer];
+            }
+            if (formel != "") {
+                document.getElementById("tippFeld").innerHTML = formel + reaktionspfeil;
+            }
+
+        }
+
+        function autoFormel() {
+            var kat = "";
+            if (antwortKationenZahl > 0) {
+                kat = ionenFormel[frageKationenNummer];
+                kat = kat.substr(0, kat.length - 12);  // Ladung weg
+                if (kat.endsWith('<')) { kat = kat.substr(0, kat.length - 1); }  // Ladung mit 2 Buchstaben 2+/3+ weg
+                if (antwortKationenZahl > 1) {
+                    if (kat.includes("<")) {
+                        kat = "(" + kat + ")<sub>" + antwortKationenZahl.toString() + "</sub>";
+                    } else {
+                        kat = kat + "<sub>" + antwortKationenZahl.toString() + "</sub>";
+                    }
+                }
+            }
+            var ani = "";
+            if (antwortAnionenZahl > 0) {
+                ani = ionenFormel[frageAnionenNummer];
+                ani = ani.substr(0, ani.length - 12);  // Ladung weg
+                if (ani.endsWith('<')) { ani = ani.substr(0, ani.length - 1); }  // Ladung mit 2 Buchstaben 2- weg
+                if (antwortAnionenZahl > 1) {
+                    if (ani.includes("<") || ani == "OH") {
+                        ani = "(" + ani + ")<sub>" + antwortAnionenZahl.toString() + "</sub>";
+                    } else {
+                        ani = ani + "<sub>" + antwortAnionenZahl.toString() + "</sub>";
+                    }
+                }
+            }
+            var farbe = "";
+            drawIonen();
+            if ((kat + ani) != "") {
+                document.getElementById("tippFeld").innerHTML = document.getElementById("tippFeld").innerHTML + kat + ani;
+            }
+
+            if (antwortPruefen()) {
+                farbe = "#00FF00"; // Grün für vollständig
+                reaktionspfeil = " → ";
+                drawIonen();
+                document.getElementById("tippFeld").innerHTML = document.getElementById("tippFeld").innerHTML + kat + ani;
+
+            } else {
+                farbe = "#FF0000"; // rot für unvollständig
+                reaktionspfeil = " --- ";
+
+            }
+
+            document.getElementById("tippFeld").style.color = farbe;
+        }
+
+
+        /* Schneidet die Formel aus Lösung raus
+        */
+        function formel() {
+            var eing = document.getElementById("tippFeld").innerHTML.trim()
+            var p=eing.indexOf(reaktionspfeil);
+            if (p != -1) {
+                eing = eing.substr(p + reaktionspfeil.length, eing.length - p - reaktionspfeil.length);
+            }
+            return eing;
+        }
+
+        /* Prüft die untere Formel
+        */
+
+        function antwortPruefen() {
+            var eing = formel().toLowerCase();
+            if (eing != "") {
+                var kat = ionenFormel[frageKationenNummer].toLowerCase();
+                kat = kat.substr(0, kat.length - 12);  // Ladung weg
+                if (kat.endsWith('<')) { kat = kat.substr(0, kat.length - 1); }  // Ladung mit 2 Buchstaben 2+/3+ weg
+                var ani = ionenFormel[frageAnionenNummer].toLowerCase();
+                ani = ani.substr(0, ani.length - 12);  // Ladung weg
+                if (ani.endsWith('<')) { ani = ani.substr(0, ani.length - 1); }  // Ladung mit 2 Buchstaben 2- weg
+                if (frageKationenZahl > 1) {
+                    if (kat.includes("<")) {
+                        kat = "(" + kat + ")<sub>" + frageKationenZahl.toString() + "</sub>";
+                    } else {
+                        kat = kat + "<sub>" + frageKationenZahl.toString() + "</sub>";
+                    }
+                }
+                if (frageAnionenZahl > 1) {
+                    if (ani.includes("<") || ani == "OH") {
+                        ani = "(" + ani + ")<sub>" + frageAnionenZahl.toString() + "</sub>";
+                    } else {
+                        ani = ani + "<sub>" + frageAnionenZahl.toString() + "</sub>";
+                    }
+                }
+                kat = kat + ani;
+                return (kat == eing);
+            }
+        }
+
+        function naechsteFrage() {
+            if (antwortPruefen()) {
+                if (automatik==false){
+                    alert("Super, auf zur nächsten Frage");
+                }
+                punkte(100);
+                neueFrage();
+                frageSchreiben();
+
+            } else {
+    //            document.getElementById("tippFeld").innerHTML = "falsch:" + formel() + " richtig:" + kat;
+                alert("Leider nicht richtig!");
+                punkte(-100);
+            }
+
+
+      
+        }
+
+
+        /* 
+        * Wertet einen Klick auf einen Button mit einem Ionensymbol aus
+        */
+
+        function auswertung(nr) {
+            if ((frageAnionenNummer != nr) && (frageKationenNummer != nr)) {
+                textAusgabe("Das " + ionenNamen[nr] + "-Ion brauchst du nicht!");
+                punkte(-10);
+            } else {
+                if (frageAnionenNummer == nr) {
+                    if (frageAnionenZahl > (antwortAnionenZahl)) {
+                        drawFormel(nr);
+                        antwortAnionenZahl++;
+                    } else {
+                        textAusgabe("Du hast schon genug Anionen!");
+                    }
+
+                } else {
+                    if (frageKationenZahl > (antwortKationenZahl)) {
+                        drawFormel(nr);
+                        antwortKationenZahl++;
+                    } else {
+                        textAusgabe("Du hast schon genug Kationen!");
+                    }
+                }
+            }
+            if (automatik) {
+                autoFormel();
+            } else {
+                drawIonen();
+            }
+            document.getElementById("pruefen").focus();
+
+
+        }
+
+        function frageSchreiben() {
+            var s = ionenNamen[frageKationenNummer];
+            if (s.endsWith("I")) { s = s + "-"; }
+            s = s + ionenNamen[frageAnionenNummer].toLowerCase()
+            document.getElementById("titel").innerHTML = s;
+            textAusgabe("Setzen Sie diese Salzformel aus den Ionen zusammen:");
+            document.getElementById("tippFeld").innerHTML = "";
+        }
+
+        function neueFrage() {
+            frageAnionenNummer = Math.floor((Math.random() * 14));  // 0..13 = 14 Anionen
+            frageKationenNummer = Math.floor((Math.random() * 10) + 14);   // ab 13 Kationen
+            frageAnionenZahl = Math.abs(ionenLadung[frageKationenNummer]);
+            frageKationenZahl = Math.abs(ionenLadung[frageAnionenNummer]);
+            if ((frageAnionenZahl == frageKationenZahl) && (frageAnionenZahl != 1)) {
+                frageAnionenZahl = 1;
+                frageKationenZahl = 1;
+            }
+            antwortAnionenZahl = 0;
+            antwortKationenZahl = 0;
+            // Zeichenfläche löschen
+            var canvas = document.getElementById("canvas");
+            const context = canvas.getContext('2d');
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            if (automatik) {
+                reaktionspfeil=" ... ";
+                document.getElementById("beschriftung").innerHTML = "Lernmodus: Hier erscheint die Formel";
+            } else {
+                document.getElementById("beschriftung").innerHTML = "Testmodus: Tippen Sie die Formel ein.";
+            }
+            nr=nr+1;
+            document.getElementById("nr").innerHTML=nr.toString();
+        
+        }
+
+        function start() {
+            neueFrage();
+            frageSchreiben();
+
+            var xMax = window.innerWidth;
+            var yMax = window.innerHeight;
+            var kationen = document.getElementById("kationen");
+            var anionen = document.getElementById("anionen");
+
+            for (var i = 0; i < ionenFormel.length; i++) {
+                var s = '<button id=button' + i.toString() +
+                    ' onClick="auswertung(' + i.toString() + ')">' +
+                    ionenFormel[i] +
+                    '</button><br>';
+                if (ionenLadung[i] > 0) {
+                    kationen.innerHTML = kationen.innerHTML + s;
+                } else {
+                    anionen.innerHTML = anionen.innerHTML + s;
+                }
+            }
+        }
+        function hilfe() {
+            alert("Beim Start befindet sich das Programm im sogenannten Lernmodus:\n\n" +
+                "1. Im Lernmodus müssen Sie die Salze durch Klicken auf die passenden Ionen zusammensetzen.\n" +
+                "   Die Formel entsteht automatisch. \n" +
+                "   Wenn das Salz fertig ist, klicken Sie auf 'Formel prüfen'\n\n" +
+                "\nDurch einen Klick auf die linke untere Schaltfläche wechseln Sie in den Testmodus:\n\n" +
+                "2. Im Testmodus müssen Sie die Formel über die Tastatur eintippen.\n" +
+                "   Ziffern werden dabei automatisch als Index tiefgestellt. \n" +
+                "   Sie können die Ionen aber immer noch zur Hilfe anklicken.\n" +
+                "   Wenn das Salz fertig ist, klicken Sie auf 'Formel prüfen'\n\n\n" +
+                "Starten Sie das Programm durch einen Klick auf 'Start'");
+        }        
+    </script>
+
+
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>Formel-Nr.</td>
+            <td id="titelFeld">Setzen Sie diese Salzformel aus den Ionen zusammen:</td>
+            <td>Punkte</td>
+        </tr>
+        <tr style="text-align: center;font: 2em sans-serif;">
+            <td id="nr">1</td>
+            <td id="titel">
+                <button style="width: 185px; height: 45px;" id="start" onClick="start()"> Start</button>
+                <button style="width: 185px; height: 45px;" id="hilfe" onClick="hilfe()"> Anleitung</button>
+
+            </td>
+            <td id="pkte">1000</td>
+        </tr>
+        <tr>
+            <td>
+                <div id="kationen"></div>
+            </td>
+            <td><canvas id="canvas" width="400" height="240"></canvas></td>
+            <td>
+                <div id="anionen"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" id="beschriftung" style="font-size: x-small; text-align:center">Lernmodus: Hier erscheint
+                die Formel.</td>
+        </tr>
+        <tr>
+            <td><button style="width: 100px; height: 45px;" id="wechsel" onClick="wechselAuto()">Wechsel
+                    in<br>Testmodus</button>
+            </td>
+            <td id="tippFeld" style="font: 2em sans-serif; text-align: center;"></td>
+            </td>
+            <td><button style="width: 100px; height: 45px;" id="pruefen" onClick="naechsteFrage()"> Weiter</button>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="font-size: x-small;">2020 Rainer Hille, Gymnasium Waldkraiburg</td>
+            <td></td>
+        </tr>
+    </table>
+
+</body>
+
+</html>

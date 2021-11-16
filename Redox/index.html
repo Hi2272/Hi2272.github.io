@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Redoxteilgleichung</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font: 2em sans-serif;
+            justify-content: center;
+        }
+
+        td {
+            text-align: left;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        button {
+            height: 10vmin;
+            width: 60vmin;
+        }
+
+        input {
+            width: 4em;
+            height: 1em;
+            font-size: 1em;
+            text-align: left;
+        }
+    </style>
+
+    <noscript>Sie müssen JavaScript aktivieren, um das Programm nutzen zu können!</noscript>
+
+    <script>
+
+        /* Fragenliste:
+            frage = Aufgabenstellung
+            redox= "Red" oder "Ox"
+            lad = "S"äure oder "B"ase 
+
+            kEd= Koeffizient vor der Formel des Edukts
+            fEd = Formel Edukt ohne Ladungen
+            lEd = Ladung des Edukts
+            oxEd = Oxidationszahl des Edukts
+            posOxEd = Position der Oxidationszahl: Bsp.: S in H2SO4: 2 Zeichen vor Oxzahl frei
+            eEd = Zahl der Elektronen auf Eduktseite
+            lEd = Zahl der Ladungsausgleichsteilen auf Eduktseite
+            wED = Zahl der Wassermoleküle auf Eduktseite
+            oED = Zahl der Sauerstoffatome in der Formel auf Eduktseite (vor Wasserausgleich, ohne Koeffizienten)
+
+            ...Pr alles für Produktseite noch einmal
+        */
+
+        // Editormudus: true --> Es wird immer die erste Frage gestellt.
+        // false --> Die erste Frage wird zufällig gewählt.
+
+        var editierModus=false;
+        //var editierModus = true;
+
+        var fragen = [
+            {
+                frage: "Dichromat-Ionen reagieren im Sauren zu Chrom-III-Ionen.",
+                redox: "Red", lad: "S", bew: 0,
+                kEd: 1, fEd: "Cr2O7", ladEd: -2, oxEd: "+6", posOxEd: 0, eEd: 6, lEd: 14, wEd: 0, oEd: 7,
+                kPr: 2, fPr: "Cr", ladPr: 3, oxPr: "+3", posOxPr: 0, ePr: 0, lPr: 0, wPr: 21, oPr: 0
+            },
+
+            {
+                frage: "Kupfer-II-Ionen reagieren im Basischen zu ziegelrotem Kupfer-I-Oxid.",
+                redox: "Red", lad: "B", bew: 0,
+                kEd: 2, fEd: "Cu", ladEd: 2, oxEd: "+2", posOxEd: 0, eEd: 2, lEd: 2, wEd: 0, oEd: 0,
+                kPr: 1, fPr: "Cu2O", ladPr: 0, oxPr: "+1", posOxPr: 0, ePr: 0, lPr: 0, wPr: 1, oPr: 1
+            },
+
+
+            {
+                frage: "Braunstein reagiert im Sauren zu Mangan-II-Ionen",
+                redox: "Red", lad: "S", bew: 0,
+                kEd: 1, fEd: "MnO2", ladEd: 0, oxEd: "+4", posOxEd: 0, eEd: 2, lEd: 4, wEd: 4, oEd: 2,
+                kPr: 1, fPr: "Mn", ladPr: 2, oxPr: "+2", posOxPr: 0, ePr: 0, lPr: 0, wPr: 6, oPr: 0
+            },
+
+            {
+                frage: "Hydrazin reagiert in Sauren zu elementarem Stickstoff.",
+                redox: "Ox", lad: "S", bew: 0,
+                kEd: 1, fEd: "N2H4", ladEd: 0, oxEd: "-2", posOxEd: 0, eEd: 0, lEd: 0, wEd: 4, oEd: 0,
+                kPr: 1, fPr: "N2", ladPr: 0, oxPr: "0", posOxPr: 0, ePr: 4, lPr: 4, wPr: 0, oPr: 0
+            },
+
+            {
+                frage: "Schwefelsäure reagiert zu Schwefeldioxid.",
+                redox: "Red", lad: "S", bew: 0,
+                kEd: 1, fEd: "H2SO4", ladEd: 0, oxEd: "+6", posOxEd: 3, eEd: 2, lEd: 2, wEd: 0, oEd: 4,
+                kPr: 1, fPr: "SO2", ladPr: 0, oxPr: "+4", posOxPr: 0, ePr: 0, lPr: 0, wPr: 4, oPr: 2
+            },
+
+            {
+                frage: "Kohlenstoff reagieren im Sauren zu Kohlenstoffdioxid.",
+                redox: "Ox", lad: "S", bew: 0,
+                kEd: 1, fEd: "C", ladEd: 0, oxEd: "0", posOxEd: 0, eEd: 0, lEd: 0, wEd: 6, oEd: 0,
+                kPr: 1, fPr: "CO2", ladPr: 0, oxPr: "+4", posOxPr: 0, ePr: 4, lPr: 4, wPr: 0, oPr: 2
+            },
+
+
+            {
+                frage: "Oxalsäure reagiert im Sauren zu Kohlenstoffdioxid.",
+                redox: "Ox", lad: "S", bew: 0,
+                kEd: 1, fEd: "H2C2O4", ladEd: 0, oxEd: "+3", posOxEd: 3, eEd: 0, lEd: 8, wEd: 2, oEd: 4,
+                kPr: 2, fPr: "CO2", ladPr: 0, oxPr: "+4", posOxPr: 0, ePr: 2, lPr: 2, wPr: 0, oPr: 4
+            },
+
+
+            {
+                frage: "Permanganat-Ionen reagieren im Sauren zu Mangan-II-Ionen.",
+                redox: "Red", lad: "S", bew: 0,
+                kEd: 1, fEd: "MnO4", ladEd: -1, oxEd: "+7", posOxEd: 0, eEd: 5, lEd: 8, wEd: 0, oEd: 4,
+                kPr: 1, fPr: "Mn", ladPr: 2, oxPr: "+2", posOxPr: 0, ePr: 0, lPr: 0, wPr: 12, oPr: 0
+            },
+
+
+            {
+                frage: "Sulfit-Ionen reagieren im Sauren zu Sulfat-Ionen.",
+                redox: "Ox", lad: "S", bew: 0,
+                kEd: 1, fEd: "SO3", ladEd: -2, oxEd: "+4", posOxEd: 0, eEd: 0, lEd: 0, wEd: 3, oEd: 3,
+                kPr: 1, fPr: "SO4", ladPr: -2, oxPr: "+6", posOxPr: 0, ePr: 2, lPr: 2, wPr: 0, oPr: 4
+            },
+
+            {
+                frage: "Nitrit-Ionen reagieren im Sauren zu Nitrat-Ionen.",
+                redox: "Ox", lad: "S", bew: 0,
+                kEd: 1, fEd: "NO2", ladEd: -1, oxEd: "+3", posOxEd: 0, eEd: 0, lEd: 0, wEd: 3, oEd: 2,
+                kPr: 1, fPr: "NO3", ladPr: -1, oxPr: "+5", posOxPr: 0, ePr: 2, lPr: 2, wPr: 0, oPr: 3
+            },
+
+            {
+                frage: "Ammoniak reagiert im Basischen zu Distickstoffmonooxid.",
+                redox: "Ox", lad: "B", bew: 0,
+                kEd: 2, fEd: "NH3", ladEd: 0, oxEd: "-3", posOxEd: 0, eEd: 0, lEd: 8, wEd: 0, oEd: 0,
+                kPr: 1, fPr: "N2O", ladPr: 0, oxPr: "+1", posOxPr: 0, ePr: 8, lPr: 0, wPr: 7, oPr: 1
+            },
+
+            {
+                frage: "Chlorat-Ionen reagieren im Basischen zu Chlorid-Ionen.",
+                redox: "Red", lad: "B", bew: 0,
+                kEd: 1, fEd: "ClO3", ladEd: -1, oxEd: "+5", posOxEd: 0, eEd: 6, lEd: 0, wEd: 3, oEd: 3,
+                kPr: 1, fPr: "Cl", ladPr: -1, oxPr: "-1", posOxPr: 0, ePr: 0, lPr: 6, wPr: 0, oPr: 0
+            },
+
+            {
+                frage: "Chromat-Ionen reagieren im Basischen zu Chrom-III-Ionen.",
+                redox: "Red", lad: "B", bew: 0,
+                kEd: 1, fEd: "CrO4", ladEd: -2, oxEd: "+6", posOxEd: 0, eEd: 3, lEd: 0, wEd: 4, oEd: 4,
+                kPr: 1, fPr: "Cr", ladPr: 3, oxPr: "+3", posOxPr: 0, ePr: 0, lPr: 8, wPr: 0, oPr: 0
+            },
+
+
+            {
+                frage: "Chlor-Moleküle reagieren im Basischen zu Hypochlorit-Ionen.",
+                redox: "Ox", lad: "B", bew: 0,
+                kEd: 1, fEd: "Cl2", ladEd: 0, oxEd: "0", posOxEd: 0, eEd: 0, lEd: 4, wEd: 0, oEd: 0,
+                kPr: 2, fPr: "ClO", ladPr: -1, oxPr: "+1", posOxPr: 0, ePr: 2, lPr: 0, wPr: 2, oPr: 1
+            },
+
+
+            {
+                frage: "Wasserstoffperoxid-Moleküle reagieren im Basischen zu Wasser-Molekülen.",
+                redox: "Red", lad: "B", bew: 0,
+                kEd: 1, fEd: "H2O2", ladEd: 0, oxEd: "-1", posOxEd: 3, eEd: 2, lEd: 0, wEd: 2, oEd: 2,
+                kPr: 2, fPr: "H2O", ladPr: 0, oxPr: "-2", posOxPr: 3, ePr: 0, lPr: 2, wPr: 0, oPr: 1
+            },
+
+            {
+                frage: "Natrium-Atome reagieren zu Natrium-Ionen",
+                redox: "Ox", lad: "S", bew: 0,
+                kEd: 1, fEd: "Na", ladEd: 0, oxEd: "0", posOxEd: 0, eEd: 0, lEd: 0, wEd: 0, oEd: 0,
+                kPr: 1, fPr: "Na", ladPr: 1, oxPr: "+1", posOxPr: 0, ePr: 1, lPr: 0, wPr: 0, oPr: 0
+            }
+
+
+        ];
+
+
+
+        var pkte = 1000;
+        var nr = 4;
+        var check = [0, 0, 0, 0, 0]; // 0:Koeffizient, 1:Elektronen, 2:Ladung, 3:Wasser, 4:Redox
+        var richtig = true;  // Flag ob ein Fehler aufgetreten ist!    
+
+        function punkte(i) {
+            pkte = pkte + i;
+            document.getElementById("Punkte").innerHTML = pkte.toString() + "<br>Punkte";
+        }
+
+        function fehler(s) {
+            alert(s);
+            punkte(-50);
+            fragen[nr].bew = fragen[nr].bew - 1;
+            richtig = false;
+        }
+
+        function formelHTML(s) {
+            var s1 = "";
+            for (var i = 0; i < s.length; i++) {
+                var s2 = s.charAt(i);
+                if (s2 >= "0" && s2 <= "9") { s2 = "<sub>" + s2 + "</sub>"; }
+                s1 = s1 + s2;
+            }
+            return s1;
+        }
+
+        function formelLadung(n) {
+            var s = "";
+            if (Math.abs(n) > 1) {
+                s = Math.abs(n).toString()
+            }
+            if (n < 0) {
+                s = s + "-";
+            } else if (n > 0) {
+                s = s + "+";
+            }
+            return "<sup>" + s + "</sup>";
+        }
+
+        function neueFrage() {
+            var frageAlt = fragen[nr];
+            if (editierModus == false) {
+                while (frageAlt.frage == fragen[nr].frage) {
+                    nr = Math.floor(Math.random() * 5);  // Zufallszahl 0 bis 9 = erste Fragen mit schlechtester Bewertung
+                }
+            } else {
+                nr = 0;
+            }
+
+            document.getElementById("Aufgabe").innerHTML = fragen[nr].frage;
+            var s = "";
+            for (var i = 0; i < fragen[nr].posOxEd; i++) { s = s + "&nbsp;"; }
+            document.getElementById("OxzEdukt").innerHTML = s + fragen[nr].oxEd;
+            s = "";
+            for (var i = 0; i < fragen[nr].posOxPr; i++) { s = s + "&nbsp;"; }
+            document.getElementById("OxzProdukt").innerHTML = s + fragen[nr].oxPr;
+
+            s = formelHTML(fragen[nr].fEd) + formelLadung(fragen[nr].ladEd);
+            document.getElementById("Edukt").innerHTML = s;
+            s = formelHTML(fragen[nr].fPr) + formelLadung(fragen[nr].ladPr);
+            document.getElementById("Produkt").innerHTML = s;
+
+            // Checkliste zurücksetzen
+            for (var i = 0; i < check.length; i++) { check[i] = 0; }
+            if (fragen[nr].kEd == 1 && fragen[nr].kPr == 1) { check[0] = 1; } // Keine Koeffizienten nötig!
+            if (fragen[nr].lEd == 0 && fragen[nr].lPr == 0) { check[2] = 1; } // Kein Ladungsausgleich nötig!
+            if (fragen[nr].wEd == 0 && fragen[nr].wPr == 0) { check[3] = 1; } // Kein Wasserausgleich nötig!
+
+            richtig = true;   // Flag zurückgesetzt
+
+            document.getElementById("iRedox").value = "";
+            document.getElementById("iKoeff1").value = "";
+            document.getElementById("input1").value = "";
+            document.getElementById("input2").value = "";
+            document.getElementById("iKoeff2").value = "";
+            document.getElementById("input3").value = "";
+            document.getElementById("input4").value = "";
+            ausgabe();
+            document.getElementById("iRedox").focus();
+
+        }
+
+        function start() {
+            if (editierModus == false) {
+                // Fragen mischen nur wenn Editiermodus abgeschaltet ist.
+                for (var i = 0; i < fragen.length; i++) {
+                    var x = fragen[i];
+                    var y = Math.floor(Math.random() * fragen.length);
+                    fragen[i] = fragen[y];
+                    fragen[y] = x;
+                }
+            }
+            nr = 0;
+            neueFrage();
+            document.getElementById("start").hidden = true;
+            document.getElementById("weiter").hidden = false;
+            document.getElementById("anleitung").hidden = true;
+
+            document.getElementById("eingabeTabelle").hidden = false;
+            pkte = 1000;
+        }
+
+        function bewertungSort() {
+            fragen.sort(function (a, b) {
+                return a.bew - b.bew;
+            });
+        }
+
+        function weiter() {
+            var kontrolle = true;
+            var fehlermeldung = [
+                "Die Koeffzienten sind nicht ausgegelichen!",
+                "Der Elektronenausgleich fehlt!",
+                "Der Ladungsausgleich fehlt!",
+                "Der Sauerstoffausgleich fehlt!",
+                "Die Angabe von Reduktion oder Oxidation fehlt"];
+            for (var i = 0; i < check.length; i++) {
+                if (check[i] == 0) {
+                    fehler(fehlermeldung[i]);
+                    kontrolle = false;
+                }
+            }
+            if (kontrolle) {
+                if (richtig) { punkte(100); }
+                punkte(100);
+                fragen[nr].bew++;
+                bewertungSort();
+                neueFrage();
+            }
+        }
+
+        function pruefZeichen(s1, s2) {
+            var richtig = true;
+            for (var i = 0; i < s1.length; i++) {
+                var s = s1.charAt(i);
+                if (s2.includes(s) == false) {
+                    fehler("Einträge in diesen Feldern dürfen nur aus folgenden Zeichen bestehen:\n" + s2);
+                    richtig = false;
+                    i = s1.length;
+                }
+            }
+            var s = s1.substr(0, 2);
+            if ((s[0] == "0") && (s[1] >= "A" || s[1] == " ")) {
+                fehler("Reaktionspartner mit einer Null als Koeffizient werden gar nicht angegeben!");
+                richtig = false;
+            }
+            if ((s[0] == "1") && (s[1] >= "A" || s[1] == " ")) {
+                fehler("Der Koeffizient 1 wird nicht geschrieben - schreiben Sie einfach nur die Formel des Teilchens!");
+                richtig = false;
+            }
+            return richtig;
+        }
+
+        function checkReihenfolge(s) {
+            s = s.trim().toUpperCase();
+            var typ = s.substr(s.length - 2, 2);
+            if (typ == "E-") {  // Elektronen
+                if (check[0] == 0) {
+                    fehler("Vor dem Elektronenausgleich müssen Sie einen Koffizienten vor eines der reagierenden Teile schreiben!");
+                    return 99;
+                } else if (check[1] == 1) {
+                    fehler("Hier ist kein Elektronen-Ausgleich mehr nötig!");
+                    return 90;   // Code für falschen Elektronenausgleich
+                } else {
+                    return 1;
+                }
+            } else if (typ == "O+") {  // H3O+
+                if (fragen[nr].lad == "B") {
+                    fehler("Der Ladungsausgleich im Basischen erfolgt mit Hydroxid-Ionen!");
+                    return 99;
+                } else if (check[1] == 0) {
+                    fehler("Vor dem Ladungsausgleich muss der Elektronenausgleich erfolgt sein!");
+                    return 99;
+                } else if (check[2] == 1) {
+                    fehler("Hier ist kein Ladungsausgleich mehr nötig!");
+                    return 91;   // Code für falschen H3O+-Ausgleich
+                } else {
+                    return 2;
+                }
+            } else if (typ == "H-") {  // OH-
+                if (fragen[nr].lad == "S") {
+                    fehler("Der Ladungsausgleich im Sauren erfolgt mit Oxonium(=Hydronium)-Ionen!");
+                    return 99;
+                } else if (check[1] == 0) {
+                    fehler("Vor dem Ladungsausgleich muss der Elektronenausgleich erfolgt sein!");
+                    return 99;
+                } else if (check[2] == 1) {
+                    fehler("Hier ist kein Ladungsausgleich mehr nötig!");
+                    return 92;   // Code für überflüssigen OH-Ausgleich
+                } else {
+                    return 2;
+                }
+
+            } else if (typ == "2O") { // H2O
+                if (check[2] == 0) {
+                    fehler("Vor dem Sauerstoff-Ausgleich muss der Ladungsausgleich erfolgt sein!");
+                    return 99;
+                } else if (check[3] == 1) {
+                    fehler("Hier ist kein Sauerstoff-Ausgleich mehr nötig!");
+                    return 93; // Code für üerbflüssigen Wasserausgleich
+                } else {
+                    return 3;
+                }
+            } else {
+                fehler("In diese Felder können nur Elektronen (x e-), Oxonium-Ionen (x H3O+), Hydroxid-Ionen (x OH-) oder " +
+                    "Wassermoleküle (x H2O) eingetragen werden!");
+                return 99;
+            }
+        }
+
+        function anz(s1, s2) {
+            var n = s1.indexOf(s2);
+            if (n == 0) {  // 1.Zeichen --> kein Koeffizient --> 1
+                return 1;
+            } else {
+                s1 = s1.substr(0, n).trim();
+                n = parseInt(s1);
+                return n;
+            }
+
+        }
+        /* stringBereinigen: String
+            s1=Ausgangsstring
+           s2=Zeichen für Typ
+
+           Wandelt EingabeString in sauberen String um
+           Zahlen+Typ ohne Leerzeichen oder andere Fehler
+           */
+
+        function stringBereinigen(s1, s2) {
+            var s = ""
+            var n = s1.indexOf(s2);
+
+            if (n > 0) {
+                for (var i = 0; i < n; i++) {
+                    var c = s1.charAt(i);
+                    if (c > "0" && c < "9") {
+                        s = s + c;
+                    }
+                }
+            }
+            if (s2 == "E") {
+                s = s + "e-";
+            } else if (s2 == "H3") {
+                s = s + "H3O+";
+            } else if (s2 == "OH") {
+                s = s + "OH-";
+            } else {
+                s = s + "H2O";
+            }
+            return s;
+        }
+
+        function elektronenTest(soll, a) {
+            var ergebnis = true;
+            if (soll == 0) {
+                fehler("Die Elektronen stehen auf der falschen Seite!");
+                zeichenTest = false;
+                ergebnis = false;
+            } else if (soll != a) {
+                var sx = "Die Elektronenzahl stimmt nicht!\n\n" +
+                    "Die Elektronen müssen den Unterschied der Oxidationszahlen ausgleichen.\n" +
+                    "Edukt  : " + fragen[nr].oxEd + "\n" +
+                    "Produkt: " + fragen[nr].oxPr + "\n\n" +
+                    "Eventuell müssen Sie auch noch die Koeffizienten unter den Atomen berücksichtigen!";
+                if ((fragen[nr].kEd + fragen[nr].kPr) > 2) {
+                    sx = sx + "\nBeachten Sie hierbei, dass mehr als ein Atom oxidiert oder reduziert wird! ";
+                }
+                fehler(sx);
+                ergebnis = false;
+            }
+            return ergebnis;
+        }
+
+        function ladungsTest(soll, a) {
+            var ergebnis = true;
+            if (soll == 0) {
+                fehler("Die Ionen zum Ladungsausgleich stehen auf der falschen Seite!");
+                ergebnis = false;
+            } else if (soll != a) {
+                var sx = "Die Zahl der Ionen zum Ladungsausgleich stimmt nicht!\n\n" +
+                    "Der Unterschied zwischen der Gesamtladung der Edukt- und der Produktseite muss ausgegelichen werden \n";
+
+                var x1 = fragen[nr].kEd * fragen[nr].ladEd - fragen[nr].eEd;
+                var x2 = fragen[nr].kPr * fragen[nr].ladPr - fragen[nr].ePr;
+                sx = sx + "Eduktseite:  " + x1.toString();
+                sx = sx + "\nProduktseite:   " + x2.toString();
+                fehler(sx);
+                ergebnis = false;
+            }
+            return ergebnis;
+        }
+
+        function checkVoll() {
+
+            if (check[4] == 1) { // Red Ox eingetragen?
+                document.getElementById("iRedox").value = fragen[nr].redox;
+            }
+            if (check[0] == 1) { // Koeffizienten
+                if (fragen[nr].kEd > 1) { document.getElementById("iKoeff1").value = fragen[nr].kEd; }
+                if (fragen[nr].kPr > 1) { document.getElementById("iKoeff2").value = fragen[nr].kPr; }
+            }
+            for (var i = 1; i < 5; i++) { // Eingabefelder löschen
+                document.getElementById("input" + i.toString()).value = "";
+            }
+            if (check[1] == 1) { // Elektronen
+                if (fragen[nr].eEd > 0) {
+                    if (fragen[nr].eEd > 1) {
+                        document.getElementById("input1").value = fragen[nr].eEd + "e-";
+                    } else {
+                        document.getElementById("input1").value = "e-";
+                    }
+                }
+                if (fragen[nr].ePr > 0) {
+                    if (fragen[nr].ePr > 1) {
+                        document.getElementById("input3").value = fragen[nr].ePr + "e-";
+                    } else {
+                        document.getElementById("input3").value = "e-";
+                    }
+                }
+            }
+            if (check[2] == 1) { // Ladungsausgleich
+                var ion = "H3O+";
+                if (fragen[nr].lad == "B") { ion = "OH-"; }
+                if (fragen[nr].lEd > 0) {
+                    var s = document.getElementById("input1").value;
+                    if (s == "") { s = "input1"; } else { s = "input2"; }
+                    document.getElementById(s).value = fragen[nr].lEd + ion;
+                } else if (fragen[nr].lPr > 0) {
+                    var s = document.getElementById("input3").value;
+                    if (s == "") { s = "input3"; } else { s = "input4"; }
+                    document.getElementById(s).value = fragen[nr].lPr + ion;
+                }
+            }
+            if (check[3] == 1) { // Wasserausgleich
+                if (fragen[nr].wEd > 0) {
+                    var s = document.getElementById("input1").value;
+                    if (s == "") { s = "input1"; } else { s = "input2"; }
+                    document.getElementById(s).value = fragen[nr].wEd + "H2O";
+                } else if (fragen[nr].wPr > 0) {
+                    var s = document.getElementById("input3").value;
+                    if (s == "") { s = "input3"; } else { s = "input4"; }
+                    document.getElementById(s).value = fragen[nr].wPr + "H2O";
+                }
+            }
+        }
+
+        function wasserTest(soll, a) {
+            var ergebnis = true;
+            if (soll == 0) {
+                fehler("Die Wasser-Moleküle stehen auf der falschen Seite!");
+                ergebnis = false;
+            } else if (soll != a) {
+                var sx = "Die Zahl der Wassermoleküle stimmt nicht!\n\n" +
+                    "Mit den Wassermolekülen wird die Zahl der Sauerstoffatome auf der Edukt- und Produktseite ausgeglichen!\n\n";
+                var x1 = fragen[nr].kEd * fragen[nr].oEd + fragen[nr].lEd;
+                var x2 = fragen[nr].kPr * fragen[nr].oPr + fragen[nr].lPr;
+                sx = sx + "Eduktseite:  " + x1.toString() + " Sauerstoff-Atome";
+                sx = sx + "\nProduktseite:   " + x2.toString() + " Sauerstoff-Atome";
+                fehler(sx);
+                ergebnis = false;
+            }
+            return ergebnis;
+        }
+
+        function auswInput(n) {
+
+            var zeichenTest = true;   // Flag ob alle eingegebenen Zeichen stimmen
+            var soll = 0;             // Sollwert für Elektronenzahl, Ladungsausgleichszahl, Wasserzahl
+            var s = document.getElementById("input" + n.toString()).value.toUpperCase(); // EingabeString
+            var c = checkReihenfolge(s);  // Prüfen ob Reihenfolge stimmt
+
+            if (c >= 90) { // Fehler bei Reihenfolge
+                document.getElementById("input" + n.toString()).value = "";
+                checkVoll();
+                ausgabe();
+
+
+            } else if (c == 1) {  // Elektronenausgleich
+                zeichenTest = pruefZeichen(s, " 0123456789E-");
+                if (zeichenTest) {
+                    s = stringBereinigen(s, "E");
+                    var a = anz(s, "e");  // Anzahl der Elektronen aus dem Eintrag! - kleines e aus Stringbereinigen!
+                    if (n < 3) { // Elektronen auf Eduktseite
+                        soll = fragen[nr].eEd;
+                    } else { // Elektronen auf Produktseite 
+                        soll = fragen[nr].ePr;
+                    }
+                    zeichenTest = elektronenTest(soll, a);
+                    if (zeichenTest) {
+                        check[1] = 1;
+                    }
+                }
+            } else if (c == 2) { // Ladungsausgleich
+                zeichenTest = pruefZeichen(s, " 0123456789HO+-");
+                if (zeichenTest) {
+                    var a = 0;
+                    if (fragen[nr].lad == "S") {
+                        s = stringBereinigen(s, "H3");
+                        a = anz(s, "H3");
+                    } else {
+                        s = stringBereinigen(s, "OH");
+                        a = anz(s, "OH");
+                    }
+                    if (n < 3) { // Ausgleich auf Eduktseite
+                        soll = fragen[nr].lEd;
+                    } else {
+                        soll = fragen[nr].lPr;
+                    }
+                    zeichenTest = ladungsTest(soll, a);
+                    if (zeichenTest) {
+                        check[2] = 1;
+                    }
+                }
+            } else if (c == 3) { // Sauerstoffausgleich
+                zeichenTest = pruefZeichen(s, " 0123456789HO")
+                if (zeichenTest) {
+                    s = stringBereinigen(s, "H2O");
+                    var a = anz(s, "H2O");  // Anzahl der H2O_Moleküle aus dem Eintrag!
+                    if (n < 3) { // Ausgleich auf Eduktseite
+                        soll = fragen[nr].wEd;
+                    } else { // Ausgleich auf Produktseite 
+                        soll = fragen[nr].wPr;
+                    }
+                    zeichenTest = wasserTest(soll, a);
+                    if (zeichenTest) {
+                        check[3] = 1;
+                    }
+                }
+            }
+            if (c < 89) {
+                if (zeichenTest == false) { // Falschen Eintrag löschen
+                    document.getElementById("input" + n.toString()).value = "";
+                } else {  // gereinigten String zurückschreiben 
+                    document.getElementById("input" + n.toString()).value = s;
+                }
+                ausgabe();
+            }
+        }
+
+        function auswRedox() {
+            s = document.getElementById("iRedox").value.toUpperCase().trim();
+            if (pruefZeichen(s, "REDOX")) {
+                s1 = fragen[nr].redox.toUpperCase();
+                if (s1 == s) {  // Richtige Eintragung 
+                    check[4] = 1; // Letzter Checkpunkt erfüllt
+                    document.getElementById("iRedox").value = fragen[nr].redox;
+                } else {  // Falscher Eintrag
+                    if (s == "OX") {
+                        s1 = "Bei einer Oxidation müsste die Oxidationszahl steigen - hier fällt sie von " +
+                            fragen[nr].oxEd.toString() + " auf " + fragen[nr].oxPr.toString() + "!";
+                    } else if (s == "RED") {
+                        s1 = "Bei einer Reduktion müsste die Oxidationszahl sinken - hier steigt sie von " +
+                            fragen[nr].oxEd.toString() + " auf " + fragen[nr].oxPr.toString() + "!";
+                    } else {
+                        s1 = "Hier kann nur Red oder Ox stehen!";
+                    }
+                    fehler(s1);
+                    document.getElementById("iRedox").value = "";
+                }
+            } else {
+                document.getElementById("iRedox").value = "";
+            }
+            ausgabe();
+        }
+
+        function auswKoeff(n) {
+            var soll = 0;
+            var s = document.getElementById("iKoeff" + n.toString()).value.toUpperCase();
+            if (pruefZeichen(s, "0123456789")) {
+
+                var wert = parseInt(s);
+                if (n == 1) {
+                    soll = fragen[nr].kEd;
+                } else {
+                    soll = fragen[nr].kPr;
+                }
+                if (soll == 1) {
+                    fehler("Hier muss kein Koeffizient eingetragen werden!");
+                    document.getElementById("iKoeff" + n.toString()).value = "";
+                } else if (soll != wert) {
+                    fehler("Der Koeffizient stimmt nicht - schau dir die Indizes der Atome an!");
+                    document.getElementById("iKoeff" + n.toString()).value = "";
+                } else {
+                    check[0] = 1;
+                }
+            } else {
+                document.getElementById("iKoeff" + n.toString()).value = "";
+            }
+            ausgabe();
+        }
+
+        function inputHTLM(s1) {
+            var s = "";
+            var i = 0;
+            var c = s1.charAt(i);
+            while (c > "0" && c < "9") { // Zahlen abarbeiten
+                c = s1.charAt(i);
+                s = s + c;
+                i++;
+            }
+            while (i < s1.length) { // Buchstaben + Zahlen
+                c = s1.charAt(i);
+                if (c > "0" && c < "9") {
+                    s = s + "<sub>" + c + "</sub>";
+                } else if (c == "+" || c == "-") {
+                    s = s + "<sup>" + c + "</sup>";
+                } else {
+                    s = s + c;
+                }
+                i++;
+            }
+            return s;
+
+        }
+
+        function ausgabe() {
+            var s = "";
+            if (document.getElementById("iRedox").value != "") { s = s + fragen[nr].redox + ".: "; }
+            if (document.getElementById("iKoeff1").value != "") { s = s + fragen[nr].kEd; }
+            s = s + formelHTML(fragen[nr].fEd);
+            s = s + formelLadung(fragen[nr].ladEd);
+            if (document.getElementById("input1").value != "") { s = s + " + " + inputHTLM(document.getElementById("input1").value); }
+            if (document.getElementById("input2").value != "") { s = s + " + " + inputHTLM(document.getElementById("input2").value); }
+            s = s + " " + "&#8594;" + " ";
+            if (document.getElementById("iKoeff2").value != "") { s = s + fragen[nr].kPr; }
+            s = s + formelHTML(fragen[nr].fPr);
+            s = s + formelLadung(fragen[nr].ladPr);
+            if (document.getElementById("input3").value != "") { s = s + " + " + inputHTLM(document.getElementById("input3").value); }
+            if (document.getElementById("input4").value != "") { s = s + " + " + inputHTLM(document.getElementById("input4").value); }
+
+            document.getElementById("Ausgabe").innerHTML = s;
+        }
+
+    </script>
+</head>
+
+<body>
+    <div style="text-align: center" ;><b>Redoxteilgleichungen</b></div>
+    <hr>
+    <table id="eingabeTabelle" width="100%" hidden>
+        <tr>
+            <td colspan="15" id="Aufgabe">Permanganat-Ionen reagieren im Sauren zu Mangan-II-Ionen.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td id="OxzEdukt">+7</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td id="OxzProdukt">+2</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input id="iRedox" style="width:2em" value="" onchange="auswRedox()"></td>
+            <td>.:</td>
+            <td><input id="iKoeff1" style="width:1em" value="" onchange="auswKoeff(1)"></td>
+            <td id="Edukt">MnO<sub>4</sub><sup>-</sup></td>
+            <td>+</td>
+            <td><input id="input1" value="" onchange="auswInput(1)"></td>
+            <td>+</td>
+            <td><input id="input2" value="" onchange="auswInput(2)"></td>
+            <td>&#8594;</td>
+            <td><input id="iKoeff2" style="width:1em" value="" onchange="auswKoeff(2)"></td>
+            <td id="Produkt">Mn<sup>2+</sup></su>
+            </td>
+            <td>+</td>
+            <td><input id="input3" value="" onchange="auswInput(3)"></td>
+            <td>+</td>
+            <td><input id="input4" value="" onchange="auswInput(4)"></td>
+        </tr>
+
+        <tr>
+            <td colspan="15">
+                <hr>
+                <div id="Ausgabe" style="text-align:center;">
+
+                </div>
+                <hr>
+            </td>
+        </tr>
+    </table>
+
+    <div id="anleitung" style="text-align:center; font-size:small">
+        Mit diesem Programm soll das Ausgleichen von Redoxteilgleichungen geübt werden.<br>
+        <br>
+        Tragen Sie in die Eingabefelder der Reihe nach folgende Daten ein: <br>
+        <ol>
+            <li>"Red" oder "Ox", um die Teilgleichung als Reduktion oder Oxidation zu kennzeichnen.</li>
+            <li>Koeffizienten vor die vorgegebenen Formeln, um Änderungen in der Atomzahl der Atome
+                auszugleichen,
+                die oxidiert oder reduizert werden.</li>
+            <li>"n e-"" für den Elektronenausgleich</li>
+            <li>"n H3O+" oder "n OH-" für den Ladungsausgleich</li>
+            <li>"n H2O" für den Sauerstoff-Ausgleich</li>
+        </ol>
+        Bei Ihren Eingaben müssen Sie weder Groß- und Kleinschreibung noch Hoch- und Tiefstellung
+        beachten.<br>
+        <br>
+        Wenn Sie fertig sind, klicken Sie auf "Weiter" um Ihre Eingabe zu prüfen und eine neue Aufgabe
+        zu erhalten.
+        <br>
+        <br>
+        Unter dieser Adresse können Sie ein kurzes Anleitungsvideo abrufen:<br>
+        <a href="https://www.youtube.com/watch?v=6qkerbz1hH4" target="_blank">Anleitungsvideo</a>
+        <br><br>
+        Für Lehrer: In diesem Video wird kurz erklärt, wie eigene Aufgaben eingefügt werden können: <br>
+        <a href="https://www.youtube.com/watch?v=gqaVGDSzPuw" target="_blank">Erstellen eigener Aufgaben</a>
+        <br><br>
+
+
+        Klicken Sie jetzt auf "Start".
+    </div>
+
+    <table width="100%">
+        <tr>
+            <td width="20%" style="font-size:medium; text-align: center;" id="Punkte">1000<br>Punkte</td>
+            <td width="60%" style=" text-align: center;"><button id="weiter" onclick="weiter()" hidden>Weiter</button>
+                <button id="start" onclick="start()">Start</button>
+
+            </td>
+            <td width="20%" style="font-size:small; text-align: center;">2020 Rainer Hille<br>Gymnasium Waldkraiburg
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

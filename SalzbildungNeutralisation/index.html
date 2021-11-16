@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Neutralisation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font: 2em sans-serif;
+            justify-content: center;
+            vertical-align: middle;
+
+        }
+
+
+        table {
+            align-self: center;
+            align-items: center;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        button {
+            height: 10vmin;
+            width: 40vmin;
+            font-size: medium;
+        }
+
+        input {
+            height: 5vmin;
+            background-color:#eaefff;
+        }
+    </style>
+    <script>
+
+        var nrSre = -1;
+        var nrLauge = -1;
+
+        var saeuren = [
+            { name: "Salzsäure", formel: "HCl", nameIon: "Chlorid", formelIon: "Cl-", formelRest: "Cl", protonen: 1, klammer: false },
+            { name: "Salpetersäure", formel: "HNO3", nameIon: "Nitrat", formelIon: "NO3-", formelRest: "NO3", protonen: 1, klammer: true },
+            { name: "Salpetrige Säure", formel: "HNO2", nameIon: "Nitrit", formelIon: "NO2-", formelRest: "NO2", protonen: 1, klammer: true },
+            { name: "Schwefelsäure", formel: "H2SO4", nameIon: "Sulfat", formelIon: "SO42-", formelRest: "SO4", protonen: 2, klammer: true },
+            { name: "Schweflige Säure", formel: "H2SO3", nameIon: "Sulfit", formelIon: "SO32-", formelRest: "SO3", protonen: 2, klammer: true },
+            { name: "Kohlensäure", formel: "H2CO3", nameIon: "Carbonat", formelIon: "CO32-", formelRest: "CO3", protonen: 2, klammer: true },
+            { name: "Phosphorsäure", formel: "H3PO4", nameIon: "Phosphat", formelIon: "PO43-", formelRest: "PO4", protonen: 3, klammer: true },
+
+            { name: "Schwefelsäure", formel: "H2SO4", nameIon: "Hydrogensulfat", formelIon: "HSO4-", formelRest: "HSO4", protonen: 1, klammer: true },
+            { name: "Schweflige Säure", formel: "H2SO3", nameIon: "Hydrogensulfit", formelIon: "HSO3-", formelRest: "HSO3", protonen: 1, klammer: true },
+            { name: "Kohlensäure", formel: "H2CO3", nameIon: "Hydrogencarbonat", formelIon: "HCO3-", formelRest: "HCO3", protonen: 1, klammer: true },
+            { name: "Phosphorsäure", formel: "H3PO4", nameIon: "Dihydrogenphosphat", formelIon: "H2PO4-", formelRest: "H2PO4", protonen: 1, klammer: true },
+            { name: "Phosphorsäure", formel: "H3PO4", nameIon: "Hydrogenphosphat", formelIon: "HPO42-", formelRest: "HPO4", protonen: 2, klammer: true }
+        ]
+
+        var laugen = [
+            { name: "Natronlauge", formel: "NaOH", nameIon: "Natrium", formelIon: "Na+", formelRest: "Na", protonen: 1, klammer: false },
+            { name: "Kalilauge", formel: "KOH", nameIon: "Kalium", formelIon: "K+", formelRest: "K", protonen: 1, klammer: false },
+            { name: "Calciumhydroxid", formel: "Ca(OH)2", nameIon: "Calcium", formelIon: "Ca2+", formelRest: "Ca", protonen: 2, klammer: false },
+            { name: "Strontiumhydroxid", formel: "Sr(OH)2", nameIon: "Strontium", formelIon: "Sr2+", formelRest: "Sr", protonen: 2, klammer: false },
+            { name: "Bariumhydroxid", formel: "Ba(OH)2", nameIon: "Barium", formelIon: "Ba2+", formelRest: "Ba", protonen: 2, klammer: false },
+            { name: "Ammoiumhydroxid (w.L. von Ammoniak)", formel: "NH4OH", nameIon: "Ammonium", formelIon: "NH4+", formelRest: "NH4", protonen: 1, klammer: true }
+        ]
+
+        var pkte = 1000;
+        var schritt = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];  // Flags, ob bestimmte Teilaufgaben schon gelöst sind
+
+        var labelFelder = ["kLauge", "fLauge", "kSre", "fSre", "fSalz", "kWasser", "fWasser", "kKation", "fKation", "kAnion", "fAnion", "fSalzFormel"];
+        var inputFelder = ["ikLauge", "ifLauge", "ikSre", "ifSre", "ifSalz", "ikWasser", "ifWasser", "ikKation", "ifKation", "ikAnion", "ifAnion", "ifSalzFormel"];
+
+        function punkte(i) {
+            pkte = pkte + i;
+            document.getElementById("Punkte").innerHTML = pkte.toString() + "<br>Punkte";
+        }
+
+        function fertig() { // Prüft, ob alle Schritte getan sind.
+          var tmp = schritt[0] + schritt[1] + schritt[7] + schritt[8] + schritt[9] + schritt[10] + schritt[11];
+            return (tmp == 7);
+        }
+
+        function farbe_weiter(){
+            var farbe;
+            if (fertig()) {farbe="#ecffe6";}else{farbe="#ffebe6";}
+            document.getElementById("weiter").style.background=farbe;
+        }
+        
+        function fehler(s, nr) {
+            var fehlerTexte = ["Geben Sie Formel der Lauge an!",
+                "Geben Sie die Formel der Säure an!",
+                "Leiten Sie die Formel des Kations aus der Laugen-Formel ab!",
+                "Leiten Sie die Formel des Anions aus der Säure-Formel ab.",
+                "Gleichen Sie die Ladungen der Ionen durch einen Koeffizenten vor dem Kation aus.",
+                "Gleichen Sie die Ladungen der Ionen durch einen Koeffizenten vor dem Anion aus.",
+                "Leiten Sie die Salzformel aus der Formel von Kation und Anion ab.",
+                "Schreiben Sie die Salzformel in die Neutralisationsgleichung",
+                "Gleichen Sie die Zahl der Kationen und die Zahl der Laugen-Teilchen durch einen Koeffizienten aus.",
+                "Gleichen Sie die Zahl der Anionen und die Zahl der Säure-Teilchen durch einen Koeffizienten aus.",
+                "Schreiben Sie die enstehenden Wassermoleküle in die Neutralisationsgleichung",
+                "Gleichen Sie die Zahl der Wassermoleküle und die Zahl der neutralisierten Hydroxid-Ionen durch einen Koeffizienten aus."];
+
+            if (nr > 1 && nr != 10) {  // Nicht mit Säure und Lauge begonnen und kein falsches Wasser!
+                var s1="";
+                for (var i = 0; i < nr; i++) {
+                    if (schritt[i] == 0) { s1 = s1 + "\n" + fehlerTexte[i]; }
+                }
+                if (s1!=""){
+                    s = s + "\n\nErledigen Sie vorher folgende Schritte:\n"+s1;
+                }
+            }
+
+            alert(s);
+            punkte(-50);
+        }
+
+        function formelHTML(s, tief) {
+            var s1 = "";
+            var i = 0;
+            var hochStellen = false;
+            while (i < s.length) {
+                var s2 = s.charAt(i)
+                if (s2 >= "0" && s2 <= "9") { // Ziffern
+                    if (hochStellen && tief == false) {
+                        s1 = s1 + "<sup>" + s2 + "</sup>";
+                        hochStellen = false;
+                    } else {
+                        s1 = s1 + "<sub>" + s2 + "</sub>";
+                        hochStellen = true;
+                    }
+                }
+                if (s2 >= "A" || s2 == "(" || s2 == ")") {  // Buchstaben und Klammern
+                    s1 = s1 + s2;
+                    hochStellen = false;
+                }
+                if (s2 == "+" || s2 == "-") {
+                    s1 = s1 + "<sup>" + s2 + "</sup>";
+                    hochStellen = false;
+                }
+                if (s2 == "r" || s2 == "a" && tief == false) {  // Sr2+,Ba2+
+                    hochStellen = true;
+                }
+                i++;
+            }
+            return s1;
+        }
+
+
+        function start() {
+            document.getElementById("Anleitung").hidden = true;
+            document.getElementById("Reaktionsgleichung").hidden = false;
+            document.getElementById("Steuerung").hidden = false;
+            document.getElementById("Start").hidden = true;
+            neueFrage();
+        }
+
+        function nrNeu(alt, max) {
+            var tmp = alt;
+            while (tmp == alt) {
+                tmp = Math.floor(Math.random() * max)
+            }
+            return tmp;
+        }
+
+        function neueFrage() {
+            nrSre = nrNeu(nrSre, saeuren.length);
+            nrLauge = nrNeu(nrLauge, laugen.length);
+
+            document.getElementById("Frage").innerHTML = "Herstellung von " + laugen[nrLauge].nameIon + saeuren[nrSre].nameIon.toLowerCase() + " durch Neutralisation:"
+            for (var i = 0; i < labelFelder.length; i++) {
+                document.getElementById(labelFelder[i]).innerHTML = "";
+            }
+            for (var i = 0; i < inputFelder.length; i++) {
+                document.getElementById(inputFelder[i]).value = "";
+            }
+            for (var i = 0; i < schritt.length; i++) { // Zurücksetzen der Flags, ob ein Teil gelöst wurde
+                schritt[i] = 0;
+            }
+            if (koeffB() == 1) { schritt[4] = 1; schritt[8] = 1; }
+            if (koeffS() == 1) { schritt[5] = 1; schritt[9] = 1; }
+            if (koeffW() == 1) { schritt[11] = 1; }
+            farbe_weiter();
+            document.getElementById("ifLauge").focus();
+ 
+        }
+
+
+        function salz() {
+            var s = saeuren[nrSre];
+            var b = laugen[nrLauge];
+            var salz = "";
+            if (s.protonen == b.protonen) {
+                salz = b.formelRest + s.formelRest;
+            } else {  // Laugenrest
+                if (s.protonen > 1) {
+                    if (b.klammer) {
+                        salz = "(" + b.formelRest + ")" + s.protonen;
+                    } else {
+                        salz = b.formelRest + s.protonen;
+                    }
+                } else {
+                    salz = b.formelRest;
+                }
+                if (b.protonen > 1) {
+                    if (s.klammer) {
+                        salz = salz + "(" + s.formelRest + ")" + b.protonen.toString();
+                    } else {
+                        salz = salz + s.formelRest + b.protonen.toString();
+                    }
+                } else {
+                    salz = salz + s.formelRest;
+                }
+
+            }
+            return salz;
+        }
+
+        function koeffW() {
+            s = saeuren[nrSre];
+            b = laugen[nrLauge];
+            if (s.protonen * b.protonen > 1) {
+                if (s.protonen != b.protonen) {
+                    return (s.protonen * b.protonen);
+                } else {
+                    return b.protonen;
+                }
+            }
+            return 1;
+        }
+
+
+        function koeffS() {
+            s = saeuren[nrSre];
+            b = laugen[nrLauge];
+            if (s.protonen != b.protonen) {
+                if (b.protonen > 1) { return b.protonen; }
+            }
+            return 1;
+        }
+
+        function koeffB() {
+            s = saeuren[nrSre];
+            b = laugen[nrLauge];
+            if (s.protonen != b.protonen) {
+                if (s.protonen > 1) { return s.protonen; }
+            }
+            return 1;
+        }
+
+        function kString(x) {
+            if (x <= 1) {
+                return "";
+            } else {
+                return x.toString().trim();
+            }
+        }
+
+        function format(s) {
+            s = s.toLowerCase();
+            s = s.trim();
+            return s;
+        }
+
+        function vgl(s1, s2) {
+            return (format(s1) == format(s2))
+        }
+
+        function testFormel(input, loesung, output, fehlerText, tiefStellen, nr) {
+            var s = document.getElementById(input).value;
+            if (vgl(s, loesung)) {
+                document.getElementById(output).innerHTML = formelHTML(loesung, tiefStellen);
+                schritt[nr] = 1;
+                farbe_weiter();
+            } else {
+                fehler(fehlerText, nr);
+                document.getElementById(input).value = "";
+                document.getElementById(input).select();
+            
+                document.getElementById(input).focus();
+            }
+        }
+
+        function testKoeffizient(input, ergebnis, output, fehlerText, nr) {
+            var s = kString(document.getElementById(input).value);
+            var s1 = kString(ergebnis);
+            if (vgl(s, s1)) {
+                document.getElementById(output).innerHTML = s1;
+                schritt[nr] = 1;
+            } else {
+                fehler(fehlerText, nr);
+                document.getElementById(input).value = "";
+                document.getElementById(input).focus();
+            }
+        }
+
+        function testLauge() {
+            testFormel("ifLauge", laugen[nrLauge].formel, "fLauge",
+                "Die Formel der Lauge stimmt nicht - Sie benötigen die Formel von " + laugen[nrLauge].name,
+                true, 0);
+        }
+
+        function testSre() {
+            testFormel("ifSre", saeuren[nrSre].formel, "fSre",
+                "Die Formel der Säure stimmt nicht - Sie benötigen die Formel von " + saeuren[nrSre].name,
+                true, 1);
+        }
+
+        function testKation() {
+            testFormel("ifKation", laugen[nrLauge].formelIon, "fKation",
+                "Um die Formel des Kations zu erhalten, müssen Sie alle Hydroxid-Ionen der Lauge abspalten.\n" +
+                "Die positive Ladung des Ions entspricht dann der Zahl der abgespaltenen Hydroxid-Ionen",
+                false, 2);
+        }
+
+        function testAnion() {
+            testFormel("ifAnion", saeuren[nrSre].formelIon, "fAnion",
+                "Um die Formel des Anions zu erhalten, müssen Sie Protonen vom Säure-Molekül abspalten.\n" +
+                "Die negative Ladung des Ions entspricht dann der Zahl der abgespaltenen Protonen",
+                false, 3);
+        }
+
+
+        function testKKation() {
+            testKoeffizient("ikKation", koeffB(), "kKation",
+                "Der Koeffizient des Kations stimmt nicht - durch die Koeffizizenten werden die Ladungen der Ionen ausgeglichen",
+                4);
+        }
+
+        function testKAnion() {
+            testKoeffizient("ikAnion", koeffS(), "kAnion",
+                "Der Koeffizient des Anions stimmt nicht - durch die Koeffizizenten werden die Ladungen der Ionen ausgeglichen",
+                5);
+        }
+
+        function testSalzFormel() {
+            testFormel("ifSalzFormel", salz(), "fSalzFormel",
+                "Um die Formel des Salzes zu erhalten, müssen Sie Kationen und Anionen kombinieren\n" +
+                "Unterschiedliche Ladungen müssen dabei durch Indizes ausgeglichen werden.\n" +
+                "Eventuell müssen Sie in der Formel Klammern setzen.",
+                true, 6);
+        }
+
+        function testSalz() {
+            testFormel("ifSalz", salz(), "fSalz",
+                "Die Salzformel stimmt nicht - leiten Sie diese aus dem Kation der Lauge und dem Anion der Säure ab!",
+                true, 7);
+        }
+
+        function testKLauge() {
+            testKoeffizient("ikLauge", koeffB(), "kLauge",
+                "Der Koeffizient der Lauge stimmt nicht - beachten Sie die Indizes der Anionen und Kationen in der Salzformel!",
+                8);
+        }
+
+        function testKSre() {
+            testKoeffizient("ikSre", koeffS(), "kSre",
+                "Der Koeffizient der Säure stimmt nicht - beachten Sie die Indizes der Anionen und Kationen in der Salzformel!",
+                9);
+        }
+
+        function testWasser() {
+            testFormel("ifWasser", "H2O", "fWasser",
+                "Die Summenformel von Wasser sollten Sie können!",
+                true, 10);
+        }
+
+        function testKWasser() {
+            testKoeffizient("ikWasser", koeffW(), "kWasser",
+                "Der Koeffizient des Wassers stimmt nicht - pro Hydroxid-Ion entsteht ein Wassermolekül!",
+                11);
+        }
+
+        function weiter() {
+            if (fertig()) {
+                punkte(100);
+                neueFrage();
+               } else {
+                fehler("Sie sind noch nicht fertig!");
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div style="text-align: center"><b>Neutralisationsgleichungen</b></div>
+    <hr>
+    <div id="Anleitung" style="text-align:center; font-size:small">
+        Mit diesem Programm soll das Aufstellen von Neutralisationsgleichungen geübt werden.<br>
+        <br><br>
+        Folgen Sie den einzelnen Schritten:
+        <ol>
+            <li>Angabe der Formeln der Säure und der Lauge.</li>
+            <li>Angabe der Formel des Salzes.<br>
+                Hierbei können Sie die in einer zweiten Eingabezeile die Ionen angeben und die Salzformel ableiten
+            </li>
+            <li>Evtl. Ausgleich der Anzahl der benötigten Stoffmenge Säure und Lauge durch Koeffizienten</li>
+            <li>Angabe der Wassermoleküle</li>
+        </ol>
+        <br>
+        Wenn Sie die Gleichung aufgestellt haben, klicken Sie auf "Weiter", um die nächste Frage zu bearbeiten.<br>
+        <br>
+        <br>
+        Klicken Sie jetzt auf "Start".<br><br>
+        <button id="Start" onclick="start()">Start</button>
+    </div>
+
+    <div id="Reaktionsgleichung" hidden>
+        <table width="100%"> 
+            <tr>
+                <td colspan="10" id="Frage"></td>
+            </tr>
+            <tr>
+                <td colspan="10" style="font-size:small; text-align:left;"><b>Neutralisationsgleichung:</b></td>
+            </tr>
+            <tr id="Hilfe1">
+                <td style="font-size:small">a</td>
+                <td style="font-size:small">Lauge</td>
+                <td style="font-size:small"></td>
+                <td style="font-size:small"> b</td>
+                <td style="font-size:small">Säure</input></td>
+                <td style="font-size:small"></td>
+                <td style="font-size:small">Salz</td>
+                <td style="font-size:small"></td>
+                <td style="font-size:small">c</td>
+                <td style="font-size:small">Wasser</td>
+            </tr>
+
+
+            <tr id="InputZeile">
+                <td><input type="text" style="width:1em" id="ikLauge" onchange="testKLauge()"></input></td>
+                <td><input type="text" style="width:5em" id="ifLauge" onchange="testLauge()"></input></td>
+                <td>+</td>
+
+                <td><input type="text" style="width:1em" id="ikSre" onchange="testKSre()"></input></td>
+                <td><input type="text" style="width:5em" id="ifSre" onchange="testSre()"></input></td>
+                <td>&#8594;</td>
+
+                <td><input type="text" style="width:5em" id="ifSalz" onchange="testSalz()"></input></td>
+                <td>+</td>
+                <td><input type="text" style="width:1em" id="ikWasser" onchange="testKWasser()"></input></td>
+
+                <td><input type="text" style="width:5em" id="ifWasser" onchange="testWasser()"></input></td>
+            </tr>
+
+            <tr id="FormelZeile">
+                <td id="kLauge"></td>
+                <td id="fLauge"></td>
+
+                <td>+</td>
+                <td id="kSre"></td>
+                <td id="fSre"></td>
+
+                <td> &#8594;</td>
+                <td id="fSalz"></td>
+                <td>+</td>
+                <td id="kWasser"></td>
+                <td id="fWasser"></td>
+            </tr>
+        </table>
+        <table width="100%">
+            <tr>
+                <td colspan="11" style="font-size:small; text-align:left;"><b>Hilfestellung: Ableiten der
+                        Salzformel:</b></td>
+            </tr>
+
+            <tr id="Hilfe2">
+                <td style="font-size:small">x</td>
+                <td style="font-size:small">Kation <br>aus Lauge</td>
+                <td style="font-size:small"></td>
+                <td style="font-size:small"> y</td>
+                <td style="font-size:small">Anion <br> aus Säure</input></td>
+                <td style="font-size:small"></td>
+                <td style="font-size:small">Salzformel</td>
+            </tr>
+
+            <tr id="InputIonen">
+                <td><input type="text" style="width:1em" id="ikKation" onchange="testKKation()"></input></td>
+                <td><input type="text" style="width:5em" id="ifKation" onchange="testKation()"></input></td>
+                <td>+</td>
+                <td><input type="text" style="width:1em" id="ikAnion" onchange="testKAnion()"></input></td>
+                <td><input type="text" style="width:5em" id="ifAnion" onchange="testAnion()"></input></td>
+                <td>&#8594;</td>
+                <td><input type="text" style="width:5em" id="ifSalzFormel" onchange="testSalzFormel()"></input></td>
+            </tr>
+
+            <tr id="FormelZeile">
+                <td id="kKation"></td>
+                <td id="fKation"></td>
+                <td>+</td>
+                <td id="kAnion"></td>
+                <td id="fAnion"></td>
+                <td>&#8594;</td>
+                <td id="fSalzFormel"></td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div id="Steuerung" hidden>
+        <table width="100%">
+            <tr>
+                <td width="20%" style="font-size:medium; text-align: center;" id="Punkte">1000<br>Punkte</td>
+                <td width="60%" style=" text-align: center;">
+                    <button id="weiter" onclick="weiter()" style="background:greenyellow">Weiter</button>
+                </td>
+                <td width="20%" style="font-size:small; text-align: center;">2020 Rainer Hille<br>Gymnasium
+                    Waldkraiburg
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
