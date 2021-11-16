@@ -19,7 +19,7 @@
 [Energieniveauschema endotherme Reaktion](/EnergieniveauEndotherm/index.html)  
 
 [Atombau: Schalen-Modell](/AtommodellAtomKationAnion/index.html)  
-[Atombau: Atombausteine](/KernHuelle/index.html) 
+[Atombau: Atombausteine](/KernHuelle/index.html)  
 [Salzformeln aus PSE](/Ionenformeln2/index.html)  
 [Salzformeln aus Säure-Resten: vollständige Protolyse](/Ionenformeln3/index.html)  
 [Salzformeln aus Säure-Resten: unvollständige Protolyse](/Ionenformeln1/index.html)  
