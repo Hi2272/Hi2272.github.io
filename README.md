@@ -4,6 +4,7 @@
 [WennFunktion](/WennFunktion/index.html)  
 [UND und ODER](/UNDoderODER/index.html)  
 [NICHT](/NICHT/index.html)  
+[Logische Funktionen](/LogischeFunktionen/index.html)  
 
 
 # Chemie
