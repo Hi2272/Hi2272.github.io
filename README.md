@@ -1,11 +1,7 @@
 # Interaktive Arbeitsblätter und Übungsprogramme
 
 # Informatik
-[WennFunktion](/WennFunktion/index.html)  
-[UND und ODER](/UNDoderODER/index.html)  
-[NICHT](/NICHT/index.html)  
-[Logische Funktionen](/LogischeFunktionen/index.html)  
-
+[Übungsmateralien](/00Informatik/index.html)
 
 # Chemie
 [Übungsmateralien](/00Chemie/index.html)  
