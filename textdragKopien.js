@@ -332,7 +332,7 @@ xmlhttp.onload = function () {
                 var t1 = text[i1];
                 if (t1.x() < xStart) { // Startkärtchen werden nicht durchsucht!
                     gefunden = false;
-                    for (i2 = 0; i2 < txt.length; i2++) {
+                    for (i2 = 0; i2 < txt.length; i2++) { // Lösungskarten werden durchsucht
                         var t2 = txt[i2];
                         if (t2.text == t1.text()) {  // Text stimmt überein
                             console.log(t1.text());
@@ -348,12 +348,12 @@ xmlhttp.onload = function () {
                                     anzGefunden++;
                                     i3 = t2.pos.length;
                                     i2 = txt.length;
-                                } else if (!gefunden) {
-                                    t1.fill('red');
-
-                                }
+                                } 
                             }
                         }
+                    }
+                    if (!gefunden) {
+                        t1.fill('red');
                     }
                 }
             }

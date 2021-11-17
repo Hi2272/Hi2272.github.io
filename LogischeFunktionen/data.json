@@ -1,0 +1,27 @@
+{   "snap":true,
+
+    "dateiname":"Screenshot_1.png",
+    "copyright":"eigene Zeichnung",
+    "titel":"Logische Funktionen",
+    "angabe":"Ziehe die logischen Funktionen so in die Tabelle, dass die Aussage 'Ich werde nass.' immer wahr ist.",
+    "positionsmarken":true,
+  
+      
+    "kaertchen":
+    [
+        "UND(A;B)","UND(NICHT(A);B)","UND(A;NICHT(B))","UND(NICHT(A);\nNICHT(B))",
+        "ODER(A;B)"
+
+    ],
+
+    "txt":[
+        {"x":0.461 ,"y":0.169,"text":"UND(A;B)","pos":[0]},
+        {"x":0.46 ,"y":0.37,"text":"UND(A;NICHT(B))","pos":[1]},
+        {"x":0.456 ,"y":0.579,"text":"UND(NICHT(A);\nNICHT(B))","pos":[2]},
+        {"x":0.456 ,"y":0.78,"text":"ODER(A;B)","pos":[3]}
+        ],
+
+        "loesung":[
+        "UND(A;B)UND(A;NICHT(B))UND(NICHT(A);\nNICHT(B))ODER(A;B)"
+        ]
+        }
