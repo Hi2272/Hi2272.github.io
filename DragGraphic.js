@@ -222,7 +222,7 @@ xmlhttp.onload = function () {
                     var obj = e.target;
                     var x = Math.round(obj.x() / img.width() * 1000) / 1000;
                     var y = Math.round(obj.y() / img.height() * 1000) / 1000;
-                    if (obj.x() < img.width()) {   // Snap-Funktion gilt nicht, wenn die Karte nach rechts gezogen
+                    if (obj.x() < img.width()+obj.width()) {   // Snap-Funktion gilt nicht, wenn die Karte nach rechts gezogen
                         var n = 9999;
                         var mindist = layer.width() * layer.width() + layer.height() * layer.height();
                         for (i = 0; i < txt.length; i++) {
