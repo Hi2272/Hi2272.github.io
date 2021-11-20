@@ -7,6 +7,3 @@
 [Übungsmateralien](/00Chemie/index.html)  
 # Biologie
 [Übungsmateralien](/00Biologie/index.html)  
-# Beta-Versionen
-[DragDropGraphik](/DragGraph/index.html)
-
