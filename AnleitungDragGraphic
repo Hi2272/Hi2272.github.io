@@ -1,0 +1,58 @@
+Eigene Arbeitsblätter erstellen
+
+Vorbereitung: Installation von VisualStudioCode und dem Plugin LiveServer
+
+1. Neuer Ordner erstellen
+
+
+   a) data.json aus "00Biologie/Photosynthese" hineinkopieren
+   b) PNG-Datei des Arbeitsblattes in den Ordner schieben
+   c) index.html aus "00Biologie/Photosynthese" hineinkopieren
+   
+2 data.json anpassen:
+
+{   "snap":false,  // das Programm befindet sich im Erstellungsmodus
+
+    "dateiname":  "DATEINAME DER PNG-DATEI",
+    "copyright":"QUELLENANGABE DES BILDES",
+    "titel":"TITEL DER HTML-SEITE UND ÜBERSCHRIFT",
+    "angabe":"AUFGABENSTELLUNG",
+
+    txt-Attribute nicht ändern - das geschieht später automatisch
+
+    "txt":[
+      { "x": 0.36, "y": 0.457, "text": "mRNS", "pos": [0] },
+      { "x": 0.416, "y": 0.728, "text": "am Ribosom", "pos": [1,5,7] },
+      { "x": 0.367, "y": 0.071, "text": "DNS", "pos": [2] },
+      { "x": 0.357, "y": 0.89, "text": "Protein", "pos": [3] },
+      { "x": 0.267, "y": 0.23, "text": "Transkription", "pos": [6,4] },
+      { "x": 0.265, "y": 0.679, "text": "Translation", "pos": [1,5,7] },
+      { "x": 0.405, "y": 0.228, "text": "im Zellkern", "pos": [6,4] },
+      { "x": 0.417, "y": 0.627, "text": "im Zellplasma", "pos": [1,5,7] }
+]}
+
+3.	Ermitteln der Koordinaten
+
+index.html in VisualStudioCode öffnen
+Rechtsklick "Open with Live Server"
+Rahmen um die Bereiche auf dem Blatt ziehen, die zu Kärtchen werden 
+- möglichst in einer vermischten Reihenfolge.
+
+=> Unterhalb des Arbeitsblattes werden die Koordinaten ausgegeben.
+
+4.	Übertragen der Koordinaten in "data.json"
+Im Browser die ausgegebenen Daten kopieren und in die data.json-Datei einfügen.
+Wenn Textbausteine an mehreren Positionen richtig sind, müssen diese im Feld pos eingetragen werden:
+      {"x":0.427 ,"y":0.106,"width":0.133,"height":0.119,"pos":[1,2]},
+      {"x":0.452 ,"y":0.273,"width":0.075,"height":0.113,"pos":[1,2]},
+      {"x":0.425 ,"y":0.662,"width":0.134,"height":0.116,"pos":[3,4]},
+      {"x":0.434 ,"y":0.816,"width":0.112,"height":0.119,"pos":[3,4]},
+    => 1,2 und 3,4 können jeweils vertauscht werden.
+
+5. Einrasten aktivieren
+"snap": true
+
+6. Ordner auf Github-Server kopieren
+7. Index.html verlinken
+ 
+ 
