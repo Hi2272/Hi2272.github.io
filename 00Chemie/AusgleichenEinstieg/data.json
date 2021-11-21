@@ -1,0 +1,30 @@
+{   "snap":true,
+
+    "dateiname":"Screenshot_1.png",
+    "copyright":"eigene Zeichnung",
+    "titel":"Asugleichen von Reaktionsgleichungen",
+    "angabe":"Ziehe die Koeffizienten in die Gleichungen.",
+    "positionsmarken":false,
+  
+      
+    "kaertchen":
+    [
+        "2","3","4"
+
+    ],
+
+    "txt":[
+        {"x":0.664 ,"y":0.115,"text":"2","pos":[0]},
+        {"x":0.346 ,"y":0.475,"text":"3","pos":[1]},
+        {"x":0.663 ,"y":0.294,"text":"2","pos":[2]},
+        {"x":0.094 ,"y":0.295,"text":"2","pos":[3]},
+        {"x":0.085 ,"y":0.481,"text":"2","pos":[4]},
+        {"x":0.665 ,"y":0.481,"text":"2","pos":[5]},
+        {"x":0.352 ,"y":0.651,"text":"3","pos":[6]},
+        {"x":0.091 ,"y":0.649,"text":"4","pos":[7]},
+        {"x":0.664 ,"y":0.648,"text":"2","pos":[8]}
+        ],
+        "loesung":[
+        "232222322"
+        ]
+        }
