@@ -235,6 +235,14 @@ xmlhttp.onload = function () {
                         if (n != 9999) {  // Hier wird auf die Koordinaten geschoben
                             this.x(txt[n].x * img.width());
                             this.y(txt[n].y * img.height());
+                            layer.add(new Konva.Rect({  // Positionspunkte überdecken
+                                x: txt[n].x * img.width(),
+                                y: txt[n].y * img.height(),
+                                width: 5,
+                                height: 5,
+                                fill: "white"
+                            }));
+            
                         } else {
                             console.log("Objekt nicht gefunden!");
                         }
