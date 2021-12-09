@@ -1,0 +1,17 @@
+{   
+    "snap":true,
+  
+    "dateiname":"Screenshot_1.png",
+    "copyright":"eigene Zeichnung",
+    "titel":"SQL-Anfragen",
+    "angabe":"Ziehe die Kärtchen an die passenden Stellen in der Tabelle.",
+
+    "txt":[
+      {"x":0.345 ,"y":0.74,"width":0.31,"height":0.21,"pos":[0]},
+      {"x":0.018 ,"y":0.273,"width":0.31,"height":0.21,"pos":[1]},
+      {"x":0.667 ,"y":0.273,"width":0.31,"height":0.21,"pos":[2]},
+      {"x":0.341 ,"y":0.268,"width":0.31,"height":0.21,"pos":[3]},
+      {"x":0.669 ,"y":0.742,"width":0.31,"height":0.21,"pos":[4]},
+      {"x":0.018 ,"y":0.74,"width":0.31,"height":0.21,"pos":[5]}
+      ]
+      }
