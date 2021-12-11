@@ -5,13 +5,15 @@
     "copyright":"eigene Zeichnung",
     "titel":"SQL-Anfragen",
     "angabe":"Ziehe die Kärtchen an die passenden Stellen in der Tabelle.",
-
     "txt":[
-      {"x":0.345 ,"y":0.74,"width":0.31,"height":0.21,"pos":[0]},
-      {"x":0.018 ,"y":0.273,"width":0.31,"height":0.21,"pos":[1]},
-      {"x":0.667 ,"y":0.273,"width":0.31,"height":0.21,"pos":[2]},
-      {"x":0.341 ,"y":0.268,"width":0.31,"height":0.21,"pos":[3]},
-      {"x":0.669 ,"y":0.742,"width":0.31,"height":0.21,"pos":[4]},
-      {"x":0.018 ,"y":0.74,"width":0.31,"height":0.21,"pos":[5]}
+      {"x":0.014 ,"y":0.18,"width":0.316,"height":0.149,"pos":[0]},
+      {"x":0.344 ,"y":0.5,"width":0.312,"height":0.151,"pos":[1]},
+      {"x":0.668 ,"y":0.175,"width":0.317,"height":0.144,"pos":[2]},
+      {"x":0.67 ,"y":0.815,"width":0.316,"height":0.142,"pos":[3]},
+      {"x":0.015 ,"y":0.81,"width":0.316,"height":0.149,"pos":[4]},
+      {"x":0.34 ,"y":0.177,"width":0.319,"height":0.147,"pos":[5]},
+      {"x":0.667 ,"y":0.497,"width":0.322,"height":0.159,"pos":[6]},
+      {"x":0.013 ,"y":0.495,"width":0.318,"height":0.154,"pos":[7]},
+      {"x":0.343 ,"y":0.812,"width":0.316,"height":0.144,"pos":[8]}
       ]
       }
