@@ -187,7 +187,15 @@ xmlhttp.onload = function () {
                     var ausg = document.getElementById("txt");
                     if (ausg.innerHTML.length > 20) { ausg.innerHTML = ausg.innerHTML + ",<br>"; }
                     ausg.innerHTML = ausg.innerHTML + '{"x":' + x + ' ,"y":' + y + ',"width":' + w + ',"height":' + h + ',"pos":['+nummer+']}';
+                    var zahlText=new Konva.Text({
+                        x:drawrect.x(),
+                        y:drawrect.y(),
+                        text:nummer.toString()
+                    });
+                    layerDrag.add(zahlText);
+                    layerDrag.batchDraw();
                     nummer++;
+                    
                 }
             }
         } else {
