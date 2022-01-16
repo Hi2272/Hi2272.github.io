@@ -6,12 +6,12 @@
   "titel":"Objekt und Klassen",
   "angabe":"Schreibe den Text unter Verwendung von Begriffen aus der <b>Objektorientierten Programmierung</b> neu!",
   "txt":[
-    {"x":0.103 ,"y":0.608,"width":0.14,"height":0.086,"pos":[0]},
-    {"x":0.415 ,"y":0.497,"width":0.075,"height":0.095,"pos":[1]},
-    {"x":0.772 ,"y":0.599,"width":0.171,"height":0.097,"pos":[2]},
-    {"x":0.02 ,"y":0.703,"width":0.075,"height":0.081,"pos":[3,5]},
-    {"x":0.183 ,"y":0.795,"width":0.259,"height":0.104,"pos":[4]},
-    {"x":0.567 ,"y":0.499,"width":0.077,"height":0.09,"pos":[3,5]},
-    {"x":0.287 ,"y":0.594,"width":0.114,"height":0.095,"pos":[6]}
+    {"x":0.422 ,"y":0.511,"width":0.076,"height":0.085,"pos":[0]},
+    {"x":0.785 ,"y":0.607,"width":0.171,"height":0.087,"pos":[1]},
+    {"x":0.016 ,"y":0.717,"width":0.082,"height":0.075,"pos":[2,6]},
+    {"x":0.102 ,"y":0.614,"width":0.145,"height":0.08,"pos":[3]},
+    {"x":0.19 ,"y":0.808,"width":0.26,"height":0.096,"pos":[4]},
+    {"x":0.288 ,"y":0.619,"width":0.12,"height":0.075,"pos":[5]},
+    {"x":0.58 ,"y":0.511,"width":0.076,"height":0.082,"pos":[2,6]}
     ]
     }
