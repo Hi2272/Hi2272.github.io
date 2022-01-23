@@ -1,0 +1,16 @@
+{   
+  "snap":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Objekt und Klassen",
+  "angabe":"Ordne die Begriffe den Definitionen zu:",
+ 
+  "txt":[
+    {"x":0.014 ,"y":0.025,"width":0.138,"height":0.173,"pos":[0]},
+    {"x":0.013 ,"y":0.413,"width":0.142,"height":0.175,"pos":[1]},
+    {"x":0.012 ,"y":0.612,"width":0.145,"height":0.166,"pos":[2]},
+    {"x":0.014 ,"y":0.22,"width":0.139,"height":0.17,"pos":[3]},
+    {"x":0.013 ,"y":0.801,"width":0.14,"height":0.168,"pos":[4]}
+    ]
+    }
