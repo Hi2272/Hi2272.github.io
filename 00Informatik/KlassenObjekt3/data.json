@@ -1,0 +1,18 @@
+{   
+  "snap":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Objekt- und Klassenkarte",
+  "angabe":"Ordne die Begriffe und Bausteine richtig zu:",
+ 
+  "txt":[
+    {"x":0.034 ,"y":0.27,"width":0.176,"height":0.313,"pos":[0]},
+    {"x":0.165 ,"y":0.147,"width":0.137,"height":0.072,"pos":[1]},
+    {"x":0.536 ,"y":0.297,"width":0.315,"height":0.323,"pos":[2]},
+    {"x":0.026 ,"y":0.643,"width":0.353,"height":0.31,"pos":[3]},
+    {"x":0.615 ,"y":0.169,"width":0.268,"height":0.088,"pos":[4]},
+    {"x":0.524 ,"y":0.014,"width":0.169,"height":0.079,"pos":[5]},
+    {"x":0.025 ,"y":0.012,"width":0.19,"height":0.083,"pos":[6]}
+    ]
+    }
