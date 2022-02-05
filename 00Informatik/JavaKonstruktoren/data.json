@@ -1,0 +1,16 @@
+{   
+  "snap":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Konstruktor, Klasse, Attribut?",
+  "angabe":"Ordne die Begriffe und Definitionen richtig zu:",
+ 
+  "txt":[
+    {"x":0.399 ,"y":0.217,"width":0.583,"height":0.184,"pos":[0]},
+    {"x":0.403 ,"y":0.61,"width":0.577,"height":0.176,"pos":[1]},
+    {"x":0.399 ,"y":0.024,"width":0.583,"height":0.184,"pos":[2]},
+    {"x":0.4 ,"y":0.8,"width":0.58,"height":0.165,"pos":[3]},
+    {"x":0.399 ,"y":0.414,"width":0.582,"height":0.187,"pos":[4]}
+    ]
+    }
