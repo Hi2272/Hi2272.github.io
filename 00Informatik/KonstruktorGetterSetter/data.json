@@ -1,0 +1,20 @@
+{   
+  "snap":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Konstruktor, Getter und Setter",
+  "angabe":"Ziehe die Bausteine an die richigen Positionem",
+ 
+ 
+  "txt":[
+    {"x":0.452 ,"y":0.165,"width":0.397,"height":0.087,"pos":[0,3,7]},
+    {"x":0.462 ,"y":0.75,"width":0.382,"height":0.082,"pos":[1,6]},
+    {"x":0.464 ,"y":0.418,"width":0.384,"height":0.065,"pos":[2,4,5]},
+    {"x":0.465 ,"y":0.047,"width":0.367,"height":0.092,"pos":[0,3,7]},
+    {"x":0.475 ,"y":0.632,"width":0.357,"height":0.087,"pos":[2,4,5]},
+    {"x":0.431 ,"y":0.512,"width":0.435,"height":0.089,"pos":[2,4,5]},
+    {"x":0.438 ,"y":0.861,"width":0.423,"height":0.077,"pos":[1,6]},
+    {"x":0.446 ,"y":0.281,"width":0.419,"height":0.094,"pos":[0,3,7]}
+    ]
+    }
