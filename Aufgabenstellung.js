@@ -5,6 +5,7 @@ var height = window.innerHeight;
 var frage;
 var zeit;
 var endText;
+var href;
 /*
 Daten aus der data.json Datei laden
 */
@@ -33,7 +34,7 @@ xmlhttp.onload = function () {
 }
 
 
-var href = window.location.href;
+href = window.location.href;
 href = href.substring(0, href.lastIndexOf("/"));
 xmlhttp.open("GET", href + "/data.json");
 xmlhttp.send();
@@ -70,7 +71,7 @@ function anzeigen() {
         txt = "Aufgabe " + (nummer + 1).toString() + "/" + angabe.length + ": " + angabe[nummer].txt;
     }
     document.getElementById("Angabe").innerHTML = txt;
-    document.getElementById("Bild").innerHTML = '<img src="screenshot_' + s + '.png" ' +
+    document.getElementById("Bild").innerHTML = '<img src=href+"/screenshot_' + s + '.png" ' +
         'height=' + (height / 2).toString() + '>';
     zeit = Date.now();
 
