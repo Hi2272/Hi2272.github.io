@@ -1,0 +1,20 @@
+{   
+  "titel":"FOR-Schleife",
+  "untertitel":"Löse die Aufgabe in BlueJ und klicke dann auf <i>Weiter</i>.",
+  "angabe":[
+    {"txt":"Programmiere im Konstruktor eine Schleife für folgendes Bild:","zeit":60},
+    {"txt":"Programmiere im Konstruktor eine Schleife für folgendes Bild:","zeit":60},
+    {"txt":"Programmiere im Konstruktor eine Schleife für folgendes Bild:","zeit":60},
+    {"txt":"Programmiere im Konstruktor eine Schleife für folgendes Bild:","zeit":60},
+    {"txt":"Programmiere im Konstruktor zwei Schleifen für folgendes Bild:","zeit":60},
+    {"txt":"Programmiere im Konstruktor eine Schleife für folgendes Bild:","zeit":60},
+    {"txt":"Programmiere im Konstruktor eine Schleife für folgendes Bild:","zeit":60},
+    {"txt":"Programmiere im Konstruktor eine Schleife für folgendes Bild:","zeit":60},
+    {"txt":"Programmiere im Konstruktor eine Schleife für folgendes Bild:","zeit":60},
+    {"txt":"Programmiere im Konstruktor eine Schleife für folgendes Bild:","zeit":60}
+  
+  ],
+  "ende":"Erstelle in BlueJ weitere Muster aus Kacheln.",
+  "copyright":"BlueJ, JGameGrid"
+
+    }
