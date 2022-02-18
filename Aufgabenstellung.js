@@ -71,7 +71,7 @@ function anzeigen() {
         txt = "Aufgabe " + (nummer + 1).toString() + "/" + angabe.length + ": " + angabe[nummer].txt;
     }
     document.getElementById("Angabe").innerHTML = txt;
-    document.getElementById("Bild").innerHTML = '<img src=href+"/screenshot_' + s + '.png" ' +
+    document.getElementById("Bild").innerHTML = '<img src="'+href+'/screenshot_' + s + '.png" ' +
         'height=' + (height / 2).toString() + '>';
     zeit = Date.now();
 
