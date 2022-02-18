@@ -71,8 +71,7 @@ function anzeigen() {
         txt = "Aufgabe " + (nummer + 1).toString() + "/" + angabe.length + ": " + angabe[nummer].txt;
     }
     document.getElementById("Angabe").innerHTML = txt;
-    pfad='<img src="'+href+'//screenshot_' + s + '.png" ' +
-    'height=' + (height / 2).toString() + '>';
+    pfad='<img src="'+href+'/screenshot_' + s + '.png" height=' + (height / 2).toString() + '>';
     document.getElementById("Bild").innerHTML = pfad;
     zeit = Date.now();
 
