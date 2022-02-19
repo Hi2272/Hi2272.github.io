@@ -8,6 +8,7 @@ var endText;
 var href;
 var typ;
 var txtAngabe;
+var untertitel;
 /*
 Daten aus der data.json Datei laden
 */
@@ -17,7 +18,6 @@ xmlhttp.onload = function () {
     jsonData = JSON.parse(this.responseText);
 
     document.getElementById("Titel").innerHTML = jsonData.titel;
-    document.getElementById("Ueberschrift").innerHTML = jsonData.untertitel;
     document.getElementById("btnWeiter").innerHTML = "<Button onclick='weiter()'>Weiter</button>";
     document.getElementById("quelle").innerHTML = "Bildquelle: " + jsonData.copyright +
         "<br>2022 Rainer Hille <br> Unter Verwwendung von  <a href='https://www.cssscript.com/toast-style-web-notifications-in-vanilla-javascript-vanillatoasts/'>VanillaToasts.js</a>";
@@ -31,10 +31,11 @@ xmlhttp.onload = function () {
     txtAngabe=jsonData.txtAngabe;  // Textaufgabe an Stelle von Bildern
     endText = jsonData.ende;       
     typ = jsonData.typ;
+    untertitel= jsonData.untertitel;
     
     nummer = 0;
     frage = true;
-    anzeigen();
+    start();
 }
 
 
@@ -43,6 +44,39 @@ href = href.substring(0, href.lastIndexOf("/"));
 xmlhttp.open("GET", href + "/data.json");
 xmlhttp.send();
 
+function start(){
+    menue=document.getElementById("Menue");
+    menue.style.visibility='visible';
+    document.getElementById("btnWeiter").style.visibility='hidden';
+    document.getElementById("Angabe").innerHTML="Klicke auf die Übung, mit der du starten willst!<br>";
+    document.getElementById("Ueberschrift").innerHTML="Hauptmenue";
+   
+    s="";
+//     typ="Hallo";
+    for (i=0;i<angabe.length;i++){
+        if (typ=="Bild"){
+            s1='<img src="' + href + '/Screenshot_' + (i+1).toString() + '.png" height=' + (height / 4).toString() + '>';
+            s=s+'<Button onclick="startNummer('+i.toString()+')">'+s1+"</Button>";
+        } else {
+            s1='<Button style="width:'+(width/5).toString()+'px;"';
+            s=s+s1+'onclick="startNummer('+i.toString()+')">'+txtAngabe[i]+"</button>"
+        }
+       }
+    menue.innerHTML=s;
+
+}
+
+function startNummer(nr){
+    nummer=nr;
+    document.getElementById("Menue").style.visibility='hidden';
+    document.getElementById("Menue").innerHTML="";
+    
+    document.getElementById("btnWeiter").style.visibility="visible";
+    document.getElementById("Ueberschrift").innerHTML=untertitel;
+   
+    anzeigen();
+
+}
 function weiter() {
     var dauer = (Date.now() - zeit) / 1000;
    //  dauer=200;
