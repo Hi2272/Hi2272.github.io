@@ -6,6 +6,8 @@ var frage;
 var zeit;
 var endText;
 var href;
+var typ;
+var txtAngabe;
 /*
 Daten aus der data.json Datei laden
 */
@@ -17,17 +19,19 @@ xmlhttp.onload = function () {
     document.getElementById("Titel").innerHTML = jsonData.titel;
     document.getElementById("Ueberschrift").innerHTML = jsonData.untertitel;
     document.getElementById("btnWeiter").innerHTML = "<Button onclick='weiter()'>Weiter</button>";
-    document.getElementById("quelle").innerHTML = "Bildquelle: " + jsonData.copyright + 
-    "<br>2022 Rainer Hille <br> Unter Verwwendung von  <a href='https://www.cssscript.com/toast-style-web-notifications-in-vanilla-javascript-vanillatoasts/'>VanillaToasts.js</a>";
-    
+    document.getElementById("quelle").innerHTML = "Bildquelle: " + jsonData.copyright +
+        "<br>2022 Rainer Hille <br> Unter Verwwendung von  <a href='https://www.cssscript.com/toast-style-web-notifications-in-vanilla-javascript-vanillatoasts/'>VanillaToasts.js</a>";
+
 
     /* 
     Variablen umwandeln 
     */
 
-    angabe = jsonData.angabe;
-    endText=jsonData.ende;
-
+    angabe = jsonData.angabe;      // Allgemeine Angabe
+    txtAngabe=jsonData.txtAngabe;  // Textaufgabe an Stelle von Bildern
+    endText = jsonData.ende;       
+    typ = jsonData.typ;
+    
     nummer = 0;
     frage = true;
     anzeigen();
@@ -41,11 +45,11 @@ xmlhttp.send();
 
 function weiter() {
     var dauer = (Date.now() - zeit) / 1000;
-   // dauer=200;
+   //  dauer=200;
     if (frage && dauer < angabe[nummer].zeit) {
-        sdauer="Gelöst in "+Math.round(dauer.toString())+" Sekunden?";
-        s="Du solltest dich mindestens " + angabe[nummer].zeit + " Sekunden mit der Aufgabe beschäftigen!";
-        ausgabe(sdauer,s,3000,"info");
+        sdauer = "Gelöst in " + Math.round(dauer.toString()) + " Sekunden?";
+        s = "Du solltest dich mindestens " + angabe[nummer].zeit + " Sekunden mit der Aufgabe beschäftigen!";
+        ausgabe(sdauer, s, 3000, "info");
     } else {
         if (frage) {
             frage = false;
@@ -65,13 +69,17 @@ function anzeigen() {
     var s = (nummer + 1).toString();
     var txt;
     if (!frage) {
-        s = s + "1";
+        s = s + "L";
         txt = "Lösungsvorschlag:"
     } else {
         txt = "Aufgabe " + (nummer + 1).toString() + "/" + angabe.length + ": " + angabe[nummer].txt;
     }
     document.getElementById("Angabe").innerHTML = txt;
-    pfad='<img src="'+href+'/Screenshot_' + s + '.png" height=' + (height / 2).toString() + '>';
+    if (typ == "Bild"||!frage) {
+        pfad = '<img src="' + href + '/Screenshot_' + s + '.png" height=' + (height / 2).toString() + '>';
+    } else {
+        pfad = txtAngabe[nummer];
+    }
     document.getElementById("Bild").innerHTML = pfad;
     zeit = Date.now();
 

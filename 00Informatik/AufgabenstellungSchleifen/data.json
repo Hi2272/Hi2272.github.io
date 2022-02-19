@@ -1,22 +1,28 @@
-{   
+{ "typ":"Bild",   
   "titel":"FOR-Schleife",
-  "untertitel":"Löse die Aufgabe in BlueJ und klicke dann auf <i>Weiter</i>.",
+  "untertitel":"Löse diese Aufgabe in BlueJ und klicke dann auf <i>Weiter</i>.",
   "angabe":[
-    {"txt":"Programmiere im Konstruktor der Klasse Welt mit einer Schleife dieses Bild:","zeit":60},
-    {"txt":"Programmiere im Konstruktor der Klasse Welt mit einer Schleife dieses Bild:","zeit":60},
-    {"txt":"Programmiere im Konstruktor der Klasse Welt mit einer Schleife dieses Bild:","zeit":60},
-    {"txt":"Programmiere im Konstruktor der Klasse Welt mit zwei Schleifen dieses Bild:","zeit":60},
-    {"txt":"Programmiere im Konstruktor der Klasse Welt mit einer Schleife dieses Bild:","zeit":60},
-    {"txt":"Programmiere im Konstruktor der Klasse Welt mit einer Schleife dieses Bild:","zeit":60},
-    {"txt":"Programmiere im Konstruktor der Klasse Welt mit zwei Schleifen dieses Bild:","zeit":60},
-    {"txt":"Programmiere im Konstruktor der Klasse Welt mit zwei Schleifen dieses Bild:","zeit":60},
-    {"txt":"Programmiere im Konstruktor der Klasse Welt mit einer Schleife dieses Bild:","zeit":60},
-    {"txt":"Programmiere im Konstruktor der Klasse Welt mit einer Schleife dieses Bild:","zeit":60},
-    {"txt":"Programmiere im Konstruktor der Klasse Welt mit einer Schleife dieses Bild:","zeit":60},
-    {"txt":"Programmiere im Konstruktor der Klasse Welt mit zwei Schleifen dieses Bild:","zeit":60}
+    {"txt":"Programmiere im Konstruktor der Klasse Welt dieses Bild mit einer Schleife:","zeit":60},
+    {"txt":"Programmiere im Konstruktor der Klasse Welt dieses Bild mit einer Schleife:","zeit":60},
+    {"txt":"Programmiere im Konstruktor der Klasse Welt dieses Bild mit einer Schleife:","zeit":60},
+    {"txt":"Programmiere im Konstruktor der Klasse Welt dieses Bild mit zwei Schleifen:","zeit":60},
+    {"txt":"Programmiere im Konstruktor der Klasse Welt dieses Bild mit einer Schleife:","zeit":60},
+    {"txt":"Programmiere im Konstruktor der Klasse Welt dieses Bild mit einer Schleife:","zeit":60},
+    {"txt":"Programmiere im Konstruktor der Klasse Welt dieses Bild mit zwei Schleifen:","zeit":60},
+    {"txt":"Programmiere im Konstruktor der Klasse Welt dieses Bild mit zwei Schleifen:","zeit":60},
+    {"txt":"Programmiere im Konstruktor der Klasse Welt dieses Bild mit einer Schleife:","zeit":60},
+    {"txt":"Programmiere im Konstruktor der Klasse Welt dieses Bild mit einer Schleife:","zeit":60},
+    {"txt":"Programmiere im Konstruktor der Klasse Welt dieses Bild mit einer Schleife:","zeit":60},
+    {"txt":"Programmiere im Konstruktor der Klasse Welt dieses Bild mit zwei Schleifen:","zeit":60}
    
   ],
+ 
+  "txtAngabe":[
+    ""
+  ],
+ 
+
   "ende":"Erstelle in BlueJ weitere Muster aus Kacheln.",
   "copyright":"BlueJ, JGameGrid"
-
-    }
+    
+}

@@ -1,0 +1,41 @@
+{
+  "typ": "Text",
+  "titel": "Getter und Setter in Java",
+  "untertitel": "Löse diese Aufgabe in BlueJ und klicke dann auf <i>Weiter</i>.",
+  "angabe": [
+    {
+      "txt": "Programmiere Methoden für folgendes Problem:<br>",
+      "zeit": 60
+    },
+    {
+      "txt": "Programmiere Methoden für folgendes Problem:<br>",
+      "zeit": 60
+    },
+    {
+      "txt": "Programmiere Methoden für folgendes Problem:<br>",
+      "zeit": 60
+    },
+    {
+      "txt": "Programmiere Methoden für folgendes Problem:<br>",
+      "zeit": 60
+    },
+    {
+      "txt": "Programmiere Methoden für folgendes Problem:<br>",
+      "zeit": 60
+    },
+    {
+      "txt": "Programmiere Methoden für folgendes Problem:<br>",
+      "zeit": 60
+    }
+  ],
+  "txtAngabe": [
+    "x-Koordinate des Balkens setzen und ausgeben. <br><br>",
+    "y-Koordinate des Balkens setzen und ausgeben. <br><br>",
+    "x- und y-Koordinate gleichzeitig setzen. <br><br>",
+    "Farbe des Hintergrunds setzen und ausgeben<br><br>",
+    "Farbe des Vordergrunds setzen und ausgeben<br><br>",
+    "Farben des Hintergrunds und des Vordergrunds gleichzeitig setzen<br><br>"
+  ],
+  "ende": "",
+  "copyright": "BlueJ, JGameGrid"
+}
