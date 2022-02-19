@@ -58,7 +58,7 @@ function start(){
             s1='<img src="' + href + '/Screenshot_' + (i+1).toString() + '.png" height=' + (height / 4).toString() + '>';
             s=s+'<Button onclick="startNummer('+i.toString()+')">'+s1+"</Button>";
         } else {
-            s1='<Button style="width:'+(width/5).toString()+'px;"';
+            s1='<Button style="width:'+(width/5).toString()+'px;height:'+(height/4).toString()+'px;"';
             s=s+s1+'onclick="startNummer('+i.toString()+')">'+txtAngabe[i]+"</button>"
         }
        }
