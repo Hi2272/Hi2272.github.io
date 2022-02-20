@@ -49,7 +49,7 @@ function start(){
     menue.style.visibility='visible';
     document.getElementById("btnWeiter").style.visibility='hidden';
     document.getElementById("Angabe").innerHTML="Klicke auf die Übung, mit der du starten willst!<br>";
-    document.getElementById("Ueberschrift").innerHTML="Hauptmenue";
+    document.getElementById("Ueberschrift").innerHTML="Hauptmenü";
    
     s="";
 //     typ="Hallo";
