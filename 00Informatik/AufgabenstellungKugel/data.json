@@ -1,0 +1,24 @@
+{ "typ":"Bild",   
+  "titel":"FOR-Schleife",
+  "untertitel":"Löse diese Aufgabe in BlueJ und klicke dann auf <i>Weiter</i>.",
+  "angabe":[
+    {"txt":"Füge im Konstruktor der Klasse Welt in einer FOR-Schleife Objekte der Klasse Stein hinzu.","zeit":60},
+    {"txt":"Erweitere den Konstruktor mit zwei Schleifen, so dass diese Welt entsteht:","zeit":60},
+    {"txt":"Entferne an einer zufälligen x-Position zwischen 4 und 15 einen Stein: <b>this.removeActorsAt(new Location...)</b>.<br>Verwende hierzu die Methode <b>zufallszahl(int min,int max)</b>","zeit":60},
+    {"txt":"Erstelle eine neue Schleife, um Objekte der Klasse Gegner an zufälligen x-Positionen zwischen 4 und 16 einzufügen:","zeit":60},
+    {"txt":"Deklariere ein Attribut spieler der Klasse Spieler und füge unmittelbar, nachdem du einen Stein entfernt hast, einen <b>spieler</b> hinzu.<br>Damit nicht in jeder Lücke ein Spieler steht, musst du prüfen, ob y==1 gilt.","zeit":60},
+    {"txt":"Damit sich die Gegner bewegen, muss in der Klasse Gegner eine Methode <b>act()</b> ohne Rückgabewert programmiert werden.<br> Im Rumpf dieser Methode wird die <b>move()</b>-Methode des Objekts aufgerufen","zeit":60},
+    {"txt":"Die Gegner sollen am linken und rechten Rand rechtzeitig umdrehen.<br>Passe hierzu ihre <b>act()</b>-Methode an.<br>Wenn die x-Koordinate größer 16 oder kleiner 2 ist, soll die <b>turn</b>-Methode mit dem Parameter 180 aufgerufen werden.<br>Die x-Koordinate bekommst du über die entsprechende get-Methode.","zeit":60},
+    {"txt":"Damit sich der Spieler mit den Tasten bewegen lässt, musst du dem Konstruktor der Klasse Welt folgende Zeile hinzufügen: <b>this.addKeyListener(spieler);</b><br>In der Klasse Spieler kannst du untersuchen, wie das Programm auf die Tastendrücke reagiert.","zeit":60}
+   
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Wenn du in der <b>act()</b>-Methode der Klasse <b>Gegner</b> folgende Zeilen einfügst, dann endet das Spiel, sobald ein Gegner den Spieler berührt.<br><br>if (gameGrid.getOneActorAt(this.getLocation(),Spieler.class)!=null){<br>gameGrid.stopGameThread();<br>}<br><br>Viel Spaß beim Spielen.",
+  "copyright":"<a href='https://www.bluej.org'>BlueJ</a>,<a href='http://www.java-online.ch/gamegrid/gamegridEnglish/index.php?inhalt_links=navigation.inc.php&inhalt_mitte=grundelemente/grid.inc.php'> JGameGrid</a>"
+    
+}
