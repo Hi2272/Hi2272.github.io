@@ -1,0 +1,17 @@
+{   
+  "snap":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Das Schlüsselwort this",
+  "angabe":"Das Schlüsselwort <b>this</b> stellt in einer Klasse immer einen Bezug auf ein Objekt dieser Klasse her.<br>Ordne die Beschreibungen den Code-Teilen zu:",
+ 
+  "txt":[
+    {"x":0.222 ,"y":0.232,"width":0.366,"height":0.115,"pos":[0,5]},
+    {"x":0.222 ,"y":0.527,"width":0.719,"height":0.104,"pos":[1]},
+    {"x":0.223 ,"y":0.084,"width":0.633,"height":0.115,"pos":[2]},
+    {"x":0.22 ,"y":0.386,"width":0.587,"height":0.099,"pos":[3]},
+    {"x":0.217 ,"y":0.814,"width":0.739,"height":0.11,"pos":[4]},
+    {"x":0.219 ,"y":0.676,"width":0.376,"height":0.104,"pos":[0,5]}
+    ]
+    }
