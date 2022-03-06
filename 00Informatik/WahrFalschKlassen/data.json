@@ -1,0 +1,82 @@
+{
+  "copyright": "eigene Zeichnung",
+  "titel": "Attribute, Methoden, Konstrukturen",
+  "angabe": [
+    {
+      "bild": "",
+      "txt": "Auf ein Attribut kann außerhalb der Klasse nie zugegriffen werden.",
+      "wahr": 2,
+      "lsg": "Nur wenn das Attribut <b>private</b> deklariert ist, ist es außerhalb der Klasse nicht sichtbar."
+    },
+    {
+      "bild": "",
+      "txt": "Methoden, in deren Kopf das Schlüsselwort <b>void</b> nicht vorkommt, enthalten immer ein <b>return</b>-Statement",
+      "wahr": 1,
+      "lsg":"Die Aussage ist richtig - über das Return-Statement wird ein Wert als Ergebnis der Methode zurückgegeben."
+    },
+    {
+      "bild": "",
+      "txt": "Diese Code-Zeile ist der Kopf einer Klasse:<br><b>public Form()</b>",
+      "wahr": 2,
+      "lsg":"Nein, die Code-Zeile ist der Kopf eines <b>Konstruktors</b> der Klasse <b>Form</b>."
+    },
+    {
+      "bild": "Screenshot_1.png",
+      "txt": "<b>eingabespeicher</b> ist ein Attribut der Klasse Rechner.",
+      "wahr": 1,
+      "lsg":"Die Aussage ist richtig - über this.eingabespeicher wird auf das Attribut zugegriffen."
+    },
+    {
+      "bild": "Screenshot_1.png",
+      "txt": "Der Code-Ausschnitt zeigt eine setter-Methode (manipulierende Methode)",
+      "wahr": 2,
+      "lsg":"Nein, dies ist der Konstruktor der Klasse Rechner."
+    },
+    {
+      "bild": "Screenshot_2.png",
+      "txt": "<b>x</b> ist eine lokale Variable in der Methode <b>move</b>",
+      "wahr": 2,
+      "lsg":"Nein, da es in der Methode nicht deklariert wird und kein Parameter ist, muss es ein Attribut der Klasse sein."
+    },
+    {
+      "bild": "Screenshot_2.png",
+      "txt": "<b>dx</b> ist eine lokale Variable in der Methode <b>move</b>",
+      "wahr": 2,
+      "lsg":"Nein, es ist ein Parameter vom Typ integer (int)."
+    },
+    {
+      "bild": "Screenshot_3.png",
+      "txt": "Der Code-Ausschnitt zeigt einen Konstruktor der Klasse <b>Rechner</b>",
+      "wahr": 2,
+      "lsg":"Nein, dies ist der Konstruktor der Klasse <b>Rechnung</b> - es wird aber der Konstruktor der Klasse <b>Rechner</b> aufgerufen und ein neues Objkte <b>re</b> dieser Klasse erzeugt."
+    },
+    {
+      "bild": "",
+      "txt": "<b>public void rechnen(){...}<br>Der Rumpf dieser Methode enthlät kein return-Statement",
+      "wahr": 1,
+      "lsg":"Die Aussage ist richtig - die Methode hat keinen Rückgabewert (<b>void</b>)."
+    },
+    
+    {
+      "bild": "Screenshot_3.png",
+      "txt": "<b>re</b> ist ein Attribut der Klasse <b>Rechnung</b>.",
+      "wahr": 1,
+      "lsg":"Doch, es wird hier im Konstruktor initialisiert, d.h. es zeigt auf ein neues Objekt der Klasse <b>Rechner</b>."
+    },
+ 
+    {
+      "bild": "Screenshot_1.png",
+      "txt": "Das Attribut <b>eingabespeicher</b> ist vom Typ integer (int).",
+      "wahr": 2,
+      "lsg":"Nein, es speichert keinen ganzzahligen Wert, sondern eine Dezimalzahl. Es ist damit vom Datentyp <b>double</b>."
+    },
+    {
+      "bild": "",
+      "txt": "Für einen Klasse können meherere Konstruktoren programmiert werden.",
+      "wahr": 1,
+      "lsg":"Das ist durchaus möglich - die verschiedenen Konstruktoren müssen sich aber in ihren Parametern unterscheiden. Man spricht dann vom Überladen einer Klasse mit Konstruktoren."
+    }
+ 
+    
+  ]
+}

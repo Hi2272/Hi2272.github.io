@@ -14,46 +14,51 @@
       border-radius: 20px;
       width: 30%;
       font-size: xx-large;
-      margin:10px;
-    }
-    ma {
-      color:red;
-      text-align: center;
-      margin:5px;
-      text-emphasis: bold;
+      margin: 10px;
     }
   </style>
 </head>
 
 <body>
   <header>
-    <h1 id="Ueberschrift"></h1>
-    <div id="Vortext">Entscheiden Sie, ob die Aussage wahr oder falsch ist.<br>
-      Bei falschen Aussagen sollte Ihnen klar sein, welcher Fehler vorliegt.<br><hr>
-    </div>
+    <h2 id="Ueberschrift"></h2>
+    <table width=100%>
+      <tr>
+        <td>
+          <div id="Nummer"></div>
+        </td>
+        <td>
+          <div id="Vortext">Entscheiden Sie, ob diese Aussage wahr oder falsch ist.<br>
+            Bei falschen Aussagen sollte Ihnen klar sein, welcher Fehler vorliegt.<br>
+          </div>
+        </td>
+        <td>
+          <div id="Prozent">1. Frage</div>
+        </td>
+        
+      </tr>
+    </table>
+
   </header>
 
   <section>
+    <hr>
+    
     <div id="Aussage" style="font-size: xx-large">
       Ist diese Aussage wahr oder falsch?
     </div>
     <div id="lsg" style="font-size: xx-large">
-      
+
     </div>
-    
+
   </section>
 
   <footer id="buttons">
     <hr>
-    <button id="btnWahr" onclick="auswerten(1)"
-      style="background-color: lightgreen">Wahr</button>
-    <button id="btnFalsch" onclick="auswerten(2)"
-    style="background-color: lightcoral">Falsch</button>
-    <button id="btnWeiter" onclick="weiter()"
-    style="background-color:lightblue; visibility: hidden;">Weiter</button>
-    
-    
-    <br><br>
+    <button id="btnWahr" onclick="auswerten(1)" style="background-color: lightgreen">Wahr</button>
+    <button id="btnFalsch" onclick="auswerten(2)" style="background-color: lightcoral">Falsch</button>
+    <button id="btnWeiter" onclick="weiter()" style="background-color:lightblue; visibility: hidden;">Weiter</button>
+    <br>
     <div id="quelle" style="font-size: xx-small;text-align: right;"></div>
   </footer>
   <script src="WahrFalsch.js"></script>

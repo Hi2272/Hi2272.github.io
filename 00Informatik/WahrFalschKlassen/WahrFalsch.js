@@ -1,14 +1,8 @@
 var angabe;
 var nummer;
-var width = window.innerWidth;
-var height = window.innerHeight;
-var frage;
-var zeit;
+var richtig;
 var endText;
 var href;
-var typ;
-var txtAngabe;
-var untertitel;
 /*
 Daten aus der data.json Datei laden
 */
@@ -20,7 +14,7 @@ xmlhttp.onload = function () {
     document.getElementById("Titel").innerHTML = jsonData.titel;
     document.getElementById("quelle").innerHTML = "Bildquelle: " + jsonData.copyright +
         "<br>2022 Rainer Hille <br> Unter Verwwendung von  <a href='https://www.cssscript.com/toast-style-web-notifications-in-vanilla-javascript-vanillatoasts/'>VanillaToasts.js</a>";
-
+    document.getElementById("Ueberschrift").innerHTML=jsonData.titel;
 
     /* 
     Variablen umwandeln 
@@ -30,7 +24,7 @@ xmlhttp.onload = function () {
 
 
     nummer = 0;
-    frage = true;
+    richtig = 0;
     start();
 }
 
@@ -41,6 +35,12 @@ xmlhttp.open("GET", href + "/data.json");
 xmlhttp.send();
 
 function start() {
+    for (i = 0; i < angabe.length; i++) {
+        var s = angabe[i];
+        var zufall = Math.floor(Math.random() * angabe.length);
+        angabe[i] = angabe[zufall];
+        angabe[zufall] = s;
+    }
     anzeigen();
 }
 
@@ -48,6 +48,7 @@ function weiter() {
     document.getElementById("btnWahr").style.visibility = "visible";
     document.getElementById("btnFalsch").style.visibility = "visible";
     document.getElementById("btnWeiter").style.visibility = "hidden";
+   
     nummer++;
     if (nummer < angabe.length) {
         anzeigen();
@@ -58,18 +59,43 @@ function weiter() {
 
 function anzeigen() {
     document.getElementById("lsg").innerHTML = "";
-    s="";
-    if (angabe[nummer].bild!=""){
-        s=s+'<img src="'+angabe[nummer].bild+'"><br>';
+    s = "";
+    if (angabe[nummer].bild != "") {
+        s = s + '<img src="' + angabe[nummer].bild + '"><br>';
     }
-    document.getElementById("Aussage").innerHTML = s+angabe[nummer].txt;
+    document.getElementById("Aussage").innerHTML = s + angabe[nummer].txt;
+    document.getElementById("Nummer").innerHTML = "Frage-Nr.: " + (nummer + 1) + "/ " + angabe.length;
+    if (nummer > 0) {
+        document.getElementById("Prozent").innerHTML = "Richtig: " + Math.floor(richtig * 100 / nummer) + "%";
+    }
 }
 
 function endeAnzeigen() {
-    document.getElementById("Ueberschrift").innerHTML = "Super, du hast alle Aufgaben gelöst!";
+    var prozent = richtig * 100 / nummer;
+    var s = "";
+    s="Du hast "+nummer.toString()+" Fragen beantwortet.<br> Davon waren "+richtig.toString()+" richtig.<br>";
+    s=s+"Das entspricht "+prozent.toString()+" Prozent.<br>";
+    document.getElementById("Ueberschrift").innerHTML = s;
+    s="<h2>";
+    
+    if (prozent > 99) {
+        s =s+ "Super, du hast alle Aufgaben korrekt gelöst!";
+    } else if (prozent > 90) {
+        s = s+"Du hast fast alle Aufgaben richtig gelöst!";
+    } else if (prozent > 70) {
+        s = s+"Du hast die meisten Aufgaben rihtig gelöst!";
+    } else if (prozent > 50) {
+        s = s+"Du hast alle Aufgaben bearbeitet - allerdings waren einige Lösungen nicht richtig.";
+    } else {
+       s= s+"Du solltest die Übung noch einmal wiederholen!";
+    }
+    s=s+"</h2>";
     document.getElementById("Vortext").innerHTML = "";
-    document.getElementById("Aussage").innerHTML = "";
+    document.getElementById("Aussage").innerHTML = s;
     document.getElementById("lsg").innerHTML = "";
+    document.getElementById("Prozent").innerHTML = "";
+    document.getElementById("Nummer").innerHTML = "";
+    
     document.getElementById("btnWahr").style.visibility = "hidden";
     document.getElementById("btnFalsch").style.visibility = "hidden";
     document.getElementById("btnWeiter").style.visibility = "hidden";
@@ -88,11 +114,12 @@ function ausgabe(title, msg, dauer, type) {
 
 function auswerten(wahr) {
     if (wahr == angabe[nummer].wahr) {
+        richtig++;
         weiter();
     } else {
         document.getElementById("btnWahr").style.visibility = "hidden";
         document.getElementById("btnFalsch").style.visibility = "hidden";
         document.getElementById("btnWeiter").style.visibility = "visible";
-        document.getElementById("lsg").innerHTML="<hr><ma>Fehler:</ma><br>"+angabe[nummer].lsg;
+        document.getElementById("lsg").innerHTML = "<hr>" + angabe[nummer].lsg;
     }
 }
