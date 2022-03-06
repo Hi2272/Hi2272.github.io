@@ -52,7 +52,7 @@
     },
     {
       "bild": "",
-      "txt": "<b>public void rechnen(){...}<br>Der Rumpf dieser Methode enthlät kein return-Statement",
+      "txt": "<b>public void rechnen(){...}<br>Der Rumpf dieser Methode enthält kein return-Statement",
       "wahr": 1,
       "lsg":"Die Aussage ist richtig - die Methode hat keinen Rückgabewert (<b>void</b>)."
     },
