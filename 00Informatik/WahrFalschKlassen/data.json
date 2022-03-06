@@ -12,7 +12,7 @@
       "bild": "",
       "txt": "Methoden, in deren Kopf das Schlüsselwort <b>void</b> nicht vorkommt, enthalten immer ein <b>return</b>-Statement",
       "wahr": 1,
-      "lsg":"Die Aussage ist richtig - über das Return-Statement wird ein Wert als Ergebnis der Methode zurückgegeben."
+      "lsg":"Die Aussage ist richtig - über das Return-Statement wird ein Wert als Ergebnis der Methode zurückgegeben. Nur eine mit <b>void</b> gekennzeichnete Methode gibt keinen Wert zurück."
     },
     {
       "bild": "",
@@ -72,7 +72,7 @@
     },
     {
       "bild": "",
-      "txt": "Für einen Klasse können meherere Konstruktoren programmiert werden.",
+      "txt": "Für eine Klasse können mehrere Konstruktoren programmiert werden.",
       "wahr": 1,
       "lsg":"Das ist durchaus möglich - die verschiedenen Konstruktoren müssen sich aber in ihren Parametern unterscheiden. Man spricht dann vom Überladen einer Klasse mit Konstruktoren."
     }
