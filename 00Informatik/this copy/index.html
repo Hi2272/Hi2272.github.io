@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://Hi2272.github.io/vanillatoasts.js"></script>
+  <link href="https://Hi2272.github.io/vanillatoasts.css" rel="stylesheet">
+
+
+  <meta charset="utf-8" />
+  <title id="Titel"></title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
+  <style>
+    button {
+      border-radius: 20px;
+      width: 30%;
+      font-size: xx-large;
+      margin:10px;
+    }
+    ma {
+      color:red;
+      text-align: center;
+      margin:5px;
+      text-emphasis: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1 id="Ueberschrift"></h1>
+    <div id="Vortext">Entscheiden Sie, ob die Aussage wahr oder falsch ist.<br>
+      Bei falschen Aussagen sollte Ihnen klar sein, welcher Fehler vorliegt.<br><hr>
+    </div>
+  </header>
+
+  <section>
+    <div id="Aussage" style="font-size: xx-large">
+      Ist diese Aussage wahr oder falsch?
+    </div>
+    <div id="lsg" style="font-size: xx-large">
+      
+    </div>
+    
+  </section>
+
+  <footer id="buttons">
+    <hr>
+    <button id="btnWahr" onclick="auswerten(1)"
+      style="background-color: lightgreen">Wahr</button>
+    <button id="btnFalsch" onclick="auswerten(2)"
+    style="background-color: lightcoral">Falsch</button>
+    <button id="btnWeiter" onclick="weiter()"
+    style="background-color:lightblue; visibility: hidden;">Weiter</button>
+    
+    
+    <br><br>
+    <div id="quelle" style="font-size: xx-small;text-align: right;"></div>
+  </footer>
+  <script src="WahrFalsch.js"></script>
+  <!--
+
+  <script src="https://Hi2272.github.io/WahrFalsch.js"></script>
+-->
+</body>
+
+</html>

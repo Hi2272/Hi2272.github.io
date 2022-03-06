@@ -1,0 +1,19 @@
+{   
+  "snap":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Klassen, Attribute, Methoden",
+  "angabe":"Ziehe die Bausteine an die richtigen Positionem",
+ 
+ 
+  "txt":[
+    {"x":0.641 ,"y":0.397,"width":0.192,"height":0.056,"pos":[0]},
+    {"x":0.319 ,"y":0.112,"width":0.247,"height":0.059,"pos":[1]},
+    {"x":0.116 ,"y":0.395,"width":0.211,"height":0.059,"pos":[2]},
+    {"x":0.49 ,"y":0.561,"width":0.133,"height":0.172,"pos":[3]},
+    {"x":0.836 ,"y":0.561,"width":0.135,"height":0.175,"pos":[4]},
+    {"x":0.662 ,"y":0.564,"width":0.135,"height":0.169,"pos":[5]}
+ 
+  ]
+    }
