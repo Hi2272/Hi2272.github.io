@@ -71,7 +71,7 @@ function anzeigen() {
 }
 
 function endeAnzeigen() {
-    var prozent = richtig * 100 / nummer;
+    var prozent = Math.floor(richtig * 100 / nummer);
     var s = "";
     s="Du hast "+nummer.toString()+" Fragen beantwortet.<br> Davon waren "+richtig.toString()+" richtig.<br>";
     s=s+"Das entspricht "+prozent.toString()+" Prozent.<br>";
