@@ -83,7 +83,7 @@ function endeAnzeigen() {
     } else if (prozent > 90) {
         s = s+"Du hast fast alle Aufgaben richtig gelöst!";
     } else if (prozent > 70) {
-        s = s+"Du hast die meisten Aufgaben rihtig gelöst!";
+        s = s+"Du hast die meisten Aufgaben richtig gelöst!";
     } else if (prozent > 50) {
         s = s+"Du hast alle Aufgaben bearbeitet - allerdings waren einige Lösungen nicht richtig.";
     } else {
