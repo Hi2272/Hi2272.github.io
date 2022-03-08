@@ -65,7 +65,7 @@ function weiter() {
         loesung = angabe[nummer].lsg[i];
         loesung = loesche(loesung, "this.");
 
-        if (eingabe = loesung) {
+        if (eingabe == loesung) {
             if (!fehler) {
                 ausgabe("Gratulation", "Sehr gut - alles richtig", 1000, "info");
                 i = angabe[nummer].lsg.length;
@@ -78,7 +78,7 @@ function weiter() {
                 endeAnzeigen();
             }
 
-        } else if (i = angabe[nummer].lsg.length - 1) {
+        } else if (i == angabe[nummer].lsg.length - 1) {
             ausgabe("Fehler", "Das passt noch nicht!<br><br> Beachte die Lösung:", 3000, "warning");
             document.getElementById("Korrektur").innerHTML = "Lösung:";
             document.getElementById("Loesung").innerHTML = angabe[nummer].lsg;
@@ -141,6 +141,8 @@ function ausgabe(title, msg, dauer, type) {
 }
 
 function zeichen(s){
-    document.getElementById("Eingabe").value=document.getElementById("Eingabe").value+s;
+    eing=document.getElementById("Eingabe");
+    eing.value=eing.value+s;
+    eing.focus();
 }
 
