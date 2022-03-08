@@ -97,7 +97,6 @@ function anzeigen() {
     if (nummer > 0) {
         document.getElementById("Prozent").innerHTML = "Richtig: " + Math.floor(richtig * 100 / nummer) + "%";
     }
-
 }
 
 function endeAnzeigen() {
