@@ -49,16 +49,37 @@ function loesche(txt, loeschText) {
 }
 
 function ersetzeAlle(txt, loeschText, ersatzText) {
-    const teile = txt.split(loeschText);
-    return teile.join(ersatzText);
-
+    while (txt.lastIndexOf(loeschText) > 0) {
+        const teile = txt.split(loeschText);
+        txt = teile.join(ersatzText);
+    }
+    return txt;
 }
 function weiter() {
 
     var eingabe = document.getElementById("Eingabe").value;
-    while (eingabe.lastIndexOf("  ") > 0) {
-        eingabe = ersetzeAlle(eingabe, "  ", " ");
-    }
+    eingabe = ersetzeAlle(eingabe, "  ", " ");
+    eingabe = ersetzeAlle(eingabe, " =", "=");
+    eingabe = ersetzeAlle(eingabe, "= ", "=");
+    eingabe = ersetzeAlle(eingabe, " (", "(");
+    eingabe = ersetzeAlle(eingabe, "( ", "(");
+    eingabe = ersetzeAlle(eingabe, ") ", ")");
+    eingabe = ersetzeAlle(eingabe, " )", ")");
+    eingabe = ersetzeAlle(eingabe, " +", "+");
+    eingabe = ersetzeAlle(eingabe, "+ ", "+");
+    eingabe = ersetzeAlle(eingabe, " *", "*");
+    eingabe = ersetzeAlle(eingabe, "* ", "*");
+    eingabe = ersetzeAlle(eingabe, " -", "-");
+    eingabe = ersetzeAlle(eingabe, "- ", "-");
+    eingabe = ersetzeAlle(eingabe, " /", "/");
+    eingabe = ersetzeAlle(eingabe, "/ ", "/");
+    eingabe = ersetzeAlle(eingabe, " ;", ";");
+    eingabe = ersetzeAlle(eingabe, "; ", ";");
+    eingabe = ersetzeAlle(eingabe, " }", "}");
+    eingabe = ersetzeAlle(eingabe, "} ", "}");
+    
+    
+    
     eingabe = eingabe.trim();
     eingabe = loesche(eingabe, "this.");
     for (i = 0; i < angabe[nummer].lsg.length; i++) {
@@ -139,9 +160,9 @@ function ausgabe(title, msg, dauer, type) {
     });
 }
 
-function zeichen(s){
-    eing=document.getElementById("Eingabe");
-    eing.value=eing.value+s;
+function zeichen(s) {
+    eing = document.getElementById("Eingabe");
+    eing.value = eing.value + s;
     eing.focus();
 }
 

@@ -76,7 +76,7 @@
       ]
     },
     {
-      "txt": "Kopf des öffentlichen Konstruktors der Klasse Rechner ohne Attribute",
+      "txt": "Kopf des öffentlichen Konstruktors der Klasse Rechner ohne Parameter:",
       "lsg": [
         "public Rechner(){"
       ]
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "txt": "Kopf eines öffentlichen Konstruktors der Klasse Rechner mit einem Attribut wert vom Typ double. ",
+      "txt": "Kopf eines öffentlichen Konstruktors der Klasse Rechner mit einem Parameter wert vom Typ double. ",
       "lsg": [
         "public Rechner(double wert){"
       ]
