@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://Hi2272.github.io/vanillatoasts.js"></script>
+  <link href="https://Hi2272.github.io/vanillatoasts.css" rel="stylesheet">
+
+
+  <meta charset="utf-8" />
+  <title id="Titel"></title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
+  <style>
+    input {
+      font-size: xx-large;
+      min-width: 50%;
+      color: blue;
+      margin: 10px;
+      background-color: beige;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h2 id="Ueberschrift"></h2>
+    <table width=100%>
+      <tr>
+        <td>
+          <div id="Nummer"></div>
+        </td>
+        <td>
+          <div id="Vortext">
+            Füge die passenden Code-Zeilen ein.<br>
+            Beende die die Zeile entweder mit <b>;</b> oder mit <b>{</b>.<br>
+          </div>
+        </td>
+        <td>
+          <div id="Prozent">1. Frage</div>
+        </td>
+
+      </tr>
+    </table>
+
+  </header>
+
+  <section>
+    <hr>
+    <div id="Angabe">
+      Kopf der öffentlichen Klasse "Rechner":
+    </div>
+    <hr>
+    <div id="Quiz">
+      <h3> Code-Zeile:</h3>
+      <div id>
+        <input id="Eingabe" type="text" autocomplete="off" autofocus spellcheck="false" size=50 onchange="weiter()">
+      </div>
+
+      <h3 id="Korrektur">
+      </h3>
+      <div id="Loesung">
+      </div>
+    </div>
+
+    <div id="quelle" style="font-size: xx-small;text-align: right;"></div>
+
+
+  </section>
+
+  <script src="JavaCode.js"></script>
+  <!--
+
+  <script src="https://Hi2272.github.io/WahrFalsch.js"></script>
+-->
+</body>
+
+</html>
