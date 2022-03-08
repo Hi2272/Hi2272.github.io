@@ -14,8 +14,16 @@
       font-size: xx-large;
       min-width: 50%;
       color: blue;
-      margin: 10px;
       background-color: beige;
+    }
+
+    button {
+      font-size: xx-large;
+      background-color:lightblue;
+      border-radius: 10px;
+      margin:5px;
+      padding-left:10px;
+      padding-right: 10px;
     }
   </style>
 </head>
@@ -51,8 +59,12 @@
     <hr>
     <div id="Quiz">
       <h3> Code-Zeile:</h3>
-      <div id>
+      <div>
         <input id="Eingabe" type="text" autocomplete="off" autofocus spellcheck="false" size=50 onchange="weiter()">
+        <button onclick="zeichen('{')">{</button>
+        <button onclick="zeichen(';')">;</button>
+        <button onclick="zeichen('(')">(</button>
+        <button onclick="zeichen(')')">)</button>
       </div>
 
       <h3 id="Korrektur">

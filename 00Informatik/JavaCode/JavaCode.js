@@ -39,7 +39,7 @@ function start() {
     }
     nummer = 0;
     richtig = 0;
-    
+
     anzeigen();
 }
 
@@ -68,7 +68,7 @@ function weiter() {
         if (eingabe = loesung) {
             if (!fehler) {
                 ausgabe("Gratulation", "Sehr gut - alles richtig", 1000, "info");
-                i=angabe[nummer].lsg.length;
+                i = angabe[nummer].lsg.length;
             }
             nummer++;
             if (!fehler) { richtig++; }
@@ -88,8 +88,8 @@ function weiter() {
 }
 function anzeigen() {
     document.getElementById("Angabe").innerHTML = angabe[nummer].txt;
-    document.getElementById("Eingabe").value = "",
-        document.getElementById("Eingabe").focus;
+    document.getElementById("Eingabe").value = "";
+    document.getElementById("Eingabe").focus;
     document.getElementById("Korrektur").innerHTML = "";
     document.getElementById("Loesung").innerHTML = "";
     fehler = false;
@@ -138,5 +138,9 @@ function ausgabe(title, msg, dauer, type) {
         timeout: dauer,
         type: type,
     });
+}
+
+function zeichen(s){
+    document.getElementById("Eingabe").value=document.getElementById("Eingabe").value+s;
 }
 
