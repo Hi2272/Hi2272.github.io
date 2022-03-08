@@ -48,6 +48,20 @@ function loesche(txt, loeschText) {
     return teile.join("");
 }
 
+function leerZeichenLoeschen(txt) {
+    var z = ["(", ")", "{", "}", "[", "]", ";", ",", "=", "+", "-", "*","/", " "];
+    for (i = 0; i < z.length; i++) {
+        while (txt.lastIndexOf(z[i] + " ") > 0) {
+            const teile = txt.split(z[i] + " ");
+            txt = teile.join(z[i]);
+        }
+        while (txt.lastIndexOf(" " + z[i]) > 0) {
+            const teile = txt.split(" " + z[i]);
+            txt = teile.join(z[i]);
+        }
+    }
+    return txt;
+}
 function ersetzeAlle(txt, loeschText, ersatzText) {
     while (txt.lastIndexOf(loeschText) > 0) {
         const teile = txt.split(loeschText);
@@ -56,30 +70,10 @@ function ersetzeAlle(txt, loeschText, ersatzText) {
     return txt;
 }
 function weiter() {
-
+    document.getElementById("Eingabe").focus();
+        
     var eingabe = document.getElementById("Eingabe").value;
-    eingabe = ersetzeAlle(eingabe, "  ", " ");
-    eingabe = ersetzeAlle(eingabe, " =", "=");
-    eingabe = ersetzeAlle(eingabe, "= ", "=");
-    eingabe = ersetzeAlle(eingabe, " (", "(");
-    eingabe = ersetzeAlle(eingabe, "( ", "(");
-    eingabe = ersetzeAlle(eingabe, ") ", ")");
-    eingabe = ersetzeAlle(eingabe, " )", ")");
-    eingabe = ersetzeAlle(eingabe, " +", "+");
-    eingabe = ersetzeAlle(eingabe, "+ ", "+");
-    eingabe = ersetzeAlle(eingabe, " *", "*");
-    eingabe = ersetzeAlle(eingabe, "* ", "*");
-    eingabe = ersetzeAlle(eingabe, " -", "-");
-    eingabe = ersetzeAlle(eingabe, "- ", "-");
-    eingabe = ersetzeAlle(eingabe, " /", "/");
-    eingabe = ersetzeAlle(eingabe, "/ ", "/");
-    eingabe = ersetzeAlle(eingabe, " ;", ";");
-    eingabe = ersetzeAlle(eingabe, "; ", ";");
-    eingabe = ersetzeAlle(eingabe, " }", "}");
-    eingabe = ersetzeAlle(eingabe, "} ", "}");
-    
-    
-    
+    eingabe = leerZeichenLoeschen(eingabe);
     eingabe = eingabe.trim();
     eingabe = loesche(eingabe, "this.");
     for (i = 0; i < angabe[nummer].lsg.length; i++) {
@@ -89,8 +83,8 @@ function weiter() {
         if (eingabe == loesung) {
             if (!fehler) {
                 ausgabe("Gratulation", "Sehr gut - alles richtig", 1000, "info");
-                i = angabe[nummer].lsg.length;
             }
+            i = angabe[nummer].lsg.length;
             nummer++;
             if (!fehler) { richtig++; }
             if (nummer < angabe.length) {
@@ -102,15 +96,19 @@ function weiter() {
         } else if (i == angabe[nummer].lsg.length - 1) {
             ausgabe("Fehler", "Das passt noch nicht!<br><br> Beachte die Lösung:", 3000, "warning");
             document.getElementById("Korrektur").innerHTML = "Lösung:";
-            document.getElementById("Loesung").innerHTML = angabe[nummer].lsg;
+            var l = document.getElementById("Loesung");
+            l.innerHTML = "";
+            for (i = 0; i < angabe[nummer].lsg.length; i++) {
+                l.innerHTML = l.innerHTML + angabe[nummer].lsg[i] + "<br>";
+            }
             fehler = true;
+            document.getElementById("Eingabe").focus();
         }
     }
 }
 function anzeigen() {
     document.getElementById("Angabe").innerHTML = angabe[nummer].txt;
     document.getElementById("Eingabe").value = "";
-    document.getElementById("Eingabe").focus;
     document.getElementById("Korrektur").innerHTML = "";
     document.getElementById("Loesung").innerHTML = "";
     fehler = false;
@@ -118,6 +116,8 @@ function anzeigen() {
     if (nummer > 0) {
         document.getElementById("Prozent").innerHTML = "Richtig: " + Math.floor(richtig * 100 / nummer) + "%";
     }
+    document.getElementById("Eingabe").focus();
+    
 }
 
 function endeAnzeigen() {
