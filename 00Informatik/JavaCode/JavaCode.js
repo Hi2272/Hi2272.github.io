@@ -4,6 +4,7 @@ var richtig;
 var endText;
 var href;
 var fehler;
+var shuffle;
 /*
 Daten aus der data.json Datei laden
 */
@@ -16,7 +17,7 @@ xmlhttp.onload = function () {
     document.getElementById("Ueberschrift").innerHTML = jsonData.titel;
 
     angabe = jsonData.angabe;      // Aufgaben werden gespeichert
-
+    shuffle = jsonData.shuffle;
     start();
 }
 
@@ -27,14 +28,17 @@ xmlhttp.open("GET", href + "/data.json");
 xmlhttp.send();
 
 function start() {
-    for (i = 0; i < angabe.length; i++) {
-        var s = angabe[i];
-        var zufall = Math.floor(Math.random() * angabe.length);
-        angabe[i] = angabe[zufall];
-        angabe[zufall] = s;
+    if (shuffle) {
+
+        for (var i = 0; i < angabe.length; i++) {
+            var s = angabe[i];
+            var zufall = Math.floor(Math.random() * angabe.length);
+            angabe[i] = angabe[zufall];
+            angabe[zufall] = s;
+        }
     }
     document.getElementById("quelle").innerHTML = "2022 Rainer Hille <br> Unter Verwwendung von  <a href='https://www.cssscript.com/toast-style-web-notifications-in-vanilla-javascript-vanillatoasts/'>VanillaToasts.js</a>";
-    for (i = 0; i < angabe.length; i++) {
+    for (var i = 0; i < angabe.length; i++) {
         console.log(angabe[i].txt);
     }
     nummer = 0;
@@ -49,8 +53,8 @@ function loesche(txt, loeschText) {
 }
 
 function leerZeichenLoeschen(txt) {
-    var z = ["(", ")", "{", "}", "[", "]", ";", ",", "=", "+", "-", "*","/", " "];
-    for (i = 0; i < z.length; i++) {
+    var z = [">", "<", "(", ")", "{", "}", "[", "]", ";", ",", "=", "+", "-", "*", "/", " "];
+    for (var i = 0; i < z.length; i++) {
         while (txt.lastIndexOf(z[i] + " ") > 0) {
             const teile = txt.split(z[i] + " ");
             txt = teile.join(z[i]);
@@ -62,6 +66,7 @@ function leerZeichenLoeschen(txt) {
     }
     return txt;
 }
+
 function ersetzeAlle(txt, loeschText, ersatzText) {
     while (txt.lastIndexOf(loeschText) > 0) {
         const teile = txt.split(loeschText);
@@ -69,37 +74,53 @@ function ersetzeAlle(txt, loeschText, ersatzText) {
     }
     return txt;
 }
-function weiter() {
+
+function vergleich(txt1, txt2) {
+    var s = "";
+    for (var i = 0; i < txt1.length; i++) {
+        s1 = txt1.charAt(i);
+        s2 = txt2.charAt(i);
+        if (s2 != s1) {
+            s = s + "<i>";
+        }
+        s = s + s1;
+    }
+    return s;
+}
+
+function check() {
     document.getElementById("Eingabe").focus();
-        
+
     var eingabe = document.getElementById("Eingabe").value;
     eingabe = leerZeichenLoeschen(eingabe);
     eingabe = eingabe.trim();
     eingabe = loesche(eingabe, "this.");
-    for (i = 0; i < angabe[nummer].lsg.length; i++) {
+    for (var i = 0; i < angabe[nummer].lsg.length; i++) {
         loesung = angabe[nummer].lsg[i];
         loesung = loesche(loesung, "this.");
 
         if (eingabe == loesung) {
             if (!fehler) {
-                ausgabe("Gratulation", "Sehr gut - alles richtig", 1000, "info");
+                ausgabe("Gratulation", "Sehr gut - alles richtig", 5000, "info");
             }
             i = angabe[nummer].lsg.length;
-            nummer++;
-            if (!fehler) { richtig++; }
-            if (nummer < angabe.length) {
-                anzeigen();
-            } else {
-                endeAnzeigen();
-            }
-
+            document.getElementById("btnWeiter").style.visibility = "visible";
+            document.getElementById("btnCheck").style.visibility = "hidden";
+            document.getElementById("Korrektur").style.visibility = "hidden";
+            
         } else if (i == angabe[nummer].lsg.length - 1) {
-            ausgabe("Fehler", "Das passt noch nicht!<br><br> Beachte die Lösung:", 3000, "warning");
-            document.getElementById("Korrektur").innerHTML = "Lösung:";
+            document.getElementById("Korrektur").style.visibility = "visible";
+
+            ausgabe("Fehler", "Das passt noch nicht!<br><br> Beachte die Lösung:", 5000, "warning");
             var l = document.getElementById("Loesung");
+            var f = document.getElementById("Fehler");
             l.innerHTML = "";
-            for (i = 0; i < angabe[nummer].lsg.length; i++) {
-                l.innerHTML = l.innerHTML + angabe[nummer].lsg[i] + "<br>";
+            f.innerHTML = "";
+            for (var i = 0; i < angabe[nummer].lsg.length; i++) {
+                loesung = angabe[nummer].lsg[i];
+                l.innerHTML = l.innerHTML + loesung + "<br>";
+                loesung = loesche(loesung, "this.");
+                f.innerHTML = f.innerHTML + vergleich(eingabe, loesung) + "<br>";
             }
             fehler = true;
             document.getElementById("Eingabe").focus();
@@ -109,15 +130,20 @@ function weiter() {
 function anzeigen() {
     document.getElementById("Angabe").innerHTML = angabe[nummer].txt;
     document.getElementById("Eingabe").value = "";
-    document.getElementById("Korrektur").innerHTML = "";
+    document.getElementById("Korrektur").style.visibility = "hidden";
     document.getElementById("Loesung").innerHTML = "";
+    document.getElementById("Fehler").innerHTML = "";
+
+    document.getElementById("btnWeiter").style.visibility = "hidden";
+    document.getElementById("btnCheck").style.visibility = "visible";
+  
     fehler = false;
     document.getElementById("Nummer").innerHTML = "Frage-Nr.: " + (nummer + 1) + "/ " + angabe.length;
     if (nummer > 0) {
         document.getElementById("Prozent").innerHTML = "Richtig: " + Math.floor(richtig * 100 / nummer) + "%";
     }
     document.getElementById("Eingabe").focus();
-    
+
 }
 
 function endeAnzeigen() {
@@ -166,3 +192,13 @@ function zeichen(s) {
     eing.focus();
 }
 
+
+function weiter() {
+    nummer++;
+    if (!fehler) { richtig++; }
+    if (nummer < angabe.length) {
+        anzeigen();
+    } else {
+        endeAnzeigen();
+    }
+}

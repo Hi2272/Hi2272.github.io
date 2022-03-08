@@ -19,11 +19,15 @@
 
     button {
       font-size: xx-large;
-      background-color:lightblue;
+      background-color: lightblue;
       border-radius: 10px;
-      margin:5px;
-      padding-left:10px;
+      margin: 5px;
+      padding-left: 10px;
       padding-right: 10px;
+    }
+
+    i {
+      color: red;
     }
   </style>
 </head>
@@ -60,19 +64,26 @@
     <div id="Quiz">
       <h3> Code-Zeile:</h3>
       <div>
-        <input id="Eingabe" type="text" autocomplete="off" autofocus spellcheck="false" size=50 >
-        <button onclick="weiter()">Weiter</button>
+        <input id="Eingabe" type="text" autocomplete="off" autofocus spellcheck="false" size=50>
+        <button id="btnCheck" onclick="check()">Prüfen</button>
         <button onclick="zeichen('{')">{</button>
         <button onclick="zeichen(';')">;</button>
         <button onclick="zeichen('(')">(</button>
         <button onclick="zeichen(')')">)</button>
       </div>
 
-      <h3 id="Korrektur">
-      </h3>
-      <div id="Loesung">
-      </div>
+      <table id="Korrektur" width=100%>
+        <tr>
+          <td><b>Deine Eingabe:</b></td>
+          <td><b>Lösungsvorschlag:</b></td>
+        </tr>
+        <tr>
+          <td id="Fehler"></td>
+          <td id="Loesung"></td>
+        </tr>
+      </table>
     </div>
+    <button id="btnWeiter" onclick="weiter()">Weiter zur nächsten Aufgabe</button>
 
     <div id="quelle" style="font-size: xx-small;text-align: right;"></div>
 

@@ -1,5 +1,7 @@
 {
   "titel": "Attribute, Methoden, Konstrukturen",
+  "shuffle":true,
+
   "angabe": [
     {
       "txt": "Multiplikation der Werte der Attribute <b>speicher</b> und <b>eingabe</b> und speichern des Ergebnisses im Attribut <b>speicher</b>.",
