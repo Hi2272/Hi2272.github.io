@@ -130,9 +130,10 @@ function check() {
 function anzeigen() {
     document.getElementById("Angabe").innerHTML = angabe[nummer].txt;
     document.getElementById("Eingabe").value = "";
-    document.getElementById("Korrektur").style.visibility = "hidden";
     document.getElementById("Loesung").innerHTML = "";
     document.getElementById("Fehler").innerHTML = "";
+
+    document.getElementById("Korrektur").style.visibility = "hidden";
 
     document.getElementById("btnWeiter").style.visibility = "hidden";
     document.getElementById("btnCheck").style.visibility = "visible";
@@ -174,6 +175,7 @@ function endeAnzeigen() {
     document.getElementById("Nummer").innerHTML = "";
 
     document.getElementById("Quiz").innerHTML = "";
+    document.getElementById("btnWeiter").style.visibility="hidden";
 
 }
 

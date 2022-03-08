@@ -62,14 +62,26 @@
     </div>
     <hr>
     <div id="Quiz">
-      <h3> Code-Zeile:</h3>
+      <b> Code-Zeile:</b>
       <div>
         <input id="Eingabe" type="text" autocomplete="off" autofocus spellcheck="false" size=50>
-        <button id="btnCheck" onclick="check()">Prüfen</button>
+        <button id="btnCheck" onclick="check()">Prüfen</button><br>
         <button onclick="zeichen('{')">{</button>
+        <button onclick="zeichen('}')">}</button>
         <button onclick="zeichen(';')">;</button>
         <button onclick="zeichen('(')">(</button>
         <button onclick="zeichen(')')">)</button>
+        <button onclick="zeichen('>')">></button>
+        <button onclick="zeichen('<')"><</button>
+            <button onclick="zeichen('=')">=</button>
+            <button onclick="zeichen('&')">&</button>
+            <button onclick="zeichen('|')">|</button>
+            <button onclick="zeichen('[')">[</button>
+            <button onclick="zeichen(']')">]</button>
+            <button onclick="zeichen('+')">+</button>
+            <button onclick="zeichen('-')">-</button>
+            <button onclick="zeichen('*')">*</button>
+            <button onclick="zeichen('/')">/</button>
       </div>
 
       <table id="Korrektur" width=100%>
