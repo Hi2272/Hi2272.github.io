@@ -18,6 +18,7 @@ xmlhttp.onload = function () {
 
     angabe = jsonData.angabe;      // Aufgaben werden gespeichert
     shuffle = jsonData.shuffle;
+
     start();
 }
 
@@ -94,11 +95,14 @@ function check() {
     var eingabe = document.getElementById("Eingabe").value;
     eingabe = leerZeichenLoeschen(eingabe);
     eingabe = eingabe.trim();
-    eingabe = loesche(eingabe, "this.");
+    if (angabe[nummer].thisLoeschen) {
+        eingabe = loesche(eingabe, "this.");
+    }
     for (var i = 0; i < angabe[nummer].lsg.length; i++) {
         loesung = angabe[nummer].lsg[i];
-        loesung = loesche(loesung, "this.");
-
+        if (angabe[nummer].thisLoeschen) {
+            loesung = loesche(loesung, "this.");
+        }
         if (eingabe == loesung) {
             if (!fehler) {
                 ausgabe("Gratulation", "Sehr gut - alles richtig", 5000, "info");
@@ -107,7 +111,7 @@ function check() {
             document.getElementById("btnWeiter").style.visibility = "visible";
             document.getElementById("btnCheck").style.visibility = "hidden";
             document.getElementById("Korrektur").style.visibility = "hidden";
-            
+
         } else if (i == angabe[nummer].lsg.length - 1) {
             document.getElementById("Korrektur").style.visibility = "visible";
 
@@ -119,7 +123,9 @@ function check() {
             for (var i = 0; i < angabe[nummer].lsg.length; i++) {
                 loesung = angabe[nummer].lsg[i];
                 l.innerHTML = l.innerHTML + loesung + "<br>";
-                loesung = loesche(loesung, "this.");
+                if (angabe[nummer].thisLoeschen) {
+                    loesung = loesche(loesung, "this.");
+                }
                 f.innerHTML = f.innerHTML + vergleich(eingabe, loesung) + "<br>";
             }
             fehler = true;
@@ -137,7 +143,7 @@ function anzeigen() {
 
     document.getElementById("btnWeiter").style.visibility = "hidden";
     document.getElementById("btnCheck").style.visibility = "visible";
-  
+
     fehler = false;
     document.getElementById("Nummer").innerHTML = "Frage-Nr.: " + (nummer + 1) + "/ " + angabe.length;
     if (nummer > 0) {
@@ -175,7 +181,7 @@ function endeAnzeigen() {
     document.getElementById("Nummer").innerHTML = "";
 
     document.getElementById("Quiz").innerHTML = "";
-    document.getElementById("btnWeiter").style.visibility="hidden";
+    document.getElementById("btnWeiter").style.visibility = "hidden";
 
 }
 

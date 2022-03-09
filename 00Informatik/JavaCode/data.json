@@ -1,99 +1,113 @@
 {
   "titel": "Attribute, Methoden, Konstrukturen",
-  "shuffle":true,
-
+  "shuffle": true,
   "angabe": [
     {
       "txt": "Multiplikation der Werte der Attribute <b>speicher</b> und <b>eingabe</b> und speichern des Ergebnisses im Attribut <b>speicher</b>.",
       "lsg": [
         "this.speicher=this.speicher*this.eingabe;",
         "this.speicher=this.eingabe*this.speicher;"
-      ]
+      ],
+      "thisLoeschen": true
     },
     {
       "txt": "Verringern des Wertes des Attributs <b>speicher</b> um 5.",
       "lsg": [
         "this.speicher=this.speicher-5;"
-      ]
+      ],
+      "thisLoeschen": true
     },
     {
       "txt": "Rückgabe der lokalen Variable <b>ergebnis</b> im Rumpf einer Methode.",
       "lsg": [
         "return ergebnis;"
-      ]
+      ],
+      "thisLoeschen": true
     },
     {
       "txt": "Der Konstruktur der Klasse Quadrat hat folgenden Kopf: public Quadrat(int x, int y, int breite)<br>Erzeugen eines neuen Quadrats an der Position (20,40) mit einer Breite von 30.",
       "lsg": [
         "new Quadrat(20,40,30);"
-      ]
+      ],
+      "thisLoeschen": true
     },
     {
       "txt": "Speichern des Wertes des Quotienten speicher/eingabe im Attribut speicher.",
       "lsg": [
         "this.speicher=this.speicher/eingabe;"
-      ]
+      ],
+      "thisLoeschen": true
     },
     {
       "txt": "Erhöhen des Wertes des Attributs speicher um 5.",
       "lsg": [
         "this.speicher=this.speicher+5;",
         "this.speicher=5+this.speicher;"
-      ]
+      ],
+      "thisLoeschen": true
     },
     {
       "txt": "Kopf der öffentlichen Klasse Rechner:",
       "lsg": [
         "public class Rechner{"
-      ]
+      ],
+      "thisLoeschen": true
     },
     {
       "txt": "Erzeugen eines neuen Objekts der Klasse <b>Rechner</b> ohne Parameter und speichern im Attribut <b>re</b>",
       "lsg": [
         "re=new Rechner();"
-      ]
+      ],
+      "thisLoeschen": true
     },
     {
       "txt": "Kopf einer öffentlichen Methode <b>mal</b> ohne Parameter, die keinen Wert zurück gibt.",
       "lsg": [
         "public void mal(){"
-      ]
+      ],
+      "thisLoeschen": true
     },
     {
       "txt": "Kopf einer öffentlichen Methode <b>getSpeicher</b>, die den Wert des Attributs <b>speicher</b> vom Typ double zurück gibt.",
       "lsg": [
         "public double getSpeicher(){"
-      ]
+      ],
+      "thisLoeschen": true
     },
     {
       "txt": "Kopf der öffentlichen Methode <b>setSpeicher</b>, die den Wert des Attributs speicher auf den Wert des Parameters <b>wert</b> vom Typ double setzt.",
       "lsg": [
         "public void setSpeicher(double wert){"
-      ]
+      ],
+      "thisLoeschen": true
     },
     {
       "txt": "Deklaration des privaten Attributs speicher vom Typ double:",
       "lsg": [
         "private double speicher;"
-      ]
+      ],
+      "thisLoeschen": true
     },
     {
       "txt": "Kopf des öffentlichen Konstruktors der Klasse Rechner ohne Parameter:",
       "lsg": [
         "public Rechner(){"
-      ]
+      ],
+      "thisLoeschen": true
     },
     {
       "txt": "Zuweisung des Wertes 30.0 zum Attribut speicher:",
       "lsg": [
         "this.speicher=30.0;"
-      ]
+      ],
+      "thisLoeschen": true
     },
     {
       "txt": "Kopf eines öffentlichen Konstruktors der Klasse Rechner mit einem Parameter wert vom Typ double. ",
       "lsg": [
         "public Rechner(double wert){"
-      ]
+      ],
+      "thisLoeschen": true
     }
   ]
 }

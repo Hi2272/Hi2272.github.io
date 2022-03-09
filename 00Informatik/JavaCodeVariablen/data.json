@@ -1,0 +1,100 @@
+{
+  "titel": "Attribute, Variablen und Parameter",
+  "shuffle": false,
+  "angabe": [
+    {
+      "txt": "Deklaration eines privaten Attributs x zum Speichern einer ganzen Zahl.",
+      "lsg": [
+        "private int x;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Zuweisung des Wertes 5 zum Attribut x.",
+      "lsg": [
+        "this.x=5;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Deklaration eines privaten Attributs x zum Speichern einer ganzen Zahl und Zuweisung des Wertes 5.",
+      "lsg": [
+        "private int x=5;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Erhöhung des Wertes des Attributes x um 5.",
+      "lsg": [
+        "this.x=this.x+5;",
+        "this.x=5+this.x;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Deklaration einer lokalen Variable x zum Speichern einer ganzen Zahl.",
+      "lsg": [
+        "int x;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Deklaration einer lokalen Variable x zum Speichern einer ganzen Zahl und direkte Zuweisung des Wertes 5.",
+      "lsg": [
+        "int x=5;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Deklaration eines privaten Attributs zahl zum Speichern einer Dezimalzahl.",
+      "lsg": [
+        "private double zahl;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Deklaration eines privaten Attributs s zum Speichern einer Zeichenkette.",
+      "lsg": [
+        "private String s;"
+      ],
+      "thisLoeschen": true
+    },
+    
+    {
+      "txt": "Deklaration eines privaten Attributs re, das auf ein Objekt der Klasse Rechteck verweist.",
+      "lsg": [
+        "private Rechteck re;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Erstellen eines neuen Objekts der Klasse Rechteck mit den Parameterwerten 40,40,100,40 und zuweisen zum Attribut re.",
+      "lsg": [
+        "re=new Rechteck(40,40,100,40);"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Deklaration eines privaten Attributs re und direkter Verweis auf ein neu erstelltes Objekt der Klasse Rechteck mit den Parameterwerten 40,40,100,40.",
+      "lsg": [
+        "private Rechteck re=new Rechteck(40,40,100,40);"
+      ],
+      "thisLoeschen": true
+    },
+{
+      "txt": "Zuweisen des Wertes des Parameters x zum Attibut x.",
+      "lsg": [
+        "this.x=x;"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Zuweisen des doppelten Wertes des Parameters x zum Attribut x.",
+      "lsg": [
+        "this.x=x*2;",
+        "this.x=2*x;"
+      ],
+      "thisLoeschen": false
+    }
+ ]
+}
