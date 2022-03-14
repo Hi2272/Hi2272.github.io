@@ -1,0 +1,18 @@
+{   
+  "snap":true,
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Vererbung bei Formen",
+  "angabe":"Ordne die Methoden der Ober- oder einer der Unterklassen zu:",
+  "txt":[
+    {"x":0.127 ,"y":0.659,"width":0.141,"height":0.061,"pos":[0,4,6]},
+    {"x":0.431 ,"y":0.193,"width":0.165,"height":0.07,"pos":[1,2,7]},
+    {"x":0.428 ,"y":0.288,"width":0.168,"height":0.065,"pos":[1,2,7]},
+    {"x":0.747 ,"y":0.743,"width":0.149,"height":0.079,"pos":[3,5,8]},
+    {"x":0.12 ,"y":0.74,"width":0.154,"height":0.082,"pos":[0,4,6]},
+    {"x":0.74 ,"y":0.647,"width":0.152,"height":0.079,"pos":[3,5,8]},
+    {"x":0.127 ,"y":0.845,"width":0.142,"height":0.063,"pos":[0,4,6]},
+    {"x":0.417 ,"y":0.377,"width":0.188,"height":0.07,"pos":[1,2,7]},
+    {"x":0.744 ,"y":0.836,"width":0.151,"height":0.084,"pos":[3,5,8]}
+    ]
+    }

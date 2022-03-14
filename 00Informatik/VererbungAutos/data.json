@@ -1,0 +1,20 @@
+{   
+  "snap":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Vererbung bei Autos",
+  "angabe":"Ziehe die Attribute und Methoden an die richtigen Positionen",
+ 
+  "txt":[
+    {"x":0.753 ,"y":0.577,"width":0.184,"height":0.078,"pos":[0,7]},
+    {"x":0.342 ,"y":0.213,"width":0.168,"height":0.087,"pos":[1,4,6]},
+    {"x":0.006 ,"y":0.557,"width":0.194,"height":0.071,"pos":[2,5,8]},
+    {"x":0.339 ,"y":0.093,"width":0.173,"height":0.087,"pos":[3]},
+    {"x":0.339 ,"y":0.308,"width":0.169,"height":0.08,"pos":[1,4,6]},
+    {"x":0.002 ,"y":0.661,"width":0.2,"height":0.087,"pos":[2,5,8]},
+    {"x":0.337 ,"y":0.397,"width":0.175,"height":0.087,"pos":[1,4,6]},
+    {"x":0.753 ,"y":0.661,"width":0.189,"height":0.084,"pos":[0,7]},
+    {"x":0.005 ,"y":0.757,"width":0.199,"height":0.089,"pos":[2,5,8]}
+    ]
+    }
