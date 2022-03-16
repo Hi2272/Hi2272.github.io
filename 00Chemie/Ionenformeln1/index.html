@@ -264,7 +264,7 @@
                 ani = ani.substr(0, ani.length - 12);  // Ladung weg
                 if (ani.endsWith('<')) { ani = ani.substr(0, ani.length - 1); }  // Ladung mit 2 Buchstaben 2- weg
                 if (antwortAnionenZahl > 1) {
-                    if (ani.includes("<") || ani == "OH") {
+                    if (ani.includes("<") || ani == "oh") {
                         ani = "(" + ani + ")<sub>" + antwortAnionenZahl.toString() + "</sub>";
                     } else {
                         ani = ani + "<sub>" + antwortAnionenZahl.toString() + "</sub>";
@@ -324,7 +324,7 @@
                     }
                 }
                 if (frageAnionenZahl > 1) {
-                    if (ani.includes("<") || ani == "OH") {
+                    if (ani.includes("<") || ani == "oh") {
                         ani = "(" + ani + ")<sub>" + frageAnionenZahl.toString() + "</sub>";
                     } else {
                         ani = ani + "<sub>" + frageAnionenZahl.toString() + "</sub>";
