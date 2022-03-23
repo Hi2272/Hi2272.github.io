@@ -1,0 +1,86 @@
+{
+  "copyright": "eigene Zeichnung",
+  "titel": "Vererbung",
+  "angabe": [
+    {
+      "bild": "",
+      "txt": "Auf ein Attribut einer Oberklasse kann in der Unterklasse nie zugegriffen werden.",
+      "wahr": 2,
+      "lsg": "Nur wenn das Attribut <b>private</b> deklariert ist, ist es in der Unterklasse nicht sichtbar -<br><b>public</b> oder <b>protected</b> deklarierte Attribute sind sichtbar."
+    },
+    {
+      "bild": "",
+      "txt": "Eine Unterklasse kann sich in Java immer nur von einer Oberklasse ableiten.",
+      "wahr": 1,
+      "lsg":"Die Aussage ist richtig - das äußert sich auch in der Leseregel für den Vererbungspfeil: ein Quadrat (Unterklasse) <b>ist ein</b> Rechteck(Oberklasse)."
+    },
+    {
+      "bild": "",
+      "txt": "Mit dieser Codezeile wird angegeben, dass die Klasse Quadrat eine Unterklasse der Klasse Rechteck ist:<br>public class Quadrat subclass Rechteck",
+      "wahr": 2,
+      "lsg":"Nein, das Schlüsselwort lautet <b>extends</b>:<br>public class Quadrat extends Rechteck"
+    },
+    {
+      "bild": "",
+      "txt": "Eine Unterklasse kann auf alle Methoden der Oberklasse zugreifen.",
+      "wahr": 2,
+      "lsg":"Nein, nur auf <b>public</b> oder <b>protected</b> deklarierte Methoden - <b>private</b> deklarierte Methoden sind unsichtbar."
+    },
+    {
+      "bild": "",
+      "txt": "Alle Attribute der Oberklasse müssen <b>public</b> deklariert werden, damit sie in der Unterklasse sichtbar sind.",
+      "wahr": 2,
+      "lsg":"Nein, hierfür reicht es, sie <b>protected</b> zu deklarieren.<br>Bei <b>public</b> wären sie auch in allen anderen Klassen sichtbar."
+    },
+    {
+      "bild": "",
+      "txt": "Unterklassen können die Werte von <b>private</b> deklarierten Attributen der Oberklasse auf keinen Fall, auch nicht über Umwege ändern.",
+      "wahr": 2,
+      "lsg":"Die Aussage ist falsch.<br>Direkt kann die Unterklasse die Attribut-Werte nicht ändern, da sie nicht sichtbar sind.<br>Über den Umweg öffentlicher set-Methoden geht das aber schon."
+    },
+    {
+      "bild": "",
+      "txt": "Der Konstruktor der Oberklasse kann an einer beliebigen Stelle im Code der Unterklasse über super() aufgerufen werden.",
+      "wahr": 2,
+      "lsg":"Nein, der Aufruf muss immmer in der ersten Zeile eines Konstruktors der Unterklasse erfolgen."
+    },
+    {
+      "bild": "",
+      "txt": "In der Unterklassen dürfen keine Methoden mit dem gleichen Namen, wie in der Oberklasse definiert werden.",
+      "wahr": 2,
+      "lsg":"Doch das ist möglich.<br>Die Methode der Unterklasse <b>überschreibt</b> damit die Methode der Oberklasse.<br>Beim Aufruf in der Unterklasse wird diese neue Methode ausgeführt."
+    },
+    {
+      "bild": "",
+      "txt": "Die Beziehung 'Ein Quadrat ist ein Rechteck und ein Rechteck ist eine Form' kann in Java nicht umgesetzt werden, da sie eine doppelte Vererbung darstellt.",
+      "wahr": 2,
+      "lsg":"Doch das ist möglich, da jede Klasse nur von einer Klasse erbt:<br>public class Quadrat extends Rechteck{}<br>public class Rechteck extends Form{}<br>Eine Unterklasse darf nur nicht von zwei Klassen gleichzeitig erben."
+    },
+    
+    {
+      "bild": "",
+      "txt": "Beim Zugriff auf Methoden der Oberklasse muss immer der Vorsatz <b>super.</b> verwendet werden.",
+      "wahr": 2,
+      "lsg":"Nein, da die Unterklasse diese Methoden erbt, reicht der Vorsatz <b>this.</b> - dieser kann auch weggelassen werden."
+    },
+ 
+    {
+      "bild": "",
+      "txt": "Eine Oberklasse muss immer alle Methoden enthalten, über die ihre Unterklasse verfügen.",
+      "wahr": 2,
+      "lsg":"Nein, sie sollte nur die Methoden enthalten, über die jede der Unterklassen verfügen, d.h. die allgemein gültigen Methoden."
+    },
+    {
+      "bild": "",
+      "txt": "Für eine Oberklasse können mehrere Konstruktoren programmiert werden.",
+      "wahr": 1,
+      "lsg":"Das ist durchaus möglich - die verschiedenen Konstruktoren müssen sich aber in ihren Parametern unterscheiden. Man spricht dann vom Überladen einer Klasse mit Konstruktoren."
+    },
+    {
+    "bild": "",
+    "txt": "Für eine Unterklasse können Konstruktoren mit anderen Parametern als für die Oberklasse programmiert werden.",
+    "wahr": 1,
+    "lsg":"Das ist durchaus möglich - innerhalb dieser Konstruktoren kann dann ein Konstruktor der Oberklasse über super(...) aufgerufen werden."
+  }
+  ]
+}

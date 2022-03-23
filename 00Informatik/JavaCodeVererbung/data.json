@@ -1,0 +1,76 @@
+{
+  "titel": "Vererbung",
+  "shuffle": true,
+  "angabe": [
+    {
+      "txt": "Kopf der öffentlichen Klasse Wuerfel, die sich von der Klasse Rechteck ableitet.",
+      "lsg": [
+        "public class Wuerfel extends Rechteck{"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Aufruf des Konstruktors der Oberklasse mit den Parametern x,y,breite,farbe.",
+      "lsg": [
+        "super(x,y,breite,farbe);"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Deklaration eines Attributs x vom Typ Integer, auf das nur in der Ober- und Unterklasse zugegriffen werden kann.",
+      "lsg": [
+        "protected int x;"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Verwende die öffentliche Methode setX() der Oberklasse, um den Wert des Parameters x auf 5 zu setzen.",
+      "lsg": [
+        "this.setX(5);"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Das Attribut x ist in der Oberklasse privat deklariert. Für dieses Attribut sind aber öffentliche getX() und setX() Methoden programmiert. Verwende diese Methoden in der Unterklasse, um den Wert von x um 5 zu erhöhen.",
+      "lsg": [
+        "this.setX(this.getX()+5);"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Der Kopf eines Konstruktors der Unterklasse lautet: public Quadrat(int x,int y,int breite). In einem zweiten Konstruktor soll dieser mit den Parameter-Werten x=10,y=10,breite=100 aufgerufen werden.",
+      "lsg": [
+        "this(10,10,100);"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Aufruf der öffentlichen Methode count() der Oberklasse in der Unterklasse.",
+      "lsg": [
+        "this.count();"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Deklaration eines Attributs s zur Speicherung einer Zeichenkette, auf das nur in der Oberklasse, aber nicht in den Unterklassen zugegriffen werden kann.",
+      "lsg": [
+        "private String s;"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Deklaration eines Attributs quadrat, das auf ein Objekt der Klasse Quadrat verweist und auf das nur in der Ober- und den Unterklassen zugegriffen werden kann. ",
+      "lsg": [
+        "protected Quadrat quadrat;"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Speicherung eines neuen Objekts der Klasse Quadrat mit den Parameter-Werten x=10,y=10,breite=100 im öffentlichen Attribut quadrat der Oberklasse.",
+      "lsg": [
+        "this.quadrat=new Quadrat(10,10,100);"
+      ],
+      "thisLoeschen": true
+    }
+ ]
+}
