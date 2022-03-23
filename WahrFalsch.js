@@ -14,7 +14,7 @@ xmlhttp.onload = function () {
     document.getElementById("Titel").innerHTML = jsonData.titel;
     document.getElementById("quelle").innerHTML = "Bildquelle: " + jsonData.copyright +
         "<br>2022 Rainer Hille <br> Unter Verwwendung von  <a href='https://www.cssscript.com/toast-style-web-notifications-in-vanilla-javascript-vanillatoasts/'>VanillaToasts.js</a>";
-    document.getElementById("Ueberschrift").innerHTML=jsonData.titel;
+    document.getElementById("Ueberschrift").innerHTML = jsonData.titel;
 
     /* 
     Variablen umwandeln 
@@ -48,7 +48,7 @@ function weiter() {
     document.getElementById("btnWahr").style.visibility = "visible";
     document.getElementById("btnFalsch").style.visibility = "visible";
     document.getElementById("btnWeiter").style.visibility = "hidden";
-   
+
     nummer++;
     if (nummer < angabe.length) {
         anzeigen();
@@ -73,29 +73,29 @@ function anzeigen() {
 function endeAnzeigen() {
     var prozent = Math.floor(richtig * 100 / nummer);
     var s = "";
-    s="Du hast "+nummer.toString()+" Fragen beantwortet.<br> Davon waren "+richtig.toString()+" richtig.<br>";
-    s=s+"Das entspricht "+prozent.toString()+" Prozent.<br>";
+    s = "Du hast " + nummer.toString() + " Fragen beantwortet.<br> Davon waren " + richtig.toString() + " richtig.<br>";
+    s = s + "Das entspricht " + prozent.toString() + " Prozent.<br>";
     document.getElementById("Ueberschrift").innerHTML = s;
-    s="<h2>";
-    
+    s = "<h2>";
+
     if (prozent > 99) {
-        s =s+ "Super, du hast alle Aufgaben korrekt gelöst!";
+        s = s + "Super, du hast alle Aufgaben korrekt gelöst!";
     } else if (prozent > 90) {
-        s = s+"Du hast fast alle Aufgaben richtig gelöst!";
+        s = s + "Du hast fast alle Aufgaben richtig gelöst!";
     } else if (prozent > 70) {
-        s = s+"Du hast die meisten Aufgaben richtig gelöst!";
+        s = s + "Du hast die meisten Aufgaben richtig gelöst!";
     } else if (prozent > 50) {
-        s = s+"Du hast alle Aufgaben bearbeitet - allerdings waren einige Lösungen nicht richtig.";
+        s = s + "Du hast alle Aufgaben bearbeitet - allerdings waren einige Lösungen nicht richtig.";
     } else {
-       s= s+"Du solltest die Übung noch einmal wiederholen!";
+        s = s + "Du solltest die Übung noch einmal wiederholen!";
     }
-    s=s+"</h2>";
+    s = s + "</h2>";
     document.getElementById("Vortext").innerHTML = "";
     document.getElementById("Aussage").innerHTML = s;
     document.getElementById("lsg").innerHTML = "";
     document.getElementById("Prozent").innerHTML = "";
     document.getElementById("Nummer").innerHTML = "";
-    
+
     document.getElementById("btnWahr").style.visibility = "hidden";
     document.getElementById("btnFalsch").style.visibility = "hidden";
     document.getElementById("btnWeiter").style.visibility = "hidden";
@@ -113,13 +113,15 @@ function ausgabe(title, msg, dauer, type) {
 
 
 function auswerten(wahr) {
+    var korrektur = "";
     if (wahr == angabe[nummer].wahr) {
         richtig++;
-        weiter();
+        korrektur = '<hr><p style="color:green;">Deine Antwort ist richtig!</p><hr>';
     } else {
-        document.getElementById("btnWahr").style.visibility = "hidden";
-        document.getElementById("btnFalsch").style.visibility = "hidden";
-        document.getElementById("btnWeiter").style.visibility = "visible";
-        document.getElementById("lsg").innerHTML = "<hr>" + angabe[nummer].lsg;
+        korrektur = '<hr><p style="color:red;">Deine Antwort ist leider <b>nicht</b> richtig!</p><hr>';
     }
+    document.getElementById("btnWahr").style.visibility = "hidden";
+    document.getElementById("btnFalsch").style.visibility = "hidden";
+    document.getElementById("btnWeiter").style.visibility = "visible";
+    document.getElementById("lsg").innerHTML = korrektur + angabe[nummer].lsg;
 }
