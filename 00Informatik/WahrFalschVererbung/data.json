@@ -66,9 +66,9 @@
  
     {
       "bild": "",
-      "txt": "Eine Oberklasse muss immer alle Methoden enthalten, über die ihre Unterklasse verfügen.",
+      "txt": "Eine Oberklasse muss immer alle Methoden enthalten, über die ihre Unterklasse verfügt.",
       "wahr": 2,
-      "lsg":"Sie sollte nur die Methoden enthalten, über die jede der Unterklassen verfügen, d.h. die allgemein gültigen Methoden."
+      "lsg":"Sie sollte nur die Methoden enthalten, über die jede der Unterklassen verfügt, d.h. die allgemein gültigen Methoden."
     },
     {
       "bild": "",
