@@ -1,0 +1,25 @@
+{ "typ":"Bild",   
+  "titel":"Turtle-Grafiken",
+  "untertitel":"Löse diese Aufgabe in BlueJ und klicke dann auf <i>Weiter</i>.",
+  "angabe":[
+    {"txt":"Im Konstruktor der Klasse Bild wird ein Quadrat mit der Kantenlänge 100 erzeugt.<br>Verkürze den Programmcode unter Verwendung einer Zählschleife.","zeit":30},
+    {"txt":"Erstelle eine Methode <b>quadrat</b> mit einem Parameter <b>breite</b>, die ein Quadrat der Kantenlänge <b>breite</b> erstellt.<br>Erzeuge damit im Konstruktor ein Quadrat der Kantenlänge 50.","zeit":60},
+    {"txt":"Dieses Bild besteht aus 10 Quadraten der Kantenlänge 50, die jeweils um 36° zueinander gedreht sind.<br>Programmiere es mit einer Zählschleife im Konstruktor.","zeit":60},
+    {"txt":"Erstelle eine neue Methode <b>vieleck</b> mit den Parametern <b>eckenzahl</b> und <b>breite</b>, die ein gleichseitiges Vieleck erzeugt.<br>Der Winkel, um den sich die Turtle an den Ecken drehen muss, berechnet sich nach der Formel <b>360/eckenzahl</b>.","zeit":60},
+    {"txt":"Diese Figur besteht aus 10 Fünfecken der Kantenlänge 50, die jeweils um 36° zueinander gedreht sind.<br>Programmiere es mit einer Zählschleife im Konstruktor.","zeit":60},
+    {"txt":"Durch Variation der Eckenzahl und der Anzahl der Vielecke können verschiedene Oramente erzeugt werden.<br>Dieses Ornament besteht aus 20 Sechsecken der Kantenlänge 50.<br>Erzeuge eine Methode <b>ornament</b> mit den Parametern <b>eckenzahl, breite, anzahl</b>, das beliebige Ornamente zeichnet und rufe im Konstruktor ornament(6,50,20) auf.","zeit":60},
+    {"txt":"Durch die Methode <b>up</b> wird der Stift der Turtle angehoben - sie zeichnet dann nicht mehr. Die Methode <b>setPositon(x,y,richtung)</b> verschiebt die Turtle auf die x,y-Position und stellt den Winkel ein, in dem sie losläuft. <b>down</b> senkt den Stift wieder.<br>Erstelle eine zweite Methode <b>ornament</b> mit den Parametern<b> x, y, winkel, eckenzahl, breite, anzahl</b> und erzeuge damit im Konstruktor folgendes Bild","zeit":60},
+    {"txt":"Unsere bisherige Programmierung kann durch Vererbung verbessert werden.<br>Erstelle eine neue Klasse <b>GTurtle</b>, die sich von Turtle ableitet. Programmiere einen Konstruktor ohne Parameter, der den Konstruktor der Oberklasse ohne Parameter aufruft.","zeit":60},
+    {"txt":"Verschiebe die Methoden <b>vieleck</b> und <b>ornament</b> aus der Klasse <b>Bild</b> in die Klasse <b>GTurtle</b> und beseitige alle entstehenden Fehlermeldungen.","zeit":60}
+   
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Die Klasse GTurtle kannst du jetzt noch um weitere Methoden zum Zeichnen komplexer Figuren erweitern.",
+  "copyright":"<a href='https://www.bluej.org'>BlueJ</a>"
+    
+}

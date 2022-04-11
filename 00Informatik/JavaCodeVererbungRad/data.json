@@ -1,0 +1,76 @@
+{
+  "titel": "Vererbung",
+  "shuffle": false,
+  "angabe": [
+    {
+      "txt": "Ein Rad ist ein Kreis.<br>Programmiere den Kopf der Klasse <b>Rad</b>.",
+      "lsg": [
+        "public class Rad extends Kreis{"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Deklariere ein privates Attribut radkappe aus der Klasse Kreis",
+      "lsg": [
+        "private Kreis radkappe;"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Progammiere den Kopf des öffentlichen Konstruktors der Klasse Rad mit den ganzzahligen Parametern x,y,radius und den Zeichenketten-Parametern farbeRad und farbeRadkappe.",
+      "lsg": [
+        "public Rad(int x,int y,int radius, String farbeRad, String farbeRadkappe){"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Rufe den Konstruktors der Oberklasse Kreis mit den Parameter-Werten x,y,radius,farbeRad auf.",
+      "lsg": [
+        "super(x,y,radius,farbeRad);"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Initialisiere das Attributs radKappe mit einem Objekt der Klasse Kreis mit folgenden Parametern: x,y,radius*4/10,farbeRadkappe.",
+      "lsg": [
+        "this.radKappe=new Kreis(x,y,radius*4/10,farbeRadkappe);"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Kopf eines zweiten Konstruktors der Klasse Rad ohne Parameter.",
+      "lsg": [
+        "public Rad(){"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Aufruf des ersten Konstruktors der Klasse Kreis mit den Parameter-Werten x=100,y=100,radius=50,farbeRad='black',farbeRadkappe='yellow'.",
+      "lsg": [
+        "this(100,100,50,'black','yellow')"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Deklaration eines Attributs s zur Speicherung einer Zeichenkette, auf das nur in der Oberklasse, aber nicht in den Unterklassen zugegriffen werden kann.",
+      "lsg": [
+        "private String s;"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Deklaration eines Attributs quadrat, das auf ein Objekt der Klasse Quadrat verweist und auf das nur in der Ober- und den Unterklassen zugegriffen werden kann. ",
+      "lsg": [
+        "protected Quadrat quadrat;"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Speicherung eines neuen Objekts der Klasse Quadrat mit den Parameter-Werten x=10,y=10,breite=100 im öffentlichen Attribut quadrat der Oberklasse.",
+      "lsg": [
+        "this.quadrat=new Quadrat(10,10,100);"
+      ],
+      "thisLoeschen": true
+    }
+ ]
+}
