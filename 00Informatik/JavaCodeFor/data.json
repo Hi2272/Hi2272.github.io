@@ -38,7 +38,26 @@
         "for (int i=9;i>=1;i--){"
     ],
       "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer Zählschleife in der i von 9 bis 1 in Zweierschritten heruntergezählt wird.",
+      "lsg": [
+        "for (int i=9;i>0;i=i-2){",
+       "for (int i=9;i>=1;i=i-2){"
+    ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer Zählschleife in der i folgende Werte annimmt: 1,2,4,8,16,32.",
+      "lsg": [
+        "for (int i=1;i<33;i=i*2){",
+        "for (int i=1;i<64;i=i*2){",
+        "for (int i=9;i<=32;i=i*2){"
+    ],
+      "thisLoeschen": false
     }
+  
+   
     
  ]
 }
