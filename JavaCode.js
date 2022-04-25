@@ -65,11 +65,13 @@ function leerZeichenLoeschen(txt) {
             txt = teile.join(z[i]);
         }
     }
+    txt=ersetzeAlle(txt,"for(","for (");
+    txt=ersetzeAlle(txt,"if(","if (");
     return txt;
 }
 
 function ersetzeAlle(txt, loeschText, ersatzText) {
-    while (txt.lastIndexOf(loeschText) > 0) {
+    while (txt.indexOf(loeschText) > -1) {
         const teile = txt.split(loeschText);
         txt = teile.join(ersatzText);
     }
