@@ -1,0 +1,26 @@
+{ "typ":"Bild",   
+  "titel":"FOR-Schleife",
+  "untertitel":"Löse diese Aufgabe in BlueJ und klicke dann auf <i>Weiter</i>.",
+  "angabe":[
+    {"zeit":3,"txt":"Erstelle in BlueJ ein neues Projekt.<br>Erstelle eine Klasse <b>Zahlen</b> und programmiere einen Konstruktor ohne Parameter und Inhalt."},
+    {"zeit":3,"txt":"Die Methode <b>System.out.println(i);</b> gibt den Wert der Variable i in einem Fenster, der sogenannten Konsole, aus.<br>Programmiere im Konstruktor eine Schleife, die die Zahlen zwischen 0 und 9 ausgibt."},
+    {"zeit":3,"txt":"Die Methode <b>zahlenreihe</b> soll alle Zahlen zwischen zwei Grenzwerten ausgeben.<br> Erstelle diese Methode in der Klasse <b>Zahlen</b>"},
+    {"zeit":3,"txt":"Die Methode <b>quadratreihe</b> soll die Quadrate aller Zahlen zwischen zwei Grenzwerten ausgeben.<br> Erstelle diese Methode in der Klasse <b>Zahlen</b>"},
+    {"zeit":3,"txt":"Die Methode <b>potenz</b> soll die Potenz einer Basis und eines Exponenten berechnen und als Zahlenwert zurückgeben.<br> Programmiere die Funktion und rufe sie dann wie unten im Konstruktor auf:"},
+    {"zeit":3,"txt":"Verwende die Methode <b>potenz</b> im Konstruktor, um eine Liste der 2er-Potenzen zwischen 2 hoch 1 und zwei hoch 10 auszugeben."},
+    
+    {"zeit":3,"txt":"Die Methode <b>System.out.print(i+\" \")</b> gibt den Wert der Variable i und ein Leerzeichen aus.<br> Ein Zeilenumbruch wird mit der Methode <b>System.println()</b> erzeugt.<br>Erstelle eine Methode, die die Werte des Einmaleins zwischen zwei Grenzen als Tabelle ausgibt:"}
+    
+
+    
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Mit dieser Übung hast du die Verwendung von Zählschleifen wiederholt.",
+  "copyright":"<a href='https://www.bluej.org'>BlueJ</a>"
+    
+}
