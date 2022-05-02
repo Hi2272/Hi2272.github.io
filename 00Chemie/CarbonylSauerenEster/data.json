@@ -1,0 +1,23 @@
+{   
+  "snap":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Sauerstoffhaltige Verbindungen",
+  "angabe":"Ziehe die Bausteine an die richtigen Positionen",
+ 
+  "txt":[
+    {"x":0.037 ,"y":0.266,"width":0.148,"height":0.102,"pos":[0]},
+    {"x":0.387 ,"y":0.624,"width":0.173,"height":0.274,"pos":[1]},
+    {"x":0.754 ,"y":0.707,"width":0.213,"height":0.196,"pos":[2]},
+    {"x":0.405 ,"y":0.088,"width":0.117,"height":0.164,"pos":[3]},
+    {"x":0.79 ,"y":0.061,"width":0.136,"height":0.21,"pos":[4]},
+    {"x":0.829 ,"y":0.911,"width":0.067,"height":0.081,"pos":[5]},
+    {"x":0.397 ,"y":0.906,"width":0.125,"height":0.089,"pos":[6]},
+    {"x":0.782 ,"y":0.285,"width":0.149,"height":0.086,"pos":[7]},
+    {"x":0.41 ,"y":0.26,"width":0.104,"height":0.102,"pos":[8]},
+    {"x":0.008 ,"y":0.739,"width":0.219,"height":0.121,"pos":[9]},
+    {"x":0.038 ,"y":0.142,"width":0.146,"height":0.097,"pos":[10]},
+    {"x":0.037 ,"y":0.906,"width":0.148,"height":0.102,"pos":[11]}
+    ]
+    }
