@@ -1,0 +1,79 @@
+{
+  "titel": "Bedingte Anweisungen",
+  "shuffle": false,
+  "angabe": [
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn isTreeFront() wahr ist,...",
+      "lsg": [
+        "if (this.isTreeFront()){",
+        "if (this.isTreeFront()==true){"
+       ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn a größer als 7 ist,...",
+      "lsg": [
+        "if (a>7){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn x kleiner als 7 ist,...",
+      "lsg": [
+        "if (x<7){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn a größer oder gleich als 7 ist,...",
+      "lsg": [
+        "if (a>=7){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn x gleich 7 ist,...",
+      "lsg": [
+        "if (x==7){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn isTreeFront() falsch ist,...",
+      "lsg": [
+        "if (this.isTreeFront()==false){",
+        "if (!this.isTreeFront()){",
+        "if (this.isTreeFront()==0){"
+       ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Kopf der öffentlichen Methode isEmpty(), die wahr oder falsch zurückgeben kann.",
+      "lsg": [
+        "public boolean isEmpty(){"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Deklaration des privaten Attriuts isEmpty, das die Werte wahr oder falsch annehmen kann.",
+        "lsg": [
+        "private boolean isEmpty;"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Initialisierung des Attributs isEmpty mit dem Wert wahr.",
+        "lsg": [
+        "this.isEmpty=true;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Initialisierung des Attributs isEmpty mit dem Wert falsch.",
+        "lsg": [
+        "this.isEmpty=false;"
+      ],
+      "thisLoeschen": true
+    }
+ ]
+}
