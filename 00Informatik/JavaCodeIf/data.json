@@ -42,8 +42,7 @@
       "txt": "Kopf einer bedingten Anweisung: Wenn isTreeFront() falsch ist,...",
       "lsg": [
         "if (this.isTreeFront()==false){",
-        "if (!this.isTreeFront()){",
-        "if (this.isTreeFront()==0){"
+        "if (!this.isTreeFront()){"
        ],
       "thisLoeschen": true
     },
