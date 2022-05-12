@@ -1,0 +1,25 @@
+{ "typ":"Bild",   
+  "titel":"Kara braucht Klee",
+  "untertitel":"In 10 Schritten erstellst du ein einfaches Spiel in Java.",
+  "angabe":[
+    {"zeit":15,"txt":"Füge im Konstruktor der Klasse Welt zwei Zählschleifen ein, so dass 60 Baumstümpfe und 30 Kleeblätter an zufälligen, leeren Positionen eingefügt werden."},
+    {"zeit":15,"txt":"Kara soll zu Beginn 30 Punkte Energie haben.<br>Deklariere ein privates Attribut vom Typ int und initialisiere es im Konstruktor mit dem Wert 30."},
+    {"zeit":15,"txt":"Die Methode <b>public boolean keyPressed(KeyEvent evt)</b> wird bei einem Tastendruck aufgerufen und ermöglicht das Drehen und Bewegen von Kara mit den Pfeiltasten.<br> Ändere den Code so ab, dass sie nur läuft, wenn sie nicht vor einem Baum steht."},
+    {"zeit":15,"txt":"Bei jedem Schritt, den Kara geht, soll ihr Energievorrat um eine Einheit sinken.<br>Programmiere dies nach der move()-Methode und lasse den Energievorrat mit der Methode <b>energieAnzeigen()</b> in der Statuszeile anzeigen."},
+    {"zeit":15,"txt":"Mit der Methode <b>isOnLeaf()</b> kann Kara prüfen, ob sie auf einem Blatt steht.<br> Wenn das der Fall ist, soll ihr Energievorrat um 5 Punkte steigen und der neue Wert angezeigt werden.<br>Programmiere diese bedingte Anweisung nach dem isTreeFront()... Block."},
+    {"zeit":15,"txt":"Die Blätter sollen verschwinden, wenn Kara sie berührt hat.<br>1. Definiere eine lokale Variable blatt vom Typ Actor.<br>2. Übernehme diese Codezeile.<br>3. Rufe die Methode <b>removeSelf()</b> des Objekts <b>blatt</b> auf."},
+    {"zeit":15,"txt":"Kara soll maximal 29 Enregiepunkte speichern können.<br> Füge eine weitere bedingte Anweisung in den Code ein, die folgenden Algorithmus umsetzt:"},
+    {"zeit":15,"txt":"Wenn beim Laufen Karas Energievorrat unter 0 sinkt, soll sie aus dem Spiel verschwinden und das Spiel damit enden.<br>Verwende hierzu die Methode <b>this.removerSelf()</b>."},
+    {"zeit":15,"txt":"Kara soll abhängig von ihrem Energievorrat ihre Farbe ändern:<br>Wenn sie weniger als 10 Punkte hat, soll sie rot sein, zwischen 10 und 19 gelb und bei mehr als 19 grün. <br> Programmiere dieses Verhalten in der Methode <b>energieAnzeigen()</b>."}
+    
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Viel Spaß beim Spielen!<br><br>Wenn dir das Spiel zu leicht erscheint, kannst du den Code ändern, so dass <br>- weniger Blätter erscheinen<br>- mehr Baumstümpfe herumstehen<br>- Laufen mehr Energie kostet<br>- Blätter fressen weniger Energie bringt...",
+  "copyright":"<a href='https://www.bluej.org'>BlueJ</a>, <a href='http://www.java-online.ch/gamegrid/gamegridEnglish/index.php?inhalt_links=navigation.inc.php&inhalt_mitte=grundelemente/grid.inc.php'> JGameGrid</a>, <a href='https://github.com/marcojakob/gamegrid-kara/tree/master/scenarios-eclipse-project/src/kara/gamegrid'>GameGrid Kara</a>"
+    
+}
