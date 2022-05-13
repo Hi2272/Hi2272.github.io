@@ -1,6 +1,6 @@
 { "typ":"Bild",   
-  "titel":"Kara braucht Klee",
-  "untertitel":"In 10 Schritten erstellst du ein einfaches Spiel in Java.",
+  "titel":"Kara braucht Klee!",
+  "untertitel":"Kara braucht Klee!",
   "angabe":[
     {"zeit":15,"txt":"Füge im Konstruktor der Klasse Welt zwei Zählschleifen ein, so dass 60 Baumstümpfe und 30 Kleeblätter an zufälligen, leeren Positionen eingefügt werden."},
     {"zeit":15,"txt":"Kara soll zu Beginn 30 Punkte Energie haben.<br>Deklariere ein privates Attribut vom Typ int und initialisiere es im Konstruktor mit dem Wert 30."},
