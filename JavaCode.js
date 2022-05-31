@@ -54,7 +54,7 @@ function loesche(txt, loeschText) {
 }
 
 function leerZeichenLoeschen(txt) {
-    var z = [">", "<", "(", ")", "{", "}", "[", "]", ";", ",", "=", "+", "-", "*", "/", " "];
+    var z = [">", "<", "(", ")", "{", "}", "[", "]", ";", ",", "=", "+", "-", "*", "/", " ","|","&","!"];
     for (var i = 0; i < z.length; i++) {
         while (txt.lastIndexOf(z[i] + " ") > 0) {
             const teile = txt.split(z[i] + " ");

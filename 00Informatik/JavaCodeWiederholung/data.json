@@ -1,0 +1,98 @@
+{
+  "titel": "Wiederholung Java",
+  "shuffle": false,
+  "angabe": [
+    {
+      "txt": "Kopf der öffentlichen Klasse Quadrat, die sich von der Klasse Rechteck ableitet.",
+      "lsg": [
+        "public class Quadrat extends Rechteck{"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Deklaration der privaten Attribute x,y,breite vom Typ int.",
+      "lsg": [
+        "private int x,y,breite;"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf des öffentlichen Konstruktors der Klasse Quadrat mit den ganzzahligen Parametern x,y,breite",
+      "lsg": [
+        "public class Quadrat(int x,int y,int breite){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Aufruf des Konstruktors der Oberklasse mit den Werten der Parameter x,y,breite, breite.",
+      "lsg": [
+        "super(x,y,breite,breite);"
+       ],
+      "thisLoeschen": false
+    },
+  {
+    "txt": "Kopf einer bedingten Anweisung: Wenn der Wert des Parameters x gleich dem des Parameters y ist,...",
+    "lsg": [
+      "if (x==y){"
+      ],
+    "thisLoeschen": false
+  },
+
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn der Wert des Parameters x kleiner 0 oder größer 600 ist,...",
+      "lsg": [
+        "if (x<0 || x>600){",
+        "if ((x<0) || (x>600)){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf der bedingten Anweisung: Wenn der Wert des Parameters x größer als 0 und kleiner als 600 ist.",
+      "lsg": [
+        "if (x>0 && x<600){",
+        "if ((x>0) && (x<600)){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf der bedingten Anweisung: Wenn der Wert des Parameters x nicht gleich 0 ist.",
+      "lsg": [
+        "if (x!=0){",
+        "if (!(x==0)){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Der Wert des Parameters x wird im Konstruktor auf 0 gesetzt",
+      "lsg": [
+        "x=0;"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Der Wert des Attributs x wird mit dem Wert des Parameters x initialisiert.",
+      "lsg": [
+        "this.x=x;"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Die öffentliche Methode setX() wird mit dem Wert von x als Parameter aufgerufen.",
+        "lsg": [
+        "this.setX(x);"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Kopf einer Zählschleife in der die Variable i von 0 bis 9 hochgezählt wird.",
+        "lsg": [
+        "for (int i=0;i<10;i++){",
+        "for (int i=0;i<=9;i++){",
+        "for (int i=0;i<10;i=i+1){",
+        "for (int i=0;i<=9;i=i+1){"
+      ],
+      "thisLoeschen": true
+    }
+ 
+ ]
+}
