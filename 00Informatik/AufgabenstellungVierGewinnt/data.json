@@ -1,0 +1,27 @@
+{ "typ":"Bild",   
+  "titel":"Vier gewinnt!",
+  "untertitel":"",
+  "angabe":[
+    {"zeit":1,"txt":""},
+    {"zeit":1,"txt":""},
+    {"zeit":1,"txt":""},
+    {"zeit":1,"txt":""},
+    {"zeit":1,"txt":""},
+   
+    {"zeit":1,"txt":""},
+    {"zeit":1,"txt":""},
+    {"zeit":1,"txt":""},
+    {"zeit":1,"txt":""},
+    {"zeit":1,"txt":""}
+    
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Viel Spaß beim Spielen!",
+  "copyright":"<a href='https://www.bluej.org'>BlueJ</a>, <a href='http://www.java-online.ch/gamegrid/gamegridEnglish/index.php?inhalt_links=navigation.inc.php&inhalt_mitte=grundelemente/grid.inc.php'> JGameGrid</a>, <a href='https://github.com/marcojakob/gamegrid-kara/tree/master/scenarios-eclipse-project/src/kara/gamegrid'>GameGrid Kara</a>"
+    
+}

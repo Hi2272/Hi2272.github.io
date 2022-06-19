@@ -19,7 +19,7 @@
     {
       "txt": "Kopf des öffentlichen Konstruktors der Klasse Quadrat mit den ganzzahligen Parametern x,y,breite",
       "lsg": [
-        "public class Quadrat(int x,int y,int breite){"
+        "public Quadrat(int x,int y,int breite){"
        ],
       "thisLoeschen": false
     },
@@ -41,16 +41,16 @@
     {
       "txt": "Kopf einer bedingten Anweisung: Wenn der Wert des Parameters x kleiner 0 oder größer 600 ist,...",
       "lsg": [
-        "if (x<0 || x>600){",
-        "if ((x<0) || (x>600)){"
+        "if (x<0||x>600){",
+        "if ((x<0)||(x>600)){"
        ],
       "thisLoeschen": false
     },
     {
       "txt": "Kopf der bedingten Anweisung: Wenn der Wert des Parameters x größer als 0 und kleiner als 600 ist.",
       "lsg": [
-        "if (x>0 && x<600){",
-        "if ((x>0) && (x<600)){"
+        "if (x>0&&x<600){",
+        "if ((x>0)&&(x<600)){"
        ],
       "thisLoeschen": false
     },
