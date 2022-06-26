@@ -1,0 +1,211 @@
+{
+  "titel": "Zusammenfassung",
+  "shuffle": true,
+  "angabe": [
+    {
+      "txt": "Deklaration eines privaten Attributs x zum Speichern einer ganzen Zahl.",
+      "lsg": [
+        "private int x;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Zuweisung des Wertes 5 zum Attribut x.",
+      "lsg": [
+        "this.x=5;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Erhöhung des Wertes des Attributes x um 5.",
+      "lsg": [
+        "this.x=this.x+5;",
+        "this.x=5+this.x;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Deklaration eines privaten Attributs re, das auf ein Objekt der Klasse Rechteck verweist.",
+      "lsg": [
+        "private Rechteck re;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Erstellen eines neuen Objekts der Klasse Rechteck mit den Parameterwerten 40,40,100,40 und zuweisen zum Attribut re.",
+      "lsg": [
+        "re=new Rechteck(40,40,100,40);"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Zuweisen des Wertes des Parameters x zum Attibut x.",
+      "lsg": [
+        "this.x=x;"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer Zählschleife in der i von 2 bis 8 in Zweier-Schritten hochgezählt wird.",
+      "lsg": [
+        "for (int i=2;i<9;i=i+2){",
+        "for (int i=2;i<10;i=i+2){",
+        "for (int i=2;i<=8;i=i+2){"
+    ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer Zählschleife in der i von 9 bis 1 heruntergezählt wird.",
+      "lsg": [
+        "for (int i=9;i>0;i=i-1){",
+        "for (int i=9;i>0;i--){",
+        "for (int i=9;i>=1;i=i-1){",
+        "for (int i=9;i>=1;i--){"
+    ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer Zählschleife in der i von 0 bis 9 hochgezählt wird.",
+      "lsg": [
+        "for (int i=0;i<10;i++){",
+        "for (int i=0;i<10;i=i+1){",
+        "for (int i=0;i<=9;i=i+1){"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer öffentlichen Methode <b>mal</b> ohne Parameter, die keinen Wert zurück gibt.",
+      "lsg": [
+        "public void mal(){"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Kopf einer öffentlichen Methode <b>getSpeicher</b>, die den Wert des Attributs <b>speicher</b> vom Typ double zurück gibt.",
+      "lsg": [
+        "public double getSpeicher(){"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Kopf der öffentlichen Methode <b>setSpeicher</b>, die den Wert des Attributs speicher auf den Wert des Parameters <b>wert</b> vom Typ double setzt.",
+      "lsg": [
+        "public void setSpeicher(double wert){"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Kopf der öffentlichen Klasse Wuerfel, die sich von der Klasse Rechteck ableitet.",
+      "lsg": [
+        "public class Wuerfel extends Rechteck{"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Aufruf des Konstruktors der Oberklasse mit den Parametern x,y,breite,farbe.",
+      "lsg": [
+        "super(x,y,breite,farbe);"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Deklaration eines Attributs x vom Typ Integer, auf das nur in der Ober- und Unterklasse zugegriffen werden kann.",
+      "lsg": [
+        "protected int x;"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Deklaration des privaten Attriuts isEmpty, das die Werte wahr oder falsch annehmen kann.",
+        "lsg": [
+        "private boolean isEmpty;"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Initialisierung des Attributs isEmpty mit dem Wert wahr.",
+        "lsg": [
+        "this.isEmpty=true;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Initialisierung des Attributs isEmpty mit dem Wert falsch.",
+        "lsg": [
+        "this.isEmpty=false;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn a größer oder gleich als 7 ist,...",
+      "lsg": [
+        "if (a>=7){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn x gleich 7 ist,...",
+      "lsg": [
+        "if (x==7){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn isTreeFront() falsch ist,...",
+      "lsg": [
+        "if (this.isTreeFront()==false){",
+        "if (!this.isTreeFront()){"
+       ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn a größer gleich 0 und a kleiner 10 ist,...",
+      "lsg": [
+        "if (a>=0&&a<10){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn a größer gleich 0 oder a kleiner 10 ist,...",
+      "lsg": [
+        "if (a>=0||a<10){"
+       ],
+      "thisLoeschen": false
+    },
+   {
+    "txt": "Kopf einer bedingten Anweisung: Wenn die Methoden isEmpty() und isInGrid() wahr zurück geben,...",
+      "lsg": [
+        "if (this.isEmtpy()&&this.isInGrid()){",
+        "if (this.isEmtpy()==true&&this.isInGrid()==true){"
+       ],
+      "thisLoeschen": true
+    }, 
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn die Methoden isEmpty() falsch zurück geben,...",
+        "lsg": [
+          "if (!this.isEmtpy()){",
+          "if (this.isEmtpy()==false){"
+         ],
+        "thisLoeschen": true
+      }, 
+      
+     
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn a ungleich 10 ist,...",
+      "lsg": [
+        "if (a!=10){",
+        "if (!(a==10){"
+       ],
+      "thisLoeschen": false
+    },
+
+    {
+      "txt": "Kopf eines öffentlichen Konstruktors der Klasse Rechner mit einem Parameter wert vom Typ double. ",
+      "lsg": [
+        "public Rechner(double wert){"
+      ],
+      "thisLoeschen": true
+    }
+
+ ]
+}

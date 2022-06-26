@@ -1,0 +1,50 @@
+{
+  "titel": "Logische Funktionen",
+  "shuffle": true,
+  "angabe": [
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn a größer gleich 0 und a kleiner 10 ist,...",
+      "lsg": [
+        "if (a>=0&&a<10){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn a größer gleich 0 oder a kleiner 10 ist,...",
+      "lsg": [
+        "if (a>=0||a<10){"
+       ],
+      "thisLoeschen": false
+    },
+   {
+    "txt": "Kopf einer bedingten Anweisung: Wenn die Methoden isEmpty() und isInGrid() wahr zurück geben,...",
+      "lsg": [
+        "if (this.isEmtpy()&&this.isInGrid()){",
+        "if (this.isEmtpy()==true&&this.isInGrid()==true){"
+       ],
+      "thisLoeschen": true
+    }, 
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn die Methoden isEmpty() falsch zurück geben,...",
+        "lsg": [
+          "if (!this.isEmtpy()){",
+          "if (this.isEmtpy()==false){"
+         ],
+        "thisLoeschen": true
+      }, 
+      
+     
+    {
+      "txt": "Kopf einer bedingten Anweisung: Wenn a ungleich 10 ist,...",
+      "lsg": [
+        "if (a!=10){",
+        "if (!(a==10){"
+       ],
+      "thisLoeschen": false
+    }
+    
+    
+
+
+ ]
+}

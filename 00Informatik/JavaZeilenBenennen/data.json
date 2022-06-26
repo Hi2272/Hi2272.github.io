@@ -1,0 +1,17 @@
+{   
+  "snap":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Java Codezeilen benennen",
+  "angabe":"Schiebe die Textbausteine an die richtigen Stellen!",
+  "txt":[
+    {"x":0.501 ,"y":0.41,"width":0.297,"height":0.062,"pos":[0]},
+    {"x":0.5 ,"y":0.202,"width":0.246,"height":0.071,"pos":[1]},
+    {"x":0.503 ,"y":0.604,"width":0.416,"height":0.069,"pos":[2]},
+    {"x":0.498 ,"y":0.006,"width":0.179,"height":0.069,"pos":[3]},
+    {"x":0.5 ,"y":0.306,"width":0.421,"height":0.067,"pos":[4]},
+    {"x":0.501 ,"y":0.71,"width":0.35,"height":0.058,"pos":[5]},
+    {"x":0.5 ,"y":0.108,"width":0.279,"height":0.062,"pos":[6]}
+    ]
+    }
