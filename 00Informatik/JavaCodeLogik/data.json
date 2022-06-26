@@ -5,30 +5,37 @@
     {
       "txt": "Kopf einer bedingten Anweisung: Wenn a größer gleich 0 und a kleiner 10 ist,...",
       "lsg": [
-        "if (a>=0&&a<10){"
+        "if (a>=0&&a<10){",
+        "if (a<10&&a>=0){"
+        
        ],
       "thisLoeschen": false
     },
     {
       "txt": "Kopf einer bedingten Anweisung: Wenn a größer gleich 0 oder a kleiner 10 ist,...",
       "lsg": [
-        "if (a>=0||a<10){"
+        "if (a>=0||a<10){",
+        "if (a<10||a>=0){"
+        
        ],
       "thisLoeschen": false
     },
    {
     "txt": "Kopf einer bedingten Anweisung: Wenn die Methoden isEmpty() und isInGrid() wahr zurück geben,...",
       "lsg": [
-        "if (this.isEmtpy()&&this.isInGrid()){",
-        "if (this.isEmtpy()==true&&this.isInGrid()==true){"
-       ],
+        "if (this.isEmpty()&&this.isInGrid()){",
+        "if (this.isEmpty()==true&&this.isInGrid()==true){",
+        "if (this.isInGrid()&&this.isEmpty()){",
+        "if (this.isInGrid()==true&&this.isEmpty()==true){"
+    
+      ],
       "thisLoeschen": true
     }, 
     {
       "txt": "Kopf einer bedingten Anweisung: Wenn die Methoden isEmpty() falsch zurück geben,...",
         "lsg": [
-          "if (!this.isEmtpy()){",
-          "if (this.isEmtpy()==false){"
+          "if (!this.isEmpty()){",
+          "if (this.isEmpty()==false){"
          ],
         "thisLoeschen": true
       }, 
