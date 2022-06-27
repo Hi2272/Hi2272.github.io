@@ -54,7 +54,7 @@
       "thisLoeschen": false
     },
     {
-      "txt": "Deklaration des privaten Attriuts isEmpty, das die Werte wahr oder falsch annehmen kann.",
+      "txt": "Deklaration des privaten Attributs isEmpty, das die Werte wahr oder falsch annehmen kann.",
         "lsg": [
         "private boolean isEmpty;"
       ],
