@@ -1,0 +1,28 @@
+{ "typ":"Bild",   
+  "titel":"Moleküldarstellung in Molview",
+  "untertitel":"Löse diese Aufgaben auf dieser Internetseite: ",
+  "angabe":[
+    {"txt":"Lösche das Ausgangsbild und zeichne ein Ethan-Molekül, das du anschließend in 3D anzeigen lässt.","zeit":1},
+    {"txt":"Zeichne ein Methylpropan-2-ol-Molekül und stelle es räumlich dar.","zeit":1},
+    {"txt":"Zeicne in Fenster ein Propan, ein Propen und ein Propin-Molekül. <br> Vergleiche im räumlichen Bild die Strukturen.","zeit":1},
+    {"txt":"Suche in <b>Molview</b> nach 2,2-Dimethylbutan und lasse es anzeigen.","zeit":  1},
+    {"txt":"Suche dieses Molekül über die Suchfunktion und lasse es räumlich darstellen.","zeit":1},
+    {"txt":"Zeichne ein Propen-Molekül und vergleiche die Bindungslängen der C-C-Einfach und der C-C-Doppelbinung in der räumlichen Drstellung.<br>Wähle dazu das measurement-Tool und klicke die C-Atome nacheinander an.","zeit":1},
+    {"txt":"Zeichne ein Penta-1-in-3-en-Molekül und vergleiche in diesem die C-C-Bindungslängen.","zeit":1},
+    {"txt":"Zeichne ein Cyclohexan-Molekül und untersuche, ob das Molekül planar (eben) ist.","zeit":1},
+    {"txt":"Füge so drei Doppelbindungen ins Cyclohexan-Molekül ein, dass du eine planare Struktur erhältst.<br>Achte darauf, dass kein C-Atom mehr als 4 Bindungen eingeht.","zeit":1},
+    {"txt":"Bestimme die C-C-Bindungslängen in diesem Molekül.<br>Was fällt dir auf?","zeit":1},
+    {"txt":"Zeichne ein Wassermolekül und lasse dir über Jmol.Charge die Teilladungen der Atome anzeigen.","zeit":1},
+    {"txt":"Bestimme die Teilladungen der Atome im Ethanol-Molekül.<br>An welcher Stelle entspricht das Ergebnis nicht deinen Erwartungen?","zeit":1}
+   
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Untersuche weitere Moleküle in Molview",
+  "copyright":"<a href='https://molview.org'>Molview</a>"
+    
+}
