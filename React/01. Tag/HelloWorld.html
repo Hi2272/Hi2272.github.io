@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>Hello world</title>
 
   <!-- Script tags including React -->
@@ -11,8 +11,9 @@
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
   <!-- CSS File -->
- 
-  <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
+
+  <link rel="stylesheet" href="https://Hi2272.github.io/Style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -20,16 +21,26 @@
   <div id="app"></div>
   <div id="btn"></div>
   <div id="btn2"></div>
-  
+
+    <i class="fa fa-smile-o"></i>
+    <i class="fa fa-smile-o" style="font-size:50px;"></i>
+    <i class="fa fa-smile-o" style="font-size:60px; color:red;"></i>
+    <i class="fa fa-smile-o"></i>
+
+
+
+
   <!--Eigentliches React-Skript-->
   <script type="text/babel">
-
     class App extends React.Component {
       render() {
         return (
           <div>
             <h1>Titel</h1>
-            <p className="Absatz">Das ist ein normaler Text, der mehrere Zeilen umfasst und hoffentlich auch umgebrochen wird.</p>
+            <p className="Absatz">
+              Das ist ein normaler Text, der mehrere Zeilen umfasst und
+              hoffentlich auch umgebrochen wird.
+            </p>
           </div>
         );
       }
@@ -40,7 +51,10 @@
         return (
           <button>
             <h1>Titel</h1>
-            <p className="Absatz">Das ist ein normaler Text, <br></br>der mehrere Zeilen umfasst,<br></br> und hoffentlich auch umgebrochen wird.</p>
+            <p className="Absatz">
+              Das ist ein normaler Text, <br></br>der mehrere Zeilen umfasst,
+              <br></br> und hoffentlich auch umgebrochen wird.
+            </p>
           </button>
         );
       }
@@ -56,7 +70,11 @@
               <div className="circle"></div>
             </div>
             <span className="title">Timeline</span>
-            <input type="text" className="searchInput" placeholder="Search ..." />
+            <input
+              type="text"
+              className="searchInput"
+              placeholder="Search ..."
+            />
             <div className="fa fa-search searchIcon"></div>
           </div>
         );
@@ -69,10 +87,9 @@
 
     var btn = document.getElementById("btn");
     ReactDOM.render(<Btn />, btn);
-    
+
     var btn2 = document.getElementById("btn2");
     ReactDOM.render(<Btn />, btn2);
-    
   </script>
 </body>
 
