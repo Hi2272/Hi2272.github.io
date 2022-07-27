@@ -11,18 +11,16 @@
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
   <!-- CSS File -->
-  <link
-    href="https://cdn.jsdelivr.net/gh/fullstackreact/30-days-of-react@master/day-04/src/components/Timeline/Timeline.css"
-    rel="stylesheet" type="text/css" />
-  
-
+ 
+  <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
 </head>
 
 <body>
   <!-- Bereich, in den React den Text einbaut-->
   <div id="app"></div>
   <div id="btn"></div>
-
+  <div id="btn2"></div>
+  
   <!--Eigentliches React-Skript-->
   <script type="text/babel">
 
@@ -71,6 +69,10 @@
 
     var btn = document.getElementById("btn");
     ReactDOM.render(<Btn />, btn);
+    
+    var btn2 = document.getElementById("btn2");
+    ReactDOM.render(<Btn />, btn2);
+    
   </script>
 </body>
 
