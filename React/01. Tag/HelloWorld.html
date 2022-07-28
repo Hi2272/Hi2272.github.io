@@ -11,19 +11,20 @@
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
   <!-- CSS File -->
-  <link
-    href="https://cdn.jsdelivr.net/gh/fullstackreact/30-days-of-react@master/day-04/src/components/Timeline/Timeline.css"
-    rel="stylesheet" type="text/css" />
-  <link href="https://maxcdn.bootstrapcdn.com/fontawesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-    type="text/css" />
+  <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
+  <!-- Font Awesome einbinden -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+ 
 </head>
 
 <body>
   <!-- Bereich, in den React den Text einbaut-->
   <div id="app"></div>
   <div id="btn"></div>
-
+  <!-- Font Aweseome Zeichen fa .. name rotiert Groesse 1x bis 5x feste Breite -->
+  <i class="fa fa-spinner fa-spin fa-5x fa-fw"></i>
+  
   <!--Eigentliches React-Skript-->
   <script type="text/babel">
 
@@ -44,7 +45,9 @@
           <button>
             <h1>Titel</h1>
             <p className="Absatz">Das ist ein normaler Text, <br></br>der mehrere Zeilen umfasst,<br></br> und hoffentlich auch umgebrochen wird.</p>
-          </button>
+            <i className="fa fa-address-book fa-5x" ></i>
+            <i className="fa fa-spinner fa-spin fa-2x fa-fw"></i>
+            </button>
         );
       }
     }
@@ -60,7 +63,7 @@
             </div>
             <span className="title">Timeline</span>
             <input type="text" className="searchInput" placeholder="Search ..." />
-            <div className="fa fa-search searchIcon"></div>
+            <div className="fa fa-search searchIcon fa-5x" ></div> 
           </div>
         );
       }
