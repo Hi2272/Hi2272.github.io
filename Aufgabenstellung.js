@@ -18,7 +18,7 @@ xmlhttp.onload = function () {
     jsonData = JSON.parse(this.responseText);
 
     document.getElementById("Titel").innerHTML = jsonData.titel;
-    document.getElementById("btnWeiter").innerHTML = "<Button onclick='weiter()'>Weiter</button>";
+ //   document.getElementById("btnWeiter").innerHTML = "<Button class='small' onclick='weiter()'>Weiter</button>";
     document.getElementById("quelle").innerHTML = "Bildquelle: " + jsonData.copyright +
         "<br>2022 Rainer Hille <br> Unter Verwwendung von  <a href='https://www.cssscript.com/toast-style-web-notifications-in-vanilla-javascript-vanillatoasts/'>VanillaToasts.js</a>";
 
@@ -55,8 +55,8 @@ function start(){
 //     typ="Hallo";
     for (i=0;i<angabe.length;i++){
         if (typ=="Bild"){
-            s1='<img src="' + href + '/Screenshot_' + (i+1).toString() + '.png" height=' + (height / 4).toString() + '>';
-            s=s+'<Button onclick="startNummer('+i.toString()+')">'+s1+"</Button>";
+            s1='<img class="full" src="' + href + '/Screenshot_' + (i+1).toString() + '.png" >';
+            s=s+'<Button class="big" onclick="startNummer('+i.toString()+')">'+s1+"</Button>";
         } else {
             s1='<Button style="'+'padding: 10px;margin:10px;';
             s1=s1+'width:'+(width/5).toString()+'px;height:'+(height/4).toString()+'px;"';
@@ -105,13 +105,16 @@ function anzeigen() {
     var txt;
     if (!frage) {
         s = s + "L";
-        txt = "Lösungsvorschlag:"
+        txt = "<Button class='breit' onclick='weiter()'>Lösungsvorschlag: Zur nächsten Frage</button>";
+        
     } else {
         txt = "Aufgabe " + (nummer + 1).toString() + "/" + angabe.length + ": " + angabe[nummer].txt;
+        txt=txt+"<br>  <Button class='breit' onclick='weiter()'>Lösung</button>";
+        
     }
     document.getElementById("Angabe").innerHTML = txt;
     if (typ == "Bild"||!frage) {
-        pfad = '<img src="' + href + '/Screenshot_' + s + '.png" height=' + (height / 2).toString() + '>';
+        pfad = '<img class="big" src="' + href + '/Screenshot_' + s + '.png" width="'+(width*0.6).toString()+'">';
     } else {
         pfad = txtAngabe[nummer];
     }
