@@ -4,7 +4,7 @@
   "angabe":[
     {"txt":"Lösche das Ausgangsbild und zeichne ein Ethan-Molekül, das du anschließend in 3D anzeigen lässt.","zeit":1},
     {"txt":"Zeichne ein Methylpropan-2-ol-Molekül und stelle es räumlich dar.","zeit":1},
-    {"txt":"Zeichne in Fenster ein Propan, ein Propen und ein Propin-Molekül. <br> Vergleiche im räumlichen Bild die Strukturen.","zeit":1},
+    {"txt":"Zeichne in ein Fenster ein Propan, ein Propen und ein Propin-Molekül. <br> Vergleiche im räumlichen Bild die Strukturen.","zeit":1},
     {"txt":"Suche ein 2,2-Dimethylbutan-Molekül über die Suchfunktion von Molview und lasse es räumlich darstellen.","zeit":1},
     {"txt":"Suche dieses Molekül über die Suchfunktion und lasse es räumlich darstellen.","zeit":1},
     {"txt":"Zeichne ein Propen-Molekül und vergleiche die Bindungslängen der C-C-Einfach und der C-C-Doppelbinung in der räumlichen Drstellung.<br>Wähle dazu das measurement-Tool und klicke die C-Atome nacheinander an.","zeit":1},
