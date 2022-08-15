@@ -24,10 +24,8 @@ xmlhttp.onload = function () {
 */
     var dateiname = jsonData.dateiname;  // Name des geladenen Bildes
     var copyright = jsonData.copyright;  // Bildquelle
-    var anzX = jsonData.anzX;            // Zahl der Puzzle-Teile in x-Richtung
-    var anzY = jsonData.anzY;            // Zahl der Puzzle-Teile in y-Richtung
     var snap = jsonData.snap;           // true für Arbeit false für Erstellen
-
+    var stapel = jsonData.stapel;         // true wenn alle Kärtchen aufeinander liegen
     var txt = jsonData.txt;               // Koordinaten der Kärtchen
     var text = new Array();               // Verschiebbare Kärtchen
 
@@ -122,21 +120,21 @@ xmlhttp.onload = function () {
             image: imageObj,
         });
         console.log(img.width() + " " + img.height());
-        console.log(width+"  "+height);
-        var layerFaktor=layer.width()/layer.height();
+        console.log(width + "  " + height);
+        var layerFaktor = layer.width() / layer.height();
         console.log(layerFaktor);
-      
+
         // Bild auf 80% der Seitenbreite vergrößern
         var w = img.width();
         var h = img.height();
-        var bildFaktor=w/h;
+        var bildFaktor = w / h;
         console.log(bildFaktor);
         var faktor;
-        if (bildFaktor>layerFaktor){ // Bild ist breiter als Layer
+        if (bildFaktor > layerFaktor) { // Bild ist breiter als Layer
             faktor = layer.width() * 0.8 / w;  // Vergrößerungsfaktor 
         } else {
-            faktor = layer.height() *0.8/ h;  // Vergrößerungsfaktor 
-    
+            faktor = layer.height() * 0.8 / h;  // Vergrößerungsfaktor 
+
         }
         img.width(faktor * w);
         img.height(faktor * h);
@@ -145,25 +143,25 @@ xmlhttp.onload = function () {
 
         layer.add(img);
         stage.height(img.height());  // Höhe der Zeichenflaeche anpassen
-        
+
         btnCopyRight.y(stage.height() - 60);
         btnCopyRight.x(stage.width() - btnCopyRight.width() - 30);
 
         button.x(stage.width() - button.width() - 30);
         button.y(30);
-        
-        rectRechts = new Konva.Rect({
-            x: img.width()+20,
+
+        var rectRechts = new Konva.Rect({
+            x: img.width() + 20,
             y: 20,
-            width: stage.width()-img.width()-40,
-            height: stage.height()-40,
+            width: stage.width() - img.width() - 40,
+            height: stage.height() - 40,
             cornerRadius: 10,
             stroke: "lightgray"
         });
         layer.add(rectRechts);
-        
-        rectTxt=new Konva.Text({
-            x: img.width()+20,
+
+        rectTxt = new Konva.Text({
+            x: img.width() + 20,
             y: 20,
             text: 'Ablage',
             fontFamily: 'Calibri',
@@ -172,9 +170,9 @@ xmlhttp.onload = function () {
             fill: 'lightgray'
         });
         layer.add(rectTxt);
-        
-       
-        
+
+
+
 
 
         if (!snap) {
@@ -218,16 +216,16 @@ xmlhttp.onload = function () {
                     var h = Math.round(drawrect.height() / img.height() * 1000) / 1000;
                     var ausg = document.getElementById("txt");
                     if (ausg.innerHTML.length > 20) { ausg.innerHTML = ausg.innerHTML + ",<br>"; }
-                    ausg.innerHTML = ausg.innerHTML + '{"x":' + x + ' ,"y":' + y + ',"width":' + w + ',"height":' + h + ',"pos":['+nummer+']}';
-                    var zahlText=new Konva.Text({
-                        x:drawrect.x(),
-                        y:drawrect.y(),
-                        text:nummer.toString()
+                    ausg.innerHTML = ausg.innerHTML + '{"x":' + x + ' ,"y":' + y + ',"width":' + w + ',"height":' + h + ',"pos":[' + nummer + ']}';
+                    var zahlText = new Konva.Text({
+                        x: drawrect.x(),
+                        y: drawrect.y(),
+                        text: nummer.toString()
                     });
                     layerDrag.add(zahlText);
                     layerDrag.batchDraw();
                     nummer++;
-                    
+
                 }
             }
         } else {
@@ -246,13 +244,18 @@ xmlhttp.onload = function () {
             }
             // Kärtchen formatieren und darstellen
             for (i = 0; i < txt.length; i++) {
-                text[i].x(width * 0.8);
-                text[i].y( img.height()*0.2);
+                //    text[i].x(width * 0.8);
                 text[i].stroke("lightblue");
                 text[i].width(txt[i].width * img.width());
                 text[i].height(txt[i].height * img.height());
                 text[i].draggable(true);
-               
+                if (stapel) {
+                    text[i].x(rectRechts.x() + rectRechts.width() / 2 - text[i].width() / 2);
+                    text[i].y(rectRechts.y() + rectRechts.height() / 2 - text[i].height() / 2);
+                } else {
+                    text[i].x(rectRechts.x() + rectRechts.width() / 2 - text[i].width() / 2);
+                    text[i].y(rectRechts.y() + 20+((txt.length-i)*(rectRechts.height()-40)/txt.length));
+                }
                 layerDrag.add(text[i]);
 
                 /*
@@ -283,15 +286,15 @@ xmlhttp.onload = function () {
                                 height: 5,
                                 fill: "white"
                             }));
-            
+
                         } else {
                             console.log("Objekt nicht gefunden!");
                         }
                     }
                     var alle = true;
                     for (i = 0; i < text.length; i++) {
-                //        console.log("i:"+i+" x"+text[i].x()+" width"+img.width());
-                        if (text[i].x() >= img.width() ) {
+                        //        console.log("i:"+i+" x"+text[i].x()+" width"+img.width());
+                        if (text[i].x() >= img.width()) {
                             alle = false;
                             i = 99;
                         }
