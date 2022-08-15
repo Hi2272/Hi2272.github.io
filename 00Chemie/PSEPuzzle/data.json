@@ -1,0 +1,28 @@
+{   
+  "snap":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"PSE Puzzle",
+  "angabe":"Ziehe die Elementsymbole an die richtige Stelle im Periodensystem",
+  "txt":[
+    {"x":0.772 ,"y":0.327,"width":0.079,"height":0.105,"pos":[0]},
+    {"x":0.544 ,"y":0.485,"width":0.08,"height":0.116,"pos":[1]},
+    {"x":0.873 ,"y":0.165,"width":0.095,"height":0.103,"pos":[2]},
+    {"x":0.44 ,"y":0.327,"width":0.068,"height":0.105,"pos":[3]},
+    {"x":0.198 ,"y":0.5,"width":0.094,"height":0.103,"pos":[4]},
+    {"x":0.091 ,"y":0.161,"width":0.076,"height":0.103,"pos":[5]},
+    {"x":0.771 ,"y":0.489,"width":0.076,"height":0.11,"pos":[6]},
+    {"x":0.55 ,"y":0.327,"width":0.071,"height":0.107,"pos":[7]},
+    {"x":0.089 ,"y":0.323,"width":0.079,"height":0.114,"pos":[8]},
+    {"x":0.873 ,"y":0.318,"width":0.089,"height":0.114,"pos":[9]},
+    {"x":0.655 ,"y":0.485,"width":0.079,"height":0.114,"pos":[10]},
+    {"x":0.091 ,"y":0.66,"width":0.082,"height":0.105,"pos":[11]},
+    {"x":0.777 ,"y":0.829,"width":0.065,"height":0.112,"pos":[12]},
+    {"x":0.658 ,"y":0.327,"width":0.076,"height":0.105,"pos":[13]},
+    {"x":0.319 ,"y":0.494,"width":0.079,"height":0.11,"pos":[14]},
+    {"x":0.083 ,"y":0.496,"width":0.089,"height":0.103,"pos":[15]},
+    {"x":0.20 ,"y":0.66,"width":0.095,"height":0.105,"pos":[16]},
+    {"x":0.764 ,"y":0.667,"width":0.086,"height":0.099,"pos":[17]}
+    ]
+    }
