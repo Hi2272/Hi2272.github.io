@@ -20,12 +20,17 @@
         canvas {
             width: 80vmin;
             height: 60vmin;
-            border: solid black;
+            border: solid lightblue;
+    
+            border-radius: 5px;
         }
 
         button {
             height: 10vmin;
             width: 20vmin;
+            border-radius: 5px;
+            border: solid lightgray;
+    
         }
     </style>
     <script>
@@ -391,10 +396,10 @@
                     style="background-color:#FF8888">Schalen<br>+1</button>
                 <br>
                 <button id="btnSchaleMinus" onClick="schalenMinus()" style="background-color:#FF8888">
-                    Schalen<br>-1</button>
+                    Schalen<br>-1</button>  
                 <br>
                 <button id="btnElektronPlus" onClick="elektronenPlus()"
-                    style="background-color:#FFAAAA">Elektronen<br>+1</button>
+                    style="background-color:#FFAAAA;">Elektronen<br>+1</button>
                 <br>
                 <button id="btnElektronMinus" onClick="elektronenMinus()"
                     style="background-color:#FFAAAA">Elektronen<br>-1</button>
