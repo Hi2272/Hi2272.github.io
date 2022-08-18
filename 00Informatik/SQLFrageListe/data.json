@@ -4,12 +4,19 @@
   "shuffle": false,
   "angabe": [
     {
+      "txt": "Lasse dir alle Angaben zu allen Einträgen der Datentabelle <b>Gemeinde</b> anzeigen!",
+      "lsg": [
+        "<p>SELECT *<br />FROM Gemeinde</p>"
+      ],
+      "hilfe":"<p>Eine Anfrage nach Daten beginnt stets mit dem Schl&uuml;sselwort SELECT.</p><p>Danach steht eine Liste von Attributen, die angezeigt werden sollen. Mehrere Attribute werden durch Kommas getrennt.</p><p>Um alle Attribute eines Datensatzes anzuzeigen, kann * als Abk&uuml;rzung verwendet werden.</p><p>Nach der SELECT-Zeile muss mit dem Schl&uuml;sselwort FROM angegeben werden, aus welcher Datentabelle die Datens&auml;tze stammen.</p>",
+      "zeit": 1
+    },{
       "txt": "Lasse dir alle Angaben zu allen Gemeinden des Landkreises Mühldorf a.Inn anzeigen!",
       "lsg": [
-        "<p>SELECT *<br />FROM Gemeinde<br />where kreis='M&uuml;hldorf a.Inn'</p>",
-        "<p>SELECT *<br />FROM Gemeinde<br />where kreis LIKE '%M&uuml;hldorf a.Inn%'</p>"
+        "<p>SELECT *<br />FROM Gemeinde<br />WHERE kreis='M&uuml;hldorf a.Inn'</p>",
+        "<p>SELECT *<br />FROM Gemeinde<br />WHERE kreis LIKE '%M&uuml;hldorf a.Inn%'</p>"
       ],
-      "hilfe":"",
+      "hilfe":"<p>Nach dem FROM-Teil kann durch das Schl&uuml;sselwort WHERE die Anzahl der ausgegebenen Datens&auml;tze eingeschr&auml;nkt werden.</p><p>Nach WHERE steht hierbei eine Bedingung, die f&uuml;r ein bestimmtes Attribut erf&uuml;llt sein muss.&nbsp;</p><p>Zum Beispiel <strong>kreis='M&uuml;hldorf a.Inn'</strong></p><p>oder:</p><p><strong>kreis LIKE '%M&uuml;hldorf%'</strong>. Das Prozentzeichen steht hierbei f&uuml;r beliebig viele Zeichen - es werden also alle Datens&auml;tze angezeigt, bei denen das Attribut kreis das Wort 'M&uuml;hldorf' enth&auml;lt.</p>",
       "zeit": 1
     },
     {
@@ -18,7 +25,7 @@
         "<p>SELECT name<br />FROM Gemeinde<br />where kreis='M&uuml;hldorf a.Inn'</p>",
         "<p>SELECT name<br />FROM Gemeinde<br />where kreis LIKE '%M&uuml;hldorf a.Inn%'</p>"
       ],
-      "hilfe":"",
+      "hilfe":"An Stelle des Sternchens musst du jetzt den Namen des gewünschten Attributs schreiben.",
       "zeit": 1
     },
     {
