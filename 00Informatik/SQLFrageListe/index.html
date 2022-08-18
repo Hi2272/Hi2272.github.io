@@ -9,6 +9,9 @@
   <title id="Titel"></title>
   <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
   <style>
+    td {
+      vertical-align: top;
+    }
     button {
       font-size: large;
       background-color: lightblue;
@@ -35,10 +38,11 @@
     #Legende {
       font-size: xx-small;
     }
-    #Hilfe{
+
+    #Hilfe {
       font-size: medium;
       text-align: left;
-      
+
     }
   </style>
   <!--
@@ -51,32 +55,37 @@
 </head>
 
 <body>
-  <header>
-    <div id="Ueberschrift">SQL-Übung</div>
-  </header>
-  <section id="Angabe">Lasse dir alle Gemeinden des Landkreises Mühldorf a.Inn anzeigen!</section>
-  <fieldset>
-    <legend id="Legende"></legend>
-    <iframe id="Eingabe" src="https://www.dbiu.de/bayern_erweitert/" onload="this.width=screen.width*0.9;this.height=screen.height*0.5;" title="Iframe Example">
-    </iframe>
-  </fieldset>
-  <section>
-    <button id="btnLsg" onclick="loesung()">Lösung anzeigen</button>
-    <button id="btnHilfe" onclick="hilfe()">Hilfestellung</button>
-    <p id="Hilfe"></p>
-  </section>
+  <div id="Ueberschrift">SQL-Übung</div>
+        
   <table>
     <tr>
-      <td id="Loesung" class="Loesung">
-        <p>SELECT *<br />FROM Gemeinde<br />where kreis='M&uuml;hldorf a.Inn'</p>
+      <td>
+        <section id="Angabe">Lasse dir alle Gemeinden des Landkreises Mühldorf a.Inn anzeigen!</section>
+
+        <section>
+          <button id="btnLsg" onclick="loesung()">Lösung anzeigen</button>
+          <br>
+          <button id="btnHilfe" onclick="hilfe()">Hilfestellung</button>
+          <p id="Hilfe"></p>
+       
+        </section>
+        <p id="Loesung">SELECT *<br />FROM Gemeinde<br />where kreis='M&uuml;hldorf a.Inn'</p>
+        <button id="btnWeiter" onclick="weiter()">Weiter zur nächsten Aufgabe</button>
+
+       </td>
+      <td>
+        <fieldset>
+          <legend id="Legende"></legend>
+          <iframe id="Eingabe" src="https://www.dbiu.de/bayern_erweitert/"
+            onload="this.width=screen.width*0.6;this.height=screen.height*0.6;" title="Iframe Example">
+          </iframe>
+        </fieldset>
+        <div id="quelle" style="font-size: xx-small;text-align: right;"></div>
+      
       </td>
-      <td id="btnWeiter">
-        <button onclick="weiter()">Weiter zur nächsten Aufgabe</button>
-      </td>
+     
     </tr>
   </table>
-  <div id="quelle" style="font-size: xx-small;text-align: right;"></div>
-
 
 </body>
 

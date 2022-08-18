@@ -108,6 +108,7 @@ function weiter() {
 
 function hilfe() {
     document.getElementById("Hilfe").innerHTML = angabe[nummer].hilfe;
+    document.getElementById("btnHilfe").style.visibility="hidden";
 }
 
 function loesung() {
@@ -122,6 +123,8 @@ function loesung() {
 
     } else {
         document.getElementById("btnHilfe").style.visibility = "hidden";
+        document.getElementById("Hilfe").innerHTML = "";
+
         document.getElementById("btnWeiter").style.visibility = "visible";
         document.getElementById("btnLsg").style.visibility = "hidden";
         var s = angabe[nummer].lsg[0];
