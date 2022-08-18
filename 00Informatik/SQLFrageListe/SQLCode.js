@@ -42,6 +42,8 @@ function start() {
     }
     document.getElementById("quelle").innerHTML = "2022 Rainer Hille <br> Unter Verwwendung von  <a href='https://www.cssscript.com/toast-style-web-notifications-in-vanilla-javascript-vanillatoasts/'>VanillaToasts.js</a><br>und <a href='https://www.dbiu.de'>Datenbanken im Unterricht</a>";
     document.getElementById("Eingabe").src = jsonData.url;    
+    document.getElementById("Eingabe").width=window.innerWidth*0.6;
+    document.getElementById("Eingabe").height=window.innerHeight*0.75;
 
     for (var i = 0; i < angabe.length; i++) {
         console.log(angabe[i].txt);
@@ -53,7 +55,7 @@ function start() {
 }
 
 function anzeigen() {
-    document.getElementById("Angabe").innerHTML = "Frage " + (nummer + 1) + "/ " + angabe.length + ": " + angabe[nummer].txt;
+    document.getElementById("Angabe").innerHTML = "Frage " + (nummer + 1) + "/" + angabe.length + ": " + angabe[nummer].txt;
     document.getElementById("Loesung").innerHTML = "";
     document.getElementById("Hilfe").innerHTML="";
 
