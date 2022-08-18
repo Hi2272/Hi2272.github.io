@@ -9,7 +9,7 @@
         "<p>SELECT *<br />FROM Gemeinde<br />where kreis='M&uuml;hldorf a.Inn'</p>",
         "<p>SELECT *<br />FROM Gemeinde<br />where kreis LIKE '%M&uuml;hldorf a.Inn%'</p>"
       ],
-      "hilfe":"Hilfe",
+      "hilfe":"",
       "zeit": 1
     },
     {
@@ -27,7 +27,6 @@
         "<p>SELECT name <br />FROM Gemeinde<br />WHERE kreis='M&uuml;hldorf a.Inn'<br />AND einwohner_w=(<br />SELECT max(einwohner_w)<br />FROM Gemeinde<br />WHERE kreis='M&uuml;hldorf a.Inn'<br />);</p>"  
       ],
       "hilfe":"<p>Die Anfrage besteht eigentlich aus zwei Teilen:</p><ol><li>Wie gro&szlig; ist die maximale Einwohnerzahl einer Gemeinde im Landkreis M&uuml;hldorf?</li><li>Welchen Namen hat diese Gemeinde?</li></ol><p>Schreibe zuerst eine SQL-Anfrage f&uuml;r Frage 1. Verwende hierzu die Aggregatsfunktion MAX(einwohner_w).</p><p>Als Ergebnis erh&auml;ltst du eine Zahl.</p><p>Schreibe jetzt f&uuml;r die Frage 2 eine SQL-Anfrage, die den Namen der Gemeinde ausgibt, die genauso viele Einwohner hat.</p><p>Damit deine Anfrage auch dann funktioniert, wenn sich die Einwohnerzahlen &auml;ndern, musst du beide Anfragen kombinieren.</p><p>An Stelle der konkreten Einwohnerzahl aus Anfrage 1 schreibst du jezt die SQL-Anfrage in Klammern hinter das Gleichheitszeichen in WHERE-Teil:</p><p>SELECT name</p><p>...</p><p>WHERE einwohner_w=(</p><p>SELECT MAX(einwohner_w)</p><p>...</p><p>);</p>",
-      
       "zeit":1
     }
  ]
