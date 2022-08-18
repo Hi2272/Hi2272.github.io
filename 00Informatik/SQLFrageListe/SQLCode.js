@@ -15,8 +15,8 @@ xmlhttp.onload = function () {
     jsonData = JSON.parse(this.responseText);
 
     document.getElementById("Ueberschrift").innerHTML = jsonData.titel;
-    document.getElementById("Legende").innerHTML="Externer Datenbank-Inhalt: "+jsonData.url;
-    
+    document.getElementById("Legende").innerHTML = "Externer Datenbank-Inhalt: " + jsonData.url;
+
     document.title = jsonData.titel;
     angabe = jsonData.angabe;      // Aufgaben werden gespeichert
     shuffle = jsonData.shuffle;
@@ -55,9 +55,17 @@ function start() {
 function anzeigen() {
     document.getElementById("Angabe").innerHTML = "Frage " + (nummer + 1) + "/ " + angabe.length + ": " + angabe[nummer].txt;
     document.getElementById("Loesung").innerHTML = "";
+    document.getElementById("Hilfe").innerHTML="";
 
     document.getElementById("btnWeiter").style.visibility = "hidden";
     document.getElementById("btnLsg").style.visibility = "visible";
+    if (angabe[nummer].hilfe != "") {
+        document.getElementById("btnHilfe").style.visibility = "visible";
+    } else {
+        document.getElementById("btnHilfe").style.visibility = "hidden";
+
+    }
+
 
     document.getElementById("Eingabe").focus();
     zeit = Date.now();
@@ -71,9 +79,11 @@ function endeAnzeigen() {
     document.getElementById("Loesung").innerHTML = s;
     document.getElementById("btnWeiter").style.visibility = "hidden";
     document.getElementById("btnLsg").style.visibility = "hidden";
+    document.getElementById("btnHilfe").style.visibility = "hidden";
     document.getElementById("Angabe").style.visibility = "hidden";
     document.getElementById("Eingabe").style.visibility = "hidden";
- 
+    document.getElementById("Hilfe").innerHTML="";
+
 }
 
 function ausgabe(title, msg, dauer, type) {
@@ -97,6 +107,9 @@ function weiter() {
     }
 }
 
+function hilfe() {
+    document.getElementById("Hilfe").innerHTML = angabe[nummer].hilfe;
+}
 
 function loesung() {
     var dauer = (Date.now() - zeit) / 1000;
@@ -109,17 +122,15 @@ function loesung() {
         document.getElementById("Eingabe").focus();
 
     } else {
-
+        document.getElementById("btnHilfe").style.visibility = "hidden";
         document.getElementById("btnWeiter").style.visibility = "visible";
         document.getElementById("btnLsg").style.visibility = "hidden";
         var s = angabe[nummer].lsg[0];
         if (angabe.length > 0) {
-
+            for (var i = 1; i < angabe[nummer].lsg.length; i++) {
+                s = s + "<br><b>oder</b><br>" + angabe[nummer].lsg[i];
+            }
         }
-        for (var i = 1; i < angabe[nummer].lsg.length; i++) {
-            s = s + "<br><b>oder</b><br>" + angabe[nummer].lsg[i];
-        }
-
         document.getElementById("Loesung").innerHTML = s;
     }
 }

@@ -34,7 +34,11 @@
 
     #Legende {
       font-size: xx-small;
-
+    }
+    #Hilfe{
+      font-size: medium;
+      text-align: left;
+      
     }
   </style>
   <!--
@@ -56,8 +60,10 @@
     <iframe id="Eingabe" src="https://www.dbiu.de/bayern_erweitert/" onload="this.width=screen.width*0.9;this.height=screen.height*0.5;" title="Iframe Example">
     </iframe>
   </fieldset>
-  <section id="btnLsg">
-    <button onclick="loesung()">Lösung anzeigen</button>
+  <section>
+    <button id="btnLsg" onclick="loesung()">Lösung anzeigen</button>
+    <button id="btnHilfe" onclick="hilfe()">Hilfestellung</button>
+    <p id="Hilfe"></p>
   </section>
   <table>
     <tr>
