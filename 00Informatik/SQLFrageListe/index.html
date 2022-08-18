@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://Hi2272.github.io/vanillatoasts.js"></script>
+  <link href="https://Hi2272.github.io/vanillatoasts.css" rel="stylesheet">
+
+  <meta charset="utf-8" />
+  <title id="Titel"></title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
+  <style>
+    button {
+      font-size: large;
+      background-color: lightblue;
+      border-radius: 5px;
+      margin: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    #Loesung {
+      font-size: medium;
+      text-align: left;
+    }
+
+    #Ueberschrift {
+      font-weight: bold;
+      padding: 0.2em;
+    }
+
+    #Angabe {
+      padding-bottom: 0.2em;
+    }
+
+    #Legende {
+      font-size: xx-small;
+
+    }
+  </style>
+  <!--
+  <script src="https://Hi2272.github.io/SQLCode.js"></script>
+ -->
+
+
+  <script src="SQLCode.js"></script>
+
+</head>
+
+<body>
+  <header>
+    <div id="Ueberschrift">SQL-Übung</div>
+  </header>
+  <section id="Angabe">Lasse dir alle Gemeinden des Landkreises Mühldorf a.Inn anzeigen!</section>
+  <fieldset>
+    <legend id="Legende"></legend>
+    <iframe id="Eingabe" src="https://www.dbiu.de/bayern_erweitert/" onload="this.width=screen.width*0.9;this.height=screen.height*0.5;" title="Iframe Example">
+    </iframe>
+  </fieldset>
+  <section id="btnLsg">
+    <button onclick="loesung()">Lösung anzeigen</button>
+  </section>
+  <table>
+    <tr>
+      <td id="Loesung" class="Loesung">
+        <p>SELECT *<br />FROM Gemeinde<br />where kreis='M&uuml;hldorf a.Inn'</p>
+      </td>
+      <td id="btnWeiter">
+        <button onclick="weiter()">Weiter zur nächsten Aufgabe</button>
+      </td>
+    </tr>
+  </table>
+  <div id="quelle" style="font-size: xx-small;text-align: right;"></div>
+
+
+</body>
+
+</html>

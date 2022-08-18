@@ -1,0 +1,25 @@
+{
+  "titel": "Wiederholung SQL",
+  "url": "https://www.dbiu.de/bayern_erweitert/",
+  "shuffle": false,
+  "angabe": [
+    {
+      "txt": "Lasse dir alle Angaben zu allen Gemeinden des Landkreises Mühldorf a.Inn anzeigen!",
+      "lsg": [
+        "<p>SELECT *<br />FROM Gemeinde<br />where kreis='M&uuml;hldorf a.Inn'</p>",
+        "<p>SELECT *<br />FROM Gemeinde<br />where kreis LIKE '%M&uuml;hldorf a.Inn%'</p>"
+      ],
+      "zeit": 30
+    },
+    {
+      "txt": "Lasse dir nur die Namen der Gemeinden des Landkreises Mühldorf a.Inn anzeigen!",
+      "lsg": [
+        "<p>SELECT name<br />FROM Gemeinde<br />where kreis='M&uuml;hldorf a.Inn'</p>",
+        "<p>SELECT name<br />FROM Gemeinde<br />where kreis LIKE '%M&uuml;hldorf a.Inn%'</p>"
+      ],
+      "zeit": 5
+    }
+
+
+  ]
+}
