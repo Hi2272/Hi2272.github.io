@@ -1,0 +1,23 @@
+{   
+  "snap":true,
+  "stapel":false,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Aufbau eines Computers",
+  "angabe":"Ziehe die Kärtchen an die richtige Stelle!",
+  "txt":[
+    {"x":0.437 ,"y":0.235,"width":0.127,"height":0.166,"pos":[0]},
+    {"x":0.661 ,"y":0.111,"width":0.133,"height":0.177,"pos":[1,4]},
+    {"x":0.105 ,"y":0.116,"width":0.132,"height":0.171,"pos":[2]},
+    {"x":0.431 ,"y":0.787,"width":0.131,"height":0.163,"pos":[3,5,6]},
+    {"x":0.839 ,"y":0.111,"width":0.132,"height":0.174,"pos":[4,1]},
+    {"x":0.109 ,"y":0.784,"width":0.135,"height":0.171,"pos":[3,5,6]},
+    {"x":0.755 ,"y":0.779,"width":0.137,"height":0.174,"pos":[3,5,6]},
+    {"x":0.194 ,"y":0.351,"width":0.092,"height":0.08,"pos":[7,9,10]},
+    {"x":0.665 ,"y":0.354,"width":0.093,"height":0.077,"pos":[8,11]},
+    {"x":0.065 ,"y":0.348,"width":0.094,"height":0.08,"pos":[9,7,10]},
+    {"x":0.016 ,"y":0.486,"width":0.098,"height":0.083,"pos":[10,9,7]},
+    {"x":0.877 ,"y":0.354,"width":0.094,"height":0.075,"pos":[11,8]}
+    ]
+    }

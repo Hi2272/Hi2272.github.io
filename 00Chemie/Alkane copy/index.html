@@ -1,0 +1,22 @@
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" media="all" href="../assets/styles/h5p.css" />
+  <meta charset="utf-8" />
+  <script type="text/javascript" src="../assets/main.bundle.js"></script>
+
+  <script type="text/javascript">
+    (function($) {
+      $(function() {
+        $('.h5p-container').h5p({
+          frameJs: '../assets/frame.bundle.js',
+          frameCss: '../assets/styles/h5p.css',
+          h5pContent: '../hp5-folder'
+        });
+      });
+    })(H5P.jQuery);
+  </script>
+</head>
+  <body>
+    <div class="h5p-container"></div>
+  </body>
+</html>
