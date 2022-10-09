@@ -1,0 +1,22 @@
+{ "typ":"Bild",   
+  "titel":"Einfache Aufgaben für den Calliope",
+  "untertitel":"Löse diese Aufgabe in <a href='https://makecode.calliope.cc/#editor'>Makecode</a><br>und klicke dann auf <i>Weiter</i>.",
+  "angabe":[
+    {"zeit":1,"txt":"Ein Druck auf Taste A soll die RGB-LED ein- (rote Farbe) und ein Druck auf Taste B wieder ausschalten (schwarze Farbe)."},
+    {"zeit":1,"txt":"Die RGB-LED soll mit der Taste A ein- und wieder ausgeschaltet werden können."},
+    {"zeit":1,"txt":"Eine externe LED soll über die Taste A ein- und wieder ausgeschaltet werden."},
+    {"zeit":1,"txt":"Eine externe LED soll über einen externen Taster ein- und wieder ausgeschaltet werden."},
+    {"zeit":1,"txt":"Eine externe LED soll über einen Fotowiderstand geschaltet werden - nur wenn der analoge Helligkeitswert unter 200 liegt, soll sie eingeschaltet werden."},
+    {"zeit":1,"txt":"Eine externe LED soll über den Fotowiderstand gedimmt werden - je dunkler es ist, desto heller soll sie leuchten.<br> Beachte hierbei, dass analoge Werte zwischen 0 und 1023 liegen können."}
+   
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Super, du hast alle Aufgaben gelöst - viel Spaß beim weiteren Programmieren.",
+  "copyright":"<a href='https://makecode.calliope.cc/#editor'>Makecode</a>"
+    
+}
