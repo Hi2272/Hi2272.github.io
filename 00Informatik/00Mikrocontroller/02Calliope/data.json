@@ -1,6 +1,6 @@
 { "typ":"Bild",   
-  "titel":"Einfache Aufgaben für den Calliope",
-  "untertitel":"Löse diese Aufgabe in <a href='https://makecode.calliope.cc/#editor'>Makecode</a><br>und klicke dann auf <i>Weiter</i>.",
+  "titel":"Aufgaben für den Calliope",
+  "untertitel":"Löse diese Aufgabe in <a href='https://makecode.calliope.cc/#editor' target='_blank' rel='noopener noreferrer'>Makecode</a><br>und klicke dann auf <i>Lösung</i>.",
   "angabe":[
     {"zeit":1,"txt":"Ein Druck auf Taste A soll die RGB-LED ein- (rote Farbe) und ein Druck auf Taste B wieder ausschalten (schwarze Farbe)."},
     {"zeit":1,"txt":"Die RGB-LED soll mit der Taste A ein- und wieder ausgeschaltet werden können."},
