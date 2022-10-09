@@ -7,7 +7,8 @@
     {"zeit":1,"txt":"Eine externe LED soll über die Taste A ein- und wieder ausgeschaltet werden."},
     {"zeit":1,"txt":"Eine externe LED soll über einen externen Taster ein- und wieder ausgeschaltet werden."},
     {"zeit":1,"txt":"Eine externe LED soll über einen Fotowiderstand geschaltet werden - nur wenn der analoge Helligkeitswert unter 200 liegt, soll sie eingeschaltet werden."},
-    {"zeit":1,"txt":"Eine externe LED soll über den Fotowiderstand gedimmt werden - je dunkler es ist, desto heller soll sie leuchten.<br> Beachte hierbei, dass analoge Werte zwischen 0 und 1023 liegen können."}
+    {"zeit":1,"txt":"Eine externe LED soll über den Fotowiderstand gedimmt werden - je dunkler es ist, desto heller soll sie leuchten.<br> Beachte hierbei, dass analoge Werte zwischen 0 und 1023 liegen können."},
+    {"zeit":1,"txt":"Die RGB-LED soll rot leuchten, wenn der analoge Messwert der Reflexlichtschranke kleiner als 200 ist. Ansonsten soll sie ausgeschaltet sein (schwarz)."}
    
   ],
  
@@ -16,7 +17,7 @@
    ],
  
 
-  "ende":"Super, du hast alle Aufgaben gelöst - viel Spaß beim weiteren Programmieren.",
+  "ende":"Super, du hast alle Aufgaben gelöst - viel Spaß beim weiteren Experimentieren mit Calliope & Co.",
   "copyright":"<a href='https://makecode.calliope.cc/#editor'>Makecode</a>"
     
 }
