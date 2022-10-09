@@ -1,0 +1,49 @@
+{
+  "titel": "Relative oder absolute Bezüge",
+  "shuffle": false,
+  "angabe": [
+    {
+      "txt": "Die Funktion <b>=B5+C4</b> wird drei Zeilen nach oben kopiert. Wie lautet die neue Funktion?",
+      "lsg": [
+        "=B2+C1"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Die Funktion <b>=A5+B5</b> wird drei Spalten nach rechts kopiert. Wie lautet die neue Funktion?",
+      "lsg": [
+        "=D5+E5"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Die Funktion <b>=SUMME(B4:D8)</b> wird drei Zeilen nach oben kopiert. Wie lautet die neue Funktion?",
+      "lsg": [
+        "=SUMME(B1:D5)"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Die Funktion <b>=D4+E12</b> wird drei Zeilen nach oben und zwei Spalten nach links kopiert. Wie lautet die neue Funktion?",
+      "lsg": [
+        "=B1+C9"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Die Funktion <b>=D$4+$E12</b> wird drei Zeilen nach oben und zwei Spalten nach links kopiert. Wie lautet die neue Funktion?",
+      "lsg": [
+        "=B$4+$E9"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "In der Zelle B1 steht ein Prozentwert, auf den sich die Formel in B2 bezieht: <b>=B1*A2</b>. <br> Wie müsste die Formel lauten, damit sie problemlos in die Zellen B3 bis B10 kopiert werden kann? Ändere möglichst wenig an der Formel.",
+      "lsg": [
+        "=B$1*A2"
+       ],
+      "thisLoeschen": false
+    }
+    
+ ]
+}
