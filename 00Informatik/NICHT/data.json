@@ -1,8 +1,8 @@
-{   "snap":false,
+{   "snap":true,
 
     "dateiname":"Screenshot_1.png",
     "copyright":"eigene Zeichnung",
-    "titel":"Aufbau eines Computers",
+    "titel":"Logische Funktionen - NICHT",
     "angabe":"Ziehe die Textbausteine an die passenden Stellen in der Tabelle.",
     "positionsmarken":true,
     
