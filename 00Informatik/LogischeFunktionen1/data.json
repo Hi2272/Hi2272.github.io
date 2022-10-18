@@ -1,0 +1,23 @@
+{   
+  "snap":true,
+  "stapel":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Datentypen von Funktionen",
+  "angabe":"Ordne die Funktionen nach den Datentypen ihrer Ausgangswerte:",
+  "txt":[
+    {"x":0.03 ,"y":0.182,"width":0.313,"height":0.132,"pos":[0,5,6,11]},
+    {"x":0.352 ,"y":0.496,"width":0.306,"height":0.137,"pos":[1,4,8]},
+    {"x":0.669 ,"y":0.182,"width":0.303,"height":0.132,"pos":[2,3,7,9,10]},
+    {"x":0.671 ,"y":0.501,"width":0.301,"height":0.128,"pos":[2,3,7,9,10]},
+    {"x":0.355 ,"y":0.187,"width":0.302,"height":0.13,"pos":[1,4,8]},
+    {"x":0.027 ,"y":0.336,"width":0.316,"height":0.132,"pos":[0,5,6,11]},
+    {"x":0.027 ,"y":0.653,"width":0.316,"height":0.135,"pos":[0,5,6,11]},
+    {"x":0.67 ,"y":0.658,"width":0.301,"height":0.132,"pos":[2,3,7,9,10]},
+    {"x":0.354 ,"y":0.336,"width":0.303,"height":0.132,"pos":[1,4,8]},
+    {"x":0.673 ,"y":0.341,"width":0.3,"height":0.13,"pos":[2,3,7,9,10]},
+    {"x":0.672 ,"y":0.815,"width":0.298,"height":0.13,"pos":[2,3,7,9,10]},
+    {"x":0.029 ,"y":0.501,"width":0.31,"height":0.125,"pos":[0,5,6,11]}
+    ]
+    }
