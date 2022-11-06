@@ -1,0 +1,57 @@
+html,
+body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+    font: 1em sans-serif;
+}
+
+td {
+    text-align: center;
+    font-size: larger;
+}
+
+button {
+    height: 2em;
+    min-width: 3em;
+    border-radius: 20px;
+    font-size: larger;
+}
+
+input {
+    font-size: 2em;
+    text-align: center;
+    border: 0;
+    outline: 0;
+}
+
+input:focus {
+    outline: none !important;
+}
+
+
+
+h1 {
+    font-size: 2em;
+    margin: 0px;
+    padding: 0px;
+}
+
+legend {
+    font: 2em sans-serif;
+    margin: auto;
+    /* to center */
+    padding: 0 4px;
+}
+
+fieldset {
+    border-radius: 10px;
+}
