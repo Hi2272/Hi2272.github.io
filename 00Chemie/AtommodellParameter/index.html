@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Atommodell</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font: 1em sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        canvas {
+            width: 80vmin;
+            height: 60vmin;
+            border: solid lightblue;
+    
+            border-radius: 5px;
+        }
+
+        button {
+            height: 10vmin;
+            width: 20vmin;
+            border-radius: 5px;
+            border: solid lightgray;
+    
+        }
+    </style>
+    <link href="https://Hi2272.github.io/vanillatoasts.css" rel="stylesheet">
+    <script src="https://Hi2272.github.io/vanillatoasts.js"></script>
+
+
+<script>
+
+        var fragen = [{ name: "Wasserstoff-Atom", ladung: 0, ordnungsZahl: 1 }];
+
+
+
+        var elemente = [{ symbol: "H", ordnungsZahl: 1, schalenZahl: 1 },
+        { symbol: "H", ordnungsZahl: 1, schalenZahl: 1 },
+        { symbol: "He", ordnungsZahl: 2, schalenZahl: 1 },
+        { symbol: "Li", ordnungsZahl: 3, schalenZahl: 2 },
+        { symbol: "Be", ordnungsZahl: 4, schalenZahl: 2 },
+        { symbol: "B", ordnungsZahl: 5, schalenZahl: 2 },
+        { symbol: "C", ordnungsZahl: 6, schalenZahl: 2 },
+        { symbol: "N", ordnungsZahl: 7, schalenZahl: 2 },
+        { symbol: "O", ordnungsZahl: 8, schalenZahl: 2 },
+        { symbol: "F", ordnungsZahl: 9, schalenZahl: 2 },
+        { symbol: "Ne", ordnungsZahl: 10, schalenZahl: 2 },
+        { symbol: "Na", ordnungsZahl: 11, schalenZahl: 3 },
+        { symbol: "Mg", ordnungsZahl: 12, schalenZahl: 3 },
+        { symbol: "Al", ordnungsZahl: 13, schalenZahl: 3 },
+        { symbol: "Si", ordnungsZahl: 14, schalenZahl: 3 },
+        { symbol: "P", ordnungsZahl: 15, schalenZahl: 3 },
+        { symbol: "S", ordnungsZahl: 16, schalenZahl: 3 },
+        { symbol: "Cl", ordnungsZahl: 17, schalenZahl: 3 },
+        { symbol: "Ar", ordnungsZahl: 18, schalenZahl: 3 },
+        { symbol: "K", ordnungsZahl: 19, schalenZahl: 4 },
+        { symbol: "Ca", ordnungsZahl: 20, schalenZahl: 4 }];
+
+        var elektron = [{ dx: 0, dy: 1 },
+        { dx: 0, dy: -1 },
+        { dx: -1, dy: 0 },
+        { dx: 1, dy: 0 },
+        { dx: 0.707, dy: 0.707 },
+        { dx: -0.707, dy: -0.707 },
+        { dx: -0.707, dy: 0.707 },
+        { dx: 0.707, dy: -0.707 }]
+
+        var ctx;
+        var xmax, ymax;
+        var xm, ym;
+        var canvas;
+        var radius;
+
+        var schalenZahl;
+        var LadungsZahl;
+        var elektronenZahl;
+
+        var frageNr;
+
+        var pkte;
+
+        function ausgabe(title, msg, dauer, type) {
+            VanillaToasts.create({
+                title: title,
+                text: msg,
+                timeout: dauer,
+                type: type,
+            });
+        }
+
+
+        function start() {
+  //var url="http://127.0.0.1:5500/00Chemie/KernHuelle%20copy/index.html?Kohlenstoff-Atom,6,0";
+           
+        var url=window.location.href;
+            
+            var s1=url.split("?");
+            var s2=s1[1].split(",");
+            fragen[0].name=s2[0];
+            fragen[0].ordnungsZahl=parseInt(s2[1]);
+            fragen[0].ladung=parseInt(s2[2]);
+      //     ausgabe("test",fragen[0].name+" "+fragen[0].ordnungsZahl+" "+fragen[0].ladung,3000,"error");
+
+            document.getElementById("Test").hidden=false;
+          
+            canvas = document.getElementById('canvas');
+            canvas.hidden=false;
+
+            xmax = canvas.clientWidth;
+            canvas.width = xmax;
+
+            ymax = canvas.clientHeight;
+            canvas.height = ymax;
+
+            radius = ymax / 11; // Radiuseinheit
+            xm = xmax / 2; // x Mittelpunkt
+            ym = ymax / 2; // y Mittelpunkt
+
+            ctx = canvas.getContext('2d');
+            pkte = 1000;
+            punkte(0);
+
+            neueFrage();
+          
+        }
+
+        function neueFrage() {
+            frageNr = Math.floor(Math.random() * fragen.length);
+            frageSchreiben();
+            schalenZahl = 1;
+            ladungsZahl = 1;
+            elektronenZahl = 0;
+
+            ctx.clearRect(0, 0, xmax, ymax);
+            schaleZeichnen(schalenZahl);
+            kernZeichnen(ladungsZahl);
+
+        }
+
+       
+        function frageSchreiben() {
+            var s = fragen[frageNr].name;
+            document.getElementById("Frage").innerHTML = "Baue ein<br><b>" + s + "</b><br><br>";
+        }
+
+        function punkte(i) {
+            pkte = pkte + i;
+            if (pkte < 0) { pkte = 0; }
+            document.getElementById("Punkte").innerHTML = pkte.toString() + "<br>Punkte";
+        }
+
+        function pruefen() {
+            var o = fragen[frageNr].ordnungsZahl;
+            var l = fragen[frageNr].ladung;
+            var e = o - l;  // elektronenZahl
+            var s = "";
+            if (o != ladungsZahl) { s = "Die Kernladung stimmt nicht!\n"; punkte(-200); }
+            if (e != elektronenZahl) { s = s + "Die Elektronenzahl stimmt nicht!\n"; punkte(-200); }
+            if (s == "") {
+                ausgabe("Gratulation","Super, jetzt kannst du die Kernladung und die Besetzung der Energiestufen in Mathegym übertragen!",5000,"success");
+                punkte(100);
+              
+            } else {
+                ausgabe("Fehler",s,3000,"error");
+            }
+        }
+
+        function ergebnisZeichnen() {
+            var s = elemente[ladungsZahl].symbol;
+            var l = ladungsZahl - elektronenZahl
+            if (l != 0) {
+                s = s + "<sup>"
+                if (Math.abs(l) > 1) {
+                    s = s + Math.abs(l).toString();
+                }
+                if (l < 0) {
+                    s = s + "-</sup>";
+                } else {
+                    s = s + "+</sup>";
+                }
+            }
+            document.getElementById("Ausgabe").innerHTML = s;
+            var s1;
+            if (ladungsZahl == 1) { s1 = " Proton"; } else { s1 = " Protonen"; }
+            document.getElementById("Protonen").innerHTML = ladungsZahl.toString() + s1 + "<br>im Kern";
+            if (elektronenZahl == 1) { s1 = " Elektron"; } else { s1 = " Elektronen"; }
+
+            document.getElementById("Elektronen").innerHTML = elektronenZahl.toString() + s1 + "<br>in der Hülle";
+
+        }
+
+        function kernZeichnen(ladung) {
+            ctx.lineWidth = 2;
+
+            ctx.beginPath();
+            ctx.strokeStyle = "#4444FF";
+            ctx.fillStyle = "#BBBBFF";
+            ctx.arc(xm, ym, radius, 0, 2 * Math.PI, true);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.strokeStyle = "#4444FF";
+            ctx.fillStyle = "#4444FF";
+            ctx.font = "15px Arial";
+            var s = ladung.toString() + "+";
+            var dx = ctx.measureText(s).width / 2
+
+            ctx.fillText(s, xm - dx, ym + 4);
+
+            ergebnisZeichnen();
+        }
+
+        function schaleZeichnen(anz) {
+
+            ctx.beginPath();
+            ctx.strokeStyle = "#FF4444";
+            ctx.lineWidth = 2;
+
+            ctx.arc(xm, ym, radius * (anz + 1), 0, 2 * Math.PI, true);
+            ctx.stroke();
+
+        }
+
+        function elektronZeichnen(nr) {
+            var pos;
+            var schale;
+            if (nr < 3) {
+                pos = nr + 5;
+                schale = 1;
+            } else {
+                pos = nr - 3;
+                pos = pos % 8;
+                schale = Math.floor((nr - 3) / 8) + 2;
+            }
+            ctx.beginPath();
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = "#FFAAAA";
+            ctx.fillStyle = "#FF4444"
+            ctx.arc(xm + elektron[pos].dx * radius * (schale + 1), ym + elektron[pos].dy * radius * (schale + 1), radius / 3, 0, 2 * Math.PI, true);
+            ctx.fill();
+            ctx.stroke();
+
+        }
+
+        function elektronLoeschen(nr) {
+
+            var pos;
+            var schale;
+            if (nr < 3) {
+                pos = nr + 5;
+                schale = 1;
+            } else {
+                pos = nr - 3;
+                pos = pos % 8;
+                schale = Math.floor((nr - 3) / 8) + 2;
+            }
+            ctx.beginPath();
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "#FFFFFF";
+            ctx.fillStyle = "#FFFFFF"
+            ctx.arc(xm + elektron[pos].dx * radius * (schale + 1), ym + elektron[pos].dy * radius * (schale + 1), radius / 3, 0, 2 * Math.PI, true);
+            ctx.fill();
+            ctx.stroke();
+            schaleZeichnen(schale);
+        }
+
+
+
+
+        function kernladungPlus() {
+            if (ladungsZahl < 20) {
+                ladungsZahl++;
+                kernZeichnen(ladungsZahl);
+            }
+        }
+
+        function kernladungMinus() {
+            if (ladungsZahl > 1) {
+                ladungsZahl--;
+                kernZeichnen(ladungsZahl);
+            }
+        }
+
+
+        function schalenPlus() {
+            if (schalenZahl < 4) {
+                schalenZahl++;
+                schaleZeichnen(schalenZahl);
+            }
+        }
+
+
+        function schalenMinus() {
+            if (schalenZahl > 1) {
+
+                ctx.beginPath();
+                ctx.lineWidth = 10;
+                ctx.strokeStyle = "#FFFFFF";
+                ctx.arc(xm, ym, radius * (schalenZahl + 1), 0, 2 * Math.PI);
+                ctx.stroke();
+                schalenZahl--;
+            }
+        }
+
+
+        function elektronenPlus() {
+            var elektronenMax = (schalenZahl - 1) * 8 + 2;
+            if (schalenZahl == 4) { elektronenMax = 20; }
+            if (elektronenZahl < elektronenMax) {
+                elektronenZahl++;
+                elektronZeichnen(elektronenZahl);
+                ergebnisZeichnen();
+            } else {
+                if (elektronenMax < 20) {
+                    punkte(-20);
+                    ausgabe("Warnung","Die Energiestufen sind voll!",3000,"error");
+                }
+            }
+        }
+
+        function elektronenMinus() {
+
+            if (elektronenZahl > 0) {
+                elektronLoeschen(elektronenZahl);
+
+                elektronenZahl--;
+                ergebnisZeichnen();
+
+            }
+
+        }
+
+
+
+    </script>
+</head>
+
+<body onload="start()">
+    <table>
+        <tr>
+            <td></td>
+            <td id="Frage"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <div style="font-size: x-large;" id="Ausgabe"></div>
+                <br>
+                <div id="Protonen"></div>
+                <br>
+                <div id="Elektronen"></div>
+                <br>
+                <div id="Test"><button onclick="pruefen()">Ergebnis<br>prüfen</button></div>
+                
+            </td>
+            <td>
+                <canvas id="canvas" ></canvas>
+            </td>
+            <td>
+                <button id="btnKernPlus" onClick="kernladungPlus()"
+                    style="background-color:#BBBBFF;">Kernladung<br>+1</button>
+                <br>
+                <button id="btnKernMinus" onClick="kernladungMinus()"
+                    style="background-color: #BBBBFF;">Kernladung<br>-1</button>
+                <br>
+                <button id="btnSchalePlus" onClick="schalenPlus()"
+                    style="background-color:#FF8888">Energiestufen<br>+1</button>
+                <br>
+                <button id="btnSchaleMinus" onClick="schalenMinus()" style="background-color:#FF8888">
+                    Energiestufen<br>-1</button>  
+                <br>
+                <button id="btnElektronPlus" onClick="elektronenPlus()"
+                    style="background-color:#FFAAAA;">Elektronen<br>+1</button>
+                <br>
+                <button id="btnElektronMinus" onClick="elektronenMinus()"
+                    style="background-color:#FFAAAA">Elektronen<br>-1</button>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td id="Punkte"></td>
+            <td style="font-size: x-small;"> Baue das Teilchen durch Klicks auf die rechten Schaltflächen auf.<br>
+                Beachte hierbei, dass die Energiestufen nur eine begrenzte Zahl an Elektronen aufnehmen können.<br>
+                Prüfe dein Ergebnis mit einem Klick auf 'Ergebnis prüfen'.
+               </td>
+            
+            <td style="font-size: x-small;">2022 Rainer Hille<br>Gymnasium Waldkraiburg</td>
+        </tr>
+    </table>
+</body>
+
+</html>
