@@ -3,9 +3,7 @@
         let eingabe=document.getElementById("inputTabelle").value;
         eingabe=eingabe.replaceAll(" ","_");
         
-        alert()  
         var s=eingabe.split("|");
-        alert(s);
         var ausg="<formel>´(tab~"+s[0]+"¦";
         for (var i=1;i<s.length;i++){
             ausg=ausg+s[i]+"¦";
