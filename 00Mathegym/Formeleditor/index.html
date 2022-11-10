@@ -20,14 +20,17 @@
       drücken Sie <b>Return</b> oder <b>Tab</b> um sie umzuwandeln<br>
       und kopieren Sie das Ergebnis in Mathegym.
     </div><br>
-    <div style="font-size:x-small">Eingabefelder ▇ werden als _ eingetragen!</div>
-  </header>
+    <header>
   <div>
     <br>
-    Eingabe: <input id="input" type="text" size="120" autofocus onchange="ausgabe() ;"><br>
+    <div style="font-size:small">Mehrzeilige Formeln: Eingabefelder ▇ werden als _ eingetragen.</div>
+    
+    <input id="input" type="text" size="120" autofocus onchange="ausgabe() ;"><br>
+    <br>
+    <div style="font-size:small">Tabellen: Tragen Sie die Spaltenköpfe ein und trennen Sie diese durch |</div>
+    
+    <input id="inputTabelle" type="text" size="120" autofocus onchange="ausgabeTabelle() ;"><br>
     Ausgabe: <input id="output" type="text" size="150">
-    <br><br>
-    <button onclick="copy();">Kopieren</button>
   </div>
  <footer>
   <div style="font-size:x-small">2022 Rainer Hille</div>
