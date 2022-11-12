@@ -149,7 +149,8 @@
        
         function frageSchreiben() {
             var s = fragen[frageNr].name;
-            document.getElementById("Frage").innerHTML = "Baue ein<br><b>" + s + "</b><br><br>";
+            document.getElementById("Frage").innerHTML = "Baue ein<br><b>" + s +": "+
+                ergebnisHtml(elemente[fragen[frageNr].ordnungsZahl].symbol,fragen[frageNr].ladung)+ "</b><br><br>";
         }
 
         function punkte(i) {
@@ -174,9 +175,7 @@
             }
         }
 
-        function ergebnisZeichnen() {
-            var s = elemente[ladungsZahl].symbol;
-            var l = ladungsZahl - elektronenZahl
+        function ergebnisHtml(s,l){
             if (l != 0) {
                 s = s + "<sup>"
                 if (Math.abs(l) > 1) {
@@ -188,6 +187,12 @@
                     s = s + "+</sup>";
                 }
             }
+            return s;
+        }
+        function ergebnisZeichnen() {
+            var s = elemente[ladungsZahl].symbol;
+            var l = ladungsZahl - elektronenZahl
+            var s=ergebnisHtml(s,l);
             document.getElementById("Ausgabe").innerHTML = s;
             var s1;
             if (ladungsZahl == 1) { s1 = " Proton"; } else { s1 = " Protonen"; }
