@@ -15,7 +15,7 @@ function umwandeln(){
     var loesung="<formel>";
     var felder="<formel>";
     var koeff="<eingabe_slc><formel>";
-    var auswahl="´(slc~ ¦1¦2¦3¦4¦5¦6¦7¦8¦9¦10)_";
+    var auswahl="´(slc~ ¦2¦3¦4¦5¦6¦7¦8¦9¦10)_";
     loesung=loesung+s[0]+" "; // Koeffizient
     koeff=koeff+auswahl;
     
