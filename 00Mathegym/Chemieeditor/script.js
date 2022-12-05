@@ -5,6 +5,7 @@ function umwandeln(){
     let o2=document.getElementById("o2")
     let o3=document.getElementById("o3")
     let o4=document.getElementById("o4")
+    let o41=document.getElementById("o41");
     
     
     var elem=["k1","f1","k2","f2","k3","f3","k4","f4"];
@@ -13,37 +14,60 @@ function umwandeln(){
         s[i]=document.getElementById(elem[i]).value;
     }
     var loesung="<formel>";
+    var html="<span class=nobr>";
     var felder="<formel>";
     var koeff="<eingabe_slc><formel>";
     var auswahl="´(slc~ ¦2¦3¦4¦5¦6¦7¦8¦9¦10)_";
-    loesung=loesung+s[0]+" "; // Koeffizient
+   
+    if (s[0]!=""){
+        loesung=loesung+s[0]+"_"; // Koeffizient
+        html=html+s[0]+" ";
+    }
     koeff=koeff+auswahl;
     
     var s1=convert(s[1]);
     loesung=loesung+s1;  // 1. Formel
     koeff=koeff+s1;
     felder=felder+"▇";
-    
+    html=html+convertHMTL(s[1]);
+
     if (s[3]!=""){  // Gibt es 2. Formel?
-            loesung=loesung+"+"+s[2]+" ";
+        loesung=loesung+"+";
+        html=html+" + ";
+            if (s[2]!=""){
+                loesung=loesung+s[2]+"_";
+                html=html+s[2]+" ";
+            }        
             s1=convert(s[3]);
             loesung=loesung+s1;
+            html=html+convertHMTL(s[3]);
             koeff=koeff+"+"+auswahl+s1;
             felder=felder+"+▇";
 
     }
     loesung=loesung+"_´(→)_";
+    html=html+" → ";
     felder=felder+"_´(→)_";
     koeff=koeff+"_´(→)_";
-    loesung=loesung+s[4]+" "; // Koeffizient
+    if (s[4]!=""){
+        loesung=loesung+s[4]+"_"; // Koeffizient
+        html=html+s[4]+" ";
+    }
     s1=convert(s[5]);
     loesung=loesung+s1;  // 1. Formel
     koeff=koeff+auswahl+s1;
     felder=felder+"▇";
+    html=html+convertHMTL(s[5]);
     if (s[7]!=""){  // Gibt es 2. Formel?
-        loesung=loesung+"+"+s[6]+" ";
+        loesung=loesung+"+";
+        html=html+" + ";
+        if (s[6]!=""){
+        loesung=loesung+s[6]+"_";
+        html=html+s[6]+" ";
+        }
         s1=convert(s[7]);
         loesung=loesung+s1;
+        html=html+convertHMTL(s[7]);
         felder=felder+"+▇";
         koeff=koeff+"+"+auswahl+s1;
     
@@ -52,7 +76,9 @@ function umwandeln(){
     o2.value=felder+"</formel>";
     o3.value=koeff+"</formel></eingabe>";
     o4.value=loesung+"</formel>";
-
+    html=html+"</span>";
+    o41.value=html;
+    document.getElementById("html").innerHTML=html;
 }
 
 function isTxt(c){
@@ -71,6 +97,7 @@ function test(){
     document.getElementById("o3").value=convert2(s);
     
 }
+
 
 function convert(s1){
     s1=s1.replaceAll("-","−");
@@ -139,6 +166,76 @@ function convert(s1){
    
     return s;
 }
+
+function convertHMTL(s1){
+    s1=s1.replaceAll("-","−");
+    var flag="";  // "" = Start,"L"=Index,"H"=Ladung,"T"=Text,"K"=Klammer auf
+    var s="";
+    var i=0;
+    while (i < s1.length) { 
+        c = s1.charAt(i);
+        if (c=="("){
+            if (flag==""){
+                s=s+"(";
+                flag="K"    
+            } else if (flag=="T"){
+                s=s+")";
+                flag="K"
+            } else if (flag=="L"){
+                s=s+"</sub>)";
+                flag="K"
+            }
+            
+        } else if (isTxt(c)){
+            if (flag==""||flag=="K"){ // Start 
+                s=s+c;
+                flag="T"; 
+            } else if (flag=="T"){ // weiterer Buchstabe
+                s=s+c;
+            } else if (flag=="L"){ // Buchstabe nach Index
+                s=s+"</sub>"+c;
+                flag="T";
+            } else if (flag=="H"){// Buchstabe nach Ladung
+                s=s+"</sup>"+c;
+                flag="T";
+            }
+        } else if (c==")"){
+            if (flag=="T"){// nach Text
+                s=s+")";
+            } else if (flag=="L"){ // Nach Index
+                s=s+"</sub>)";
+                flag="T";
+            }
+        
+        } else if (isNum(c)){
+            if (flag=="T"){ // Nach Text 
+                s=s+"<sub>"+c;
+                flag="L";
+            } else if (flag=="L"||flag=="H"){ // weitere Zahl
+                s=s+c;
+            }
+        } else if(c=="^"){ // Ladung }{
+            if (flag=="T"){ // Nach Text 
+                s=s+"<sup>";
+            } else if (flag=="L"){ // Nach Index
+                s=s+"</sub><sup>";
+            }
+            flag="H";
+        }
+    i++;
+    }
+    if (flag=="T"){ // Nach Text 
+        s=s+"";}
+    else if (flag=="H"){ // Nach Ladung
+        s=s+"</sup>";
+    } else if (flag=="L"){ // Nach Index
+        s=s+"</sub>";
+    }
+   
+    return s;
+}
+
+
 
 function convertAlt(s1) {
     s1=s1.replaceAll("-","−");
