@@ -1,0 +1,15 @@
+{   
+  "snap":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Soziale Medien - Aufbau einer Medienplattform",
+  "angabe":"Ziehe die Bausteine an die richtigen Positionen",
+  "txt":[
+    {"x":0.215 ,"y":0.622,"width":0.162,"height":0.102,"pos":[0,2]},
+    {"x":0.441 ,"y":0.877,"width":0.108,"height":0.106,"pos":[1]},
+    {"x":0.678 ,"y":0.198,"width":0.163,"height":0.102,"pos":[0,2]},
+    {"x":0.125 ,"y":0.196,"width":0.162,"height":0.11,"pos":[3]},
+    {"x":0.646 ,"y":0.624,"width":0.107,"height":0.102,"pos":[4]}
+    ]
+    }
