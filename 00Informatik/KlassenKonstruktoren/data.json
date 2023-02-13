@@ -1,0 +1,16 @@
+{   
+  "snap":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Klassen und Konstruktoren",
+  "angabe":"Ziehe die Bausteine an die richtigen Positionen",
+ 
+ 
+    "txt":[
+      {"x":0.096 ,"y":0.393,"width":0.092,"height":0.296,"pos":[0]},
+      {"x":0.75 ,"y":0.426,"width":0.146,"height":0.296,"pos":[1]},
+      {"x":0.02 ,"y":0.05,"width":0.182,"height":0.154,"pos":[2]},
+      {"x":0.715 ,"y":0.207,"width":0.248,"height":0.139,"pos":[3]}
+      ]
+      }

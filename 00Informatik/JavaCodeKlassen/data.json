@@ -1,0 +1,61 @@
+{
+  "titel": "Klassen und Konstruktoren",
+  "shuffle": false,
+  "angabe": [
+    {
+      "txt": "Kopf der öffentlichen Klasse Zielscheibe",
+      "lsg": [
+        "public class Zielscheibe{"
+        
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf eines öffentlichen Konstruktors der Klasse Zielscheibe ohne Parameter",
+      "lsg": [
+        "public Zielscheibe(){"
+       ],
+      "thisLoeschen": false
+    },
+   {
+    "txt": "Kopf eines öffentlichen Konstruktors der Klasse Zielscheibe mit einem ganzzahligen Parameter radius",
+      "lsg": [
+        "public Zielscheibe(int radius){"
+      ],
+      "thisLoeschen": false
+    }, 
+    {
+      "txt": "Kopf eines öffentlichen Konstruktors der Klasse Zielscheibe mit einer Parameter: Zeichenkette farbe",
+        "lsg": [
+          "public Zielscheibe(String farbe){"
+         ],
+        "thisLoeschen": false
+      }, 
+     
+    {
+      "txt": "Kopf eines öffentlichen Konstruktors der Klasse Zielscheibe mit zwei Parametern: Zeichenkette farbe, Ganzzahl radius ",
+      "lsg": [
+        "public Zielscheibe(String farbe,int radius){"
+      ],
+      "thisLoeschen": false
+    },
+    {"txt": "Erzeugen eines neuen Objekts der Klasse Kreis mit den Parameter-Werten 100, 100, 80, \"blue\"",
+        "lsg": [
+          "new Kreis(100,100,80,\"blue\");"
+         ],
+        "thisLoeschen": false
+      },
+      {"txt": "Erzeugen eines neuen Objekts der Klasse Kreis mit den Werten der Parameter x1, x2, radius, farbe",
+        "lsg": [
+          "new Kreis(x1,y1,radius,farbe);"
+         ],
+        "thisLoeschen": false
+      }
+   
+   
+    
+    
+
+
+ ]
+}
