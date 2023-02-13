@@ -6,7 +6,7 @@
     {"zeit":15,"txt":"Schreibe den minimalen Rahmen für den Konstruktor der Klasse Zielscheibe ohne Parameter"},
     {"zeit":15,"txt":"Erzeuge im Konstruktor ein neues Objekt der Klasse Kreis mit folgenden Parameter-Werten: 200,120,100,\"blue\""},
     {"zeit":15,"txt":"Erzeuge im Konstruktor die fehlenden vier Kreise für die vollständige Zielscheibe."},
-    {"zeit":15,"txt":"Die Zielscheibe soll verschoben werden können. Erzeuge einen neuen Konstruktur mit folgenden Parametern: Ganzzahlen: xMitte, yMitte, radius"},
+    {"zeit":15,"txt":"Die Zielscheibe soll verschoben werden können. Erzeuge einen neuen Konstruktur mit folgenden Parametern:<br>Ganzzahlen: xMitte, yMitte, radius"},
     {"zeit":15,"txt":"Kopiere den Rumpf des alten Konstrukturs in den Rahmen des neuen und ändere die Parameterwerte so ab, dass die neuen Parameter xMitte, yMitte, radius verwendet werden."},
     {"zeit":15,"txt":"Eine Arena soll 4 Zielscheiben umfassen. Erzeuge eine neue Klasse Zielscheibe mit einem minimalen Rahmen"},    
     {"zeit":15,"txt":"Schreibe den minimalen Rahmen für den Konstruktor der Klasse Arena ohne Parameter"},
