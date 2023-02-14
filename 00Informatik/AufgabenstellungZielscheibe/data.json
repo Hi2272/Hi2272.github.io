@@ -1,7 +1,7 @@
 { "typ":"Bild",   
   "titel":"Wir programmieren Zielscheiben",
   "untertitel":"Klassen und Konstruktoren",
-  "blueJ":"01KlassenKonstruktoren.jar",
+  "blueJ":"AufgabenstellungZielscheibe/01KlassenKonstruktoren.jar",
   "angabe":[
     {"zeit":15,"txt":"Schreibe den minimalen Rahmen für die Klasse Zielscheibe (Kopf und leerer Rumpf)."},
     {"zeit":15,"txt":"Schreibe den minimalen Rahmen für den Konstruktor der Klasse Zielscheibe ohne Parameter"},

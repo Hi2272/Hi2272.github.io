@@ -1,7 +1,7 @@
 { "typ":"Bild",   
   "titel":"Die neue Klasse Ring aus zwei Kreisen",
   "untertitel":"Attribute",
-  "blueJ":"02Ringe.jar",
+  "blueJ":"AufgabenstellungRing/02Ringe.jar",
   "angabe":[
     {"zeit":1,"txt":"Erstelle eine neue Klasse Ring mit einem leeren Konstruktor ohne Parameter."},
     {"zeit":1,"txt":"Erzeuge im Konstruktor ein neues Objekt der Klasse Kreis mit folgenden Parameter-Werten: 100,100,100,\"blue\""},
