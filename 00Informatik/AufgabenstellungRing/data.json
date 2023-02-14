@@ -1,6 +1,7 @@
 { "typ":"Bild",   
   "titel":"Die neue Klasse Ring aus zwei Kreisen",
   "untertitel":"Attribute",
+  "blueJ":"02Ringe.jar",
   "angabe":[
     {"zeit":1,"txt":"Erstelle eine neue Klasse Ring mit einem leeren Konstruktor ohne Parameter."},
     {"zeit":1,"txt":"Erzeuge im Konstruktor ein neues Objekt der Klasse Kreis mit folgenden Parameter-Werten: 100,100,100,\"blue\""},
@@ -9,7 +10,11 @@
     {"zeit":1,"txt":"Weise im Konstruktor die neu erzeugten Kreise den Attributen aussenKreis und innenKreis zu."},
     {"zeit":1,"txt":"Erzeuge einen neuen, leeren Konstruktor mit den Parametern xMitte, yMitte, radius, breite vom Typ int."},
     {"zeit":1,"txt":"Weise im Konstruktor dem Attribut aussenKreis einen neuen Kreis mit den Parameter-Werten: xMitte, yMitte, radius, \"blue\" zu."},
-    {"zeit":1,"txt":"Weise im Konstruktor dem Attribut innenKreis einen neuen Kreis mit den Parameter-Werten: xMitte, yMitte, radius-breite, \"white\" zu."}
+    {"zeit":1,"txt":"Weise im Konstruktor dem Attribut innenKreis einen neuen Kreis mit den Parameter-Werten: xMitte, yMitte, radius-breite, \"white\" zu."},
+    {"zeit":1,"txt":"Erweitere deinen Konstruktur, so dass auch die Farbe des Rings als Parameter vom Datentyp String mitgegeben und verwendet wird."},
+    {"zeit":1,"txt":"Erzeuge eine neue Klasse Bild und erstelle im Konstruktor ein Bild aus mehreren Ringen mit verschiedenen Farben und Größen an verschiedenen Positionen."}
+
+    
   ],
  
   "txtAngabe": [
@@ -17,7 +22,7 @@
    ],
  
 
-  "ende":"Super, du hast die Aufgaben gelöst.<br>Jetzt kannst du blaue Ringe mit verschiedenen Radien erzeugen.",
+  "ende":"Super, du hast die Aufgaben gelöst.",
   "copyright":"<a href='https://www.bluej.org'>BlueJ</a>, <a href='http://www.java-online.ch/gamegrid/gamegridEnglish/index.php?inhalt_links=navigation.inc.php&inhalt_mitte=grundelemente/grid.inc.php'> JGameGrid</a>, <a href='https://github.com/marcojakob/gamegrid-kara/tree/master/scenarios-eclipse-project/src/kara/gamegrid'>GameGrid Kara</a>"
     
 }
