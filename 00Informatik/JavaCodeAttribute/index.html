@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://Hi2272.github.io/vanillatoasts.js"></script>
+  <link href="https://Hi2272.github.io/vanillatoasts.css" rel="stylesheet">
+
+
+  <meta charset="utf-8" />
+  <title id="Titel"></title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
+  <style>
+    input {
+      font-size: xx-large;
+      min-width: 50%;
+      color: blue;
+      background-color: beige;
+    }
+
+    button {
+      font-size: xx-large;
+      background-color: lightblue;
+      border-radius: 10px;
+      margin: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    i {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h2 id="Ueberschrift"></h2>
+    <table width=100%>
+      <tr>
+        <td>
+          <div id="Nummer"></div>
+        </td>
+        <td>
+          <div id="Vortext">
+            Füge die passenden Code-Zeilen ein.<br>
+            Beende die die Zeile entweder mit <b>;</b> oder mit <b>{</b>.<br>
+          </div>
+        </td>
+        <td>
+          <div id="Prozent">1. Frage</div>
+        </td>
+
+      </tr>
+    </table>
+
+  </header>
+
+  <section>
+    <hr>
+    <div id="Angabe">
+      Kopf der öffentlichen Klasse "Rechner":
+    </div>
+    <hr>
+    <div id="Quiz">
+      <b> Code-Zeile:</b>
+      <div>
+        <input id="Eingabe" type="text" autocomplete="off" autofocus spellcheck="false" size=50>
+        <button id="btnCheck" onclick="check()">Prüfen</button><br>
+        <button onclick="zeichen('{')">{</button>
+        <button onclick="zeichen('}')">}</button>
+        <button onclick="zeichen(';')">;</button>
+        <button onclick="zeichen('(')">(</button>
+        <button onclick="zeichen(')')">)</button>
+        <button onclick="zeichen('>')">></button>
+        <button onclick="zeichen('<')"><</button>
+            <button onclick="zeichen('=')">=</button>
+            <button onclick="zeichen('&')">&</button>
+            <button onclick="zeichen('|')">|</button>
+            <button onclick="zeichen('[')">[</button>
+            <button onclick="zeichen(']')">]</button>
+            <button onclick="zeichen('+')">+</button>
+            <button onclick="zeichen('-')">-</button>
+            <button onclick="zeichen('*')">*</button>
+            <button onclick="zeichen('/')">/</button>
+            <button onclick="zeichen('!')">!</button>
+           
+      </div>
+
+      <table id="Korrektur" width=100%>
+        <tr>
+          <td><b>Deine Eingabe:</b></td>
+          <td><b>Lösungsvorschlag:</b></td>
+        </tr>
+        <tr>
+          <td id="Fehler"></td>
+          <td id="Loesung"></td>
+        </tr>
+      </table>
+    </div>
+    <button id="btnWeiter" onclick="weiter()">Weiter zur nächsten Aufgabe</button>
+
+    <div id="quelle" style="font-size: xx-small;text-align: right;"></div>
+
+
+  </section>
+<!--
+ 
+  <script src="JavaCode.js"></script>
+-->
+ 
+  <script src="https://Hi2272.github.io/JavaCode.js"></script>
+ 
+
+</body>
+
+</html>

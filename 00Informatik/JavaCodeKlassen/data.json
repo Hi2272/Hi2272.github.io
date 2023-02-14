@@ -45,7 +45,7 @@
          ],
         "thisLoeschen": false
       },
-      {"txt": "Erzeugen eines neuen Objekts der Klasse Kreis mit den Werten der Parameter x1, x2, radius, farbe",
+      {"txt": "Erzeugen eines neuen Objekts der Klasse Kreis mit den Werten der Parameter x1, y1, radius, farbe",
         "lsg": [
           "new Kreis(x1,y1,radius,farbe);"
          ],

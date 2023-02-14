@@ -1,0 +1,53 @@
+{
+  "titel": "Attribute",
+  "shuffle": false,
+  "angabe": [
+    {
+      "txt": "Deklaration eines privaten Attributs x1 vom Typ Ganzzahl.",
+      "lsg": [
+        "private int x1;"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Deklaration eines öffentlichen Attributs s vom Typ Zeichenkette.",
+      "lsg": [
+        "public String s;"
+    ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Deklaration von zwei privaten Attributen x1 und x2 vom Typ Ganzzahl.",
+      "lsg": [
+        "private int x1,x2;"
+    ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Zuweisung des Wertes 100 zum Attribut x1;",
+      "lsg": [
+        "this.x1=100;"
+      ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Zuweisung des Wertes des Parameters x1 zum Attribut x1.",
+      "lsg": [
+        "this.x1=x1;"
+     ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Erhöhen des Wertes des Attributs x1 um 100 und speichern des Ergebnisse im Attribut x1.",
+      "lsg": [
+        "this.x1=this.x1+100;",
+        "this.x1=100+this.x1;",
+        "this.x1+=100;"
+    ],
+      "thisLoeschen": true
+    }
+  
+   
+    
+ ]
+}
