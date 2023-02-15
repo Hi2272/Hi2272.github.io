@@ -1,0 +1,28 @@
+{ "typ":"Bild",   
+  "titel":"Wir programmieren ein Dorf",
+  "untertitel":"Klassen und Konstruktoren",
+  "blueJ":"AufgabenstellungDorf/02bDorf.jar",
+  "angabe":[
+    {"zeit":1,"txt":"Erstelle eine neue Klasse Haus mit einem minimalen Rahmen und einem leeren Konstruktor ohne Parameter."},
+    {"zeit":1,"txt":"Erzeugee im Konstruktor ein neues Objekte der Klasse Rechteck mit folgenden Parameter-Werten: 0,30,100,70,\"yellow\" (≙ x,y,breite,hoehe,farbe)."},
+    {"zeit":1,"txt":"Erzeuge im Konstruktor ein neues Objekt der Klasse Dreieck mit folgenden Parameter-Werten: 0,30,100,30,50,0,\"red\" (≙ x1,y1,x2,y2,x3,y3,farbe)"},
+    {"zeit":1,"txt":"Erzeuge im Konstruktor drei Objekte der Klasse Rechteck als Türe und Fenster. Verwende als Parameter die Koordinaten und Maße aus dem Bild."},
+    {"zeit":1,"txt":"Erzeuge einen neuen Konstruktor mit folgenden Parametern: Ganze Zahlen: x,y,b,h, Zeichenkette: farbe."},
+    {"zeit":1,"txt":"Kopiere den Rumpf des alten Konstrukturs in den Rahmen des neuen und ändere die Parameterwerte so ab, dass die Werte der neuen Parameter x,y für die Koordinaten und b und h für die Maße verwendet werden. Hierbei musst du Werte mit prozentualen Formeln ersetzen: 30 ≙ x+breite*30/100.<br>Der Wert des Parameters farbe soll nur für die Hauswand verwendet werden."},
+    {"zeit":1,"txt":"Erzeuge eine neue Klasse Dorf mit einem Konstruktor, in dem du ein neues Objekt der Klasse Haus mit den Parameterwerten 50,50,100,100 erzeugst."},    
+    {"zeit":1,"txt":"Erweitere den Konstruktor der Klasse Dorf so, dass 5 unterschiedliche Häuser enstehen."},
+    {"zeit":1,"txt":"Dupliziere die Klasse Haus (Rechtsklick: Duplicate) und nenne die Klasse Turm"},
+    {"zeit":1,"txt":"Ändere den Konstruktor so ab, dass ein Turm mit einem flachen Dach, einer Tür und einem mittigen Fenster entsteht."},
+    {"zeit":1,"txt":"Erweitere dein Dorf mit Türmen."}
+    
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Super, du hast die Aufgaben gelöst.<br>Als Erweiterung kannst du jetzt eine Klasse Kirche definieren, die aus eine Haus und einem Turm eine Kirche erzeugt.",
+  "copyright":"<a href='https://www.bluej.org'>BlueJ</a>, <a href='http://www.java-online.ch/gamegrid/gamegridEnglish/index.php?inhalt_links=navigation.inc.php&inhalt_mitte=grundelemente/grid.inc.php'> JGameGrid</a>, <a href='https://github.com/marcojakob/gamegrid-kara/tree/master/scenarios-eclipse-project/src/kara/gamegrid'>GameGrid Kara</a>"
+    
+}
