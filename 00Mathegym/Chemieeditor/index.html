@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <title id="Titel">Chemie-Editor</title>
   <script src="https://Hi2272.github.io/vanillatoasts.js"></script>
   <link href="https://Hi2272.github.io/vanillatoasts.css" rel="stylesheet">
 
-  
+
   <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
   <script src="script.js"></script>
 
@@ -14,81 +15,85 @@
 
 <body>
   <header>
-    <h1 id="Ueberschrift">Chemie-Editor für Mathegym</h1>
+    <h2 id="Ueberschrift">Chemie-Editor für Mathegym</h2>
     <header>
-  <div>
-    <br>
-    <table style=" margin-left: auto; margin-right: auto;"><tr>
-    <td><input id="k1" type="text" size="3" autofocus></td>
-    <td><input id="f1" type="text" size="10" autofocus>+</td>
-    <td><input id="k2" type="text" size="3" autofocus></td>
-    <td><input id="f2" type="text" size="10" autofocus></td>
-    <td>-></td>
-    <td><input id="k3" type="text" size="3" autofocus></td>
-   <td><input id="f3" type="text" size="10" autofocus>+</td>
-  <td> <input id="k4" type="text" size="3" autofocus></td>
-<td> <input id="f4" type="text" size="10" autofocus></td>
-</tr><tr>
-  <td></td>
-<td><button onclick="copy(f1);">Kopieren</button></td>
-<td></td>
-<td><button onclick="copy(f2);">Kopieren</button></td>
-<td></td>
-<td></td>
-<td><button onclick="copy(f3);">Kopieren</button></td>
-<td></td>
-<td><button onclick="copy(f4);">Kopieren</button></td>
+      <div>
+        <br>
+        <table style=" margin-left: auto; margin-right: auto;">
+          <tr>
+            <td><input id="k1" type="text" size="3" autofocus></td>
+            <td><input id="f1" type="text" size="10" autofocus>+</td>
+            <td><input id="k2" type="text" size="3" autofocus></td>
+            <td><input id="f2" type="text" size="10" autofocus></td>
+            <td>-></td>
+            <td><input id="k3" type="text" size="3" autofocus></td>
+            <td><input id="f3" type="text" size="10" autofocus>+</td>
+            <td> <input id="k4" type="text" size="3" autofocus></td>
+            <td> <input id="f4" type="text" size="10" autofocus></td>
+          </tr>
+          <tr>
+
+            <td><input id="f" type="text" size="10" autofocus></td>
+            <td><button onclick="copy(f);">f</button></td>
+            <td><input id="n" type="text" size="10" autofocus></td>
+            <td><button onclick="copy(n);">n</button></td>
+            <td><input id="N" type="text" size="10" autofocus></td>
+            <td><button onclick="copy(N);">N</button></td>
+            <td><input id="V" type="text" size="10" autofocus></td>
+            <td><button onclick="copy(V);">V</button></td>
+            <td><input id="M" type="text" size="10" autofocus></td>
+            <td><button onclick="copy(M);">M</button></td>
+            <td><input id="c" type="text" size="10" autofocus></td>
+            <td><button onclick="copy(c);">c</button></td>
+            <td><input id="m" type="text" size="10" autofocus></td>
+            <td><button onclick="copy(m);">m</button></td>
 
 
-</tr>
-  </table class="center">
-    
-    <br><br>
-    <button onclick="umwandeln();">Umwandeln</button>
-    <br>
-    
-    Rkttyp: <input id="o1" type="text" size="100">
-    <button onclick="copy(o1);">Kopieren</button>
-    <br>
-    Formeln: <input id="o2" type="text" size="100">
-    <button onclick="copy(o2);">Kopieren</button>
-    <br>
-    Koeffizienten: <input id="o3" type="text" size="100">
-    <button onclick="copy(o3);">Kopieren</button>
-    <br>
-    Lösung: <input id="o4" type="text" size="100">
-    <button onclick="copy(o4);">Kopieren</button>
-    <br>
-    <span id="html">LösungHTML:</span> <input id="o41" type="text" size="100">
-    <button onclick="copy(o41);">Kopieren</button>
-    <br>
-    Hinweis: <input id="o5" type="text" size="100" 
-    value='<b><i>Hinweise:</b><ul><li>Koeffizienten und Indizes werden als normale Zahlen geschrieben, z.B. <b>2 H2O</b> für <span class="nobr"><b>2 H<sub>2</sub>O</b></span></li><li>Ladungen müssen mit <b>^</b> hochgestellt werden, z.B. <b>Fe^3+</b> für <span class="nobr"><b>Fe<sup>3+</sup></b></span></li></ul></i>'>
-    <button onclick="copy(o5);">Kopieren</button>
-   
-    <br>
-    Hinweis: <input id="o6" type="text" size="100" 
-    value='<p class=mark>Löse die Aufgabe zunächst komplett auf einem Blatt Papier und gib dann zur Kontrolle Schritt für Schritt deine Antworten am Computer ein.<br>Wenn du Schwierigkeiten hast, kannst du dich natürlich auch sofort Schritt für Schritt durch die Aufgabe führen lassen.</p>'>
-    <button onclick="copy(o6);">Kopieren</button>
-    <br>
-    Hinweis: <input id="o7" type="text" size="100" 
-    value='<p class=mark>Wenn dir die Aufgabe zu lang ist, um sie auf einmal zu bearbeiten, kannst du die Einzelschritte aktivieren.<br>Hier wird jeder Abschnitt einzeln dargestellt.</p>'>
-    <button onclick="copy(o7);">Kopieren</button>
-    <br>
-    &rArr; ≙  ⋅ ∢(HCH) &#x0394;E e&#8315; F&#8315; Cl&#8315; Br&#8315; I&#8315; Li&#8314; Na&#8314; K&#8314; Mg&#0178;&#8314;<br>
-    <br>
-    Bild: <input id="o8" type="text" size="100" 
-    value='<bild>rhille/26664.png</bild>'>
-    <button onclick="copy(o8);">Kopieren</button>
-    
-   
+          </tr>
+        </table class="center">
 
-  </div>
- <footer>
-  <div style="font-size:x-small">2022 Rainer Hille</div>
-  
- </footer>
- 
+        Rkttyp: <input id="o1" type="text" size="100">
+        <button onclick="copy(o1);">C</button>
+        <br>
+        Formeln: <input id="o2" type="text" size="100">
+        <button onclick="copy(o2);">C</button>
+        <br>
+        Koeffizienten: <input id="o3" type="text" size="100">
+        <button onclick="copy(o3);">C</button>
+        <br>
+        Lösung: <input id="o4" type="text" size="100">
+        <button onclick="copy(o4);">C</button>
+        <br>
+        <span id="html">LösungHTML:</span> <input id="o41" type="text" size="100">
+        <button onclick="copy(o41);">C</button>
+        <br>
+        Hinweis: <input id="o5" type="text" size="100"
+          value='<b><i>Hinweise:</b><ul><li>Koeffizienten und Indizes werden als normale Zahlen geschrieben, z.B. <b>2 H2O</b> für <span class="nobr"><b>2 H<sub>2</sub>O</b></span></li><li>Ladungen müssen mit <b>^</b> hochgestellt werden, z.B. <b>Fe^3+</b> für <span class="nobr"><b>Fe<sup>3+</sup></b></span></li></ul></i>'>
+        <button onclick="copy(o5);">C</button>
+
+        <br>
+        Hinweis: <input id="o6" type="text" size="100"
+          value='<p class=mark>Löse die Aufgabe zunächst komplett auf einem Blatt Papier und gib dann zur Kontrolle Schritt für Schritt deine Antworten am Computer ein.<br>Wenn du Schwierigkeiten hast, kannst du dich natürlich auch sofort Schritt für Schritt durch die Aufgabe führen lassen.</p>'>
+        <button onclick="copy(o6);">C</button>
+        <br>
+        Hinweis: <input id="o7" type="text" size="100"
+          value='<p class=mark>Wenn dir die Aufgabe zu lang ist, um sie auf einmal zu bearbeiten, kannst du die Einzelschritte aktivieren.<br>Hier wird jeder Abschnitt einzeln dargestellt.</p>'>
+        <button onclick="copy(o7);">C</button>
+        <br>
+        &rArr; ≙ ⋅ ∢(HCH) &#x0394;E e&#8315; F&#8315; Cl&#8315; Br&#8315; I&#8315; Li&#8314; Na&#8314; K&#8314;
+        Mg&#0178;&#8314;<br>
+        <br>
+        Bild: <input id="o8" type="text" size="100" value='<bild>rhille/26664.png</bild>'>
+        <button onclick="copy(o8);">C</button>
+
+
+
+      </div>
+      <footer>
+        <div style="font-size:x-small">2022 Rainer Hille</div>
+
+      </footer>
+
 </body>
 
 </html>

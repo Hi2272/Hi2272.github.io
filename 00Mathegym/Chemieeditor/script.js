@@ -18,7 +18,7 @@ function umwandeln(){
     var felder="<formel>";
     var koeff="<eingabe_slc><formel>";
     var auswahl="´(slc~ ¦2¦3¦4¦5¦6¦7¦8¦9¦10)_";
-   
+    
     if (s[0]!=""){
         loesung=loesung+s[0]+"_"; // Koeffizient
         html=html+s[0]+" ";
@@ -30,6 +30,20 @@ function umwandeln(){
     koeff=koeff+s1;
     felder=felder+"▇";
     html=html+convertHMTL(s[1]);
+ 
+    var fkt="¯´(&#040;)¯"+s1+"¯´(&#041; )";
+    document.getElementById("f").value="<formel>"+s1+"</formel>";
+    document.getElementById("n").value="_n"+fkt;
+    document.getElementById("N").value="_N"+fkt;
+    document.getElementById("V").value="_V"+fkt;
+    document.getElementById("M").value="_M"+fkt;
+    document.getElementById("m").value="_m"+fkt;
+    document.getElementById("c").value="_c"+fkt;
+    
+
+    
+    
+ 
 
     if (s[3]!=""){  // Gibt es 2. Formel?
         loesung=loesung+"+";
@@ -283,6 +297,7 @@ function anzeige(title, msg, dauer, type) {
 }
 
 function copy(id){
+    umwandeln();
     let loesung=id.value;
     navigator.clipboard.writeText(loesung);
     anzeige("Meldung","Die Formel wurde in die Zwischenablage kopiert.",2000,"success");
