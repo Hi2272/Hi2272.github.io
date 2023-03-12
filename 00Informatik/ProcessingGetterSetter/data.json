@@ -1,0 +1,30 @@
+{ "typ":"Bild",   
+  "titel":"Get- und Set-Methoden in Processing",
+  "untertitel":"Ein Kreis bewegt sich...",
+  "blueJ":"ProcessingGetterSetter/sketchGetterSetter.zip",
+  "angabe":[
+    {"zeit":1,"txt":"Deklariere in der Sketch-Klasse ein privates Attribut k der Klasse Kreis"},
+    {"zeit":1,"txt":"Initialisiere k in der setup()-Methode mit einem neuen Objekt der Klasse Kreis.<br>Verwende hierzu folgende Parameter-Werte: 100,100,50"},
+    {"zeit":1,"txt":"Rufe in der draw()-Methode die öffentliche show()-Methode von k auf, so dass der Kreis dargestellt wird."},
+    {"zeit":1,"txt":"Deklariere ein privates Attribut x für ganze Zahlen."},
+    {"zeit":1,"txt":"Weise der setup()-Methode dem Attribut x den Wert 60 zu und ändere die Initialisierung von k so ab, dass der Wert von x als Parameter verwendet wird."},
+    {"zeit":1,"txt":"Erhöhe in der draw()-Methode den Wert des Attributs x bei jedem Durchlauf um 1."},
+    {"zeit":1,"txt":"Erzeuge in der Klasse Kreis eine öffentliche set-Methode setXMitte(int xMitte)."},    
+    {"zeit":1,"txt":"Rufe in der draw()-Methode die Methode setXMitte von k auf, um die x-Koordinate von k auf den Wert des Attributs x zu setzen."},
+    {"zeit":1,"txt":"Erzeuge in der Klasse Kreis eine öffentliche get-Methode getXMitte()"},
+    {"zeit":1,"txt":"Vereinfache den Code der Sketch-Klasse, indem du das Attribut x löscht und statt dessen die getXMitte()-Methode von k verwendest."},
+    {"zeit":1,"txt":"Erzeuge in der Klasse Kreis öffentliche get- und set-Methoden für die Attribute yMitte und radius."},
+    {"zeit":1,"txt":"Ändere die draw()-Methode so ab, dass der Kreis diagonal nach rechts unten fliegt und sein Radius bei jedem Schritt um 1 steigt."}
+    
+  
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Super, du hast die Aufgaben gelöst.<br>Jetzt kannst du mehrere Kreise erzeugen, die sich unterschiedlich bewegen.",
+  "copyright":"<a href='https://processing.org/'>Processing</a> "
+    
+}
