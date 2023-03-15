@@ -1,0 +1,31 @@
+{ "typ":"Text",   
+  "titel":"Get- und Set-Methoden in Processing",
+  "untertitel":"Ein Kreis bewegt sich...",
+  "blueJ":"ProcessingGetterSetter/sketch_05Farben.zip",
+  "angabe":[
+    {"zeit":1,"txt":"Erstelle in der Klasse Kreis drei private Attribut rot, gruen und blau vom Datentyp int."},
+    {"zeit":1,"txt":"Ändere den Konstruktor der Klasse Kreis so ab, dass er<br>a. drei zusätzliche Parameter rot, gruen, blau vom Typ int hat.<br>b. diese Parameter-Werte den entsprechenden Attributen zuweist."},
+    {"zeit":1,"txt":"Füge als erste Zeile in die Methode show() die Anweisung this.fill(this.rot, this.gruen, this.red); ein, so dass ein gefüllter Kreis gezeichnet wird."},
+    {"zeit":1,"txt":"Ändere die setup()-Methode der Klasse Sketch so ab, dass der Kreis k rot gefüllt ist."},
+    {"zeit":1,"txt":"Programmiere in der Klasse Kreis für die drei Farb-Attribute get- und set-Methoden."},    
+    {"zeit":1,"txt":"Programmiere in der Klasse Kreis eine Methode setFarbe mit drei Parametern, die alle 3 Farbattribute auf einmal setzt."},
+    {"zeit":1,"txt":"Begründe, weshalb keine entsprechende Methode getFarbe() programmiert werden kann."},
+    {"zeit":1,"txt":"Erstelle eine neue Klasse Farbe mit<br>a) 3 Attributen rot, gruen, blau vom Typ int.<br>b)  Einem Konstruktor, der diese drei Attribute initialisiert.<br>c) Get- und Set-Methoden für alle 3 Attribute.<br><br><b> Du kannst hier viel Code aus der Klasse Kreis kopieren.</b>"}, 
+    {"zeit":1,"txt":"Ändere die Klasse Kreis so ab, dass sie<br>a. Die Attribute rot, gruen, blau nicht mehr enthält.<br>b. Die entsprechenden get- und setMethoden nicht mehr enthält.<br>c.  Ein neues Attribut farbe vom Datentyp Farbe enthält.<br>d.  Dieses Attribut im Konstruktor mit einem Parameter-Wert initialisiert wird.<br>e.  Eine get- und eine set-Methode für das Attribut farbe enthält.<br>f.  In der show()-Methode das rot-, blau- und grün-Attribut des Objekts farbe verwendet."},
+      {"zeit":1,"txt":"Ändere in der Sketch-Klasse die Initialisierung von k so ab, dass du eine neue Farbe mit den Parameter-Werten 255,0,0 zuweist."},
+    {"zeit":1,"txt":"Schreibe in der draw()-Methode der Sketch-Klasse eine Anweisung mit der der Blauanteil der Farbe des Kreises k um eine Einheit erhöht wird:<br>a.  Definiere eine Variable f vom Typ Farbe<br>b.  Weise dieser Variablen die Farbe des Kreises k zu:<br>c.  Erhöhe den Blauanteil von f um eine Einheit:<br>d.  Weise dem Kreis k den neuen Wert der Farbe f zu."}
+     
+  
+  ],
+ 
+  "txtAngabe": [
+   
+   
+
+   ],
+ 
+
+  "ende":"Super, du hast die Aufgaben gelöst.<br>Jetzt kannst du mehrere Kreise erzeugen, die ihre Farbe unterschiedlich ändern.",
+  "copyright":"<a href='https://processing.org/'>Processing</a> "
+    
+}
