@@ -1,7 +1,7 @@
 { "typ":"Text",   
   "titel":"Get- und Set-Methoden in Processing",
   "untertitel":"Ein Kreis bewegt sich...",
-  "blueJ":"ProcessingGetterSetter/sketch_05Farben.zip",
+  "blueJ":"ProcessingFarben/sketch_05Farben.zip",
   "angabe":[
     {"zeit":1,"txt":"Erstelle in der Klasse Kreis drei private Attribut rot, gruen und blau vom Datentyp int."},
     {"zeit":1,"txt":"Ändere den Konstruktor der Klasse Kreis so ab, dass er<br>a. drei zusätzliche Parameter rot, gruen, blau vom Typ int hat.<br>b. diese Parameter-Werte den entsprechenden Attributen zuweist."},
