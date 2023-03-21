@@ -1,0 +1,31 @@
+{ "typ":"Text",   
+  "titel":"Bedingte Anweisungen in Processing",
+  "untertitel":"Eine Ampel schaltet auf Mausklick um.",
+  "blueJ":"ProcessingBedingteAnweisung/sketch_09_Bedingte_Anweisung.zip",
+  "angabe":[
+    {"zeit":1,"txt":"Deklariere in der Klasse Ampel ein privates Attribut zustand vom Typ int."},
+    {"zeit":1,"txt":"Initialisiere das Attribut zustand im Konstruktor mit dem Wert 0."},
+    {"zeit":1,"txt":"Programmiere eine get- und eine set-Methode für das Attribut zustand."},
+    {"zeit":1,"txt":"Analysiere, wie viele verschiedene Schaltzustände die Ampel haben muss und notiere dir die entsprechenden Werte des Attributs:<table><tr><td>Zustand</td><td>rot</td><td>...</td></tr><tr><td>this.zustand =</td><td>0</td><td>...</td></tr></table>"},
+    {"zeit":1,"txt":"Programmiere eine öffentliche Methode show(), mit der die Ampel in der Farbe leuchtet, die vom Wert des Attributs zustand vorgegeben wird."},
+    {"zeit":1,"txt":"Schreibe den Kopf einer öffentlichen Methode schalten(), die keinen Wert zurückgibt."},
+    {"zeit":1,"txt":"Im Rumpf der Methode soll der Wert des Attributs zustand um eins erhöht werden.<br>Wenn der Wert von zustand größer als 3 ist, soll er auf 0 gesetzt werden.<br>Abschließend soll die Methode show() aufgerufen werden."},    
+    {"zeit":1,"txt":"Erstelle in der sketch-Klasse eine öffentliche Methode mouseClicked() ohne Rückgabewert."},
+    {"zeit":1,"txt":"Im Rumpf der Methode soll die Methode schalten() des Objekts ampel aufgerufen werden.<br>Teste dein Programm - die Ampel schaltet jetzt auf Mausklick."},
+    {"zeit":1,"txt":"Deklariere in der sketch-Klasse ein zweites Objekt der Klasse Ampel mit dem Namen ampel1."},
+    {"zeit":1,"txt":"Initialisiere das Objekt ampel1 in der setup()-Methode, so dass es 100 Pixel rechts von ampel erscheint."},
+    {"zeit":1,"txt":"Rufe in der draw()-Methode die show()-Methode des Objekts ampel1 auf."},
+    {"zeit":1,"txt":"Setze in der setup()-Methode den Wert des Attributs zustand von ampel1 auf 2 (grün).<br>Rufe in der mouseClicked()-Methode auch für ampel1 die Methode schalten() auf."}
+    
+  
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Super, du hast die Aufgaben gelöst.<br>Die beiden Ampeln sollten jetzt genau versetzt zueiander schalten.",
+  "copyright":"<a href='https://processing.org/'>Processing</a> "
+    
+}
