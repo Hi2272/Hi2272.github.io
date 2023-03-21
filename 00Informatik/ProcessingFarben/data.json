@@ -5,7 +5,7 @@
   "angabe":[
     {"zeit":1,"txt":"Erstelle in der Klasse Kreis drei private Attribut rot, gruen und blau vom Datentyp int."},
     {"zeit":1,"txt":"Ändere den Konstruktor der Klasse Kreis so ab, dass er<br>a. drei zusätzliche Parameter rot, gruen, blau vom Typ int hat.<br>b. diese Parameter-Werte den entsprechenden Attributen zuweist."},
-    {"zeit":1,"txt":"Füge als erste Zeile in die Methode show() die Anweisung this.fill(this.rot, this.gruen, this.red); ein, so dass ein gefüllter Kreis gezeichnet wird."},
+    {"zeit":1,"txt":"Füge als erste Zeile in die Methode show() die Anweisung this.fill(this.rot, this.gruen, this.blau); ein, so dass ein gefüllter Kreis gezeichnet wird."},
     {"zeit":1,"txt":"Ändere die setup()-Methode der Klasse Sketch so ab, dass der Kreis k rot gefüllt ist."},
     {"zeit":1,"txt":"Programmiere in der Klasse Kreis für die drei Farb-Attribute get- und set-Methoden."},    
     {"zeit":1,"txt":"Programmiere in der Klasse Kreis eine Methode setFarbe mit drei Parametern, die alle 3 Farbattribute auf einmal setzt."},
