@@ -1,0 +1,27 @@
+{ "typ":"Text",   
+  "titel":"Vererbung",
+  "untertitel":"Ein grundlegendes Konzept der Objektorientierten Modellierung.",
+  "blueJ":"ProcessingVererbung/sketch_06Formen.zip",
+  "angabe":[
+    {"zeit":1,"txt":"Erstelle eine neue Klasse Form mit allen Attributen, die sowohl in der Klasse Kreis als auch in der Klasse Rechteck vorkommen."},
+    {"zeit":1,"txt":"Erstelle einen Konstruktor, in dem alle Attribute mit Parameter-Werte initialisiert.<br>Du kannst hier einige Zeilen aus der Klasse Kreis kopieren."},
+    {"zeit":1,"txt":"Kopiere alle get- und set-Methoden die sowohl in der Klasse Kreis als auch in der Klasse Rechteck vorkommen, in die Klasse Form."},
+    {"zeit":1,"txt":"Erstelle in der Klasse Form eine öffentliche Methode show(), die nur die Anweisung enthält, die in der Methode show von Kreis und Rechteck identisch ist."},
+    {"zeit":1,"txt":"Ergänze den Kopf der Klasse Kreis durch den Zusatz: <b>extends Form</b> und lösche alle Methoden, die du zuvor in Form kopiert hast."},
+    {"zeit":1,"txt":"Behebe die Fehlermeldung im Konstruktor der Klasse Kreis, indem du als erstes mit super(x,y,farbe); den Konstruktor der Oberklasse aufrufst.<br>Lösche anschließend die Attributzuweisungen für x,y,farbe. Diese erfolgen jetzt im Konstruktor der Oberklasse."},
+    {"zeit":1,"txt":"Ersetze in der Methode show() die fill(...)-Anweisung durch den Aufruf der show()-Methode der Oberklasse: super.show();."},    
+    {"zeit":1,"txt":"Lösche alle Attribute, die du bereits in der Oberklasse Form deklariert hast."},
+    {"zeit":1,"txt":"Beseitige die Fehlermeldung, indem du die Attribute in der Oberklasse nicht private, sondern protected deklarierst."},
+    {"zeit":1,"txt":"Ändere die Klasse Rechteck genauso ab, wie die Klasse Kreis."}    
+  
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Super, du hast die Aufgaben gelöst.<br>Du kannst jetzt die Klasse Rechteck und Kreis zum Zeichnen verwenden.",
+  "copyright":"<a href='https://processing.org/'>Processing</a> "
+    
+}
