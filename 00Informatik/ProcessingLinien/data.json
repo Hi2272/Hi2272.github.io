@@ -1,0 +1,24 @@
+{ "typ":"Text",   
+  "titel":"Die Klasse Linie",
+  "untertitel":"Eine Unterklasse der Klasse Form",
+  "blueJ":"ProcessingLinien/sketch_07Linien.zip",
+  "angabe":[
+    {"zeit":1,"txt":"Erstelle eine neue Klasse Linie, die sich von der Klasse Form ableitet." },
+    {"zeit":1,"txt":"Die Linie benötigt 5 Attribute:<ul><li>x,y = Koordinaten des Startpunktes,</li><li>dx,dy: Länge in x- und y-Richtung,</li><li>farbe: Linienfarbe</li></ul>Deklariere in der Klasse Linie alle Attribute, die noch nicht in der Oberklasse Form deklariert sind."},
+    {"zeit":1,"txt":"Erstelle einen Konstruktor der Klasse Linien mit Parameter-Werten für alle 5 Attribute.<br>Rufe im Rumpf den Konstruktor der Oberklasse auf und initialisiere die restlichen Attribute mit den Parameter-Werten."},
+    {"zeit":1,"txt":"Erstelle get- und set-Methoden für die Attribute, die in der Klasse Linie deklariert werden."},
+    {"zeit":1,"txt":"Schreibe eine öffentliche Methode <b>show()</b>, die folgende Anweisungen enthält:<ul><li>stroke(farbe.getRot(),farbe.getGruen(),farbe.getBlau()); // legt die Linienfarbe fest </li><li>line(x,y,x+dx,y+dy); //zeichnet die Linie</li></ul>"},
+    {"zeit":1,"txt":"Programmiere ein Haus vom Nikolaus."}
+    
+    
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Super, du hast die Aufgaben gelöst.<br>Du kannst jetzt die Klassen Rechteck, Kreis und Linie zum Zeichnen verwenden.",
+  "copyright":"<a href='https://processing.org/'>Processing</a> "
+    
+}
