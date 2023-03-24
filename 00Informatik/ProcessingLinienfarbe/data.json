@@ -1,0 +1,33 @@
+{ "typ":"Text",   
+  "titel":"Linienfarbe bei Kreisen, Rechtecken und Dreiecken",
+  "untertitel":"Überladen von Konstruktoren",
+  "blueJ":"ProcessingLinienfarbe/sketch_07cLinienfarbe.zip",
+  "angabe":[
+    {"zeit":1,"txt":"Erstelle in der Klasse Form ein neues Attribut linienfarbe vom Typ Farbe, auf das auch in den Unterklassen zugegriffen werden kann." },
+    {"zeit":1,"txt":"Erstelle eine öffentliche get- und set-Methode für das neue Attribut."},
+    {"zeit":1,"txt":"Initialisiere das Attribut linienfarbe im Konstruktor mit der Farbe schwarz als Standardwert."},
+    {"zeit":1,"txt":"Erstelle einen neuen Konstruktor, der 4 Parameter benötigt: x,y,farbe,linienfarbe"},
+    {"zeit":1,"txt":"Rufe in der 1. Zeile des neuen Konstruktors den alten Konstruktor mit der Anweisung <b>this(x,y,farbe);</b> auf.<br>Initialisier in der 2. Zeile das Attribut linienfarbe mit dem Parameter-Wert."},
+    {"zeit":1,"txt":"Füge in der Methode show() als 1. Zeile die Anweisung <b>stroke(linienfarbe.getRot(),linienfarbe.getGruen(),linienfarbe.getBlau())</b> ein, damit die Linienfarbe gesetzt wird."},
+    {"zeit":1,"txt":"Schreibe zwei weitere Anweisungen in die draw()-Methode, damit das Haus bei jedem Durchlauf um 1 Pixel nach rechts wandert."},
+    {"zeit":1,"txt":"Erzeuge in der Klasse Dreieck einen neuen Konstruktor, der 8 Parameter benötigt: x, y, dx1, dy1, dx2, dy2, farbe, linienfarbe)"},
+    {"zeit":1,"txt":"Rufe in der ersten Zeile des Konstruktors den neuen Konstruktor der Oberklasse auf."},
+    {"zeit":1,"txt":"Initialisiere anschließend die Attribute dx1, dy1, dx2, dy2 mit den Parameter-Werten."},
+    {"zeit":1,"txt":"Erstelle in der Klasse Rechteck einen neuen Konstruktor, mit dem die Linienfarbe gesetzt werden kann."},
+    {"zeit":1,"txt":"Erstelle in der Klasse Kreis ebenfalls einen neuen Konstruktor, mit dem die Linienfarbe gesetzt werden kann."}
+   
+    
+    
+    
+    
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Super, du hast die Aufgaben gelöst.<br>Du kannst jetzt bei allen Klassen die Linienfarbe einstellen.",
+  "copyright":"<a href='https://processing.org/'>Processing</a> "
+    
+}
