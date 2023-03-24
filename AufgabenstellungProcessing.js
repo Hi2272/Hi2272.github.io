@@ -62,8 +62,7 @@ function start(){
         } else {
             s1='<Button style="'+'padding: 10px;margin:10px;';
             s1=s1+'width:'+(width/5).toString()+'px;height:'+(height/4).toString()+'px;"';
-            s2=angabe[i].txt;
-            if (s2.length>60){s2=s2.substring(0,60)+".";}
+            s2=(i+1).toString()+". Schritt";
             s=s+s1+'onclick="startNummer('+i.toString()+')">'+s2+"</button>"
         }
        }
