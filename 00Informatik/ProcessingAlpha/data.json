@@ -1,0 +1,27 @@
+{ "typ":"Text",   
+  "titel":"Tranparente Farben",
+  "untertitel":"Der Alpha-Farbwert",
+  "blueJ":"ProcessingAlpha/sketch_07eAlpha.zip",
+  "txtAngabe": "<h2>Transparente Farben</h2><p>Neben den drei Grundfarben rot, grün und blau kann über den <b>alpha</b>-Wert festgelegt werden, wie transparent die Farbe ist:<ul><li>alpha = 255: vollständig deckende Farbe</li><li>alpha = 0: vollständig transparente = unsichtbare Farbe</li><li>alpha = 100: stark transparente = durchsichtige Farbe</li><li>alpha = 200: stark deckende Farbe</li></ul>In dieser Übung fügen wir der Klasse Farbe das Attribut alpha hinzu, damit wir transparente Formen erzeugen können. ",
+ 
+  "angabe":[
+    {"zeit":1,"txt":"Erstelle in der Klasse Farbe ein neues Attribut alpha vom Typ int, auf das in den Unterklassen zugegriffen werden kann." },
+    {"zeit":1,"txt":"Initialisiere alpha im Konstruktor der Klasse Farbe mit dem Standard-Wert 255."},
+    {"zeit":1,"txt":"Programmiere eine get- und eine set-Methode für das Attribut alpha."},
+    {"zeit":1,"txt":"Erstelle einen zweiten Konstruktor der Klasse Farbe, der vier Parameter vom Typ int benötigt: rot, gruen, blau, alpha."},
+    {"zeit":1,"txt":"Rufe in der ersten Zeile des neuen Konstruktors den alten Konstruktor mit den Parameter-Werten rot, gruen, blau auf."},
+    {"zeit":1,"txt":"Initialisiere in der zweiten Zeile das Attribut alpha mit dem Parameter-Wert."},
+    {"zeit":1,"txt":"Ändere die show()-Methode der Klasse Form so ab, dass für die Farbdefinitionen als 4. Parameter der Alpha-Wert verwendet wird. Diesen Wert bekommst du über die getMethode() der Farbe."},
+    {"zeit":1,"txt":"Erzeuge in der Klasse sketch einen transparenten roten Kreis und einen transparenten grünen Kreis, die sich überlappen."}
+    
+    
+    
+    
+  ],
+ 
+ 
+
+  "ende":"Super, du hast jetzt für alle Formen die Möglichkeit, deckende oder transparente Farben zu verwenden.",
+  "copyright":"<a href='https://processing.org/'>Processing</a> "
+    
+}

@@ -50,7 +50,7 @@ function start(){
     menue=document.getElementById("Menue");
     menue.style.visibility='visible';
     document.getElementById("btnWeiter").style.visibility='hidden';
-    document.getElementById("Angabe").innerHTML="Klicke auf die Übung, mit der du starten willst!<br>";
+    document.getElementById("Angabe").innerHTML=txtAngabe+"<br><br>Klicke auf die Übung, mit der du starten willst!<br>";
     document.getElementById("Ueberschrift").innerHTML="Hauptmenü";
    
     s="";
