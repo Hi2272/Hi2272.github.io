@@ -1,6 +1,7 @@
 # Scratch for Arduino (S4A)
 ## 1. Installieren der Firmware auf dem Arduino Uno
-**Scratch for Arduino (S4A)** kann einen Arduino Uno vom PC aus fernsteuern. Der Mikrocontroller reagiert direkt auf Eingaben am PC und der PC kann Messwerte vom Controller in Echtzeit weiter verarbeiten.  
+**Scratch for Arduino (S4A)** kann einen Arduino Uno vom PC aus fernsteuern.  
+Der Mikrocontroller reagiert direkt auf Eingaben am PC und der PC kann Messwerte vom Controller in Echtzeit weiterverarbeiten.  
 Hierzu muss eine Firmware-Datei auf dem Arduino installiert werden:  
 
 
@@ -11,12 +12,12 @@ Hierzu muss eine Firmware-Datei auf dem Arduino installiert werden:
 4. Wähle den Arduino Uno als Board aus:  
    ![Board Wählen](Screenshot_2.png)
 5. Klicke auf den Pfeil, um das Programm zu compilieren und auf den Arduino zu übertragen.  
-   ![Alt text](Screenshot_3.png)
+   ![hochladen](Screenshot_3.png)
 6. Der Arduino Uno kann jetzt mit **S4A** programmiert werden.  
 Starte das Programm **S4A**.
 ## 2. Eine LED zum Leuchten bringen
 1. Baue folgende Schaltung auf:  
-   ![Alt text](Screenshot_4.png)  
+   ![SchaltungLED](Screenshot_4.png)  
    Jede LED muss immer mit einem Vorwiderstand geschützt werden. Sonst besteht die Gefahr, dass sie durchbrennt.
 2. Erstelle in S4A ein Programm, das beim Klicken auf die grüne Fahne folgendes macht:
    1. Pin8 soll high geschaltet werden.
