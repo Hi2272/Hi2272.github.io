@@ -3,13 +3,13 @@
   "untertitel":"Eine Unterklasse der Klasse Form",
   "blueJ":"ProcessingDreieck/sketch_07bDreieck.zip",
   "angabe":[
-    {"zeit":1,"txt":"Erstelle eine neue Klasse Dreieck, die sich von der Klasse Form ableitet." },
-    {"zeit":1,"txt":"Ein Dreieck benötigt 7 Attribute:<ul><li>x,y = Koordinaten des Startpunktes,</li><li>dx1,dy1: Länge der 1. Linie in x- und y-Richtung,</li><li>dx2,dy2: Länge der 2. Linie in x- und y-Richtung,</li><li>farbe: Füllfarbe</li></ul>Deklariere in der Klasse Linie alle Attribute, die noch nicht in der Oberklasse Form deklariert sind."},
-    {"zeit":1,"txt":"Erstelle einen Konstruktor der Klasse Linien mit Parameter-Werten für alle 7 Attribute.<br>Rufe im Rumpf den Konstruktor der Oberklasse auf und initialisiere die restlichen Attribute mit den Parameter-Werten."},
-    {"zeit":1,"txt":"Erstelle get- und set-Methoden für die Attribute, die in der Klasse Dreieck deklariert werden."},
-    {"zeit":1,"txt":"Schreibe eine öffentliche Methode <b>show()</b>, die folgende Anweisungen enthält:<ul><li>Aufruf der Methode show() der Oberklasse // legt die Füllfarbe fest </li><li>triangle(x,y,x+dx1,y+dy1,x+dx2,y+dy2); //zeichnet das Dreieck</li></ul>"},
-    {"zeit":1,"txt":"Programmiere in der Sketch-Klasse ein gelbes Haus mit einem roten Dach."},
-    {"zeit":1,"txt":"Schreibe zwei weitere Anweisungen in die draw()-Methode, damit das Haus bei jedem Durchlauf um 1 Pixel nach rechts wandert."}
+    {"zeit":15,"txt":"Erstelle eine neue Klasse Dreieck, die sich von der Klasse Form ableitet." },
+    {"zeit":15,"txt":"Ein Dreieck benötigt 7 Attribute:<ul><li>x,y = Koordinaten des Startpunktes,</li><li>dx1,dy1: Länge der 1. Linie in x- und y-Richtung,</li><li>dx2,dy2: Länge der 2. Linie in x- und y-Richtung,</li><li>farbe: Füllfarbe</li></ul>Deklariere in der Klasse Linie alle Attribute, die noch nicht in der Oberklasse Form deklariert sind."},
+    {"zeit":15,"txt":"Erstelle einen Konstruktor der Klasse Linien mit Parameter-Werten für alle 7 Attribute.<br>Rufe im Rumpf den Konstruktor der Oberklasse auf und initialisiere die restlichen Attribute mit den Parameter-Werten."},
+    {"zeit":15,"txt":"Erstelle get- und set-Methoden für die Attribute, die in der Klasse Dreieck deklariert werden."},
+    {"zeit":15,"txt":"Schreibe eine öffentliche Methode <b>show()</b>, die folgende Anweisungen enthält:<ul><li>Aufruf der Methode show() der Oberklasse // legt die Füllfarbe fest </li><li>triangle(x,y,x+dx1,y+dy1,x+dx2,y+dy2); //zeichnet das Dreieck</li></ul>"},
+    {"zeit":15,"txt":"Programmiere in der Sketch-Klasse ein gelbes Haus mit einem roten Dach."},
+    {"zeit":15,"txt":"Schreibe zwei weitere Anweisungen in die draw()-Methode, damit das Haus bei jedem Durchlauf um 1 Pixel nach rechts wandert."}
     
     
     
