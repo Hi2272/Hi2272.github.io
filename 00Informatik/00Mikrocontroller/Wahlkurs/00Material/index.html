@@ -11,31 +11,46 @@
  
  <!--  <link rel="stylesheet" href="StyleMD.css">
 -->
-  <script>
-    fetch("text.md")
-      .then((response) => response.text())
-      .then((text) => {
-        document.getElementById("Markdown").innerHTML = text;
-      })
-
-      function start(){
-        fetch("text.md")
-      .then((response) => response.text())
-      .then((text) => {
-        document.getElementById("Markdown").innerHTML = text;
-      })
-      }
-  </script>
+ 
 </head>
 
 <body onload="start">
   <md-block id="Markdown">
+    <h2 id="materialliste">Materialliste</h2>
+    <ol>
+    <li>Alarmanlage<ol>
+    <li>Arduino Uno</li>
+    <li>Breadboard</li>
+    <li>LEDs</li>
+    <li>Widerstände</li>
+    <li>Taster</li>
+    <li>PIR-Sensor</li>
+    <li>passiver Buzzer</li>
+    <li>IR Fernbedienung</li>
+    </ol>
+    </li>
+    <li>Messwerterfassung<ol>
+    <li>DS18B Thermofühler</li>
+    <li>OLED-Display</li>
+    </ol>
+    </li>
+    <li>Selbstfahrender Roboter<ol>
+    <li>3D-gedruckte Bauteile</li>
+    <li>Arduino Uno Motorshield</li>
+    <li>Ultraschall-Sensor</li>
+    <li>Getriebe Motoren</li>
+    <li>SG90 Servomotor</li>
+    </ol>
+    </li>
+    </ol>
+    <p><a href="../index.html">zurück</a></p>
+    
+ 
   </md-block>
 
 </body>
 <footer>
-  Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt. Der Markdown Text wird mit <a href="https://md-block.verou.me">md-block</a> in HTML konvertiert. 
-
+ 
 
 </footer>
 </html>
