@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Wahlkurs</title>
+  <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+
+ <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+ 
+ <!--  <link rel="stylesheet" href="StyleMD.css">
+-->
+  <script>
+    fetch("text.md")
+      .then((response) => response.text())
+      .then((text) => {
+        document.getElementById("Markdown").innerHTML = text;
+      })
+  </script>
+</head>
+
+<body>
+  <md-block id="Markdown">
+  </md-block>
+
+</body>
+<footer>
+  Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt. Der Markdown Text wird mit <a href="https://md-block.verou.me">md-block</a> in HTML konvertiert. 
+
+
+</footer>
+</html>
