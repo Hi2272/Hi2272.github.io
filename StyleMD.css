@@ -8,16 +8,19 @@ body {
     padding: 0;
     background-color: #ffffe0;
     color: darkslateblue;
-    font-size: x-large;
+    font-size: large;
     font-family: Arial, Helvetica, sans-serif;
     text-align: left;
     width:100%;
     height:100%;
   }
 
+ ol li {margin-top: 0.5em;}
+ ul li {margin-top: 0.5em;}
+  
 header {
     color: darkslateblue;
-    font-size: x-large;
+    font-size: large;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     
