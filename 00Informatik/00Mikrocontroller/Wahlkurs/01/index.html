@@ -17,6 +17,13 @@
       .then((text) => {
         document.getElementById("Markdown").innerHTML = text;
       })
+      function start(){
+        fetch("text.md")
+      .then((response) => response.text())
+      .then((text) => {
+        document.getElementById("Markdown").innerHTML = text;
+      })
+      }
   </script>
 </head>
 
