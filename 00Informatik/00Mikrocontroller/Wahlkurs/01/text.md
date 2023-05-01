@@ -20,11 +20,11 @@ Starte das Programm **S4A**.
    ![SchaltungLED](Screenshot_4.png)  
    Jede LED muss immer mit einem Vorwiderstand geschützt werden. Sonst besteht die Gefahr, dass sie durchbrennt.
 2. Erstelle in S4A ein Programm, das beim Klicken auf die grüne Fahne folgendes macht:
-   1. Pin8 soll high geschaltet werden.
-   2. Pin9 soll low geschaltet werden.
+   1. Pin8 soll high geschaltet werden (digital 8 on).
+   2. Pin9 soll low geschaltet werden (digital 8 off).
    3. Eine Sekunde Pause
-   4. Pin8 soll low geschaltet werden.
-   5. pin9 soll low geschaltet werden.
+   4. Pin8 soll low geschaltet werden (digital 8 off).
+   5. pin9 soll low geschaltet werden (digital 8 off).
 3. Verändere die Werte für Pin8 und Pin9 in Zeile 1 und 2, bis die LED leuchtet:
    |Pin8|Pin9|LED|
    |----|----|----|
@@ -40,6 +40,14 @@ Starte das Programm **S4A**.
    |-----|-----|
    |Pluspol:||
    |Minuspol:||
-     
+
+## 3. Eine LED unterschiedlich stark leuchten lassen
+Digitale Signale sind entweder HIGH oder LOW. Damit kann eine LED entweder leuchten oder ausgeschaltet sein.  
+Um LEDs unterschiedlich stark leuchten zu lassen, verwendet man eine Technik, die als Pulsweitenmodulation (PWM) bezeichet wird. Nur wenige Pins am Arduino können PWM-Signale abgeben. Sie sind auf dem Bord mit ~ gekennzeichnet.  
+1. Ändere dein Programm so ab, dass
+   1. Pin 8 LOW geschaltet wird (digital 8 off)  
+   2. Pin 9 soll 
+
+
        
 [zurück](../index.html)

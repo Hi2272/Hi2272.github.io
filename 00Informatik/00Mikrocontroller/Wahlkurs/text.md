@@ -26,10 +26,12 @@ Im Kurs sollen folgende Projekte verwirklicht werden:
    2. OLED-Display zur Darstellung der Messwerte
    3. Graphische Ausgabe am Computer  
 3. **Diskobeleuchtung**  
-   Wir steuern eine Matrix aus 64 RGB-LEDs so an, dass sie in allen Farben leuchtet. Die Farben sollen sich durch laute Geräusche ändern lassen.
-   1. RGB-LEDs
+ Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.  
+![Partylicht](03-01.png)  
+In folgendem Video könnt ihr die Funktion des Lichtes sehen:  [YouTube Video Partylicht](https://youtu.be/V1RZFxpPh4s)  
+  1. RGB-LEDs
    2. Tonaufnahmen mit einem Mikrofon
-4. **Selbstfahrender Roboter**  
+1. **Selbstfahrender Roboter**  
    Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) von rtheiss bauen wir einen Roboter, der Hindernisse erkennt und ihnen ausweichen kann.
    1. Motorsteuerung
    2. Ultraschall-Entfernungsmesser
