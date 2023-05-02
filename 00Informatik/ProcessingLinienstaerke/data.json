@@ -7,7 +7,7 @@
     {"zeit":15,"txt":"Erstelle eine öffentliche get- und set-Methode für das neue Attribut."},
     {"zeit":15,"txt":"Initialisiere das Attribut linienstaerke im ersten Konstruktor mit dem Wert 1 als Standardwert."},
     {"zeit":15,"txt":"Erstelle einen neuen Konstruktor, der 5 Parameter benötigt: x,y,farbe,linienfarbe,linienstaerke"},
-    {"zeit":15,"txt":"Rufe in der 1. Zeile des neuen Konstruktors den zweiten Konstruktor mit der Anweisung <b>this(x,y,farbe,linienfarbe);</b> auf.<br>Initialisiere in der 2. Zeile das Attribut linienfarbe mit dem Parameter-Wert."},
+    {"zeit":15,"txt":"Rufe in der 1. Zeile des neuen Konstruktors den zweiten Konstruktor mit der Anweisung <b>this(x,y,farbe,linienfarbe);</b> auf.<br>Initialisiere in der 2. Zeile das Attribut linienstaerke mit dem Parameter-Wert."},
     {"zeit":15,"txt":"Füge in der Methode show() als 1. Zeile die Anweisung <b>strokeWeight(linienstaerke)</b> ein, damit die Linienstaerke gesetzt wird."},
     {"zeit":15,"txt":"Erzeuge in der Klasse Dreieck einen neuen Konstruktor, der 9 Parameter benötigt: x, y, dx1, dy1, dx2, dy2, farbe, linienfarbe, linienstaerke)"},
     {"zeit":15,"txt":"Rufe in der ersten Zeile des Konstruktors den neuen Konstruktor der Oberklasse auf."},
