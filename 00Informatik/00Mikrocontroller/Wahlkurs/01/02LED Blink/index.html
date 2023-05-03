@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="cache-control" content="no-cache">
+  <title>Wahlkurs</title>
+  <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+
+ <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+ 
+ <!--  <link rel="stylesheet" href="StyleMD.css">
+-->
+  </head>
+
+<body>
+  <md-block id="Markdown">
+      <h1 id="eine-blinkende-led">Eine blinkende LED</h1>
+      <h2 id="1-schaltung">1. Schaltung</h2>
+      <p>Wir arbeiten mit der gleichen Schaltung:
+      <img src="../Screenshot_4.png" alt="Alt text"></p>
+      <h2 id="2-programmierung">2. Programmierung</h2>
+      <p>Programmiere folgenden Code:</p>
+      <pre><code class="lang-C++">void setup() {
+        pinMode(8, OUTPUT);
+        pinMode(9, OUTPUT);
+        digitalWrite(9,LOW);  // Pin 9 = Minuspol der LED
+      }
+      
+      void loop() {
+        digitalWrite(8, HIGH); // Pin 8 = Pluspol -&gt; LED ein
+        delay(500);            // 500 ms Pause: LED leuchtet
+        digitalWrite(8, LOW);  // Pin 8 = Minuspol -&gt; LED aus
+        delay(500);            // 500 ms Pause: LED leuchtet nicht.
+      }
+      </code></pre>
+      <h2 id="3-erkl-rung">3. Erklärung</h2>
+      <p>Die <strong>setup-Methode läuft einmal ab</strong>, wenn der Mikrocontroller an den Strom angeschlossen wird. Hier stehen Befehle, die zu Beginn ausgeführt werden müssen. In unserem Beispiel, wird der Pin 9 dauerhaft auf LOW geschaltet.<br>Die <strong>loop-Methode läuft immer wieder ab.</strong> Die Befehle <em>LED ein, Pause, LED aus, Pause</em> wiederholen sich solange, wie der Mikrocontroller am Strom angeschlossen ist.</p>
+      <p><a href="../index.html">zurück</a></p>
+   
+     </md-block>
+
+</body>
+<footer>
+
+  Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.
+
+</footer>
+</html>
