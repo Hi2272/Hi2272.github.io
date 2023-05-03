@@ -1,21 +1,18 @@
 { "typ":"Text",   
-  "titel":"Linienstaerke bei Kreisen, Rechtecken und Dreiecken",
-  "untertitel":"Überladen von Konstruktoren II",
-  "blueJ":"ProcessingLinienstaerke/sketch_07fQuadrat.zip",
+  "titel":"Quadrat - eine Unterklasse von Rechteck",
+  "untertitel":"Überladen von Konstruktoren III",
+  "blueJ":"ProcessingQuadrat/sketch_07fQuadrat.zip",
   "angabe":[
-    {"zeit":15,"txt":"Erstelle eine neue Klasse Quadrat, die sich von der Klasse Rechteck ableitet." },
-    {"zeit":15,"txt":"Erstelle einen Konstruktor der Klasse Quadrat ohne Parameter.<br>Rufe in der 1. Zeile des Konstruktors den Konstruktor der Oberklasse auf und erzeuge ein Standard-Rechteck an der Position x=50,y=100, mit der Länge und Breite 50, der Füllfarbe weiß, der Linienfarbe schwarz und der Linienstärke 1"},
-    {"zeit":15,"txt":"Initialisiere das Attribut linienstaerke im ersten Konstruktor mit dem Wert 1 als Standardwert."},
-    {"zeit":15,"txt":"Erstelle einen neuen Konstruktor, der 5 Parameter benötigt: x,y,farbe,linienfarbe,linienstaerke"},
-    {"zeit":15,"txt":"Rufe in der 1. Zeile des neuen Konstruktors den zweiten Konstruktor mit der Anweisung <b>this(x,y,farbe,linienfarbe);</b> auf.<br>Initialisiere in der 2. Zeile das Attribut linienstaerke mit dem Parameter-Wert."},
+    {"zeit":1,"txt":"Erstelle eine neue Klasse Quadrat, die sich von der Klasse Rechteck ableitet." },
+    {"zeit":1,"txt":"Erstelle einen Konstruktor der Klasse Quadrat ohne Parameter.<br>Rufe in der 1. Zeile den Konstruktor der Oberklasse auf und erzeuge ein Standard-Rechteck an der Position x=50,y=100, mit der Länge und Breite 50 und der Füllfarbe weiß."},
+    {"zeit":1,"txt":"<ol><li>Deklariere in der Sketch-Klasse ein Objekt q1 der Klasse Quadrat.</li><li>Initalisiere in der setup-Methode dieses Objekt durch den Aufruf des neuen Konstruktors ohne Parameter.</li><li>Rufe in der draw-Methode die show()-Methode des Objekts q1 auf.</li></ol>"},
+    {"zeit":1,"txt":"Damit das Quadrat an beliebigen Stellen erscheinen kann, benötigen wir einen zweiten Konstruktor mit den Parameter x und y.<br>Kopiere den ersten Konstruktor und ändere die Kopie so ab, dass sie zwei Parameter x und y vom Typ int benötigt und beim Aufruf des Konstruktors der Oberklasse verwendet."},
+    {"zeit":1,"txt":"Verändere die setup-Methode der Sketch-Klasse so, dass q1 an der Position (100,100) erscheint."},
    
-    {"zeit":15,"txt":"Füge in der Methode show() als 1. Zeile die Anweisung <b>strokeWeight(linienstaerke)</b> ein, damit die Linienstaerke gesetzt wird."},
-    {"zeit":15,"txt":"Erzeuge in der Klasse Dreieck einen neuen Konstruktor, der 9 Parameter benötigt: x, y, dx1, dy1, dx2, dy2, farbe, linienfarbe, linienstaerke)"},
-    {"zeit":15,"txt":"Rufe in der ersten Zeile des Konstruktors den neuen Konstruktor der Oberklasse auf.<br>Initialisiere anschließend die Attribute dx1, dy1, dx2, dy2 mit den Parameter-Werten."},
-    {"zeit":15,"txt":"Erstelle in der Klasse Rechteck einen neuen Konstruktor, mit dem die Linienstaerke gesetzt werden kann."},
-    {"zeit":15,"txt":"Erstelle in der Klasse Kreis ebenfalls einen neuen Konstruktor, mit dem die Linienstaerke gesetzt werden kann."},
-    
-    {"zeit":15,"txt":"Erstelle in der Klasse Linie auch einen neuen Konstruktor, mit dem die Linienstaerke gesetzt werden kann."}
+    {"zeit":1,"txt":"Durch einen dritten Parameter b vom Typ int soll die Breite des Quadrats festgelegt werden.<br>Kopiere den zweiten Konstruktor der Klasse Quadrat und passe ihn entsprechend an."},
+    {"zeit":1,"txt":"Erzeuge einen vierten Konstruktor, bei dem mit einem vierten Parameter die Farbe des Quadrats festgelegt werden kann."},
+    {"zeit":1,"txt":"Erzeuge zwei weitere Konstruktoren:<ol><li>Zusätzlich zu allen anderen Parametern soll die Linienfarbe festgelegt werden können.</li><li>Als letzter Parameter soll die Linienstärke definiert werden.</li></ol>"},
+    {"zeit":1,"txt":"Erzeuge in der Sketch-Klasse ein Bild aus vier verschiedenfarbigen Quadraten, die direkt nebeneinander liegen."}
     
    
     
