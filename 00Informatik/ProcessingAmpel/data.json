@@ -1,0 +1,30 @@
+{ "typ":"Text",   
+  "titel":"Eine Ampel mit Vererbung",
+  "untertitel":"",
+  "blueJ":"ProcessingAmpel/sketch_08Ampel.zip",
+  "angabe":[
+    {"zeit":1,"txt":"Ohne Vererbung besteht ein Objekt der Klasse Ampel aus vier Objekten aus zwei verschiedenen Klassen.<br>Zeichne ein entsprechendes Klassendiagramm."},
+    {"zeit":1,"txt":"Folgender Text beschreibt die Ampel auf der rechten Seite unter Verwendung von Vererbung:<br>\"Eine Ampel ist ein Rechteck, das drei Objekte der Klasse Lampe enthält.Eine Lampe ist ein Kreis.\"<br>Zeichne ein Klassendiagramm, das diese Vererbung berücksichtigt."},
+    {"zeit":1,"txt":"Programmiere die Klasse Lampe mit folgenden Eigenschaften:<ul><li>Die Klasse Lampe erweitert die Klasse Kreis.</li><li>Der Konstruktor hat folgende Parametern:<ul><li>x,y-Koordinate des Mittelpunktes als ganze Zahlen</li><li>durchmesser als ganze Zahl</li><li>farbe als Farbe</li></ul></li></ul>"},
+    {"zeit":1,"txt":"Rufe den Konstruktor der Oberklasse mit den Parameter-Werten auf."},
+    {"zeit":1,"txt":"Programmiere eine öffentliche Methode <b>an()</b>, in der die show()-Methode der Oberklasse aufgerufen wird."},
+    {"zeit":1,"txt":"Programmiere eine öffentliche Methode <b>aus()</b>, in der die <b>fill()</b>-Methode mit jeweils einem"}
+    
+    
+       
+    
+  
+    
+    
+    
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Super, du hast die Aufgaben gelöst.<br>Du kannst jetzt die Klassen Rechteck, Kreis und Linie zum Zeichnen verwenden.",
+  "copyright":"<a href='https://processing.org/'>Processing</a> "
+    
+}
