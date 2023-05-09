@@ -1,0 +1,24 @@
+{
+  "typ": "Bild",
+  "titel": "Powerpoint",
+  "untertitel": "Erstelle folgende Präsentationsfolien in Powerpoint und klicke dann auf <i>Lösung</i> und anschließend auf <i>Weiter</i>.",
+  "angabe": [
+    {
+      "txt": "Folie 1: Keine Animationen",
+      "zeit": 1
+    },
+    {
+      "txt": "Folie 2: Der Kreis, die Linie und das Textfeld sollen gleichzeitig auf Tastendruck erscheinen.",
+      "zeit": 1
+    },
+    {
+      "txt": "Folie 3: Auf dem Bild sollen eine Menge Schüler zu sehen sein – es kann auch ein anderes gesucht werden.<br>Der Text soll in einem Textfeld stehen. Er soll absatzweise auf Klick erscheinen.<br>Suche im Internet nach aktuellen Schülerzahlen.",
+      "zeit": 1
+    }
+  ],
+  "txtAngabe": [
+    
+  ],
+  "ende": "",
+  "copyright":""
+}
