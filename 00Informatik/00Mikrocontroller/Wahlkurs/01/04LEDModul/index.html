@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Die 3-Farben-LED</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="die-3-farben-led">Die 3-Farben-LED</h1>
+<h2 id="1-schaltung">1. Schaltung</h2>
+<p>Auf dem Modul sind die nötigen Vorwiderstände bereits verlötet. Wir können es daher sehr einfach an den Arduino UNO anschließen:</p>
+<ul>
+<li>B : Pin 3</li>
+<li>R : Pin 5</li>
+<li>G : Pin 9</li>
+<li>Minus: GND</li>
+</ul>
+<p>Die drei Pins 3,5 und 9 sind mit einem ~ gekennzeichnet. Das bedeutet, dass der Arduino an dieser Stelle analoge Werte zwischen 0 und 255 ausgeben kann. Wir können unsere LEDs also dimmen.</p>
+<h2 id="2-programmierung">2. Programmierung</h2>
+<ol>
+<li>Schreibe folgenden Sketch und lade ihn auf den Arduino hoch:</li>
+</ol>
+<pre><code class="language-C++"><span class="hljs-type">int</span> blau=<span class="hljs-number">3</span>;
+<span class="hljs-type">int</span> rot=<span class="hljs-number">5</span>;
+<span class="hljs-type">int</span> gruen=<span class="hljs-number">9</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-built_in">pinMode</span>(rot,OUTPUT);
+    <span class="hljs-built_in">pinMode</span>(gruen,OUTPUT);
+    <span class="hljs-built_in">pinMode</span>(blau,OUTPUT);
+    <span class="hljs-built_in">analogWrite</span>(rot,<span class="hljs-number">255</span>);
+    <span class="hljs-built_in">analogWrite</span>(gruen,<span class="hljs-number">0</span>);
+    <span class="hljs-built_in">analogWrite</span>(blau,<span class="hljs-number">0</span>);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{
+
+}
+</code></pre>
+<ol start="2">
+<li>Programmiere folgende Sequenz in der loop()-Methode
+<ol>
+<li>Die LED leuchtet 500 ms lang grün.</li>
+<li>Die LED leuchtet 500 ms lang blau.</li>
+<li>Die LED leuchtet 500 ms lang weiß (Mischung aus rot,grün und blau).</li>
+<li>Die LED leuchtet 500 ms lang rot.</li>
+<li>Die LED leuchtet 500 ms schwach rot (50 Einheiten).</li>
+</ol>
+</li>
+</ol>
+<p><a href="Loesung.html">Lösung</a></p>
+<p><a href="../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>

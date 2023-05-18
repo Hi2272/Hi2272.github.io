@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Vereinfachung des Codes</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <pre><code class="language-C++"><span class="hljs-type">int</span> blau=<span class="hljs-number">3</span>;
+<span class="hljs-type">int</span> rot=<span class="hljs-number">5</span>;
+<span class="hljs-type">int</span> gruen=<span class="hljs-number">9</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-built_in">pinMode</span>(rot,OUTPUT);
+    <span class="hljs-built_in">pinMode</span>(gruen,OUTPUT);
+    <span class="hljs-built_in">pinMode</span>(blau,OUTPUT);
+    <span class="hljs-built_in">analogWrite</span>(rot,<span class="hljs-number">255</span>);
+    <span class="hljs-built_in">analogWrite</span>(gruen,<span class="hljs-number">0</span>);
+    <span class="hljs-built_in">analogWrite</span>(blau,<span class="hljs-number">0</span>);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-built_in">analogWrite</span>(rot,<span class="hljs-number">0</span>);
+    <span class="hljs-built_in">analogWrite</span>(gruen,<span class="hljs-number">255</span>);
+    <span class="hljs-built_in">analogWrite</span>(blau,<span class="hljs-number">0</span>);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+    <span class="hljs-built_in">analogWrite</span>(rot,<span class="hljs-number">0</span>);
+    <span class="hljs-built_in">analogWrite</span>(gruen,<span class="hljs-number">0</span>);
+    <span class="hljs-built_in">analogWrite</span>(blau,<span class="hljs-number">255</span>);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+    <span class="hljs-built_in">analogWrite</span>(rot,<span class="hljs-number">255</span>);
+    <span class="hljs-built_in">analogWrite</span>(gruen,<span class="hljs-number">255</span>);
+    <span class="hljs-built_in">analogWrite</span>(blau,<span class="hljs-number">255</span>);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+    <span class="hljs-built_in">analogWrite</span>(rot,<span class="hljs-number">255</span>);
+    <span class="hljs-built_in">analogWrite</span>(gruen,<span class="hljs-number">0</span>);
+    <span class="hljs-built_in">analogWrite</span>(blau,<span class="hljs-number">0</span>);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+    <span class="hljs-built_in">analogWrite</span>(rot,<span class="hljs-number">50</span>);
+    <span class="hljs-built_in">analogWrite</span>(gruen,<span class="hljs-number">0</span>);
+    <span class="hljs-built_in">analogWrite</span>(blau,<span class="hljs-number">0</span>);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+}
+</code></pre>
+<h2 id="vereinfachung-des-codes">Vereinfachung des Codes</h2>
+<p>Um den Code einfacher zu gestalten, definieren wir eine neue Methode <strong>farbe</strong>, mit der die LED in einer bestimmten Farbe leuchten soll.</p>
+<ol>
+<li>Schreibe diesen Code zwischen die setup()- und die loop()-Methode</li>
+</ol>
+<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">farbe</span><span class="hljs-params">(<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> g,<span class="hljs-type">int</span> b)</span></span>{
+    <span class="hljs-built_in">analogWrite</span>(rot,r);
+    <span class="hljs-built_in">analogWrite</span>(gruen,g);
+    <span class="hljs-built_in">analogWrite</span>(blau,b);
+}
+</code></pre>
+<ol start="2">
+<li>Ersetze jetzt in der loop()-Methode die analogWrite(...)-Blöcke durch den Aufruf der neuen Methode farbe() mit den passenden Parameterwerten.<br>
+Bsp.: farbe(255,0,0); für rot</li>
+</ol>
+<p><a href="Loesung2.html">Lösung</a></p>
+<p><a href="../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>
