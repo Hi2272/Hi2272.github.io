@@ -12,10 +12,10 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
 ## Projekte
 Im Kurs sollen folgende Projekte verwirklicht werden:
 1. **Alarmanlage**  
-   Wir bauen eine voll funktionsfähige Alarmanlage.  
+   Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung aktiviert werden kann.  
    ![Alarmanlage.png](Alarmanlage.png)
    1. [Leuchtdioden](01/index.html)
-   2. Bewegungsmelder (PIR-Sensor)
+   2. [Bewegungsmelder](02/index.html)
    3. Passiver Buzzer
    4. Infrarot-Fernbedienung 
 2. **Messwerterfassung**  
@@ -42,8 +42,8 @@ In folgendem Video könnt ihr die Funktion des Lichtes sehen:  [YouTube Video Pa
     margin: 10px;
     height: 10%;
     ">
-Haftungsausschluss
-<hr>
+
+
   Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt. 
   <h2>Haftungsausschluss</h2>
   <h3>Inhalt des Onlineangebotes</h3>
