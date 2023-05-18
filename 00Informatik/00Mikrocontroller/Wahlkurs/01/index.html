@@ -1,103 +1,55 @@
 <!DOCTYPE html>
-<html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>LEDs am Arduino</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="cache-control" content="no-cache">
-  <title>Wahlkurs</title>
-  <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
 
- <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
- 
- <!--  <link rel="stylesheet" href="StyleMD.css">
--->
-  </head>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
 
-<body>
-  <md-block id="Markdown">
-    <h1 id="scratch-for-arduino-s4a">Scratch for Arduino (S4A)</h1>
-    <h2 id="1-installieren-der-firmware-auf-dem-arduino-uno">1. Installieren der Firmware auf dem Arduino Uno</h2>
-    <p><strong>Scratch for Arduino (S4A)</strong> kann einen Arduino Uno vom PC aus fernsteuern.<br>Der Mikrocontroller reagiert direkt auf Eingaben am PC und der PC kann Messwerte vom Controller in Echtzeit weiterverarbeiten.<br>Hierzu muss eine Firmware-Datei auf dem Arduino installiert werden:  </p>
-    <ol>
-    <li>Schließe den Arduino Uno über das USB-Kabel an den Rechner an.</li>
-    <li>Starte das Programm ArduinoIDE</li>
-    <li>Öffne die Datei <a href="S4AFirmware16.ino">S4AFirmware16.ino</a><br><img src="Screenshot_1.png" alt="File.Open"></li>
-    <li>Wähle den Arduino Uno als Board aus:<br><img src="Screenshot_2.png" alt="Board Wählen"></li>
-    <li>Klicke auf den Pfeil, um das Programm zu compilieren und auf den Arduino zu übertragen.<br><img src="Screenshot_3.png" alt="hochladen"></li>
-    <li>Der Arduino Uno kann jetzt mit <strong>S4A</strong> programmiert werden.<br>Starte das Programm <strong>S4A</strong>.</li>
-    </ol>
-    <h2 id="2-eine-led-zum-leuchten-bringen">2. Eine LED zum Leuchten bringen</h2>
-    <ol>
-    <li><p>Baue folgende Schaltung auf:<br><img src="Screenshot_4.png" alt="SchaltungLED"><br>Jede LED muss immer mit einem Vorwiderstand geschützt werden. Sonst besteht die Gefahr, dass sie durchbrennt.</p>
-    </li>
-    <li><p>Erstelle in S4A ein Programm, das beim Klicken auf die grüne Fahne folgendes macht:</p>
-    <ol>
-    <li>Pin8 soll high geschaltet werden.</li>
-    <li>Pin9 soll low geschaltet werden.</li>
-    <li>Eine Sekunde Pause</li>
-    <li>Pin8 soll low geschaltet werden.</li>
-    <li>pin9 soll low geschaltet werden.</li>
-    </ol>
-    </li>
-    <li><p>Verändere die Werte für Pin8 und Pin9 in Zeile 1 und 2, bis die LED leuchtet:</p>
-    <table>
-    <thead>
-    <tr>
-    <th>Pin8</th>
-    <th>Pin9</th>
-    <th>LED</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-    <td>HIGH</td>
-    <td>HIGH</td>
-    <td></td>
-    </tr>
-    <tr>
-    <td>HIGH</td>
-    <td>LOW</td>
-    <td></td>
-    </tr>
-    <tr>
-    <td>LOW</td>
-    <td>HIGH</td>
-    <td></td>
-    </tr>
-    <tr>
-    <td>LOW</td>
-    <td>LOW</td>
-    <td></td>
-    </tr>
-    </tbody></table>
-    </li>
-    <li><p>Durch HIGH bekommt der PIN ein positives Potential (+ Pol).<br>  Durch LOW bekommt er kein Potential (- POL).<br>Leite ab, unter welchen Bedingungen die LED leuchtet:  </p>
-    <table>
-    <thead>
-    <tr>
-    <th>Pol:</th>
-    <th>langes/kurzes Bein</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-    <td>Pluspol:</td>
-    <td></td>
-    </tr>
-    <tr>
-    <td>Minuspol:</td>
-    <td></td>
-    </tr>
-    </tbody></table>
-    </li>
-    </ol>
-    <p><a href="../index.html">zurück</a></p>
-    
- 
-  </md-block>
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="leds-am-arduino">LEDs am Arduino</h1>
+<ol>
+<li><a href="01LED/index.html">Eine LED</a></li>
+<li><a href="02LEDBlink/index.html">Ein Blinklicht</a></li>
+<li><a href="03LEDLauflicht/index.html">Ein Lauflicht</a></li>
+<li><a href="04LEDModul/index.html">Ein LEDModul</a></li>
+</ol>
+<p><a href="../index.html">zurück</a></p>
 
-</body>
-<footer>
-
-  Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.
-
-</footer>
-</html>
+        
+        
+    </body>
+    </html>

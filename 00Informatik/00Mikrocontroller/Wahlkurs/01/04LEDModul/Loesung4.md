@@ -25,6 +25,13 @@ void fadeIn(int r,int g,int b){
     }
 }
 
+void fadeOut(int r,int g,int b){
+    for (int i=100;i>=0;i--){
+        farbe(r*i/100,g*i/100,b*i/100);
+        delay(10);
+    }
+}
+
 
 void loop(){
     fadeIn(0,255,0);

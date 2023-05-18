@@ -1,63 +1,88 @@
 <!DOCTYPE html>
-<html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="cache-control" content="no-cache">
-  <title>Wahlkurs</title>
-  <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
 
- <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <pre><code class="language-c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">7</span>, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">8</span>, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">9</span>, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">10</span>, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">11</span>, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">12</span>, OUTPUT);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">7</span>, HIGH);
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">7</span>, LOW);
  
- <!--  <link rel="stylesheet" href="StyleMD.css">
--->
-  </head>
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">8</span>, HIGH);
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">8</span>, LOW);
+ 
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">9</span>, HIGH);
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">9</span>, LOW);
+ 
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">10</span>, HIGH);
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">10</span>, LOW);
+ 
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">11</span>, HIGH);
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">11</span>, LOW);
+ 
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">12</span>, HIGH);
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">12</span>, LOW);
+  }
+</code></pre>
+<p>Wenn das Lauflicht funktioniert, kannst du mit dem Code experimentieren:</p>
+<ol>
+<li>Das Licht soll schneller laufen.</li>
+<li>Bei jedem Durchlauf sollen zunächst alle LEDs ausgeschaltet werden. Anschließend sollen sie der Reihe nach eingeschaltet werden und bis zum Ende des Durchlaufs leuchten.</li>
+</ol>
+<p><a href="index.html">zurück</a></p>
 
-<body>
-  <md-block id="Markdown">
-
-    <pre><code class="lang-c++">void setup() {
-      pinMode(7, OUTPUT);
-      pinMode(8, OUTPUT);
-      pinMode(9, OUTPUT);
-      pinMode(10, OUTPUT);
-      pinMode(11, OUTPUT);
-      pinMode(12, OUTPUT);
-    }
-    
-    void loop() {
-      digitalWrite(7, HIGH);
-      delay(500);
-      digitalWrite(7, LOW);
-    
-      digitalWrite(8, HIGH);
-      delay(500);
-      digitalWrite(8, LOW);
-    
-      digitalWrite(9, HIGH);
-      delay(500);
-      digitalWrite(9, LOW);
-    
-      digitalWrite(10, HIGH);
-      delay(500);
-      digitalWrite(10, LOW);
-    
-      digitalWrite(11, HIGH);
-      delay(500);
-      digitalWrite(11, LOW);
-    
-      digitalWrite(12, HIGH);
-      delay(500);
-      digitalWrite(12, LOW);
-      }
-    </code></pre>
-    <p><a href="index.html">zurück</a></p>
-</md-block>
-
-</body>
-<footer>
-
-  Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.
-
-</footer>
-</html>
+        
+        
+    </body>
+    </html>
