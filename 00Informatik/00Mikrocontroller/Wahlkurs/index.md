@@ -14,9 +14,7 @@ Im Kurs sollen folgende Projekte verwirklicht werden:
 1. **Alarmanlage**  
    Wir bauen eine voll funktionsfähige Alarmanlage.  
    ![Alarmanlage.png](Alarmanlage.png)
-   1. Arduino-Programmierung  
-      Mit der Software Scratch4Arduino werden LEDs angesteuert.  
-      [Scratch4Arduino: Leuchtdioden](01/index.html)
+   1. [Leuchtdioden](01/index.html)
    2. Bewegungsmelder (PIR-Sensor)
    3. Passiver Buzzer
    4. Infrarot-Fernbedienung 

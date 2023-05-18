@@ -66,6 +66,13 @@
     }
 }
 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">fadeOut</span><span class="hljs-params">(<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> g,<span class="hljs-type">int</span> b)</span></span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">100</span>;i&gt;=<span class="hljs-number">0</span>;i--){
+        <span class="hljs-built_in">farbe</span>(r*i/<span class="hljs-number">100</span>,g*i/<span class="hljs-number">100</span>,b*i/<span class="hljs-number">100</span>);
+        <span class="hljs-built_in">delay</span>(<span class="hljs-number">10</span>);
+    }
+}
+
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{
     <span class="hljs-built_in">fadeIn</span>(<span class="hljs-number">0</span>,<span class="hljs-number">255</span>,<span class="hljs-number">0</span>);

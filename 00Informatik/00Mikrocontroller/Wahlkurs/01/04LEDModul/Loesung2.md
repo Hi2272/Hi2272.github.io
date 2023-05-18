@@ -42,7 +42,8 @@ void fadeIn(int r,int g,int b){
     }
 }
 ```
-2. Ersetze jetzt in der **loop()**-Methode die Aufrufe der Methode **farbe** durch Aufrufe der Methode **fadeIn**.  
+2. Ersetze jetzt in der **loop()**-Methode die Aufrufe der Methode **farbe** durch Aufrufe der Methode **fadeIn**.   
+    
 [Lösung](Loesung3.html)
        
 [zurück](../index.html)
