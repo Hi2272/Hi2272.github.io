@@ -1,6 +1,8 @@
 { "typ":"Bild",   
   "titel":"FOR-Schleife",
   "untertitel":"Löse diese Aufgabe in BlueJ und klicke dann auf <i>Weiter</i>.",
+  "blueJ":"AufgabenstellungSchleifen/11 KachelQuadrat.zip",
+  
   "angabe":[
     {"txt":"Programmiere im Konstruktor der Klasse Welt dieses Bild mit einer Schleife:","zeit":60},
     {"txt":"Programmiere im Konstruktor der Klasse Welt dieses Bild mit einer Schleife:","zeit":60},
