@@ -16,7 +16,7 @@ Im Kurs sollen folgende Projekte verwirklicht werden:
    ![Alarmanlage.png](Alarmanlage.png)
    1. [Leuchtdioden](01/index.html)
    2. [Bewegungsmelder](02/index.html)
-   3. Passiver Buzzer
+   3. [Passiver Buzzer](03/index.html)
    4. Infrarot-Fernbedienung 
 2. **Messwerterfassung**  
    Wir bauen ein digitales Thermometer und verwenden es, um Messreihen am Computer aufzuzeichnen.
