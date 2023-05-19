@@ -23,5 +23,30 @@ Der Start dauert eine Weile, bitte klicke nicht zu oft auf das Symbol, sonst sta
 5. Klicke auf **OK**  
 
 Der Arduino Uno ist jetzt angeschlossen und kann programmiert werden.  
+
+## Blink - das erste Programm
+Der Arduino Uno hat eine eingebaute LED. Diese ist am Pin 13 angeschlossen. Mit dem folgendem Programm lassen wir die LED blinken.
+1. Schreibe dieses Programm ab:
+```C++
+void setup() {
+  pinMode(13,OUTPUT);
+}
+
+void loop() {
+  digitalWrite(13,HIGH);
+  delay(500);
+  digitalWrite(13,LOW);
+  delay(500);
+}
+```
+2. Klicke auf den Pfeil in der linken oberen Ecke, um  
+   1. Das Programm in Maschinensprache zu übersetzen (Kompilieren des Programms).
+   2. Den Maschinencode über das USB-Kabel auf den Mikrocontroller zu laden (Flashen des Programmcodes).  
+![Alt text](sc4.png)
+3. Warte bis die Meldung **Done uploading** (Hochladen erfolgreich) erscheint.  
+Die LED auf dem Arduino Uno blinkt jetzt schnell.
+4. Ändere das Programm so ab, dass die LED langsamer blinkt und lade es erneut hoch.
+    
+
    
 [zurück](../index.html)

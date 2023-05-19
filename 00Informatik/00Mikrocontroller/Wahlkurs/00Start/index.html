@@ -68,6 +68,34 @@ Der Start dauert eine Weile, bitte klicke nicht zu oft auf das Symbol, sonst sta
 <li>Klicke auf <strong>OK</strong></li>
 </ol>
 <p>Der Arduino Uno ist jetzt angeschlossen und kann programmiert werden.</p>
+<h2 id="blink---das-erste-programm">Blink - das erste Programm</h2>
+<p>Der Arduino Uno hat eine eingebaute LED. Diese ist am Pin 13 angeschlossen. Mit dem folgendem Programm lassen wir die LED blinken.</p>
+<ol>
+<li>Schreibe dieses Programm ab:</li>
+</ol>
+<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">13</span>,OUTPUT);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>,HIGH);
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>,LOW);
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+}
+</code></pre>
+<ol start="2">
+<li>Klicke auf den Pfeil in der linken oberen Ecke, um
+<ol>
+<li>Das Programm in Maschinensprache zu übersetzen (Kompilieren des Programms).</li>
+<li>Den Maschinencode über das USB-Kabel auf den Mikrocontroller zu laden (Flashen des Programmcodes).<br>
+<img src="sc4.png" alt="Alt text"></li>
+</ol>
+</li>
+<li>Warte bis die Meldung <strong>Done uploading</strong> (Hochladen erfolgreich) erscheint.<br>
+Die LED auf dem Arduino Uno blinkt jetzt schnell.</li>
+<li>Ändere das Programm so ab, dass die LED langsamer blinkt und lade es erneut hoch.</li>
+</ol>
 <p><a href="../index.html">zurück</a></p>
 
         
