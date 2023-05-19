@@ -15,8 +15,13 @@ Der Start dauert eine Weile, bitte klicke nicht zu oft auf das Symbol, sonst sta
 ## Einstellen des Arduino Unos in der Software
 1. Klicke auf die Pfeilspitze rechts von Select Board:   
 ![Alt text](Sc1.png)
-2. Wähle **Unknown /dvttyUSB0**
+2. Wähle **Unknown /dvttyUSB0**  
+![Alt text](sc2.png)   
 3. Trage im Feld BOARDS **uno** ein.
 4. Klicke auf **Arduino Uno** 
-5. Klicke auf **OK**
+![Alt text](sc3.png)
+5. Klicke auf **OK**  
+
+Der Arduino Uno ist jetzt angeschlossen und kann programmiert werden.  
    
+[zurück](../index.html)
