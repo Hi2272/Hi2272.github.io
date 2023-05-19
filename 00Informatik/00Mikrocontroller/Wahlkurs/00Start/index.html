@@ -68,55 +68,6 @@ Der Start dauert eine Weile, bitte klicke nicht zu oft auf das Symbol, sonst sta
 <li>Klicke auf <strong>OK</strong></li>
 </ol>
 <p>Der Arduino Uno ist jetzt angeschlossen und kann programmiert werden.</p>
-<hr>
-<h2 id="blink---das-erste-programm">Blink - das erste Programm</h2>
-<p>Der Arduino Uno hat eine eingebaute LED. Diese ist am Pin 13 angeschlossen. Mit folgendem Programm lassen wir die LED blinken.</p>
-<ol>
-<li>Schreibe dieses Programm ab:</li>
-</ol>
-<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">13</span>,OUTPUT);
-}
-
-<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>,HIGH);
-  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>,LOW);
-  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
-}
-</code></pre>
-<ol start="2">
-<li>Klicke auf den Pfeil in der linken oberen Ecke, um
-<ol>
-<li>Das Programm in Maschinensprache zu übersetzen (Kompilieren des Programms).</li>
-<li>Den Maschinencode über das USB-Kabel auf den Mikrocontroller zu laden (Flashen des Programmcodes).<br>
-<img src="sc4.png" alt="Alt text"></li>
-</ol>
-</li>
-<li>Warte bis die Meldung <strong>Done uploading</strong> (Hochladen erfolgreich) erscheint.<br>
-Die LED auf dem Arduino Uno blinkt jetzt schnell.</li>
-</ol>
-<h2 id="erläuterungen-zum-code">Erläuterungen zum Code</h2>
-<h3 id="void-setup--">void setup(){  }</h3>
-<p>Die setup-Methode wird nur einmal durchlaufen, wenn der Mikrocontroller gestartet wird. In dieser Methode werden grundlegende Einstellungen für den Betrieb des Mikrocontrollers vorgenommen.</p>
-<p><strong>Merke:</strong></p>
-<p>Die geschweiften Klammern {  } umfassen den Code, der beim Aufruf der Methode ausgeführt wird. Man bezeichnet diese Einheit auch als Block im Code.</p>
-<h3 id="pinmode13output">pinMode(13,OUTPUT);</h3>
-<p>Die Anschlüsse (Pins) des Arduinos können als Eingang (<strong>I</strong>NPUT) und als Ausgang (<strong>O</strong>UTPUT) programmiert werden. Man bezeichnet sie daher auch als <strong>IO</strong>-Pins.</p>
-<p>Die Methode pinMode(13, OUTPUT) legt fest, dass der Pin 13 als Ausgang verwendet wird. (pinMode(6,INPUT) würde Pin 6 als Eingang festlegen.)</p>
-<h3 id="void-loop">void loop(){}</h3>
-<p>Die loop-Methode wird beim Betrieb des Arduinos immer wieder durchlaufen. Sie stellt also eine Endlosschleife dar.</p>
-<h3 id="digitalwrite13high">digitalWrite(13,HIGH);</h3>
-<p>Diese Methode legt am Pin 13 ein positives Potential (+5 V) an. Die mit dem Pin 13 verbundene interne LED beginnt zu leuchten.</p>
-<h3 id="delay500">delay(500);</h3>
-<p>Das Programm pausiert 500 ms lang. So lange leuchtet die LED.</p>
-<h3 id="digitalwrite13low">digitalWrite(13,LOW);</h3>
-<p>Der Pin 13 wird mit Masse verschaltet, d.h. sein Potential wird auf 0 V festgelegt. Die interne LED leuchtet nicht mehr, da keine Spannung mehr anliegt.</p>
-<h3 id="delay500-1">delay(500);</h3>
-<p>Die zweite Pause bedingt, dass die LED 500 ms lang ausgeschaltet bleibt.<br>
-Da die loop()-Methode immer wieder durchlaufen wird, beginnt sie anschließend wieder zu leuchten. Sie blinkt also ungefähr einmal pro Sekunde.</p>
-<h2 id="experimentieraufgabe">Experimentieraufgabe</h2>
-<p>Ändere das Programm so ab, dass die LED langsamer blinkt und lade es erneut hoch.</p>
 <p><a href="../index.html">zurück</a></p>
 
         
