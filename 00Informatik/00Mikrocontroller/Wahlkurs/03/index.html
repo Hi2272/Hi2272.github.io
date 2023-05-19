@@ -1,35 +1,61 @@
 <!DOCTYPE html>
-<html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Der passive Buzzer</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="cache-control" content="no-cache">
-  <title>Wahlkurs</title>
-  <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
 
- <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
- 
- <!--  <link rel="stylesheet" href="StyleMD.css">
--->
-  </head>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
 
-<body>
-  <md-block id="Markdown">
-      <h1 id="das-partylicht">Das Partylicht</h1>
-      <p>Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.  </p>
-      <p>In folgendem Video könnt ihr die Funktion des Lichtes sehen:  <a href="https://youtu.be/V1RZFxpPh4s">YouTube Video Partylicht</a>  </p>
-      <h2 id="1-die-led-matrix">1. Die LED-Matrix</h2>
-      <h2 id="2-das-mikrofon">2. Das Mikrofon</h2>
-      <h2 id="3-das-partylicht">3. Das Partylicht</h2>
-      <p><a href="../index.html">zurück</a></p>
-    
-    
-    </md-block>
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="der-passive-buzzer">Der passive Buzzer</h1>
+<p>En passiver Buzzer erzeugt Töne. Die Tonhöhe kann hierbei über den Arduino gesteuert werden.<br>
+Aktive Buzzer erzeugen einen Ton, der stets die gleiche Höhe hat.</p>
+<h2 id="1-die-schaltung">1. Die Schaltung</h2>
+<p>Erweitere die Schaltung deiner Alarmanlage um den Buzzer:<br>
+<img src="Screenshot_1.png" alt="Buzzer auf GND und Pin5"></p>
+<h2 id="2-die-programmierung">2. Die Programmierung</h2>
+<p>Der passive Buzzer muss an einen Pin angeschlossen werden, der mit einem ~ gekennzeichnet ist. Über diese Pins können analoge Signale zwischen 0 und 1023 augegeben werden. Je höher dieser Wert ist, desto höher ist der Ton, den der Buzzer aussendet.</p>
+<ol>
+<li>Deklariere eine Variable <strong>buzzer</strong> und weise ihr den Wert 5 zu.</li>
+<li>Setze in der <strong>setup()</strong>-Methode die pinMode des buzzer-Pins auf OUTPUT.</li>
+</ol>
+<p><a href="loesung.html">Lösung</a></p>
+<p><a href="../index.html">zurück</a></p>
 
-</body>
-<footer>
-
-  Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.
-
-</footer>
-</html>
+        
+        
+    </body>
+    </html>
