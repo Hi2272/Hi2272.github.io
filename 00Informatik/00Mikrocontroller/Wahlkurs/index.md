@@ -9,6 +9,8 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
 
 
 [Materialliste](00Material/index.html)  
+
+[Hochfahren der Rechner und Anschließen der Arduinos](00Start/index.html) 
 ## Projekte
 Im Kurs sollen folgende Projekte verwirklicht werden:
 1. **Alarmanlage**  
