@@ -49,12 +49,15 @@ Achtung: Bei unseren Zweifarb-LEDs muss der gemeinsame Pol an den Pluspol angesc
    1. Die grüne LED soll ausgeschaltet werden.  
       Hierzu muss der Pin auf **HIGH** gestellt werden.  
       (Beide Pole der LED sind jetzt HIGH. Es liegt also kein Spannungsunterschied vor und kein Strom fließt.)
-   2. Die rote LED soll eingechaltet werden.  
+   2. Die rote LED soll eingeschaltet werden.  
    Hierzu muss der Pin auf **LOW** gestellt werden.
 5. Ändere die Sequenz, die ausgeführt wird, wenn keine Bewegung wahrgenommen wird:
    1. die rote LED soll ausgeschaltet werden.
    2. die grüne LED soll eingechaltet werden.
 6. Teste deine Alarmanlage
+
+
+[Lösung](loesung.html)  
 
 [zurück](../index.html)
 
