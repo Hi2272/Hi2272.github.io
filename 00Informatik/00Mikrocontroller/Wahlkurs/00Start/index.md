@@ -21,5 +21,7 @@ Schließe den Arduino mit dem blauen USB-Kabel an einer der beiden Buchsen auf d
 3. Trage im Feld BOARDS **uno** ein.  
 4. Klicke auf **Arduino Uno**   
 ![Alt text](sc3.png)
-5. Klicke auf **OK**
+5. Klicke auf **OK**  
+
+[zurück](../index.html)
    

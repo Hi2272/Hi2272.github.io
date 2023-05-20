@@ -9,7 +9,7 @@ Der passive Buzzer muss an einen Pin angeschlossen werden, der mit einem ~ geken
 1. Deklariere eine Variable **buzzer** und weise ihr den Wert 5 zu.
 2. Setze in der **setup()**-Methode die pinMode des buzzer-Pins auf OUTPUT.
    
-[Lösung](loesung.html)
+[Lösung](loesung.html)  
 
 
 
