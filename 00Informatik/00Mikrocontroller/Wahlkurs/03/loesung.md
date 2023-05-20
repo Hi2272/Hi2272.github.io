@@ -3,7 +3,7 @@ int led = 7;
 int sensor = 6;
 int buzzer = 5;
 
-void setup{
+void setup(){
     pinMode(led,OUTPUT);
     pinMode(sensor,INPUT);
     pinMode(buzzer,OUTPUT);
@@ -20,17 +20,20 @@ Erweitere deine Code jetzt so, dass er neben dem Lichtsignal auch einen wechseln
 
 1. Ersetze die **delay(1000)**-Anweisung in der **loop**-Methode durch folgenden Code:  
 ```C++
-tone(buzzer,100,500);
-tone(buzzer,200,500);
+tone(buzzer,500);
+delay(500);
+tone(buzzer,700);
+delay(500);
+noTone(buzzer);
 ```
 2. Teste deine Alarmanlage - sie müsste jetzt bei Bewegung leuchten und Krach machen.
 3. Um die Nerven aller Beteiligten zu schonen, solltest du die **tone**-Zeilen durch // auskommentieren:
 ```C++
-//tone(buzzer,100);
+//tone(buzzer,500);
 delay(500);
-//tone(buzzer,200);
+//tone(buzzer,700);
 delay(500);
 noTone(buzzer);
 ```
-["Musik" mit dem Buzzer](weiter.html)  
+["Musik" mit dem Buzzer](weiter.html)   
 [zurück](../index.html)

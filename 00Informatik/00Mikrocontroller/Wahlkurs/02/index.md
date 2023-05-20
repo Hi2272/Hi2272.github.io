@@ -9,7 +9,7 @@ Definiere zunächst für die Pins Variablen und setze in der  **setup()**-Method
 int led = 7;
 int sensor = 6;
 
-void setup{
+void setup(){
     pinMode(led,OUTPUT);
     pinMode(sensor,INPUT);
 }
