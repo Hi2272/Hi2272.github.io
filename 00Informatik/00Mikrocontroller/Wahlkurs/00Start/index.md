@@ -14,12 +14,12 @@
 ## Anschluss des Arduino Unos
 Schließe den Arduino mit dem blauen USB-Kabel an einer der beiden Buchsen auf der rechten Seite des Rechners an.
 ## Einstellen des Arduino Unos in der Software
-1. Klicke auf die Pfeilspitze rechts von Select Board
+1. Klicke auf die Pfeilspitze rechts von Select Board  
 ![Alt text](Sc1.png)
-2. Wähle **Unknown /dvttyUSB0**
+2. Wähle **Unknown /dvttyUSB0**  
 ![Alt text](sc2.png)
-3. Trage im Feld BOARDS **uno** ein.
-4. Klicke auf **Arduino Uno** 
+3. Trage im Feld BOARDS **uno** ein.  
+4. Klicke auf **Arduino Uno**   
 ![Alt text](sc3.png)
 5. Klicke auf **OK**
    
