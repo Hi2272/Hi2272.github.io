@@ -6,34 +6,37 @@ Die Materialien für den Kurs wurden durch Spenden folgender Organisationen fina
   
 Wir danken den Spendern herzlich für Ihre Unterstützung.  
 
-
-
 [Materialliste](00Material/index.html)  
+
 ## Projekte
-Im Kurs sollen folgende Projekte verwirklicht werden:
-1. **Alarmanlage**  
+### 1. Die ersten Schritte
+[Start von Linux und Anschließen des Arduinos](00Start/index.html)  
+
+[Blink - das erste Programm](00StartBlink/index.html)
+### 2. Alarmanlage  
    Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung aktiviert werden kann.  
    ![Alarmanlage.png](Alarmanlage.png)
    1. [Leuchtdioden](01/index.html)
    2. [Bewegungsmelder](02/index.html)
    3. [Passiver Buzzer](03/index.html)
    4. Infrarot-Fernbedienung 
-2. **Messwerterfassung**  
+### 3. Messwerterfassung  
    Wir bauen ein digitales Thermometer und verwenden es, um Messreihen am Computer aufzuzeichnen.
    1. Thermofühler
    2. OLED-Display zur Darstellung der Messwerte
    3. Graphische Ausgabe am Computer  
-3. **Diskobeleuchtung**  
+
+### 4. Diskobeleuchtung  
  Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.  
 ![Partylicht](03-01.png)  
 In folgendem Video könnt ihr die Funktion des Lichtes sehen:  [YouTube Video Partylicht](https://youtu.be/V1RZFxpPh4s)  
   1. RGB-LEDs
-   2. Tonaufnahmen mit einem Mikrofon
-1. **Selbstfahrender Roboter**  
-   Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) von rtheiss bauen wir einen Roboter, der Hindernisse erkennt und ihnen ausweichen kann.
-   1. Motorsteuerung
-   2. Ultraschall-Entfernungsmesser
-   3. Servomotoren
+  2. Tonaufnahmen mit einem Mikrofon
+### 5. Selbstfahrender Roboter  
+   Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) von rtheiss bauen wir einen Roboter, der Hindernisse erkennt und ihnen ausweichen kann.  
+   1. Motorsteuerung  
+   2. Ultraschall-Entfernungsmesser  
+   3. Servomotoren  
 
 * * *
 
