@@ -9,7 +9,7 @@ void setup {
   pinMode(sensor, INPUT);
 }
 
-oid loop() {
+void loop() {
   int wert = digitalRead(sensor);
   if (wert == HIGH) {
     digitalWrite(ledGruen, HIGH);

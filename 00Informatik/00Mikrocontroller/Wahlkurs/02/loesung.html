@@ -50,7 +50,7 @@
   <span class="hljs-built_in">pinMode</span>(sensor, INPUT);
 }
 
-<span class="hljs-function">oid <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
   <span class="hljs-type">int</span> wert = <span class="hljs-built_in">digitalRead</span>(sensor);
   <span class="hljs-keyword">if</span> (wert == HIGH) {
     <span class="hljs-built_in">digitalWrite</span>(ledGruen, HIGH);
