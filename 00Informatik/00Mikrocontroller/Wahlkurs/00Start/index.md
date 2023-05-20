@@ -4,7 +4,7 @@
 2. Schalte den Rechner ein.
 3. Drücke sofort nach dem Einschalten die F12-Taste und halte sie gedrückt, bis du einen lauten Signalton hörst.  
    Der Rechner startet das Boot-Menü
-4.  Wähle ubuntu...
+4.  Wähle ubuntu(USB)
 5.  Der Rechner fährt das Linux-Betriebssystem auf dem USB-Stick hoch.
 6.  Es startet automatisch zwei Programme:
     1.  Programmierumgebung für Arduinos (Arduino IDE)

@@ -71,6 +71,36 @@ Wenn dieser Wert <strong>HIGH</strong> ist, wird die LED eingeschaltet, sonst wi
 </code></pre>
 <h2 id="3-der-test">3. Der Test</h2>
 <p>Teste deine Alarmanalage.</p>
+<h2 id="4-die-zweifarb-led">4. Die Zweifarb-LED</h2>
+<p>Wenn die Alarmanlage eingeschaltet ist, soll die LED grün leuchten.<br>
+Sobald eine Bewegung wahrgenommen wird, soll die Farbe der LED von grün auf rot wechseln.</p>
+<h3 id="die-schaltung">Die Schaltung</h3>
+<p>Ersetze die rote LED auf dem Breadboard durch eine Zweifarb-LED.<br>
+Achtung: Bei unseren Zweifarb-LEDs muss der gemeinsame Pol an den Pluspol angeschlossen werden. Du musst deine Schaltung daher etwas stärker umbauen:</p>
+<p><img src="Screenshot_2.png" alt="Alt text"></p>
+<h3 id="der-programmcode">Der Programmcode</h3>
+<p>Ändere dein Programm wie folgt ab:</p>
+<ol>
+<li>Benenne die Variable led in ledRot um.</li>
+<li>Deklariere eine neue Variable ledGruen vom Typ int und weise ihr den Wert 8 zu.</li>
+<li>Setze in der <strong>setup()</strong>-Methode den pinMode von ledGruen auf <strong>OUTPUT</strong></li>
+<li>Ändere die Sequenz, die ausgeführt wird, wenn eine Bewegung wahrgenommen wird:
+<ol>
+<li>Die grüne LED soll ausgeschaltet werden.<br>
+Hierzu muss der Pin auf <strong>HIGH</strong> gestellt werden.<br>
+(Beide Pole der LED sind jetzt HIGH. Es liegt also kein Spannungsunterschied vor und kein Strom fließt.)</li>
+<li>Die rote LED soll eingechaltet werden.<br>
+Hierzu muss der Pin auf <strong>LOW</strong> gestellt werden.</li>
+</ol>
+</li>
+<li>Ändere die Sequenz, die ausgeführt wird, wenn keine Bewegung wahrgenommen wird:
+<ol>
+<li>die rote LED soll ausgeschaltet werden.</li>
+<li>die grüne LED soll eingechaltet werden.</li>
+</ol>
+</li>
+<li>Teste deine Alarmanlage</li>
+</ol>
 <p><a href="../index.html">zurück</a></p>
 <hr>
 <footer style="font-size:x-small;text-align: center;
