@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Die Infrarot-Fernbedienung</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="die-infrarot-fernbedienung">Die Infrarot-Fernbedienung</h1>
+<p>Zum Abschluss wollen wir unsere Alarmanlage über eine Fernbedienung ein- und ausschalten können.</p>
+<h2 id="1-die-schaltung">1. Die Schaltung</h2>
+<p>Eine typische Fernbedienung für einen Fernseher sendet unsichtbare Infrarot-Strahlen (IR-Strahlen) aus. Im Fernseher ist ein IR-Empfänger eingebaut, der die Strahlen aufnimmt. Der Fernseher dekodiert anschließend das gesendete Signal und reagiert entsprechend.<br>
+Stecke zunächst den IR-Empfänger auf das Steckbrett und verkabele es wie folgt:</p>
+<ol>
+<li>+Pol auf +5V</li>
+<li>-Pol auf GND</li>
+<li>S (Signal) auf Pin 3</li>
+</ol>
+<p><img src="sc1.png" alt="Alt text"></p>
+<h2 id="2-der-code">2. Der Code</h2>
+<ol>
+<li>Definiere eine neue Variable fern vom Typ int und belege sie mit dem Wert 3 vor.</li>
+<li>Setze in der <strong>setup()</strong>-Methode den pinMode des Pins fern auf <strong>INPUT</strong>.</li>
+<li>Starte die serielle Übertragung durch den Befehl <strong>Serial.begin(9600)</strong> in der <strong>setup()</strong>-Methode.<br>
+Der Parameter 9600 gibt hierbei die Übertragungsrate in Baud an. Ein Baud entspricht einer Übertragungsrate von 1 Symbol pro Sekunde. In unserem Fall werden also 9600 Symbole pro Sekunde übertragen.</li>
+</ol>
+<p><a href="loesung.html">Lösung</a></p>
+<p><a href="../index.html">zurück</a></p>
+<hr>
+<footer style="font-size:x-small;text-align: center;
+    padding: 10px;
+    margin: 10px;
+    height: 10%;
+    ">
+<p>Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.</p>
+</footer>
+
+        
+        
+    </body>
+    </html>
