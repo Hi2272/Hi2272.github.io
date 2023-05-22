@@ -10,8 +10,8 @@ Stecke zunächst den IR-Empfänger auf das Steckbrett und verkabele es wie folgt
 ![Alt text](sc1.png)  
 ## 2. Der Code
 
-1. Definiere eine neue Variable fern vom Typ int und belege sie mit dem Wert 3 vor.
-2. Setze in der **setup()**-Methode den pinMode des Pins fern auf **INPUT**.
+1. Definiere eine neue Variable **fern** vom Typ int und belege sie mit dem Wert 3 vor.
+2. Setze in der **setup()**-Methode den pinMode des Pins **fern** auf **INPUT**.
 3. Starte die serielle Übertragung durch den Befehl **Serial.begin(9600)** in der **setup()**-Methode.  
    Der Parameter 9600 gibt hierbei die Übertragungsrate in Baud an. Ein Baud entspricht einer Übertragungsrate von 1 Symbol pro Sekunde. In unserem Fall werden also 9600 Symbole pro Sekunde übertragen.  
 

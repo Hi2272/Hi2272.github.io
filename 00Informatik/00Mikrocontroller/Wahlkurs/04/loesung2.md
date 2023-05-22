@@ -37,7 +37,8 @@ Um die Codes auszuwerten, verwenden wir einen **switch-case**-Block. Füge nach 
     }
 ```
 Für die Tasten 0 und 1 gibt das System jetzt immer nach dem Code auf die korrekte Nummer der Taste aus.  
-Erweitere den Code so, dass alle Zifferntasten erkannt werden.
+Erweitere den Code so, dass alle Zifferntasten erkannt werden.  
+[weiter](loesung3.html)  
 
 [zurück](../index.html)
 

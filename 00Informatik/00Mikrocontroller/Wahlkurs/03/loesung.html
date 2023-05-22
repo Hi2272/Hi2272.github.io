@@ -52,11 +52,10 @@
 
 </code></pre>
 <hr>
-<p>Zum Abspielen von Tönen verwenden wir die <strong>tone()</strong>-Methode. Sie benötigt drei Parameter:</p>
+<p>Zum Abspielen von Tönen verwenden wir die <strong>tone()</strong>-Methode. Sie benötigt zwei Parameter:</p>
 <ul>
 <li>int <strong>pin</strong>: Pin an dem der Buzzer angeschlossen ist.</li>
 <li>int <strong>tonhoehe</strong>: Tonhöhe, die abgespielt wird: 0-1023</li>
-<li>int <strong>dauer</strong>: Dauer des Tons in ms</li>
 </ul>
 <p>Erweitere deine Code jetzt so, dass er neben dem Lichtsignal auch einen wechselnden Ton abgibt, wenn er der Bewegungsmelder eine Bewegung registriert.</p>
 <ol>
@@ -68,7 +67,7 @@
 <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
 <span class="hljs-built_in">noTone</span>(buzzer);
 </code></pre>
-<ol start="2">
+<ol>
 <li>Teste deine Alarmanlage - sie müsste jetzt bei Bewegung leuchten und Krach machen.</li>
 <li>Um die Nerven aller Beteiligten zu schonen, solltest du die <strong>tone</strong>-Zeilen durch // auskommentieren:</li>
 </ol>

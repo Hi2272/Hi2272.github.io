@@ -1,8 +1,14 @@
 # Der Bewegungsmelder
 Der PIR-Sensor gibt über einen Pin ein Signal aus, sobald er eine Bewegung registriert.
 ## 1. Die Schaltung
-Baue diese Schaltung auf:
-![Alt text](Screenshot_1.png)
+Die Pins des PIR-Sensors sind meistens unter der weißen Plastikhaube beschriftet. Diese Haube ist nur aufgesteckt - du kannst sie vorsichtig nach oben abziehen.  
+Verbinde jetzt die Pins passend zur Beschriftung:
+1. GND -> GND
+2. VCC -> +5V
+3. OUT -> Pin 6
+   
+![Alt text](../03/Screenshot_1.png)
+
 ## 2. Der Code
 Definiere zunächst für die Pins Variablen und setze in der  **setup()**-Methode den Modus für die Pins.
 ```C++
