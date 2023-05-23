@@ -1,3 +1,6 @@
+ <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+
+
 Um mit den Fernbedienungscodes zu arbeiten, müssen wir sie in einer Variablen speichern. 
 1. Definiere eine neue Variable fernCode vom Typ int.
 2. Speichere in der **loop()**-Methode den eingelesenen Code in dieser Variable.

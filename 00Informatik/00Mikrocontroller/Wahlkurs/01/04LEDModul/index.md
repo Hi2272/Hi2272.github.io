@@ -1,3 +1,6 @@
+ <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+
+
 # Die 3-Farben-LED
 ## 1. Schaltung
 Auf dem Modul sind die nötigen Vorwiderstände bereits verlötet. Wir können es daher sehr einfach an den Arduino UNO anschließen:

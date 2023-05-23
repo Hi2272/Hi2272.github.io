@@ -1,3 +1,5 @@
+ <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+
 # Der passive Buzzer
 En passiver Buzzer erzeugt Töne. Die Tonhöhe kann hierbei über den Arduino gesteuert werden.  
 Aktive Buzzer erzeugen einen Ton, der stets die gleiche Höhe hat.

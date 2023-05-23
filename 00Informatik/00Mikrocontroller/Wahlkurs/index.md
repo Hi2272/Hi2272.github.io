@@ -1,3 +1,5 @@
+   <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+
 # Wahlunterricht Mikroelektronik am Gymnasium Waldkraiburg
 Diese Seite befindet sich im Aufbau. Im Schuljahr 2023/24 werden zu den einzelnen Kapiteln weitere Inhalte hinzugefügt.  
 
