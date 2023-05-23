@@ -1,7 +1,7 @@
 # Wahlunterricht Mikroelektronik am Gymnasium Waldkraiburg
 Diese Seite befindet sich im Aufbau. Im Schuljahr 2023/24 werden zu den einzelnen Kapiteln weitere Inhalte hinzugefügt.  
 
-## Grundausstattung
+## Grundausstattung 
 Die Materialien für den Kurs wurden durch Spenden folgender Organisationen finanziert:  
 - [Wilhelm Stemmer Stiftung](https://www.wilhelm-stemmer-stiftung.de)
 - [Förderverein des Gymnasium Waldkraiburgs](https://www.gymnasiumwaldkraiburg.de/schule/foerderverein/)  
@@ -21,13 +21,18 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
    1. [Leuchtdioden](01/index.html)
    2. [Bewegungsmelder](02/index.html)
    3. [Passiver Buzzer](03/index.html)
-   4. [Infrarot-Fernbedienung](04/index.html) 
-### 3. Messwerterfassung  
+   4. [Infrarot-Fernbedienung](04/index.html)  
+   
+### 3. Messwerterfassung
+#### Temperaturmessung
+
    Wir bauen ein digitales Thermometer und verwenden es, um Messreihen am Computer aufzuzeichnen.
    1. Thermofühler
    2. OLED-Display zur Darstellung der Messwerte
    3. Graphische Ausgabe am Computer  
-
+#### Geschwindigkeitsmessung
+   Wir bauen Lichtschranken, mit denen die Geschwindigkeit von Fahrzeugen gemessen werden kann.
+    
 ### 4. Diskobeleuchtung  
  Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.  
 ![Partylicht](03-01.png)  
