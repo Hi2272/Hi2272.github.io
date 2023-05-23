@@ -4,7 +4,7 @@
 # Eine blinkende LED
 ## 1. Schaltung
 Wir arbeiten mit der gleichen Schaltung:
-![Alt text](../Screenshot_4.png)
+![Alt text](Screenshot_4.png)
 ## 2. Programmierung
 Programmiere folgenden Code:
 ```C++
