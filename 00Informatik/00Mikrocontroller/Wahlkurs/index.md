@@ -1,4 +1,6 @@
 # Wahlunterricht Mikroelektronik am Gymnasium Waldkraiburg
+Diese Seite befindet sich im Aufbau. Im Schuljahr 2023/24 werden zu den einzelnen Kapiteln weitere Inhalte hinzugefügt.  
+
 ## Grundausstattung
 Die Materialien für den Kurs wurden durch Spenden folgender Organisationen finanziert:  
 - [Wilhelm Stemmer Stiftung](https://www.wilhelm-stemmer-stiftung.de)
