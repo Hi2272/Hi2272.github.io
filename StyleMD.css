@@ -45,3 +45,9 @@ header {
     margin-top: 10px;
     margin-bottom:10px;
   }
+
+  a {
+    text-decoration-color: darkblue; 
+    text-decoration: underline; 
+
+  }
