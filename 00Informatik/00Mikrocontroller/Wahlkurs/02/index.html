@@ -43,14 +43,20 @@
         <h1 id="der-bewegungsmelder">Der Bewegungsmelder</h1>
 <p>Der PIR-Sensor gibt über einen Pin ein Signal aus, sobald er eine Bewegung registriert.</p>
 <h2 id="1-die-schaltung">1. Die Schaltung</h2>
-<p>Baue diese Schaltung auf:
-<img src="Screenshot_1.png" alt="Alt text"></p>
+<p>Die Pins des PIR-Sensors sind meistens unter der weißen Plastikhaube beschriftet. Diese Haube ist nur aufgesteckt - du kannst sie vorsichtig nach oben abziehen.<br>
+Verbinde jetzt die Pins passend zur Beschriftung:</p>
+<ol>
+<li>GND -&gt; GND</li>
+<li>VCC -&gt; +5V</li>
+<li>OUT -&gt; Pin 6</li>
+</ol>
+<p><img src="../03/Screenshot_1.png" alt="Alt text"></p>
 <h2 id="2-der-code">2. Der Code</h2>
 <p>Definiere zunächst für die Pins Variablen und setze in der  <strong>setup()</strong>-Methode den Modus für die Pins.</p>
 <pre><code class="language-C++"><span class="hljs-type">int</span> led = <span class="hljs-number">7</span>;
 <span class="hljs-type">int</span> sensor = <span class="hljs-number">6</span>;
 
-<span class="hljs-type">void</span> setup{
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>{
     <span class="hljs-built_in">pinMode</span>(led,OUTPUT);
     <span class="hljs-built_in">pinMode</span>(sensor,INPUT);
 }

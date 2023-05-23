@@ -3,7 +3,7 @@ int ledRot = 7;
 int ledGruen = 8;
 int sensor = 6;
 
-void setup {
+void setup() {
   pinMode(ledRot, OUTPUT);
   pinMode(ledGruen,OUTPUT);
   pinMode(sensor, INPUT);

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <pre><code class="language-C++"><span class="hljs-type">int</span> ledRot = <span class="hljs-number">7</span>;
+<span class="hljs-type">int</span> ledGruen = <span class="hljs-number">8</span>;
+<span class="hljs-type">int</span> sensor = <span class="hljs-number">6</span>;
+<span class="hljs-type">int</span> buzzer = <span class="hljs-number">5</span>;
+<span class="hljs-type">int</span> fern=<span class="hljs-number">3</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">pinMode</span>(ledRot, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(ledGruen, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(sensor, INPUT);
+  <span class="hljs-built_in">pinMode</span>(buzzer, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(fern,INPUT);
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
+}
+</code></pre>
+<p>Für die Dekodierung der IR-Signale verwenden wir die Bibliothek <strong>irremote</strong> von <strong>shirriff</strong>.<br>
+Um diese zu installieren, gehe wie folgt vor:</p>
+<ol>
+<li>Öffne die Bibliotheksverwaltung.</li>
+<li>Tippe den Begriff <strong>irremote</strong> in die Suchmaske ein.</li>
+<li>Klicke auf <strong>Install</strong>, um die Bibliothek herunterzuladen und zu installieren:<br>
+<img src="sc2.png" alt="Alt text"></li>
+</ol>
+<p>Anschließend müssen wir die Bibliothek noch in unser Programm einbinden. Füge dazu folgende Zeile zu Beginn deines Programmes ein:</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;IRremote.h&gt;</span></span>
+</code></pre>
+<p>In der <strong>setup()</strong>-Methode starten wir den IR-Empfänger mit folgender Code-Zeile:</p>
+<pre><code class="language-C++">  IrReceiver.<span class="hljs-built_in">begin</span>(fern);
+</code></pre>
+<p>Um die Fernbedienung zu testen, kommentieren wir den gesamten Inhalt der <strong>loop()</strong>-Methode durch /* und */ aus.</p>
+<p>Unser gesamter Code sieht bisher wie folgt aus:</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;IRremote.h&gt;</span></span>
+
+<span class="hljs-type">int</span> ledRot = <span class="hljs-number">7</span>;
+<span class="hljs-type">int</span> ledGruen = <span class="hljs-number">8</span>;
+<span class="hljs-type">int</span> sensor = <span class="hljs-number">6</span>;
+<span class="hljs-type">int</span> buzzer = <span class="hljs-number">5</span>;
+<span class="hljs-type">int</span> fern = <span class="hljs-number">3</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">pinMode</span>(ledRot, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(ledGruen, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(sensor, INPUT);
+  <span class="hljs-built_in">pinMode</span>(buzzer, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(fern, INPUT);
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
+  IrReceiver.<span class="hljs-built_in">begin</span>(fern);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">/*
+  int wert = digitalRead(sensor);
+  if (wert == HIGH) {
+    digitalWrite(ledGruen, HIGH);
+    digitalWrite(ledRot, LOW);
+    tone(6, 500);
+    delay(500);
+    tone(6, 700);
+    delay(500);
+    noTone();
+  } else {
+    digitalWrite(ledGruen, LOW);
+    digitalWrite(ledRot, HIGH);
+  }
+  */</span>
+}```
+<span class="hljs-function">In der ersten Zeile der **<span class="hljs-title">loop</span><span class="hljs-params">()</span>**-Methode fügen wir jetzt folgenden Code-Block ein:  
+```C++
+if (IrReceiver.decode()) {</span>
+    IrReceiver.<span class="hljs-built_in">resume</span>();
+    Serial.<span class="hljs-built_in">println</span>(IrReceiver.decodedIRData.command);
+}
+</code></pre>
+<p>Der Code bewirkt folgendes:</p>
+<ol>
+<li>Wenn ein Signal der Fernbedienung empfangen wird,</li>
+<li>wird der Empfänger zurückgesetzt, damit er weiter Daten lesen kann und</li>
+<li>der Code des Signals wird an die serielle Schnittstelle ausgegeben.</li>
+</ol>
+<p>Um den Code zu testen, müssen wir ihn kompilieren und auf den Arduino hoch laden. Im Anschluss öffnen wir den Seriellen Monitor.
+<img src="sc3.png" alt="Alt text">
+Jetzt müssen wir nur noch testen, welche Taste auf der Fernbedienung welchen Code erzeugt.<br>
+Erstelle hierzu eine Tabelle auf einem Blatt Papier.<br>
+<strong>Anmerkung:</strong><br>
+Mit diesem Versuchsaufbau kannst du die Codes beliebiger Fernbedienungen auslesen. Du kannst zum Beispiel untersuchen, welche Codes deinen Fernseher steuern.<br>
+<a href="weiter.html">Weiter</a></p>
+<p><a href="../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>

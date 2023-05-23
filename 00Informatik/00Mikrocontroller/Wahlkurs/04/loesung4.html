@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Deklaration und Initalisierung der Variablen</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h2 id="deklaration-und-initalisierung-der-variablen">Deklaration und Initalisierung der Variablen</h2>
+<pre><code class="language-C++"><span class="hljs-type">int</span> ledRot = <span class="hljs-number">7</span>;
+<span class="hljs-type">int</span> ledGruen = <span class="hljs-number">8</span>;
+<span class="hljs-type">int</span> sensor = <span class="hljs-number">5</span>;
+<span class="hljs-type">int</span> buzzer = <span class="hljs-number">6</span>;
+<span class="hljs-type">int</span> fern = <span class="hljs-number">3</span>;
+<span class="hljs-type">int</span> fernCode;
+String geheimcode=<span class="hljs-string">&quot;0815&quot;</span>;
+String code=<span class="hljs-string">&quot;&quot;</span>;
+</code></pre>
+<h2 id="speichern-der-code-eingabe">Speichern der Code-Eingabe</h2>
+<p>In unserer Switch-Case-Sequenz geben wir bisher die Codes nur an den Seriellen Monitor aus.<br>
+Jetzt wollen wir sie zusätzlich an die Variable <strong>code</strong> anhängen:</p>
+<pre><code class="language-C++"> <span class="hljs-keyword">switch</span>(fernCode){
+      <span class="hljs-keyword">case</span> <span class="hljs-number">22</span>:
+        Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;0&quot;</span>);
+        code=code+<span class="hljs-string">&quot;0&quot;</span>;
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-number">12</span>:
+        Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;1&quot;</span>);
+        code=code+<span class="hljs-string">&quot;1&quot;</span>;
+        <span class="hljs-keyword">break</span>;
+      ...
+    }
+</code></pre>
+<h2 id="definition-einer-taste-zum-löschen-der-code-eingabe">Definition einer Taste zum Löschen der Code-Eingabe</h2>
+<p>Wenn der Nutzer sich vertippt hat, soll er mit einer Taste die gesamte Eingabe löschen können.<br>
+Wir verwenden hierzu die <strong>CH-</strong> Taste mit dem Code 69.<br>
+Füge diesen Code in deine switch-case-Sequenz ein:</p>
+<pre><code class="language-C++">    <span class="hljs-keyword">case</span> <span class="hljs-number">69</span>:
+        code=<span class="hljs-string">&quot;&quot;</span>;
+        Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Code gelöscht!&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+</code></pre>
+<p>Mit der <strong>CH+</strong> Taste soll der Code mit dem Geheimcode verglichen werden. Der Code dieser Taste lautet 71.</p>
+<pre><code class="language-C++">    <span class="hljs-keyword">case</span> <span class="hljs-number">71</span>:
+        <span class="hljs-keyword">if</span> (code == geheimcode) {
+          Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Code stimmt!&quot;</span>);
+        } <span class="hljs-keyword">else</span> {
+          Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Code stimmt nicht!&quot;</span>);
+          code = <span class="hljs-string">&quot;&quot;</span>;
+        }
+        <span class="hljs-keyword">break</span>;
+</code></pre>
+
+        
+        
+    </body>
+    </html>
