@@ -33,8 +33,10 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
    2. OLED-Display zur Darstellung der Messwerte
    3. Graphische Ausgabe am Computer  
 #### Geschwindigkeitsmessung
-   Wir bauen Lichtschranken, mit denen die Geschwindigkeit von Fahrzeugen gemessen werden kann.
-    
+   Wir bauen Lichtschranken, mit denen die Geschwindigkeit von Fahrzeugen gemessen werden können.
+   1. Reflexlichtschranke
+   2. Laserlichtschranke
+       
 ### 4. Diskobeleuchtung  
  Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.  
 ![Partylicht](03-01.png)  
