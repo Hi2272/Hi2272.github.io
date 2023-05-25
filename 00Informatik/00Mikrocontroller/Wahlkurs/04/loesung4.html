@@ -90,8 +90,40 @@ Füge diesen Code in deine switch-case-Sequenz ein:</p>
 Diese Variable kann zwei Werte haben:</p>
 <ul>
 <li>true = wahr, die Anlage ist eingeschaltet und aktiv.</li>
-<li>false = falsch, die Anlage ist ausgeschaltet und nicht aktiv.</li>
+<li>false = falsch, die Anlage ist ausgeschaltet und nicht aktiv.<br>
+Der Datentyp für eine solche Variable ist <strong>bool</strong>. Man bezeichnet diese Variablen als <strong>boolsche Variablen</strong> oder <strong>Boolean-Variablen</strong>.</li>
 </ul>
+<p>Beim Einschalten soll die Alarmanlage nicht aktiv sein - wir setzen den Wert von <strong>isAktiv</strong> daher bei der Definition auf <strong>false</strong>.</p>
+<pre><code class="language-C++"><span class="hljs-type">int</span> ledRot = <span class="hljs-number">7</span>;
+<span class="hljs-type">int</span> ledGruen = <span class="hljs-number">8</span>;
+<span class="hljs-type">int</span> sensor = <span class="hljs-number">5</span>;
+<span class="hljs-type">int</span> buzzer = <span class="hljs-number">6</span>;
+<span class="hljs-type">int</span> fern = <span class="hljs-number">3</span>;
+<span class="hljs-type">int</span> fernCode;
+String geheimcode=<span class="hljs-string">&quot;0815&quot;</span>;
+String code=<span class="hljs-string">&quot;&quot;</span>;
+<span class="hljs-type">bool</span> isAktiv = <span class="hljs-literal">false</span>;
+</code></pre>
+<h2 id="wechsel-des-zustands-bei-der-eingabe-des-richtigen-codes">Wechsel des Zustands bei der Eingabe des richtigen Codes</h2>
+<p>Wenn der richtige Code eingegeben wurde, soll folgendes passieren:</p>
+<ul>
+<li>wenn die Alarmanlage aktiv ist, soll sie ausgeschaltet werden.</li>
+<li>wenn die Alarmanlage ausgeschaltet ist, soll sie eingeschaltet werden.</li>
+</ul>
+<p>Die Variable <strong>isAktiv</strong> soll also einfach ihren Wert wechseln:</p>
+<ul>
+<li>isAktiv = true ⇒ isAktiv = false</li>
+<li>isAktiv = false ⇒ isAktiv = true</li>
+</ul>
+<p>In Programmmiersprachen erreicht man dies am einfachsten durch die <strong>NOT</strong> oder <strong>NICHT</strong> - Funktion:</p>
+<ul>
+<li>wahr = NICHT falsch</li>
+<li>falsch = NICHT wahr</li>
+</ul>
+<p>In unserer Programmiersprache C++ wird <strong>NOT</strong> durch ein einfaches <strong>Ausrufezeichen</strong> abgekürzt:</p>
+<pre><code class="language-C++">isAktiv = !isAktiv
+</code></pre>
+<p>Füge diese Zeile so in den Programmcode ein, dass sie ausgeführt wird, wenn der richtige Code eingegeben wurde.</p>
 
         
         
