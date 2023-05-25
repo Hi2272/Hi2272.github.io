@@ -51,5 +51,9 @@ Mit der **CH+** Taste soll der Code mit dem Geheimcode verglichen werden. Der Co
         }
         break;
 ```
-
+## Definition einer Variablen zum Speichern des Zustands
+Die Alarmanlage kann an- oder ausgeschaltet sein. Dieser Zustand soll in einer Variablen **isAktiv** gespeichert werden.  
+Diese Variable kann zwei Werte haben:
+- true = wahr, die Anlage ist eingeschaltet und aktiv.
+- false = falsch, die Anlage ist ausgeschaltet und nicht aktiv.
 
