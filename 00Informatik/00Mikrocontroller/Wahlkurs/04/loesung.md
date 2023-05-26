@@ -83,15 +83,16 @@ if (IrReceiver.decode()) {
 Der Code bewirkt folgendes:
 1. Wenn ein Signal der Fernbedienung empfangen wird,
 2. wird der Empfänger zurückgesetzt, damit er weiter Daten lesen kann und
-3. der Code des Signals wird an die serielle Schnittstelle ausgegeben.
-   
+3. der Code des Signals wird an die serielle Schnittstelle ausgegeben.  
+     
 Um den Code zu testen, müssen wir ihn kompilieren und auf den Arduino hoch laden. Im Anschluss öffnen wir den Seriellen Monitor.
-![Alt text](sc3.png)
+![Alt text](sc3.png)  
+
 Jetzt müssen wir nur noch testen, welche Taste auf der Fernbedienung welchen Code erzeugt.  
 Erstelle hierzu eine Tabelle auf einem Blatt Papier.  
 **Anmerkung:**  
 Mit diesem Versuchsaufbau kannst du die Codes beliebiger Fernbedienungen auslesen. Du kannst zum Beispiel untersuchen, welche Codes deinen Fernseher steuern.  
-[Weiter](weiter.html)  
+[Weiter](loesung2.html)  
 
 
 
