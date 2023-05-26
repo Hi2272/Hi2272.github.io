@@ -48,7 +48,7 @@ Damit arbeitet die Alarmanlage nur, wenn die Variable **isAktiv** wahr ist (true
 Wenn die Variable **isAktiv** falsch ist (false), schaltet sich die LED aus.  
 Über die Fernbedienung kann die Alarmanlage immer noch aus- und eingeschaltet werden.
 
-[Gesamter Code](loesung6.hmtl)  
+[Gesamter Code](loesung6.html)  
 
 [zurück](../index.html)
 
