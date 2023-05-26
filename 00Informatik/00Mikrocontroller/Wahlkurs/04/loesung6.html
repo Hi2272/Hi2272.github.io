@@ -41,7 +41,29 @@
     </head>
     <body class="vscode-body vscode-light">
          <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
-<p>Code kommt noch...</p>
+<p>Code wird noch erweitert...</p>
+<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{
+
+<span class="hljs-keyword">if</span> (isAktiv){
+    <span class="hljs-type">int</span> wert = <span class="hljs-built_in">digitalRead</span>(sensor);
+    <span class="hljs-keyword">if</span> (wert == HIGH) {
+        <span class="hljs-built_in">digitalWrite</span>(ledGruen, HIGH);
+        <span class="hljs-built_in">digitalWrite</span>(ledRot, LOW);
+        <span class="hljs-built_in">tone</span>(<span class="hljs-number">6</span>, <span class="hljs-number">500</span>);
+        <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+        <span class="hljs-built_in">tone</span>(<span class="hljs-number">6</span>, <span class="hljs-number">700</span>);
+        <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+        <span class="hljs-built_in">noTone</span>();
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">digitalWrite</span>(ledGruen, LOW);
+        <span class="hljs-built_in">digitalWrite</span>(ledRot, HIGH);
+    }
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">digitalWrite</span>(ledGruen, HIGH);
+    <span class="hljs-built_in">digitalWrite</span>(ledRot, HIGH);
+}
+}
+</code></pre>
 <p><a href="../index.html">zurück</a></p>
 
         
