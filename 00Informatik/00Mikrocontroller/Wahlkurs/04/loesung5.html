@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+         <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<pre><code class="language-C++">    <span class="hljs-keyword">case</span> <span class="hljs-number">71</span>:
+        <span class="hljs-keyword">if</span> (code == geheimcode) {
+          Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Code stimmt!&quot;</span>);
+          isAktiv=!isAktiv;
+        } <span class="hljs-keyword">else</span> {
+          Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Code stimmt nicht!&quot;</span>);
+          code = <span class="hljs-string">&quot;&quot;</span>;
+        }
+        <span class="hljs-keyword">break</span>;
+</code></pre>
+<p>Zum Schluss müssen wir jetzt noch unsere Alarmanlage einschalten, wenn <strong>isAktiv</strong> wahr ist und ausschalten, wenn <strong>isAktiv</strong> falsch ist.<br>
+Hierzu ändern wir den Teil der <strong>loop()</strong>-Methode, den wir vorher auskommentiert haben:</p>
+<pre><code class="language-C++"> <span class="hljs-comment">/*
+  int wert = digitalRead(sensor);
+  if (wert == HIGH) {
+    digitalWrite(ledGruen, HIGH);
+    digitalWrite(ledRot, LOW);
+    tone(6, 500);
+    delay(500);
+    tone(6, 700);
+    delay(500);
+    noTone();
+  } else {
+    digitalWrite(ledGruen, LOW);
+    digitalWrite(ledRot, HIGH);
+  }
+  */</span>
+</code></pre>
+<ol>
+<li>Schreibe an Stelle der /* Zeile folgenden Code:</li>
+</ol>
+<pre><code class="language-C++"><span class="hljs-keyword">if</span> (isAktiv){
+</code></pre>
+<ol start="2">
+<li>Schreibe an Stelle der */ Zeile folgenden Code:</li>
+</ol>
+<pre><code class="language-C++">} <span class="hljs-keyword">else</span> {
+  <span class="hljs-built_in">digitalWrite</span>(ledGruen, HIGH);
+  <span class="hljs-built_in">digitalWrite</span>(ledRot, HIGH);
+}
+</code></pre>
+<p>Damit arbeitet die Alarmanlage nur, wenn die Variable <strong>isAktiv</strong> wahr ist (true). In diesem Fall leuchtet die LED grün so lange sie keine Bewegung erkennt und rot, wenn sie eine Bewegung wahrnimmt.<br>
+Wenn die Variable <strong>isAktiv</strong> falsch ist (false), schaltet sich die LED aus.<br>
+Über die Fernbedienung kann die Alarmanlage immer noch aus- und eingeschaltet werden.</p>
+<p><a href="loesung6.hmtl">Gesamter Code</a></p>
+<p><a href="../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>

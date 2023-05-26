@@ -11,3 +11,5 @@ An dieser Stelle kannst du deinen eigenen Code eintragen. Er darf aber nur aus Z
 In dieser Variable wird der Code gespeichert, der über die Fernbedienung eingegeben wird.  
 
 [Lösung](loesung4.html)
+
+[zurück](../index.html)

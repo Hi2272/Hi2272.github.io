@@ -91,4 +91,7 @@ isAktiv = !isAktiv
 ```
 Füge diese Zeile so in den Programmcode ein, dass sie ausgeführt wird, wenn der richtige Code eingegeben wurde.
 
+[Lösung](loesung5.hmtl)  
+
+[zurück](../index.html)
 
