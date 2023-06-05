@@ -18,7 +18,7 @@ void loop() {
 }
 ```
 ## 3. Erklärung
-1. Verändere die Werte für Pin8 und Pin9 in Zeile 1 und 2, bis die LED leuchtet:
+1. Verändere die Werte für Pin8 und Pin9 in Zeile 4 und 5, bis die LED leuchtet:
    |Pin8|Pin9|LED|
    |----|----|----|
    |LOW|LOW||
