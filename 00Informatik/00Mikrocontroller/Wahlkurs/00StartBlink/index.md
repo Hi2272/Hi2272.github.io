@@ -35,9 +35,12 @@ Die geschweiften Klammern {  } umfassen den Code, der beim Aufruf der Methode au
 
 
 ### pinMode(13,OUTPUT);
-Die Anschlüsse (Pins) des Arduinos können als Eingang (**I**NPUT) und als Ausgang (**O**UTPUT) programmiert werden. Man bezeichnet sie daher auch als **IO**-Pins.  
+**pinMode()** ist eine Methode, d.h. ein in der Programmiersprache festgelegter Befehl. 
 
-Die Methode pinMode(13, OUTPUT) legt fest, dass der Pin 13 als Ausgang verwendet wird. (pinMode(6,INPUT) würde Pin 6 als Eingang festlegen.)
+Mit ihm kann ein bestimmter Anschluss (Pin) des Arduinos entweder als Eingang (**I**NPUT) und als Ausgang (**O**UTPUT) geschaltet werden kann. Man bezeichnet die Anschlüsse daher auch als **IO**-Pins.  
+
+Die Methode **pinMode(13, OUTPUT);** legt fest, dass der Pin 13 als Ausgang verwendet wird.  
+**pinMode(6,INPUT);** würde Pin 6 als Eingang festlegen.
 
 ### void loop(){}
 Die loop-Methode wird beim Betrieb des Arduinos immer wieder durchlaufen. Sie stellt also eine Endlosschleife dar.
