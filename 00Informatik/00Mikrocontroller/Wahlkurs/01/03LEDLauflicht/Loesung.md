@@ -42,4 +42,6 @@ Wenn das Lauflicht funktioniert, kannst du mit dem Code experimentieren:
 1. Das Licht soll schneller laufen.
 2. Bei jedem Durchlauf sollen zunächst alle LEDs ausgeschaltet werden. Anschließend sollen sie der Reihe nach eingeschaltet werden und bis zum Ende des Durchlaufs leuchten.
 
+Auf der nächsten Seite werden wir den Code viel kürzer machen.  
+[weiter](Arrays.html)
 [zurück](index.html)
