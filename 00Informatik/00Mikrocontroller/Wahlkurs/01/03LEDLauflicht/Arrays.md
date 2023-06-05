@@ -16,6 +16,7 @@ void loop() {
  ...
 ```
 Die einzelnen **digitalWrite** Aufrufe unterscheiden sich nur in der Nummer des Pins, der angesprochen wird.  
+## Felder (Arrays)
 
 Im Folgenden verkürzen wir den Code, indem wir zuerst ein Feld (engl. Array) definieren, in dem wir die Pin-Nummer speichern.
 
@@ -25,6 +26,8 @@ int ledPin[] = {7,8,9,10,11,12};
 ```
 Mit dieser Zeile definierst du ein Feld von Integer-Variablen. Den ersten Wert kannst du mit der Zeile **Serial.println(ledPin[0]);** ausgeben, den zweiten mit **Serial.println(ledPin[1]);** und den letzten mit **Serial.println(ledPin[5]);**.  
 Die Zahl in eckigen Klammern bezeichnet man als **Index** des Feldes. Sie läuft für ein Feld mit **6** Elementen immer von **0 bis 5**.  
+## Zählschleife (For-Schleife)
+
 Um den Code mit dem Feld zu verkürzen, benötigen wir noch eine zweite Struktur, die sogenannte Zählschleife (For-Schleife).   
 Ändere deine **setup**-Methode wie folgt ab:
 ```C++

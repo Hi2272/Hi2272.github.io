@@ -55,13 +55,15 @@
  ...
 </code></pre>
 <p>Die einzelnen <strong>digitalWrite</strong> Aufrufe unterscheiden sich nur in der Nummer des Pins, der angesprochen wird.</p>
+<h2 id="felder-arrays">Felder (Arrays)</h2>
 <p>Im Folgenden verkürzen wir den Code, indem wir zuerst ein Feld (engl. Array) definieren, in dem wir die Pin-Nummer speichern.</p>
 <p>Schreibe folgende Codezeile an den Anfang deines Programms:</p>
 <pre><code class="language-C++"><span class="hljs-type">int</span> ledPin[] = {<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>,<span class="hljs-number">11</span>,<span class="hljs-number">12</span>};
 </code></pre>
 <p>Mit dieser Zeile definierst du ein Feld von Integer-Variablen. Den ersten Wert kannst du mit der Zeile <strong>Serial.println(ledPin[0]);</strong> ausgeben, den zweiten mit <strong>Serial.println(ledPin[1]);</strong> und den letzten mit <strong>Serial.println(ledPin[5]);</strong>.<br>
-Die Zahl in eckigen Klammern bezeichnet man als <strong>Index</strong> des Feldes. Sie läuft für ein Feld mit <strong>6</strong> Elementen immer von <strong>0 bis 5</strong>.<br>
-Um den Code mit dem Feld zu verkürzen, benötigen wir noch eine zweite Struktur, die sogenannte Zählschleife (For-Schleife).<br>
+Die Zahl in eckigen Klammern bezeichnet man als <strong>Index</strong> des Feldes. Sie läuft für ein Feld mit <strong>6</strong> Elementen immer von <strong>0 bis 5</strong>.</p>
+<h2 id="zählschleife-for-schleife">Zählschleife (For-Schleife)</h2>
+<p>Um den Code mit dem Feld zu verkürzen, benötigen wir noch eine zweite Struktur, die sogenannte Zählschleife (For-Schleife).<br>
 Ändere deine <strong>setup</strong>-Methode wie folgt ab:</p>
 <pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
     <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">6</span>;i++){
