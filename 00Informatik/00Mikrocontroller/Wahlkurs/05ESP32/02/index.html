@@ -42,6 +42,69 @@
     <body class="vscode-body vscode-light">
            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 <h1 id="einbinden-des-esp32-in-ein-wlan">Einbinden des ESP32 in ein WLan</h1>
+<h2 id="1-vorbereitung">1. Vorbereitung</h2>
+<p>Kopiere folgenden Code in ein neues Programm:</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WebServer.h&gt;</span></span>
+
+<span class="hljs-comment">// Achtung: Mit der SSID und dem Passwort kann jeder auf dein WLan zugreifen.</span>
+<span class="hljs-comment">// Du darfst daher nie diesen Code mit deinem Passwort an andere Personen weitergeben!</span>
+<span class="hljs-comment">// ****************************************************************</span>
+<span class="hljs-type">const</span> <span class="hljs-type">char</span>* ssid     = <span class="hljs-string">&quot;your-ssid&quot;</span>; <span class="hljs-comment">// SSID (= Name) des WLans</span>
+<span class="hljs-type">const</span> <span class="hljs-type">char</span>* password = <span class="hljs-string">&quot;your-password&quot;</span>; <span class="hljs-comment">// geheimes Passwort des WLans</span>
+<span class="hljs-comment">// ****************************************************************</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> httpPort = <span class="hljs-number">80</span>; <span class="hljs-comment">// This should not be changed</span>
+
+<span class="hljs-function">WebServer <span class="hljs-title">server</span><span class="hljs-params">(httpPort)</span></span>; <span class="hljs-comment">// Der ESP32 soll eine Internetseite als Server bereitstellen.</span>
+
+
+</code></pre>
+<h2 id="erläuterung-des-codes">Erläuterung des Codes</h2>
+<h3 id="include-webserverh">#include &lt;WebServer.h&gt;</h3>
+<p>Diese Zeile bindet eine Bibliothek mit grundlegenden Befehlen für den Betrieb des ESP32 als Webserver ein. Der Mikrocontroller kann damit eine Internetseite im WLan bereitstellen.</p>
+<h3 id="const-char-ssid------your-ssid">const char* ssid     = &quot;your-ssid&quot;;</h3>
+<p>An Stelle von <strong>your-ssid</strong> musst du hier den Namen des Wlans eintragen, mit den du dich verbinden willst.</p>
+<h3 id="const-char-password--your-password">const char* password = &quot;your-password&quot;;</h3>
+<p>Auch hier muss <strong>your-password</strong> durch das geheime Passwort des WLans ersetzt werden.</p>
+<p><strong>Der Warnhinweis ist sehr wichtig - mit der SSID und dem Passwort kann jeder in dein WLan eindringen. Du darfst diese Informationen daher nie an andere Personen weitergeben.</strong></p>
+<h3 id="const-int-httpport--80">const int httpPort = 80;</h3>
+<p>Diese Zeile legt fest, über welchen Port die Internetdaten gesendet werden. Für normale Internetseiten ist das stets der Port 80. Dieser sollte nicht geändert werden, da der Datenaustausch sonst in der Regel blockiert wird.</p>
+<h3 id="webserver-serverhttpport">WebServer server(httpPort);</h3>
+<p>Über die Variable <strong>server</strong> kannst du später die Internetseite des ESP32 erstellen.</p>
+<h2 id="2-anmelden-im-wlan">2. Anmelden im WLAN</h2>
+<p>In der <strong>setup</strong>-Methode soll sich unser ESP32 im WLAN anmelden.<br>
+Kopiere diesen Code in dein Programm:</p>
+<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>); 
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Verbindung zu WLAN: &quot;</span>);
+  Serial.<span class="hljs-built_in">println</span>(ssid);
+  WiFi.<span class="hljs-built_in">begin</span>(ssid, password);
+   
+  <span class="hljs-keyword">while</span>(WiFi.<span class="hljs-built_in">status</span>() != WL_CONNECTED){
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>); 
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;.&quot;</span>);
+  }
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;&quot;</span>);
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Verbindung aufgebaut&quot;</span>);
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;IP-Addresse des ESP32: &quot;</span>);
+  Serial.<span class="hljs-built_in">println</span>(WiFi.<span class="hljs-built_in">localIP</span>());
+  
+  server.<span class="hljs-built_in">begin</span>();
+}
+</code></pre>
+<h2 id="erläuterung-des-codes-1">Erläuterung des Codes</h2>
+<h3 id="serialbegin115200">Serial.begin(115200);</h3>
+<p>Der ESP kann Daten deutlich schneller übertragen als ein Arduino UNO. Damit der Serielle Monitor richtig funktioniert, muss auch hier die Datenrate aus 115200 Baud eingestellt werden:<br>
+<img src="Sc01.png" alt="Alt text"></p>
+<h3 id="wifibeginssid-password">WiFi.begin(ssid, password);</h3>
+<p>Mit diesem Befehl startet der ESP32 den Aufbau einer Verbindung zu WLAN. Er verwendet hierbei die SSID und Passwort-Daten.</p>
+<h3 id="whilewifistatus--wl_connected">while(WiFi.status() != WL_CONNECTED){</h3>
+<p>Solange die Verbindung noch nicht aufgebaut ist, wird auf dem seriellen Monitor ein Punkt ausgegeben. Wenn der Verbindungsaufbau nicht funktioniert, bleibt das System in dieser Schleife hängen.</p>
+<h3 id="serialprintlnwifilocalip">Serial.println(WiFi.localIP());</h3>
+<p>Der Router des WLANs weist dem ESP32 eine lokale IP-Adresse zu. Diese Adresse wird an dieser Stelle ausgegeben. Mit der Adresse benötigen wir später um über einen Internetbrowser auf die ESP32 zuzugrifen.</p>
+<h3 id="serverbegin">server.begin();</h3>
+<p>Hiermit startet der ESP32 als Webserver.</p>
+<p>Als nächstes bauen wir eine Internetseite auf, die vom ESP32 bereitgestellt wird.</p>
+<p><a href="weiter.html">weiter</a></p>
 <p><a href="../index.html">zurück</a></p>
 
         
