@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+           <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WebServer.h&gt;</span></span>
+
+<span class="hljs-comment">// Achtung: Mit der SSID und dem Passwort kann jeder auf dein WLan zugreifen.</span>
+<span class="hljs-comment">// Du darfst daher nie diesen Code mit deinem Passwort an andere Personen weitergeben!</span>
+<span class="hljs-comment">// ****************************************************************</span>
+<span class="hljs-type">const</span> <span class="hljs-type">char</span>* ssid = <span class="hljs-string">&quot;Name des Netzwerks&quot;</span>;            <span class="hljs-comment">// SSID (= Name) des WLans</span>
+<span class="hljs-type">const</span> <span class="hljs-type">char</span>* password = <span class="hljs-string">&quot;geheimes Passwort&quot;</span>;  <span class="hljs-comment">// geheimes Passwort des WLans</span>
+<span class="hljs-comment">// ****************************************************************</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> httpPort = <span class="hljs-number">80</span>;  <span class="hljs-comment">// This should not be changed</span>
+
+<span class="hljs-function">WebServer <span class="hljs-title">server</span><span class="hljs-params">(httpPort)</span></span>;  <span class="hljs-comment">// Der ESP32 soll eine Internetseite als Server bereitstellen.</span>
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">startSeite</span><span class="hljs-params">()</span> </span>{
+  server.<span class="hljs-built_in">send</span>(<span class="hljs-number">200</span>, <span class="hljs-string">&quot;text/html&quot;</span>, <span class="hljs-built_in">htmlText</span>());
+}
+
+<span class="hljs-function">String <span class="hljs-title">htmlText</span><span class="hljs-params">()</span> </span>{
+  String txt;
+  txt = <span class="hljs-string">&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;ESP32&lt;/title&gt;&quot;</span>;
+  txt = txt + <span class="hljs-string">&quot;&lt;style&gt;body{text-align:center;}button{margin:10px;padding:10px}&lt;/style&gt;&quot;</span>;
+  txt = txt + <span class="hljs-string">&quot;&lt;/head&gt;&lt;body&gt;&quot;</span>;
+  txt = txt + <span class="hljs-string">&quot;&lt;h1&gt;ESP&lt;/h1&gt;&quot;</span>;
+
+  txt = txt + <span class="hljs-string">&quot;&lt;a href=\&quot;/an\&quot;&gt;&quot;</span>;
+  txt = txt + <span class="hljs-string">&quot;&lt;button&gt;LED an&lt;/button&gt;&quot;</span>;
+  txt = txt + <span class="hljs-string">&quot;&lt;/a&gt;&quot;</span>;
+  txt = txt + <span class="hljs-string">&quot;&lt;a href=\&quot;/aus\&quot;&gt;&quot;</span>;
+  txt = txt + <span class="hljs-string">&quot;&lt;button&gt;LED aus&lt;/button&gt;&quot;</span>;
+  txt = txt + <span class="hljs-string">&quot;&lt;/a&gt;&quot;</span>;
+
+  txt = txt + <span class="hljs-string">&quot;&lt;/body&gt;&lt;/html&gt;&quot;</span>;
+  Serial.<span class="hljs-built_in">println</span>(txt);
+  <span class="hljs-keyword">return</span> txt;
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ledAn</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">22</span>, HIGH);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ledAus</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">22</span>, LOW);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">22</span>, OUTPUT);
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Verbindung zu WLAN: &quot;</span>);
+  Serial.<span class="hljs-built_in">println</span>(ssid);
+  WiFi.<span class="hljs-built_in">begin</span>(ssid, password);
+
+  <span class="hljs-keyword">while</span> (WiFi.<span class="hljs-built_in">status</span>() != WL_CONNECTED) {
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;.&quot;</span>);
+  }
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;&quot;</span>);
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Verbindung aufgebaut&quot;</span>);
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;IP-Addresse des ESP32: &quot;</span>);
+  Serial.<span class="hljs-built_in">println</span>(WiFi.<span class="hljs-built_in">localIP</span>());
+
+  <span class="hljs-comment">// HTML Befehle abarbeiten</span>
+  server.<span class="hljs-built_in">on</span>(<span class="hljs-string">&quot;/&quot;</span>, startSeite);
+  server.<span class="hljs-built_in">on</span>(<span class="hljs-string">&quot;/an&quot;</span>, ledAn);
+  server.<span class="hljs-built_in">on</span>(<span class="hljs-string">&quot;/aus&quot;</span>, ledAus);
+
+  server.<span class="hljs-built_in">begin</span>();
+}
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  server.<span class="hljs-built_in">handleClient</span>();
+}
+</code></pre>
+<p><a href="../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>

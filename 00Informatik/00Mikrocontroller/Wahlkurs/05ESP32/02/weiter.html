@@ -2,7 +2,7 @@
     <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>ESP32 als Websever</title>
         <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -41,6 +41,79 @@
     </head>
     <body class="vscode-body vscode-light">
            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="esp32-als-websever">ESP32 als Websever</h1>
+<h2 id="1-html-code">1. HTML Code</h2>
+<p>Kopiere folgende Codezeilen in dein Programm:</p>
+<pre><code class="language-C++"><span class="hljs-function">String <span class="hljs-title">htmlText</span><span class="hljs-params">()</span> </span>{
+  String txt;
+  txt = <span class="hljs-string">&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;ESP32&lt;/title&gt;&quot;</span>;
+  txt=txt+<span class="hljs-string">&quot;&lt;style&gt;body{text-align:center;}button{margin:10px;padding:10px}&lt;/style&gt;&quot;</span>;
+  txt=txt+<span class="hljs-string">&quot;&lt;/head&gt;&lt;body&gt;&quot;</span>;
+  txt = txt + <span class="hljs-string">&quot;&lt;h1&gt;ESP&lt;/h1&gt;&quot;</span>;
+  
+  
+  txt = txt + <span class="hljs-string">&quot;&lt;/body&gt;&lt;/html&gt;&quot;</span>;
+  Serial.<span class="hljs-built_in">println</span>(txt);
+  <span class="hljs-keyword">return</span> txt;
+}
+</code></pre>
+<h3 id="erläuterungen-zum-code">Erläuterungen zum Code</h3>
+<p>Der ESP32 stellt als Webserver eine HTML-Seite dar.<br>
+Die Funktion <strong>htmlText</strong> erzeugt den HTML-Code, der auf dieser Seite angezeigt wird.<br>
+Bisher besteht diese Seite nur aus einer Überschrift.</p>
+<h2 id="2-webseite-anzeigen">2. Webseite anzeigen</h2>
+<h3 id="die-methode-startseite">Die Methode startSeite()</h3>
+<p>Erstelle eine Methode <strong>startSeite()</strong> mit der der HTML-Code angezeigt wird:</p>
+<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">startSeite</span><span class="hljs-params">()</span> </span>{
+    server.<span class="hljs-built_in">send</span>(<span class="hljs-number">200</span>, <span class="hljs-string">&quot;text/html&quot;</span>, <span class="hljs-built_in">htmlText</span>());
+}
+</code></pre>
+<p>Der Server sendet zwei Dinge:</p>
+<ol>
+<li>Der HTML-Code 200 bedeutet, dass die Seite problemlos gefunden wurde. (404 wäre der entsprechende Fehlercode)</li>
+<li>Der HTML-Text , den du in der Methode <strong>htmlText()</strong> aufgebaut hast.</li>
+</ol>
+<h3 id="warten-auf-anfragen-des-kunden-clients">Warten auf Anfragen des Kunden (Clients)</h3>
+<p>Füge in der <strong>loop()</strong>-Methode folgende Zeile ein:</p>
+<pre><code class="language-C++">     server.<span class="hljs-built_in">handleClient</span>();
+</code></pre>
+<p>Der Server verarbeitet jetzt Anfragen von Clients, wie zum Beispiel dem Internetbrowser, mit dem du die Seite aufrufst.</p>
+<h3 id="reaktion-auf-anfragen-des-clients">Reaktion auf Anfragen des Clients</h3>
+<p>Füge in der <strong>setup</strong>-Methode folgende Anweisung vor der server.begin();-Zeile ein:</p>
+<pre><code class="language-C++">  server.<span class="hljs-built_in">on</span>(<span class="hljs-string">&quot;/&quot;</span>, startSeite);
+</code></pre>
+<p>Wenn die IP-Adresse des ESP ohne weitere Zusätze vom Browser aufgerufen wird, startet der ESP jetzt die Methode <strong>startSeite</strong>. Er stellt unsere Webseite dar.</p>
+<h3 id="testen-der-seite">Testen der Seite</h3>
+<p>Starte einen Internetbrowser und tippe in die Adresszeile die IP-Adresse ein, die den ESP bei der Anmeldung erhalten hat.
+Der Browser müsste jetzt eine Seite darstellen, auf der nur die Überschrift ESP steht.</p>
+<h2 id="3-interaktive-webseiten">3. Interaktive Webseiten</h2>
+<p>Füge nach der Zeile</p>
+<pre><code class="language-C++">*txt = txt + <span class="hljs-string">&quot;&lt;h1&gt;ESP&lt;/h1&gt;&quot;</span>;
+</code></pre>
+<p>folgende Zeilen in die <strong>htmlText</strong>-Methode ein:</p>
+<pre><code class="language-C++">    txt = txt + <span class="hljs-string">&quot;&lt;a href=\&quot;/an\&quot;&gt;&quot;</span>;
+    txt = txt + <span class="hljs-string">&quot;&lt;button&gt;LED an&lt;/button&gt;&quot;</span>;
+    txt = txt + <span class="hljs-string">&quot;&lt;/a&gt;&quot;</span>;
+    txt = txt + <span class="hljs-string">&quot;&lt;a href=\&quot;/aus\&quot;&gt;&quot;</span>;
+    txt = txt + <span class="hljs-string">&quot;&lt;button&gt;LED aus&lt;/button&gt;&quot;</span>;
+    txt = txt + <span class="hljs-string">&quot;&lt;/a&gt;&quot;</span>;
+</code></pre>
+<p>Wenn du die IP-Adresse des ESP jetzt im Browser aufrufst, werden zwei Buttons mit den Beschriftungen <strong>LED an</strong> und <strong>LED aus</strong> dargestellt.<br>
+Beim Klicken werden die Unterseiten <strong>/an</strong> bzw. <strong>/aus</strong> augerufen.<br>
+Jetzt musst du nur den ESP auf diese Unterseiten reagieren lassen.<br>
+Füge hierzu folgende Zeilen in die <strong>setup()</strong>-Methode ein:</p>
+<pre><code class="language-C++">  server.<span class="hljs-built_in">on</span>(<span class="hljs-string">&quot;/an&quot;</span>, ledAn);
+  server.<span class="hljs-built_in">on</span>(<span class="hljs-string">&quot;/aus&quot;</span>, ledAus);
+</code></pre>
+<p>Wenn die IP-Adresse des ESP mit dem Zusatz <strong>/an</strong> aufgerufen wird, startet der ESP die Methode LEDAn, die wir noch programmieren müssen. Der Zusatz <strong>/aus</strong> soll die entsprechende Methode ledAus starten.</p>
+<h3 id="led-anschließen-und-ansteuern">LED anschließen und ansteuern.</h3>
+<ol>
+<li>Schließe auf dem Breadboard eine rote LED mit Widerstand an den Port 22 des ESP32 an.</li>
+<li>Definiere diesen Port in der <strong>setup()</strong>-Methode als <strong>OUTPUT</strong></li>
+<li>Erstelle eine Methode <strong>ledAn()</strong>, die den Port 22 HIGH schaltet.</li>
+<li>Erstelle eine Methode <strong>ledAus()</strong>, die den Port 22 LOW schaltet.</li>
+<li>Teste dein Programm - die LED müsste jetzt über den Browser geschaltet werden können.</li>
+</ol>
 <p><a href="../index.html">zurück</a></p>
 
         
