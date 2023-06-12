@@ -52,7 +52,7 @@ Der Browser müsste jetzt eine Seite darstellen, auf der nur die Überschrift ES
 ## 3. Interaktive Webseiten
 Füge nach der Zeile 
 ```C++
-*txt = txt + "<h1>ESP</h1>";
+txt = txt + "<h1>ESP</h1>";
 ```
  folgende Zeilen in die **htmlText**-Methode ein:
 ```C++
