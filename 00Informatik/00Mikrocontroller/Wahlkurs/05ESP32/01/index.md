@@ -34,5 +34,5 @@ Klicke auf die Pfeilspitze rechts von Select Board und wähle **Select other boa
    ![Alt text](Sc05.png)
 
 
-[zurück](../index.html)   
+[zurück](../../index.html)   
 

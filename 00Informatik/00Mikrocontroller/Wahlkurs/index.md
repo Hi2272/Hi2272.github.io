@@ -49,8 +49,8 @@ In folgendem Video könnt ihr die Funktion des Lichtes sehen:  [YouTube Video Pa
 ### 5. ESP32 - ein Mikrocontroller im Netzwerk
 Der ESP32-Chip kann über ein drahtloses Netzwerk (WLan) gesteuert werden.  
 Seine Programmierung kann auch über die bekannte Arduino-IDE erfolgen.  
-1. [Vorbereitung der Arduino-IDE für den ESP32](\05ESP32\01\index.html)
-2. [Schalten einer LED über das WLan](\05ESP32\02\index.html)
+1. [Vorbereitung der Arduino-IDE für den ESP32](05ESP32/01/index.html)
+2. [Schalten einer LED über das WLan](05ESP32/02/index.html)
 ### 6. Selbstfahrender Roboter  
    Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) von rtheiss bauen wir einen Roboter, der Hindernisse erkennt und ihnen ausweichen kann.  
    1. Motorsteuerung  
