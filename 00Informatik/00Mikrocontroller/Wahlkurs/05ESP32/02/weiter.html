@@ -98,8 +98,9 @@ Der Browser müsste jetzt eine Seite darstellen, auf der nur die Überschrift ES
     txt = txt + <span class="hljs-string">&quot;&lt;button&gt;LED aus&lt;/button&gt;&quot;</span>;
     txt = txt + <span class="hljs-string">&quot;&lt;/a&gt;&quot;</span>;
 </code></pre>
-<p>Wenn du die IP-Adresse des ESP jetzt im Browser aufrufst, werden zwei Buttons mit den Beschriftungen <strong>LED an</strong> und <strong>LED aus</strong> dargestellt.<br>
-Beim Klicken werden die Unterseiten <strong>/an</strong> bzw. <strong>/aus</strong> augerufen.<br>
+<p>Wenn du die IP-Adresse des ESP jetzt im Browser aufrufst, werden zwei Buttons mit den Beschriftungen <strong>LED an</strong> und <strong>LED aus</strong> dargestellt:<br>
+<img src="Sc02.png" alt="Alt text"></p>
+<p>Beim Klicken auf die Buttons werden die Unterseiten <strong>/an</strong> bzw. <strong>/aus</strong> augerufen.<br>
 Jetzt musst du nur den ESP auf diese Unterseiten reagieren lassen.<br>
 Füge hierzu folgende Zeilen in die <strong>setup()</strong>-Methode ein:</p>
 <pre><code class="language-C++">  server.<span class="hljs-built_in">on</span>(<span class="hljs-string">&quot;/an&quot;</span>, ledAn);
@@ -110,8 +111,18 @@ Füge hierzu folgende Zeilen in die <strong>setup()</strong>-Methode ein:</p>
 <ol>
 <li>Schließe auf dem Breadboard eine rote LED mit Widerstand an den Port 22 des ESP32 an.</li>
 <li>Definiere diesen Port in der <strong>setup()</strong>-Methode als <strong>OUTPUT</strong></li>
-<li>Erstelle eine Methode <strong>ledAn()</strong>, die den Port 22 HIGH schaltet.</li>
-<li>Erstelle eine Methode <strong>ledAus()</strong>, die den Port 22 LOW schaltet.</li>
+<li>Erstelle eine Methode <strong>ledAn()</strong>, die
+<ol>
+<li>den Port 22 HIGH schaltet.</li>
+<li>die Methode <strong>startSeite()</strong> aufruft, damit die Webseite dargestellt wird.</li>
+</ol>
+</li>
+<li>Erstelle eine Methode <strong>ledAus()</strong>, die
+<ol>
+<li>den Port 22 LOW schaltet.</li>
+<li>die Methode <strong>startSeite()</strong> aufruft, damit die Webseite dargestellt wird.</li>
+</ol>
+</li>
 <li>Teste dein Programm - die LED müsste jetzt über den Browser geschaltet werden können.</li>
 </ol>
 <p><a href="loesung.html">Lösung</a></p>

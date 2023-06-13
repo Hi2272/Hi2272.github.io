@@ -1,17 +1,17 @@
    <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
-# Einbinden des ESP32 in ein WLan
+# Einbinden des ESP32 in ein WLAN
 
 ## 1. Vorbereitung
 Kopiere folgenden Code in ein neues Programm:
 ```C++
 #include <WebServer.h>
 
-// Achtung: Mit der SSID und dem Passwort kann jeder auf dein WLan zugreifen.
+// Achtung: Mit der SSID und dem Passwort kann jeder auf dein WLAN zugreifen.
 // Du darfst daher nie diesen Code mit deinem Passwort an andere Personen weitergeben!
 // ****************************************************************
-const char* ssid     = "your-ssid"; // SSID (= Name) des WLans
-const char* password = "your-password"; // geheimes Passwort des WLans
+const char* ssid     = "your-ssid"; // SSID (= Name) des WLANs
+const char* password = "your-password"; // geheimes Passwort des WLANs
 // ****************************************************************
 const int httpPort = 80; // This should not be changed
 
@@ -21,13 +21,13 @@ WebServer server(httpPort); // Der ESP32 soll eine Internetseite als Server bere
 ```
 ## Erläuterung des Codes
 ### #include <WebServer.h>
-Diese Zeile bindet eine Bibliothek mit grundlegenden Befehlen für den Betrieb des ESP32 als Webserver ein. Der Mikrocontroller kann damit eine Internetseite im WLan bereitstellen.
+Diese Zeile bindet eine Bibliothek mit grundlegenden Befehlen für den Betrieb des ESP32 als Webserver ein. Der Mikrocontroller kann damit eine Internetseite im WLAN bereitstellen.
 ###  const char* ssid     = "your-ssid"; 
-An Stelle von **your-ssid** musst du hier den Namen des Wlans eintragen, mit den du dich verbinden willst.
+An Stelle von **your-ssid** musst du hier den Namen des WLANs eintragen, mit den du dich verbinden willst.
 ### const char* password = "your-password"; 
-Auch hier muss **your-password** durch das geheime Passwort des WLans ersetzt werden.  
+Auch hier muss **your-password** durch das geheime Passwort des WLANs ersetzt werden.  
 
-**Der Warnhinweis ist sehr wichtig - mit der SSID und dem Passwort kann jeder in dein WLan eindringen. Du darfst diese Informationen daher nie an andere Personen weitergeben.**
+**Der Warnhinweis ist sehr wichtig - mit der SSID und dem Passwort kann jeder in dein WLAN eindringen. Du darfst diese Informationen daher nie an andere Personen weitergeben.**
 
 
 ### const int httpPort = 80;
@@ -70,7 +70,8 @@ Mit diesem Befehl startet der ESP32 den Aufbau einer Verbindung zu WLAN. Er verw
 Solange die Verbindung noch nicht aufgebaut ist, wird auf dem seriellen Monitor ein Punkt ausgegeben. Wenn der Verbindungsaufbau nicht funktioniert, bleibt das System in dieser Schleife hängen.  
 
 ###  Serial.println(WiFi.localIP());
-Der Router des WLANs weist dem ESP32 eine lokale IP-Adresse zu. Diese Adresse wird an dieser Stelle ausgegeben. Mit der Adresse benötigen wir später um über einen Internetbrowser auf die ESP32 zuzugrifen.
+Der Router des WLANs weist dem ESP32 eine lokale IP-Adresse zu. Diese Adresse wird an dieser Stelle ausgegeben. Mit der Adresse benötigen wir später um über einen Internetbrowser auf die ESP32 zuzugrifen:  
+![Alt text](Sc00.png)  
 ### server.begin();
 Hiermit startet der ESP32 als Webserver.  
 

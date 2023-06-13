@@ -2,7 +2,7 @@
     <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Steuerung einer LED &uuml;ber das WLAN</title>
         <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -41,13 +41,14 @@
     </head>
     <body class="vscode-body vscode-light">
            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h2 id="steuerung-einer-led-über-das-wlan">Steuerung einer LED über das WLAN</h2>
 <pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WebServer.h&gt;</span></span>
 
-<span class="hljs-comment">// Achtung: Mit der SSID und dem Passwort kann jeder auf dein WLan zugreifen.</span>
+<span class="hljs-comment">// Achtung: Mit der SSID und dem Passwort kann jeder auf dein WLAN zugreifen.</span>
 <span class="hljs-comment">// Du darfst daher nie diesen Code mit deinem Passwort an andere Personen weitergeben!</span>
 <span class="hljs-comment">// ****************************************************************</span>
-<span class="hljs-type">const</span> <span class="hljs-type">char</span>* ssid = <span class="hljs-string">&quot;Name des Netzwerks&quot;</span>;            <span class="hljs-comment">// SSID (= Name) des WLans</span>
-<span class="hljs-type">const</span> <span class="hljs-type">char</span>* password = <span class="hljs-string">&quot;geheimes Passwort&quot;</span>;  <span class="hljs-comment">// geheimes Passwort des WLans</span>
+<span class="hljs-type">const</span> <span class="hljs-type">char</span>* ssid = <span class="hljs-string">&quot;Name des Netzwerks&quot;</span>;            <span class="hljs-comment">// SSID (= Name) des WLANs</span>
+<span class="hljs-type">const</span> <span class="hljs-type">char</span>* password = <span class="hljs-string">&quot;geheimes Passwort&quot;</span>;  <span class="hljs-comment">// geheimes Passwort des WLANs</span>
 <span class="hljs-comment">// ****************************************************************</span>
 <span class="hljs-type">const</span> <span class="hljs-type">int</span> httpPort = <span class="hljs-number">80</span>;  <span class="hljs-comment">// This should not be changed</span>
 
@@ -79,10 +80,12 @@
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ledAn</span><span class="hljs-params">()</span> </span>{
   <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">22</span>, HIGH);
+  <span class="hljs-built_in">startSeite</span>();
 }
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ledAus</span><span class="hljs-params">()</span> </span>{
   <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">22</span>, LOW);
+  <span class="hljs-built_in">startSeite</span>();
 }
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{

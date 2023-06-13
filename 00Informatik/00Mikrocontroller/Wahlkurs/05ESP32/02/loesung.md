@@ -1,15 +1,15 @@
    <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
-
+## Steuerung einer LED über das WLAN
 
 ```C++
 #include <WebServer.h>
 
-// Achtung: Mit der SSID und dem Passwort kann jeder auf dein WLan zugreifen.
+// Achtung: Mit der SSID und dem Passwort kann jeder auf dein WLAN zugreifen.
 // Du darfst daher nie diesen Code mit deinem Passwort an andere Personen weitergeben!
 // ****************************************************************
-const char* ssid = "Name des Netzwerks";            // SSID (= Name) des WLans
-const char* password = "geheimes Passwort";  // geheimes Passwort des WLans
+const char* ssid = "Name des Netzwerks";            // SSID (= Name) des WLANs
+const char* password = "geheimes Passwort";  // geheimes Passwort des WLANs
 // ****************************************************************
 const int httpPort = 80;  // This should not be changed
 
@@ -41,10 +41,12 @@ String htmlText() {
 
 void ledAn() {
   digitalWrite(22, HIGH);
+  startSeite();
 }
 
 void ledAus() {
   digitalWrite(22, LOW);
+  startSeite();
 }
 
 void setup() {
