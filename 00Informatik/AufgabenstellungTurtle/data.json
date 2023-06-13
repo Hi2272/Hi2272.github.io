@@ -1,5 +1,6 @@
 { "typ":"Bild",   
   "titel":"Turtle-Grafiken",
+  "blueJ":"AufgabenstellungTurtel/11aTurtle.jar",
   "untertitel":"Löse diese Aufgabe in BlueJ und klicke dann auf <i>Weiter</i>.",
   "angabe":[
     {"txt":"Im Konstruktor der Klasse Bild wird ein Quadrat mit der Kantenlänge 100 erzeugt.<br>Verkürze den Programmcode unter Verwendung einer Zählschleife.","zeit":30},
