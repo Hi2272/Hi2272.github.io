@@ -5,7 +5,8 @@
 
 ## Grundausstattung 
 Die Materialien für den Kurs wurden durch Spenden folgender Organisationen finanziert:  
-- [Wilhelm Stemmer Stiftung](https://www.wilhelm-stemmer-stiftung.de)
+<!---- [Wilhelm Stemmer Stiftung](https://www.wilhelm-stemmer-stiftung.de))
+---->
 - [Förderverein des Gymnasium Waldkraiburgs](https://www.gymnasiumwaldkraiburg.de/schule/foerderverein/)  
   
 Wir danken den Spendern herzlich für Ihre Unterstützung.  
