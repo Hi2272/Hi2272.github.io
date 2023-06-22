@@ -1,6 +1,8 @@
 { "typ":"Bild",   
   "titel":"Kara braucht Klee!",
   "untertitel":"Kara braucht Klee!",
+  "blueJ":"AufgabenstellungKara/15KaraBrauchtKlee.jar",
+  
   "angabe":[
     {"zeit":15,"txt":"Füge im Konstruktor der Klasse Welt zwei Zählschleifen ein, so dass 60 Baumstümpfe und 30 Kleeblätter an zufälligen, leeren Positionen eingefügt werden."},
     {"zeit":15,"txt":"Kara soll zu Beginn 30 Punkte Energie haben.<br>Deklariere in der Klasse <b>Kaefer</b> ein privates Attribut vom Typ int und initialisiere es im Konstruktor mit dem Wert 30."},
