@@ -30,7 +30,7 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
 #### Temperaturmessung
 
    Wir bauen ein digitales Thermometer und verwenden es, um Messreihen am Computer aufzuzeichnen.
-   1. Thermofühler
+   1. [Temperatursensor Dallas DS18B20](03Temperatur/index.html)
    2. OLED-Display zur Darstellung der Messwerte
    3. Graphische Ausgabe am Computer  
   

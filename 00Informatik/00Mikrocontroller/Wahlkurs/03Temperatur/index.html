@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Temperaturmessung mit dem DS18B20-Sensor</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+         <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="temperaturmessung-mit-dem-ds18b20-sensor">Temperaturmessung mit dem DS18B20-Sensor</h1>
+<h2 id="1-anschluss">1. Anschluss</h2>
+<p>Der DS18B20-Sensor verfügt über 3 Anschluss-Kabel.  Schließe diese wie folgt an den Arduino an:</p>
+<ul>
+<li>rot = +5 V</li>
+<li>schwarz = GND</li>
+<li>gelb = 2</li>
+</ul>
+<h2 id="2-installation-der-onewire-biblitothek">2. Installation der OneWire-Biblitothek</h2>
+<p>Über das gelbe Kabel wird der Messwert bei diesem Sensor nicht als einfacher Spannungswert ausgegeben. Der Sensor liefert statt dessen nach dem OneWire-Protokoll codierte Daten.<br>
+Um sie verarbeiten zu können, müssen wir die entsprechende Bibliothek installieren.</p>
+<ol>
+<li>Öffne den Bibliotheksmanager:</li>
+<li>Suche nach <strong>OneWire</strong>.</li>
+<li>Installiere die OneWire-Bibliothek von Jim Studt:<br>
+<img src="2023-06-24_08-09.png" alt="Alt text"></li>
+</ol>
+<h2 id="3-installation-der-ds18b20-bibliothek">3. Installation der DS18B20-Bibliothek</h2>
+<p>Der DS18B20-Sensor wurde von der Firma Dallas Semiconductors entwickelt. Die Bibliothek heißt daher <strong>DallasTemperature</strong>:</p>
+<ol>
+<li>Öffne den Bibliotheksmanager:</li>
+<li>Suche nach <strong>dallas</strong></li>
+<li>Installiere die Bibliothek von Miles Burton:<br>
+<img src="2023-06-24_08-18.png" alt="Alt text"></li>
+</ol>
+<h2 id="4-programmieren-des-sensors">4. Programmieren des Sensors</h2>
+<p>Erstelle einen neuen Sketch und speichere ihn unter dem Namen Temperatur.</p>
+<h3 id="1-import-der-bibliotheken">1. Import der Bibliotheken</h3>
+<p>Kopiere folgende Codezeilen an den Beginn deines Sketeches:</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;OneWire.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;DallasTemperature.h&gt;</span></span>
+</code></pre>
+<h3 id="2-festlegen-des-datenports">2. Festlegen des Datenports</h3>
+<p>Mit folgenden Sketchzeilen legst du fest, dass der Sensor an Pin2 des Arduinos angeschlossen ist:</p>
+<pre><code class="language-C++"><span class="hljs-comment">// Anschluss des Sensors an Pin2</span>
+<span class="hljs-type">int</span> tempPin=<span class="hljs-number">2</span>;
+<span class="hljs-function">OneWire <span class="hljs-title">oneWire</span><span class="hljs-params">(tempPin)</span></span>;
+<span class="hljs-function">DallasTemperature <span class="hljs-title">sensors</span><span class="hljs-params">(&amp;oneWire)</span></span>;
+</code></pre>
+<h3 id="3-setup-methode">3. setup()-Methode</h3>
+<p>In der <strong>setup()</strong>-Methode startest du die serielle Datenübertragung und den Sensor:</p>
+<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span>
+</span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
+  sensors.<span class="hljs-built_in">begin</span>();
+}
+</code></pre>
+<h3 id="4-loop-methode">4. loop()-Methode</h3>
+<p>In der <strong>loop()</strong>-Methode wird alle 100ms ein Temperatur-Wert gelesen und an die Serielle Schnittstelle ausgegeben:</p>
+<pre><code class="language-C++">
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>
+</span>{ 
+  <span class="hljs-comment">// Sende Signal zum Abfragen der Temperatur</span>
+  sensors.<span class="hljs-built_in">requestTemperatures</span>(); 
+  <span class="hljs-comment">// Lese den Wert des Sensors mit dem Index 0 (es können mehrere Sensoren angeschlossen werden)</span>
+  <span class="hljs-type">float</span> tempC = sensors.<span class="hljs-built_in">getTempCByIndex</span>(<span class="hljs-number">0</span>); 
+  <span class="hljs-comment">// Ausgabe des Wertes an die Serielle Schnittstelle</span>
+  Serial.<span class="hljs-built_in">println</span>(tempC);
+  <span class="hljs-comment">// 100 ms Pause </span>
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">100</span>); 
+}
+</code></pre>
+<h3 id="5-testen-des-programms">5. Testen des Programms</h3>
+<p>Wenn du das Programm gestartet hast, wird die gemessene Temperatur in °C auf dem Seriellen Monitor ausgegeben.<br>
+Ein Wert von -127.0 zeigt hierbei an, dass ein Fehler vorliegt - überprüfe den Code und die Verkabelung des Sensors.</p>
+<h3 id="6-grafische-darstellung-der-messwerte">6. Grafische Darstellung der Messwerte</h3>
+<p>Über den Seriellen Plotter kannst du die Messwerte grafisch darstellen lassen:<br>
+<img src="2023-06-24_09-27.png" alt="Alt text"></p>
+
+        
+        
+    </body>
+    </html>
