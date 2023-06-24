@@ -122,6 +122,14 @@ Die Werte laufen hierbei von 0 bis 255.</p>
 <p>Es wird eine Pause von 10ms eingelegt.</p>
 <p>Wenn du das Programm startest, sollte folgende Anzeige erscheinen und der Wert sollte von 0,0 bis 5,0 Volt steigen:<br>
 <img src="2023-06-24_13-00.png" alt="Alt text"></p>
+<h2 id="6-beschrifung-ändern">6. Beschrifung ändern</h2>
+<p>Wir wollen Temperaturen in einem Bereich zwischen -30 und +110 °C messen. Füge am Ende der <strong>setup</strong>-Methode folgende Zeilen ein, um die Beschriftung der Anzeige zu ändern:</p>
+<pre><code class="language-Java">  m.setTitle(<span class="hljs-string">&quot;Temperatur in °C&quot;</span>);
+  String[] labels={<span class="hljs-string">&quot;-30&quot;</span>,<span class="hljs-string">&quot;-20&quot;</span>,<span class="hljs-string">&quot;-10&quot;</span>,<span class="hljs-string">&quot;0&quot;</span>,<span class="hljs-string">&quot;10&quot;</span>,<span class="hljs-string">&quot;20&quot;</span>,<span class="hljs-string">&quot;30&quot;</span>,<span class="hljs-string">&quot;40&quot;</span>,<span class="hljs-string">&quot;50&quot;</span>,<span class="hljs-string">&quot;60&quot;</span>,<span class="hljs-string">&quot;70&quot;</span>,<span class="hljs-string">&quot;80&quot;</span>,<span class="hljs-string">&quot;90&quot;</span>,<span class="hljs-string">&quot;100&quot;</span>,<span class="hljs-string">&quot;110&quot;</span>};
+  m.setScaleLabels(labels);
+</code></pre>
+<p>Die Anzeige bekommt einen neuen Titel (setTitle) und neue Skalenbeschriftungen (setScaleLabels):<br>
+<img src="2023-06-24_14-01.png" alt="Alt text"></p>
 
         
         

@@ -82,3 +82,12 @@ Es wird eine Pause von 10ms eingelegt.
 Wenn du das Programm startest, sollte folgende Anzeige erscheinen und der Wert sollte von 0,0 bis 5,0 Volt steigen:    
 ![Alt text](2023-06-24_13-00.png)
  
+## 6. Beschrifung ändern
+Wir wollen Temperaturen in einem Bereich zwischen -30 und +110 °C messen. Füge am Ende der **setup**-Methode folgende Zeilen ein, um die Beschriftung der Anzeige zu ändern:  
+```Java
+  m.setTitle("Temperatur in °C");
+  String[] labels={"-30","-20","-10","0","10","20","30","40","50","60","70","80","90","100","110"};
+  m.setScaleLabels(labels);
+```
+Die Anzeige bekommt einen neuen Titel (setTitle) und neue Skalenbeschriftungen (setScaleLabels):  
+![Alt text](2023-06-24_14-01.png)
