@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Darstellung der Daten in Processing</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+         <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="darstellung-der-daten-in-processing">Darstellung der Daten in Processing</h1>
+<p>Der Serielle Monitor und der Serielle Plotter sind einfache Werkzeuge, um Daten des Arduinos am Computer darzustellen.<br>
+Mit Hilfe der Programmiersprache <strong>Processing</strong> können die Daten sehr viel schöner angezeigt werden.</p>
+<h2 id="1-einführung-in-processing">1. Einführung in Processing</h2>
+<ol>
+<li>Starte das Programm Processing.</li>
+<li>Klicke den Startbildschirm weg.</li>
+<li>Schreibe folgenden Rumpf für deinen Processing-Sketch:</li>
+</ol>
+<pre><code class="language-Java"><span class="hljs-comment">// Läuft einmal ab</span>
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span>{
+  
+}
+
+<span class="hljs-comment">// Läuft wiederholt ab</span>
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">()</span>{
+  
+}
+</code></pre>
+<p>Der Sketch ähnelt dem eines typischen Arduino-Programms. Die <strong>loop</strong>-Methode heißt in Processing allerdings <strong>draw</strong>-Methode. Sie verhält sich aber genauso.</p>
+<h2 id="2-import-der-meter-bibliothek">2. Import der Meter-Bibliothek</h2>
+<p>Zur grafischen Darstellung der Messwerte verwenden wir die <strong>Meter</strong>-Bibliothek von Processing.<br>
+Öffne das Menü <strong>Sketch.Library importieren.Manage Libraries</strong></p>
+<ol>
+<li>Trage im Suchfeld den Begriff <strong>meter</strong> ein.</li>
+<li>Wähle die <strong>meter|Display...</strong>-Bibliothek aus.</li>
+<li>Klicke auf Installieren:</li>
+</ol>
+<p><img src="2023-06-24_12-38.png" alt="Alt text"></p>
+<h2 id="3-einbinden-der-bibliothek-in-den-sketch">3. Einbinden der Bibliothek in den Sketch</h2>
+<p>Schreibe oberhalb der <strong>setup</strong>-Methode folgende Zeile, um die Bibliothek mit allen Unterklassen in den Sketch zu laden:</p>
+<pre><code class="language-Java"><span class="hljs-keyword">import</span> meter.*;
+</code></pre>
+<h2 id="4-erstellen-eines-meter-objekts">4. Erstellen eines Meter-Objekts</h2>
+<p>Mit folgender Zeile erstellst du ein Objekt der Klasse <strong>Meter</strong>:</p>
+<pre><code class="language-Java">Meter m;
+</code></pre>
+<h2 id="5-aufbau-eines-fensters-mit-einer-analogen-anzeige">5. Aufbau eines Fensters mit einer analogen Anzeige</h2>
+<p>Ergänze deinen Sketch um folgende Zeilen:</p>
+<pre><code class="language-Java"><span class="hljs-keyword">import</span> meter.*;
+
+Meter m;
+
+<span class="hljs-comment">// Läuft einmal ab</span>
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span> {
+  size(<span class="hljs-number">500</span>, <span class="hljs-number">400</span>);
+  background(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  m=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Meter</span>(<span class="hljs-built_in">this</span>, <span class="hljs-number">25</span>, <span class="hljs-number">10</span>);
+}
+
+<span class="hljs-type">int</span> wert=<span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Läuft wiederholt ab</span>
+
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">()</span> {
+  wert=wert+<span class="hljs-number">1</span>;
+  <span class="hljs-keyword">if</span> (wert&gt;<span class="hljs-number">255</span>) {
+    wert=<span class="hljs-number">0</span>;
+  }
+  m.updateMeter(wert);
+  delay(<span class="hljs-number">10</span>);
+}
+</code></pre>
+<h3 id="erklärungen-des-codes">Erklärungen des Codes</h3>
+<h4 id="1-size500400">1. size(500,400)</h4>
+<p>Öffnet ein Programmfenster, dass 500 Pixel breit und 400 Pixel hoch ist.</p>
+<h4 id="2-background000">2. background(0,0,0);</h4>
+<p>Stellt die Hintergrundfarbe des Fensters auf schwarz ein.</p>
+<h4 id="3-mnew-meterthis2510">3. m=new Meter(this,25,10);</h4>
+<p>Erzeugt ein neues Anzeigeobjekt,</p>
+<ol>
+<li>das in diesem Programmfenster anzeigt wird (this).</li>
+<li>dessen linke obere Ecke an der Position x=25, y=10 (25,10) liegt.</li>
+</ol>
+<h4 id="4-mupdatemeterwert">4. m.updateMeter(wert);</h4>
+<p>Es wird der aktuelle Wert der Variable wert auf der Anzeige dargestellt.<br>
+Die Werte laufen hierbei von 0 bis 255.</p>
+<h4 id="5-delay10">5. delay(10);</h4>
+<p>Es wird eine Pause von 10ms eingelegt.</p>
+<p>Wenn du das Programm startest, sollte folgende Anzeige erscheinen und der Wert sollte von 0,0 bis 5,0 Volt steigen:<br>
+<img src="2023-06-24_13-00.png" alt="Alt text"></p>
+
+        
+        
+    </body>
+    </html>
