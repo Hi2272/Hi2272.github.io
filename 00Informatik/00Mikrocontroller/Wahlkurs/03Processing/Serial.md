@@ -82,8 +82,8 @@ Es kann sein, dass der Rechner mit einem Fehlercode antwortet:
 **failed-to-open-dev-ttyacm0-port-busy**  
 In diesem Fall musst du die Serielle Schnittstelle erst freigeben:  
 1. Öffne die Linux-Konsole
-2. Tippe folgenden Befehl ein: 
-   fuser -k /dev/ttyACM0
+2. Tippe folgenden Befehl ein:   
+   **fuser -k /dev/ttyACM0**  
 Wenn du das Programm erneut startest, sollte es die Verbindung zur Schnittstelle aufbauen können.
 ## 5. Grafische Ausgabe der Daten
 Um die Messdaten grafisch darzustellen, musst du den neuen Code zum Einlesen der Daten mit dem alten Code zur Darstellung der Daten kombinieren.
