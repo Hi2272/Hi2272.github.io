@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <pre><code class="language-Java"><span class="hljs-keyword">import</span> meter.*;
+<span class="hljs-keyword">import</span> processing.serial.*;
+
+Meter m;
+Serial serial;
+
+<span class="hljs-comment">// Läuft einmal ab</span>
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span> {
+  printArray(Serial.list());
+  String port=Serial.list()[<span class="hljs-number">0</span>];
+  serial=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Serial</span>(<span class="hljs-built_in">this</span>, port, <span class="hljs-number">9600</span>);
+  size(<span class="hljs-number">500</span>, <span class="hljs-number">400</span>);
+  background(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  m=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Meter</span>(<span class="hljs-built_in">this</span>, <span class="hljs-number">25</span>, <span class="hljs-number">10</span>);
+  m.setTitle(<span class="hljs-string">&quot;Temperatur in °C&quot;</span>);
+  String[] labels={<span class="hljs-string">&quot;-30&quot;</span>, <span class="hljs-string">&quot;-20&quot;</span>, <span class="hljs-string">&quot;-10&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;10&quot;</span>, <span class="hljs-string">&quot;20&quot;</span>, <span class="hljs-string">&quot;30&quot;</span>, <span class="hljs-string">&quot;40&quot;</span>, <span class="hljs-string">&quot;50&quot;</span>, <span class="hljs-string">&quot;60&quot;</span>, <span class="hljs-string">&quot;70&quot;</span>, <span class="hljs-string">&quot;80&quot;</span>, <span class="hljs-string">&quot;90&quot;</span>, <span class="hljs-string">&quot;100&quot;</span>, <span class="hljs-string">&quot;110&quot;</span>};
+  m.setScaleLabels(labels);
+}
+
+String input=<span class="hljs-string">&quot;&quot;</span>;
+<span class="hljs-type">int</span> wert=<span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Läuft wiederholt ab</span>
+
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">()</span> {
+  <span class="hljs-keyword">while</span> (serial.available()&gt;<span class="hljs-number">0</span>) {
+    input=serial.readStringUntil(<span class="hljs-number">10</span>);
+    <span class="hljs-keyword">if</span> (input!=<span class="hljs-literal">null</span>) {
+      wert=<span class="hljs-type">int</span>(input);
+      m.updateMeter(wert);
+    }
+  }
+}
+</code></pre>
+<p><a href="../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Erkl&auml;rung des Codes</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+         <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="daten-über-die-serielle-schnittstelle-empfangen">Daten über die serielle Schnittstelle empfangen</h1>
+<p>Der Arduino sendet die Messdaten über den Befehl <strong>Serial.println(wert);</strong> an die serielle Schnittstelle.<br>
+In diesem Kapitel programmieren wir den Rechner in Processing so, dass er diese Daten einliest und im Display darstellt.</p>
+<h2 id="1-import-der-serial-bibliothek">1. Import der serial-Bibliothek</h2>
+<p>Erstelle einen neuen Sketch mit folgendem Inhalt:</p>
+<pre><code class="language-Java"><span class="hljs-keyword">import</span> processing.serial.*;
+
+Serial myPort;
+
+<span class="hljs-comment">// Läuft einmal ab</span>
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span> {
+ printArray(Serial.list());
+}
+
+<span class="hljs-comment">// Läuft wiederholt ab</span>
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">()</span> {
+}
+</code></pre>
+<h3 id="erklärung-des-codes">Erklärung des Codes</h3>
+<h3 id="import-processingserial">import processing.serial.*;</h3>
+<p>Importiert die passende Bibliothek. Diese wird automatisch bei der Installation von Processing installiert und muss daher nicht extra gesucht werden.</p>
+<h3 id="serial-myport">Serial myPort</h3>
+<p>Erzeugt ein neues Objekt der Klasse Serial. Mit diesem Objekt kann auf die Serielle Schnittstelle zugegriffen werden.</p>
+<h3 id="printarrayseriallist">printArray(Serial.list());</h3>
+<p>Dieser Befehl gibt eine Liste aller verfügbarer Serieller Ports aus. Das Ergebnis sieht zum Beispiel so aus:<br>
+<strong>[0] &quot;/dev/ttyACM0&quot;</strong>
+Für die weitere Programmierung benötigst du die Nummer der Schnittstelle, an die dein Arduino angeschlossen ist. In diesem Fall ist das die <strong>[0]</strong>.</p>
+<h2 id="2-ansteuern-der-passenden-schnittstelle">2. Ansteuern der passenden Schnittstelle</h2>
+<p>Ergänze die <strong>setup</strong>-Methode um folgende Zeile:</p>
+<pre><code class="language-Java">  String port=Serial.list()[<span class="hljs-number">0</span>];
+  serial=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Serial</span>(<span class="hljs-built_in">this</span>,port,<span class="hljs-number">9600</span>);
+</code></pre>
+<h3 id="erklärung-des-codes-1">Erklärung des Codes</h3>
+<h3 id="string-portseriallist0">String port=Serial.list()[0];</h3>
+<p>Wir definieren eine lokale Variable port, die den Namen der Seriellen Schnittstelle übernimmt, mit der wir uns verbinden wollen.<br>
+Den Index [0] erhalten wir aus der Liste der printArray-Methode.</p>
+<h3 id="serialnew-serialthisport9600">serial=new Serial(this,port,9600);</h3>
+<p>In dieser Zeile wird ein neues Objekt der Klasse Serial erzeugt. Die Parameter haben folgende Bedeutung:</p>
+<ul>
+<li>this: Das Objekt hängt an diesem Programm.</li>
+<li>port: Der Name des Ports der Seriellen Schnittstelle.</li>
+<li>9600: Die Übertragungsrate in Baud. Diese muss mit dem Wert des Arduinos übereinstimmen.</li>
+</ul>
+<h2 id="3-einlesen-und-ausgeben-von-messwerten">3. Einlesen und Ausgeben von Messwerten</h2>
+<p>Ergänze deinen Code im Bereich der <strong>draw</strong>-Methode um diese Zeilen:</p>
+<pre><code class="language-Java">String input=<span class="hljs-string">&quot;&quot;</span>;
+<span class="hljs-type">int</span> wert=<span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Läuft wiederholt ab</span>
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">()</span> {
+  <span class="hljs-keyword">while</span> (serial.available()&gt;<span class="hljs-number">0</span>) {
+    input=serial.readStringUntil(<span class="hljs-number">10</span>);
+    <span class="hljs-keyword">if</span> (input!=<span class="hljs-literal">null</span>) {
+      wert=<span class="hljs-type">int</span>(input);
+      print(wert);
+    }
+  }
+}
+</code></pre>
+<h3 id="erklärung-des-codes-2">Erklärung des Codes</h3>
+<h3 id="while-serialavailable0-">while (serial.available()&gt;0) {}</h3>
+<p>Solange Daten an der Seriellen Schnittstelle verfügbar sind, soll der Rechner diese einlesen.</p>
+<h3 id="inputserialreadstringuntil10">input=serial.readStringUntil(10);</h3>
+<p>Die Daten werden als Zeichenkette gelesen.<br>
+Da wir im Arduino die <strong>Serial.println()</strong>-Methode verwenden, wird jeder Datensatz durch einen Zeilenumbruch beendet. Der Code für diesen Zeilenumbruch entspricht der Zahl 10.<br>
+Mit diesem Befehl liest das Programm einen vollständigen Datensatz ein und speichert ihn in der Variable <strong>input</strong>.</p>
+<h3 id="if-inputnull-">if (input!=null) {}</h3>
+<p>Wenn die Variable <strong>input</strong> nicht leer ist, d.h. wenn Daten eingelesen wurden, sollen diese angezeigt werden.</p>
+<h3 id="wertintinput">wert=int(input);</h3>
+<p>Hier wird die Zeichenkette in die entsprechende ganze Zahl umgewandelt. Dieser Schritt ist für die spätere grafische Darstellung wichtig.</p>
+<h3 id="printwert">print(wert);</h3>
+<p>Und an dieser Stelle wird der Wert auf der Console ausgegeben.</p>
+<h2 id="4-testen-des-codes">4. Testen des Codes</h2>
+<p>Wenn du das Programm startest, müssten auf der Console die Temperatur-Werte des Arduinos angezeigt werden.<br>
+Es kann sein, dass der Rechner mit einem Fehlercode antwortet:<br>
+<strong>failed-to-open-dev-ttyacm0-port-busy</strong><br>
+In diesem Fall musst du die Serielle Schnittstelle erst freigeben:</p>
+<ol>
+<li>Öffne die Linux-Konsole</li>
+<li>Tippe folgenden Befehl ein:
+fuser -k /dev/ttyACM0
+Wenn du das Programm erneut startest, sollte es die Verbindung zur Schnittstelle aufbauen können.</li>
+</ol>
+<h2 id="5-grafische-ausgabe-der-daten">5. Grafische Ausgabe der Daten</h2>
+<p>Um die Messdaten grafisch darzustellen, musst du den neuen Code zum Einlesen der Daten mit dem alten Code zur Darstellung der Daten kombinieren.</p>
+<p><a href="Loesung.html">Lösung</a></p>
+<p><a href="../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>

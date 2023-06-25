@@ -66,7 +66,7 @@ void draw() {
 ```
 ### Erklärungen des Codes
 #### 1. size(500,400)  
-Öffnet ein Programmfenster, dass 500 Pixel breit und 400 Pixel hoch ist.
+Öffnet ein Programmfenster, das 500 Pixel breit und 400 Pixel hoch ist.
 #### 2. background(0,0,0);
 Stellt die Hintergrundfarbe des Fensters auf schwarz ein.
 #### 3. m=new Meter(this,25,10);
@@ -90,4 +90,10 @@ Wir wollen Temperaturen in einem Bereich zwischen -30 und +110 °C messen. Füge
   m.setScaleLabels(labels);
 ```
 Die Anzeige bekommt einen neuen Titel (setTitle) und neue Skalenbeschriftungen (setScaleLabels):  
-![Alt text](2023-06-24_14-01.png)
+![Alt text](2023-06-24_14-01.png)  
+
+
+
+[weiter](Serial.html)  
+
+[zurück](../index.html)
