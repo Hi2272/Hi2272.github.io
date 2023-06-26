@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>2&period; Einbinden der Bibliothek in den Sketch</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+         <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="diagramme-aus-messdaten">Diagramme aus Messdaten</h1>
+<h2 id="1-import-der-grafica-bibliothek">1. Import der Grafica-Bibliothek</h2>
+<p>Auch zur Darstellung der Messwerte in einem Diagramm verwenden wir eine vorgefertigte Bibliothek.</p>
+<p>Öffne das Menü <strong>Sketch.Library importieren.Manage Libraries</strong></p>
+<ol>
+<li>Trage im Suchfeld den Begriff <strong>grafica</strong> ein.</li>
+<li>Wähle die <strong>grafica...</strong>-Bibliothek aus.</li>
+<li>Klicke auf Installieren:</li>
+</ol>
+<p><img src="2023-06-26_08-20.png" alt="Alt text"></p>
+<h2 id="2-einbinden-der-bibliothek-in-den-sketch">2. Einbinden der Bibliothek in den Sketch</h2>
+<p>Erstelle einen neuen Sketch und importiere in der ersten Zeile die Bibliothek:</p>
+<pre><code class="language-Java"><span class="hljs-keyword">import</span> grafica.*;
+</code></pre>
+<h2 id="3-aufbau-eines-einfachen-diagramms">3. Aufbau eines einfachen Diagramms</h2>
+<p>In der <strong>setup()</strong>-Methode kannst du mit wenigen Zeile ein einfaches Diagramm erzeugen.</p>
+<pre><code class="language-Java"><span class="hljs-keyword">import</span> grafica.*;
+
+GPlot plot;
+
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span> {
+  size(<span class="hljs-number">500</span>, <span class="hljs-number">350</span>);
+  background(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+
+  plot=<span class="hljs-keyword">new</span> <span class="hljs-title class_">GPlot</span>(<span class="hljs-built_in">this</span>, <span class="hljs-number">25</span>, <span class="hljs-number">25</span>);
+  plot.setTitleText(<span class="hljs-string">&quot;Temperaturmessung&quot;</span>);
+  plot.getXAxis().setAxisLabelText(<span class="hljs-string">&quot;Zeit in Sekunden&quot;</span>);
+  plot.getYAxis().setAxisLabelText(<span class="hljs-string">&quot;Temp. in °C&quot;</span>);
+  plot.setXLim(<span class="hljs-number">0</span>, <span class="hljs-number">100</span>);
+  plot.setYLim(-<span class="hljs-number">30</span>, <span class="hljs-number">110</span>);
+  plot.defaultDraw();
+}
+</code></pre>
+<h3 id="erklärung-einzelner-code-zeilen">Erklärung einzelner Code-Zeilen</h3>
+<h3 id="gplot-plot">GPlot plot;</h3>
+<p>Das Objekt <strong>plot</strong> verweist auf das Diagramm, das wir zeichnen werden.</p>
+<h3 id="plot--new-gplotthis2525">plot = new GPlot(this,25,25);</h3>
+<p>Mit dieser Zeile wird das <strong>plot</strong>-Objekt erzeugt (=initialisiert). Die Parameter haben folgende Bedeutung:</p>
+<ul>
+<li>this: Das Diagramm steht in diesem Programm.</li>
+<li>25, 25: Seine linke obere Ecke hat die Koordinaten x=25 und y=25.</li>
+</ul>
+<h3 id="plotsetxlim0-100">plot.setXLim(0, 100);</h3>
+<p>Hier legen wir die linke und rechte Grenze der x-Achse fest.</p>
+<h3 id="plotdefaultdraw">plot.defaultDraw();</h3>
+<p>Abschließend wird das Diagramm gezeichnet:<br>
+<img src="2023-06-26_09-07.png" alt="Alt text"></p>
+<h2 id="4-darstellen-von-messpunkten">4. Darstellen von Messpunkten.</h2>
+<p>In der <strong>draw()</strong>-Methode fügen wir jetzt einfache Messwerte hinzu und lassen sie grafisch darstellen:</p>
+<pre><code class="language-Java"><span class="hljs-type">int</span> x=<span class="hljs-number">0</span>;
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">()</span> {
+  <span class="hljs-keyword">while</span> (x&lt;<span class="hljs-number">100</span>) {
+    x++;
+    plot.addPoint(x, x);
+    plot.defaultDraw();
+  }
+}
+</code></pre>
+<p><img src="2023-06-26_10-03.png" alt="Alt text"></p>
+
+        
+        
+    </body>
+    </html>
