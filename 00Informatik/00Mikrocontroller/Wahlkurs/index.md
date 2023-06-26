@@ -35,6 +35,9 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
    3. [Grafische Ausgabe am Computer](03Processing/index.html)    
    ![Alt text](03Processing/2023-06-24_14-01.png)
    4. [Daten über die Serielle Schnittstelle einlesen](03Processing/Serial.html)
+   5. [Messwerte als Diagramm am Computer darstellen](03Processing/Grafica.html)  
+   
+   ![Alt text](03Processing/2023-06-26_10-03.png)
    
      
   
