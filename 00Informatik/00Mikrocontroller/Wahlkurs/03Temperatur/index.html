@@ -43,12 +43,9 @@
          <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 <h1 id="temperaturmessung-mit-dem-ds18b20-sensor">Temperaturmessung mit dem DS18B20-Sensor</h1>
 <h2 id="1-anschluss">1. Anschluss</h2>
-<p>Der DS18B20-Sensor verfügt über 3 Anschluss-Kabel.  Schließe diese wie folgt an den Arduino an:</p>
-<ul>
-<li>rot = +5 V</li>
-<li>schwarz = GND</li>
-<li>gelb = 2</li>
-</ul>
+<p>Der DS18B20-Sensor verfügt über 3 Anschluss-Kabel.<br>
+Schließe diese wie folgt an den Arduino an:<br>
+<img src="2023-06-26_16-04.png" alt="Alt text"></p>
 <h2 id="2-installation-der-onewire-biblitothek">2. Installation der OneWire-Biblitothek</h2>
 <p>Über das gelbe Kabel wird der Messwert bei diesem Sensor nicht als einfacher Spannungswert ausgegeben. Der Sensor liefert statt dessen nach dem OneWire-Protokoll codierte Daten.<br>
 Um sie verarbeiten zu können, müssen wir die entsprechende Bibliothek installieren.</p>

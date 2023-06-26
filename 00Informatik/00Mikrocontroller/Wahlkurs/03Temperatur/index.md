@@ -2,10 +2,9 @@
 
 # Temperaturmessung mit dem DS18B20-Sensor
 ##  1. Anschluss
-Der DS18B20-Sensor verfügt über 3 Anschluss-Kabel.  Schließe diese wie folgt an den Arduino an:  
-- rot = +5 V
-- schwarz = GND
-- gelb = 2
+Der DS18B20-Sensor verfügt über 3 Anschluss-Kabel.  
+ Schließe diese wie folgt an den Arduino an:  
+![Alt text](2023-06-26_16-04.png)  
 
 ## 2. Installation der OneWire-Biblitothek
 Über das gelbe Kabel wird der Messwert bei diesem Sensor nicht als einfacher Spannungswert ausgegeben. Der Sensor liefert statt dessen nach dem OneWire-Protokoll codierte Daten.  
