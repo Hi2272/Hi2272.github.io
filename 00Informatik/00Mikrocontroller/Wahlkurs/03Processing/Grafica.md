@@ -64,5 +64,85 @@ void draw() {
 }
 ```
 ![Alt text](2023-06-26_10-03.png)
+## 5. Erfassen der Zeit
+Bisher werden die Punkte so schnell hochgezählt, dass wir nicht sehen, wie die Kurve am Bildschirm entsteht.  
+Processing liefert einfache Methoden, um die Uhrzeit des Computers abzufragen:  
+- hour(): aktuelle Stunde: 0-23
+- minute(): aktuelle Minute: 0-59
+- second(): aktuelle Sekunde: 0-59
+Mit diesem Methoden erstellen wir jetzt eine Methode, die die akutelle Zeit in Sekunden ausgibt.
+``` Java
+int sekunden() {
+  return hour()*3600+minute()*60+second();
+}
+```
+Wenn wir die Startzeit unseres Programms in einer Variable speichern, können wir jederzeit den x-Wert als Differenz aus der aktuellen Zeit und der Startzeit berechnen.
+1. Definiere zwei neue Attribute vom Typ int zum Speichern von Zeitpunkten:  
+``` Java
+int startZeit;
+int aktuelleZeit;
+```
+2. Initialisere diese beiden Attribute in der **setup**-Methode mit den Werten der Methode **sekunden()**:
+``` Java
+startZeit=sekunden();
+aktuelleZeit=sekunden();
+``` 
+3. Schreibe die **draw**-Methode so um, dass immer dann ein Wert gezeichnet wird, wenn sich die Zeit verändert hat:
+``` Java
+void draw() {
+  if (aktuelleZeit<sekunden()) {
+    aktuelleZeit=sekunden();
+    int x=aktuelleZeit-startZeit;
+    plot.addPoint(x, x);
+    plot.defaultDraw();
+  }
+}
+```
+Wenn du das Programm startest, müsste jede Sekunde ein neuer Messpunkt auf der Gerade erscheinen.  
+Zur Kontrolle ist hier noch einmal der gesamte Code dargestellt:  
+``` Java
+import grafica.*;
+
+GPlot plot;
+
+int startZeit;
+int aktuelleZeit;
+
+int sekunden() {
+  return hour()*3600+minute()*60+second();
+}
+
+void setup() {
+  size(500, 350);
+  background(0, 0, 0);
+
+  plot=new GPlot(this, 25, 25);
+  plot.setTitleText("Temperaturmessung");
+  plot.getXAxis().setAxisLabelText("Zeit in Sekunden");
+  plot.getYAxis().setAxisLabelText("Temp. in °C");
+  plot.setXLim(0, 100);
+  plot.setYLim(-30, 110);
+  plot.defaultDraw();
+  
+  startZeit=sekunden();
+  aktuelleZeit=sekunden();
+}
+
+void draw() {
+  if (aktuelleZeit<sekunden()) {
+    aktuelleZeit=sekunden();
+    int x=aktuelleZeit-startZeit;
+    plot.addPoint(x, x);
+    plot.defaultDraw();
+  }
+}
+```
 
 
+
+[weiter](GraficaII.html)  
+
+[zurück](../index.html)
+
+
+    
