@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+         <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<pre><code class="language-Java"><span class="hljs-keyword">import</span> grafica.*;
+
+GPlot plot;
+
+<span class="hljs-type">int</span> startZeit;
+<span class="hljs-type">int</span> aktuelleZeit;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">sekunden</span><span class="hljs-params">()</span> {
+  <span class="hljs-keyword">return</span> hour()*<span class="hljs-number">3600</span>+minute()*<span class="hljs-number">60</span>+second();
+}
+
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span> {
+  size(<span class="hljs-number">500</span>, <span class="hljs-number">350</span>);
+  background(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+
+  plot=<span class="hljs-keyword">new</span> <span class="hljs-title class_">GPlot</span>(<span class="hljs-built_in">this</span>, <span class="hljs-number">25</span>, <span class="hljs-number">25</span>);
+  plot.setTitleText(<span class="hljs-string">&quot;Temperaturmessung&quot;</span>);
+  plot.getXAxis().setAxisLabelText(<span class="hljs-string">&quot;Zeit in Sekunden&quot;</span>);
+  plot.getYAxis().setAxisLabelText(<span class="hljs-string">&quot;Temp. in °C&quot;</span>);
+  plot.setXLim(<span class="hljs-number">0</span>, <span class="hljs-number">100</span>);
+  plot.setYLim(-<span class="hljs-number">30</span>, <span class="hljs-number">110</span>);
+  plot.defaultDraw();
+  
+  startZeit=sekunden();
+  aktuelleZeit=sekunden();
+}
+
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">()</span> {
+  <span class="hljs-keyword">if</span> (aktuelleZeit&lt;sekunden()) {
+    aktuelleZeit=sekunden();
+    <span class="hljs-type">int</span> x=aktuelleZeit-startZeit;
+    plot.addPoint(x, x);
+    plot.defaultDraw();
+  }
+}
+</code></pre>
+<p><a href="GraficaII.html">weiter</a></p>
+<p><a href="../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>

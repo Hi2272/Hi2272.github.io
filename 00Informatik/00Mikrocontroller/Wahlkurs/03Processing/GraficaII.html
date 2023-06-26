@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Darstellung der Daten der Seriellen Schnittstelle</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+         <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="darstellung-der-daten-der-seriellen-schnittstelle">Darstellung der Daten der Seriellen Schnittstelle</h1>
+<h2 id="1-einfache-darstellung">1. Einfache Darstellung</h2>
+<p>Wir können viel Code aus dem ersten Programm zum Ansprechen der Seriellen Schnittstelle kopieren:</p>
+<pre><code class="language-Java"><span class="hljs-keyword">import</span> grafica.*;
+<span class="hljs-keyword">import</span> processing.serial.*;
+
+GPlot plot;
+Serial serial;
+
+
+<span class="hljs-type">int</span> startZeit;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">sekunden</span><span class="hljs-params">()</span> {
+  <span class="hljs-keyword">return</span> hour()*<span class="hljs-number">3600</span>+minute()*<span class="hljs-number">60</span>+second();
+}
+
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">setup</span><span class="hljs-params">()</span> {
+  printArray(Serial.list());
+  String port=Serial.list()[<span class="hljs-number">0</span>];
+  serial=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Serial</span>(<span class="hljs-built_in">this</span>, port, <span class="hljs-number">9600</span>);
+  
+  size(<span class="hljs-number">500</span>, <span class="hljs-number">350</span>);
+  background(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+
+  plot=<span class="hljs-keyword">new</span> <span class="hljs-title class_">GPlot</span>(<span class="hljs-built_in">this</span>, <span class="hljs-number">25</span>, <span class="hljs-number">25</span>);
+  plot.setTitleText(<span class="hljs-string">&quot;Temperaturmessung&quot;</span>);
+  plot.getXAxis().setAxisLabelText(<span class="hljs-string">&quot;Zeit in Sekunden&quot;</span>);
+  plot.getYAxis().setAxisLabelText(<span class="hljs-string">&quot;Temp. in °C&quot;</span>);
+  plot.setXLim(<span class="hljs-number">0</span>, <span class="hljs-number">100</span>);
+  plot.setYLim(-<span class="hljs-number">30</span>, <span class="hljs-number">110</span>);
+  plot.defaultDraw();
+  
+  startZeit=sekunden();
+}
+
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">()</span> {
+  <span class="hljs-keyword">while</span> (serial.available()&gt;<span class="hljs-number">0</span>) {
+    String input=serial.readStringUntil(<span class="hljs-number">10</span>);
+    <span class="hljs-keyword">if</span> (input!=<span class="hljs-literal">null</span>) {
+      <span class="hljs-type">float</span> wert=<span class="hljs-type">float</span>(input);
+      <span class="hljs-type">int</span> x=sekunden()-startZeit;
+      plot.addPoint(x, wert);
+      plot.defaultDraw();
+    }
+  }
+}
+</code></pre>
+<p>Das Attribut <strong>aktuelleZeit</strong> benötigen wir jetzt nicht mehr, da das System nur dann zeichnet, wenn über die Serielle Schnittstelle Daten gesendet werden. Der Arduino gibt jetzt den Takt für unser Programm vor.</p>
+<h2 id="automatische-anpassung-der-achsen">Automatische Anpassung der Achsen</h2>
+<p>Mit <strong>plot.setXLim(0, 100);</strong> und <strong>plot.setYLim(-30, 110);</strong> legen wir die Skalierung der Achsen in der <strong>setup</strong>-Methode starr fest. Wenn unsere Daten außerhalb dieses Rahmens liegen, werden sie nicht gezeichnet.<br>
+Im Folgenden werden wir das Programm so ändern, dass die Achsen sich an die Daten anpassen.</p>
+<ol>
+<li>Deklariere zwei neue Attribut ymin und ymax vom Typ float (Dezimalzahl).</li>
+<li>Initialisiere diese Attribute mit den Werten ymin=30 und ymax=31.</li>
+<li>Programmiere folgende Sequenz in der <strong>draw</strong>-Methode:
+<ol>
+<li>Wenn wert größer als ymax-10 ist, soll ymax auf wert+10 gesetzt werden.</li>
+<li>Wenn wert kleiner als ymin+10 ist, soll ymin auf wert-10 gesetzt werden.</li>
+<li>plot.setYLim(ymin,ymax) soll aufgerufen werden.</li>
+<li>plot.setXLim(0,x+10) soll aufgerufen werden.</li>
+</ol>
+</li>
+</ol>
+<p>Wenn du das Programm ablaufen lässt, müssten sich die Achsen automatisch an die Messwerte anpassen.</p>
+<p><a href="GraficaIII.html">Lösung</a></p>
+<p><a href="../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>
