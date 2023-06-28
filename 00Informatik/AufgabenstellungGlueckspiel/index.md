@@ -1,7 +1,7 @@
    <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 <div style = "text-align: center;">  
 
-# Glückspiel
+# Glücksspiel
 
 Übung zu logischen Funktionen in Java.
 
