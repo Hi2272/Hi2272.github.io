@@ -5,26 +5,29 @@
 
 Übungsmaterialien Informatik: Hi2272.github.io
 ==============================================
+[6. Klasse](#informatik-6-klasse)
+| [Mikrocontroller](#mikrocontroller)
+| [Funktionale Modellierung](#funktionale-modellierung)
+| [Datenbanken](#datenbanken)
+| [Objektorientierung](#objektorientierte-programmierung)
+| [Datenschutz](#datenschutz)
 
-Informatik 6. Klasse
---------------------
-
+## Informatik 6. Klasse
+***
 [Festspeicher oder Arbeitsspeicher?](https://learningapps.org/watch?app=7732450)  
 [Eingabegerät oder Ausgabegerät?](https://learningapps.org/watch?app=7732389)  
 [Aufbau eines Computers](https://Hi2272.github.io/00Informatik/00Informatik6/AufbauComputer/index.html)  
 [Powerpoint Schule](https://Hi2272.github.io/00Informatik/00Informatik6/PowerpointSchule/index.html)  
 [Laufwerk, Ordner, Datei?](https://learningapps.org/watch?app=14045032)  
 
-Mikrocontroller
----------------
-
+## Mikrocontroller
+***
 [Einführung Calliope mini](https://Hi2272.github.io/00Informatik/00Mikrocontroller/01CalliopeStart/index.html)  
 [Aufgaben Calliope mini](https://Hi2272.github.io/00Informatik/00Mikrocontroller/02Calliope/index.html)  
 [Wahlkurs](https://Hi2272.github.io/00Informatik/00Mikrocontroller/Wahlkurs/index.html)  
 
-Funktionale Modellierung
-------------------------
-
+## Funktionale Modellierung
+***
 [Absolute und Relative Adressierung](https://Hi2272.github.io/00Informatik/AbsoluteAdressierung/index.html)  
 [Datentypen von Funktionen](https://Hi2272.github.io/00Informatik/LogischeFunktionen1/index.html)  
 [Logische Funktionen](https://Hi2272.github.io/00Informatik/LogischeFunktionen/index.html)  
@@ -32,15 +35,15 @@ Funktionale Modellierung
 [NICHT](https://Hi2272.github.io/00Informatik/NICHT/index.html)  
 [Wenn-Funktion](https://Hi2272.github.io/00Informatik/WennFunktion/index.html)  
 
-Datenbanken
------------
+## Datenbanken
+***
 
 [Verschiedene SQL-Anfragen](https://Hi2272.github.io/00Informatik/SQL/index.html)  
 [LIKE in SQL-Abfragen](https://Hi2272.github.io/00Informatik/SQL2/index.html)  
 [Wiederholung SQL mit Datenbanken im Unterricht (www.dbiu.de)](https://Hi2272.github.io/00Informatik/SQLFrageListe/index.html)  
 
-Objektorientierte Programmierung
---------------------------------
+## Objektorientierte Programmierung
+***
 
 Wiederholung
 ------------
@@ -123,14 +126,8 @@ Zusammenfassung
 
 [Java-Code-Zeilen: Zusammenfassung](https://Hi2272.github.io/00Informatik/JavaCodeZusammenfassung/index.html)  
 
-* * *
-
-[Alt: Nach Aufgabentypen sortiert:](https://Hi2272.github.io/00Informatik/indexalt.html)  
-
-* * *
-
-Datenschutz
------------
+## Datenschutz
+***
 
 [Klassische Medien](https://Hi2272.github.io/00Informatik/KlassischeMedien/index.html)  
 [Soziale Medien](https://Hi2272.github.io/00Informatik/SozialeMedien/index.html)  
