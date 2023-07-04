@@ -45,29 +45,25 @@
 ## Objektorientierte Programmierung
 ***
 
-Wiederholung
-------------
+### Wiederholung
 
 [Definitionen zur Objektorientierten Modellierung](https://Hi2272.github.io/00Informatik/KlasseObjekt2/index.html)  
 [Objekt- und Klassenkarte](https://Hi2272.github.io/00Informatik/KlassenObjekt3/index.html)  
 [Grundbegriffe Objekt Klasse](https://Hi2272.github.io/00Informatik/KlasseObjekt/index.html)  
 
-Klassen und Konstruktoren
--------------------------
+### Klassen und Konstruktoren
 
 [Klassen und Konstruktoren](https://Hi2272.github.io/00Informatik/KlassenKonstruktoren/index.html)  
 [JavaCode: Klassen und Konstruktoren](https://Hi2272.github.io/00Informatik/JavaCodeKlassen/index.html)  
 [BlueJ-Projekt: Zielscheibe](https://Hi2272.github.io/00Informatik/AufgabenstellungZielscheibe/index.html)  
 [BlueJ-Projekt: Dorf](https://Hi2272.github.io/00Informatik/AufgabenstellungDorf/index.html)  
 
-Attribute
----------
+### Attribute
 
 [JavaCode: Attribute](https://Hi2272.github.io/00Informatik/JavaCodeAttribute/index.html)  
 [BlueJ-Projekt: Ringe](https://Hi2272.github.io/00Informatik/AufgabenstellungRing/index.html)  
 
-Get- und Set-Methoden
----------------------
+### Get- und Set-Methoden
 
 [Zuordnung: Konstruktor, Get- und Set-Methoden](https://Hi2272.github.io/00Informatik/KonstruktorGetterSetter/index.html)  
 [Übersicht Get- und Set-Methoden](https://Hi2272.github.io/00Informatik/GetterSetter/index.html)  
@@ -75,8 +71,7 @@ Get- und Set-Methoden
 [Processing-Projekt: Farben](https://Hi2272.github.io/00Informatik/ProcessingFarben/index.html)  
 [Java-Code-Zeilen: Klassen, Konstruktoren, Attribute](https://Hi2272.github.io/00Informatik/JavaCode/index.html)  
 
-Vererbung
----------
+### Vererbung
 
 [Processing-Projekt: Formen](https://Hi2272.github.io/00Informatik/ProcessingVererbung/index.html)  
   
@@ -92,8 +87,7 @@ Vererbung
 [Processing-Projekt: Formen VI: Transparente Farben: Der alpha-Wert](https://Hi2272.github.io/00Informatik/ProcessingAlpha/index.html)  
 [Processing-Projekt: Formen VII: Quadrat - eine Unterklasse von Rechteck](https://Hi2272.github.io/00Informatik/ProcessingQuadrat/index.html)  
 
-Bedingte Anweisungen
---------------------
+### Bedingte Anweisungen
 
 [Processing-Projekt: Ampeln schalten](https://Hi2272.github.io/00Informatik/ProcessingBedingteAnweisung/index.html)  
 [BlueJ Vorlage: Kara bedingte Anweisungen](https://Hi2272.github.io/00Informatik/AufgabenstellungKaraBedingteAnweisung/12%20Kara%20bedingte%20Anweisung.zip)  
@@ -101,8 +95,7 @@ Bedingte Anweisungen
 [Java-Code-Zeilen: Bedingte Anweisungen I](https://Hi2272.github.io/00Informatik/JavaCodeIf/index.html)  
 [Java-Code-Zeilen: Bedingte Anweisungen II](https://Hi2272.github.io/00Informatik/JavaCodeLogik/index.html)  
 
-Zählschleifen
--------------
+### Zählschleifen
 
 [Java-Code-Zeilen: For-Schleifen](https://Hi2272.github.io/00Informatik/JavaCodeFor/index.html)  
 [Zählschleifen: Kacheln](https://Hi2272.github.io/00Informatik/AufgabenstellungSchleifen/index.html)  
@@ -110,19 +103,16 @@ Zählschleifen
 [Turtlegrafik](https://Hi2272.github.io/00Informatik/AufgabenstellungTurtle/index.html)  
 [Kugelspiel](https://Hi2272.github.io/00Informatik/AufgabenstellungKugel/index.html)  
 
-While Schleife
---------------
+### While Schleife
 
 [Kara While Schleife](https://Hi2272.github.io\00Informatik\AufgabenstellungWhile\index.html)  
 
-Spiele
-------
+### Spiele
 
 [Kara braucht Klee!](https://Hi2272.github.io/00Informatik/AufgabenstellungKara/index.html)  
 [Glücksspiel](https://Hi2272.github.io/00Informatik/AufgabenstellungGlueckspiel/index.html)  
-
-Zusammenfassung
----------------
+[TicTacToe](https://Hi2272.github.io/00Informatik/AufgabenstellungTTT/index.html)  
+### Zusammenfassung
 
 [Java-Code-Zeilen: Zusammenfassung](https://Hi2272.github.io/00Informatik/JavaCodeZusammenfassung/index.html)  
 
@@ -132,8 +122,8 @@ Zusammenfassung
 [Klassische Medien](https://Hi2272.github.io/00Informatik/KlassischeMedien/index.html)  
 [Soziale Medien](https://Hi2272.github.io/00Informatik/SozialeMedien/index.html)  
 
-Planspiel
----------
+## Planspiel
+***
 
 [9a](https://Hi2272.github.io/00Informatik/Planspiel/index.html)  
 
