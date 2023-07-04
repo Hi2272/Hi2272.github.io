@@ -1,14 +1,20 @@
 { "typ":"Bild",   
   "titel":"TicTacToe",
   "untertitel":"Löse diese Aufgabe in BlueJ und klicke dann auf <i>Lösung</i>.",
-  "blueJ":"AufgabenstellungSchleifen/11 KachelQuadrat.zip",
+  "blueJ":"AufgabenstellungTTT/19TicTacToe.jar",
   
   "angabe":[
+    {"zeit":1,"txt":"Teste das Programm auf Fehler:"},
     {"zeit":1,"txt":"Programmiere in der Klasse Spielfeld:"},
     {"zeit":1,"txt":"Programmiere in der Klasse Spielfeld:"},
     
-
-
+    {"zeit":1,"txt":"Erweitere die Methode <b>weiter()</b> der Klasse Spielfeld:"},
+    {"zeit":1,"txt":"Untersuche den Programmcode der Klasse Spielfeld:"},
+    {"zeit":1,"txt":"Erweitere die Methode <b>weiter()</b> der Klasse Spielfeld:"},
+    
+    {"zeit":1,"txt":"Erweitere die Methode <b>checkEnde(summe)</b> der Klasse Spielfeld:"},
+    {"zeit":1,"txt":"Erweitere die Methode <b>weiter()</b> der Klasse Spielfeld:"},
+    {"zeit":1,"txt":"Erweitere die Methode <b>weiter()</b> der Klasse Spielfeld:"},
     {"zeit":1,"txt":"Programmiere in der Klasse Spielfeld:"}
     
   ],
@@ -18,7 +24,7 @@
    ],
  
 
-  "ende":"Erstelle in BlueJ weitere Muster aus Kacheln.",
+  "ende":"Viel Spaß beim Spielen.",
   "copyright":"<a href='https://www.bluej.org'>BlueJ</a>,<a href='http://www.java-online.ch/gamegrid/gamegridEnglish/index.php?inhalt_links=navigation.inc.php&inhalt_mitte=grundelemente/grid.inc.php'> JGameGrid</a>"
     
 }
