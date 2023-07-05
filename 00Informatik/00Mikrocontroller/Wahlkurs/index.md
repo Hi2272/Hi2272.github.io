@@ -25,7 +25,8 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
    2. [Bewegungsmelder](02/index.html)
    3. [Passiver Buzzer](03/index.html)
    4. [Infrarot-Fernbedienung](04/index.html)  
-   
+   5. [Rotations-Encoder](05/index.html)
+
 ### 3. Messwerterfassung
 #### Temperaturmessung
 
