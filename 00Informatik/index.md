@@ -112,6 +112,8 @@
 [Kara braucht Klee!](https://Hi2272.github.io/00Informatik/AufgabenstellungKara/index.html)  
 [Glücksspiel](https://Hi2272.github.io/00Informatik/AufgabenstellungGlueckspiel/index.html)  
 [TicTacToe](https://Hi2272.github.io/00Informatik/AufgabenstellungTTT/index.html)  
+[Vier gewinnt](https://Hi2272.github.io/00Informatik/AufgabenstellungVierGewinnt/index.html)  
+
 ### Zusammenfassung
 
 [Java-Code-Zeilen: Zusammenfassung](https://Hi2272.github.io/00Informatik/JavaCodeZusammenfassung/index.html)  

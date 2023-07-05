@@ -1,6 +1,8 @@
 { "typ":"Bild",   
   "titel":"Vier gewinnt!",
   "untertitel":"",
+  "blueJ":"AufgabenstellungVierGewinnt/19VierGewinnt.jar",
+  
   "angabe":[
     {"zeit":1,"txt":""},
     {"zeit":1,"txt":""},
