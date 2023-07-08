@@ -1,0 +1,19 @@
+{   
+  "snap":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Aufbau einer Java-Klasse",
+  "angabe":"Ziehe die Bezeichnungen an die passenden Stellen.",
+  "txt":[
+    {"x":0.482 ,"y":0.126,"width":0.322,"height":0.055,"pos":[0]},
+    {"x":0.371 ,"y":0.308,"width":0.322,"height":0.066,"pos":[1]},
+    {"x":0.553 ,"y":0.421,"width":0.326,"height":0.066,"pos":[2]},
+    {"x":0.432 ,"y":0,"width":0.322,"height":0.07,"pos":[3]},
+    {"x":0.368 ,"y":0.557,"width":0.321,"height":0.057,"pos":[4]},
+    {"x":0.293 ,"y":0.793,"width":0.321,"height":0.076,"pos":[5]},
+    {"x":0.37 ,"y":0.661,"width":0.322,"height":0.075,"pos":[6]},
+    {"x":0.368 ,"y":0.236,"width":0.322,"height":0.066,"pos":[7]},
+    {"x":0.369 ,"y":0.493,"width":0.319,"height":0.058,"pos":[8]}
+    ]
+    }
