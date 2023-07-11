@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Der Rotationsencoder HW-040</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+         <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="der-rotationsencoder-hw-040">Der Rotationsencoder HW-040</h1>
+<p>Der HW-040-Sensor sieht aus wie ein Drehwiderstand. Er kann aber endlos rotiert werden - ein Drehwiderstand kann immer nur vom Minimal- zum Maximalwert gedreht werden.</p>
+<h2 id="1-anschluss">1. Anschluss</h2>
+<p>Der Rotationsencoder hat 5 Kontakte.
+Schließe vier davon wie folgt an den Arduino an:</p>
+<ol>
+<li>CLK -&gt; D6</li>
+<li>DT -&gt; D5</li>
+<li>plus -&gt; 5V</li>
+<li>GND -&gt; GND</li>
+</ol>
+<p>Über den <strong>CLK</strong> und den <strong>DT</strong>-Pin werden die Rotationsdaten ausgelesen.</p>
+<h2 id="2-installation-der-encoder-biblitothek">2. Installation der Encoder-Biblitothek</h2>
+<ol>
+<li>Öffne den Bibliotheksmanager.</li>
+<li>Suche nach <strong>Encoder</strong>.</li>
+<li>Installiere die Encoder-Bibliothek von Paul Stoffregen:<br>
+<img src="2023-07-05_16-49.png" alt="Alt text"></li>
+</ol>
+<h2 id="3-programmieren-des-sensors">3. Programmieren des Sensors</h2>
+<p>Erstelle einen neuen Sketch und speichere ihn unter dem Namen Rotation.</p>
+<h3 id="1-import-der-bibliothek">1. Import der Bibliothek</h3>
+<p>Kopiere folgende Codezeilen an den Beginn deines Sketeches:</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Encoder.h&gt;</span>  </span>
+</code></pre>
+<h3 id="2-festlegen-der-pins-und-erstellen-des-encoder-objekts">2. Festlegen der Pins und Erstellen des Encoder-Objekts</h3>
+<pre><code class="language-C++"><span class="hljs-type">int</span> CLK = <span class="hljs-number">6</span>;
+<span class="hljs-type">int</span> DT = <span class="hljs-number">5</span>;
+<span class="hljs-type">long</span> alt = <span class="hljs-number">0</span>; <span class="hljs-comment">// alter Messwert</span>
+
+<span class="hljs-function">Encoder <span class="hljs-title">myEncoder</span><span class="hljs-params">(DT,CLK)</span></span>;
+</code></pre>
+<h3 id="3-setup-methode">3. setup()-Methode</h3>
+<p>In der <strong>setup()</strong>-Methode startest du nur die serielle Datenübertragung-</p>
+<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span>   
+
+</span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>); 
+}
+</code></pre>
+<h3 id="4-die-loop-methode">4. Die loop()-Methode</h3>
+<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span>
+</span>{
+  <span class="hljs-type">long</span> neu = myEncoder.<span class="hljs-built_in">read</span>();
+  <span class="hljs-keyword">if</span> (neu != alt) {
+    alt = neu;
+    Serial.<span class="hljs-built_in">println</span>(neu);
+  }
+}
+</code></pre>
+<h3 id="erklärung-des-codes">Erklärung des Codes</h3>
+<h4 id="long-neu--myencoderread">long neu = myEncoder.read();</h4>
+<p>An dieser Stelle wird ein neuer Messwert eingelesen.</p>
+<h4 id="if-neu--alt-">if (neu != alt) {</h4>
+<p>Wenn der neue Messwert ein anderer als der alte ist, wird der alte Wert aktualisiert und der neue ausgegeben.</p>
+<p><a href="../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>

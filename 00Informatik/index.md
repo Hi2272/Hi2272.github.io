@@ -118,6 +118,8 @@
 
 [Java-Code-Zeilen: Zusammenfassung](https://Hi2272.github.io/00Informatik/JavaCodeZusammenfassung/index.html)  
 [Aufbau einer Java Klasse](https://Hi2272.github.io/00Informatik/AufbauKlasse/index.html)
+[Aufbau einer Java-Klasse: Code](/00Informatik/KlasseAufbau/index.html)  
+[Aufbau einer Java-Klasse: Bezeichnungen](/00Informatik/KlassenAufbau2/index.html)
 
 ## Datenschutz
 ***
