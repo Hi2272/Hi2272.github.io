@@ -1,0 +1,21 @@
+{   
+  "snap":true,
+  "stapel":false,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Aubau einer Java Klasse",
+  "angabe":"Bringe die Begriffe in die typische Reihenfolge.",
+ 
+  "txt":[
+{"x":0.041 ,"y":0.175,"width":0.255,"height":0.06,"pos":[0]},
+{"x":0.16 ,"y":0.4,"width":0.421,"height":0.071,"pos":[1]},
+{"x":0.035 ,"y":0.054,"width":0.408,"height":0.065,"pos":[2]},
+{"x":0.156 ,"y":0.631,"width":0.41,"height":0.073,"pos":[3]},
+{"x":0.228 ,"y":0.747,"width":0.452,"height":0.073,"pos":[4]},
+{"x":0.156 ,"y":0.854,"width":0.196,"height":0.081,"pos":[5]},
+{"x":0.158 ,"y":0.514,"width":0.378,"height":0.077,"pos":[6]},
+{"x":0.033 ,"y":0.284,"width":0.302,"height":0.073,"pos":[7]}
+]
+}
+    
