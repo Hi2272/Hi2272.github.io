@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Bluetooth</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+           <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="bluetooth">Bluetooth</h1>
+<h2 id="1-allgemeines">1. Allgemeines</h2>
+<p>Der ESP32 verfügt über ein eingebautes Bluetooth-Modul.<br>
+Beim Arduino Uno kann ein Bluetooth-Modul eingebaut werden. Diese Module werden auf folgender Seite beschrieben: <a href="https://funduino.de/tutorial-hc-05-und-hc-06-bluetooth">Funduino HC05 und HC06</a></p>
+<p>Über Bluetooth kannst du Daten von deinem Mikrocontroller ans Handy senden oder den Mikrocontroller vom Handy aus steuern.<br>
+Über die Internet-Plattform <a href="https://appinventor.mit.edu">MIT App Inventor</a> kannst du relativ einfach Bluetooth-Apps für dein Handy entwickeln.</p>
+<h2 id="2-senden-von-daten-über-bluetooth">2. Senden von Daten über Bluetooth</h2>
+<p>Mit dem folgenden Programm senden wir jede Sekunde eine Zahl an die Bluetooth-Schnittstelle.<br>
+Kopiere diesen Code in dein Programm:</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;BluetoothSerial.h&quot;</span></span>
+
+BluetoothSerial SerialBT;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  SerialBT.<span class="hljs-built_in">begin</span>(<span class="hljs-string">&quot;Name&quot;</span>,<span class="hljs-literal">true</span>); 
+  SerialBT.<span class="hljs-built_in">setPin</span>(<span class="hljs-number">123456</span>);
+}
+
+<span class="hljs-type">int</span> anz=<span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+    SerialBT.<span class="hljs-built_in">println</span>(anz);
+    anz=anz+<span class="hljs-number">1</span>;
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
+ }
+</code></pre>
+<h2 id="erläuterung-des-codes">Erläuterung des Codes</h2>
+<h3 id="include-bluetoothserialh">#include &quot;BluetoothSerial.h&quot;</h3>
+<p>Diese Zeile bindet eine Bibliothek ein, die Befehle zum Senden und Empfangen über Bluetooth bereit stellt.</p>
+<h3 id="bluetoothserial-serialbt">BluetoothSerial SerialBT;</h3>
+<p>Damit wir auf die Bluetooth-Schnittstelle zugreifen können, erzeugen wir ein Objekt <strong>SerialBT</strong> aus der Klasse <strong>BluetoothSerial</strong>.</p>
+<h3 id="serialbtbeginnametrue">SerialBT.begin(&quot;Name&quot;,true);</h3>
+<p>Mit diesem Befehl starten wir die Bluetooth-Schnittstelle. Die beiden Parameter haben folgende Bedeutung:</p>
+<ul>
+<li>&quot;Name&quot;: Unter dieser Bezeichnung ist der ESP32 im Kopplungsmodus für dein Handy sichtbar.<br>
+Verwendet bitte unterschiedliche Namen, damit klar ist, mit welchem Gerät euer Handy gekoppelt werden soll.</li>
+<li>true: Dieser Parameter gibt an, dass bei der Kopplung am Handy ein Pin abgefragt wird. Damit wird sicher gestellt, dass sich kein fremdes Gerät mit eurem ESP32 koppeln kann.<br>
+Der ESP32 bleibt so lange im Kopplungsmodus, bis er sich mit einem Handy verbunden hat.</li>
+</ul>
+<h3 id="serialbtsetpin123456">SerialBT.setPin(123456);</h3>
+<p>In dieser Zeile wird der Pin festgelegt, der zur Kopplung eingegeben werden muss. Bei eurem Programm solltet ihr etwas kreativer sein...</p>
+<h3 id="serialbtprintlnanz">SerialBT.println(anz);</h3>
+<p>SerialBT stellt vier verschiedene Befehle zum Senden von Daten über die Bluetooth-Schnittstelle zur Verfügung:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><!-- --></th>
+<th style="text-align:left"><!-- --></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SerialBT.print(anz);</td>
+<td style="text-align:left">Schreibt Text ohne Zeilenumbruch</td>
+</tr>
+<tr>
+<td style="text-align:left">SerialBT.println(anz);</td>
+<td style="text-align:left">Schreibt Text mit Zeilenumbruch</td>
+</tr>
+<tr>
+<td style="text-align:left">SerialBT.write(anz);</td>
+<td style="text-align:left">Schreibt Bytes ohne Zeilenumbruch</td>
+</tr>
+<tr>
+<td style="text-align:left">SerialBT.writeln(anz);</td>
+<td style="text-align:left">Schreibt Bytes mit Zeilenumbruch</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-empfangen-der-daten-mit-dem-handy">4. Empfangen der Daten mit dem Handy</h2>
+<h3 id="41-vorbereiten-des-handys">4.1 Vorbereiten des Handys</h3>
+<h4 id="411-installation-einer-bluetooth-app">4.1.1 Installation einer Bluetooth-App</h4>
+<p>Um die Bluetooth-Daten am Handy zu anzuzeigen, musst du eine App auf dem Handy installieren.</p>
+<p>Suche dazu im AppStore nach folgenden Begriffen <strong>Bluetooth Terminal</strong> oder <strong>Bluetooth Serial Monitor</strong> und installiere eine kostenfreie App.</p>
+<h4 id="412-kopplung-des-handys-mit-dem-esp">4.1.2 Kopplung des Handys mit dem ESP</h4>
+<ul>
+<li>Aktiviere Bluetooth bei deinem Handy</li>
+<li>Suche nach neuen Bluetooth-Geräten</li>
+<li>Koppele das Gerät mit dem passenden Namen mit deinem Handy.</li>
+</ul>
+<h3 id="42-darstellen-der-daten">4.2 Darstellen der Daten</h3>
+<ul>
+<li>Starte die App, die du vorher installiert hast.</li>
+<li>Verbinde dich mit dem ESP32.<br>
+In der App müsste jetzt jede Sekunde eine neue Zahl angezeigt werden.</li>
+</ul>
+<p><a href="weiter.html">weiter</a></p>
+<p><a href="../../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>

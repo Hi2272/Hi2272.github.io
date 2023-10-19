@@ -1,82 +1,32 @@
-   <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+  <meta charset="utf-8" />
+  <title>Informatik</title>
+<header>  
 
-# Wahlunterricht Mikroelektronik am Gymnasium Waldkraiburg
-##### Diese Seite befindet sich im Aufbau. Im Schuljahr 2023/24 werden zu den einzelnen Kapiteln weitere Inhalte hinzugefügt.  
+<style>
+iframe {
+    display: block;       /* iframes are inline by default */
+    background: #000;
+    border: none;         /* Reset default border */
+    height: 80vh;        /* Viewport-relative units */
+    width: 100vw;
+}
+</style> 
 
-## Grundausstattung 
-Die Materialien für den Kurs wurden durch Spenden folgender Organisationen finanziert:  
-<!---- [Wilhelm Stemmer Stiftung](https://www.wilhelm-stemmer-stiftung.de))
----->
-- [Förderverein des Gymnasium Waldkraiburgs](https://www.gymnasiumwaldkraiburg.de/schule/foerderverein/)  
-  
-Wir danken den Spendern herzlich für Ihre Unterstützung.  
+# Übung zur bedingten Anweisung und While Schleife
 
-[Materialliste](00Material/index.html)  
-
-## Projekte
-### 1. Die ersten Schritte
-[Start von Linux und Anschließen des Arduinos](00Start/index.html)  
-
-[Blink - das erste Programm](00StartBlink/index.html)
-### 2. Alarmanlage  
-   Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung aktiviert werden kann.  
-   ![Alarmanlage.png](Alarmanlage.png)
-   1. [Leuchtdioden](01/index.html)
-   2. [Bewegungsmelder](02/index.html)
-   3. [Passiver Buzzer](03/index.html)
-   4. [Infrarot-Fernbedienung](04/index.html)  
-   5. [Rotations-Encoder](05/index.html)
-
-### 3. Messwerterfassung
-#### Temperaturmessung
-
-   Wir bauen ein digitales Thermometer und verwenden es, um Messreihen am Computer aufzuzeichnen.
-   1. [Temperatursensor Dallas DS18B20](03Temperatur/index.html)  
-   ![Alt text](03Temperatur/2023-06-26_16-04.png)
-   2. OLED-Display zur Darstellung der Messwerte
-   3. [Grafische Ausgabe am Computer](03Processing/index.html)    
-   ![Alt text](03Processing/2023-06-24_14-01.png)
-   4. [Daten über die Serielle Schnittstelle einlesen](03Processing/Serial.html)
-   5. [Messwerte als Diagramm am Computer darstellen](03Processing/Grafica.html)  
-   
-   ![Alt text](03Processing/2023-06-26_10-03.png)
-   
-     
-  
-   
-#### Geschwindigkeitsmessung
-   Wir bauen Lichtschranken, mit denen die Geschwindigkeit von Fahrzeugen gemessen werden können.
-   1. Reflexlichtschranke
-   2. Laserlichtschranke
+Untersuche den Code des Pin-Eingabe-Beispiels in der Online-IDE.  
+Wenn du die Funktion verstanden hast, dann löse die Aufgaben auf dieser Seite in den online-IDE-Fenstern. Du benötigst neben der **bedingten Anweisung** auch **While-Schleifen**.
+</header>
+<section height="90%">
+ <iframe
+    src="https://www.learnj.de/doku.php?id=wenndann:if:start"
+   >
+</iframe>
+</section>
+<footer style="text-align:center;">
 
 
-### 4. Diskobeleuchtung  
- Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.  
-![Partylicht](03-01.png)  
-In folgendem Video könnt ihr die Funktion des Lichtes sehen:  [YouTube Video Partylicht](https://youtu.be/V1RZFxpPh4s)  
-  1. RGB-LEDs
-  2. Tonaufnahmen mit einem Mikrofon
-### 5. ESP32 - ein Mikrocontroller im Netzwerk
-Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.  
-Seine Programmierung kann auch über die bekannte Arduino-IDE erfolgen.  
-1. [Vorbereitung der Arduino-IDE für den ESP32](05ESP32/01/index.html)
-2. [Schalten einer LED über einen Internetbrowser](05ESP32/02/index.html)  
-   ![Alt text](05ESP32/02/Sc02.png)
-3. [Senden und Empfangen von Daten über Bluetooth](05ESP32/03/index.html)  
-  
-
-### 6. Selbstfahrender Roboter  
-   Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) von rtheiss bauen wir einen Roboter, der Hindernisse erkennt und ihnen ausweichen kann.  
-   1. Motorsteuerung  
-   2. Ultraschall-Entfernungsmesser  
-   3. Servomotoren  
-
-* * *
-
-<footer >
-
-
-  Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt. 
+  Die Seite verwendet die Übungen der <a href="https://www.online-ide.de/">Online-IDE</a> von Martin Pabst. 
   <h5>Haftungsausschluss</h5>
   <h5>Inhalt des Onlineangebotes</h5>
   <p>Der Autor übernimmt keinerlei Gewähr für die Aktualität, Richtigkeit und Vollständigkeit der bereitgestellten Informationen auf unserer Website. Haftungsansprüche gegen den Autor, welche sich auf Schäden materieller oder ideeller Art beziehen, die durch die Nutzung oder Nichtnutzung der dargebotenen Informationen bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen verursacht wurden, sind grundsätzlich ausgeschlossen, sofern seitens des Autors kein nachweislich vorsätzliches oder grob fahrlässiges Verschulden vorliegt.<br>
@@ -91,3 +41,5 @@ Seine Programmierung kann auch über die bekannte Arduino-IDE erfolgen.
   
   Quelle: <a href="http://www.haftungsausschluss-vorlage.de/">Haftungsausschluss Muster</a> von <a href="http://www.haftungsausschluss.org/">Haftungsausschluss.org</a> und das <a href="http://www.datenschutzgesetz.de/">Datenschutzgesetz</a>
 </footer>
+
+
