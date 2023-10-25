@@ -33,7 +33,8 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
    Wir bauen ein digitales Thermometer und verwenden es, um Messreihen am Computer aufzuzeichnen.
    1. [Temperatursensor Dallas DS18B20](03Temperatur/index.html)  
    ![Alt text](03Temperatur/2023-06-26_16-04.png)
-   2. OLED-Display zur Darstellung der Messwerte
+   2. [OLED-Display zur Darstellung der Messwerte](03Temperatur/OLED/index.html)
+   
    3. [Grafische Ausgabe am Computer](03Processing/index.html)    
    ![Alt text](03Processing/2023-06-24_14-01.png)
    4. [Daten über die Serielle Schnittstelle einlesen](03Processing/Serial.html)

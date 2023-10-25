@@ -70,4 +70,9 @@ Ein Wert von -127.0 zeigt hierbei an, dass ein Fehler vorliegt - überprüfe den
 
 ### 6. Grafische Darstellung der Messwerte
 Über den Seriellen Plotter kannst du die Messwerte grafisch darstellen lassen:  
-![Alt text](2023-06-24_09-27.png)
+![Alt text](2023-06-24_09-27.png)  
+
+### 7. Ausgabe der Messwerte am OLED-Display
+[OLED-Display](OLED/index.html)
+
+

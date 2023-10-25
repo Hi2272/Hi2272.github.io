@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+         <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;OneWire.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;DallasTemperature.h&gt;</span></span>
+
+<span class="hljs-comment">// Anschluss des Sensors an Pin2</span>
+<span class="hljs-type">int</span> tempPin=<span class="hljs-number">2</span>;
+<span class="hljs-function">OneWire <span class="hljs-title">oneWire</span><span class="hljs-params">(tempPin)</span></span>;
+<span class="hljs-function">DallasTemperature <span class="hljs-title">sensors</span><span class="hljs-params">(&amp;oneWire)</span></span>;
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Wire.h&gt;</span>               </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;SSD1306Ascii.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;SSD1306AsciiWire.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> I2C_ADDRESS 0x3C      <span class="hljs-comment">// Adresse des Displays</span></span>
+
+SSD1306AsciiWire oled;
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span>
+</span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
+  sensors.<span class="hljs-built_in">begin</span>();
+
+  Wire.<span class="hljs-built_in">begin</span>();
+  Wire.<span class="hljs-built_in">setClock</span>(<span class="hljs-number">400000L</span>);
+  oled.<span class="hljs-built_in">begin</span>(&amp;Adafruit128x64, I2C_ADDRESS);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span>
+</span>{ 
+  <span class="hljs-comment">// Sende Signal zum Abfragen der Temperatur</span>
+  sensors.<span class="hljs-built_in">requestTemperatures</span>(); 
+  <span class="hljs-comment">// Lese den Wert des Sensors mit dem Index 0 (es können mehrere Sensoren angeschlossen werden)</span>
+  <span class="hljs-type">float</span> tempC = sensors.<span class="hljs-built_in">getTempCByIndex</span>(<span class="hljs-number">0</span>); 
+  <span class="hljs-comment">// Ausgabe des Wertes an die Serielle Schnittstelle</span>
+  Serial.<span class="hljs-built_in">println</span>(tempC);
+
+  oled.<span class="hljs-built_in">setFont</span>(System5x7);  <span class="hljs-comment">// Schriftart festlegen</span>
+  oled.<span class="hljs-built_in">clear</span>();             <span class="hljs-comment">//Display löschen</span>
+  oled.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Temperatur&quot;</span>); 
+  oled.<span class="hljs-built_in">println</span>(tempC);
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>); 
+}
+</code></pre>
+<br>
+<p><a href="../../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>
