@@ -26,7 +26,8 @@ function convert() {
     basis.value="";
     exp.value="";
     index.value="";
-
+    document.getElementById("basis").focus();
+    
 }
 
 function copy(id) {
@@ -49,4 +50,6 @@ function loeschen(){
     document.getElementById("lsg").value="";
     document.getElementById("lsg2").value="";
     document.getElementById("html").innerHTML="";
+    document.getElementById("basis").focus();
+
 }
