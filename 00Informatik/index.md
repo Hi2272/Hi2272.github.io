@@ -37,10 +37,14 @@
 
 ## Datenbanken
 ***
-
-[Verschiedene SQL-Anfragen](https://Hi2272.github.io/00Informatik/SQL/index.html)  
+[w3schools.com: SELECT](https://www.w3schools.com/sql/exercise.asp?filename=exercise_select1)  
+[w3schools.com: WHERE](https://www.w3schools.com/sql/exercise.asp?filename=exercise_where1)  
+[w3schools.com: LIKE](https://www.w3schools.com/sql/exercise.asp?filename=exercise_like1)  
 [LIKE in SQL-Abfragen](https://Hi2272.github.io/00Informatik/SQL2/index.html)  
 [Wiederholung SQL mit Datenbanken im Unterricht (www.dbiu.de)](https://Hi2272.github.io/00Informatik/SQLFrageListe/index.html)  
+[Verschiedene SQL-Anfragen](https://Hi2272.github.io/00Informatik/SQL/index.html)  
+### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
+[Start](https://sql.hauptquartier.eu/start-abenteuer)
 
 ## Objektorientierte Programmierung
 ***
