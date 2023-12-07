@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Der Ultraschallsensor HC-SR04</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+         <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="der-ultraschallsensor-hc-sr04">Der Ultraschallsensor HC-SR04</h1>
+<h2 id="1-prinzip-der-entfernungsmessung">1. Prinzip der Entfernungsmessung</h2>
+<p>Am Ultraschallsensor fallen die beiden Aluminiumzylinder mit Gitternetzen auf:<br>
+<img src="Sensor.png" alt="Alt text"><br>
+Zur Entfernungsmessung wird zunächst vom linken Zylinder, der einen Lautsprecher enthält, ein kurzes Ultraschall-Signal ausgesendet. Ultraschalltöne sind so hoch, dass sie vom Menschen nicht wahrgenommen werden können.<br>
+Der Schall prallt auf ein Objekt und wird von diesem zurückgeworfen. Sobald das reflektierte Signal am Sensor ankommt, wird es vom rechten Zylinder, der ein Mikrofon enthält, wahrgenommen.<br>
+Aus der Zeit, die zwischen den Aussenden des Signals und dem Empfangen des reflektierten Signals vergeht, kann die Entfernung zum Objekt berechnet werden.</p>
+<h2 id="2-anschluss">2. Anschluss</h2>
+<p>Schließe den Sensor nach folgendem Schema an:<br>
+<img src="Anschluss.png" alt="Alt text"></p>
+<h2 id="3-programmierung-des-sensors">3. Programmierung des Sensors</h2>
+<p>Erstelle einen neuen Sketch und speichere ihn unter dem Namen Ultraschall.</p>
+<h3 id="1-festlegen-der-pins">1. Festlegen der Pins</h3>
+<pre><code class="language-C++"><span class="hljs-type">int</span> trigger=<span class="hljs-number">6</span>;  <span class="hljs-comment">// Trigger zum Senden des Signals </span>
+<span class="hljs-type">int</span> echo=<span class="hljs-number">5</span>;     <span class="hljs-comment">// Echo zum Empfangen des relektierten Signals</span>
+</code></pre>
+<h3 id="2-die-setup-methode">2. Die setup()-Methode</h3>
+<p>In der <strong>setup()</strong>-Methode startest du die serielle Datenübertragung und legst die beiden Pins als Ausgang und Eingang fest.</p>
+<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span>
+</span>{
+Serial.<span class="hljs-built_in">begin</span> (<span class="hljs-number">9600</span>); 
+<span class="hljs-built_in">pinMode</span>(trigger, OUTPUT); <span class="hljs-comment">// Trigger-Pin ist ein Ausgang</span>
+<span class="hljs-built_in">pinMode</span>(echo, INPUT); <span class="hljs-comment">// Echo-Pin ist ein Eingang</span>
+}
+</code></pre>
+<h3 id="3-die-loop-methode">3. Die loop()-Methode</h3>
+<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span>
+</span>{
+  <span class="hljs-built_in">digitalWrite</span>(trigger, LOW); 
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">5</span>); 
+  <span class="hljs-built_in">digitalWrite</span>(trigger, HIGH); 
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">10</span>); 
+  <span class="hljs-built_in">digitalWrite</span>(trigger, LOW);
+
+  <span class="hljs-type">int</span> dauer = <span class="hljs-built_in">pulseIn</span>(echo, HIGH); 
+  <span class="hljs-type">int</span> entfernung = (dauer/<span class="hljs-number">2</span>) * <span class="hljs-number">0.03432</span>; 
+  Serial.<span class="hljs-built_in">print</span>(entfernung);
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot; cm&quot;</span>);
+
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>); 
+}
+
+
+</code></pre>
+<h3 id="erklärung-des-codes">Erklärung des Codes</h3>
+<p><strong>digitalWrite(trigger, LOW);</strong><br>
+<strong>delay(5);</strong></p>
+<p>Zunächst wird der Trigger 5 ms ausgeschaltet, damit er sicher ein sauberes Signal liefert.</p>
+<p><strong>digitalWrite(trigger, HIGH);</strong>
+<strong>delay(10);</strong><br>
+<strong>digitalWrite(trigger, LOW);</strong></p>
+<p>Anschließend wird für 10 ms ein Ultraschallsignal ausgegeben</p>
+<p><strong>int dauer = pulseIn(echo, HIGH);</strong></p>
+<p>Über die <strong>pulseIn()</strong>-Funktion wird die Zeit gemessen, bis der echo-Pin das reflektierte Signal empfängt und HIGH geschaltet wird.<br>
+Der Wert wird in Mikrosekunden, also in Millionstel Sekunden ausgegeben.</p>
+<p><strong>int entfernung = (dauer/2) * 0.03432;</strong></p>
+<p>Zur Berechnung der Entfernung in cm wird die Zeit zunächst durch 2 geteilt, da nicht der Hin- und Rückweg des Signals, sondern nur der einfache Weg gemessen werden soll.<br>
+Anschließend wird diese Zeit mit dem Weg mulitipliziert, den der Schall in einer Mikrosekunde zurücklegt:<br>
+Schallgeschwindigkeit = 1235,5 km/h = 343,2 m/s = 0,0003432 m/µs = 0,0343 cm/µs</p>
+<p><a href="../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>
