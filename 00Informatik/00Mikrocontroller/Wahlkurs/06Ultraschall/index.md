@@ -75,3 +75,14 @@ Anschließend wird diese Zeit mit dem Weg mulitipliziert, den der Schall in eine
 Schallgeschwindigkeit = 1235,5 km/h = 343,2 m/s = 0,0003432 m/µs = 0,0343 cm/µs  
 
 [zurück](../index.html)
+
+<footer style="font-size:x-small;text-align: center;
+    padding: 10px;
+    margin: 10px;
+    height: 10%;
+    ">
+
+
+  Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt. 
+</footer>
+
