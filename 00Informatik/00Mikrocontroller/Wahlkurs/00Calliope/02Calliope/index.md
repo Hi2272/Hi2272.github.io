@@ -12,4 +12,7 @@
 [5. Callimessage](https://inf-schule.de/kids/calliope/calli-message)
 
 * * *
+[Weitere Übungen](https://www.inf-schule.de/kids/kategorie:calliope)
+
+* * *
 [zurück](../index.html)
