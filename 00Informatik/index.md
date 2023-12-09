@@ -22,8 +22,6 @@
 
 ## Mikrocontroller
 ***
-[Einführung Calliope mini](https://Hi2272.github.io/00Informatik/00Mikrocontroller/01CalliopeStart/index.html)  
-[Aufgaben Calliope mini](https://Hi2272.github.io/00Informatik/00Mikrocontroller/02Calliope/index.html)  
 [Wahlkurs](https://Hi2272.github.io/00Informatik/00Mikrocontroller/Wahlkurs/index.html)  
 
 ## Funktionale Modellierung

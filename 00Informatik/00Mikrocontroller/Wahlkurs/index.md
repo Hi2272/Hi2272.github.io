@@ -5,15 +5,14 @@
 
 ## Grundausstattung 
 Die Materialien für den Kurs wurden durch Spenden folgender Organisationen finanziert:  
-<!---- [Wilhelm Stemmer Stiftung](https://www.wilhelm-stemmer-stiftung.de))
----->
 - [Förderverein des Gymnasium Waldkraiburgs](https://www.gymnasiumwaldkraiburg.de/schule/foerderverein/)  
   
 Wir danken den Spendern herzlich für Ihre Unterstützung.  
 
 [Materialliste](00Material/index.html)  
-
-## Projekte
+## Projekte mit dem Calliope mini  
+[Calliope mini](00Calliope/index.html)
+## Projekte mit dem Arduino Uno und dem ESP32
 ### 1. Die ersten Schritte
 [Start von Linux und Anschließen des Arduinos](00Start/index.html)  
 
