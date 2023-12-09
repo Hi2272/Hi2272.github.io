@@ -18,12 +18,15 @@ Klicke auf den Hyperlink - es öffnet sich eine Übungsseite.
 ### 3\. Übung: Ein erstes Programm für den Calliope mini
 
 Klicke auf den Hyperlink:  
-[inf-schule.de: Ein erstes Programm mit Makecode](https://inf-schule.de/kids/calliope/ein-erstes-programm-makecode)
+[inf-schule.de: Ein erstes Programm mit Makecode](https://inf-schule.de/kids/calliope/ein-erstes-programm-makecode)  
+  
+Klicke auf den Hyperlink:  
+[inf-schule.de: Ein erstes Programm mit OpenRoberta](https://inf-schule.de/kids/calliope/ein-erstes-programm-openroberta)  
 
 ### 4\. Übung: Weitere Programme für den Calliope mini
 
 Klicke auf den Hyperlink:  
-[inf-schule.de: Calliope Programme](https://inf-schule.de/kids/calliope/)  
+[Weitere Programme](/00Informatik/00Mikrocontroller/Wahlkurs/00Calliope/02Calliope/index.html)  
 
 * * *
 
