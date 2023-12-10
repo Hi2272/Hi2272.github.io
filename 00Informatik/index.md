@@ -14,11 +14,16 @@
 
 ## Informatik 6. Klasse
 ***
+### Aufbau eines Computers
 [Festspeicher oder Arbeitsspeicher?](https://learningapps.org/watch?app=7732450)  
 [Eingabegerät oder Ausgabegerät?](https://learningapps.org/watch?app=7732389)  
 [Aufbau eines Computers](https://Hi2272.github.io/00Informatik/00Informatik6/AufbauComputer/index.html)  
-[Powerpoint Schule](https://Hi2272.github.io/00Informatik/00Informatik6/PowerpointSchule/index.html)  
 [Laufwerk, Ordner, Datei?](https://learningapps.org/watch?app=14045032)  
+### Grafik
+[Pixelgrafik](https://www.inf-schule.de/kids/datennetze/pixelgrafik)
+[SVG Klassen und Attribute](00Informatik6/SVG/index.html)
+### Powerpoint#
+[Powerpoint Schule](https://Hi2272.github.io/00Informatik/00Informatik6/PowerpointSchule/index.html)  
 
 ## Mikrocontroller
 ***
