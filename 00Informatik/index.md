@@ -20,10 +20,10 @@
 [Aufbau eines Computers](https://Hi2272.github.io/00Informatik/00Informatik6/AufbauComputer/index.html)  
 [Laufwerk, Ordner, Datei?](https://learningapps.org/watch?app=14045032)  
 ### Grafik
-[Pixelgrafik](https://www.inf-schule.de/kids/datennetze/pixelgrafik)
-[SVG Klassen und Attribute](00Informatik6/SVG/index.html)
-### Powerpoint#
-[Powerpoint Schule](https://Hi2272.github.io/00Informatik/00Informatik6/PowerpointSchule/index.html)  
+[Pixelgrafik](https://www.inf-schule.de/kids/datennetze/pixelgrafik)  
+[SVG Klassen und Attribute](00Informatik6/SVG/index.html)  
+### Powerpoint
+[Powerpoint Schule](https://Hi2272.github.io/00Informatik/00Informatik6/PowerpointSchule/index.html)   
 
 ## Mikrocontroller
 ***
