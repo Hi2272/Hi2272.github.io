@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://Hi2272.github.io/vanillatoasts.js"></script>
+  <link href="https://Hi2272.github.io/vanillatoasts.css" rel="stylesheet">
+
+
+  <meta charset="utf-8" />
+  <title id="Titel"></title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
+  <!--   <script src="https://Hi2272.github.io/AufgabenstellungMitBlueJ.js"></script>
+-->
+  <!--  <script src="AufgabenstellungSVG.js"></script>
+  -->
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 10px;
+      text-align:left;
+      font-size: small;
+      width: 100vw;
+      height:100vh;
+ 
+    }
+
+    .grid-container>div {
+      height: 80%;
+    }
+
+    .Titel {
+      grid-column: 1 / 3;
+      width: 100%;
+      height: 10%;
+      text-align:center;
+  
+    }
+    .Fuss {
+      grid-column: 1 / 3;
+      width: 100%;
+      height: 10%;
+    }
+    h2{
+      text-align: center;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="grid-container">
+    <div class="Titel">
+      <h1 id="Ueberschrift"></h1>
+      <section id="Menue" style="display: flexbox;">
+      </section>
+      </div>
+      <div>
+      <h2>SVG-Code Editor</h2>
+      <div id="Angabe"></div>
+      <textarea id="editor" wrap="hard" cols="80" rows="10" onkeyup="zeichnen()"></textarea>
+      <div id="Button"></div>  
+    </div>
+    <div>
+      <h2>SVG Bild</h2>
+      <svg id="svg" width="100%" height="100%" viewBox="0 0 200 200">
+        <rect x='40' y='10' width='10' height='40' fill='darkgrey'/>
+        <polygon points='20,50, 120,50, 70,10' fill='red'/>
+        <rect x='20' y='50' width='100' height ='100' fill='yellow'/>
+        <rect x='60' y='110' width='20' height='40' fill='brown'/>
+        <rect x='30' y='70' width='20' height='30' fill='lightblue'/>
+        <rect x='90' y='70' width='20' height='30' fill='lightblue'/>
+        <rect x='10' y='130' width='2' height='20' fill='brown'/>
+        <rect x='20' y='130' width='2' height='20' fill='brown'/>
+        <rect x='30' y='130' width='2' height='20' fill='brown'/>
+        <rect x='40' y='130' width='2' height='20' fill='brown'/>
+        <rect x='50' y='130' width='2' height='20' fill='brown'/>
+        <rect x='90' y='130' width='2' height='20' fill='brown'/>
+        <rect x='100' y='130' width='2' height='20' fill='brown'/>
+        <rect x='110' y='130' width='2' height='20' fill='brown'/>
+        <rect x='120' y='130' width='2' height='20' fill='brown'/>
+        <rect x='130' y='130' width='2' height='20' fill='brown'/>
+        <rect x='140' y='130' width='2' height='20' fill='brown'/>
+        <rect x='150' y='130' width='2' height='20' fill='brown'/>
+        <rect x='160' y='130' width='2' height='20' fill='brown'/>
+        <rect x='170' y='130' width='2' height='20' fill='brown'/>
+        <rect x='180' y='130' width='2' height='20' fill='brown'/>
+        <rect x='190' y='130' width='2' height='20' fill='brown'/>
+        <rect x='10' y='135' width='42' height='3' fill='brown'/>
+        <rect x='90' y='135' width='102' height='3' fill='brown'/>
+        <rect x='0' y='150' width='200' height='10' fill='green'/>
+        <rect x='150' y='100' width='20' height='50' fill='brown'/>
+        <circle cx='160' cy='90' r='25' fill='green'>
+      </svg>
+    </div>
+    <div class="Fuss">
+      <div id="quelle" style="font-size: x-small; text-align: right;"></div>
+    </div>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
