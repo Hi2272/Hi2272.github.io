@@ -92,140 +92,143 @@ function convert() {
     linie = str.split(/\r?\n|\r|\n/g);
     console.log(linie);
     for (nr = 0; nr < linie.length; nr++) {
-        abbruch = false;
-        if (linie[nr].startsWith(".") || linie[nr].startsWith(":")) {
-            error(nr, "Der Objektname fehlt!");
-            break;
-        }
-
-        teile = linie[nr].split(":");
-        if (teile.length == 2) {  // Objektdeklaration
-            if (objektSuche(teile[0]) != -1) {
-                error(nr, "Ein Objekt mit dem Namen " + teile[0] + " gibt es schon!");
-                abbruch = true;
+        if (linie[nr] != "") {
+            abbruch = false;
+            if (linie[nr].startsWith(".") || linie[nr].startsWith(":")) {
+                error(nr, "Der Objektname fehlt!");
+                break;
             }
 
-            switch (teile[1].toLowerCase()) {
-                case "rect":
-                case "rechteck":
-                case "rectangle": objekte.push(new Rect(teile[0], teile[1].toUpperCase())); break;
-                case "kreis":
-                case "circle": objekte.push(new Circle(teile[0], teile[1].toUpperCase())); break;
-                case "linie":
-                case "line": objekte.push(new Line(teile[0], teile[1].toUpperCase())); break;
-                case "dreieck":
-                case "triangle": objekte.push(new Triangle(teile[0], teile[1].toUpperCase())); break;
-
-                default:
-                    error(nr, "Die Klasse " + teile[1] + " ist mir unbekannt.");
+            teile = linie[nr].split(":");
+            if (teile.length == 2) {  // Objektdeklaration
+                if (objektSuche(teile[0]) != -1) {
+                    error(nr, "Ein Objekt mit dem Namen " + teile[0] + " gibt es schon!");
                     abbruch = true;
+                }
 
-            }
+                switch (teile[1].toLowerCase()) {
+                    case "rect":
+                    case "rechteck":
+                    case "rectangle": objekte.push(new Rect(teile[0], teile[1].toUpperCase())); break;
+                    case "kreis":
+                    case "circle": objekte.push(new Circle(teile[0], teile[1].toUpperCase())); break;
+                    case "linie":
+                    case "line": objekte.push(new Line(teile[0], teile[1].toUpperCase())); break;
+                    case "dreieck":
+                    case "triangle": objekte.push(new Triangle(teile[0], teile[1].toUpperCase())); break;
 
-        } else if (teile.length > 2) {
-            error(nr, "Maximal ein Doppelpunkt!");
-            abbruch = true;
-        } else if (teile.length == 1) { // Kein Doppelpunkt --> Methodenaufruf
-            teile = linie[nr].split(".");
-            console.log(teile);
-            if (teile.length == 1) { // Kein Punkt -> Fehler}
-                error(nr, "Es muss entweder ein Doppelpunkt oder ein Punkt vorkommen!");
-                abbruch = true;
-            } else if (teile.length > 2) {
-                error(nr, "Maximal ein Punkt!");
-                abbruch = true;
-            } else { // 2 Teile passt
-                let objektNr = objektSuche(teile[0]);
-                if (objektNr == -1) {
-                    error(nr, "Ein Objekt mit dem Namen " + teile[0] + " gibt es nicht!");
-                    abbruch = true;
-                } else {
-                    methode = teile[1].split("(");
-                    if (methode.length == 2) {
-                        let parameter = methode[1].replaceAll(")", "");
-                        let o = objekte[objektNr];
-                        console.log(o);
-                        switch (methode[0].toLowerCase()) {
-                            case "verschiebex":
-                            case "movex": o.moveX(parameter); break;
-
-                            case "verschiebey":
-                            case "movey": o.moveY(parameter); break;
-
-                            case "verschiebezu":
-                            case "moveto": o.moveTo(parameter); break;
-
-                            case "setzefüllfarbe":
-                            case "setzefarbe":
-                            case "setfüllfarbe":
-                            case "setfarbe":
-                            case "setfill": o.setFill(parameter); break;
-
-                            case "setlinienfarbe":
-                            case "setzelinienfarbe":
-                            case "setstroke": o.setStroke(parameter); break;
-
-                            case "setzebreite":
-                            case "setbreite":
-                            case "setwidth":
-                                if (o.constructor.name == "Rect") {
-                                    o.setWidth(parameter);
-                                } else {
-                                    error(nr, "Das Objekt " + o.nam + " hat keine Methode setWidth().");
-                                    abbruch = true;
-                                }
-                                break;
-
-                            case "setzehöhe":
-                            case "sethöhe":
-                            case "setheight":
-                                if (o.constructor.name == "Rect") {
-                                    o.setHeight(parameter);
-                                } else {
-                                    error(nr, "Das Objekt " + o.nam + " hat keine Methode setHeight().");
-                                    abbruch = true;
-                                }
-                                break;
-
-                            case "setzeradius":
-                            case "setradius":
-                                if (o.constructor.name == "Circle") {
-                                    o.setRadius(parameter);
-                                } else {
-                                    error(nr, "Das Objekt " + o.nam + " hat keine Methode setRadius().");
-                                    abbruch = true;
-                                }
-                                break;
-
-                            case "setzeecken":
-                            case "setecken":
-                            case "setpoints":
-                                o.setPoints(parameter);
-                                break;
-                            case "setzelinienbreite":
-                            case "setlinienbreite":
-                            case "setstrokewidth":
-                                o.setStrokeWidth(parameter);
-                                break;
-
-                            default:
-                                error(nr, "Die Methode " + teile[1] + " kenne ich nicht.");
-                                abbruch = true;
-
-                        }
-                        o.draw();
-                        o.drawCard();
-                    }
-                    console.log(methode);
-
+                    default:
+                        error(nr, "Die Klasse " + teile[1] + " ist mir unbekannt.");
+                        abbruch = true;
 
                 }
+
+            } else if (teile.length > 2) {
+                error(nr, "Maximal ein Doppelpunkt!");
+                abbruch = true;
+            } else if (teile.length == 1) { // Kein Doppelpunkt --> Methodenaufruf
+                teile = linie[nr].split(".");
+                console.log(teile);
+                if (teile.length == 1) { // Kein Punkt -> Fehler}
+                    error(nr, "Es muss entweder ein Doppelpunkt oder ein Punkt vorkommen!");
+                    abbruch = true;
+                } else if (teile.length > 2) {
+                    error(nr, "Maximal ein Punkt!");
+                    abbruch = true;
+                } else { // 2 Teile passt
+                    let objektNr = objektSuche(teile[0]);
+                    if (objektNr == -1) {
+                        error(nr, "Ein Objekt mit dem Namen " + teile[0] + " gibt es nicht!");
+                        abbruch = true;
+                    } else {
+                        methode = teile[1].split("(");
+                        if (methode.length == 2) {
+                            let parameter = methode[1].replaceAll(")", "");
+                            let o = objekte[objektNr];
+                            console.log(o);
+                            switch (methode[0].toLowerCase()) {
+                                case "verschiebex":
+                                case "movex": o.moveX(parameter); break;
+
+                                case "verschiebey":
+                                case "movey": o.moveY(parameter); break;
+
+                                case "verschiebezu":
+                                case "moveto": o.moveTo(parameter); break;
+
+                                case "setzefüllfarbe":
+                                case "setzefarbe":
+                                case "setfüllfarbe":
+                                case "setfarbe":
+                                case "setfill": o.setFill(parameter); break;
+
+                                case "setlinienfarbe":
+                                case "setzelinienfarbe":
+                                case "setstroke": o.setStroke(parameter); break;
+
+                                case "setzebreite":
+                                case "setbreite":
+                                case "setwidth":
+                                    if (o.constructor.name == "Rect") {
+                                        o.setWidth(parameter);
+                                    } else {
+                                        error(nr, "Das Objekt " + o.nam + " hat keine Methode setWidth().");
+                                        abbruch = true;
+                                    }
+                                    break;
+
+                                case "setzehöhe":
+                                case "sethöhe":
+                                case "setheight":
+                                    if (o.constructor.name == "Rect") {
+                                        o.setHeight(parameter);
+                                    } else {
+                                        error(nr, "Das Objekt " + o.nam + " hat keine Methode setHeight().");
+                                        abbruch = true;
+                                    }
+                                    break;
+
+                                case "setzeradius":
+                                case "setradius":
+                                    if (o.constructor.name == "Circle") {
+                                        o.setRadius(parameter);
+                                    } else {
+                                        error(nr, "Das Objekt " + o.nam + " hat keine Methode setRadius().");
+                                        abbruch = true;
+                                    }
+                                    break;
+
+                                case "setzeecken":
+                                case "setecken":
+                                case "setpoints":
+                                    o.setPoints(parameter);
+                                    break;
+                                case "setzelinienbreite":
+                                case "setlinienbreite":
+                                case "setstrokewidth":
+                                    o.setStrokeWidth(parameter);
+                                    break;
+
+                                default:
+                                    error(nr, "Die Methode " + teile[1] + " kenne ich nicht.");
+                                    abbruch = true;
+
+                            }
+                            o.draw();
+                            o.drawCard();
+                        }
+                        console.log(methode);
+
+
+                    }
+                }
+
+
+
             }
-
-
-
         }
         if (abbruch) { break; }
+       
     }
     drawAll();
 }
