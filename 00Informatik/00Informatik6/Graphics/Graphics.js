@@ -81,7 +81,10 @@ function objektSuche(nam) {
     }
     return nr;
 }
-
+/**
+ * Fügt ein neues Objekt in das Array objekte ein und in die Listbox Objekte
+ * @param {*} o:Objekt, das neu erzeugt wird 
+ */
 function neu(o){
     objekte.push(o);
     var opt = document.createElement("option");
@@ -90,7 +93,9 @@ function neu(o){
     opt.text=o.nam+":"+o.klasse;
     opt.value=o.nam+":"+o.klasse
 }
-
+/**
+ * Stellt die Klassenkarte des aktuell angewählten Objekts der Listbox ein
+ */
 function selection() {
     var obj = document.getElementById("Objekte").value;
     let d=obj.split(":");
@@ -112,7 +117,7 @@ function convert() {
     linie = str.split(/\r?\n|\r|\n/g);
     console.log(linie);
     for (nr = 0; nr < linie.length; nr++) {
-        if (linie[nr] != "") {
+        if (linie[nr].length>1) {
             abbruch = false;
             if (linie[nr].startsWith(".") || linie[nr].startsWith(":")) {
                 error(nr, "Der Objektname fehlt!");
@@ -342,7 +347,13 @@ function endeAnzeigen() {
     document.getElementById("editor").value = "";
 
 }
-
+/**
+ * Gibt einen Toast am rechten Rand aus
+ * @param {*} title : Überschrift
+ * @param {*} msg : Nachricht
+ * @param {*} dauer : Dauer in ms
+ * @param {*} type : Art der Botschaft error, info
+ */
 function ausgabe(title, msg, dauer, type) {
     VanillaToasts.create({
         title: title,
