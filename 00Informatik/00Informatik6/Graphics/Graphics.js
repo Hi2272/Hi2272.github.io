@@ -81,6 +81,24 @@ function objektSuche(nam) {
     }
     return nr;
 }
+
+function neu(o){
+    objekte.push(o);
+    var opt = document.createElement("option");
+    var listbox = document.getElementById("Objekte");
+    listbox.options.add(opt);
+    opt.text=o.nam+":"+o.klasse;
+    opt.value=o.nam+":"+o.klasse
+}
+
+function selection() {
+    var obj = document.getElementById("Objekte").value;
+    let d=obj.split(":");
+    let nr=objektSuche(d[0]);
+    objekte[nr].drawCard();    
+
+   }
+
 /**
  * Wandelt den Inhalte des Text Area in Svg-Code um 
  */
@@ -88,6 +106,8 @@ function convert() {
     while (objekte.length > 0) {  // Array objekte leeren
         objekte.pop();
     }
+    document.getElementById("Objekte").innerHTML="";
+
     str = document.getElementById("editor").value;
     linie = str.split(/\r?\n|\r|\n/g);
     console.log(linie);
@@ -109,13 +129,13 @@ function convert() {
                 switch (teile[1].toLowerCase()) {
                     case "rect":
                     case "rechteck":
-                    case "rectangle": objekte.push(new Rect(teile[0], teile[1].toUpperCase())); break;
+                    case "rectangle": neu(new Rect(teile[0], teile[1].toUpperCase())); break;
                     case "kreis":
-                    case "circle": objekte.push(new Circle(teile[0], teile[1].toUpperCase())); break;
+                    case "circle": neu(new Circle(teile[0], teile[1].toUpperCase())); break;
                     case "linie":
-                    case "line": objekte.push(new Line(teile[0], teile[1].toUpperCase())); break;
+                    case "line": neu(new Line(teile[0], teile[1].toUpperCase())); break;
                     case "dreieck":
-                    case "triangle": objekte.push(new Triangle(teile[0], teile[1].toUpperCase())); break;
+                    case "triangle": neu(new Triangle(teile[0], teile[1].toUpperCase())); break;
 
                     default:
                         error(nr, "Die Klasse " + teile[1] + " ist mir unbekannt.");
@@ -142,7 +162,13 @@ function convert() {
                         abbruch = true;
                     } else {
                         methode = teile[1].split("(");
-                        if (methode.length == 2) {
+                        if (methode.length == 1) {
+                            error(nr, "Eine Methode benötigt Parameter in Klammern.");
+                            abbruch = true;
+                        } else if ( methode.length >2) {
+                            error(nr, "Eine Methode hat maximal eine Klammer mit Parametern.");
+                            abbruch = true;
+                        } else {   
                             let parameter = methode[1].replaceAll(")", "");
                             let o = objekte[objektNr];
                             console.log(o);
