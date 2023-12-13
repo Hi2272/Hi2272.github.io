@@ -20,7 +20,7 @@ xmlhttp.onload = function () {
     document.getElementById("Titel").innerHTML = jsonData.titel;
     //   document.getElementById("btnWeiter").innerHTML = "<Button class='small' onclick='weiter()'>Weiter</button>";
     document.getElementById("quelle").innerHTML = "Bildquelle: " + jsonData.copyright +
-        "<br>2022 Rainer Hille <br> Unter Verwwendung von  <a href='https://www.cssscript.com/toast-style-web-notifications-in-vanilla-javascript-vanillatoasts/'>VanillaToasts.js</a>";
+        "<br>2022 Rainer Hille <br> Unter Verwendung von  <a href='https://www.cssscript.com/toast-style-web-notifications-in-vanilla-javascript-vanillatoasts/'>VanillaToasts.js</a>";
     var s = "Klicken um die Vorlage herunterzuladen ⇒ Rechtsklick auf heruntergeladene Datei ⇒ Öffnen mit BlueJ<br>" +
         "<a href=\"https://Hi2272.github.io/00Informatik/" + jsonData.blueJ + "\">BlueJ Vorlage</a>";
 

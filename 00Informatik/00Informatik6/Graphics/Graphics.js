@@ -52,16 +52,18 @@ function selection() {
 
    }
 
+
 /**
  * Wandelt den Inhalte des Text Area in Svg-Code um 
  */
-function convert() {
+function convert(step) {
     while (objekte.length > 0) {  // Array objekte leeren
         objekte.pop();
     }
     document.getElementById("Objekte").innerHTML="";
-
+    document.getElementById("svg").innerHTML=koordinatensystem();
     str = document.getElementById("editor").value;
+    str=str.replaceAll(" ","");
     linie = str.split(/\r?\n|\r|\n/g);
     console.log(linie);
     for (nr = 0; nr < linie.length; nr++) {
@@ -139,6 +141,7 @@ function convert() {
                                 case "setzefarbe":
                                 case "setfüllfarbe":
                                 case "setfarbe":
+                                case "setcolor":
                                 case "setfill": o.setFill(parameter); break;
 
                                 case "setlinienfarbe":
@@ -193,21 +196,18 @@ function convert() {
                                     abbruch = true;
 
                             }
-                            o.draw();
                             o.drawCard();
+                            
                         }
-                        console.log(methode);
-
-
                     }
                 }
-
-
-
             }
         }
         if (abbruch) { break; }
-       
+        if (step){
+            drawAll();
+            alert(nr);
+        }
     }
     drawAll();
 }

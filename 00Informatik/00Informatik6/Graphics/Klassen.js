@@ -9,8 +9,9 @@ class Shape {
     }
 
     draw() {
-        document.getElementById("svg").innerHTML = document.getElementById("svg").innerHTML + this.svg();
-    }
+        document.getElementById('svg').appendChild(this.svg());
+        console.log(document.getElementById("svg").innerHTML);
+}
 
     drawCard() {
         var attribute = Object.entries(this);
@@ -21,7 +22,7 @@ class Shape {
         let k = document.getElementById("Karte");
         k.innerHTML = s;
         k.style.borderStyle = "solid";
-        k.style.borderRadius="25px";
+        k.style.borderRadius="10px";
         k.style.margin="10px";
         k.style.backgroundColor="white";
     }
@@ -72,11 +73,16 @@ class Circle extends ClosedShape {
     }
 
     svg() {
-        let s = "<circle id='" + this.nam + "'";
-        s = s + " cx='" + this.x.toString() + "' cy='" + this.y.toString() + "' r='" + this.radius.toString() + "'";
-        s = s + " stroke-width='" + this.strokeWidth + "'";
-        s = s + " fill='" + this.fill + "' stroke='" + this.stroke + "'/>";
+        const s = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        s.setAttribute('id', this.nam);
+        s.setAttribute('fill', this.fill);
+        s.setAttribute('stroke', this.stroke);
+        s.setAttribute('stroke-width', this.strokeWidth);
 
+        s.setAttribute('r', this.radius.toString());
+        s.setAttribute('cx', this.x.toString());
+        s.setAttribute('cy', this.y.toString());
+   
         return s;
     }
 
@@ -101,10 +107,16 @@ class Rect extends ClosedShape {
     }
 
     svg() {
-        let s = "<rect id='" + this.nam + "'";
-        s = s + " x='" + this.x.toString() + "' y='" + this.y.toString() + "' width='" + this.width.toString() + "' height='" + this.height.toString() + "'";
-        s = s + " stroke-width='" + this.strokeWidth + "'";
-        s = s + " fill='" + this.fill + "' stroke='" + this.stroke + "'/>";
+        const s = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        s.setAttribute('id', this.nam);
+        s.setAttribute('fill', this.fill);
+        s.setAttribute('stroke', this.stroke);
+        s.setAttribute('stroke-width', this.strokeWidth);
+
+        s.setAttribute('width', this.width.toString());
+        s.setAttribute('height', this.height.toString());
+        s.setAttribute('x', this.x.toString());
+        s.setAttribute('y', this.y.toString());
         return s;
     }
     setWidth(w) {
@@ -143,13 +155,18 @@ class Line extends Shape {
     }
 
     svg() {
-        let s = "<line id='" + this.nam + "'";
-        s = s + " x1='" + this.x.toString() + "' y1='" + this.y.toString() + "'";
-        s = s + " x2='" + this.x1.toString() + "' y2='" + this.y1.toString() + "'";
-        s = s + " stroke-width='" + this.strokeWidth + "'";
-        s = s + " stroke='" + this.stroke + "'/>";
-        return s;
+        const s = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        s.setAttribute('id', this.nam);
+        s.setAttribute('stroke', this.stroke);
+        s.setAttribute('stroke-width', this.strokeWidth);
+
+        s.setAttribute('x1', this.x.toString());
+        s.setAttribute('y1', this.y.toString());
+        s.setAttribute('x2', this.x1.toString());
+        s.setAttribute('y2', this.y1.toString());
+     return s;
     }
+   
     setPoints(xyxy) {
         let d = xyxy.split(",");
         if (d.length != 4) {
@@ -235,13 +252,16 @@ class Triangle extends ClosedShape {
     }
 
     svg() {
-        let s = "<polygon id='" + this.nam + "' points='";
-        s = s + this.x.toString() + "," + this.y.toString() + ",";
-        s = s + this.x1.toString() + "," + this.y1.toString() + ",";
-        s = s + this.x2.toString() + "," + this.y2.toString() + "'";
-        s = s + " stroke-width='" + this.strokeWidth + "'";
-        s = s + " stroke='" + this.stroke + "' fill='" + this.fill + "'/>";
-    
+        const s = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        s.setAttribute('id', this.nam);
+        s.setAttribute('fill', this.fill);
+        s.setAttribute('stroke', this.stroke);
+        s.setAttribute('stroke-width', this.strokeWidth);
+
+        s.setAttribute('points', this.x.toString()+","+this.y.toString()+","
+                                    +this.x1.toString()+","+this.y1.toString()+","
+                                    +this.x2.toString()+","+this.y2.toString());
+   
         return s;
     }
 
