@@ -21,7 +21,9 @@ class Shape {
         let k = document.getElementById("Karte");
         k.innerHTML = s;
         k.style.borderStyle = "solid";
-
+        k.style.borderRadius="25px";
+        k.style.margin="10px";
+        k.style.backgroundColor="white";
     }
 
     setStroke(stroke) {
