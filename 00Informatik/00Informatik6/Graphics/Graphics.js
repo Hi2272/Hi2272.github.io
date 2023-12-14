@@ -135,9 +135,11 @@ function convert(step) {
                                 case "movey": o.moveY(parameter); break;
 
                                 case "verschiebezu":
+                                case "verschiebenach":
                                 case "moveto": o.moveTo(parameter); break;
 
                                 case "setzefüllfarbe":
+                                case "füllfarbesetzen":
                                 case "setzefarbe":
                                 case "setfüllfarbe":
                                 case "setfarbe":
@@ -146,11 +148,13 @@ function convert(step) {
 
                                 case "setlinienfarbe":
                                 case "setzelinienfarbe":
+                                case "linienfarbesetzen":
                                 case "setstroke": o.setStroke(parameter); break;
 
                                 case "setzebreite":
                                 case "setbreite":
                                 case "setwidth":
+                                case "breitesetzen":
                                     if (o.constructor.name == "Rect") {
                                         o.setWidth(parameter);
                                     } else {
@@ -162,6 +166,7 @@ function convert(step) {
                                 case "setzehöhe":
                                 case "sethöhe":
                                 case "setheight":
+                                case "höhesetzen":
                                     if (o.constructor.name == "Rect") {
                                         o.setHeight(parameter);
                                     } else {
@@ -172,6 +177,7 @@ function convert(step) {
 
                                 case "setzeradius":
                                 case "setradius":
+                                case "radiusSetzen":
                                     if (o.constructor.name == "Circle") {
                                         o.setRadius(parameter);
                                     } else {
@@ -180,14 +186,18 @@ function convert(step) {
                                     }
                                     break;
 
-                                case "setzeecken":
-                                case "setecken":
+                                case "setzepunkte":
+                                case "setpunkte":
+                                case "punktesetzen":
                                 case "setpoints":
+                                case "eckensetzen":
+                                case "mittelpunktsetzen":
                                     o.setPoints(parameter);
                                     break;
                                 case "setzelinienbreite":
                                 case "setlinienbreite":
                                 case "setstrokewidth":
+                                case "Linienbreitesetzen":
                                     o.setStrokeWidth(parameter);
                                     break;
 

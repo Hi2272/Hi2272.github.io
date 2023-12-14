@@ -14,20 +14,19 @@
   <script src="Graphics.js"></script>
 </head>
 
-<body>
+<body onload="drawAll()">
   <div class="grid-container">
     <div class="editor">
       <h2>Graphix Code Editor</h2>
           <textarea id="editor" wrap="hard" cols="30" rows="20"></textarea>
           <div id="Button">
             <button onclick="convert(false)">Zeichne</button>
-            <button onclick="convert(true)">Schrittweise</button>
-            <button onclick="help()">Hilfe</button>
+   <!--         <button onclick="convert(true)">Schrittweise</button>
+    -->        <a href="hilfe.html" target=”_blank”><button>Hilfe</button></a>
           </div>
       </div>
     <div class="svg">
-  <!--    <h2>Graphix Bild</h2>
-   -->   <svg id="svg" width="100%" height="100%" viewBox="0 0 200 200">
+      <svg id="svg" width="100%" height="100%" viewBox="0 0 200 200">
       </svg>
    </div>
     <div class="karte">
