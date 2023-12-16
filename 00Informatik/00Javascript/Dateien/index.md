@@ -1,3 +1,7 @@
+  <meta charset="utf-8" />
+  <title>Informatik</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+
 # Einlesen von Daten aus Dateien
 
 Quelle: [TheCodingTrain](https://thecodingtrain.com/tracks/data-and-apis-in-javascript/data/welcome/trailer)
@@ -15,7 +19,10 @@ Die Bilddaten werden mit der fetch()-Funktion aus der Datei *bild.png* geladen.
 Das Öffnen der Datei und das Laden der Daten dauert relativ lange. Aus diesem Grund muss das System warten, bis die Daten geladen sind.   
 Dies geschieht zum einen dadurch, dass die funktion catchBild als asynchrone Funktion definiert wird: **async function catchBild()...**.  Zum anderen durch das Schlüsselwort **await** vor der fetch()-Funktion.  
 Bilddaten werden als **blob**-Daten (**B**inary **L**arge **Ob**ject = Großes Objekts aus binären Daten) aus der Antwort der fetch()-Funktion gelesen. Auch diese Funktion muss mit **await** versehen werden, da auch das Auslesen relativ lange dauert.  
+Anschließend werden die blob-Daten als URL-Objekt in das Image-Tag der HTML-Datei geschrieben.  
 Allgemein müssen alle Funktionen, die direkt von den gelesenen Daten abhängig sind, in der asynchronen Funktion verarbeitet werden.  
+  
+  
 Fehler beim Laden des Bildes können nach dem Aufruf der Funktion abgefangen werden:
 ``` Javascript
  catchBild()

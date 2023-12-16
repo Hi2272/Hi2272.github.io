@@ -40,7 +40,10 @@
         
     </head>
     <body class="vscode-body vscode-light">
-        <h1 id="einlesen-von-daten-aus-dateien">Einlesen von Daten aus Dateien</h1>
+          <meta charset="utf-8" />
+  <title>Informatik</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="einlesen-von-daten-aus-dateien">Einlesen von Daten aus Dateien</h1>
 <p>Quelle: <a href="https://thecodingtrain.com/tracks/data-and-apis-in-javascript/data/welcome/trailer">TheCodingTrain</a></p>
 <h2 id="1-einlesen-von-bilddaten-mit-fetch">1. Einlesen von Bilddaten mit Fetch</h2>
 <p>Quelle: <a href="https://thecodingtrain.com/tracks/data-and-apis-in-javascript/data/1-client-side/1-fetch">TheFetch()Function</a></p>
@@ -54,8 +57,9 @@
 Das Öffnen der Datei und das Laden der Daten dauert relativ lange. Aus diesem Grund muss das System warten, bis die Daten geladen sind.<br>
 Dies geschieht zum einen dadurch, dass die funktion catchBild als asynchrone Funktion definiert wird: <strong>async function catchBild()...</strong>.  Zum anderen durch das Schlüsselwort <strong>await</strong> vor der fetch()-Funktion.<br>
 Bilddaten werden als <strong>blob</strong>-Daten (<strong>B</strong>inary <strong>L</strong>arge <strong>Ob</strong>ject = Großes Objekts aus binären Daten) aus der Antwort der fetch()-Funktion gelesen. Auch diese Funktion muss mit <strong>await</strong> versehen werden, da auch das Auslesen relativ lange dauert.<br>
-Allgemein müssen alle Funktionen, die direkt von den gelesenen Daten abhängig sind, in der asynchronen Funktion verarbeitet werden.<br>
-Fehler beim Laden des Bildes können nach dem Aufruf der Funktion abgefangen werden:</p>
+Anschließend werden die blob-Daten als URL-Objekt in das Image-Tag der HTML-Datei geschrieben.<br>
+Allgemein müssen alle Funktionen, die direkt von den gelesenen Daten abhängig sind, in der asynchronen Funktion verarbeitet werden.</p>
+<p>Fehler beim Laden des Bildes können nach dem Aufruf der Funktion abgefangen werden:</p>
 <pre><code class="language-Javascript"> <span class="hljs-title function_">catchBild</span>()
         .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
           <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Bild geladen&#x27;</span>);
