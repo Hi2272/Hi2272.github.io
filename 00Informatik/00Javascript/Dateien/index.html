@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Einlesen von Daten aus Dateien</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="einlesen-von-daten-aus-dateien">Einlesen von Daten aus Dateien</h1>
+<p>Quelle: <a href="https://thecodingtrain.com/tracks/data-and-apis-in-javascript/data/welcome/trailer">TheCodingTrain</a></p>
+<h2 id="1-einlesen-von-bilddaten-mit-fetch">1. Einlesen von Bilddaten mit Fetch</h2>
+<p>Quelle: <a href="https://thecodingtrain.com/tracks/data-and-apis-in-javascript/data/1-client-side/1-fetch">TheFetch()Function</a></p>
+<pre><code class="language-JavaScript">  <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">catchBild</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;bild.png&#x27;</span>);
+        <span class="hljs-keyword">const</span> blob = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">blob</span>();
+        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;bild&#x27;</span>).<span class="hljs-property">src</span> = <span class="hljs-variable constant_">URL</span>.<span class="hljs-title function_">createObjectURL</span>(blob);
+      }
+</code></pre>
+<p>Die Bilddaten werden mit der fetch()-Funktion aus der Datei <em>bild.png</em> geladen.<br>
+Das Öffnen der Datei und das Laden der Daten dauert relativ lange. Aus diesem Grund muss das System warten, bis die Daten geladen sind.<br>
+Dies geschieht zum einen dadurch, dass die funktion catchBild als asynchrone Funktion definiert wird: <strong>async function catchBild()...</strong>.  Zum anderen durch das Schlüsselwort <strong>await</strong> vor der fetch()-Funktion.<br>
+Bilddaten werden als <strong>blob</strong>-Daten (<strong>B</strong>inary <strong>L</strong>arge <strong>Ob</strong>ject = Großes Objekts aus binären Daten) aus der Antwort der fetch()-Funktion gelesen. Auch diese Funktion muss mit <strong>await</strong> versehen werden, da auch das Auslesen relativ lange dauert.<br>
+Allgemein müssen alle Funktionen, die direkt von den gelesenen Daten abhängig sind, in der asynchronen Funktion verarbeitet werden.<br>
+Fehler beim Laden des Bildes können nach dem Aufruf der Funktion abgefangen werden:</p>
+<pre><code class="language-Javascript"> <span class="hljs-title function_">catchBild</span>()
+        .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+          <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Bild geladen&#x27;</span>);
+        })
+        .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+          <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Fehler beim Laden!&#x27;</span>);
+          <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
+        });
+</code></pre>
+<p>Der catch-Teil wird hierbei aufgerufen, wenn ein Fehler aufgetreten ist.<br>
+Die Programmierung über die .then-Konstruktion ist eine andere Art der asynchronen Programmierung. Der .then-Teil wird erst ausgeführt, wenn die Bilddaten geladen sind.</p>
+<p><a href="Quellcode.txt">Gesamter Quellcode</a><br>
+<a href="Bild.html">Beispielsdatei</a><br>
+<a href="../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>
