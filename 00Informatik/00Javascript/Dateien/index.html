@@ -44,9 +44,11 @@
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
 <h1 id="einlesen-von-daten-aus-dateien">Einlesen von Daten aus Dateien</h1>
+<p><a href="#1-einlesen-von-bilddaten-mit-fetch">Bilddaten</a>|
+<a href="#2-laden-von-csv-dateien">CSV-Daten mit grafischer Darstellung</a>| <a href="#3-json-daten">JSON-Daten</a></p>
 <p>Quelle: <a href="https://thecodingtrain.com/tracks/data-and-apis-in-javascript/data/welcome/trailer">TheCodingTrain</a></p>
 <h2 id="1-einlesen-von-bilddaten-mit-fetch">1. Einlesen von Bilddaten mit Fetch</h2>
-<p>Quelle: <a href="https://thecodingtrain.com/tracks/data-and-apis-in-javascript/data/1-client-side/1-fetch">TheFetch()Function</a></p>
+<p>Quelle: <a href="https://thecodingtrain.com/tracks/data-and-apis-in-javascript/data/1-client-side/1-fetch">The CodingTrain</a></p>
 <pre><code class="language-JavaScript">  <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">catchBild</span>(<span class="hljs-params"></span>) {
         <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;bild.png&#x27;</span>);
         <span class="hljs-keyword">const</span> blob = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">blob</span>();
@@ -72,7 +74,149 @@ Allgemein müssen alle Funktionen, die direkt von den gelesenen Daten abhängig 
 <p>Der catch-Teil wird hierbei aufgerufen, wenn ein Fehler aufgetreten ist.<br>
 Die Programmierung über die .then-Konstruktion ist eine andere Art der asynchronen Programmierung. Der .then-Teil wird erst ausgeführt, wenn die Bilddaten geladen sind.</p>
 <p><a href="Quellcode.txt">Gesamter Quellcode</a><br>
-<a href="Bild.html">Beispielsdatei</a><br>
+<a href="Bild.html">Beispielsdatei</a></p>
+<h2 id="2-laden-von-csv-dateien">2. Laden von CSV-Dateien</h2>
+<h3 id="a-einlesen-und-umwandeln-der-daten">a) Einlesen und Umwandeln der Daten</h3>
+<p>Quelle: <a href="https://thecodingtrain.com/tracks/data-and-apis-in-javascript/data/1-client-side/2-tabular-data">The Coding Train</a></p>
+<p>CSV-Dateien sind Text-Dateien, die Daten in Form einer Tabelle enthalten. Die einzelnen Spalten sind durch Kommas getrennt. Die Daten werden prinzipiell genauso geladen wie die Bilddaten. Allerdings ist das Format der Daten <strong>text</strong> statt <strong>blob</strong>:</p>
+<pre><code class="language-JavaScript">    <span class="hljs-title function_">getData</span>();
+
+    <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getData</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;test.csv&#x27;</span>);
+      <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">text</span>();  <span class="hljs-comment">// Daten werden aus Text-Datei geladen</span>
+
+      <span class="hljs-keyword">const</span> table = data.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;\n&#x27;</span>); <span class="hljs-comment">// In Zeilen trennen</span>
+      table.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">// Erste Zeile abschneiden (Spaltenköpfe)</span>
+      table.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">row</span> =&gt;</span> {
+        <span class="hljs-keyword">const</span> cols = row.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;,&#x27;</span>);  <span class="hljs-comment">// In Spalten trennen</span>
+        <span class="hljs-keyword">const</span> zeit = cols[<span class="hljs-number">0</span>]
+        <span class="hljs-keyword">const</span> temp = cols[<span class="hljs-number">1</span>]
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(zeit, temp)
+      });
+    }
+
+</code></pre>
+<p>Die CSV-Daten werden anschließend mit der split-Funktion in ein Array umgewandelt. Die Trennung erfolgt hierbei an den Zeilenumbrüchen ('\n').<br>
+Durch <strong>split(&quot;,&quot;)</strong> werden die Zeilen an den trennenden Kommas in Spalten aufgebrochen.</p>
+<h3 id="b-grafische-darstellung-der-daten">b) Grafische Darstellung der Daten</h3>
+<p>Quelle: <a href="https://thecodingtrain.com/tracks/data-and-apis-in-javascript/data/1-client-side/3-graphing">The Coding Train</a></p>
+<p>Für die grafische Darstellung verwenden wir die <strong>Chart.js</strong>-Bibliothek:</p>
+<pre><code class="language-HTML"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/chart.js@2.8.0&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>Die grafische Darstellung muss auch in einer asynchrone Funktion eingebaut werden.</p>
+<pre><code class="language-Javascript">    &lt;script&gt;
+      <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;load&#x27;</span>, setup);  <span class="hljs-comment">// Sobald das Fenster geladen ist, wird die Funktion setup gestartet</span>
+
+      <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">const</span> ctx = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;myChart&#x27;</span>).<span class="hljs-title function_">getContext</span>(<span class="hljs-string">&#x27;2d&#x27;</span>);
+        <span class="hljs-keyword">const</span> daten = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getData</span>(); <span class="hljs-comment">// asynchron, wartet auf Daten </span>
+        <span class="hljs-keyword">const</span> myChart = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Chart</span>(ctx, {
+          <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;line&#x27;</span>,
+          <span class="hljs-attr">data</span>: {
+            <span class="hljs-attr">labels</span>: daten.<span class="hljs-property">zeit</span>,
+            <span class="hljs-attr">datasets</span>: [
+              {
+                <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Temperatur in °C&#x27;</span>,
+                <span class="hljs-attr">data</span>: daten.<span class="hljs-property">temp</span>,
+                <span class="hljs-attr">fill</span>: <span class="hljs-literal">false</span>,
+                <span class="hljs-attr">borderColor</span>: <span class="hljs-string">&#x27;rgba(255, 99, 132, 1)&#x27;</span>,
+                <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&#x27;rgba(255, 99, 132, 0.5)&#x27;</span>,
+                <span class="hljs-attr">borderWidth</span>: <span class="hljs-number">1</span>
+              }
+            ]
+          },
+          <span class="hljs-attr">options</span>: {}
+        });
+      }
+
+      <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getData</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;test.csv&#x27;</span>);  <span class="hljs-comment">// wartet auf Öffnen der Datei</span>
+        <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">text</span>();  <span class="hljs-comment">// wartet auf Daten aus Datei</span>
+        <span class="hljs-keyword">const</span> zeit = [];  <span class="hljs-comment">// Array für die Zeiten</span>
+        <span class="hljs-keyword">const</span> temp = [];  <span class="hljs-comment">// Array für die Temperaturen</span>
+        <span class="hljs-keyword">const</span> rows = data.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;\n&#x27;</span>).<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">// In Zeilen auftrennen, 1. Zeile löschen</span>
+        rows.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">row</span> =&gt;</span> {
+          <span class="hljs-keyword">const</span> cols = row.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;,&#x27;</span>);  <span class="hljs-comment">// Zeilen in Spalten auftrennen</span>
+          zeit.<span class="hljs-title function_">push</span>(<span class="hljs-built_in">parseInt</span>(cols[<span class="hljs-number">0</span>])); <span class="hljs-comment">// Zeit in Array speichern </span>
+          temp.<span class="hljs-title function_">push</span>(<span class="hljs-built_in">parseFloat</span>(cols[<span class="hljs-number">1</span>])); <span class="hljs-comment">// Temperatur in Array speichern</span>
+        });
+        <span class="hljs-keyword">return</span> { zeit,temp };    <span class="hljs-comment">// Objekt aus .zeit und .temp werden zurückgegeben</span>
+      }
+</code></pre>
+<p><a href="Diagramm.txt">Gesamter Quellcode</a><br>
+<a href="Diagramm.html">Beispielsdatei</a></p>
+<h2 id="3-json-daten">3. JSON-Daten</h2>
+<p>Quelle: <a href="https://thecodingtrain.com/tracks/data-and-apis-in-javascript/data/1-client-side/4-json">TheCodingTrain</a></p>
+<h3 id="a-json-dateiformat">a) JSON-Dateiformat</h3>
+<p>JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <strong>N</strong>otification)-Dateien sind Text-Dateien, die wie Javascript Objekte aufgebaut sind:</p>
+<pre><code class="language-JSON"><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;long&quot;</span>  <span class="hljs-punctuation">:</span> <span class="hljs-number">-45</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;lat&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">12</span>
+<span class="hljs-punctuation">}</span>
+
+</code></pre>
+<p>Die Namen der Attribute müssen in Anführungszeichen stehen.</p>
+<h3 id="b-daten-aus-apis">b) Daten aus APIs</h3>
+<p>Eine API (<strong>A</strong>plication <strong>P</strong>rogramming <strong>I</strong>nterface) ist eine Schnittstelle einer Internetseite, die Daten für Programmme zur Verfügung stellt. Diese Daten werden häufig im JSON-Format ausgegeben. Bei den meisten APIs ist eine Registrierung und eine Anmeldung durch das Programm nötig, das die Daten auslesen will.</p>
+<h3 id="c-auslesen-der-position-der-iss">c) Auslesen der Position der ISS</h3>
+<p>Die Internetseite <a href="https://wheretheiss.at">https://wheretheiss.at</a> stellt die aktuelle Position der ISS dar und bietet diese Daten über eine API an, bei der keine Registrierung nötig ist.</p>
+<pre><code class="language-JavaScript">  <span class="hljs-keyword">const</span> api_url = <span class="hljs-string">&#x27;https://api.wheretheiss.at/v1/satellites/25544&#x27;</span>; 
+
+      <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getISS</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(api_url);
+        <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">json</span>(); 
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);
+        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;lat&#x27;</span>).<span class="hljs-property">textContent</span> = data.<span class="hljs-property">latitude</span>.<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">2</span>);
+        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;lon&#x27;</span>).<span class="hljs-property">textContent</span> = data.<span class="hljs-property">longitude</span>.<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">2</span>);
+      }
+
+      <span class="hljs-title function_">getISS</span>();
+</code></pre>
+<p>Mit <strong>const data = await response.json();</strong> werden die Daten im JSON-Format ausgelesen und in der Variable <strong>data</strong> gespeichert.<br>
+<strong>data</strong> ist jetzt ein JavaScript-Objekt mit genau der Struktur, die von den JSON-Daten vorgegeben wird:</p>
+<ul>
+<li>altitude
+:
+416.66524936621</li>
+<li>daynum
+:
+2460295.8288657</li>
+<li>footprint
+:
+4490.4586852502</li>
+<li>id
+:
+25544</li>
+<li>latitude
+:
+25.812254803638</li>
+<li>longitude
+:
+94.92145927701</li>
+<li>name
+:
+&quot;iss&quot;</li>
+<li>solar_lat
+:
+-23.347875554415</li>
+<li>solar_lon
+:
+60.580360454248</li>
+<li>timestamp
+:
+1702799614</li>
+<li>units
+:
+&quot;kilometers&quot;</li>
+<li>velocity
+:
+27592.352341487</li>
+<li>visibility
+:
+&quot;daylight&quot;</li>
+</ul>
+<p><a href="ISS01.txt">Gesamter Quellcode</a><br>
+<a href="ISS01.html">Beispielsdatei</a><br>
 <a href="../index.html">zurück</a></p>
 
         

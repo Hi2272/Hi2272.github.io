@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Grafische Darstellung</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  </head>
+  <body>
+    <h1>Tagesverlauf der Temperatur</h1>
+    <canvas id="myChart" width="400" height="200"></canvas>
+
+    <script>
+      window.addEventListener('load', setup);  // Sobald das Fenster geladen ist, wird die Funktion setup gestartet
+
+      async function setup() {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const daten = await getData(); // asynchron, wartet auf Daten 
+        const myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: daten.zeit,
+            datasets: [
+              {
+                label: 'Temperatur in °C',
+                data: daten.temp,
+                fill: false,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderWidth: 1
+              }
+            ]
+          },
+          options: {}
+        });
+      }
+
+      async function getData() {
+        const response = await fetch('test.csv');  // wartet auf Öffnen der Datei
+        const data = await response.text();  // wartet auf Daten aus Datei
+        const zeit = [];  // Array für die Zeiten
+        const temp = [];  // Array für die Temperaturen
+        const rows = data.split('\n').slice(1); // In Zeilen auftrennen, 1. Zeile löschen
+        rows.forEach(row => {
+          const cols = row.split(',');  // Zeilen in Spalten auftrennen
+          zeit.push(parseInt(cols[0])); // Zeit in Array speichern 
+          temp.push(parseFloat(cols[1])); // Temperatur in Array speichern
+        });
+        return { zeit,temp };    // Objekt aus .zeit und .temp werden zurückgegeben
+      }
+    </script>
+  </body>
+</html>

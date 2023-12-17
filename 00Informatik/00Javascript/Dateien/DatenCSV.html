@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fetch CSV</title>
+</head>
+
+<body>
+  <h1>Einlesen von Daten aus einer CSV-Datei</h1>
+  <img src="" id="diagramm" width="480" />
+  <script>
+    getData();
+
+    async function getData() {
+      const response = await fetch('test.csv');
+      const data = await response.text();  // Daten werden aus Text-Datei geladen
+
+      const table = data.split('\n').slice(1); // 1. Zeile entfernen
+      table.forEach(row => {
+        const cols = row.split(',');  // In Spalten trennen
+        const zeit = cols[0]
+        const temp = cols[1]
+        console.log(zeit, temp)
+      });
+    }
+
+  </script>
+</body>
+
+</html>
