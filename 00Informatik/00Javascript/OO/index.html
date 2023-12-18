@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Klassen und Objekte in Javascript</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+         <meta charset="utf-8" />
+  <title>Informatik</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="klassen-und-objekte-in-javascript">Klassen und Objekte in Javascript</h1>
+<h2 id="1-aufbau-einer-klasse">1. Aufbau einer Klasse</h2>
+<p>Quellen:<br>
+<a href="https://thecodingtrain.com/tracks/code-programming-with-p5-js/code/6-objects/2-classes">TheCodingTrain: Klassen</a><br>
+<a href="https://thecodingtrain.com/tracks/code-programming-with-p5-js/code/6-objects/2-classes">TheCodingTrain: Parameter</a></p>
+<pre><code class="language-Javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Bubble</span>{
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x,y</span>){
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>=x;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>=y;
+    }
+
+    <span class="hljs-title function_">setX</span>(<span class="hljs-params">x</span>){
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>=x;
+    }
+}
+
+<span class="hljs-keyword">let</span> bubble=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Bubble</span>(<span class="hljs-number">100</span>,<span class="hljs-number">50</span>);
+
+</code></pre>
+<ul>
+<li>Klassendefinitionen werden mit dem Schlüsselwort <strong>class</strong> eingeleitet.</li>
+<li>Der Konstruktor heißt unabhängig vom Namen der Klasse immer <strong>constructor</strong>.</li>
+<li>Attribute der Klasse werden im Konstruktor mit <strong>this.Attributname</strong> deklariert und initialisiert.</li>
+<li>Das Schlüsselwort <strong>this</strong> verweist auf das aktuell  erzeugte Objekt der Klasse</li>
+<li>Methoden werden ohne Zusatz von function definert.</li>
+<li>Objekte werden mit dem <strong>new</strong> Operator erzeugt.</li>
+</ul>
+<h2 id="2-vererbung-in-javascript">2. Vererbung in Javascript</h2>
+<pre><code class="language-Javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">closedShape</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Shape</span>{
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x,y,stroke,strokeWeight,fill</span>){
+    <span class="hljs-variable language_">super</span>(x,y,stroke,strokeWeight);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">fill</span>=fill;
+  }
+  <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>){
+    <span class="hljs-variable language_">super</span>.<span class="hljs-title function_">draw</span>();
+    <span class="hljs-title function_">fill</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">fill</span>);
+  }
+}
+</code></pre>
+<ul>
+<li>Das Schlüsselwort <strong>extends</strong> zeigt an, dass sich eine Klasse von einer Oberklasse ableitet.</li>
+<li>super(...) ruft im Konstruktor den Konstruktor der Oberklasse auf. Dieser Aufruf muss immer in der 1. Zeile des Konstruktors stehen.</li>
+<li>Methoden können in der Unterklasse überschrieben werden.<br>
+Hier wird die <strong>draw()</strong>-Methode überschrieben.</li>
+<li>mit super.methode() können Methoden der Oberklasse aufgerufen werden.</li>
+</ul>
+<p><strong>Beispielcode mit mehrfacher Vererbung</strong></p>
+<pre><code class="language-Javascript">  
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Shape</span>{
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x,y,stroke,strokeWeight</span>){
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>=x;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>=y;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">stroke</span>=stroke;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">strokeWeight</span>=strokeWeight;
+  }
+  <span class="hljs-title function_">moveX</span>(<span class="hljs-params">dx</span>){
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>=<span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>+dx;
+  }
+  <span class="hljs-title function_">moveY</span>(<span class="hljs-params">dy</span>){
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>=<span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>+dy;
+  }
+  <span class="hljs-title function_">moveTo</span>(<span class="hljs-params">x,y</span>){
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>=x;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>=y;
+  }
+  <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>){
+    <span class="hljs-title function_">stroke</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">stroke</span>);
+    <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">strokeWeight</span>);
+  }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">closedShape</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Shape</span>{
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x,y,stroke,strokeWeight,fill</span>){
+    <span class="hljs-variable language_">super</span>(x,y,stroke,strokeWeight);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">fill</span>=fill;
+  }
+  <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>){
+    <span class="hljs-variable language_">super</span>.<span class="hljs-title function_">draw</span>();
+    <span class="hljs-title function_">fill</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">fill</span>);
+  }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Kreis</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">closedShape</span>{
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x,y,r,stroke, strokeWeight,fill</span>){
+    <span class="hljs-variable language_">super</span>(x,y,stroke,strokeWeight,fill);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">r</span>=r;
+  }
+  <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>){
+    <span class="hljs-variable language_">super</span>.<span class="hljs-title function_">draw</span>();
+    <span class="hljs-title function_">circle</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>,<span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>,<span class="hljs-variable language_">this</span>.<span class="hljs-property">r</span>);
+  }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">400</span>, <span class="hljs-number">400</span>);
+  k=<span class="hljs-keyword">new</span>  <span class="hljs-title class_">Kreis</span>(<span class="hljs-number">100</span>,<span class="hljs-number">100</span>,<span class="hljs-number">20</span>,<span class="hljs-string">&quot;red&quot;</span>,<span class="hljs-number">3</span>,<span class="hljs-string">&quot;yellow&quot;</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">220</span>);
+  k.<span class="hljs-title function_">draw</span>();
+  k.<span class="hljs-title function_">moveX</span>(<span class="hljs-number">2</span>);
+}
+</code></pre>
+
+        
+        
+    </body>
+    </html>

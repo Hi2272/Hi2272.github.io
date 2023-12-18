@@ -4,7 +4,10 @@
 
 # JavaScript
 Dieser Kurs stellt eine Zusammenfassung der Inhalte verschiedener Tutorials auf der Internetseite [The Coding Train](https://thecodingtrain.com) dar.  
-- [Einlesen von Daten aus Dateien](/00Informatik/00Javascript/Dateien/index.html)
+- [Grafik mit p5.js](p5/index.html)
+- [Objektoriente Programmierung in JS](OO/index.html)
+- [Einlesen von Daten aus Dateien](Dateien/index.html)
+  
 
 [zurück](../index.html)   
 
