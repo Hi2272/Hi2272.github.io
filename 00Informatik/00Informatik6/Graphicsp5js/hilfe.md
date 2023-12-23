@@ -104,30 +104,6 @@ Farben werden als englische Wörter ohne Anführungszeichen eingetragen:
 - **setRadius(radius), setzeRadius(radius), radiusSetzen(radius)**    
   Setzt den Wert des Attributs Radius.
 - **setPoints(x,y), mittelpunktSetzen(x,y), setzeMittelpunkt(x,y), setMittelpunkt(x,y)**  
-  Setzt die Koordinaten des Mittelpunkts.  
-
-### Farben
-Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen verwendet werden:  
- - blau: blue,  
- - gruen: green,  
- - grün: green,  
- - gelb: yellow,  
- - rot: red,  
- - weiß: white,  
- - weiss: white,  
- - schwarz: black,  
- - hellblau: lightblue,  
- - hellgrün: lightgreen,  
- - violett: violet,  
- - lila: violet,  
- - hellgelb: lightyellow,  
- - hellrot: pink,  
- - rosa: pink, 
- - braun: brown,  
- - silber: silver,  
- - dunkelblau: darkblue,  
- - olivgrün: olive,  
- - grau: grey,  
- - hellgrau: lightgrey  
- 
+  Setzt die Koordinaten des Mittelpunkts.
+  
 [zurück](index.html)  

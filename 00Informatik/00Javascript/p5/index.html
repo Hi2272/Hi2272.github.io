@@ -84,6 +84,15 @@ Zum Speichern und Veröffentlichen von Code muss sich der Nutzer auf der Seite m
   }
 </code></pre>
 <p><strong>canvas.parent('p5js');</strong> sorgt dafür, dass das p5js-Objekt in der DIV mit der id &quot;p5js&quot; eingebunden wird.</p>
+<h2 id="p5-canvas-an-fenstergröße-anpassen">P5-Canvas an Fenstergröße anpassen</h2>
+<p>Die Maße des p5-Canvas-Objekts werden in Pixel angegeben. Mit folgender Funktion wird das Canvas-Objekte automatisch halb so breit wie das Fenster und 90% so hoch.</p>
+<pre><code class="language-Javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> xm = windowWidth;
+    <span class="hljs-keyword">const</span> ym = windowHeight;
+    <span class="hljs-keyword">var</span> canvas = <span class="hljs-title function_">createCanvas</span>(xm/<span class="hljs-number">2</span>, ym*<span class="hljs-number">0.9</span>);
+    canvas.<span class="hljs-title function_">parent</span>(<span class="hljs-string">&#x27;p5js&#x27;</span>);
+}
+</code></pre>
 <h2 id="mausereignisse-in-p5js">Mausereignisse in p5.js</h2>
 <pre><code class="language-JavaScript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">mousePressed</span>(<span class="hljs-params"></span>) {
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; objekte.<span class="hljs-property">length</span>; i++) {

@@ -48,9 +48,16 @@ function setup() {
   ```
   **canvas.parent('p5js');** sorgt dafür, dass das p5js-Objekt in der DIV mit der id "p5js" eingebunden wird.
 
-    
-
-
+## P5-Canvas an Fenstergröße anpassen
+Die Maße des p5-Canvas-Objekts werden in Pixel angegeben. Mit folgender Funktion wird das Canvas-Objekte automatisch halb so breit wie das Fenster und 90% so hoch.
+```Javascript
+function setup() {
+    const xm = windowWidth;
+    const ym = windowHeight;
+    var canvas = createCanvas(xm/2, ym*0.9);
+    canvas.parent('p5js');
+}
+```
 
 ## Mausereignisse in p5.js
 ```JavaScript

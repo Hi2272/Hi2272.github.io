@@ -11,7 +11,7 @@ class Shape {
     draw() {
         document.getElementById('svg').appendChild(this.svg());
         console.log(document.getElementById("svg").innerHTML);
-}
+    }
 
     drawCard() {
         var attribute = Object.entries(this);
@@ -22,9 +22,9 @@ class Shape {
         let k = document.getElementById("Karte");
         k.innerHTML = s;
         k.style.borderStyle = "solid";
-        k.style.borderRadius="10px";
-        k.style.margin="10px";
-        k.style.backgroundColor="white";
+        k.style.borderRadius = "10px";
+        k.style.margin = "10px";
+        k.style.backgroundColor = "white";
     }
 
     setStroke(stroke) {
@@ -82,7 +82,8 @@ class Circle extends ClosedShape {
         s.setAttribute('r', this.radius.toString());
         s.setAttribute('cx', this.x.toString());
         s.setAttribute('cy', this.y.toString());
-   
+        s.setAttribute('opacity', '0.7');
+
         return s;
     }
 
@@ -117,6 +118,8 @@ class Rect extends ClosedShape {
         s.setAttribute('height', this.height.toString());
         s.setAttribute('x', this.x.toString());
         s.setAttribute('y', this.y.toString());
+        s.setAttribute('opacity', '0.7');
+
         return s;
     }
     setWidth(w) {
@@ -164,9 +167,11 @@ class Line extends Shape {
         s.setAttribute('y1', this.y.toString());
         s.setAttribute('x2', this.x1.toString());
         s.setAttribute('y2', this.y1.toString());
-     return s;
+        s.setAttribute('opacity', '0.7');
+
+        return s;
     }
-   
+
     setPoints(xyxy) {
         let d = xyxy.split(",");
         if (d.length != 4) {
@@ -258,10 +263,11 @@ class Triangle extends ClosedShape {
         s.setAttribute('stroke', this.stroke);
         s.setAttribute('stroke-width', this.strokeWidth);
 
-        s.setAttribute('points', this.x.toString()+","+this.y.toString()+","
-                                    +this.x1.toString()+","+this.y1.toString()+","
-                                    +this.x2.toString()+","+this.y2.toString());
-   
+        s.setAttribute('points', this.x.toString() + "," + this.y.toString() + ","
+            + this.x1.toString() + "," + this.y1.toString() + ","
+            + this.x2.toString() + "," + this.y2.toString());
+
+        s.setAttribute('opacity', '0.7');
         return s;
     }
 
