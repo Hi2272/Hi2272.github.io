@@ -82,7 +82,7 @@ class Circle extends ClosedShape {
         s.setAttribute('r', this.radius.toString());
         s.setAttribute('cx', this.x.toString());
         s.setAttribute('cy', this.y.toString());
-        s.setAttribute('opacity', '0.7');
+        s.setAttribute('opacity', (document.getElementById("opacity").value/100).toString());
 
         return s;
     }
@@ -118,7 +118,7 @@ class Rect extends ClosedShape {
         s.setAttribute('height', this.height.toString());
         s.setAttribute('x', this.x.toString());
         s.setAttribute('y', this.y.toString());
-        s.setAttribute('opacity', '0.7');
+        s.setAttribute('opacity', (document.getElementById("opacity").value/100).toString());
 
         return s;
     }
@@ -167,7 +167,7 @@ class Line extends Shape {
         s.setAttribute('y1', this.y.toString());
         s.setAttribute('x2', this.x1.toString());
         s.setAttribute('y2', this.y1.toString());
-        s.setAttribute('opacity', '0.7');
+        s.setAttribute('opacity', (document.getElementById("opacity").value/100).toString());
 
         return s;
     }
@@ -267,8 +267,8 @@ class Triangle extends ClosedShape {
             + this.x1.toString() + "," + this.y1.toString() + ","
             + this.x2.toString() + "," + this.y2.toString());
 
-        s.setAttribute('opacity', '0.7');
-        return s;
+            s.setAttribute('opacity', (document.getElementById("opacity").value/100).toString());
+            return s;
     }
 
 
