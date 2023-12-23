@@ -104,7 +104,7 @@ function convertLinie(linie,nr){
             error(nr, "Ein Objekt mit dem Namen " + teile[0] + " gibt es schon!");
             abbruch = true;
         }
-
+        
         switch (teile[1].toLowerCase()) {
             case "rect":
             case "rechteck":
@@ -115,7 +115,8 @@ function convertLinie(linie,nr){
             case "line": neu(new Line(teile[0], teile[1].toUpperCase())); break;
             case "dreieck":
             case "triangle": neu(new Triangle(teile[0], teile[1].toUpperCase())); break;
-
+            case "group":
+            case "gruppe": neu(new Group(teile[0],teile[1].toUpperCase()));break;
             default:
                 error(nr, "Die Klasse " + teile[1] + " ist mir unbekannt.");
                 abbruch = true;
@@ -179,10 +180,10 @@ function convertLinie(linie,nr){
                         case "setbreite":
                         case "setwidth":
                         case "breitesetzen":
-                            if (o.constructor.name == "Rect") {
+                            if (o.constructor.name == "Rect"||o.constructor.name=="Group") {
                                 o.setWidth(parameter);
                             } else {
-                                error(nr, "Das Objekt " + o.nam + " hat keine Methode setWidth().");
+                                error(nr, "Das Objekt " + o.nam + " hat keine Methode "+methode[0]+"().");
                                 abbruch = true;
                             }
                             break;
@@ -191,10 +192,10 @@ function convertLinie(linie,nr){
                         case "sethöhe":
                         case "setheight":
                         case "höhesetzen":
-                            if (o.constructor.name == "Rect") {
+                            if (o.constructor.name == "Rect"||o.constructor.name=="Group") {
                                 o.setHeight(parameter);
                             } else {
-                                error(nr, "Das Objekt " + o.nam + " hat keine Methode setHeight().");
+                                error(nr, "Das Objekt " + o.nam + " hat keine Methode "+methode[0]+"().");
                                 abbruch = true;
                             }
                             break;
@@ -202,10 +203,10 @@ function convertLinie(linie,nr){
                         case "setzeradius":
                         case "setradius":
                         case "radiusSetzen":
-                            if (o.constructor.name == "Circle") {
+                            if (o.constructor.name == "Circle"||o.constructor.name=="Group") {
                                 o.setRadius(parameter);
                             } else {
-                                error(nr, "Das Objekt " + o.nam + " hat keine Methode setRadius().");
+                                error(nr, "Das Objekt " + o.nam + " hat keine Methode "+methode[0]+"().");
                                 abbruch = true;
                             }
                             break;
@@ -216,6 +217,7 @@ function convertLinie(linie,nr){
                         case "setpoints":
                         case "eckensetzen":
                         case "mittelpunktsetzen":
+                        case "mittesetzen":
                             o.setPoints(parameter);
                             break;
                         case "setzelinienbreite":
@@ -224,7 +226,19 @@ function convertLinie(linie,nr){
                         case "Linienbreitesetzen":
                             o.setStrokeWidth(parameter);
                             break;
-
+                        case "schlucke":
+                        case "fügezu":
+                        case "add":
+                        case "fuegezu":
+                        case "hinzufügen":
+                        case "hinzufuegen":
+                            if (o.constructor.name == "Group") {
+                                o.add(parameter);
+                            } else {
+                                error(nr, "Das Objekt " + o.nam + " hat keine Methode "+methode[0]+".");
+                                abbruch = true;
+                            }
+                            break;
                         default:
                             error(nr, "Die Methode " + teile[1] + " kenne ich nicht.");
                             abbruch = true;

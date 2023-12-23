@@ -2,15 +2,16 @@
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
 
-# Graphix-Editor
-
+# Graphix-Editor  
 [Erzeugen neuer Objekte](#1-erzeugen-neuer-objekte)|
 [Aufruf von Methoden](#2-aufruf-von-methoden)|
 [Alle Klassen](#alle-klassen)|
 [Linie](#linie-line)|
 [Rechteck](#rechteck-rect-rectangle)|
 [Dreieck](#dreieck-triangle)|
-[Kreis](#kreis-circle)  
+[Kreis](#kreis-circle)|
+[Gruppe](#gruppe-group)|
+[Farbe](#farben)  
 
 ## 1. Erzeugen neuer Objekte
 Vor der Verwendung müssen Objekte erzeugt werden. Dies geschieht nach folgendem Muster:  
@@ -106,6 +107,17 @@ Farben werden als englische Wörter ohne Anführungszeichen eingetragen:
 - **setPoints(x,y), mittelpunktSetzen(x,y), setzeMittelpunkt(x,y), setMittelpunkt(x,y)**  
   Setzt die Koordinaten des Mittelpunkts.  
 
+### Gruppe (Group)
+In eine Gruppe können zuvor gebildete Objekte aufgenommen worden.  
+Für alle Objekte der Gruppe können anschließend gemeinsame Methoden aufgerufen werden.
+#### Attribute
+Die Attribute sind die Objekte, die in die Gruppe aufgenommen wurden.
+#### Methoden
+- **add(Objektname), schlucke(Objektname), fügezu(Objektname), hinzufügen(Objektname)**  
+  Fügt das entsprechende Objekt der Gruppe hinzu.
+- **beliebige Methode**  
+  Führt diese Methode für alle Objekte der Gruppe aus.
+                    
 ### Farben
 Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen verwendet werden:  
  - blau: blue,  
@@ -129,5 +141,17 @@ Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen v
  - olivgrün: olive,  
  - grau: grey,  
  - hellgrau: lightgrey  
+  
+  
+**Die Farben können auch aus den Grundfarben definiert werden:**  
+- ##RotGrünBlau  
+- #000000: Schwarz
+- #FFFFFF: Weiß
+- #AAAAAA: Grau  
+- #FF0000 : Rot
+- #00FF00: Grün
+- #0000FF: Blau
+- #0000AA: dunkleres Blau
+- #000066: noch dunkleres Blau
  
 [zurück](index.html)  

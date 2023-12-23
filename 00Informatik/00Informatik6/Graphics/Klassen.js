@@ -1,3 +1,11 @@
+function cardFormat(k,s){
+    k.innerHTML = s;
+    k.style.borderStyle = "solid";
+    k.style.borderRadius = "10px";
+    k.style.margin = "10px";
+    k.style.backgroundColor = "white";
+}
+
 class Shape {
     constructor(nam, klasse) {
         this.nam = nam;
@@ -7,6 +15,12 @@ class Shape {
         this.stroke = 'black';
         this.strokeWidth = 1;
     }
+
+    setFill(fill){}
+    setPoints(xyz){}
+    setRadius(r){}
+    setWidth(w){}
+    setHeight(h){}
 
     draw() {
         document.getElementById('svg').appendChild(this.svg());
@@ -20,11 +34,7 @@ class Shape {
             s = s + attribute[i][0] + ": " + attribute[i][1] + "<br>";
         }
         let k = document.getElementById("Karte");
-        k.innerHTML = s;
-        k.style.borderStyle = "solid";
-        k.style.borderRadius = "10px";
-        k.style.margin = "10px";
-        k.style.backgroundColor = "white";
+        cardFormat(k,s);
     }
 
     setStroke(stroke) {
@@ -38,6 +48,7 @@ class Shape {
     moveX(dx) {
         this.x = parseInt(this.x) + parseInt(dx);
     }
+    
     moveY(dy) {
         this.y = parseInt(this.y) + parseInt(dy);
     }
@@ -274,6 +285,96 @@ class Triangle extends ClosedShape {
 
 }
 
+class Group {
+    constructor(nam,klasse){
+        this.nam=nam;
+        this.klasse=klasse;
+        this.kinder=new Array();
+    }
+
+    add(n){
+        let o;
+        for (i=0;i<objekte.length;i++){
+            if (objekte[i].nam==n){
+                o=objekte[i];
+            }
+        }
+        this.kinder.push(o);
+    }
+
+    draw(){
+    }
+
+    setStroke(stroke) {
+        this.kinder.forEach(element => {
+            element.setStroke(stroke);           
+        });
+    }
+
+    setStrokeWidth(width) {
+        this.kinder.forEach(element => {
+            element.setStrokeWidth(width);           
+        });
+    }
+
+    moveTo(xy) {
+        this.kinder.forEach(element => {
+            element.moveTo(xy);           
+        });
+    }
+
+    moveX(dx){
+        this.kinder.forEach(element => {
+            element.moveX(dx);           
+        });
+    }
+
+    moveY(dy){
+        this.kinder.forEach(element => {
+            element.moveY(dy);           
+        });
+    }
+
+    setFill(fill) {
+        this.kinder.forEach(element => {
+            element.setFill(fill);           
+        });
+    }
+
+    setRadius(r){
+        this.kinder.forEach(element => {
+            element.setRadius(r);           
+        });
+    }
+
+    setPoints(xyz){
+        this.kinder.forEach(element => {
+            element.setPoints(xyz);           
+        });
+    }
+    setWidth(w){
+        this.kinder.forEach(element => {
+            element.setWidth(w);           
+        });
+   }
+    setHeight(h){
+        this.kinder.forEach(element => {
+            element.setHeight(h);           
+        });
+   }
+    
+    drawCard(){
+            var s = this.nam+ ": " + this.klasse.toUpperCase() + "<hr>";  // Name:Klasse
+            for (i = 0; i < this.kinder.length; i++) {
+                s = s + this.kinder[i].nam+":"+this.kinder[i].klasse.toUpperCase() + "<br>";
+            }
+            let k = document.getElementById("Karte");
+            cardFormat(k,s);
+        }
+            
+    
+
+}
 
 
 

@@ -50,7 +50,9 @@
 <a href="#linie-line">Linie</a>|
 <a href="#rechteck-rect-rectangle">Rechteck</a>|
 <a href="#dreieck-triangle">Dreieck</a>|
-<a href="#kreis-circle">Kreis</a></p>
+<a href="#kreis-circle">Kreis</a>|
+<a href="#gruppe-group">Gruppe</a>|
+<a href="#farben">Farbe</a></p>
 <h2 id="1-erzeugen-neuer-objekte">1. Erzeugen neuer Objekte</h2>
 <p>Vor der Verwendung müssen Objekte erzeugt werden. Dies geschieht nach folgendem Muster:</p>
 <p><strong>Objektname:Klassenname</strong></p>
@@ -156,6 +158,18 @@ Setzt den Wert des Attributs Radius.</li>
 <li><strong>setPoints(x,y), mittelpunktSetzen(x,y), setzeMittelpunkt(x,y), setMittelpunkt(x,y)</strong><br>
 Setzt die Koordinaten des Mittelpunkts.</li>
 </ul>
+<h3 id="gruppe-group">Gruppe (Group)</h3>
+<p>In eine Gruppe können zuvor gebildete Objekte aufgenommen worden.<br>
+Für alle Objekte der Gruppe können anschließend gemeinsame Methoden aufgerufen werden.</p>
+<h4 id="attribute-5">Attribute</h4>
+<p>Die Attribute sind die Objekte, die in die Gruppe aufgenommen wurden.</p>
+<h4 id="methoden-1">Methoden</h4>
+<ul>
+<li><strong>add(Objektname), schlucke(Objektname), fügezu(Objektname), hinzufügen(Objektname)</strong><br>
+Fügt das entsprechende Objekt der Gruppe hinzu.</li>
+<li><strong>beliebige Methode</strong><br>
+Führt diese Methode für alle Objekte der Gruppe aus.</li>
+</ul>
 <h3 id="farben">Farben</h3>
 <p>Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen verwendet werden:</p>
 <ul>
@@ -180,6 +194,18 @@ Setzt die Koordinaten des Mittelpunkts.</li>
 <li>olivgrün: olive,</li>
 <li>grau: grey,</li>
 <li>hellgrau: lightgrey</li>
+</ul>
+<p><strong>Die Farben können auch aus den Grundfarben definiert werden:</strong></p>
+<ul>
+<li>##RotGrünBlau</li>
+<li>#000000: Schwarz</li>
+<li>#FFFFFF: Weiß</li>
+<li>#AAAAAA: Grau</li>
+<li>#FF0000 : Rot</li>
+<li>#00FF00: Grün</li>
+<li>#0000FF: Blau</li>
+<li>#0000AA: dunkleres Blau</li>
+<li>#000066: noch dunkleres Blau</li>
 </ul>
 <p><a href="index.html">zurück</a></p>
 
