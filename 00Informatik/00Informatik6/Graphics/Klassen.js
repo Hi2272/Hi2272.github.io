@@ -295,11 +295,15 @@ class Group {
     add(n){
         let o;
         for (i=0;i<objekte.length;i++){
-            if (objekte[i].nam==n){
+            if (objekte[i].nam.toUpperCase()==n.toUpperCase()){
                 o=objekte[i];
             }
         }
-        this.kinder.push(o);
+        if (!this.kinder.includes(o)){
+           this.kinder.push(o);
+         } else {
+            error(-1,"Die Gruppe "+this.nam+" enthält schon ein Objekt mit dem Namen "+n+".");
+         }
     }
 
     draw(){

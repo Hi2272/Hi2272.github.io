@@ -20,17 +20,13 @@
       <h2>Graphix Code Editor</h2>
           <textarea id="editor" wrap="hard" cols="40" rows="20"></textarea>
           <div id="Button">
-            <button onclick="convert(-1)">Zeichne</button>
+            <button onclick="convert(-1,true)">Zeichne</button>
             <button id="btnStep" onclick="schrittweise()">Schritt 1</button>
             <a href="hilfe.html" target=”_blank”><button>Hilfe</button></a><br><br>
-            Deckkraft: <input type="range" min="0" max="100" value="70" class="slider" id="opacity" onchange="convert(-1)">
-            <!--
+            Deckkraft: <input type="range" min="0" max="100" value="70" class="slider" id="opacity" onchange="convert(-1,false)">
+           <br>
+           Verzögerung: <input type="range" min="0" max="2000" value="0" class="slider" id="pause">
            
-            <hr>
-            Wiederholungen:<br>
-            <textarea id="wiederholung" wrap="hard" cols="40" rows="10"></textarea>
-        -->
-        
           </div>
       </div>
     <div class="svg">

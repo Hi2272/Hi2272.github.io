@@ -1,5 +1,17 @@
 var objekte = new Array();
-setTimeout(drawAll,1000);
+var pause;
+/**
+ * Verzögert die Ausführung des Codes 
+ * muss in einer async Funktion mit await aufgerufen werden 
+ * vgl. function drawAll() 
+ * @param {*} ms : Zeit der Pause in Millisekunden
+ * @returns 
+ */
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  
 
 /**
  * Zeigt 5 Sek. lang eine Fehlermeldung an
@@ -255,10 +267,11 @@ function convertLinie(linie,nr){
 /**
  * Wandelt den Inhalte des Text Area in Svg-Code um 
  */
-function convert(steps) {
+async function convert(steps,pause) {
     while (objekte.length > 0) {  // Array objekte leeren
         objekte.pop();
     }
+
     document.getElementById("Objekte").innerHTML="";
     document.getElementById("svg").innerHTML=koordinatensystem();
     str = document.getElementById("editor").value;
@@ -281,23 +294,29 @@ function convert(steps) {
     }    
     
     for (nr = 0; nr < steps; nr++) {
+    
         if (linie[nr].length>1) {
             abbruch=convertLinie(linie[nr],nr);
+            drawAll(pause);
+
+            if (pause) await sleep(document.getElementById("pause").value);  
         }
         if (abbruch) { break; }
     }
 
-    drawAll();
+  
 }
 /**
- * zeichnet alle Objekte des Arrays objekte
+ * Zeichnet alle Objekte des Arrays Objekte
+ * @param {*} pause : True, wenn zwischen den Schritten eine Verzögerung eingehalten werden soll.
  */
-function drawAll() {
+async function drawAll(pause) {
     document.getElementById("svg").innerHTML = koordinatensystem();
     for (i = 0; i < objekte.length; i++) {
         objekte[i].draw();
     }
-}
+  }
+
 
 /**
  * Gibt einen Toast am rechten Rand aus
