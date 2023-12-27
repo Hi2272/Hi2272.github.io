@@ -1,4 +1,4 @@
-function cardFormat(k,s){
+function cardFormat(k, s) {
     k.innerHTML = s;
     k.style.borderStyle = "solid";
     k.style.borderRadius = "10px";
@@ -16,11 +16,11 @@ class Shape {
         this.strokeWidth = 1;
     }
 
-    setFill(fill){}
-    setPoints(xyz){}
-    setRadius(r){}
-    setWidth(w){}
-    setHeight(h){}
+    setFill(fill) { }
+    setPoints(xyz) { }
+    setRadius(r) { }
+    setWidth(w) { }
+    setHeight(h) { }
 
     draw() {
         document.getElementById('svg').appendChild(this.svg());
@@ -34,7 +34,7 @@ class Shape {
             s = s + attribute[i][0] + ": " + attribute[i][1] + "<br>";
         }
         let k = document.getElementById("Karte");
-        cardFormat(k,s);
+        cardFormat(k, s);
     }
 
     setStroke(stroke) {
@@ -48,7 +48,7 @@ class Shape {
     moveX(dx) {
         this.x = parseInt(this.x) + parseInt(dx);
     }
-    
+
     moveY(dy) {
         this.y = parseInt(this.y) + parseInt(dy);
     }
@@ -93,7 +93,7 @@ class Circle extends ClosedShape {
         s.setAttribute('r', this.radius.toString());
         s.setAttribute('cx', this.x.toString());
         s.setAttribute('cy', this.y.toString());
-        s.setAttribute('opacity', (document.getElementById("opacity").value/100).toString());
+        s.setAttribute('opacity', (document.getElementById("opacity").value / 100).toString());
 
         return s;
     }
@@ -129,7 +129,7 @@ class Rect extends ClosedShape {
         s.setAttribute('height', this.height.toString());
         s.setAttribute('x', this.x.toString());
         s.setAttribute('y', this.y.toString());
-        s.setAttribute('opacity', (document.getElementById("opacity").value/100).toString());
+        s.setAttribute('opacity', (document.getElementById("opacity").value / 100).toString());
 
         return s;
     }
@@ -178,7 +178,7 @@ class Line extends Shape {
         s.setAttribute('y1', this.y.toString());
         s.setAttribute('x2', this.x1.toString());
         s.setAttribute('y2', this.y1.toString());
-        s.setAttribute('opacity', (document.getElementById("opacity").value/100).toString());
+        s.setAttribute('opacity', (document.getElementById("opacity").value / 100).toString());
 
         return s;
     }
@@ -278,105 +278,109 @@ class Triangle extends ClosedShape {
             + this.x1.toString() + "," + this.y1.toString() + ","
             + this.x2.toString() + "," + this.y2.toString());
 
-            s.setAttribute('opacity', (document.getElementById("opacity").value/100).toString());
-            return s;
+        s.setAttribute('opacity', (document.getElementById("opacity").value / 100).toString());
+        return s;
     }
 
 
 }
 
 class Group {
-    constructor(nam,klasse){
-        this.nam=nam;
-        this.klasse=klasse;
-        this.kinder=new Array();
+    constructor(nam, klasse) {
+        this.nam = nam;
+        this.klasse = klasse;
+        this.kinder = new Array();
     }
 
-    add(n){
+    add(n) {
         let o;
-        for (i=0;i<objekte.length;i++){
-            if (objekte[i].nam.toUpperCase()==n.toUpperCase()){
-                o=objekte[i];
+        for (i = 0; i < objekte.length; i++) {
+            if (objekte[i].nam.toUpperCase() == n.toUpperCase()) {
+                o = objekte[i];
             }
         }
-        if (!this.kinder.includes(o)){
-           this.kinder.push(o);
-         } else {
-            error(-1,"Die Gruppe "+this.nam+" enthält schon ein Objekt mit dem Namen "+n+".");
-         }
+        if (typeof o == "undefined") {
+            error(-1, "Das Objekt " + n + " kenne ich nicht. Ich kann es nicht zur Gruppe " + this.nam + " hinzufügen.");
+        } else {
+            if (!this.kinder.includes(o)) {
+                this.kinder.push(o);
+            } else {
+                error(-1, "Die Gruppe " + this.nam + " enthält schon ein Objekt mit dem Namen " + n + ".");
+            }
+        }
     }
 
-    draw(){
+    draw() {
     }
 
     setStroke(stroke) {
         this.kinder.forEach(element => {
-            element.setStroke(stroke);           
+            element.setStroke(stroke);
         });
     }
 
     setStrokeWidth(width) {
         this.kinder.forEach(element => {
-            element.setStrokeWidth(width);           
+            element.setStrokeWidth(width);
         });
     }
 
     moveTo(xy) {
         this.kinder.forEach(element => {
-            element.moveTo(xy);           
+            element.moveTo(xy);
         });
     }
 
-    moveX(dx){
+    moveX(dx) {
         this.kinder.forEach(element => {
-            element.moveX(dx);           
+            element.moveX(dx);
         });
     }
 
-    moveY(dy){
+    moveY(dy) {
         this.kinder.forEach(element => {
-            element.moveY(dy);           
+            element.moveY(dy);
         });
     }
 
     setFill(fill) {
         this.kinder.forEach(element => {
-            element.setFill(fill);           
+            element.setFill(fill);
         });
     }
 
-    setRadius(r){
+    setRadius(r) {
         this.kinder.forEach(element => {
-            element.setRadius(r);           
+            element.setRadius(r);
         });
     }
 
-    setPoints(xyz){
+    setPoints(xyz) {
         this.kinder.forEach(element => {
-            element.setPoints(xyz);           
+            element.setPoints(xyz);
         });
     }
-    setWidth(w){
+    setWidth(w) {
         this.kinder.forEach(element => {
-            element.setWidth(w);           
+            element.setWidth(w);
         });
-   }
-    setHeight(h){
+    }
+    setHeight(h) {
         this.kinder.forEach(element => {
-            element.setHeight(h);           
+            element.setHeight(h);
         });
-   }
-    
-    drawCard(){
-            var s = this.nam+ ": " + this.klasse.toUpperCase() + "<hr>";  // Name:Klasse
-            for (i = 0; i < this.kinder.length; i++) {
-                s = s + this.kinder[i].nam+":"+this.kinder[i].klasse.toUpperCase() + "<br>";
-            }
-            let k = document.getElementById("Karte");
-            cardFormat(k,s);
+    }
+
+    drawCard() {
+        var s = this.nam + ": " + this.klasse.toUpperCase() + "<hr>";  // Name:Klasse
+        for (i = 0; i < this.kinder.length; i++) {
+            s = s + this.kinder[i].nam + ":" + this.kinder[i].klasse.toUpperCase() + "<br>";
         }
-            
-    
+        let k = document.getElementById("Karte");
+        cardFormat(k, s);
+    }
+
+
 
 }
 
