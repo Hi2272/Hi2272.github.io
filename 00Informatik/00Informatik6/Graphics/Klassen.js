@@ -60,8 +60,14 @@ class Shape {
             this.x = parseInt(d[0]);
             this.y = parseInt(d[1]);
         }
-
-    }
+ }
+copyPaste(oNeu,oAlt,dx,dy){
+    oNeu.x=oAlt.x+dx;
+    oNeu.y=oAlt.y+dy;
+    oNeu.stroke=oAlt.stroke;
+    oNeu.strokeWidth=oAlt.strokeWidth;
+    return oNeu;
+} 
 }
 
 class ClosedShape extends Shape {
@@ -71,6 +77,11 @@ class ClosedShape extends Shape {
     }
     setFill(fill) {
         this.fill = fill;
+    }
+    copyPaste(oNeu,oAlt,dx,dy){
+        oNeu=super.copyPaste(oNeu,oAlt,dx,dy);
+        oNeu.fill=oAlt.fill;
+        return oNeu;
     }
 
 }
@@ -104,6 +115,13 @@ class Circle extends ClosedShape {
 
     setPoints(xy) {
         this.moveTo(xy);
+    }
+
+    copyPaste(nam,dx,dy){
+        let o=new Circle(nam,this.klasse);
+        o=super.copyPaste(o,this,dx,dy);
+        o.radius=this.radius;
+        return o;
     }
 
 }
@@ -155,6 +173,13 @@ class Rect extends ClosedShape {
 
         }
     }
+    copyPaste(nam,dx,dy){
+        let o=new Rect(nam,this.klasse);
+        o=super.copyPaste(o,this,dx,dy);
+        o.width=this.width;
+        o.height=this.height;
+        return o;
+    }
 
 
 }
@@ -162,8 +187,8 @@ class Rect extends ClosedShape {
 class Line extends Shape {
     constructor(nam, klasse) {
         super(nam, klasse);
-        this.x1 = 100;
-        this.y1 = 100;
+        this.dx = 50;
+        this.dy = 100;
         this.draw();
         this.drawCard();
     }
@@ -176,8 +201,8 @@ class Line extends Shape {
 
         s.setAttribute('x1', this.x.toString());
         s.setAttribute('y1', this.y.toString());
-        s.setAttribute('x2', this.x1.toString());
-        s.setAttribute('y2', this.y1.toString());
+        s.setAttribute('x2', (this.x+this.dx).toString());
+        s.setAttribute('y2', (this.y+this.dy).toString());
         s.setAttribute('opacity', (document.getElementById("opacity").value / 100).toString());
 
         return s;
@@ -190,28 +215,31 @@ class Line extends Shape {
         } else {
             this.x = parseInt(d[0]);
             this.y = parseInt(d[1]);
-            this.x1 = parseInt(d[2]);
-            this.y1 = parseInt(d[3]);
+            this.dx = parseInt(d[2])-this.x;
+            this.dy = parseInt(d[3])-this.y;
         }
     }
 
     moveTo(xy) {
-        let dx = parseInt(this.x1) - parseInt(this.x);
-        let dy = parseInt(this.y1) - parseInt(this.y);
         let d = xy.split(",");
         this.x = parseInt(d[0]);
         this.y = parseInt(d[1]);
-        this.x1 = parseInt(this.x) + dx;
-        this.y1 = parseInt(this.y) + dy;
-
     }
+  
     moveX(dx) {
         this.x = parseInt(this.x) + parseInt(dx);
-        this.x1 = parseInt(this.x1) + parseInt(dx);
     }
     moveY(dy) {
         this.y = parseInt(this.y) + parseInt(dy);
-        this.y1 = parseInt(this.y1) + parseInt(dy);
+    }
+
+    copyPaste(nam,dx,dy){
+        let o=new Line(nam,this.klasse);
+        o=super.copyPaste(o,this,dx,dy);
+        o.dx=this.dx;
+        o.dy=this.dy;
+
+        return o;
     }
 
 }
@@ -219,10 +247,10 @@ class Line extends Shape {
 class Triangle extends ClosedShape {
     constructor(nam, klasse) {
         super(nam, klasse);
-        this.x1 = 100;
-        this.y1 = 100;
-        this.x2 = 75;
-        this.y2 = 25;
+        this.dx1 = 100;
+        this.dy1 = 0;
+        this.dx2 = 50;
+        this.dy2 = 50;
         this.draw();
         this.drawCard();
     }
@@ -234,37 +262,24 @@ class Triangle extends ClosedShape {
         } else {
             this.x = parseInt(d[0]);
             this.y = parseInt(d[1]);
-            this.x1 = parseInt(d[2]);
-            this.y1 = parseInt(d[3]);
-            this.x2 = parseInt(d[4]);
-            this.y2 = parseInt(d[5]);
+            this.dx1 = parseInt(d[2])-this.x;
+            this.dy1 = parseInt(d[3])-this.y;
+            this.dx2 = parseInt(d[4])-this.x;
+            this.dy2 = parseInt(d[5])-this.y;
 
         }
     }
 
     moveTo(xy) {
-        let dx1 = parseInt(this.x1) - parseInt(this.x);
-        let dy1 = parseInt(this.y1) - parseInt(this.y);
-        let dx2 = parseInt(this.x2) - parseInt(this.x);
-        let dy2 = parseInt(this.y2) - parseInt(this.y);
         let d = xy.split(",");
         this.x = parseInt(d[0]);
         this.y = parseInt(d[1]);
-        this.x1 = parseInt(this.x) + dx1;
-        this.y1 = parseInt(this.y) + dy1;
-        this.x2 = parseInt(this.x) + dx2;
-        this.y2 = parseInt(this.y) + dy2;
-
     }
     moveX(dx) {
         this.x = parseInt(this.x) + parseInt(dx);
-        this.x1 = parseInt(this.x1) + parseInt(dx);
-        this.x2 = parseInt(this.x2) + parseInt(dx);
     }
     moveY(dy) {
         this.y = parseInt(this.y) + parseInt(dy);
-        this.y1 = parseInt(this.y1) + parseInt(dy);
-        this.y2 = parseInt(this.y2) + parseInt(dy);
     }
 
     svg() {
@@ -275,11 +290,22 @@ class Triangle extends ClosedShape {
         s.setAttribute('stroke-width', this.strokeWidth);
 
         s.setAttribute('points', this.x.toString() + "," + this.y.toString() + ","
-            + this.x1.toString() + "," + this.y1.toString() + ","
-            + this.x2.toString() + "," + this.y2.toString());
+            + (this.x+this.dx1).toString() + "," + (this.y+this.dy1).toString() + ","
+            + (this.x+this.dx2).toString() + "," + (this.y+this.dy2).toString());
 
         s.setAttribute('opacity', (document.getElementById("opacity").value / 100).toString());
         return s;
+    }
+
+    copyPaste(nam,dx,dy){
+
+        let o=new Triangle(nam,this.klasse);
+        o=super.copyPaste(o,this,dx,dy);
+        o.dx1=this.dx1;
+        o.dy1=this.dy1;
+        o.dx2=this.dx2;
+        o.dy2=this.dy2;
+        return o;
     }
 
 
@@ -380,6 +406,13 @@ class Group {
         cardFormat(k, s);
     }
 
+    copyPaste(nam,dx,dy){
+        let o=new Group(nam,"Group");
+        this.kinder.forEach(element => {
+            o.kinder.push(element.copyPaste(nam+element.nam,dx,dy));
+        });
+        return o;
+    }
 
 
 }

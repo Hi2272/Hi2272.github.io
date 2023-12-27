@@ -10,8 +10,18 @@ var pause;
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  }
-  
+}
+
+function numeric(string) {
+    // Entferne alle Nicht-Ziffern aus dem String
+    const ziffernString = string.replace(/[^0-9]/g, '');
+
+    // Verwandle den bereinigten String in eine Zahl
+    const zahl = parseInt(ziffernString);
+
+    return zahl;
+}
+
 
 /**
  * Zeigt 5 Sek. lang eine Fehlermeldung an
@@ -35,7 +45,7 @@ function error(i, s) {
 function objektSuche(nam) {
     let nr = -1;
     for (i = 0; i < objekte.length; i++) {
-        if (objekte[i].nam == nam) {
+        if (objekte[i].nam.toLowerCase() == nam.toLowerCase()) {
             nr = i;
         }
 
@@ -46,54 +56,65 @@ function objektSuche(nam) {
  * Fügt ein neues Objekt in das Array objekte ein und in die Listbox Objekte
  * @param {*} o:Objekt, das neu erzeugt wird 
  */
-function neu(o){
-    objekte.push(o);
-    var opt = document.createElement("option");
+function neu(o) {
     var listbox = document.getElementById("Objekte");
-    listbox.options.add(opt);
-    opt.text=o.nam+":"+o.klasse;
-    opt.value=o.nam+":"+o.klasse
+    listbox.innerHTML = "";
+
+    if (o instanceof Group) {
+        o.kinder.forEach(element => {
+            objekte.push(element);
+        });
+    }
+    objekte.push(o);
+    objekte.forEach(element => {
+        opt = document.createElement("option");
+        opt.text = element.nam + ":" + element.klasse;
+        opt.value = element.nam + ":" + element.klasse
+        listbox.options.add(opt);
+    });
 }
 /**
  * Stellt die Klassenkarte des aktuell angewählten Objekts der Listbox ein
  */
 function selection() {
     var obj = document.getElementById("Objekte").value;
-    let d=obj.split(":");
-    let nr=objektSuche(d[0]);
-    objekte[nr].drawCard();    
+    let d = obj.split(":");
+    let nr = objektSuche(d[0]);
+    objekte[nr].drawCard();
 
-   }
+}
 
-let schrittNr=0;
+let schrittNr = 0;
 
-function schrittweise(){
+function schrittweise() {
     schrittNr++;
     convert(schrittNr);
 }
 
-function translate(s){
-    dict={  "blau":"blue",
-            "gruen":"green",
-            "grün":"green",
-            "gelb":"yellow",
-            "rot":"red",
-            "weiß":"white",
-            "weiss":"white",
-            "schwarz":"black",
-            "hellblau":"lightblue",
-            "hellgrün":"lightgreen",
-            "violett":"violet",
-            "lila":"violet",
-            "hellgelb":"lightyellow",
-            "hellrot":"pink",
-            "braun":"brown",
-            "silber":"silver",
-            "dunkelblau":"darkblue",
-            "olivgrün":"olive",
-            "grau":"grey",
-            "hellgrau":"lightgrey",
-            "rosa":"pink"};
+function translate(s) {
+    dict = {
+        "blau": "blue",
+        "gruen": "green",
+        "grün": "green",
+        "gelb": "yellow",
+        "rot": "red",
+        "weiß": "white",
+        "weiss": "white",
+        "schwarz": "black",
+        "hellblau": "lightblue",
+        "hellgrün": "lightgreen",
+        "violett": "violet",
+        "lila": "violet",
+        "hellgelb": "lightyellow",
+        "hellrot": "pink",
+        "braun": "brown",
+        "silber": "silver",
+        "dunkelblau": "darkblue",
+        "olivgrün": "olive",
+        "grau": "grey",
+        "hellgrau": "lightgrey",
+        "rosa": "pink"
+    };
 
     if (s in dict) {
         return dict[s];
@@ -103,11 +124,11 @@ function translate(s){
 
 
 }
-function convertLinie(linie,nr){
-    let abbruch=false;
+function convertLinie(linie, nr) {
+    let abbruch = false;
     if (linie.startsWith(".") || linie.startsWith(":")) {
         error(nr, "Der Objektname fehlt!");
-        abbruch=true;
+        abbruch = true;
     }
 
     teile = linie.split(":");
@@ -116,7 +137,7 @@ function convertLinie(linie,nr){
             error(nr, "Ein Objekt mit dem Namen " + teile[0] + " gibt es schon!");
             abbruch = true;
         }
-        
+
         switch (teile[1].toLowerCase()) {
             case "rect":
             case "rechteck":
@@ -128,7 +149,7 @@ function convertLinie(linie,nr){
             case "dreieck":
             case "triangle": neu(new Triangle(teile[0], teile[1].toUpperCase())); break;
             case "group":
-            case "gruppe": neu(new Group(teile[0],teile[1].toUpperCase()));break;
+            case "gruppe": neu(new Group(teile[0], teile[1].toUpperCase())); break;
             default:
                 error(nr, "Die Klasse " + teile[1] + " ist mir unbekannt.");
                 abbruch = true;
@@ -157,10 +178,10 @@ function convertLinie(linie,nr){
                 if (methode.length == 1) {
                     error(nr, "Eine Methode benötigt Parameter in Klammern.");
                     abbruch = true;
-                } else if ( methode.length >2) {
+                } else if (methode.length > 2) {
                     error(nr, "Eine Methode hat maximal eine Klammer mit Parametern.");
                     abbruch = true;
-                } else {   
+                } else {
                     let parameter = methode[1].replaceAll(")", "");
                     let o = objekte[objektNr];
                     console.log(o);
@@ -192,10 +213,10 @@ function convertLinie(linie,nr){
                         case "setbreite":
                         case "setwidth":
                         case "breitesetzen":
-                            if (o.constructor.name == "Rect"||o.constructor.name=="Group") {
+                            if (o.constructor.name == "Rect" || o.constructor.name == "Group") {
                                 o.setWidth(parameter);
                             } else {
-                                error(nr, "Das Objekt " + o.nam + " hat keine Methode "+methode[0]+"().");
+                                error(nr, "Das Objekt " + o.nam + " hat keine Methode " + methode[0] + "().");
                                 abbruch = true;
                             }
                             break;
@@ -204,10 +225,10 @@ function convertLinie(linie,nr){
                         case "sethöhe":
                         case "setheight":
                         case "höhesetzen":
-                            if (o.constructor.name == "Rect"||o.constructor.name=="Group") {
+                            if (o.constructor.name == "Rect" || o.constructor.name == "Group") {
                                 o.setHeight(parameter);
                             } else {
-                                error(nr, "Das Objekt " + o.nam + " hat keine Methode "+methode[0]+"().");
+                                error(nr, "Das Objekt " + o.nam + " hat keine Methode " + methode[0] + "().");
                                 abbruch = true;
                             }
                             break;
@@ -215,10 +236,10 @@ function convertLinie(linie,nr){
                         case "setzeradius":
                         case "setradius":
                         case "radiusSetzen":
-                            if (o.constructor.name == "Circle"||o.constructor.name=="Group") {
+                            if (o.constructor.name == "Circle" || o.constructor.name == "Group") {
                                 o.setRadius(parameter);
                             } else {
-                                error(nr, "Das Objekt " + o.nam + " hat keine Methode "+methode[0]+"().");
+                                error(nr, "Das Objekt " + o.nam + " hat keine Methode " + methode[0] + "().");
                                 abbruch = true;
                             }
                             break;
@@ -230,6 +251,10 @@ function convertLinie(linie,nr){
                         case "eckensetzen":
                         case "mittelpunktsetzen":
                         case "mittesetzen":
+                        case "setzemitte":
+                        case "setmitte":
+                        case "setmittelpunkt":
+                        case "setzemittelpunkt":
                             o.setPoints(parameter);
                             break;
                         case "setzelinienbreite":
@@ -237,6 +262,24 @@ function convertLinie(linie,nr){
                         case "setstrokewidth":
                         case "Linienbreitesetzen":
                             o.setStrokeWidth(parameter);
+                            break;
+                        case "duplziere":
+                        case "copypaste":
+                        case "kopiere":
+                        case "verdoppele":
+                            let param = parameter.split(",");
+                            if (param.length == 3) {
+                                if (objektSuche(param[0].toLowerCase()) != -1) {
+                                    error(nr, "Ein Objekt mit dem Namen " + param[0] + " gibt es schon!");
+                                    abbruch = true;
+                                } else {
+                                    neu(o.copyPaste(param[0], parseInt(param[1]), parseInt(param[2])));
+                                }
+                            } else {
+                                error(nr, "Zum Duplizieren eines Objekts benötigst du drei Parameter: Neuer Name, x-Verschiebung, y-Verschiebung");
+                                abbruch = true;
+
+                            }
                             break;
                         case "schlucke":
                         case "fügezu":
@@ -247,7 +290,7 @@ function convertLinie(linie,nr){
                             if (o.constructor.name == "Group") {
                                 o.add(parameter);
                             } else {
-                                error(nr, "Das Objekt " + o.nam + " hat keine Methode "+methode[0]+".");
+                                error(nr, "Das Objekt " + o.nam + " hat keine Methode " + methode[0] + ".");
                                 abbruch = true;
                             }
                             break;
@@ -257,7 +300,7 @@ function convertLinie(linie,nr){
 
                     }
                     o.drawCard();
-                    
+
                 }
             }
         }
@@ -267,45 +310,57 @@ function convertLinie(linie,nr){
 /**
  * Wandelt den Inhalte des Text Area in Svg-Code um 
  */
-async function convert(steps,pause) {
+async function convert(steps, pause) {
     while (objekte.length > 0) {  // Array objekte leeren
         objekte.pop();
     }
-
-    document.getElementById("Objekte").innerHTML="";
-    document.getElementById("svg").innerHTML=koordinatensystem();
+    let wdh = 0;
+    let sprung = 0;
+    document.getElementById("Objekte").innerHTML = "";
+    document.getElementById("svg").innerHTML = koordinatensystem();
     str = document.getElementById("editor").value;
-    str=str.replaceAll(" ","");
+    str = str.replaceAll(" ", "");
+    str = str.toLowerCase();
     linie = str.split(/\r?\n|\r|\n/g);
     console.log(linie);
-    
-    if (steps==-1){
-       steps=linie.length;
-       schrittNr=0;
-       document.getElementById("btnStep").innerHTML="Schritt 1";
-    } else if (steps>linie.length){
-        steps=0;
-        schrittNr=0;
-        document.getElementById("btnStep").innerHTML="Schritt 1";
-    } else if (steps==linie.length){
-        document.getElementById("btnStep").innerHTML="Neustart";
-    } else {
-        document.getElementById("btnStep").innerHTML="Schritt "+(schrittNr+1).toString();
-    }    
-    
-    for (nr = 0; nr < steps; nr++) {
-    
-        if (linie[nr].length>1) {
-            abbruch=convertLinie(linie[nr],nr);
-            drawAll(pause);
 
-            if (pause) await sleep(document.getElementById("pause").value);  
+    if (steps == -1) {
+        steps = linie.length;
+        schrittNr = 0;
+        document.getElementById("btnStep").innerHTML = "Schritt 1";
+    } else if (steps > linie.length) {
+        steps = 0;
+        schrittNr = 0;
+        document.getElementById("btnStep").innerHTML = "Schritt 1";
+    } else if (steps == linie.length) {
+        document.getElementById("btnStep").innerHTML = "Neustart";
+    } else {
+        document.getElementById("btnStep").innerHTML = "Schritt " + (schrittNr + 1).toString();
+    }
+
+    for (nr = 0; nr < steps; nr++) {
+
+        if (linie[nr].length > 0) {
+            if (linie[nr].includes("*")) { // Schleifenende
+                wdh = wdh - 1;
+                if (wdh > 0) {
+                    nr = sprung;
+                }
+            } else if (linie[nr].includes("wdh") || linie[nr].includes("repeat") || linie[nr].includes("wiederhol")) {
+                wdh = numeric(linie[nr]);  // Wiederholungszahl der Schleife
+                sprung = nr;  // Rücksprung in Zeile
+            } else {
+                abbruch = convertLinie(linie[nr], nr);
+                drawAll(pause);
+
+                if (pause) await sleep(document.getElementById("pause").value);
+            }
         }
         if (abbruch) { break; }
     }
 
-  
 }
+
 /**
  * Zeichnet alle Objekte des Arrays Objekte
  * @param {*} pause : True, wenn zwischen den Schritten eine Verzögerung eingehalten werden soll.
@@ -315,7 +370,7 @@ async function drawAll(pause) {
     for (i = 0; i < objekte.length; i++) {
         objekte[i].draw();
     }
-  }
+}
 
 
 /**
