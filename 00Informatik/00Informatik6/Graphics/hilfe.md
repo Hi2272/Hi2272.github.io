@@ -173,6 +173,13 @@ Die Methode benötigt drei Parameter:
 - nam: Name des neuen Objekts
 - dx: Verschiebung in x-Richtung
 - dy: Verschiebung in y-Richtung  
+**Beispiel:**  
+``` Javascript
+wdh 50 
+  g.copyPaste(g1,100,0)
+*
+```
+Erzeugt ein Objekt g1 als Kopie von g - g1 ist um 100 Punkte nach rechts verschoben.
   
                         
 [zurück](index.html)  
