@@ -52,7 +52,9 @@
 <a href="#dreieck-triangle">Dreieck</a>|
 <a href="#kreis-circle">Kreis</a>|
 <a href="#gruppe-group">Gruppe</a>|
-<a href="#farben">Farbe</a></p>
+<a href="#farben">Farben</a>|
+<a href="#wiederholungen">Wiederholungen</a>|
+<a href="#kopieren-von-objekten-oder-gruppen">Kopieren</a></p>
 <h2 id="1-erzeugen-neuer-objekte">1. Erzeugen neuer Objekte</h2>
 <p>Vor der Verwendung müssen Objekte erzeugt werden. Dies geschieht nach folgendem Muster:</p>
 <p><strong>Objektname:Klassenname</strong></p>
@@ -206,6 +208,24 @@ Führt diese Methode für alle Objekte der Gruppe aus.</li>
 <li>#0000FF: Blau</li>
 <li>#0000AA: dunkleres Blau</li>
 <li>#000066: noch dunkleres Blau</li>
+</ul>
+<h3 id="wiederholungen">Wiederholungen</h3>
+<p>Graphix kann einfache Wiederholschleifen umsetzen.<br>
+Eine Schleife beginnt mit dem Schlüsselwort <strong>wdh</strong> und der Zahl der gewünschten Wiederholungen. Alternativ kann auch <strong>wiederhole</strong> oder <strong>repeat</strong> verwendet werden.<br>
+Die Schleife endet mit einem *  .<br>
+<strong>Beispiel:</strong></p>
+<pre><code class="language-Javascript">wdh <span class="hljs-number">50</span> 
+  g.<span class="hljs-title function_">moveX</span>(<span class="hljs-number">1</span>)
+*
+</code></pre>
+<p>Lässt das Objekt g 50 einzelne Schritte nach rechts machen.</p>
+<h3 id="kopieren-von-objekten-oder-gruppen">Kopieren von Objekten oder Gruppen</h3>
+<p>Mit der Methode <strong>copyPaste(nam,dx,dy)</strong> können bestehende Objekte verdoppelt werden. Alternativ können auch die Methodennamen <strong>dupliziere, duplicate</strong> oder <strong>verdoppele</strong> verwendet werden.<br>
+Die Methode benötigt drei Parameter:</p>
+<ul>
+<li>nam: Name des neuen Objekts</li>
+<li>dx: Verschiebung in x-Richtung</li>
+<li>dy: Verschiebung in y-Richtung</li>
 </ul>
 <p><a href="index.html">zurück</a></p>
 

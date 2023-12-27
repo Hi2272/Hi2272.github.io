@@ -9,10 +9,11 @@
 [Linie](#linie-line)|
 [Rechteck](#rechteck-rect-rectangle)|
 [Dreieck](#dreieck-triangle)|
-[Kreis](#kreis-circle)|
-[Gruppe](#gruppe-group)|
-[Farbe](#farben)  
-
+[Kreis](#kreis-circle)| 
+[Gruppe](#gruppe-group)| 
+[Farben](#farben)| 
+[Wiederholungen](#wiederholungen)| 
+[Kopieren](#kopieren-von-objekten-oder-gruppen)
 ## 1. Erzeugen neuer Objekte
 Vor der Verwendung müssen Objekte erzeugt werden. Dies geschieht nach folgendem Muster:  
   
@@ -153,5 +154,25 @@ Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen v
 - #0000FF: Blau
 - #0000AA: dunkleres Blau
 - #000066: noch dunkleres Blau
- 
+
+### Wiederholungen
+Graphix kann einfache Wiederholschleifen umsetzen.  
+Eine Schleife beginnt mit dem Schlüsselwort **wdh** und der Zahl der gewünschten Wiederholungen. Alternativ kann auch **wiederhole** oder **repeat** verwendet werden.  
+Die Schleife endet mit einem *  .  
+**Beispiel:**  
+``` Javascript
+wdh 50 
+  g.moveX(1)
+*
+```
+Lässt das Objekt g 50 einzelne Schritte nach rechts machen.
+
+### Kopieren von Objekten oder Gruppen
+Mit der Methode **copyPaste(nam,dx,dy)** können bestehende Objekte verdoppelt werden. Alternativ können auch die Methodennamen **dupliziere, duplicate** oder **verdoppele** verwendet werden.  
+Die Methode benötigt drei Parameter:  
+- nam: Name des neuen Objekts
+- dx: Verschiebung in x-Richtung
+- dy: Verschiebung in y-Richtung  
+  
+                        
 [zurück](index.html)  
