@@ -44,7 +44,7 @@ function error(i, s) {
  */
 function objektSuche(nam) {
     let nr = -1;
-    for (i = 0; i < objekte.length; i++) {
+    for (let i = 0; i < objekte.length; i++) {
         if (objekte[i].nam.toLowerCase() == nam.toLowerCase()) {
             nr = i;
         }
@@ -91,6 +91,7 @@ function schrittweise() {
     convert(schrittNr);
 }
 
+
 function translate(s) {
     dict = {
         "blau": "blue",
@@ -124,6 +125,52 @@ function translate(s) {
 
 
 }
+
+
+
+function paramCheck(nr, o, methode, param, typ) {
+    let farbe = ["blau", "blue", "gruen", "green", "grün", "green", "gelb", "yellow", "rot", "red", "weiß", "white", "weiss", "white", "schwarz", "black", "hellblau", "lightblue",
+        "hellgrün", "lightgreen", "violett", "violet", "lila", "violet", "hellgelb", "lightyellow", "hellrot", "pink", "braun", "brown", "silber", "silver", "dunkelblau", "darkblue",
+        "olivgrün", "olive", "grau", "grey", "hellgrau", "lightgrey", "rosa", "pink"];
+
+
+    let check = true;
+    let p = param.split(",");
+    let t = typ.split(",");
+    if (p.length != t.length) {  // Parameterzahl stimmt nicht
+        error(nr, "Die Methode " + methode + " des Objekts " + o.nam + " benötigt " + t.length.toString() + " Parameter. Du hast " + p.length.toString() + " eingegeben.");
+        check = false;
+    } else {
+        for (let i = 0; i < t.length; i++) {
+            switch (t[i]) {
+                case "Z": // Zahl als Parameter
+                    if (isNaN(p[i])) {
+                        error(nr, "Die Methode " + methode + " des Objekts " + o.nam + " benötigt eine Zahl als " + (i + 1).toString() + ". Parameter. Du hast " + p[i] + " eingegeben.");
+                        check = false;
+                    }
+                    break;
+
+                case "F": // Farbe als Parameter
+
+                    if (!farbe.includes(p[i].toLowerCase()) && !p[i].startsWith("#")) {
+                        error(nr, "Die Methode " + methode + " des Objekts " + o.nam + " benötigt eine Farbe als Parameter. Du hast " + p[i] + " eingegeben.");
+                        check = false;
+                    }
+                    break;
+                case "NO": //  Neues Objekt als Parameter
+                    if (objektSuche(p[i]) != -1) {
+                        error(nr, "Die Methode " + methode + " des Objekts " + o.nam + " benötigt ein neues Objekt als Parameter. Das Objekt " + p[i] + " gibt es schon.");
+                        check = false;
+                    }
+                    break;
+
+            }
+        }
+    }
+    return check;
+}
+
+
 function convertLinie(linie, nr) {
     let abbruch = false;
     if (linie.startsWith(".") || linie.startsWith(":")) {
@@ -189,37 +236,73 @@ function convertLinie(linie, nr) {
                         case "setopacity":
                         case "setdeckkraft":
                         case "deckkraftsetzen":
-                        case "setopac": o.setOpac(parameter);break;
-
+                        case "setopac":
+                            if (paramCheck(nr, o, methode[0], parameter, "Z")) {
+                                o.setOpac(parameter);
+                            } else {
+                                abbruch = true;
+                            }
+                            break;
                         case "verschiebex":
-                        case "movex": o.moveX(parameter); break;
-
+                        case "movex":
+                            if (paramCheck(nr, o, methode[0], parameter, "Z")) {
+                                o.moveX(parameter);
+                            } else {
+                                abbruch = true;
+                            }
+                            break;
                         case "verschiebey":
-                        case "movey": o.moveY(parameter); break;
+                        case "movey":
+                            if (paramCheck(nr, o, methode[0], parameter, "Z")) {
+                                o.moveY(parameter);
+                            } else {
+                                abbruch = true;
+                            }
+                            break;
 
                         case "verschiebezu":
                         case "verschiebenach":
-                        case "moveto": o.moveTo(parameter); break;
-
+                        case "moveto":
+                            if (paramCheck(nr, o, methode[0], parameter, "Z,Z")) {
+                                o.moveTo(parameter);
+                            } else {
+                                abbruch = true;
+                            }
+                            break;
                         case "setzefüllfarbe":
                         case "füllfarbesetzen":
                         case "setzefarbe":
                         case "setfüllfarbe":
                         case "setfarbe":
                         case "setcolor":
-                        case "setfill": o.setFill(translate(parameter)); break;
-
+                        case "setfill":
+                            if (paramCheck(nr, o, methode[0], parameter, "F")) {
+                                o.setFill(translate(parameter));
+                            } else {
+                                abbruch = true;
+                            }
+                            break;
                         case "setlinienfarbe":
                         case "setzelinienfarbe":
                         case "linienfarbesetzen":
-                        case "setstroke": o.setStroke(translate(parameter)); break;
+                        case "setstroke":
+                            if (paramCheck(nr, o, methode[0], parameter, "F")) {
+                                o.setStroke(translate(parameter));
+                            } else {
+                                abbruch = true;
+                            }
+                            break;
 
                         case "setzebreite":
                         case "setbreite":
                         case "setwidth":
                         case "breitesetzen":
                             if (o.constructor.name == "Rect" || o.constructor.name == "Group") {
-                                o.setWidth(parameter);
+                                if (paramCheck(nr, o, methode[0], parameter, "Z")) {
+                                    o.setWidth(parameter);
+                                } else {
+                                    abbruch = true;
+                                }
                             } else {
                                 error(nr, "Das Objekt " + o.nam + " hat keine Methode " + methode[0] + "().");
                                 abbruch = true;
@@ -231,7 +314,11 @@ function convertLinie(linie, nr) {
                         case "setheight":
                         case "höhesetzen":
                             if (o.constructor.name == "Rect" || o.constructor.name == "Group") {
-                                o.setHeight(parameter);
+                                if (paramCheck(nr, o, methode[0], parameter, "Z")) {
+                                    o.setHeight(parameter);
+                                } else {
+                                    abbruch = true;
+                                }
                             } else {
                                 error(nr, "Das Objekt " + o.nam + " hat keine Methode " + methode[0] + "().");
                                 abbruch = true;
@@ -242,7 +329,11 @@ function convertLinie(linie, nr) {
                         case "setradius":
                         case "radiusSetzen":
                             if (o.constructor.name == "Circle" || o.constructor.name == "Group") {
-                                o.setRadius(parameter);
+                                if (paramCheck(nr, o, methode[0], parameter, "Z")) {
+                                    o.setRadius(parameter);
+                                } else {
+                                    abbruch = true;
+                                }
                             } else {
                                 error(nr, "Das Objekt " + o.nam + " hat keine Methode " + methode[0] + "().");
                                 abbruch = true;
@@ -266,20 +357,37 @@ function convertLinie(linie, nr) {
                         case "setlinienbreite":
                         case "setstrokewidth":
                         case "Linienbreitesetzen":
-                            o.setStrokeWidth(parameter);
+                            if (paramCheck(nr, o, methode[0], parameter, "Z")) {
+                                o.setStrokeWidth(parameter);
+                            } else {
+                                abbruch = true;
+                            }
                             break;
                         case "skaliere":
                         case "scale":
                         case "strecke":
                         case "vergrößere":
-                            o.scale(parameter);
-                            break;    
-                        
+                            if (paramCheck(nr, o, methode[0], parameter, "Z")) {
+                                o.scale(parameter);
+                            } else {
+                                abbruch = true;
+                            }
+                            break;
+
                         case "dupliziere":
                         case "duplicate":
                         case "copypaste":
                         case "verdoppele":
-                            let param = parameter.split(",");
+                            if (paramCheck(nr, o, methode[0], parameter, "NO,Z,Z")) {
+                                let param = parameter.split(",");
+                                neu(o.copyPaste(param[0], parseInt(param[1]), parseInt(param[2])));
+                            } else {
+                                abbruch = true;
+                            }
+                            break;
+/*    
+                      
+                        let param = parameter.split(",");
                             if (param.length == 3) {
                                 if (objektSuche(param[0].toLowerCase()) != -1) {
                                     error(nr, "Ein Objekt mit dem Namen " + param[0] + " gibt es schon!");
@@ -293,7 +401,7 @@ function convertLinie(linie, nr) {
 
                             }
                             break;
-                        case "schlucke":
+  */                      case "schlucke":
                         case "fügezu":
                         case "add":
                         case "fuegezu":
@@ -350,7 +458,7 @@ async function convert(steps, pause) {
         document.getElementById("btnStep").innerHTML = "Schritt " + (schrittNr + 1).toString();
     }
 
-    for (nr = 0; nr < steps; nr++) {
+    for (let nr = 0; nr < steps; nr++) {
 
         if (linie[nr].length > 0) {
             if (linie[nr].includes("*")) { // Schleifenende
@@ -379,7 +487,7 @@ async function convert(steps, pause) {
  */
 async function drawAll() {
     document.getElementById("svg").innerHTML = koordinatensystem();
-    for (i = 0; i < objekte.length; i++) {
+    for (let i = 0; i < objekte.length; i++) {
         objekte[i].draw();
     }
 }
@@ -406,13 +514,13 @@ function ausgabe(title, msg, dauer, type) {
  */
 function koordinatensystem() {
     txt = "";
-    for (x = 0; x <= 200; x = x + 10) {
+    for (let x = 0; x <= 200; x = x + 10) {
         txt = txt + "<line x1='" + x.toString() + "' y1='0' x2='" + x.toString() + "' y2='200' stroke='lightblue'/>";
         txt = txt + "<text font-size='0.2em' x='" + x.toString() + "' y='3'>" + x.toString() + "</text>";
 
     }
     txt = txt + "<text font-size='0.2em' x='195' y='9'>x</text>";
-    for (y = 0; y <= 200; y = y + 10) {
+    for (let y = 0; y <= 200; y = y + 10) {
         txt = txt + "<line x1='0' y1='" + y.toString() + "' x2='200' y2='" + y.toString() + "' stroke='lightblue'/>";
         txt = txt + "<text font-size='0.2em' x='-5' y='" + y.toString() + "'>" + y.toString() + "</text>";
     }

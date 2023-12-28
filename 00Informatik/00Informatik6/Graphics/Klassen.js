@@ -48,6 +48,7 @@ function atl(s) {
         "lightgrey":"hellgrau",
         
     };
+    console.log(s);
     s=s.toLowerCase();
     let tl=document.getElementById("translate").checked;
 
@@ -85,8 +86,8 @@ class Shape {
     drawCard() {
         var attribute = Object.entries(this);
         var s = attribute[0][1] + ": " + atl(attribute[1][1]).toUpperCase() + "<hr>";  // Name:Klasse
-        for (i = 2; i < attribute.length; i++) {
-            s = s + atl(attribute[i][0]) + ": " + runde(attribute[i][1]) + "<br>";
+        for (let i = 2; i < attribute.length; i++) {
+            s = s + atl(attribute[i][0]) + " = " + runde(attribute[i][1]) + "<br>";
         }
         let k = document.getElementById("Karte");
         cardFormat(k, s);
@@ -399,7 +400,7 @@ class Group {
         let p=parameter.split(",");
         p.forEach(n=>{
         let o;
-        for (i = 0; i < objekte.length; i++) {
+        for (let i = 0; i < objekte.length; i++) {
             if (objekte[i].nam.toUpperCase() == n.toUpperCase()) {
                 o = objekte[i];
             }
@@ -486,7 +487,7 @@ class Group {
 
         let x0=this.kinder[0].x;
         let y0=this.kinder[0].y;
-        for (i=1;i<this.kinder.length;i++){
+        for (let i=1;i<this.kinder.length;i++){
             let dx=this.kinder[i].x-x0;
             let dy=this.kinder[i].y-y0;
             dx=dx*f/100;
@@ -498,7 +499,7 @@ class Group {
 
     drawCard() {
         var s = this.nam + ": " + this.klasse.toUpperCase() + "<hr>";  // Name:Klasse
-        for (i = 0; i < this.kinder.length; i++) {
+        for (let i = 0; i < this.kinder.length; i++) {
             s = s + this.kinder[i].nam + ":" + atl(this.kinder[i].klasse).toUpperCase() + "<br>";
         }
         let k = document.getElementById("Karte");
