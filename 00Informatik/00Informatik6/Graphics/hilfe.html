@@ -53,6 +53,7 @@
 <a href="#kreis-circle">Kreis</a>|
 <a href="#gruppe-group">Gruppe</a>|
 <a href="#farben">Farben</a>|
+<a href="#deckkraft">Deckkraft</a>|
 <a href="#wiederholungen">Wiederholungen</a>|
 <a href="#kopieren-von-objekten-oder-gruppen">Kopieren</a></p>
 <h2 id="1-erzeugen-neuer-objekte">1. Erzeugen neuer Objekte</h2>
@@ -168,7 +169,10 @@ Für alle Objekte der Gruppe können anschließend gemeinsame Methoden aufgerufe
 <h4 id="methoden-1">Methoden</h4>
 <ul>
 <li><strong>add(Objektname), schlucke(Objektname), fügezu(Objektname), hinzufügen(Objektname)</strong><br>
-Fügt das entsprechende Objekt der Gruppe hinzu.</li>
+Fügt das entsprechende Objekt der Gruppe hinzu.<br>
+Es können auch mehere Objekte gleichzeitig hinzugefügt werden. Die Objektnamen müssen dann als Parameterliste durch Kommas getrennt werden:<pre><code class="language-Javascript">g.<span class="hljs-title function_">add</span>(re,c,d)
+</code></pre>
+Fügt die Objekte <strong>re, c</strong> und <strong>d</strong> zur Gruppe <strong>g</strong> hinzu.</li>
 <li><strong>beliebige Methode</strong><br>
 Führt diese Methode für alle Objekte der Gruppe aus.</li>
 </ul>
@@ -209,6 +213,9 @@ Führt diese Methode für alle Objekte der Gruppe aus.</li>
 <li>#0000AA: dunkleres Blau</li>
 <li>#000066: noch dunkleres Blau</li>
 </ul>
+<h3 id="deckkraft">Deckkraft</h3>
+<p>Die Deckkraft (engl. opacity) der Objekte kann zum einen über einen Schieberegler eingestellt werden. Durch eine niedrigere Deckkraft kann das Koordinatensystem auch hinter gefüllten Objekten sichtbar gemacht werden.<br>
+Mit der Methode <strong>deckkraftSetzen(), setDeckkraft(), setOpac(), setOpacity()</strong> kann die individuelle Deckkraft eines Objektes angepasst werden. Hierdurch sind interessante Farbmischungen möglich.</p>
 <h3 id="wiederholungen">Wiederholungen</h3>
 <p>Graphix kann einfache Wiederholschleifen umsetzen.<br>
 Eine Schleife beginnt mit dem Schlüsselwort <strong>wdh</strong> und der Zahl der gewünschten Wiederholungen. Alternativ kann auch <strong>wiederhole</strong> oder <strong>repeat</strong> verwendet werden.<br>

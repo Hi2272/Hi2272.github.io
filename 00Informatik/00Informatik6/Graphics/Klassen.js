@@ -6,6 +6,59 @@ function cardFormat(k, s) {
     k.style.backgroundColor = "white";
 }
 
+function runde(s){
+        let num = parseFloat(s);
+        
+        if (isNaN(num)) {
+          return atl(s);
+        } else {
+          num=num.toFixed(0);  
+          return num.toString();
+        }
+      }    
+
+function atl(s) {
+    dict = {
+        "stroke":"linienfarbe",
+        "strokewidth":"linienstärke",
+        "opacity":"deckkraft",
+        "fill":"füllfarbe",
+        "width":"breite",
+        "height":"höhe",
+        "circle":"kreis",
+        "rect":"Rechteck",
+        "rectangle":"Rechteck",
+        "triangle":"Dreieck",
+        "line":"Linie",
+         "blue": "blau",
+        "green": "grün",
+        "yellow":  "gelb",
+        "red": "rot",
+        "white": "weiß",
+        "black": "schwarz",
+        "lightblue": "hellblau",
+        "lightgreen": "hellgrün",
+        "violet": "violett",
+        "lightyellow":"hellgelb",
+        "brown":"braun",
+        "silver": "silber",
+        "darkblue":"dunkelblau",
+        "olive": "olivgrün",
+        "grey": "grau",
+        "lightgrey":"hellgrau",
+        
+    };
+    s=s.toLowerCase();
+    let tl=document.getElementById("translate").checked;
+
+    if (s in dict && tl) {
+        return dict[s];
+    } else {
+        return s;
+    }
+}
+
+
 class Shape {
     constructor(nam, klasse) {
         this.nam = nam;
@@ -14,6 +67,8 @@ class Shape {
         this.y = 50;
         this.stroke = 'black';
         this.strokeWidth = 1;
+        this.opacity=100;
+    
     }
 
     setFill(fill) { }
@@ -24,14 +79,14 @@ class Shape {
 
     draw() {
         document.getElementById('svg').appendChild(this.svg());
-        console.log(document.getElementById("svg").innerHTML);
+  //      console.log(document.getElementById("svg").innerHTML);
     }
 
     drawCard() {
         var attribute = Object.entries(this);
-        var s = attribute[0][1] + ": " + attribute[1][1] + "<hr>";  // Name:Klasse
+        var s = attribute[0][1] + ": " + atl(attribute[1][1]).toUpperCase() + "<hr>";  // Name:Klasse
         for (i = 2; i < attribute.length; i++) {
-            s = s + attribute[i][0] + ": " + attribute[i][1] + "<br>";
+            s = s + atl(attribute[i][0]) + ": " + runde(attribute[i][1]) + "<br>";
         }
         let k = document.getElementById("Karte");
         cardFormat(k, s);
@@ -45,20 +100,23 @@ class Shape {
         this.strokeWidth = width;
     }
 
+    setOpac(opacity){
+        this.opacity=opacity;
+    }
     moveX(dx) {
-        this.x = parseInt(this.x) + parseInt(dx);
+        this.x = parseFloat(this.x) + parseFloat(dx);
     }
 
     moveY(dy) {
-        this.y = parseInt(this.y) + parseInt(dy);
+        this.y = parseFloat(this.y) + parseFloat(dy);
     }
     moveTo(xy) {
         let d = xy.split(",");
         if (d.length != 2) {
             error(-1, "Fehler bei moveTo(x,y). Hier sind zwei Parameter-Werte nötig!");
         } else {
-            this.x = parseInt(d[0]);
-            this.y = parseInt(d[1]);
+            this.x = parseFloat(d[0]);
+            this.y = parseFloat(d[1]);
         }
  }
 copyPaste(oNeu,oAlt,dx,dy){
@@ -104,7 +162,7 @@ class Circle extends ClosedShape {
         s.setAttribute('r', this.radius.toString());
         s.setAttribute('cx', this.x.toString());
         s.setAttribute('cy', this.y.toString());
-        s.setAttribute('opacity', (document.getElementById("opacity").value / 100).toString());
+        s.setAttribute('opacity', ((this.opacity/100)*(document.getElementById("opacity").value / 100)).toString());
 
         return s;
     }
@@ -124,6 +182,9 @@ class Circle extends ClosedShape {
         return o;
     }
 
+    scale(f){
+        this.radius=this.radius*f/100;
+    }
 }
 
 
@@ -147,15 +208,15 @@ class Rect extends ClosedShape {
         s.setAttribute('height', this.height.toString());
         s.setAttribute('x', this.x.toString());
         s.setAttribute('y', this.y.toString());
-        s.setAttribute('opacity', (document.getElementById("opacity").value / 100).toString());
+        s.setAttribute('opacity', ((this.opacity/100)*(document.getElementById("opacity").value / 100)).toString());
 
         return s;
     }
     setWidth(w) {
-        this.width = parseInt(w);
+        this.width = parseFloat(w);
     }
     setHeight(h) {
-        this.height = parseInt(h);
+        this.height = parseFloat(h);
     }
 
     setPoints(xyxy) {
@@ -163,13 +224,13 @@ class Rect extends ClosedShape {
         if (d.length != 4) {
             error(-1, "Fehler bei setpoint(x,y,x1,y1). Ein Rechteck braucht vier Parameter-Werte!");
         } else {
-            if (parseInt(d[0]) > parseInt(d[2])) { let z = d[0]; d[0] = d[2]; d[2] = z; }
-            if (parseInt(d[1]) > parseInt(d[3])) { let z = d[1]; d[1] = d[3]; d[3] = z; }
+            if (parseFloat(d[0]) > parseFloat(d[2])) { let z = d[0]; d[0] = d[2]; d[2] = z; }
+            if (parseFloat(d[1]) > parseFloat(d[3])) { let z = d[1]; d[1] = d[3]; d[3] = z; }
 
-            this.x = parseInt(d[0]);
-            this.y = parseInt(d[1]);
-            this.width = parseInt(d[2]) - parseInt(d[0]);
-            this.height = parseInt(d[3]) - parseInt(d[1]);
+            this.x = parseFloat(d[0]);
+            this.y = parseFloat(d[1]);
+            this.width = parseFloat(d[2]) - parseFloat(d[0]);
+            this.height = parseFloat(d[3]) - parseFloat(d[1]);
 
         }
     }
@@ -181,6 +242,11 @@ class Rect extends ClosedShape {
         return o;
     }
 
+    
+    scale(f){
+        this.width=this.width*f/100;
+        this.height=this.height*f/100;
+    }
 
 }
 
@@ -203,7 +269,7 @@ class Line extends Shape {
         s.setAttribute('y1', this.y.toString());
         s.setAttribute('x2', (this.x+this.dx).toString());
         s.setAttribute('y2', (this.y+this.dy).toString());
-        s.setAttribute('opacity', (document.getElementById("opacity").value / 100).toString());
+        s.setAttribute('opacity', ((this.opacity/100)*(document.getElementById("opacity").value / 100)).toString());
 
         return s;
     }
@@ -213,24 +279,24 @@ class Line extends Shape {
         if (d.length != 4) {
             error(-1, "Fehler bei setpoint(x,y,x1,y1). Eine Linie braucht vier Parameter-Werte!");
         } else {
-            this.x = parseInt(d[0]);
-            this.y = parseInt(d[1]);
-            this.dx = parseInt(d[2])-this.x;
-            this.dy = parseInt(d[3])-this.y;
+            this.x = parseFloat(d[0]);
+            this.y = parseFloat(d[1]);
+            this.dx = parseFloat(d[2])-this.x;
+            this.dy = parseFloat(d[3])-this.y;
         }
     }
 
     moveTo(xy) {
         let d = xy.split(",");
-        this.x = parseInt(d[0]);
-        this.y = parseInt(d[1]);
+        this.x = parseFloat(d[0]);
+        this.y = parseFloat(d[1]);
     }
   
     moveX(dx) {
-        this.x = parseInt(this.x) + parseInt(dx);
+        this.x = parseFloat(this.x) + parseFloat(dx);
     }
     moveY(dy) {
-        this.y = parseInt(this.y) + parseInt(dy);
+        this.y = parseFloat(this.y) + parseFloat(dy);
     }
 
     copyPaste(nam,dx,dy){
@@ -242,6 +308,11 @@ class Line extends Shape {
         return o;
     }
 
+    
+    scale(f){
+        this.dx=this.dx*f/100;
+        this.dy=this.dy*f/100;
+    }
 }
 
 class Triangle extends ClosedShape {
@@ -260,26 +331,26 @@ class Triangle extends ClosedShape {
         if (d.length != 6) {
             error(-1, "Fehler bei setpoint(x,y,x1,y1). Ein Dreieck braucht sechs Parameter-Werte!");
         } else {
-            this.x = parseInt(d[0]);
-            this.y = parseInt(d[1]);
-            this.dx1 = parseInt(d[2])-this.x;
-            this.dy1 = parseInt(d[3])-this.y;
-            this.dx2 = parseInt(d[4])-this.x;
-            this.dy2 = parseInt(d[5])-this.y;
+            this.x = parseFloat(d[0]);
+            this.y = parseFloat(d[1]);
+            this.dx1 = parseFloat(d[2])-this.x;
+            this.dy1 = parseFloat(d[3])-this.y;
+            this.dx2 = parseFloat(d[4])-this.x;
+            this.dy2 = parseFloat(d[5])-this.y;
 
         }
     }
 
     moveTo(xy) {
         let d = xy.split(",");
-        this.x = parseInt(d[0]);
-        this.y = parseInt(d[1]);
+        this.x = parseFloat(d[0]);
+        this.y = parseFloat(d[1]);
     }
     moveX(dx) {
-        this.x = parseInt(this.x) + parseInt(dx);
+        this.x = parseFloat(this.x) + parseFloat(dx);
     }
     moveY(dy) {
-        this.y = parseInt(this.y) + parseInt(dy);
+        this.y = parseFloat(this.y) + parseFloat(dy);
     }
 
     svg() {
@@ -293,8 +364,8 @@ class Triangle extends ClosedShape {
             + (this.x+this.dx1).toString() + "," + (this.y+this.dy1).toString() + ","
             + (this.x+this.dx2).toString() + "," + (this.y+this.dy2).toString());
 
-        s.setAttribute('opacity', (document.getElementById("opacity").value / 100).toString());
-        return s;
+            s.setAttribute('opacity', ((this.opacity/100)*(document.getElementById("opacity").value / 100)).toString());
+            return s;
     }
 
     copyPaste(nam,dx,dy){
@@ -308,7 +379,13 @@ class Triangle extends ClosedShape {
         return o;
     }
 
-
+    scale(f){
+        this.dx1=this.dx1*f/100;
+        this.dy1=this.dy1*f/100;
+        this.dx2=this.dx2*f/100;
+        this.dy2=this.dy2*f/100;
+    }
+        
 }
 
 class Group {
@@ -318,7 +395,9 @@ class Group {
         this.kinder = new Array();
     }
 
-    add(n) {
+    add(parameter) {
+        let p=parameter.split(",");
+        p.forEach(n=>{
         let o;
         for (i = 0; i < objekte.length; i++) {
             if (objekte[i].nam.toUpperCase() == n.toUpperCase()) {
@@ -334,6 +413,7 @@ class Group {
                 error(-1, "Die Gruppe " + this.nam + " enthält schon ein Objekt mit dem Namen " + n + ".");
             }
         }
+    });
     }
 
     draw() {
@@ -397,10 +477,29 @@ class Group {
         });
     }
 
+    scale(f) {
+        this.kinder.forEach(element => {
+            element.scale(f);
+        });
+        
+        // Positionen skalieren
+
+        let x0=this.kinder[0].x;
+        let y0=this.kinder[0].y;
+        for (i=1;i<this.kinder.length;i++){
+            let dx=this.kinder[i].x-x0;
+            let dy=this.kinder[i].y-y0;
+            dx=dx*f/100;
+            dy=dy*f/100;
+            this.kinder[i].x=x0+dx;
+            this.kinder[i].y=y0+dy;
+         }
+    }
+
     drawCard() {
         var s = this.nam + ": " + this.klasse.toUpperCase() + "<hr>";  // Name:Klasse
         for (i = 0; i < this.kinder.length; i++) {
-            s = s + this.kinder[i].nam + ":" + this.kinder[i].klasse.toUpperCase() + "<br>";
+            s = s + this.kinder[i].nam + ":" + atl(this.kinder[i].klasse).toUpperCase() + "<br>";
         }
         let k = document.getElementById("Karte");
         cardFormat(k, s);

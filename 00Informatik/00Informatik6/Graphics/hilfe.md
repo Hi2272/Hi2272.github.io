@@ -12,6 +12,7 @@
 [Kreis](#kreis-circle)| 
 [Gruppe](#gruppe-group)| 
 [Farben](#farben)| 
+[Deckkraft](#deckkraft)| 
 [Wiederholungen](#wiederholungen)| 
 [Kopieren](#kopieren-von-objekten-oder-gruppen)
 ## 1. Erzeugen neuer Objekte
@@ -115,7 +116,12 @@ Für alle Objekte der Gruppe können anschließend gemeinsame Methoden aufgerufe
 Die Attribute sind die Objekte, die in die Gruppe aufgenommen wurden.
 #### Methoden
 - **add(Objektname), schlucke(Objektname), fügezu(Objektname), hinzufügen(Objektname)**  
-  Fügt das entsprechende Objekt der Gruppe hinzu.
+  Fügt das entsprechende Objekt der Gruppe hinzu.  
+  Es können auch mehere Objekte gleichzeitig hinzugefügt werden. Die Objektnamen müssen dann als Parameterliste durch Kommas getrennt werden:  
+  ``` Javascript
+  g.add(re,c,d)
+  ```
+  Fügt die Objekte **re, c** und **d** zur Gruppe **g** hinzu.  
 - **beliebige Methode**  
   Führt diese Methode für alle Objekte der Gruppe aus.
                     
@@ -154,6 +160,10 @@ Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen v
 - #0000FF: Blau
 - #0000AA: dunkleres Blau
 - #000066: noch dunkleres Blau
+
+### Deckkraft
+Die Deckkraft (engl. opacity) der Objekte kann zum einen über einen Schieberegler eingestellt werden. Durch eine niedrigere Deckkraft kann das Koordinatensystem auch hinter gefüllten Objekten sichtbar gemacht werden.  
+Mit der Methode **deckkraftSetzen(), setDeckkraft(), setOpac(), setOpacity()** kann die individuelle Deckkraft eines Objektes angepasst werden. Hierdurch sind interessante Farbmischungen möglich.  
 
 ### Wiederholungen
 Graphix kann einfache Wiederholschleifen umsetzen.  

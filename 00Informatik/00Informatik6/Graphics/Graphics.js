@@ -68,8 +68,8 @@ function neu(o) {
     objekte.push(o);
     objekte.forEach(element => {
         opt = document.createElement("option");
-        opt.text = element.nam + ":" + element.klasse;
-        opt.value = element.nam + ":" + element.klasse
+        opt.text = element.nam + ":" + atl(element.klasse).toUpperCase();
+        opt.value = element.nam + ":" + atl(element.klasse).toUpperCase();
         listbox.options.add(opt);
     });
 }
@@ -186,6 +186,11 @@ function convertLinie(linie, nr) {
                     let o = objekte[objektNr];
                     console.log(o);
                     switch (methode[0].toLowerCase()) {
+                        case "setopacity":
+                        case "setdeckkraft":
+                        case "deckkraftsetzen":
+                        case "setopac": o.setOpac(parameter);break;
+
                         case "verschiebex":
                         case "movex": o.moveX(parameter); break;
 
@@ -263,9 +268,16 @@ function convertLinie(linie, nr) {
                         case "Linienbreitesetzen":
                             o.setStrokeWidth(parameter);
                             break;
-                        case "duplziere":
+                        case "skaliere":
+                        case "scale":
+                        case "strecke":
+                        case "vergrößere":
+                            o.scale(parameter);
+                            break;    
+                        
+                        case "dupliziere":
+                        case "duplicate":
                         case "copypaste":
-                        case "kopiere":
                         case "verdoppele":
                             let param = parameter.split(",");
                             if (param.length == 3) {
@@ -351,7 +363,7 @@ async function convert(steps, pause) {
                 sprung = nr;  // Rücksprung in Zeile
             } else {
                 abbruch = convertLinie(linie[nr], nr);
-                drawAll(pause);
+                drawAll();
 
                 if (pause) await sleep(document.getElementById("pause").value);
             }
@@ -365,7 +377,7 @@ async function convert(steps, pause) {
  * Zeichnet alle Objekte des Arrays Objekte
  * @param {*} pause : True, wenn zwischen den Schritten eine Verzögerung eingehalten werden soll.
  */
-async function drawAll(pause) {
+async function drawAll() {
     document.getElementById("svg").innerHTML = koordinatensystem();
     for (i = 0; i < objekte.length; i++) {
         objekte[i].draw();
