@@ -207,7 +207,6 @@ class Rect extends ClosedShape {
         s.setAttribute('fill', this.fill);
         s.setAttribute('stroke', this.stroke);
         s.setAttribute('stroke-width', this.strokeWidth);
-
         s.setAttribute('width', this.width.toString());
         s.setAttribute('height', this.height.toString());
         s.setAttribute('x', this.x.toString());
@@ -218,9 +217,18 @@ class Rect extends ClosedShape {
     }
     setWidth(w) {
         this.width = parseFloat(w);
+        if (this.width<0){
+            this.width=-1*this.width;
+            this.x=this.x-this.width;
+        }
     }
     setHeight(h) {
         this.height = parseFloat(h);
+        if (this.height<0){
+            this.height=-1*this.height;
+            this.y=this.y-this.height;
+        }
+   
     }
 
     setPoints(xyxy) {

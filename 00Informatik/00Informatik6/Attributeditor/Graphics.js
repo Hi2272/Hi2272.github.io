@@ -1,5 +1,5 @@
 var objekte = new Array();
-var anz=[0,0,0,0];
+var anz = [0, 0, 0, 0];
 
 /**
  * Zeigt 5 Sek. lang eine Fehlermeldung an
@@ -66,28 +66,40 @@ function neu(nummer) {
  */
 function selection() {
     var obj = document.getElementById("Objekte").value;
-    if (obj!=""){
-    let d = obj.split(":");
-    let nr = objektSuche(d[0]);
-    objekte[nr].drawCard();
-} else {
-    if (objekte.length>0){
-        objekte[0].drawCard();
+    if (obj != "") {
+        let d = obj.split(":");
+        let nr = objektSuche(d[0]);
+        objekte[nr].drawCard();
+    } else {
+        if (objekte.length > 0) {
+            objekte[0].drawCard();
+        }
     }
 }
-}
 
-function change(objektName,attrName,attrNr){
-   let nr = objektSuche(objektName);
-   let o=objekte[nr];
-   let wert=document.getElementById("input"+attrNr.toString()).value;
-   if (isNaN(wert)){
-    o[attrName]=translate(wert);
-   } else {
-    o[attrName]=parseInt(wert);
-   } 
+function change(objektName, attrName, attrNr) {
+    let nr = objektSuche(objektName);
+    let o = objekte[nr];
+    let wert = document.getElementById("input" + attrNr.toString()).value;
 
-   drawAll();
+
+    if (isNaN(wert)) {
+        o[attrName] = translate(wert);
+    } else {
+
+        let w = parseInt(wert);
+        if (attrName == "height") {
+            o.setHeight(w);
+            o.drawCard();
+        } else if (attrName == "width") {
+            o.setWidth(w);
+            o.drawCard();
+        } else {
+            o[attrName] = w;
+        }
+    }
+
+    drawAll();
 }
 
 

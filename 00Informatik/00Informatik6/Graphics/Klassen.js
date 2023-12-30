@@ -215,11 +215,19 @@ class Rect extends ClosedShape {
     }
     setWidth(w) {
         this.width = parseFloat(w);
+        if (this.width<0){
+            this.width=-1*this.width;
+            this.x=this.x-this.width;
+        }
     }
     setHeight(h) {
         this.height = parseFloat(h);
+        if (this.height<0){
+            this.height=-1*this.height;
+            this.y=this.y-this.height;
+        }
+   
     }
-
     setPoints(xyxy) {
         let d = xyxy.split(",");
         if (d.length != 4) {
