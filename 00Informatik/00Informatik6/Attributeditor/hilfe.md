@@ -16,6 +16,43 @@ Bei Linien und Dreiecken treten zwei besondere Attribute auf:
 - Dreieck:
   - dx1,dy1: Entfernung des 2. Eckpunktes vom 1. Eckpunkt in x und y-Richtung
   - dx2,dx2: Entfernung des 3. Eckpunktes vom 1. Eckpunkt in x und y-Richtung
+
+### Farben
+Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen verwendet werden:  
+ - blau: blue,  
+ - gruen: green,  
+ - grün: green,  
+ - gelb: yellow,  
+ - rot: red,  
+ - weiß: white,  
+ - weiss: white,  
+ - schwarz: black,  
+ - hellblau: lightblue,  
+ - hellgrün: lightgreen,  
+ - violett: violet,  
+ - lila: violet,  
+ - hellgelb: lightyellow,  
+ - hellrot: pink,  
+ - rosa: pink, 
+ - braun: brown,  
+ - silber: silver,  
+ - dunkelblau: darkblue,  
+ - olivgrün: olive,  
+ - grau: grey,  
+ - hellgrau: lightgrey  
+  
+  
+**Die Farben können auch aus den Grundfarben definiert werden:**  
+- ##RotGrünBlau  
+- #000000: Schwarz
+- #FFFFFF: Weiß
+- #AAAAAA: Grau  
+- #FF0000 : Rot
+- #00FF00: Grün
+- #0000FF: Blau
+- #0000AA: dunkleres Blau
+- #000066: noch dunkleres Blau
+
 ## Steuerelemente
 - **Deckkraft:**  
   Mit dem Schieberegler kann die Deckkraft der gesamten Zeichnung eingestellt werden.  
