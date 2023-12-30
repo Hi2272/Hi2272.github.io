@@ -67,7 +67,7 @@ function neu(o) {
     }
     objekte.push(o);
     objekte.forEach(element => {
-        opt = document.createElement("option");
+        let opt = document.createElement("option");
         opt.text = element.nam + ":" + atl(element.klasse).toUpperCase();
         opt.value = element.nam + ":" + atl(element.klasse).toUpperCase();
         listbox.options.add(opt);
@@ -93,7 +93,7 @@ function schrittweise() {
 
 
 function translate(s) {
-    dict = {
+let    dict = {
         "blau": "blue",
         "gruen": "green",
         "grün": "green",
@@ -178,7 +178,7 @@ function convertLinie(linie, nr) {
         abbruch = true;
     }
 
-    teile = linie.split(":");
+    let teile = linie.split(":");
     if (teile.length == 2) {  // Objektdeklaration
         if (objektSuche(teile[0]) != -1) {
             error(nr, "Ein Objekt mit dem Namen " + teile[0] + " gibt es schon!");

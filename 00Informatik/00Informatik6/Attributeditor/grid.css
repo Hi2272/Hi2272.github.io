@@ -1,0 +1,31 @@
+.editor { grid-area: editor; }
+.liste { grid-area: liste; }
+.svg { grid-area: svg; }
+.karte { grid-area: karte; }
+.footer { grid-area: footer;}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'editor karte svg svg svg'
+    'liste karte svg svg svg'
+    'footer footer footer footer footer';
+    grid-template-rows: 5fr 5fr 0.1fr;
+    grid-template-columns: 2fr 1fr 1fr 2fr 2fr;
+    max-width: 100%;
+    max-height: 90%;
+    background-color: #2196F3;
+
+    gap: 5px;
+    justify-content: stretch;
+    justify-items: stretch;
+    align-content: start;
+    justify-self: center;
+  padding: 15px;
+ }
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  font-size: small;
+}

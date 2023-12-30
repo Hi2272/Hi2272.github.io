@@ -23,6 +23,7 @@
 ### Grafik
 [Pixelgrafik](https://www.inf-schule.de/kids/datennetze/pixelgrafik)  
 [SVG Klassen und Attribute](00Informatik6/SVG/index.html)  
+[Attribut Editor](00Informatik6/Attributeditor/index.html)  
 [Graphix Editor](00Informatik6/Graphics/index.html) 
 ### Powerpoint
 [Powerpoint Schule](https://Hi2272.github.io/00Informatik/00Informatik6/PowerpointSchule/index.html)   
