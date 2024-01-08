@@ -125,11 +125,7 @@ function translate(s) {
         "olivgrün": "olive",
         "grau": "grey",
         "hellgrau": "lightgrey",
-        "rosa": "pink",
-        "nicht":"none",
-        "nichts":"none",
-        "keine":"none",
-        "null":"none"
+        "rosa": "pink"
     };
 
     if (s in dict) {

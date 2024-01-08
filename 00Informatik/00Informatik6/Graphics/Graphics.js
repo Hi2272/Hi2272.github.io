@@ -93,7 +93,8 @@ function schrittweise() {
 
 
 function translate(s) {
-let    dict = {
+    let dict = {
+
         "blau": "blue",
         "gruen": "green",
         "grün": "green",
@@ -114,7 +115,11 @@ let    dict = {
         "olivgrün": "olive",
         "grau": "grey",
         "hellgrau": "lightgrey",
-        "rosa": "pink"
+        "rosa": "pink",
+        "nicht": "none",
+        "nichts": "none",
+        "keine": "none",
+        "null": "none"
     };
 
     if (s in dict) {
@@ -233,8 +238,26 @@ function convertLinie(linie, nr) {
                     let o = objekte[objektNr];
                     console.log(o);
                     switch (methode[0].toLowerCase()) {
+                        case "setzex":
+                        case "setx":
+                            if (paramCheck(nr, o, methode[0], parameter, "Z")) {
+                                o.setX(parameter);
+                            } else {
+                                abbruch = true;
+                            }
+                            break;
+                        case "setzey":
+                        case "sety":
+                            if (paramCheck(nr, o, methode[0], parameter, "Z")) {
+                                o.setY(parameter);
+                            } else {
+                                abbruch = true;
+                            }
+                            break;
+
                         case "setopacity":
                         case "setdeckkraft":
+                        case "setzedeckkraft":
                         case "deckkraftsetzen":
                         case "setopac":
                             if (paramCheck(nr, o, methode[0], parameter, "Z")) {
@@ -263,6 +286,7 @@ function convertLinie(linie, nr) {
                         case "verschiebezu":
                         case "verschiebenach":
                         case "moveto":
+                        case "setxy":
                             if (paramCheck(nr, o, methode[0], parameter, "Z,Z")) {
                                 o.moveTo(parameter);
                             } else {

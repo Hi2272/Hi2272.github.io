@@ -55,6 +55,7 @@
 <a href="#farben">Farben</a>|
 <a href="#deckkraft">Deckkraft</a>|
 <a href="#wiederholungen">Wiederholungen</a>|
+<a href="#skalieren-vergr%C3%B6%C3%9Fern-und-verkleinern-von-objekten">Skalieren</a>|
 <a href="#kopieren-von-objekten-oder-gruppen">Kopieren</a></p>
 <h2 id="1-erzeugen-neuer-objekte">1. Erzeugen neuer Objekte</h2>
 <p>Vor der Verwendung müssen Objekte erzeugt werden. Dies geschieht nach folgendem Muster:</p>
@@ -213,6 +214,7 @@ Führt diese Methode für alle Objekte der Gruppe aus.</li>
 <li>#0000AA: dunkleres Blau</li>
 <li>#000066: noch dunkleres Blau</li>
 </ul>
+<p>Mit dem Parameter-Wert <strong>keine</strong> oder <strong>none</strong> kann eine Figur ohne Füllung gezeichnet werden.</p>
 <h3 id="deckkraft">Deckkraft</h3>
 <p>Die Deckkraft (engl. opacity) der Objekte kann zum einen über einen Schieberegler eingestellt werden. Durch eine niedrigere Deckkraft kann das Koordinatensystem auch hinter gefüllten Objekten sichtbar gemacht werden.<br>
 Mit der Methode <strong>deckkraftSetzen(), setDeckkraft(), setOpac(), setOpacity()</strong> kann die individuelle Deckkraft eines Objektes angepasst werden. Hierdurch sind interessante Farbmischungen möglich.</p>
@@ -240,6 +242,13 @@ Die Methode benötigt drei Parameter:</p>
 *
 </code></pre>
 <p>Erzeugt ein Objekt g1 als Kopie von g - g1 ist um 100 Punkte nach rechts verschoben.</p>
+<h3 id="skalieren-vergrößern-und-verkleinern-von-objekten">Skalieren: Vergrößern und Verkleinern von Objekten</h3>
+<p>Mit der Methode <strong>skaliere, scale, strecke, vergrößere</strong> kann ein Objekt vergrößert oder verkleinert werden.<br>
+Der Parameter gibt den Vergrößerungsfaktor in Prozent an:</p>
+<ul>
+<li>o.skaliere(110) vergrößert das Objekt o auf 110% seiner Originalgröße</li>
+<li>o.skaliere(90) verkleinert das Objekt o auf 90% seiner Orginalgröße</li>
+</ul>
 <p><a href="index.html">zurück</a></p>
 
         

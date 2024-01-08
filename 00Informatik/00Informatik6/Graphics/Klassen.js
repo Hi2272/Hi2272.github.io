@@ -46,7 +46,7 @@ function atl(s) {
         "olive": "olivgrün",
         "grey": "grau",
         "lightgrey":"hellgrau",
-        
+        "none":"keine"        
     };
     console.log(s);
     s=s.toLowerCase();
@@ -111,6 +111,14 @@ class Shape {
     moveY(dy) {
         this.y = parseFloat(this.y) + parseFloat(dy);
     }
+
+    setX(x){
+        this.x=x;
+    }
+    setY(y){
+        this.y=y;
+    }
+    
     moveTo(xy) {
         let d = xy.split(",");
         if (d.length != 2) {

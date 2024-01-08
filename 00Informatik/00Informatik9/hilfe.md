@@ -53,10 +53,6 @@ Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen v
 - #0000AA: dunkleres Blau
 - #000066: noch dunkleres Blau
 
-  
-Mit dem Parameter-Wert **keine** oder **none** kann eine Figur ohne Füllung gezeichnet werden.  
-
-
 ## Steuerelemente
 - **Deckkraft:**  
   Mit dem Schieberegler kann die Deckkraft der gesamten Zeichnung eingestellt werden.  

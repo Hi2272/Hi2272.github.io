@@ -14,7 +14,9 @@
 [Farben](#farben)| 
 [Deckkraft](#deckkraft)| 
 [Wiederholungen](#wiederholungen)| 
+[Skalieren](#skalieren-vergrößern-und-verkleinern-von-objekten)| 
 [Kopieren](#kopieren-von-objekten-oder-gruppen)
+
 ## 1. Erzeugen neuer Objekte
 Vor der Verwendung müssen Objekte erzeugt werden. Dies geschieht nach folgendem Muster:  
   
@@ -148,7 +150,7 @@ Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen v
  - olivgrün: olive,  
  - grau: grey,  
  - hellgrau: lightgrey  
-  
+ 
   
 **Die Farben können auch aus den Grundfarben definiert werden:**  
 - ##RotGrünBlau  
@@ -160,6 +162,8 @@ Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen v
 - #0000FF: Blau
 - #0000AA: dunkleres Blau
 - #000066: noch dunkleres Blau
+  
+Mit dem Parameter-Wert **keine** oder **none** kann eine Figur ohne Füllung gezeichnet werden.  
 
 ### Deckkraft
 Die Deckkraft (engl. opacity) der Objekte kann zum einen über einen Schieberegler eingestellt werden. Durch eine niedrigere Deckkraft kann das Koordinatensystem auch hinter gefüllten Objekten sichtbar gemacht werden.  
@@ -191,5 +195,11 @@ wdh 50
 ```
 Erzeugt ein Objekt g1 als Kopie von g - g1 ist um 100 Punkte nach rechts verschoben.
   
-                        
+### Skalieren: Vergrößern und Verkleinern von Objekten
+Mit der Methode **skaliere, scale, strecke, vergrößere** kann ein Objekt vergrößert oder verkleinert werden.  
+Der Parameter gibt den Vergrößerungsfaktor in Prozent an:  
+- o.skaliere(110) vergrößert das Objekt o auf 110% seiner Originalgröße
+- o.skaliere(90) verkleinert das Objekt o auf 90% seiner Orginalgröße  
+  
+                                         
 [zurück](index.html)  

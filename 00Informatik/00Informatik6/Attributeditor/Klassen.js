@@ -46,7 +46,7 @@ function atl(s) {
         "olive": "olivgrün",
         "grey": "grau",
         "lightgrey":"hellgrau",
-        
+        "none":"keine"        
     };
     console.log(s);
     s=s.toLowerCase();
