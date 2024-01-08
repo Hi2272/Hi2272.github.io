@@ -136,7 +136,7 @@ function translate(s) {
 function paramCheck(nr, o, methode, param, typ) {
     let farbe = ["blau", "blue", "gruen", "green", "grün", "green", "gelb", "yellow", "rot", "red", "weiß", "white", "weiss", "white", "schwarz", "black", "hellblau", "lightblue",
         "hellgrün", "lightgreen", "violett", "violet", "lila", "violet", "hellgelb", "lightyellow", "hellrot", "pink", "braun", "brown", "silber", "silver", "dunkelblau", "darkblue",
-        "olivgrün", "olive", "grau", "grey", "hellgrau", "lightgrey", "rosa", "pink"];
+        "olivgrün", "olive", "grau", "grey", "hellgrau", "lightgrey", "rosa", "pink","keine","none","nicht","nichts"];
 
 
     let check = true;
