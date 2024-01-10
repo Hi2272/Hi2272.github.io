@@ -351,7 +351,7 @@ function convertLinie(linie, nr) {
 
                         case "setzeradius":
                         case "setradius":
-                        case "radiusSetzen":
+                        case "radiussetzen":
                             if (o.constructor.name == "Circle" || o.constructor.name == "Group") {
                                 if (paramCheck(nr, o, methode[0], parameter, "Z")) {
                                     o.setRadius(parameter);
