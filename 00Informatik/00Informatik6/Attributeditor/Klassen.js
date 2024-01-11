@@ -48,7 +48,7 @@ function atl(s) {
         "lightgrey":"hellgrau",
         "none":"keine"        
     };
-    console.log(s);
+  //  console.log(s);
     s=s.toLowerCase();
     let tl=document.getElementById("translate").checked;
 
@@ -84,12 +84,16 @@ class Shape {
 
     drawCard() {
         var attribute = Object.entries(this);
-        var s = attribute[0][1] + ": " + atl(attribute[1][1]).toUpperCase() + "<hr>";  // Name:Klasse
+        var s1 = attribute[0][1] + ": " + atl(attribute[1][1]).toUpperCase();  // Name:Klasse
+        var s=s1+"<hr>";
+        s1=s1+"; ";
       for (let i = 2; i < attribute.length; i++) {
             s = s +"<label for=\"input"+i.toString()+"\">"+atl(attribute[i][0]) + " = </label>";
             s=s + "<input id='input"+i.toString()+"' type='text' onChange='change(\""+attribute[0][1]+"\",\""+attribute[i][0]+"\","+i.toString()+")'value="+runde(attribute[i][1])+"></input><br>";
+            s1=s1+attribute[0][1]+"."+atl(attribute[i][0])+"="+runde(attribute[i][1])+"; ";
+        
         }
-        console.log(s);
+        console.log(s1);
         document.getElementById("editor").innnerHTML=s;
         document.getElementById("Karte").innerHTML=s;
         let k = document.getElementById("Karte");
