@@ -27,7 +27,7 @@
 <body onload="drawAll()">
   <div class="grid-container">
     <div class="editor">
-      <h2>Attribut-Editor</h2>
+      <b>Attribut-Editor</b>
           <div id="editor">
           </div>
           <div id="Button">
@@ -43,8 +43,12 @@
            <br>
           Attributnamen:
           <input type="checkbox" id="translate" name="translate" checked onchange="selection()"/>
-          <label for="translate">Übersetzen</label>
-          
+          <label for="translate">übersetzen</label>
+          <br>
+          y-Achse:
+          <input type="checkbox"  id="yAchse" onchange="drawAll()">
+          <label for="yAchse">umdrehen</label>
+      
           </div>
       </div>
     <div class="svg">
@@ -62,7 +66,7 @@
       
     <div>
       <form>
-        <select name="Objekte" id="Objekte" size="10" onInput="selection()">
+        <select name="Objekte" id="Objekte" size="8" onInput="selection()">
           <option value=""></option>
         </select>
       </form>

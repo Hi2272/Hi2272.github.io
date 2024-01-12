@@ -27,9 +27,15 @@
            <br>
            Verzögerung: <input type="range" min="0" max="2000" value="0" class="slider" id="pause">
           <br>
+
+
           Attributnamen:
           <input type="checkbox" id="translate" name="translate" checked onchange="convert(-1,false)"/>
-          <label for="translate">Übersetzen</label>
+          <label for="translate">übersetzen</label>
+          <br>
+          y-Achse:
+          <input type="checkbox"  id="yAchse" onchange="drawAll()">
+          <label for="yAchse">umdrehen</label>
           
           </div>
       </div>

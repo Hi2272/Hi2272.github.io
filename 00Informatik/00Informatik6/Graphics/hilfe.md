@@ -16,7 +16,13 @@
 [Wiederholungen](#wiederholungen)| 
 [Skalieren](#skalieren-vergrößern-und-verkleinern-von-objekten)| 
 [Kopieren](#kopieren-von-objekten-oder-gruppen)
-
+## Voreinstellungen
+Im Editorfenster können folgende Einstellungen vorgenommen werden:  
+![Alt text](2024-01-11_10-02.png)  
+1. Stellt die Deckkraft des gesamten Bildes ein. Hierdurch kann das Gitternetz auch hinter gefüllten Objekten sichtbar gemacht werden.  
+2. Stellt die Verzögerung zwischen den einzelnen Programmschritten ein. Damit kann das schrittweise Abarbeiten des Programm beobachtet werden.  
+3. Die Attributnamen werden aus dem Englischen ins Deutsche übersetzt.
+4. Die y-Achse steigt von unten nach oben oder umgekehrt.
 ## 1. Erzeugen neuer Objekte
 Vor der Verwendung müssen Objekte erzeugt werden. Dies geschieht nach folgendem Muster:  
   
