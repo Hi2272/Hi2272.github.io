@@ -49,6 +49,9 @@
 [LIKE in SQL-Abfragen](https://Hi2272.github.io/00Informatik/SQL2/index.html)  
 [Wiederholung SQL mit Datenbanken im Unterricht (www.dbiu.de)](https://Hi2272.github.io/00Informatik/SQLFrageListe/index.html)  
 [Verschiedene SQL-Anfragen](https://Hi2272.github.io/00Informatik/SQL/index.html)  
+[SQL-IDE](00Informatik9/SQL-Editor/index.html)  
+
+
 ### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
 [Start](https://sql.hauptquartier.eu/start-abenteuer)
 
