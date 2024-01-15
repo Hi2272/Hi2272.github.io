@@ -1,3 +1,11 @@
+function y(y){
+    if (document.getElementById("yAchse").checked){
+        return y;
+    }   else {
+        return 200-y;
+    }
+}
+
 function cardFormat(k, s) {
     k.innerHTML = s;
     k.style.borderStyle = "solid";
@@ -170,7 +178,7 @@ class Circle extends ClosedShape {
 
         s.setAttribute('r', this.radius.toString());
         s.setAttribute('cx', this.x.toString());
-        s.setAttribute('cy', this.y.toString());
+        s.setAttribute('cy', y(this.y).toString());
         s.setAttribute('opacity', ((this.opacity/100)*(document.getElementById("opacity").value / 100)).toString());
 
         return s;
@@ -214,11 +222,19 @@ class Rect extends ClosedShape {
         s.setAttribute('stroke-width', this.strokeWidth);
 
         s.setAttribute('width', this.width.toString());
-        s.setAttribute('height', this.height.toString());
         s.setAttribute('x', this.x.toString());
-        s.setAttribute('y', this.y.toString());
         s.setAttribute('opacity', ((this.opacity/100)*(document.getElementById("opacity").value / 100)).toString());
 
+        if (document.getElementById("yAchse").checked){
+            s.setAttribute('height', this.height.toString());
+            s.setAttribute('y', this.y.toString());
+        } else {
+            let yneu=y(this.y+this.height);
+            s.setAttribute('height', this.height.toString());
+            s.setAttribute('y', yneu.toString());
+            
+        }
+        
         return s;
     }
     setWidth(w) {
@@ -283,9 +299,9 @@ class Line extends Shape {
         s.setAttribute('stroke-width', this.strokeWidth);
 
         s.setAttribute('x1', this.x.toString());
-        s.setAttribute('y1', this.y.toString());
+        s.setAttribute('y1', y(this.y).toString());
         s.setAttribute('x2', (this.x+this.dx).toString());
-        s.setAttribute('y2', (this.y+this.dy).toString());
+        s.setAttribute('y2', y(this.y+this.dy).toString());
         s.setAttribute('opacity', ((this.opacity/100)*(document.getElementById("opacity").value / 100)).toString());
 
         return s;
@@ -377,9 +393,9 @@ class Triangle extends ClosedShape {
         s.setAttribute('stroke', this.stroke);
         s.setAttribute('stroke-width', this.strokeWidth);
 
-        s.setAttribute('points', this.x.toString() + "," + this.y.toString() + ","
-            + (this.x+this.dx1).toString() + "," + (this.y+this.dy1).toString() + ","
-            + (this.x+this.dx2).toString() + "," + (this.y+this.dy2).toString());
+        s.setAttribute('points', this.x.toString() + "," + y(this.y).toString() + ","
+            + (this.x+this.dx1).toString() + "," + y(this.y+this.dy1).toString() + ","
+            + (this.x+this.dx2).toString() + "," + y(this.y+this.dy2).toString());
 
             s.setAttribute('opacity', ((this.opacity/100)*(document.getElementById("opacity").value / 100)).toString());
             return s;

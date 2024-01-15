@@ -537,18 +537,33 @@ function ausgabe(title, msg, dauer, type) {
  * @returns svg-String
  */
 function koordinatensystem() {
-    txt = "";
+    let txt = "";
+    if (document.getElementById("yAchse").checked){
+    
     for (let x = 0; x <= 200; x = x + 10) {
         txt = txt + "<line x1='" + x.toString() + "' y1='0' x2='" + x.toString() + "' y2='200' stroke='lightblue'/>";
-        txt = txt + "<text font-size='0.2em' x='" + x.toString() + "' y='3'>" + x.toString() + "</text>";
-
+        if (x<200){txt = txt + "<text font-size='0.2em' x='" + x.toString() + "' y='3'>" + x.toString() + "</text>";
     }
-    txt = txt + "<text font-size='0.2em' x='195' y='9'>x</text>";
+    }
+    txt = txt + "<text font-size='0.2em' x='200' y='3'>x</text>";
     for (let y = 0; y <= 200; y = y + 10) {
         txt = txt + "<line x1='0' y1='" + y.toString() + "' x2='200' y2='" + y.toString() + "' stroke='lightblue'/>";
-        txt = txt + "<text font-size='0.2em' x='-5' y='" + y.toString() + "'>" + y.toString() + "</text>";
+        if (y<200){txt = txt + "<text font-size='0.2em' x='-5' y='" + y.toString() + "'>" + y.toString() + "</text>";
+    }}
+    txt = txt + "<text font-size='0.2em' x='-5' y='198'>y</text>";
+    }  else {
+        for (let x = 0; x <= 200; x = x + 10) {
+            txt = txt + "<line x1='" + x.toString() + "' y1='0' x2='" + x.toString() + "' y2='200' stroke='lightblue'/>";
+            if (x<200){txt = txt + "<text font-size='0.2em' x='" + x.toString() + "' y='199'>" + x.toString() + "</text>";
+        }
+        }
+        txt = txt + "<text font-size='0.2em' x='200' y='199'>x</text>";
+        for (let y = 0; y <= 200; y = y + 10) {
+            txt = txt + "<line x1='0' y1='" + y.toString() + "' x2='200' y2='" + y.toString() + "' stroke='lightblue'/>";
+            if (y<200){    txt = txt + "<text font-size='0.2em' x='-5' y='" + y.toString() + "'>" + (200-y).toString() + "</text>";
+        }}
+        txt = txt + "<text font-size='0.2em' x='-5' y='3'>y</text>";
+            
     }
-    txt = txt + "<text font-size='0.2em' x='1' y='198'>y</text>";
-
     return txt;
 }
