@@ -3,11 +3,24 @@
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
 
 # Attribut-Editor  
+## Allgemeine Bedienung
+### Grundeinstellungen
+![Alt text](2024-01-16_07-19.png)  
+1. Stellt die Deckkraft des gesamten Bildes ein. Hierdurch kann das Gitternetz auch hinter gefüllten Objekten sichtbar gemacht werden.  
+2. Die Attributnamen werden aus dem Englischen ins Deutsche übersetzt.
+3. Die y-Achse steigt von unten nach oben oder umgekehrt.
+### Die Objektliste
+![Alt text](2024-01-16_07-24.png)  
+In dieser Liste werden alle Objekte angezeigt, aus denen das Bild aufgebaut ist.  
+Durch Anklicken eines Objekts wird seine Objektkarte dargestellt.  
+
 ## Erzeugen neuer Objekte
 Neue Objekte werden durch einen Klick auf die enstprechende Schaltfläche erzeugt.  
 Sie erhalten automatisch einen neuen Objektnamen.
 ## Ändern der Werte der Attribute
-In der Objektkarte werden die Attribute und ihre Werte angezeigt.  
+In der Objektkarte werden die Attribute und ihre Werte angezeigt:  
+![Alt text](2024-01-16_07-24_1.png)  
+
 Diese Werte können geändert werden. Sobald das entsprechende Eingabefeld verlassen wird, wird das Objekt mit den neuen Attributwerten neu gezeichnet.  
 Bei Linien und Dreiecken treten zwei besondere Attribute auf:
 - Linie:
@@ -55,17 +68,9 @@ Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen v
 
   
 Mit dem Parameter-Wert **keine** oder **none** kann eine Figur ohne Füllung gezeichnet werden.  
-
-
-## Steuerelemente
-- **Deckkraft:**  
-  Mit dem Schieberegler kann die Deckkraft der gesamten Zeichnung eingestellt werden.  
-  Dadurch kann das Gitternetz auch hinter gefüllten Objekten sichtbar gemacht werden.  
-  Für jedes Objekt kann der Wert des Attributs Deckkraft (engl. opacity) aber auch einzeln gesetzt werden.  
-- **Attributnamen übersetzen:**  
-  Die Attributnamen der Objekte sind eigentlich englisch. Sie können aber ins Deutsche übersetzt werden.  
-   
-     
-
-
+## Löschen von Objekten
+Objekte können nicht einzeln gelöscht werden. Sie können aber unsichtbar gemacht werden, wenn der Wert des Attribut **Deckkraft** auf **0** gesetzt wird.  
+Um die gesamte Zeichnung zu löschen, muss die Internetseite aktualisiert werden (Taste F5).  
+  
+  
 [zurück](index.html)  
