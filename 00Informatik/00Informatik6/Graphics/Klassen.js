@@ -465,9 +465,17 @@ class Group {
     }
 
     moveTo(xy) {
-        this.kinder.forEach(element => {
-            element.moveTo(xy);
-        });
+        let x0=this.kinder[0].x;
+        let y0=this.kinder[0].y;
+        this.kinder[0].moveTo(xy);
+    
+        let dx=this.kinder[0].x-x0;
+        let dy=this.kinder[0].y-y0;
+    
+        for (let i=1;i<this.kinder.length;i++){
+            this.kinder[i].x=this.kinder[i].x+dx;
+            this.kinder[i].y=this.kinder[i].y+dy;
+         }
     }
 
     moveX(dx) {
