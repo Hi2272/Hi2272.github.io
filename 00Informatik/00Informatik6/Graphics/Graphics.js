@@ -136,7 +136,7 @@ function translate(s) {
 function paramCheck(nr, o, methode, param, typ) {
     let farbe = ["blau", "blue", "gruen", "green", "grün", "green", "gelb", "yellow", "rot", "red", "weiß", "white", "weiss", "white", "schwarz", "black", "hellblau", "lightblue",
         "hellgrün", "lightgreen", "violett", "violet", "lila", "violet", "hellgelb", "lightyellow", "hellrot", "pink", "braun", "brown", "silber", "silver", "dunkelblau", "darkblue",
-        "olivgrün", "olive", "grau", "grey", "hellgrau", "lightgrey", "rosa", "pink","keine","none","nicht","nichts"];
+        "olivgrün", "olive", "grau", "grey", "hellgrau", "lightgrey", "rosa", "pink", "keine", "none", "nicht", "nichts"];
 
 
     let check = true;
@@ -380,7 +380,10 @@ function convertLinie(linie, nr) {
                         case "setzelinienbreite":
                         case "setlinienbreite":
                         case "setstrokewidth":
-                        case "Linienbreitesetzen":
+                        case "linienstärkesetzen":
+                        case "setlinienstärke":
+                        case "setzelinienstärke":
+                        case "linienbreitesetzen":
                             if (paramCheck(nr, o, methode[0], parameter, "Z")) {
                                 o.setStrokeWidth(parameter);
                             } else {
@@ -538,32 +541,38 @@ function ausgabe(title, msg, dauer, type) {
  */
 function koordinatensystem() {
     let txt = "";
-    if (document.getElementById("yAchse").checked){
-    
-    for (let x = 0; x <= 200; x = x + 10) {
-        txt = txt + "<line x1='" + x.toString() + "' y1='0' x2='" + x.toString() + "' y2='200' stroke='lightblue'/>";
-        if (x<200){txt = txt + "<text font-size='0.2em' x='" + x.toString() + "' y='3'>" + x.toString() + "</text>";
-    }
-    }
-    txt = txt + "<text font-size='0.2em' x='200' y='3'>x</text>";
-    for (let y = 0; y <= 200; y = y + 10) {
-        txt = txt + "<line x1='0' y1='" + y.toString() + "' x2='200' y2='" + y.toString() + "' stroke='lightblue'/>";
-        if (y<200){txt = txt + "<text font-size='0.2em' x='-5' y='" + y.toString() + "'>" + y.toString() + "</text>";
-    }}
-    txt = txt + "<text font-size='0.2em' x='-5' y='198'>y</text>";
-    }  else {
+    if (document.getElementById("yAchse").checked) {
+
         for (let x = 0; x <= 200; x = x + 10) {
             txt = txt + "<line x1='" + x.toString() + "' y1='0' x2='" + x.toString() + "' y2='200' stroke='lightblue'/>";
-            if (x<200){txt = txt + "<text font-size='0.2em' x='" + x.toString() + "' y='199'>" + x.toString() + "</text>";
+            if (x < 200) {
+                txt = txt + "<text font-size='0.2em' x='" + x.toString() + "' y='3'>" + x.toString() + "</text>";
+            }
         }
+        txt = txt + "<text font-size='0.2em' x='200' y='3'>x</text>";
+        for (let y = 0; y <= 200; y = y + 10) {
+            txt = txt + "<line x1='0' y1='" + y.toString() + "' x2='200' y2='" + y.toString() + "' stroke='lightblue'/>";
+            if (y < 200) {
+                txt = txt + "<text font-size='0.2em' x='-5' y='" + y.toString() + "'>" + y.toString() + "</text>";
+            }
+        }
+        txt = txt + "<text font-size='0.2em' x='-5' y='198'>y</text>";
+    } else {
+        for (let x = 0; x <= 200; x = x + 10) {
+            txt = txt + "<line x1='" + x.toString() + "' y1='0' x2='" + x.toString() + "' y2='200' stroke='lightblue'/>";
+            if (x < 200) {
+                txt = txt + "<text font-size='0.2em' x='" + x.toString() + "' y='199'>" + x.toString() + "</text>";
+            }
         }
         txt = txt + "<text font-size='0.2em' x='200' y='199'>x</text>";
         for (let y = 0; y <= 200; y = y + 10) {
             txt = txt + "<line x1='0' y1='" + y.toString() + "' x2='200' y2='" + y.toString() + "' stroke='lightblue'/>";
-            if (y<200){    txt = txt + "<text font-size='0.2em' x='-5' y='" + y.toString() + "'>" + (200-y).toString() + "</text>";
-        }}
+            if (y < 200) {
+                txt = txt + "<text font-size='0.2em' x='-5' y='" + y.toString() + "'>" + (200 - y).toString() + "</text>";
+            }
+        }
         txt = txt + "<text font-size='0.2em' x='-5' y='3'>y</text>";
-            
+
     }
     return txt;
 }
