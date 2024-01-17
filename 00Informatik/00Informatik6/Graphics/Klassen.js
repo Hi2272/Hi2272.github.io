@@ -426,6 +426,8 @@ class Group {
         this.nam = nam;
         this.klasse = klasse;
         this.kinder = new Array();
+        this.x=0;
+        this.y=0;
     }
 
     add(parameter) {
@@ -440,6 +442,7 @@ class Group {
         if (typeof o == "undefined") {
             error(-1, "Das Objekt " + n + " kenne ich nicht. Ich kann es nicht zur Gruppe " + this.nam + " hinzufügen.");
         } else {
+
             if (!this.kinder.includes(o)) {
                 this.kinder.push(o);
             } else {
@@ -447,6 +450,8 @@ class Group {
             }
         }
     });
+    this.x=this.kinder[0].x;
+    this.y=this.kinder[0].y;
     }
 
     draw() {
@@ -464,7 +469,13 @@ class Group {
         });
     }
 
+    setX(x){
+     }
+     setY(y){
+    }
+
     moveTo(xy) {
+    /*
         let x0=this.kinder[0].x;
         let y0=this.kinder[0].y;
         this.kinder[0].moveTo(xy);
@@ -473,10 +484,11 @@ class Group {
         let dy=this.kinder[0].y-y0;
     
         for (let i=1;i<this.kinder.length;i++){
-            this.kinder[i].x=this.kinder[i].x+dx;
-            this.kinder[i].y=this.kinder[i].y+dy;
-         }
-    }
+            let ziel=(this.kinder[i].x+dx).toString()+","+(this.kinder[i].y+dy).toString();
+            this.kinder[i].moveTo(ziel);
+
+}
+*/ }
 
     moveX(dx) {
         this.kinder.forEach(element => {
@@ -548,6 +560,8 @@ class Group {
 
     copyPaste(nam,dx,dy){
         let o=new Group(nam,"Group");
+        o.x=this.x;
+        o.y=this.y;
         this.kinder.forEach(element => {
             o.kinder.push(element.copyPaste(nam+element.nam,dx,dy));
         });

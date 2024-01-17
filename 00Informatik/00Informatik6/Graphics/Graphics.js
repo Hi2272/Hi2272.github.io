@@ -241,18 +241,30 @@ function convertLinie(linie, nr) {
                         switch (methode[0].toLowerCase()) {
                             case "setzex":
                             case "setx":
-                                if (paramCheck(nr, o, methode[0], parameter, "Z")) {
-                                    o.setX(parameter);
+                                if (o.constructor.name == "Group") {
+                                    error(nr, "Die Methode " + methode[0] + " funktioniert bei Gruppen nicht! Verwende statt dessen verschiebeX(dx) oder moveX(dx)");
+                                    abbruch = true
                                 } else {
-                                    abbruch = true;
+                                    if (paramCheck(nr, o, methode[0], parameter, "Z")) {
+                                        o.setX(parameter);
+                                    } else {
+                                        abbruch = true;
+                                    }
                                 }
                                 break;
+
                             case "setzey":
                             case "sety":
-                                if (paramCheck(nr, o, methode[0], parameter, "Z")) {
-                                    o.setY(parameter);
+                                if (o.constructor.name == "Group") {
+                                    error(nr, "Die Methode " + methode[0] + " funktioniert bei Gruppen nicht! Verwende statt dessen verschiebeY(dy) oder moveY(dy)");
+                                    abbruch = true
                                 } else {
-                                    abbruch = true;
+
+                                    if (paramCheck(nr, o, methode[0], parameter, "Z")) {
+                                        o.setY(parameter);
+                                    } else {
+                                        abbruch = true;
+                                    }
                                 }
                                 break;
 
@@ -267,6 +279,7 @@ function convertLinie(linie, nr) {
                                     abbruch = true;
                                 }
                                 break;
+
                             case "verschiebex":
                             case "movex":
                                 if (paramCheck(nr, o, methode[0], parameter, "Z")) {
@@ -275,6 +288,7 @@ function convertLinie(linie, nr) {
                                     abbruch = true;
                                 }
                                 break;
+
                             case "verschiebey":
                             case "movey":
                                 if (paramCheck(nr, o, methode[0], parameter, "Z")) {
@@ -288,12 +302,19 @@ function convertLinie(linie, nr) {
                             case "verschiebenach":
                             case "moveto":
                             case "setxy":
-                                if (paramCheck(nr, o, methode[0], parameter, "Z,Z")) {
-                                    o.moveTo(parameter);
+                                if (o.constructor.name == "Group") {
+                                    error(nr, "Die Methode " + methode[0] + " funktioniert bei Gruppen nicht! Verwende statt dessen Methoden zum Verschieben in x und y Richtung");
+                                    abbruch = true
                                 } else {
-                                    abbruch = true;
+
+                                    if (paramCheck(nr, o, methode[0], parameter, "Z,Z")) {
+                                        o.moveTo(parameter);
+                                    } else {
+                                        abbruch = true;
+                                    }
                                 }
                                 break;
+
                             case "setzefüllfarbe":
                             case "füllfarbesetzen":
                             case "setzefarbe":

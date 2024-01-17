@@ -131,7 +131,8 @@ Die Attribute sind die Objekte, die in die Gruppe aufgenommen wurden.
   ```
   Fügt die Objekte **re, c** und **d** zur Gruppe **g** hinzu.  
 - **beliebige Methode**  
-  Führt diese Methode für alle Objekte der Gruppe aus.
+  Führt diese Methode für alle Objekte der Gruppe aus.  
+  Die Methoden zum setX(x), setY(y) und setXY(x,y) funktionieren bei Gruppen nicht. Statt dessen können die Methoden moveX(dx) und moveY(dy) verwendet werden.  
                     
 ### Farben
 Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen verwendet werden:  
