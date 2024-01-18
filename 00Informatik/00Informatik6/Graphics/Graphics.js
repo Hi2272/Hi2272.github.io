@@ -109,6 +109,7 @@ function translate(s) {
         "lila": "violet",
         "hellgelb": "lightyellow",
         "hellrot": "pink",
+        "dunkelrot": "darkred",
         "braun": "brown",
         "silber": "silver",
         "dunkelblau": "darkblue",
@@ -136,7 +137,7 @@ function translate(s) {
 function paramCheck(nr, o, methode, param, typ) {
     let farbe = ["blau", "blue", "gruen", "green", "grün", "green", "gelb", "yellow", "rot", "red", "weiß", "white", "weiss", "white", "schwarz", "black", "hellblau", "lightblue",
         "hellgrün", "lightgreen", "violett", "violet", "lila", "violet", "hellgelb", "lightyellow", "hellrot", "pink", "braun", "brown", "silber", "silver", "dunkelblau", "darkblue",
-        "olivgrün", "olive", "grau", "grey", "hellgrau", "lightgrey", "rosa", "pink", "keine", "none", "nicht", "nichts"];
+        "dunkelrot","olivgrün", "olive", "grau", "grey", "hellgrau", "lightgrey", "rosa", "pink", "keine", "none", "nicht", "nichts"];
 
 
     let check = true;
@@ -158,7 +159,7 @@ function paramCheck(nr, o, methode, param, typ) {
                 case "F": // Farbe als Parameter
 
                     if (!farbe.includes(p[i].toLowerCase()) && !p[i].startsWith("#")) {
-                        error(nr, "Die Methode " + methode + " des Objekts " + o.nam + " benötigt eine Farbe als Parameter. Du hast " + p[i] + " eingegeben.");
+                        error(nr, "Die Methode " + methode + " des Objekts " + o.nam + " benötigt eine Farbe als Parameter. Die Farbe " + p[i] + " kenne ich nicht.");
                         check = false;
                     }
                     break;
@@ -241,31 +242,20 @@ function convertLinie(linie, nr) {
                         switch (methode[0].toLowerCase()) {
                             case "setzex":
                             case "setx":
-                                if (o.constructor.name == "Group") {
-                                    error(nr, "Die Methode " + methode[0] + " funktioniert bei Gruppen nicht! Verwende statt dessen verschiebeX(dx) oder moveX(dx)");
-                                    abbruch = true
-                                } else {
                                     if (paramCheck(nr, o, methode[0], parameter, "Z")) {
                                         o.setX(parameter);
                                     } else {
                                         abbruch = true;
                                     }
-                                }
                                 break;
 
                             case "setzey":
                             case "sety":
-                                if (o.constructor.name == "Group") {
-                                    error(nr, "Die Methode " + methode[0] + " funktioniert bei Gruppen nicht! Verwende statt dessen verschiebeY(dy) oder moveY(dy)");
-                                    abbruch = true
-                                } else {
-
                                     if (paramCheck(nr, o, methode[0], parameter, "Z")) {
                                         o.setY(parameter);
                                     } else {
                                         abbruch = true;
                                     }
-                                }
                                 break;
 
                             case "setopacity":
@@ -302,17 +292,11 @@ function convertLinie(linie, nr) {
                             case "verschiebenach":
                             case "moveto":
                             case "setxy":
-                                if (o.constructor.name == "Group") {
-                                    error(nr, "Die Methode " + methode[0] + " funktioniert bei Gruppen nicht! Verwende statt dessen Methoden zum Verschieben in x und y Richtung");
-                                    abbruch = true
-                                } else {
-
                                     if (paramCheck(nr, o, methode[0], parameter, "Z,Z")) {
                                         o.moveTo(parameter);
                                     } else {
                                         abbruch = true;
                                     }
-                                }
                                 break;
 
                             case "setzefüllfarbe":
@@ -322,6 +306,7 @@ function convertLinie(linie, nr) {
                             case "setfarbe":
                             case "setcolor":
                             case "setfill":
+                            case "farbesetzen":
                                 if (paramCheck(nr, o, methode[0], parameter, "F")) {
                                     o.setFill(translate(parameter));
                                 } else {
@@ -399,6 +384,7 @@ function convertLinie(linie, nr) {
                             case "setzemittelpunkt":
                                 o.setPoints(parameter);
                                 break;
+
                             case "setzelinienbreite":
                             case "setlinienbreite":
                             case "setstrokewidth":
@@ -434,23 +420,7 @@ function convertLinie(linie, nr) {
                                     abbruch = true;
                                 }
                                 break;
-/*    
-                      
-                        let param = parameter.split(",");
-                            if (param.length == 3) {
-                                if (objektSuche(param[0].toLowerCase()) != -1) {
-                                    error(nr, "Ein Objekt mit dem Namen " + param[0] + " gibt es schon!");
-                                    abbruch = true;
-                                } else {
-                                    neu(o.copyPaste(param[0], parseInt(param[1]), parseInt(param[2])));
-                                }
-                            } else {
-                                error(nr, "Zum Duplizieren eines Objekts benötigst du drei Parameter: Neuer Name, x-Verschiebung, y-Verschiebung");
-                                abbruch = true;
-
-                            }
-                            break;
-  */                      case "schlucke":
+                            case "schlucke":
                             case "fügezu":
                             case "add":
                             case "fuegezu":

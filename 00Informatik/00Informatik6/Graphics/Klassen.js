@@ -1,8 +1,8 @@
-function y(y){
-    if (document.getElementById("yAchse").checked){
+function y(y) {
+    if (document.getElementById("yAchse").checked) {
         return y;
-    }   else {
-        return 200-y;
+    } else {
+        return 200 - y;
     }
 }
 
@@ -14,51 +14,51 @@ function cardFormat(k, s) {
     k.style.backgroundColor = "white";
 }
 
-function runde(s){
-        let num = parseFloat(s);
-        
-        if (isNaN(num)) {
-          return atl(s);
-        } else {
-          num=num.toFixed(0);  
-          return num.toString();
-        }
-      }    
+function runde(s) {
+    let num = parseFloat(s);
+
+    if (isNaN(num)) {
+        return atl(s);
+    } else {
+        num = num.toFixed(0);
+        return num.toString();
+    }
+}
 
 function atl(s) {
     dict = {
-        "stroke":"linienfarbe",
-        "strokewidth":"linienstärke",
-        "opacity":"deckkraft",
-        "fill":"füllfarbe",
-        "width":"breite",
-        "height":"höhe",
-        "circle":"kreis",
-        "rect":"Rechteck",
-        "rectangle":"Rechteck",
-        "triangle":"Dreieck",
-        "line":"Linie",
-         "blue": "blau",
+        "stroke": "linienfarbe",
+        "strokewidth": "linienstärke",
+        "opacity": "deckkraft",
+        "fill": "füllfarbe",
+        "width": "breite",
+        "height": "höhe",
+        "circle": "kreis",
+        "rect": "Rechteck",
+        "rectangle": "Rechteck",
+        "triangle": "Dreieck",
+        "line": "Linie",
+        "blue": "blau",
         "green": "grün",
-        "yellow":  "gelb",
+        "yellow": "gelb",
         "red": "rot",
         "white": "weiß",
         "black": "schwarz",
         "lightblue": "hellblau",
         "lightgreen": "hellgrün",
         "violet": "violett",
-        "lightyellow":"hellgelb",
-        "brown":"braun",
+        "lightyellow": "hellgelb",
+        "brown": "braun",
         "silver": "silber",
-        "darkblue":"dunkelblau",
+        "darkblue": "dunkelblau",
         "olive": "olivgrün",
         "grey": "grau",
-        "lightgrey":"hellgrau",
-        "none":"keine"        
+        "lightgrey": "hellgrau",
+        "none": "keine"
     };
     console.log(s);
-    s=s.toLowerCase();
-    let tl=document.getElementById("translate").checked;
+    s = s.toLowerCase();
+    let tl = document.getElementById("translate").checked;
 
     if (s in dict && tl) {
         return dict[s];
@@ -76,8 +76,8 @@ class Shape {
         this.y = 50;
         this.stroke = 'black';
         this.strokeWidth = 1;
-        this.opacity=100;
-    
+        this.opacity = 100;
+
     }
 
     setFill(fill) { }
@@ -88,7 +88,7 @@ class Shape {
 
     draw() {
         document.getElementById('svg').appendChild(this.svg());
-  //      console.log(document.getElementById("svg").innerHTML);
+        //      console.log(document.getElementById("svg").innerHTML);
     }
 
     drawCard() {
@@ -109,8 +109,8 @@ class Shape {
         this.strokeWidth = width;
     }
 
-    setOpac(opacity){
-        this.opacity=opacity;
+    setOpac(opacity) {
+        this.opacity = opacity;
     }
     moveX(dx) {
         this.x = parseFloat(this.x) + parseFloat(dx);
@@ -120,13 +120,13 @@ class Shape {
         this.y = parseFloat(this.y) + parseFloat(dy);
     }
 
-    setX(x){
-        this.x=x;
+    setX(x) {
+        this.x = parseFloat(x);
     }
-    setY(y){
-        this.y=y;
+    setY(y) {
+        this.y = parseFloat(y);
     }
-    
+
     moveTo(xy) {
         let d = xy.split(",");
         if (d.length != 2) {
@@ -135,14 +135,14 @@ class Shape {
             this.x = parseFloat(d[0]);
             this.y = parseFloat(d[1]);
         }
- }
-copyPaste(oNeu,oAlt,dx,dy){
-    oNeu.x=oAlt.x+dx;
-    oNeu.y=oAlt.y+dy;
-    oNeu.stroke=oAlt.stroke;
-    oNeu.strokeWidth=oAlt.strokeWidth;
-    return oNeu;
-} 
+    }
+    copyPaste(oNeu, oAlt, dx, dy) {
+        oNeu.x = oAlt.x + dx;
+        oNeu.y = oAlt.y + dy;
+        oNeu.stroke = oAlt.stroke;
+        oNeu.strokeWidth = oAlt.strokeWidth;
+        return oNeu;
+    }
 }
 
 class ClosedShape extends Shape {
@@ -153,9 +153,9 @@ class ClosedShape extends Shape {
     setFill(fill) {
         this.fill = fill;
     }
-    copyPaste(oNeu,oAlt,dx,dy){
-        oNeu=super.copyPaste(oNeu,oAlt,dx,dy);
-        oNeu.fill=oAlt.fill;
+    copyPaste(oNeu, oAlt, dx, dy) {
+        oNeu = super.copyPaste(oNeu, oAlt, dx, dy);
+        oNeu.fill = oAlt.fill;
         return oNeu;
     }
 
@@ -179,7 +179,7 @@ class Circle extends ClosedShape {
         s.setAttribute('r', this.radius.toString());
         s.setAttribute('cx', this.x.toString());
         s.setAttribute('cy', y(this.y).toString());
-        s.setAttribute('opacity', ((this.opacity/100)*(document.getElementById("opacity").value / 100)).toString());
+        s.setAttribute('opacity', ((this.opacity / 100) * (document.getElementById("opacity").value / 100)).toString());
 
         return s;
     }
@@ -192,15 +192,15 @@ class Circle extends ClosedShape {
         this.moveTo(xy);
     }
 
-    copyPaste(nam,dx,dy){
-        let o=new Circle(nam,this.klasse);
-        o=super.copyPaste(o,this,dx,dy);
-        o.radius=this.radius;
+    copyPaste(nam, dx, dy) {
+        let o = new Circle(nam, this.klasse);
+        o = super.copyPaste(o, this, dx, dy);
+        o.radius = this.radius;
         return o;
     }
 
-    scale(f){
-        this.radius=this.radius*f/100;
+    scale(f) {
+        this.radius = this.radius * f / 100;
     }
 }
 
@@ -223,34 +223,34 @@ class Rect extends ClosedShape {
 
         s.setAttribute('width', this.width.toString());
         s.setAttribute('x', this.x.toString());
-        s.setAttribute('opacity', ((this.opacity/100)*(document.getElementById("opacity").value / 100)).toString());
+        s.setAttribute('opacity', ((this.opacity / 100) * (document.getElementById("opacity").value / 100)).toString());
 
-        if (document.getElementById("yAchse").checked){
+        if (document.getElementById("yAchse").checked) {
             s.setAttribute('height', this.height.toString());
             s.setAttribute('y', this.y.toString());
         } else {
-            let yneu=y(this.y+this.height);
+            let yneu = y(this.y + this.height);
             s.setAttribute('height', this.height.toString());
             s.setAttribute('y', yneu.toString());
-            
+
         }
-        
+
         return s;
     }
     setWidth(w) {
         this.width = parseFloat(w);
-        if (this.width<0){
-            this.width=-1*this.width;
-            this.x=this.x-this.width;
+        if (this.width < 0) {
+            this.width = -1 * this.width;
+            this.x = this.x - this.width;
         }
     }
     setHeight(h) {
         this.height = parseFloat(h);
-        if (this.height<0){
-            this.height=-1*this.height;
-            this.y=this.y-this.height;
+        if (this.height < 0) {
+            this.height = -1 * this.height;
+            this.y = this.y - this.height;
         }
-   
+
     }
     setPoints(xyxy) {
         let d = xyxy.split(",");
@@ -267,18 +267,18 @@ class Rect extends ClosedShape {
 
         }
     }
-    copyPaste(nam,dx,dy){
-        let o=new Rect(nam,this.klasse);
-        o=super.copyPaste(o,this,dx,dy);
-        o.width=this.width;
-        o.height=this.height;
+    copyPaste(nam, dx, dy) {
+        let o = new Rect(nam, this.klasse);
+        o = super.copyPaste(o, this, dx, dy);
+        o.width = this.width;
+        o.height = this.height;
         return o;
     }
 
-    
-    scale(f){
-        this.width=this.width*f/100;
-        this.height=this.height*f/100;
+
+    scale(f) {
+        this.width = this.width * f / 100;
+        this.height = this.height * f / 100;
     }
 
 }
@@ -300,9 +300,9 @@ class Line extends Shape {
 
         s.setAttribute('x1', this.x.toString());
         s.setAttribute('y1', y(this.y).toString());
-        s.setAttribute('x2', (this.x+this.dx).toString());
-        s.setAttribute('y2', y(this.y+this.dy).toString());
-        s.setAttribute('opacity', ((this.opacity/100)*(document.getElementById("opacity").value / 100)).toString());
+        s.setAttribute('x2', (this.x + this.dx).toString());
+        s.setAttribute('y2', y(this.y + this.dy).toString());
+        s.setAttribute('opacity', ((this.opacity / 100) * (document.getElementById("opacity").value / 100)).toString());
 
         return s;
     }
@@ -314,8 +314,8 @@ class Line extends Shape {
         } else {
             this.x = parseFloat(d[0]);
             this.y = parseFloat(d[1]);
-            this.dx = parseFloat(d[2])-this.x;
-            this.dy = parseFloat(d[3])-this.y;
+            this.dx = parseFloat(d[2]) - this.x;
+            this.dy = parseFloat(d[3]) - this.y;
         }
     }
 
@@ -324,7 +324,7 @@ class Line extends Shape {
         this.x = parseFloat(d[0]);
         this.y = parseFloat(d[1]);
     }
-  
+
     moveX(dx) {
         this.x = parseFloat(this.x) + parseFloat(dx);
     }
@@ -332,19 +332,19 @@ class Line extends Shape {
         this.y = parseFloat(this.y) + parseFloat(dy);
     }
 
-    copyPaste(nam,dx,dy){
-        let o=new Line(nam,this.klasse);
-        o=super.copyPaste(o,this,dx,dy);
-        o.dx=this.dx;
-        o.dy=this.dy;
+    copyPaste(nam, dx, dy) {
+        let o = new Line(nam, this.klasse);
+        o = super.copyPaste(o, this, dx, dy);
+        o.dx = this.dx;
+        o.dy = this.dy;
 
         return o;
     }
 
-    
-    scale(f){
-        this.dx=this.dx*f/100;
-        this.dy=this.dy*f/100;
+
+    scale(f) {
+        this.dx = this.dx * f / 100;
+        this.dy = this.dy * f / 100;
     }
 }
 
@@ -366,10 +366,10 @@ class Triangle extends ClosedShape {
         } else {
             this.x = parseFloat(d[0]);
             this.y = parseFloat(d[1]);
-            this.dx1 = parseFloat(d[2])-this.x;
-            this.dy1 = parseFloat(d[3])-this.y;
-            this.dx2 = parseFloat(d[4])-this.x;
-            this.dy2 = parseFloat(d[5])-this.y;
+            this.dx1 = parseFloat(d[2]) - this.x;
+            this.dy1 = parseFloat(d[3]) - this.y;
+            this.dx2 = parseFloat(d[4]) - this.x;
+            this.dy2 = parseFloat(d[5]) - this.y;
 
         }
     }
@@ -394,31 +394,31 @@ class Triangle extends ClosedShape {
         s.setAttribute('stroke-width', this.strokeWidth);
 
         s.setAttribute('points', this.x.toString() + "," + y(this.y).toString() + ","
-            + (this.x+this.dx1).toString() + "," + y(this.y+this.dy1).toString() + ","
-            + (this.x+this.dx2).toString() + "," + y(this.y+this.dy2).toString());
+            + (this.x + this.dx1).toString() + "," + y(this.y + this.dy1).toString() + ","
+            + (this.x + this.dx2).toString() + "," + y(this.y + this.dy2).toString());
 
-            s.setAttribute('opacity', ((this.opacity/100)*(document.getElementById("opacity").value / 100)).toString());
-            return s;
+        s.setAttribute('opacity', ((this.opacity / 100) * (document.getElementById("opacity").value / 100)).toString());
+        return s;
     }
 
-    copyPaste(nam,dx,dy){
+    copyPaste(nam, dx, dy) {
 
-        let o=new Triangle(nam,this.klasse);
-        o=super.copyPaste(o,this,dx,dy);
-        o.dx1=this.dx1;
-        o.dy1=this.dy1;
-        o.dx2=this.dx2;
-        o.dy2=this.dy2;
+        let o = new Triangle(nam, this.klasse);
+        o = super.copyPaste(o, this, dx, dy);
+        o.dx1 = this.dx1;
+        o.dy1 = this.dy1;
+        o.dx2 = this.dx2;
+        o.dy2 = this.dy2;
         return o;
     }
 
-    scale(f){
-        this.dx1=this.dx1*f/100;
-        this.dy1=this.dy1*f/100;
-        this.dx2=this.dx2*f/100;
-        this.dy2=this.dy2*f/100;
+    scale(f) {
+        this.dx1 = this.dx1 * f / 100;
+        this.dy1 = this.dy1 * f / 100;
+        this.dx2 = this.dx2 * f / 100;
+        this.dy2 = this.dy2 * f / 100;
     }
-        
+
 }
 
 class Group {
@@ -426,32 +426,33 @@ class Group {
         this.nam = nam;
         this.klasse = klasse;
         this.kinder = new Array();
-        this.x=0;
-        this.y=0;
+        this.x = 0;
+        this.y = 0;
     }
 
     add(parameter) {
-        let p=parameter.split(",");
-        p.forEach(n=>{
-        let o;
-        for (let i = 0; i < objekte.length; i++) {
-            if (objekte[i].nam.toUpperCase() == n.toUpperCase()) {
-                o = objekte[i];
+        let p = parameter.split(",");
+        p.forEach(n => {
+            let o;
+            for (let i = 0; i < objekte.length; i++) {
+                if (objekte[i].nam.toUpperCase() == n.toUpperCase()) {
+                    o = objekte[i];
+                }
             }
-        }
-        if (typeof o == "undefined") {
-            error(-1, "Das Objekt " + n + " kenne ich nicht. Ich kann es nicht zur Gruppe " + this.nam + " hinzufügen.");
-        } else {
-
-            if (!this.kinder.includes(o)) {
-                this.kinder.push(o);
+            if (typeof o == "undefined") {
+                error(-1, "Das Objekt " + n + " kenne ich nicht. Ich kann es nicht zur Gruppe " + this.nam + " hinzufügen.");
+            } else if (o.constructor.name == "Group") {
+                error(-1, "Zur Gruppe " + this.nam + " kann keine weitere Gruppe " + n + " hinzugefügt werden!");
             } else {
-                error(-1, "Die Gruppe " + this.nam + " enthält schon ein Objekt mit dem Namen " + n + ".");
+                if (!this.kinder.includes(o)) {
+                    this.kinder.push(o);
+                } else {
+                    error(-1, "Die Gruppe " + this.nam + " enthält schon ein Objekt mit dem Namen " + n + ".");
+                }
             }
-        }
-    });
-    this.x=this.kinder[0].x;
-    this.y=this.kinder[0].y;
+        });
+        this.x = this.kinder[0].x;
+        this.y = this.kinder[0].y;
     }
 
     draw() {
@@ -467,28 +468,49 @@ class Group {
         this.kinder.forEach(element => {
             element.setStrokeWidth(width);
         });
+
     }
 
-    setX(x){
-     }
-     setY(y){
+
+
+    setX(x) {
+        let x0 = this.kinder[0].x;
+        this.kinder[0].setX(x);
+
+        let dx = this.kinder[0].x - x0;
+
+        for (let i = 1; i < this.kinder.length; i++) {
+            let ziel = (this.kinder[i].x + dx).toString();
+            this.kinder[i].setX(ziel);
+        }
     }
+
+    setY(y) {
+        let y0 = this.kinder[0].y;
+        this.kinder[0].setY(y);
+
+        let dy = this.kinder[0].y - y0;
+
+        for (let i = 1; i < this.kinder.length; i++) {
+            let ziel = (this.kinder[i].y + dy).toString();
+            this.kinder[i].setY(ziel);
+        }
+    }
+
 
     moveTo(xy) {
-    /*
-        let x0=this.kinder[0].x;
-        let y0=this.kinder[0].y;
+        let x0 = this.kinder[0].x;
+        let y0 = this.kinder[0].y;
         this.kinder[0].moveTo(xy);
-    
-        let dx=this.kinder[0].x-x0;
-        let dy=this.kinder[0].y-y0;
-    
-        for (let i=1;i<this.kinder.length;i++){
-            let ziel=(this.kinder[i].x+dx).toString()+","+(this.kinder[i].y+dy).toString();
-            this.kinder[i].moveTo(ziel);
 
-}
-*/ }
+        let dx = this.kinder[0].x - x0;
+        let dy = this.kinder[0].y - y0;
+
+        for (let i = 1; i < this.kinder.length; i++) {
+            let ziel = (this.kinder[i].x + dx).toString() + "," + (this.kinder[i].y + dy).toString();
+            this.kinder[i].moveTo(ziel);
+        }
+    }
 
     moveX(dx) {
         this.kinder.forEach(element => {
@@ -534,19 +556,19 @@ class Group {
         this.kinder.forEach(element => {
             element.scale(f);
         });
-        
+
         // Positionen skalieren
 
-        let x0=this.kinder[0].x;
-        let y0=this.kinder[0].y;
-        for (let i=1;i<this.kinder.length;i++){
-            let dx=this.kinder[i].x-x0;
-            let dy=this.kinder[i].y-y0;
-            dx=dx*f/100;
-            dy=dy*f/100;
-            this.kinder[i].x=x0+dx;
-            this.kinder[i].y=y0+dy;
-         }
+        let x0 = this.kinder[0].x;
+        let y0 = this.kinder[0].y;
+        for (let i = 1; i < this.kinder.length; i++) {
+            let dx = this.kinder[i].x - x0;
+            let dy = this.kinder[i].y - y0;
+            dx = dx * f / 100;
+            dy = dy * f / 100;
+            this.kinder[i].x = x0 + dx;
+            this.kinder[i].y = y0 + dy;
+        }
     }
 
     drawCard() {
@@ -558,12 +580,12 @@ class Group {
         cardFormat(k, s);
     }
 
-    copyPaste(nam,dx,dy){
-        let o=new Group(nam,"Group");
-        o.x=this.x;
-        o.y=this.y;
+    copyPaste(nam, dx, dy) {
+        let o = new Group(nam, "Group");
+        o.x = this.x;
+        o.y = this.y;
         this.kinder.forEach(element => {
-            o.kinder.push(element.copyPaste(nam+element.nam,dx,dy));
+            o.kinder.push(element.copyPaste(nam + element.nam, dx, dy));
         });
         return o;
     }

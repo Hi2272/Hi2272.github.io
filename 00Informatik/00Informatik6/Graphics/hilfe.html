@@ -274,14 +274,19 @@ Für alle Objekte der Gruppe können anschließend gemeinsame Methoden aufgerufe
 <p>Die Attribute sind die Objekte, die in die Gruppe aufgenommen wurden.</p>
 <h4 id="methoden-1">Methoden</h4>
 <ul>
-<li><strong>add(Objektname), schlucke(Objektname), fügezu(Objektname), hinzufügen(Objektname)</strong><br>
-Fügt das entsprechende Objekt der Gruppe hinzu.<br>
-Es können auch mehere Objekte gleichzeitig hinzugefügt werden. Die Objektnamen müssen dann als Parameterliste durch Kommas getrennt werden:<pre><code class="language-Javascript">g.<span class="hljs-title function_">add</span>(re,c,d)
+<li>
+<p><strong>add(Objektname), schlucke(Objektname), fügezu(Objektname), hinzufügen(Objektname)</strong><br>
+Fügt das entsprechende Objekt der Gruppe hinzu.</p>
+<p>Es können auch mehrere Objekte gleichzeitig hinzugefügt werden. Die Objektnamen müssen dann als Parameterliste durch Kommas getrennt werden:</p>
+<pre><code class="language-Javascript">g.<span class="hljs-title function_">add</span>(re,c,d)
 </code></pre>
-Fügt die Objekte <strong>re, c</strong> und <strong>d</strong> zur Gruppe <strong>g</strong> hinzu.</li>
-<li><strong>beliebige Methode</strong><br>
-Führt diese Methode für alle Objekte der Gruppe aus.<br>
-Die Methoden zum setX(x), setY(y) und setXY(x,y) funktionieren bei Gruppen nicht. Statt dessen können die Methoden moveX(dx) und moveY(dy) verwendet werden.</li>
+<p>Fügt die Objekte <strong>re, c</strong> und <strong>d</strong> zur Gruppe <strong>g</strong> hinzu.<br>
+<strong>Wichtig: Einer Gruppe kann keine weitere Gruppe hinzugefügt werden.</strong></p>
+</li>
+<li>
+<p><strong>beliebige Methode</strong><br>
+Führt diese Methode für alle Objekte der Gruppe aus.</p>
+</li>
 </ul>
 <h3 id="farben">Farben</h3>
 <p>Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen verwendet werden:</p>

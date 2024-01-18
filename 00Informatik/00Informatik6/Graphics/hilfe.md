@@ -125,14 +125,16 @@ Die Attribute sind die Objekte, die in die Gruppe aufgenommen wurden.
 #### Methoden
 - **add(Objektname), schlucke(Objektname), fügezu(Objektname), hinzufügen(Objektname)**  
   Fügt das entsprechende Objekt der Gruppe hinzu.  
-  Es können auch mehere Objekte gleichzeitig hinzugefügt werden. Die Objektnamen müssen dann als Parameterliste durch Kommas getrennt werden:  
+    
+  Es können auch mehrere Objekte gleichzeitig hinzugefügt werden. Die Objektnamen müssen dann als Parameterliste durch Kommas getrennt werden:  
   ``` Javascript
   g.add(re,c,d)
   ```
   Fügt die Objekte **re, c** und **d** zur Gruppe **g** hinzu.  
+  **Wichtig: Einer Gruppe kann keine weitere Gruppe hinzugefügt werden.**  
+  
 - **beliebige Methode**  
   Führt diese Methode für alle Objekte der Gruppe aus.  
-  Die Methoden zum setX(x), setY(y) und setXY(x,y) funktionieren bei Gruppen nicht. Statt dessen können die Methoden moveX(dx) und moveY(dy) verwendet werden.  
                     
 ### Farben
 Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen verwendet werden:  
