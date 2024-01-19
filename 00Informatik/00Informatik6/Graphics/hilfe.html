@@ -141,7 +141,8 @@
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
 <h1 id="graphix-editor">Graphix-Editor</h1>
 <p><a href="#1-erzeugen-neuer-objekte">Erzeugen neuer Objekte</a>|
-<a href="#2-aufruf-von-methoden">Aufruf von Methoden</a>|
+<a href="#2-%C3%A4ndern-von-attributwerten">Attributwerte</a>|
+<a href="#3-aufruf-von-methoden">Aufruf von Methoden</a>|
 <a href="#alle-klassen">Alle Klassen</a>|
 <a href="#linie-line">Linie</a>|
 <a href="#rechteck-rect-rectangle">Rechteck</a>|
@@ -174,12 +175,22 @@
 </ul>
 <p>Es können sowohl die deutschen, als auch die englischen Klassenbezeichner verwendet werden.<br>
 Groß- und Kleinschreibung wird allgemein nicht beachtet.<br>
-<strong>re:rect, Re:Rect, re:Rectangle</strong> oder <strong>re:Rechteck</strong> erzeugen alle ein Objekt mit dem Namen <strong>re</strong> aus der Klasse <strong>Rechteck</strong>.</p>
-<h2 id="2-aufruf-von-methoden">2. Aufruf von Methoden</h2>
+<strong>re:rect, Re:Rect, re:Rectangle</strong> oder <strong>re:Rechteck</strong> erzeugen alle ein Objekt mit dem Namen <strong>re</strong> aus der Klasse <strong>Rechteck</strong>.<br>
+<a href="#voreinstellungen">nach oben</a></p>
+<h2 id="2-ändern-von-attributwerten">2. Ändern von Attributwerten</h2>
+<p>Den Attributen eines Objekts können neue Werte zugewiesen werden.<br>
+Diese Zeile weist dem Attribut <strong>x</strong> des Objekts <strong>re</strong> den Wert <strong>20</strong> zu:</p>
+<pre><code class="language-Javascript">re.<span class="hljs-property">x</span>=<span class="hljs-number">20</span>
+</code></pre>
+<p>Hier wird dem Attribut <strong>füllfarbe</strong> des Objekts <strong>c</strong> der Wert <strong>rot</strong> zugewiesen:</p>
+<pre><code class="language-Javascript">c.<span class="hljs-property">f</span>üllfarbe=rot
+</code></pre>
+<h2 id="3-aufruf-von-methoden">3. Aufruf von Methoden</h2>
 <p>Methoden werden nach folgendem Muster aufgerufen:</p>
 <p><strong>Objektname.Methodenname(Parameter)</strong></p>
-<p>Auch bei den Methodennamen können deutsche oder englische Bezeichnungen verwendet werden.</p>
-<h2 id="3-klassen-und-methoden">3. Klassen und Methoden</h2>
+<p>Auch bei den Methodennamen können deutsche oder englische Bezeichnungen verwendet werden.<br>
+<a href="#voreinstellungen">nach oben</a></p>
+<h2 id="4-klassen-und-methoden">4. Klassen und Methoden</h2>
 <h3 id="alle-klassen">Alle Klassen</h3>
 <h4 id="attribute">Attribute</h4>
 <ul>
@@ -204,7 +215,8 @@ Verschiebt das Objekt um dy Einheiten nach unten (positives dy) oder oben (negat
 Verschiebt das Objekt auf die Position mit den Koordinaten (x,y)</li>
 </ul>
 <h4 id="parameter">Parameter</h4>
-<p>Farben werden als englische Wörter ohne Anführungszeichen eingetragen:</p>
+<p>Farben werden als deutsch oder englische Wörter ohne Anführungszeichen eingetragen.<br>
+<a href="#voreinstellungen">nach oben</a></p>
 <h3 id="linie-line">Linie (Line)</h3>
 <h4 id="attribute-1">Attribute</h4>
 <ul>
@@ -217,7 +229,8 @@ Eine Linie ist keine geschlossene Figur. Sie hat daher auch kein Attribut Füllf
 <h4 id="zusätzliche-methoden">Zusätzliche Methoden</h4>
 <ul>
 <li><strong>setPoints(x1,y1,x2,y2), punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2)</strong><br>
-Setzt die Koordinaten der beiden Endpunkte der Linie.</li>
+Setzt die Koordinaten der beiden Endpunkte der Linie.<br>
+<a href="#voreinstellungen">nach oben</a></li>
 </ul>
 <h3 id="rechteck-rect-rectangle">Rechteck (Rect, Rectangle)</h3>
 <h4 id="attribute-2">Attribute</h4>
@@ -236,7 +249,8 @@ Setzt den Wert des Attributs Breite.</li>
 <li><strong>setHeight(height), höheSetzen(höhe), setzeHöhe(höhe), setHöhe(höhe)</strong><br>
 Setzt den Wert des Attributs Höhe.</li>
 <li><strong>setPoints(x1,y1,x2,y2), punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2),eckenSetzen(x1,y1,x2,y2)</strong><br>
-Setzt die Koordinaten der linken unteren und der rechten oberen Ecke des Rechtecks.</li>
+Setzt die Koordinaten der linken unteren und der rechten oberen Ecke des Rechtecks.<br>
+<a href="#voreinstellungen">nach oben</a></li>
 </ul>
 <h3 id="dreieck-triangle">Dreieck (Triangle)</h3>
 <h4 id="attribute-3">Attribute</h4>
@@ -249,7 +263,8 @@ Setzt die Koordinaten der linken unteren und der rechten oberen Ecke des Rechtec
 <h4 id="zusätzliche-methoden-2">Zusätzliche Methoden</h4>
 <ul>
 <li><strong>setPoints(x1,y1,x2,y2,x3,y3), punkteSetzen(x1,y1,x2,y2,x3,y3), setzePunkte(x1,y1,x2,y2,x3,y3), setPunkte(x1,y1,x2,y2,x3,y3), eckensetzen(x1,y1,x2,y2,x3,y3)</strong><br>
-Setzt die Koordinaten der drei Ecken.</li>
+Setzt die Koordinaten der drei Ecken.<br>
+<a href="#voreinstellungen">nach oben</a></li>
 </ul>
 <h3 id="kreis-circle">Kreis (Circle)</h3>
 <h4 id="attribute-4">Attribute</h4>
@@ -265,7 +280,8 @@ Setzt die Koordinaten der drei Ecken.</li>
 <li><strong>setRadius(radius), setzeRadius(radius), radiusSetzen(radius)</strong><br>
 Setzt den Wert des Attributs Radius.</li>
 <li><strong>setPoints(x,y), mittelpunktSetzen(x,y), setzeMittelpunkt(x,y), setMittelpunkt(x,y)</strong><br>
-Setzt die Koordinaten des Mittelpunkts.</li>
+Setzt die Koordinaten des Mittelpunkts.<br>
+<a href="#voreinstellungen">nach oben</a></li>
 </ul>
 <h3 id="gruppe-group">Gruppe (Group)</h3>
 <p>In eine Gruppe können zuvor gebildete Objekte aufgenommen worden.<br>
@@ -285,7 +301,8 @@ Fügt das entsprechende Objekt der Gruppe hinzu.</p>
 </li>
 <li>
 <p><strong>beliebige Methode</strong><br>
-Führt diese Methode für alle Objekte der Gruppe aus.</p>
+Führt diese Methode für alle Objekte der Gruppe aus.<br>
+<a href="#voreinstellungen">nach oben</a></p>
 </li>
 </ul>
 <h3 id="farben">Farben</h3>
@@ -325,7 +342,8 @@ Führt diese Methode für alle Objekte der Gruppe aus.</p>
 <li>#0000AA: dunkleres Blau</li>
 <li>#000066: noch dunkleres Blau</li>
 </ul>
-<p>Mit dem Parameter-Wert <strong>keine</strong> oder <strong>none</strong> kann eine Figur ohne Füllung gezeichnet werden.</p>
+<p>Mit dem Parameter-Wert <strong>keine</strong> oder <strong>none</strong> kann eine Figur ohne Füllung gezeichnet werden.<br>
+<a href="#voreinstellungen">nach oben</a></p>
 <h3 id="deckkraft">Deckkraft</h3>
 <p>Die Deckkraft (engl. opacity) der Objekte kann zum einen über einen Schieberegler eingestellt werden. Durch eine niedrigere Deckkraft kann das Koordinatensystem auch hinter gefüllten Objekten sichtbar gemacht werden.<br>
 Mit der Methode <strong>deckkraftSetzen(), setDeckkraft(), setOpac(), setOpacity()</strong> kann die individuelle Deckkraft eines Objektes angepasst werden. Hierdurch sind interessante Farbmischungen möglich.</p>
@@ -338,7 +356,8 @@ Die Schleife endet mit einem *  .<br>
   g.<span class="hljs-title function_">moveX</span>(<span class="hljs-number">1</span>)
 *
 </code></pre>
-<p>Lässt das Objekt g 50 einzelne Schritte nach rechts machen.</p>
+<p>Lässt das Objekt g 50 einzelne Schritte nach rechts machen.<br>
+<a href="#voreinstellungen">nach oben</a></p>
 <h3 id="kopieren-von-objekten-oder-gruppen">Kopieren von Objekten oder Gruppen</h3>
 <p>Mit der Methode <strong>copyPaste(nam,dx,dy)</strong> können bestehende Objekte verdoppelt werden. Alternativ können auch die Methodennamen <strong>dupliziere, duplicate</strong> oder <strong>verdoppele</strong> verwendet werden.<br>
 Die Methode benötigt drei Parameter:</p>
@@ -352,7 +371,8 @@ Die Methode benötigt drei Parameter:</p>
   g.<span class="hljs-title function_">copyPaste</span>(g1,<span class="hljs-number">100</span>,<span class="hljs-number">0</span>)
 *
 </code></pre>
-<p>Erzeugt ein Objekt g1 als Kopie von g - g1 ist um 100 Punkte nach rechts verschoben.</p>
+<p>Erzeugt ein Objekt g1 als Kopie von g - g1 ist um 100 Punkte nach rechts verschoben.<br>
+<a href="#voreinstellungen">nach oben</a></p>
 <h3 id="skalieren-vergrößern-und-verkleinern-von-objekten">Skalieren: Vergrößern und Verkleinern von Objekten</h3>
 <p>Mit der Methode <strong>skaliere, scale, strecke, vergrößere</strong> kann ein Objekt vergrößert oder verkleinert werden.<br>
 Der Parameter gibt den Vergrößerungsfaktor in Prozent an:</p>
@@ -360,7 +380,8 @@ Der Parameter gibt den Vergrößerungsfaktor in Prozent an:</p>
 <li>o.skaliere(110) vergrößert das Objekt o auf 110% seiner Originalgröße</li>
 <li>o.skaliere(90) verkleinert das Objekt o auf 90% seiner Orginalgröße</li>
 </ul>
-<p><a href="index.html">zurück</a></p>
+<p><a href="#voreinstellungen">nach oben</a><br>
+<a href="index.html">zurück</a></p>
 
             
             

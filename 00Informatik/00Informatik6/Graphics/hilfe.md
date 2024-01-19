@@ -4,7 +4,8 @@
 
 # Graphix-Editor  
 [Erzeugen neuer Objekte](#1-erzeugen-neuer-objekte)|
-[Aufruf von Methoden](#2-aufruf-von-methoden)|
+[Attributwerte](#2-ändern-von-attributwerten)| 
+[Aufruf von Methoden](#3-aufruf-von-methoden)|
 [Alle Klassen](#alle-klassen)|
 [Linie](#linie-line)|
 [Rechteck](#rechteck-rect-rectangle)|
@@ -36,14 +37,27 @@ Graphix kennt folgende Klassen:
    
 Es können sowohl die deutschen, als auch die englischen Klassenbezeichner verwendet werden.  
 Groß- und Kleinschreibung wird allgemein nicht beachtet.  
-**re:rect, Re:Rect, re:Rectangle** oder **re:Rechteck** erzeugen alle ein Objekt mit dem Namen **re** aus der Klasse **Rechteck**.
-## 2. Aufruf von Methoden
+**re:rect, Re:Rect, re:Rectangle** oder **re:Rechteck** erzeugen alle ein Objekt mit dem Namen **re** aus der Klasse **Rechteck**.  
+[nach oben](#voreinstellungen)  
+## 2. Ändern von Attributwerten
+Den Attributen eines Objekts können neue Werte zugewiesen werden.  
+Diese Zeile weist dem Attribut **x** des Objekts **re** den Wert **20** zu:  
+
+  ``` Javascript
+re.x=20
+  ```
+Hier wird dem Attribut **füllfarbe** des Objekts **c** der Wert **rot** zugewiesen:   
+  ``` Javascript
+c.füllfarbe=rot
+  ```
+## 3. Aufruf von Methoden
 Methoden werden nach folgendem Muster aufgerufen:  
   
   **Objektname.Methodenname(Parameter)**  
     
 Auch bei den Methodennamen können deutsche oder englische Bezeichnungen verwendet werden.  
-## 3. Klassen und Methoden
+[nach oben](#voreinstellungen)  
+## 4. Klassen und Methoden
 ### Alle Klassen
 #### Attribute
 - x,y: Koordinaten des Objekts
@@ -64,7 +78,8 @@ Auch bei den Methodennamen können deutsche oder englische Bezeichnungen verwend
 - **moveTo(x,y), verschiebeZu(x,y), verschiebeNach(x,y)**  
   Verschiebt das Objekt auf die Position mit den Koordinaten (x,y)  
 #### Parameter
-Farben werden als englische Wörter ohne Anführungszeichen eingetragen: 
+Farben werden als deutsch oder englische Wörter ohne Anführungszeichen eingetragen.  
+[nach oben](#voreinstellungen)  
 ### Linie (Line)
 #### Attribute
 - x,y,x1,y1 : Koordinaten der beiden Endpunkte der Linie
@@ -77,7 +92,7 @@ Farben werden als englische Wörter ohne Anführungszeichen eingetragen:
 #### Zusätzliche Methoden
 - **setPoints(x1,y1,x2,y2), punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2)**  
   Setzt die Koordinaten der beiden Endpunkte der Linie.  
-  
+[nach oben](#voreinstellungen)  
 ### Rechteck (Rect, Rectangle)
 #### Attribute
 - x,y : Koordinaten der linken oberen Ecke
@@ -92,8 +107,8 @@ Farben werden als englische Wörter ohne Anführungszeichen eingetragen:
 - **setHeight(height), höheSetzen(höhe), setzeHöhe(höhe), setHöhe(höhe)**  
   Setzt den Wert des Attributs Höhe.
 - **setPoints(x1,y1,x2,y2), punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2),eckenSetzen(x1,y1,x2,y2)**  
-  Setzt die Koordinaten der linken unteren und der rechten oberen Ecke des Rechtecks.
-
+  Setzt die Koordinaten der linken unteren und der rechten oberen Ecke des Rechtecks.  
+[nach oben](#voreinstellungen)  
 ### Dreieck (Triangle)
 #### Attribute
 - x,y,x1,y1,x2,y2 : Koordinaten der drei Ecken
@@ -102,8 +117,8 @@ Farben werden als englische Wörter ohne Anführungszeichen eingetragen:
 - strokeWidth: Linienbreite
 #### Zusätzliche Methoden
 - **setPoints(x1,y1,x2,y2,x3,y3), punkteSetzen(x1,y1,x2,y2,x3,y3), setzePunkte(x1,y1,x2,y2,x3,y3), setPunkte(x1,y1,x2,y2,x3,y3), eckensetzen(x1,y1,x2,y2,x3,y3)**  
-  Setzt die Koordinaten der drei Ecken.
-
+  Setzt die Koordinaten der drei Ecken.  
+[nach oben](#voreinstellungen)  
 ### Kreis (Circle)
 #### Attribute
 - x,y : Koordinaten des Mittelpunkts
@@ -116,7 +131,7 @@ Farben werden als englische Wörter ohne Anführungszeichen eingetragen:
   Setzt den Wert des Attributs Radius.
 - **setPoints(x,y), mittelpunktSetzen(x,y), setzeMittelpunkt(x,y), setMittelpunkt(x,y)**  
   Setzt die Koordinaten des Mittelpunkts.  
-
+[nach oben](#voreinstellungen)  
 ### Gruppe (Group)
 In eine Gruppe können zuvor gebildete Objekte aufgenommen worden.  
 Für alle Objekte der Gruppe können anschließend gemeinsame Methoden aufgerufen werden.
@@ -135,7 +150,7 @@ Die Attribute sind die Objekte, die in die Gruppe aufgenommen wurden.
   
 - **beliebige Methode**  
   Führt diese Methode für alle Objekte der Gruppe aus.  
-                    
+[nach oben](#voreinstellungen)  
 ### Farben
 Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen verwendet werden:  
  - blau: blue,  
@@ -173,7 +188,7 @@ Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen v
 - #000066: noch dunkleres Blau
   
 Mit dem Parameter-Wert **keine** oder **none** kann eine Figur ohne Füllung gezeichnet werden.  
-
+[nach oben](#voreinstellungen)  
 ### Deckkraft
 Die Deckkraft (engl. opacity) der Objekte kann zum einen über einen Schieberegler eingestellt werden. Durch eine niedrigere Deckkraft kann das Koordinatensystem auch hinter gefüllten Objekten sichtbar gemacht werden.  
 Mit der Methode **deckkraftSetzen(), setDeckkraft(), setOpac(), setOpacity()** kann die individuelle Deckkraft eines Objektes angepasst werden. Hierdurch sind interessante Farbmischungen möglich.  
@@ -188,8 +203,8 @@ wdh 50
   g.moveX(1)
 *
 ```
-Lässt das Objekt g 50 einzelne Schritte nach rechts machen.
-
+Lässt das Objekt g 50 einzelne Schritte nach rechts machen.  
+[nach oben](#voreinstellungen)  
 ### Kopieren von Objekten oder Gruppen
 Mit der Methode **copyPaste(nam,dx,dy)** können bestehende Objekte verdoppelt werden. Alternativ können auch die Methodennamen **dupliziere, duplicate** oder **verdoppele** verwendet werden.  
 Die Methode benötigt drei Parameter:  
@@ -202,13 +217,13 @@ wdh 50
   g.copyPaste(g1,100,0)
 *
 ```
-Erzeugt ein Objekt g1 als Kopie von g - g1 ist um 100 Punkte nach rechts verschoben.
-  
+Erzeugt ein Objekt g1 als Kopie von g - g1 ist um 100 Punkte nach rechts verschoben.  
+[nach oben](#voreinstellungen)    
 ### Skalieren: Vergrößern und Verkleinern von Objekten
 Mit der Methode **skaliere, scale, strecke, vergrößere** kann ein Objekt vergrößert oder verkleinert werden.  
 Der Parameter gibt den Vergrößerungsfaktor in Prozent an:  
 - o.skaliere(110) vergrößert das Objekt o auf 110% seiner Originalgröße
 - o.skaliere(90) verkleinert das Objekt o auf 90% seiner Orginalgröße  
   
-                                         
+[nach oben](#voreinstellungen)                                             
 [zurück](index.html)  
