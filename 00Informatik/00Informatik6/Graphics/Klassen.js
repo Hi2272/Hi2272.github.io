@@ -143,6 +143,25 @@ class Shape {
         oNeu.strokeWidth = oAlt.strokeWidth;
         return oNeu;
     }
+
+    checkAttribut(nr, attr) {
+        let gefunden = false;
+        var attribute = Object.entries(this);
+        for (let i = 2; i < attribute.length; i++) {
+            let s = atl(attribute[i][0]).toLowerCase();
+            if (s == atl(attr).toLowerCase()) {
+                gefunden = true;
+                i = attribute.length;
+            }
+        }
+        if (!gefunden) {
+            error(nr, "Das Objekt " + this.nam + " hat kein Attribut " + attr + ".");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }
 
 class ClosedShape extends Shape {
@@ -168,7 +187,9 @@ class Circle extends ClosedShape {
         this.draw();
         this.drawCard();
     }
-
+    getXYZahl() {
+        return 2;
+    }
     svg() {
         const s = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         s.setAttribute('id', this.nam);
@@ -213,7 +234,9 @@ class Rect extends ClosedShape {
         this.draw();
         this.drawCard();
     }
-
+    getXYZahl() {
+        return 4;
+    }
     svg() {
         const s = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
         s.setAttribute('id', this.nam);
@@ -252,21 +275,17 @@ class Rect extends ClosedShape {
         }
 
     }
+
     setPoints(xyxy) {
         let d = xyxy.split(",");
-        if (d.length != 4) {
-            error(-1, "Fehler bei setpoint(x,y,x1,y1). Ein Rechteck braucht vier Parameter-Werte!");
-        } else {
-            if (parseFloat(d[0]) > parseFloat(d[2])) { let z = d[0]; d[0] = d[2]; d[2] = z; }
-            if (parseFloat(d[1]) > parseFloat(d[3])) { let z = d[1]; d[1] = d[3]; d[3] = z; }
-
-            this.x = parseFloat(d[0]);
-            this.y = parseFloat(d[1]);
-            this.width = parseFloat(d[2]) - parseFloat(d[0]);
-            this.height = parseFloat(d[3]) - parseFloat(d[1]);
-
-        }
+        if (parseFloat(d[0]) > parseFloat(d[2])) { let z = d[0]; d[0] = d[2]; d[2] = z; }
+        if (parseFloat(d[1]) > parseFloat(d[3])) { let z = d[1]; d[1] = d[3]; d[3] = z; }
+        this.x = parseFloat(d[0]);
+        this.y = parseFloat(d[1]);
+        this.width = parseFloat(d[2]) - parseFloat(d[0]);
+        this.height = parseFloat(d[3]) - parseFloat(d[1]);
     }
+
     copyPaste(nam, dx, dy) {
         let o = new Rect(nam, this.klasse);
         o = super.copyPaste(o, this, dx, dy);
@@ -291,7 +310,9 @@ class Line extends Shape {
         this.draw();
         this.drawCard();
     }
-
+    getXYZahl() {
+        return 4;
+    }
     svg() {
         const s = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         s.setAttribute('id', this.nam);
@@ -309,14 +330,10 @@ class Line extends Shape {
 
     setPoints(xyxy) {
         let d = xyxy.split(",");
-        if (d.length != 4) {
-            error(-1, "Fehler bei setpoint(x,y,x1,y1). Eine Linie braucht vier Parameter-Werte!");
-        } else {
-            this.x = parseFloat(d[0]);
+          this.x = parseFloat(d[0]);
             this.y = parseFloat(d[1]);
             this.dx = parseFloat(d[2]) - this.x;
-            this.dy = parseFloat(d[3]) - this.y;
-        }
+            this.dy = parseFloat(d[3]) - this.y;      
     }
 
     moveTo(xy) {
@@ -358,20 +375,17 @@ class Triangle extends ClosedShape {
         this.draw();
         this.drawCard();
     }
-
+    getXYZahl() {
+        return 6;
+    }
     setPoints(xyxy) {
         let d = xyxy.split(",");
-        if (d.length != 6) {
-            error(-1, "Fehler bei setpoint(x,y,x1,y1). Ein Dreieck braucht sechs Parameter-Werte!");
-        } else {
             this.x = parseFloat(d[0]);
             this.y = parseFloat(d[1]);
             this.dx1 = parseFloat(d[2]) - this.x;
             this.dy1 = parseFloat(d[3]) - this.y;
             this.dx2 = parseFloat(d[4]) - this.x;
-            this.dy2 = parseFloat(d[5]) - this.y;
-
-        }
+            this.dy2 = parseFloat(d[5]) - this.y;      
     }
 
     moveTo(xy) {
