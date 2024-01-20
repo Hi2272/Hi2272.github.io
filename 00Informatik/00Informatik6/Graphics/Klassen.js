@@ -86,7 +86,7 @@ class Shape {
     setWidth(w) { }
     setHeight(h) { }
 
-    checkAttribut(nr, attr) {
+    checkAttribut(linie, attr) {
         let gefunden = false;
         var attribute = Object.entries(this);
         for (let i = 2; i < attribute.length; i++) {
@@ -97,7 +97,7 @@ class Shape {
             }
         }
         if (!gefunden) {
-            error(nr, "Das Objekt " + this.nam + " hat kein Attribut " + attr + ".");
+            error(linie, "Das Objekt " + this.nam + " hat kein Attribut " + attr + ".");
             return false;
         } else {
             return true;
@@ -656,8 +656,8 @@ class Group {
         }
     }
 
-    checkAttribut(nr, attr) {
-        error(nr, "Bei Objekten der Klasse Gruppe kannst du keine Attribute-Werte zuweisen.");
+    checkAttribut(linie, attr) {
+        error(linie, "Bei Objekten der Klasse Gruppe kannst du keine Attribute-Werte zuweisen.");
         return false;
     }
 
@@ -672,9 +672,9 @@ class Group {
                 }
             }
             if (typeof o == "undefined") {
-                error(-1, "Das Objekt " + n + " kenne ich nicht. Ich kann es nicht zur Gruppe " + this.nam + " hinzufügen.");
+                error("", "Das Objekt " + n + " kenne ich nicht. Ich kann es nicht zur Gruppe " + this.nam + " hinzufügen.");
             } else if (o.constructor.name == "Group") {
-                error(-1, "Zur Gruppe " + this.nam + " kann keine weitere Gruppe " + n + " hinzugefügt werden!");
+                error("", "Zur Gruppe " + this.nam + " kann keine weitere Gruppe " + n + " hinzugefügt werden!");
             } else {
                 if (!this.kinder.includes(o)) {
                     this.kinder.push(o);
@@ -682,7 +682,7 @@ class Group {
                     this.y = this.kinder[0].y;
             
                 } else {
-                    error(-1, "Die Gruppe " + this.nam + " enthält schon ein Objekt mit dem Namen " + n + ".");
+                    error("", "Die Gruppe " + this.nam + " enthält schon ein Objekt mit dem Namen " + n + ".");
                 }
             }
         });

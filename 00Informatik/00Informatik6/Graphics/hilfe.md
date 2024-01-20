@@ -149,7 +149,34 @@ Die Attribute sind die Objekte, die in die Gruppe aufgenommen wurden.
   **Wichtig: Einer Gruppe kann keine weitere Gruppe hinzugefügt werden.**  
   
 - **beliebige Methode**  
-  Führt diese Methode für alle Objekte der Gruppe aus.  
+  Führt diese Methode für alle Objekte der Gruppe aus. In diesem Fall wird der Radius für beide Kreise in der Gruppe auf 10 gesetzt:
+  ``` Javascript
+  c1:Kreis
+  c2:Kreis
+  g:Gruppe
+  g.add(c1,c2)
+  g.radiusSetzen(10)
+  ```
+  Hier erscheint eine Fehlermeldung, da das Rechteck r1 keine Methode **radiusSetzen** hat:  
+  ``` Javascript
+  c1:Kreis
+  r1:Rechteck
+  g:Gruppe
+  g.add(c1,r1)
+  g.radiusSetzen(10)
+  ```
+  Der Radius von c1 kann aber trotzdem verändert werden:
+  ``` Javascript
+  c1:Kreis
+  r1:Rechteck
+  g:Gruppe
+  g.add(c1,r1)
+  c1.radiusSetzen(10)
+  ```
+  
+  Sinnvolle Methoden für Rechtecke sind Methoden zum Vergrößern oder Verkleinern der Objekte in der Gruppe (g.skaliere(...) und solche, die die ganze Gruppe verschieben (g.verschiebeX(...)).
+
+
 [nach oben](#voreinstellungen)  
 ### Farben
 Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen verwendet werden:  
