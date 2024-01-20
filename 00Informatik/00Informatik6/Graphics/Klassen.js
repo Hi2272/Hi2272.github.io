@@ -646,12 +646,12 @@ class Group {
         if (s in dict) {
             return dict[s];
         } else {
-            this.kinder.forEach(element => {
-                s1 = element.methodencheck(s);
+            for (let i=0;i<this.kinder.length;i++){
+                s1 = this.kinder[i].methodencheck(s);
                 if (s1 == "Fehler") {
-                    return "Fehler";
+                  i=this.kinder.length+1;
                 }
-            });
+            }
             return s1;
         }
     }
