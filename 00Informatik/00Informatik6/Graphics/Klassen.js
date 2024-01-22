@@ -369,7 +369,7 @@ class Rect extends ClosedShape {
             "setzepunkte": "setpoints",
             "setpunkte": "setpoints",
             "punktesetzen": "setpoints",
-        
+            "setcorners":"setpoints",
             "setpoints": "setpoints"
         };
         if (s1 == "Fehler") {
@@ -468,6 +468,7 @@ class Line extends Shape {
             "setzepunkte": "setpoints",
             "setpunkte": "setpoints",
             "punktesetzen": "setpoints",
+            "setcorners":"setpoints",
             "setpoints": "setpoints"
         };
         if (s1 == "Fehler") {
@@ -555,7 +556,7 @@ class Triangle extends ClosedShape {
             "eckensetzen": "setpoints",
             "setzeecken": "setpoints",
             "setecken": "setpoints",
-        
+            "setcorners":"setpoints",
             "setpoints": "setpoints"
         };
         if (s1 == "Fehler") {
