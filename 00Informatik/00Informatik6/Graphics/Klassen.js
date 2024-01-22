@@ -462,6 +462,9 @@ class Line extends Shape {
     methodencheck(s) {
         let s1 = super.methodencheck(s);
         let dict = {
+            "eckensetzen":"setpoints",
+            "setzeecken":"setpoints",
+            "setecken":"setpoints",
             "setzepunkte": "setpoints",
             "setpunkte": "setpoints",
             "punktesetzen": "setpoints",
