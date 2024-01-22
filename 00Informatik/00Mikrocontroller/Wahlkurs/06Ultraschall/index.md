@@ -73,7 +73,8 @@ Der Wert wird in Mikrosekunden, also in Millionstel Sekunden ausgegeben.
 Zur Berechnung der Entfernung in cm wird die Zeit zunächst durch 2 geteilt, da nicht der Hin- und Rückweg des Signals, sondern nur der einfache Weg gemessen werden soll.  
 Anschließend wird diese Zeit mit dem Weg mulitipliziert, den der Schall in einer Mikrosekunde zurücklegt:  
 Schallgeschwindigkeit = 1235,5 km/h = 343,2 m/s = 0,0003432 m/µs = 0,0343 cm/µs  
-
+  
+[Mehrere Sensoren ansteuern](MehrereSensoren.html)  
 [zurück](../index.html)
 
 <footer style="font-size:x-small;text-align: center;
