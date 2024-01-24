@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Mehrere Sensoren anschlie&szlig;en</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+             <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="mehrere-sensoren-anschließen">Mehrere Sensoren anschließen</h1>
+<h2 id="1-festlegen-der-pins">1. Festlegen der Pins</h2>
+<p>Wir schließen 5 Ultraschall-Sensoren an einen Arduino an.<br>
+Die Anschluss-Pins speichern wir hierzu in einem Feld (eng. Array):</p>
+<pre><code class="language-C++"><span class="hljs-type">int</span> trigger[]={<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>,<span class="hljs-number">8</span>,<span class="hljs-number">10</span>};  <span class="hljs-comment">// Trigger zum Senden des Signals </span>
+<span class="hljs-type">int</span> echo[]={<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>,<span class="hljs-number">11</span>};     <span class="hljs-comment">// Echo zum Empfangen des relektierten Signals</span>
+</code></pre>
+<p>Die einzelnen Werte des Feldes könnten wir auch durch die Angabe ihres Index-Wertes zuweisen:</p>
+<pre><code class="language-C++">trigger[<span class="hljs-number">0</span>] = <span class="hljs-number">2</span>;
+trigger[<span class="hljs-number">1</span>] = <span class="hljs-number">4</span>;
+trigger[<span class="hljs-number">2</span>] = <span class="hljs-number">6</span>;
+...
+</code></pre>
+<h3 id="2-die-setup-methode">2. Die setup()-Methode</h3>
+<p>In der <strong>setup()</strong>-Methode müssen wir jetzt allen Trigger- und Echo-Pins die INPUT oder OUTPUT-Eigenschaft zuweisen.<br>
+Hierzu verwenden wir eine Zählschleife:</p>
+<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+    <span class="hljs-built_in">pinMode</span>(trigger[i], OUTPUT);  <span class="hljs-comment">// Trigger-Pin ist ein Ausgang</span>
+    <span class="hljs-built_in">pinMode</span>(echo[i], INPUT);      <span class="hljs-comment">// Echo-Pin ist ein Eingang</span>
+  }
+}
+</code></pre>
+<p><strong>Erklärung der Zählschleife</strong></p>
+<ul>
+<li><strong>for</strong><br>
+Schlüsselwort für eine Zählschleife (for-Schleife)</li>
+<li><strong>(int i=0;</strong><br>
+Deklariert eine Zählvariable i und weist ihr den Start-Wert 0 zu.</li>
+<li><strong>i &lt; 5;</strong><br>
+Die Schleife soll solange laufen, wie die Zählvariable i kleiner als die Länge der Felder <strong>trigger</strong> und <strong>echo</strong> ist. In unserem Fall also kleiner als 5.<br>
+Insgesamt gibt es 5 Durchläufe:<br>
+i=0 ⇒ i=1 ⇒ i=2 ⇒ i=3 ⇒i=4 ⇒ Abbruch, da i nicht mehr kleiner als 5 ist!</li>
+<li><strong>i=i+1)</strong><br>
+Bei jedem Schritt soll i um eins erhöht werden.</li>
+<li><strong>{</strong><br>
+In den geschweiften Klammern (AltGr 7, AltGr 9) steht der Code, der wiederholt ausgeführt werden soll.</li>
+<li><strong>pinMode(trigger[i], OUTPUT);</strong><br>
+In der Schleife wird die Zählvariable i verwendet, um auf jeden Wert des Feldes <strong>trigger</strong> zuzugreifen.</li>
+<li><strong>pinMode(echo[i], INPUT);</strong><br>
+Genauso greifen wir auf die Elemente des Feldes <strong>echo</strong> zu.</li>
+<li><strong>}</strong></li>
+</ul>
+<h3 id="3-die-loop-methode">3. Die loop()-Methode</h3>
+<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i = i + <span class="hljs-number">1</span>) {
+    <span class="hljs-built_in">digitalWrite</span>(trigger[i], LOW);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">5</span>);
+    <span class="hljs-built_in">digitalWrite</span>(trigger[i], HIGH);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">10</span>);
+    <span class="hljs-built_in">digitalWrite</span>(trigger[i], LOW);
+
+    <span class="hljs-type">int</span> dauer = <span class="hljs-built_in">pulseIn</span>(echo[i], HIGH);
+    <span class="hljs-type">int</span> entfernung = (dauer / <span class="hljs-number">2</span>) * <span class="hljs-number">0.03432</span>;
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Sensor Nr.:&quot;</span>);
+    Serial.<span class="hljs-built_in">print</span>(i);
+    Serial.<span class="hljs-built_in">print</span>(entfernung);
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot; cm&quot;</span>);
+  }
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;--------------&quot;</span>);
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
+}
+</code></pre>
+<h3 id="erklärung-des-codes">Erklärung des Codes</h3>
+<p>Auch hier verwenden wir wieder eine Zählschleife, um alle Sensoren nacheinander anzusprechen. Die Messergebnisse werden über die Serielle Schnittstelle ausgegeben.</p>
+<p><a href="../index.html">zurück</a></p>
+<footer style="font-size:x-small;text-align: center;
+    padding: 10px;
+    margin: 10px;
+    height: 10%;
+    ">
+<p>Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.</p>
+</footer>
+
+            
+            
+        </body>
+        </html>

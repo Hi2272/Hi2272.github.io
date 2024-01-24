@@ -44,8 +44,8 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
 #### Entfernungsmessung
 Mit Hilfe eines Ultraschallsensors, der zum Beispiel auch in Einparkhilfen von Autos verbaut ist, messen wir den Abstand zu einem Objekt.   
 
-[Der Ultraschallsensor](06Ultraschall/index.html)  
-
+[Der Ultraschallsensor](06Ultraschall/index.html)    
+[Mehrere Sensoren: Felder und Schleifen](06Ultraschall/MehrereSensoren.html)  
   
    
 #### Geschwindigkeitsmessung

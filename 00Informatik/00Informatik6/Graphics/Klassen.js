@@ -26,7 +26,7 @@ function runde(s) {
 }
 
 function atl(s) {
-    dict = {
+    let dict = {
         "stroke": "linienfarbe",
         "strokewidth": "linienstärke",
         "opacity": "deckkraft",
@@ -86,6 +86,86 @@ class Shape {
     setWidth(w) { }
     setHeight(h) { }
 
+    checkAttribut(linie, attr) {
+        let gefunden = false;
+        var attribute = Object.entries(this);
+        for (let i = 2; i < attribute.length; i++) {
+            let s = atl(attribute[i][0]).toLowerCase();
+            if (s == atl(attr).toLowerCase()) {
+                gefunden = true;
+                i = attribute.length;
+            }
+        }
+        if (!gefunden) {
+            error(linie, "Das Objekt " + this.nam + " hat kein Attribut " + attr + ".");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+    methodencheck(s) {
+        let dict = {
+            "setzex": "setx",
+            "setx": "setx",
+
+            "setzey": "sety",
+            "sety": "sety",
+
+            "setopacity": "setopac",
+            "setdeckkraft": "setopac",
+            "setzedeckkraft": "setopac",
+            "deckkraftsetzen": "setopac",
+            "setopac": "setopac",
+
+            "verschiebex": "movex",
+            "movex": "movex",
+
+            "verschiebey": "movey",
+            "movey": "movey",
+
+            "verschiebezu": "setxy",
+            "verschiebenach": "setxy",
+            "moveto": "setxy",
+            "setzexy":"setxy",
+            "xysetzen":"setxy",
+            "setxy": "setxy",
+
+            "dupliziere": "copypaste",
+            "duplicate": "copypaste",
+            "verdoppele": "copypaste",
+            "copypaste": "copypaste",
+
+            "setlinienfarbe": "setstroke",
+            "setzelinienfarbe": "setstroke",
+            "linienfarbesetzen": "setstroke",
+            "setstroke": "setstroke",
+
+            "linienbreitesetzen": "setstrokewidth",
+            "setzelinienbreite": "setstrokewidth",
+            "setlinienbreite": "setstrokewidth",
+            "linienstärkesetzen": "setstrokewidth",
+            "setlinienstärke": "setstrokewidth",
+            "setzelinienstärke": "setstrokewidth",
+            "setstrokewidth": "setstrokewidth",
+
+            "skaliere": "scale",
+            "strecke": "scale",
+            "vergrößere": "scale",
+            "vergrössere": "scale",
+            "vergroessere": "scale",
+            "vergroeßere": "scale",
+            "verkleinere": "scale",
+            "scale": "scale",
+
+        };
+        if (s in dict) {
+            return dict[s];
+        } else {
+            return "Fehler";
+        }
+    }
     draw() {
         document.getElementById('svg').appendChild(this.svg());
         //      console.log(document.getElementById("svg").innerHTML);
@@ -129,13 +209,10 @@ class Shape {
 
     moveTo(xy) {
         let d = xy.split(",");
-        if (d.length != 2) {
-            error(-1, "Fehler bei moveTo(x,y). Hier sind zwei Parameter-Werte nötig!");
-        } else {
-            this.x = parseFloat(d[0]);
-            this.y = parseFloat(d[1]);
-        }
+        this.x = parseFloat(d[0]);
+        this.y = parseFloat(d[1]);
     }
+
     copyPaste(oNeu, oAlt, dx, dy) {
         oNeu.x = oAlt.x + dx;
         oNeu.y = oAlt.y + dy;
@@ -143,25 +220,6 @@ class Shape {
         oNeu.strokeWidth = oAlt.strokeWidth;
         return oNeu;
     }
-
-    checkAttribut(nr, attr) {
-        let gefunden = false;
-        var attribute = Object.entries(this);
-        for (let i = 2; i < attribute.length; i++) {
-            let s = atl(attribute[i][0]).toLowerCase();
-            if (s == atl(attr).toLowerCase()) {
-                gefunden = true;
-                i = attribute.length;
-            }
-        }
-        if (!gefunden) {
-            error(nr, "Das Objekt " + this.nam + " hat kein Attribut " + attr + ".");
-            return false;
-        } else {
-            return true;
-        }
-    }
-
 }
 
 class ClosedShape extends Shape {
@@ -177,7 +235,30 @@ class ClosedShape extends Shape {
         oNeu.fill = oAlt.fill;
         return oNeu;
     }
-
+    methodencheck(s) {
+        let s1 = super.methodencheck(s);
+        let dict = {
+            "setzefüllfarbe": "setfill",
+            "setfüllfarbe": "setfill",
+            "füllfarbesetzen": "setfill",
+            "setzefuellfarbe": "setfill",
+            "setfuellfarbe": "setfill",
+            "fuellfarbesetzen": "setfill",
+            "setzefarbe": "setfill",
+            "setfarbe": "setfill",
+            "farbesetzen": "setfill",
+            "setcolor": "setfill",
+            "setfill": "setfill"
+        };
+        if (s1 == "Fehler") {
+            if (s in dict) {
+                s1 = dict[s];
+            } else {
+                s1 = "Fehler";
+            }
+        }
+        return s1;
+    }
 }
 
 class Circle extends ClosedShape {
@@ -190,6 +271,32 @@ class Circle extends ClosedShape {
     getXYZahl() {
         return 2;
     }
+
+    methodencheck(s) {
+        let s1 = super.methodencheck(s);
+        let dict = {
+            "setzeradius": "setradius",
+            "radiussetzen": "setradius",
+            "setradius": "setradius",
+  
+            "mittesetzen": "setxy",
+            "setzemitte": "setxy",
+            "setmitte": "setxy",
+
+            "setmittelpunkt": "setxy",
+            "setzemittelpunkt": "setxy",
+            "mittelpunktsetzen": "setxy"
+        };
+        if (s1 == "Fehler") {
+            if (s in dict) {
+                s1 = dict[s];
+            } else {
+                s1 = "Fehler";
+            }
+        }
+        return s1;
+    }
+
     svg() {
         const s = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         s.setAttribute('id', this.nam);
@@ -237,6 +344,44 @@ class Rect extends ClosedShape {
     getXYZahl() {
         return 4;
     }
+
+    methodencheck(s) {
+        let s1 = super.methodencheck(s);
+        let dict = {
+            "setzebreite": "setwidth",
+            "setbreite": "setwidth",
+            "breitesetzen": "setwidth",
+            "setwidth": "setwidth",
+
+            "setzehöhe": "setheight",
+            "sethöhe": "setheight",
+            "höhesetzen": "setheight",
+        
+            "setzehoehe": "setheight",
+            "sethoehe": "setheight",
+            "hoehesetzen": "setheight",
+            "setheight": "setheight",
+
+            "setecken": "setpoints",
+            "eckensetzen": "setpoints",
+            "setzeecken": "setpoints",
+        
+            "setzepunkte": "setpoints",
+            "setpunkte": "setpoints",
+            "punktesetzen": "setpoints",
+            "setcorners":"setpoints",
+            "setpoints": "setpoints"
+        };
+        if (s1 == "Fehler") {
+            if (s in dict) {
+                s1 = dict[s];
+            } else {
+                s1 = "Fehler";
+            }
+        }
+        return s1;
+    }
+
     svg() {
         const s = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
         s.setAttribute('id', this.nam);
@@ -275,11 +420,11 @@ class Rect extends ClosedShape {
         }
 
     }
-
     setPoints(xyxy) {
         let d = xyxy.split(",");
         if (parseFloat(d[0]) > parseFloat(d[2])) { let z = d[0]; d[0] = d[2]; d[2] = z; }
         if (parseFloat(d[1]) > parseFloat(d[3])) { let z = d[1]; d[1] = d[3]; d[3] = z; }
+
         this.x = parseFloat(d[0]);
         this.y = parseFloat(d[1]);
         this.width = parseFloat(d[2]) - parseFloat(d[0]);
@@ -313,6 +458,29 @@ class Line extends Shape {
     getXYZahl() {
         return 4;
     }
+
+    methodencheck(s) {
+        let s1 = super.methodencheck(s);
+        let dict = {
+            "eckensetzen":"setpoints",
+            "setzeecken":"setpoints",
+            "setecken":"setpoints",
+            "setzepunkte": "setpoints",
+            "setpunkte": "setpoints",
+            "punktesetzen": "setpoints",
+            "setcorners":"setpoints",
+            "setpoints": "setpoints"
+        };
+        if (s1 == "Fehler") {
+            if (s in dict) {
+                s1 = dict[s];
+            } else {
+                s1 = "Fehler";
+            }
+        }
+        return s1;
+    }
+
     svg() {
         const s = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         s.setAttribute('id', this.nam);
@@ -330,10 +498,10 @@ class Line extends Shape {
 
     setPoints(xyxy) {
         let d = xyxy.split(",");
-          this.x = parseFloat(d[0]);
-            this.y = parseFloat(d[1]);
-            this.dx = parseFloat(d[2]) - this.x;
-            this.dy = parseFloat(d[3]) - this.y;      
+        this.x = parseFloat(d[0]);
+        this.y = parseFloat(d[1]);
+        this.dx = parseFloat(d[2]) - this.x;
+        this.dy = parseFloat(d[3]) - this.y;
     }
 
     moveTo(xy) {
@@ -378,14 +546,37 @@ class Triangle extends ClosedShape {
     getXYZahl() {
         return 6;
     }
+
+    methodencheck(s) {
+        let s1 = super.methodencheck(s);
+        let dict = {
+            "setzepunkte": "setpoints",
+            "setpunkte": "setpoints",
+            "punktesetzen": "setpoints",
+            "eckensetzen": "setpoints",
+            "setzeecken": "setpoints",
+            "setecken": "setpoints",
+            "setcorners":"setpoints",
+            "setpoints": "setpoints"
+        };
+        if (s1 == "Fehler") {
+            if (s in dict) {
+                s1 = dict[s];
+            } else {
+                s1 = "Fehler";
+            }
+        }
+        return s1;
+    }
+
     setPoints(xyxy) {
         let d = xyxy.split(",");
-            this.x = parseFloat(d[0]);
-            this.y = parseFloat(d[1]);
-            this.dx1 = parseFloat(d[2]) - this.x;
-            this.dy1 = parseFloat(d[3]) - this.y;
-            this.dx2 = parseFloat(d[4]) - this.x;
-            this.dy2 = parseFloat(d[5]) - this.y;      
+        this.x = parseFloat(d[0]);
+        this.y = parseFloat(d[1]);
+        this.dx1 = parseFloat(d[2]) - this.x;
+        this.dy1 = parseFloat(d[3]) - this.y;
+        this.dx2 = parseFloat(d[4]) - this.x;
+        this.dy2 = parseFloat(d[5]) - this.y;
     }
 
     moveTo(xy) {
@@ -444,6 +635,37 @@ class Group {
         this.y = 0;
     }
 
+    methodencheck(s) {
+        let s1 = "Fehler";
+        let dict = {
+            "schlucke": "add",
+            "fügezu": "add",
+            "fuegezu": "add",
+            "hinzufügen": "add",
+            "hinzufuegen": "add",
+            "addiere":"add",
+            "add": "add"
+        };
+
+        if (s in dict) {
+            return dict[s];
+        } else {
+            for (let i=0;i<this.kinder.length;i++){
+                s1 = this.kinder[i].methodencheck(s);
+                if (s1 == "Fehler") {
+                  i=this.kinder.length+1;
+                }
+            }
+            return s1;
+        }
+    }
+
+    checkAttribut(linie, attr) {
+        error(linie, "Bei Objekten der Klasse Gruppe kannst du keine Attribute-Werte zuweisen.");
+        return false;
+    }
+
+
     add(parameter) {
         let p = parameter.split(",");
         p.forEach(n => {
@@ -454,19 +676,20 @@ class Group {
                 }
             }
             if (typeof o == "undefined") {
-                error(-1, "Das Objekt " + n + " kenne ich nicht. Ich kann es nicht zur Gruppe " + this.nam + " hinzufügen.");
+                error("", "Das Objekt " + n + " kenne ich nicht. Ich kann es nicht zur Gruppe " + this.nam + " hinzufügen.");
             } else if (o.constructor.name == "Group") {
-                error(-1, "Zur Gruppe " + this.nam + " kann keine weitere Gruppe " + n + " hinzugefügt werden!");
+                error("", "Zur Gruppe " + this.nam + " kann keine weitere Gruppe " + n + " hinzugefügt werden!");
             } else {
                 if (!this.kinder.includes(o)) {
                     this.kinder.push(o);
+                    this.x = this.kinder[0].x;
+                    this.y = this.kinder[0].y;
+            
                 } else {
-                    error(-1, "Die Gruppe " + this.nam + " enthält schon ein Objekt mit dem Namen " + n + ".");
+                    error("", "Die Gruppe " + this.nam + " enthält schon ein Objekt mit dem Namen " + n + ".");
                 }
             }
         });
-        this.x = this.kinder[0].x;
-        this.y = this.kinder[0].y;
     }
 
     draw() {

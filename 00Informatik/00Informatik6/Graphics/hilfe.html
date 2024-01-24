@@ -301,10 +301,31 @@ Fügt das entsprechende Objekt der Gruppe hinzu.</p>
 </li>
 <li>
 <p><strong>beliebige Methode</strong><br>
-Führt diese Methode für alle Objekte der Gruppe aus.<br>
-<a href="#voreinstellungen">nach oben</a></p>
+Führt diese Methode für alle Objekte der Gruppe aus. In diesem Fall wird der Radius für beide Kreise in der Gruppe auf 10 gesetzt:</p>
+<pre><code class="language-Javascript"><span class="hljs-attr">c1</span>:<span class="hljs-title class_">Kreis</span>
+<span class="hljs-attr">c2</span>:<span class="hljs-title class_">Kreis</span>
+<span class="hljs-attr">g</span>:<span class="hljs-title class_">Gruppe</span>
+g.<span class="hljs-title function_">add</span>(c1,c2)
+g.<span class="hljs-title function_">radiusSetzen</span>(<span class="hljs-number">10</span>)
+</code></pre>
+<p>Hier erscheint eine Fehlermeldung, da das Rechteck r1 keine Methode <strong>radiusSetzen</strong> hat:</p>
+<pre><code class="language-Javascript"><span class="hljs-attr">c1</span>:<span class="hljs-title class_">Kreis</span>
+<span class="hljs-attr">r1</span>:<span class="hljs-title class_">Rechteck</span>
+<span class="hljs-attr">g</span>:<span class="hljs-title class_">Gruppe</span>
+g.<span class="hljs-title function_">add</span>(c1,r1)
+g.<span class="hljs-title function_">radiusSetzen</span>(<span class="hljs-number">10</span>)
+</code></pre>
+<p>Der Radius von c1 kann aber trotzdem verändert werden:</p>
+<pre><code class="language-Javascript"><span class="hljs-attr">c1</span>:<span class="hljs-title class_">Kreis</span>
+<span class="hljs-attr">r1</span>:<span class="hljs-title class_">Rechteck</span>
+<span class="hljs-attr">g</span>:<span class="hljs-title class_">Gruppe</span>
+g.<span class="hljs-title function_">add</span>(c1,r1)
+c1.<span class="hljs-title function_">radiusSetzen</span>(<span class="hljs-number">10</span>)
+</code></pre>
+<p>Sinnvolle Methoden für Rechtecke sind Methoden zum Vergrößern oder Verkleinern der Objekte in der Gruppe (g.skaliere(...) und solche, die die ganze Gruppe verschieben (g.verschiebeX(...)).</p>
 </li>
 </ul>
+<p><a href="#voreinstellungen">nach oben</a></p>
 <h3 id="farben">Farben</h3>
 <p>Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen verwendet werden:</p>
 <ul>
