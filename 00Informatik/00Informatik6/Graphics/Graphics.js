@@ -567,10 +567,11 @@ function changeTextSize(){
     let cols=40;
     let rows=20;
     switch (size){
-        case "1em":size="1.5em";cols=45;rows=28;break;
-        case "1.5em":size="2em";cols=40;rows=25;break;
-        case "2em":size="2.5em";cols=35;rows=20;break
-        case "2.5em":size="1em";cols=80;rows=50;break
+        case "1em":size="1.5em";cols=60;rows=23;break;
+        case "1.5em":size="2em";cols=60*15/20;rows=23*15/20;break;
+        case "2em":size="2.5em";cols=60*15/25;rows=23*15/25;break;
+        case "2.5em":size="3em";cols=60*15/30;rows=23*15/30;break;
+        case "3em": size="1em";cols=60*15/10;rows=23*15/10;break;
         
     }
     
