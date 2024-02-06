@@ -18,13 +18,12 @@
   <div class="grid-container">
     <div class="editor">
       <h2>Graphix Code Editor</h2>
-          <textarea id="editor" wrap="hard" cols="40" rows="20" style="font-size: 200%" spellcheck="false"></textarea>
+          <textarea id="editor" wrap="hard" cols="50" rows="30" style="font-size: 1.5em" spellcheck="false"></textarea>
           <div id="Button">
             <button onclick="convert(-1,true)">Zeichne</button>
             <button id="btnStep" onclick="schrittweise()">Schritt 1</button>
             <a href="hilfe.html" target=”_blank”><button>Hilfe</button></a>
-            <button onclick="changeTextSize(10)">+</button>
-            <button onclick="changeTextSize(-10)">-</button><br><br>
+            <button onclick="changeTextSize()">+/-</button><br>
             
             Deckkraft: <input type="range" min="0" max="100" value="70" class="slider" id="opacity" onchange="convert(-1,false)">
             <br>
