@@ -18,17 +18,19 @@
   <div class="grid-container">
     <div class="editor">
       <h2>Graphix Code Editor</h2>
-          <textarea id="editor" wrap="hard" cols="40" rows="20"></textarea>
+          <textarea id="editor" wrap="hard" cols="40" rows="20" style="font-size: 200%" spellcheck="false"></textarea>
           <div id="Button">
             <button onclick="convert(-1,true)">Zeichne</button>
             <button id="btnStep" onclick="schrittweise()">Schritt 1</button>
-            <a href="hilfe.html" target=”_blank”><button>Hilfe</button></a><br><br>
+            <a href="hilfe.html" target=”_blank”><button>Hilfe</button></a>
+            <button onclick="changeTextSize(10)">+</button>
+            <button onclick="changeTextSize(-10)">-</button><br><br>
+            
             Deckkraft: <input type="range" min="0" max="100" value="70" class="slider" id="opacity" onchange="convert(-1,false)">
-           <br>
-           Verzögerung: <input type="range" min="0" max="2000" value="0" class="slider" id="pause">
+            <br>
+            Verzögerung: <input type="range" min="0" max="2000" value="0" class="slider" id="pause">
           <br>
-
-
+       
           Attributnamen:
           <input type="checkbox" id="translate" name="translate" checked onchange="convert(-1,false)"/>
           <label for="translate">übersetzen</label>
@@ -45,7 +47,7 @@
    </div>
     <div class="karte">
       <h2>Objektkarte</h2>
-      <div id="Karte" >
+      <div id="Karte" spellcheck="false" style="font-size: larger">
       </div>
         
   </div>  
@@ -54,7 +56,7 @@
         
       <div>
         <form>
-          <select name="Objekte" id="Objekte" size="10" onInput="selection()">
+          <select name="Objekte" id="Objekte" size="10" spellcheck="false" style="font-size: larger" onInput="selection()">
             <option value=""></option>
           </select>
         </form>

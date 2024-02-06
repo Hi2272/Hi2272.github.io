@@ -561,3 +561,9 @@ function koordinatensystem() {
     }
     return txt;
 }
+
+function changeTextSize(wert){
+    let size=document.getElementById("editor").style.fontSize.split("%")[0];
+    size=parseInt(size)+wert;
+    document.getElementById("editor").style.fontSize=size+"%";
+}
