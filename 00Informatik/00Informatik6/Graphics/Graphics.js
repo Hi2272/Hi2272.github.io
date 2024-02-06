@@ -561,3 +561,22 @@ function koordinatensystem() {
     }
     return txt;
 }
+
+function changeTextSize(){
+    let size=document.getElementById("editor").style.fontSize;
+    let cols=40;
+    let rows=20;
+    switch (size){
+        case "1em":size="1.5em";cols=45;rows=28;break;
+        case "1.5em":size="2em";cols=40;rows=25;break;
+        case "2em":size="2.5em";cols=35;rows=20;break
+        case "2.5em":size="1em";cols=80;rows=50;break
+        
+    }
+    
+    document.getElementById("editor").style.fontSize=size;
+    document.getElementById("editor").cols=cols;
+    document.getElementById("editor").rows=rows;
+    
+    
+}
