@@ -562,22 +562,21 @@ function koordinatensystem() {
     return txt;
 }
 
-function changeTextSize(){
+function changeTextSize(obj){
     let size=document.getElementById("editor").style.fontSize;
     let cols=40;
     let rows=20;
-    switch (size){
-        case "1em":size="1.5em";cols=60;rows=23;break;
-        case "1.5em":size="2em";cols=60*15/20;rows=23*15/20;break;
-        case "2em":size="2.5em";cols=60*15/25;rows=23*15/25;break;
-        case "2.5em":size="3em";cols=60*15/30;rows=23*15/30;break;
-        case "3em": size="1em";cols=60*15/10;rows=23*15/10;break;
-        
+    switch (obj.value){
+        case "2":size="1.5em";cols=60;rows=23;break;
+        case "3":size="2em";cols=60*15/20;rows=23*15/20;break;
+        case "4":size="2.5em";cols=60*15/25;rows=23*15/25;break;
+        case "5":size="3em";cols=60*15/30;rows=23*15/30;break;
+        case "1": size="1em";cols=60*15/10;rows=23*15/10;break;
     }
     
     document.getElementById("editor").style.fontSize=size;
     document.getElementById("editor").cols=cols;
     document.getElementById("editor").rows=rows;
-    
+    document.getElementById("btnFontsize").innerHTML=size.split("em")[0]+"/3";
     
 }
