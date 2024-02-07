@@ -65,17 +65,17 @@ Auch bei den Methodennamen können deutsche oder englische Bezeichnungen verwend
 - strokeWidth: Linienbreite
 - fill: Füllfarbe (außer bei der Klasse Linie)
 #### Methoden
-- **setFill(color), setColor(farbe), füllfarbeSetzen(farbe), setzeFüllfarbe(farbe), setFüllfarbe(farbe)**  
+- **füllfarbeSetzen(farbe), setzeFüllfarbe(farbe), setFüllfarbe(farbe), setFill(color), setColor(farbe)**  
   Setzt die Füllfarbe eines geschlossenen Objekts.   
-- **setStroke(color),  linienfarbeSetzen(farbe), setzeLinienfarbe(farbe), setLinienfarbe(farbe)**  
+- **linienfarbeSetzen(farbe), setzeLinienfarbe(farbe), setLinienfarbe(farbe), setStroke(color)**  
   Setzt die Linienfarbe des Objekts.
-- **setStrokeWidth(width), linienbreiteSetzen(breite), setzeLinienbreite(breite), setLinienbreite(breite)**  
+- **linienbreiteSetzen(breite), setzeLinienbreite(breite), setLinienbreite(breite), setStrokeWidth(width)**  
   Setzt die Breite der Linie des Objekts.
-- **moveX(dx), verschiebeX(dx)**  
+- **verschiebeX(dx), moveX(dx)**  
   Verschiebt das Objekt um dx Einheiten nach rechts (postives dx) oder links (negatives dx)
-- **moveY(dy), verschiebeY(dy)**  
+- **verschiebeY(dy), moveY(dy)**  
    Verschiebt das Objekt um dy Einheiten nach unten (positives dy) oder oben (negatives dy)
-- **moveTo(x,y), verschiebeZu(x,y), verschiebeNach(x,y)**  
+- **verschiebeZu(x,y), verschiebeNach(x,y), moveTo(x,y)**  
   Verschiebt das Objekt auf die Position mit den Koordinaten (x,y)  
 #### Parameter
 Farben werden als deutsch oder englische Wörter ohne Anführungszeichen eingetragen.  
@@ -90,7 +90,7 @@ Farben werden als deutsch oder englische Wörter ohne Anführungszeichen eingetr
  Eine Linie ist keine geschlossene Figur. Sie hat daher auch kein Attribut Füllfarbe.*
 
 #### Zusätzliche Methoden
-- **setPoints(x1,y1,x2,y2), punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2)**  
+- **punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2), setPoints(x1,y1,x2,y2)**  
   Setzt die Koordinaten der beiden Endpunkte der Linie.  
 [nach oben](#voreinstellungen)  
 ### Rechteck (Rect, Rectangle)
@@ -102,11 +102,11 @@ Farben werden als deutsch oder englische Wörter ohne Anführungszeichen eingetr
 - stroke: Linienfarbe
 - strokeWidth: Linienbreite
 #### Zusätzliche Methoden
-- **setWidth(width), breiteSetzen(breite), setzeBreite(breite), setBreite(breite)**    
+- **breiteSetzen(breite), setzeBreite(breite), setBreite(breite), setWidth(width)**    
   Setzt den Wert des Attributs Breite.
-- **setHeight(height), höheSetzen(höhe), setzeHöhe(höhe), setHöhe(höhe)**  
+- **höheSetzen(höhe), setzeHöhe(höhe), setHöhe(höhe), setHeight(height)**  
   Setzt den Wert des Attributs Höhe.
-- **setPoints(x1,y1,x2,y2), punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2),eckenSetzen(x1,y1,x2,y2)**  
+- **eckenSetzen(x1,y1,x2,y2), punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2), setPoints(x1,y1,x2,y2)**  
   Setzt die Koordinaten der linken unteren und der rechten oberen Ecke des Rechtecks.  
 [nach oben](#voreinstellungen)  
 ### Dreieck (Triangle)
@@ -116,7 +116,7 @@ Farben werden als deutsch oder englische Wörter ohne Anführungszeichen eingetr
 - stroke: Linienfarbe
 - strokeWidth: Linienbreite
 #### Zusätzliche Methoden
-- **setPoints(x1,y1,x2,y2,x3,y3), punkteSetzen(x1,y1,x2,y2,x3,y3), setzePunkte(x1,y1,x2,y2,x3,y3), setPunkte(x1,y1,x2,y2,x3,y3), eckensetzen(x1,y1,x2,y2,x3,y3)**  
+- **eckenSetzen(x1,y1,x2,y2,x3,y3), punkteSetzen(x1,y1,x2,y2,x3,y3), setzePunkte(x1,y1,x2,y2,x3,y3), setPunkte(x1,y1,x2,y2,x3,y3),setPoints(x1,y1,x2,y2,x3,y3)**  
   Setzt die Koordinaten der drei Ecken.  
 [nach oben](#voreinstellungen)  
 ### Kreis (Circle)
@@ -127,9 +127,9 @@ Farben werden als deutsch oder englische Wörter ohne Anführungszeichen eingetr
 - stroke: Linienfarbe
 - strokeWidth: Linienbreite
 #### Zusätzliche Methoden
-- **setRadius(radius), setzeRadius(radius), radiusSetzen(radius)**    
+- **radiusSetzen(radius), setzeRadius(radius), setRadius(radius)**    
   Setzt den Wert des Attributs Radius.
-- **setPoints(x,y), mittelpunktSetzen(x,y), setzeMittelpunkt(x,y), setMittelpunkt(x,y)**  
+- **mittelpunktSetzen(x,y), setzeMittelpunkt(x,y), setMittelpunkt(x,y), setPoints(x,y)**  
   Setzt die Koordinaten des Mittelpunkts.  
 [nach oben](#voreinstellungen)  
 ### Gruppe (Group)
@@ -247,7 +247,7 @@ wdh 50
 Erzeugt ein Objekt g1 als Kopie von g - g1 ist um 100 Punkte nach rechts verschoben.  
 [nach oben](#voreinstellungen)    
 ### Skalieren: Vergrößern und Verkleinern von Objekten
-Mit der Methode **skaliere, scale, strecke, vergrößere** kann ein Objekt vergrößert oder verkleinert werden.  
+Mit der Methode **skaliere, scale, strecke, vergrößere, verkleinere** kann ein Objekt vergrößert oder verkleinert werden.  
 Der Parameter gibt den Vergrößerungsfaktor in Prozent an:  
 - o.skaliere(110) vergrößert das Objekt o auf 110% seiner Originalgröße
 - o.skaliere(90) verkleinert das Objekt o auf 90% seiner Orginalgröße  

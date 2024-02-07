@@ -201,17 +201,17 @@ Diese Zeile weist dem Attribut <strong>x</strong> des Objekts <strong>re</strong
 </ul>
 <h4 id="methoden">Methoden</h4>
 <ul>
-<li><strong>setFill(color), setColor(farbe), füllfarbeSetzen(farbe), setzeFüllfarbe(farbe), setFüllfarbe(farbe)</strong><br>
+<li><strong>füllfarbeSetzen(farbe), setzeFüllfarbe(farbe), setFüllfarbe(farbe), setFill(color), setColor(farbe)</strong><br>
 Setzt die Füllfarbe eines geschlossenen Objekts.</li>
-<li><strong>setStroke(color),  linienfarbeSetzen(farbe), setzeLinienfarbe(farbe), setLinienfarbe(farbe)</strong><br>
+<li><strong>linienfarbeSetzen(farbe), setzeLinienfarbe(farbe), setLinienfarbe(farbe), setStroke(color)</strong><br>
 Setzt die Linienfarbe des Objekts.</li>
-<li><strong>setStrokeWidth(width), linienbreiteSetzen(breite), setzeLinienbreite(breite), setLinienbreite(breite)</strong><br>
+<li><strong>linienbreiteSetzen(breite), setzeLinienbreite(breite), setLinienbreite(breite), setStrokeWidth(width)</strong><br>
 Setzt die Breite der Linie des Objekts.</li>
-<li><strong>moveX(dx), verschiebeX(dx)</strong><br>
+<li><strong>verschiebeX(dx), moveX(dx)</strong><br>
 Verschiebt das Objekt um dx Einheiten nach rechts (postives dx) oder links (negatives dx)</li>
-<li><strong>moveY(dy), verschiebeY(dy)</strong><br>
+<li><strong>verschiebeY(dy), moveY(dy)</strong><br>
 Verschiebt das Objekt um dy Einheiten nach unten (positives dy) oder oben (negatives dy)</li>
-<li><strong>moveTo(x,y), verschiebeZu(x,y), verschiebeNach(x,y)</strong><br>
+<li><strong>verschiebeZu(x,y), verschiebeNach(x,y), moveTo(x,y)</strong><br>
 Verschiebt das Objekt auf die Position mit den Koordinaten (x,y)</li>
 </ul>
 <h4 id="parameter">Parameter</h4>
@@ -228,7 +228,7 @@ Verschiebt das Objekt auf die Position mit den Koordinaten (x,y)</li>
 Eine Linie ist keine geschlossene Figur. Sie hat daher auch kein Attribut Füllfarbe.</em></p>
 <h4 id="zusätzliche-methoden">Zusätzliche Methoden</h4>
 <ul>
-<li><strong>setPoints(x1,y1,x2,y2), punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2)</strong><br>
+<li><strong>punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2), setPoints(x1,y1,x2,y2)</strong><br>
 Setzt die Koordinaten der beiden Endpunkte der Linie.<br>
 <a href="#voreinstellungen">nach oben</a></li>
 </ul>
@@ -244,11 +244,11 @@ Setzt die Koordinaten der beiden Endpunkte der Linie.<br>
 </ul>
 <h4 id="zusätzliche-methoden-1">Zusätzliche Methoden</h4>
 <ul>
-<li><strong>setWidth(width), breiteSetzen(breite), setzeBreite(breite), setBreite(breite)</strong><br>
+<li><strong>breiteSetzen(breite), setzeBreite(breite), setBreite(breite), setWidth(width)</strong><br>
 Setzt den Wert des Attributs Breite.</li>
-<li><strong>setHeight(height), höheSetzen(höhe), setzeHöhe(höhe), setHöhe(höhe)</strong><br>
+<li><strong>höheSetzen(höhe), setzeHöhe(höhe), setHöhe(höhe), setHeight(height)</strong><br>
 Setzt den Wert des Attributs Höhe.</li>
-<li><strong>setPoints(x1,y1,x2,y2), punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2),eckenSetzen(x1,y1,x2,y2)</strong><br>
+<li><strong>eckenSetzen(x1,y1,x2,y2), punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2), setPoints(x1,y1,x2,y2)</strong><br>
 Setzt die Koordinaten der linken unteren und der rechten oberen Ecke des Rechtecks.<br>
 <a href="#voreinstellungen">nach oben</a></li>
 </ul>
@@ -262,7 +262,7 @@ Setzt die Koordinaten der linken unteren und der rechten oberen Ecke des Rechtec
 </ul>
 <h4 id="zusätzliche-methoden-2">Zusätzliche Methoden</h4>
 <ul>
-<li><strong>setPoints(x1,y1,x2,y2,x3,y3), punkteSetzen(x1,y1,x2,y2,x3,y3), setzePunkte(x1,y1,x2,y2,x3,y3), setPunkte(x1,y1,x2,y2,x3,y3), eckensetzen(x1,y1,x2,y2,x3,y3)</strong><br>
+<li><strong>eckenSetzen(x1,y1,x2,y2,x3,y3), punkteSetzen(x1,y1,x2,y2,x3,y3), setzePunkte(x1,y1,x2,y2,x3,y3), setPunkte(x1,y1,x2,y2,x3,y3),setPoints(x1,y1,x2,y2,x3,y3)</strong><br>
 Setzt die Koordinaten der drei Ecken.<br>
 <a href="#voreinstellungen">nach oben</a></li>
 </ul>
@@ -277,9 +277,9 @@ Setzt die Koordinaten der drei Ecken.<br>
 </ul>
 <h4 id="zusätzliche-methoden-3">Zusätzliche Methoden</h4>
 <ul>
-<li><strong>setRadius(radius), setzeRadius(radius), radiusSetzen(radius)</strong><br>
+<li><strong>radiusSetzen(radius), setzeRadius(radius), setRadius(radius)</strong><br>
 Setzt den Wert des Attributs Radius.</li>
-<li><strong>setPoints(x,y), mittelpunktSetzen(x,y), setzeMittelpunkt(x,y), setMittelpunkt(x,y)</strong><br>
+<li><strong>mittelpunktSetzen(x,y), setzeMittelpunkt(x,y), setMittelpunkt(x,y), setPoints(x,y)</strong><br>
 Setzt die Koordinaten des Mittelpunkts.<br>
 <a href="#voreinstellungen">nach oben</a></li>
 </ul>
@@ -395,7 +395,7 @@ Die Methode benötigt drei Parameter:</p>
 <p>Erzeugt ein Objekt g1 als Kopie von g - g1 ist um 100 Punkte nach rechts verschoben.<br>
 <a href="#voreinstellungen">nach oben</a></p>
 <h3 id="skalieren-vergrößern-und-verkleinern-von-objekten">Skalieren: Vergrößern und Verkleinern von Objekten</h3>
-<p>Mit der Methode <strong>skaliere, scale, strecke, vergrößere</strong> kann ein Objekt vergrößert oder verkleinert werden.<br>
+<p>Mit der Methode <strong>skaliere, scale, strecke, vergrößere, verkleinere</strong> kann ein Objekt vergrößert oder verkleinert werden.<br>
 Der Parameter gibt den Vergrößerungsfaktor in Prozent an:</p>
 <ul>
 <li>o.skaliere(110) vergrößert das Objekt o auf 110% seiner Originalgröße</li>
