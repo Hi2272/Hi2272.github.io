@@ -58,11 +58,13 @@
 ## Objektorientierte Programmierung
 ***
 
+
 ### Wiederholung
 
 [Definitionen zur Objektorientierten Modellierung](https://Hi2272.github.io/00Informatik/KlasseObjekt2/index.html)  
 [Objekt- und Klassenkarte](https://Hi2272.github.io/00Informatik/KlassenObjekt3/index.html)  
 [Grundbegriffe Objekt Klasse](https://Hi2272.github.io/00Informatik/KlasseObjekt/index.html)  
+[LearnJ Objektorientierung](https://www.learnj.de/doku.php?id=klassen1:start)
 
 ### Klassen und Konstruktoren
 
