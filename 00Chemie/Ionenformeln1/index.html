@@ -401,9 +401,12 @@
         }
 
         function neueFrage() {
-            frageAnionenNummer = Math.floor((Math.random() * 16));  // 0..15 = 16 Anionen
-            frageKationenNummer = Math.floor((Math.random() * 9) + 16);   // ab 16 Kationen
-            frageAnionenZahl = Math.abs(ionenLadung[frageKationenNummer]);
+           // frageAnionenNummer = Math.floor((Math.random() * 16));  // 0..15 = 16 Anionen
+           // frageKationenNummer = Math.floor((Math.random() * 9) + 16);   // ab 16 Kationen
+            frageAnionenNummer = 12;  // 0..15 = 16 Anionen
+            frageKationenNummer = 18;   // ab 16 Kationen
+          
+           frageAnionenZahl = Math.abs(ionenLadung[frageKationenNummer]);
             frageKationenZahl = Math.abs(ionenLadung[frageAnionenNummer]);
             if ((frageAnionenZahl == frageKationenZahl) && (frageAnionenZahl != 1)) {
                 frageAnionenZahl = 1;
