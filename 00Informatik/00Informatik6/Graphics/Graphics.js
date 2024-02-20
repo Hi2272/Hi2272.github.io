@@ -563,20 +563,28 @@ function koordinatensystem() {
 }
 
 function changeTextSize(obj){
-    let size=document.getElementById("editor").style.fontSize;
-    let cols=40;
-    let rows=20;
-    switch (obj.value){
-        case "2":size="1.5em";cols=60;rows=23;break;
-        case "3":size="2em";cols=60*15/20;rows=23*15/20;break;
-        case "4":size="2.5em";cols=60*15/25;rows=23*15/25;break;
-        case "5":size="3em";cols=60*15/30;rows=23*15/30;break;
-        case "1": size="1em";cols=60*15/10;rows=23*15/10;break;
-    }
+    let sz=parseFloat(obj.value);
+    sz=1+(sz-1)/2;
+    let size=""+sz+"em";
     
+    sz=sz*16;
+    let wh=window.innerHeight*3/4;
+    let rows=Math.round(wh/sz);
+    let ww=window.innerWidth*4/5;
+    let cols=Math.round(ww/sz);
     document.getElementById("editor").style.fontSize=size;
-    document.getElementById("editor").cols=cols;
-    document.getElementById("editor").rows=rows;
-    document.getElementById("btnFontsize").innerHTML=size.split("em")[0]+"/3";
+      
+
+    document.getElementById("editor").style.maxHeight=wh;
+    document.getElementById("editor").style.maxWidth=ww;
+    document.getElementById("editor").style.minHeight=wh;
+   document.getElementById("editor").style.minWidth=ww/2;
+  document.getElementById("editor").cols=cols;
+  document.getElementById("editor").rows=rows;
     
+}
+
+function init(){
+    drawAll();
+    changeTextSize(document.getElementById("textSize"));
 }

@@ -14,11 +14,11 @@
   <script src="Graphics.js"></script>
 </head>
 
-<body onload="drawAll()">
+<body onload="init()">
   <div class="grid-container">
     <div class="editor">
       <h2>Graphix Code Editor</h2>
-          <textarea id="editor" wrap="hard" cols="60" rows="23" style="font-size: 1.5em" spellcheck="false"></textarea>
+          <textarea id="editor" wrap="hard"  style="font-size: 1.5em" spellcheck="false"></textarea>
           <div id="Button">
             <button onclick="convert(-1,true)">Zeichne</button>
             <button id="btnStep" onclick="schrittweise()">Schritt 1</button>
