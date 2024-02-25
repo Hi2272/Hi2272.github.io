@@ -120,12 +120,16 @@ class Shape {
             "setopac": "setopac",
 
             "verschiebex": "movex",
+            "verschiebenx": "movex",
             "movex": "movex",
 
             "verschiebey": "movey",
+            "verschiebeny": "movey",
             "movey": "movey",
 
             "verschiebezu": "setxy",
+            "verschiebenzu": "setxy",
+            "verschiebennach": "setxy",
             "verschiebenach": "setxy",
             "moveto": "setxy",
             "setzexy":"setxy",
