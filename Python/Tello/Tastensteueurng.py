@@ -43,7 +43,7 @@ def getKeyBoardInout():
     if kp.getKey("e"): me.takeoff()
 
     if kp.getKey("z"):
-        cv2.imwrite(f'/Images/{time.time()}.jpg',img)
+        cv2.imwrite(f'/Python/Tello/Images/{time.time()}.jpg',img)
         print("Image saved")
         time.sleep(1)
     

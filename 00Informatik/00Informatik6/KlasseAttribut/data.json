@@ -1,0 +1,20 @@
+{   
+  "snap":true,
+  "stapel":false,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Klassen Methoden Attribute Parameter",
+  "angabe":"Ordne die Begriffe richtig zu:",
+ 
+  "txt":[
+    {"x":0.274 ,"y":0.03,"width":0.701,"height":0.088,"pos":[0]},
+    {"x":0.271 ,"y":0.517,"width":0.717,"height":0.093,"pos":[1]},
+    {"x":0.271 ,"y":0.268,"width":0.709,"height":0.098,"pos":[2]},
+    {"x":0.271 ,"y":0.767,"width":0.718,"height":0.088,"pos":[3]},
+    {"x":0.27 ,"y":0.139,"width":0.705,"height":0.103,"pos":[4]},
+    {"x":0.27 ,"y":0.646,"width":0.718,"height":0.085,"pos":[5]},
+    {"x":0.271 ,"y":0.39,"width":0.711,"height":0.096,"pos":[6]},
+    {"x":0.268 ,"y":0.886,"width":0.718,"height":0.096,"pos":[7]}
+    ]
+    }
