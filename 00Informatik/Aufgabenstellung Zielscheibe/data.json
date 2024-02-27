@@ -1,0 +1,85 @@
+{
+  "typ": "Text",
+  "titel": "Die Zielscheibe zählt Treffer",
+  "untertitel": "Attribute und Methoden",
+  "angabe": [
+    {
+      "txt": "Programmiere dies in der Klasse Kreis:",
+      "zeit": 1
+    },
+    {
+      "txt": "Programmiere dies in der Klasse Kreis:",
+      "zeit": 1
+    },
+    {
+      "txt": "Programmiere dies in der Klasse Kreis:",
+      "zeit": 1
+    },
+    {
+      "txt": "Programmiere dies in der Klasse Kreis:",
+      "zeit": 1
+    },
+    {
+      "txt": "Programmiere dies in der Klasse Kreis:",
+      "zeit": 1
+    },
+    {
+      "txt": "Programmiere dies in der Klasse Kreis:",
+      "zeit": 1
+    },
+    {
+      "txt": "Programmiere dies in der Klasse Kreis:",
+      "zeit": 1
+    },
+    {
+      "txt": "Programmiere dies in der Klasse Zielscheibe:",
+      "zeit": 1
+    },
+    {
+      "txt": "Programmiere dies in der Klasse Zielscheibe:",
+      "zeit": 1
+    },
+    {
+      "txt": "Programmiere dies in der Klasse Zielscheibe:",
+      "zeit": 1
+    },
+    {
+      "txt": "Programmiere dies in der Klasse Zielscheibe:",
+      "zeit": 1
+    },
+    {
+      "txt": "Programmiere dies in der Klasse Zielscheibe:",
+      "zeit": 1
+    },
+    {
+      "txt": "Programmiere dies in der Klasse Zielscheibe:",
+      "zeit": 1
+    },
+    {
+      "txt": "Programmiere dies in der Klasse Zielscheibe:",
+      "zeit": 1
+    }
+    
+  ],
+  "txtAngabe": [
+    "Deklariere ein privates Attribut <b>getroffen<b> vom Datentyp <b>boolean</b>. <br><br>",
+    "Weise dem Attribut <b>getroffen</b> im Konstruktor den Wert <b>false</b> zu. <br><br>",
+    "Erstelle die Ereignis-Methode <b>onMouseEnter.</b><br>Sie wird automatisch aufgerufen, wenn die Maus über das Objekt fährt. <br>Programmiere sie so, dass dem Attribut getroffen der Wert <b>true</b> zugewiesen wird. <br><br>",
+    "Erstelle die Ereignis-Methode <b>onMouseLeave.</b><br>Sie wird automatisch aufgerufen, wenn die Maus das Objekt verlässt.<br>Hier soll dem Attribut getroffen der Wert false zugewiesen werden.<br><br>",
+    "Programmiere eine öffentliche Methode <b>getGetroffen()</b>, die einen boolean-Wert zurükgibt.<br>Ihr Rumpf besteht aus einer Zeile:<br>return this.getroffen;<br><br>",
+    "Deklariere private Attribute kSchwarz, kGruen, kGelb, kRot, kBlau vom Typ Kreis.<br><br>",
+    "Weise diesen Attributen im Konstruktor die passenden Objekte zu.<br><br>",
+    "Deklariere ein privates Attribute pkte vom Datentyp int.<br><br>",
+    "Weise diesem Attribut im Konstruktor den Wert 0 zu.<br><br>",
+    "Schreibe in der Ereignis-Methode <b>onMouseDown</b> folgende Zeile:<br>if(this.kBlau.getGetroffen()) { this.pkte = this.pkte + 20; }<br>Ergänze die Methode durch vier weitere Zeilen für die anderen Kreise.<br><br>",
+    "Deklariere ein privates Attribute ausgabePkte vom Datentyp Text.<br><br>",
+    "Weise diesem Attribut im Konstruktor ein neues Objekt vom Typ Text mit den Parameter-Werten (0,0,10,\"\") zu.<br><br>",
+    "Rufe in der Methode <b>onMouseDown</b> die Methode <b>setText(String.valueOf(this.pkte) + \" Punkte\")</b> des Objektes <b>ausgabePkte</b> auf.<br><br>"
+    
+    
+    
+    
+  ],
+  "ende": "",
+  "copyright":""
+}
