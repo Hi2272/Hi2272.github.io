@@ -1,0 +1,18 @@
+{   
+  "snap":true,
+  "stapel":true,
+
+  "dateiname":"Screenshot_1.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Punktnotation",
+  "angabe":"Ordne die Begriffe richtig zu:",
+ 
+  "txt":[
+    {"x":0.457 ,"y":0.319,"width":0.225,"height":0.094,"pos":[0]},
+    {"x":0.458 ,"y":0.583,"width":0.197,"height":0.097,"pos":[1]},
+    {"x":0.453 ,"y":0.185,"width":0.304,"height":0.108,"pos":[2]},
+    {"x":0.458 ,"y":0.844,"width":0.315,"height":0.104,"pos":[3]},
+    {"x":0.458 ,"y":0.447,"width":0.319,"height":0.106,"pos":[4]},
+    {"x":0.46 ,"y":0.711,"width":0.33,"height":0.106,"pos":[5]}
+    ]
+    }
