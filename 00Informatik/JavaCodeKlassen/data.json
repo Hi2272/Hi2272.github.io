@@ -18,30 +18,30 @@
       "thisLoeschen": false
     },
    {
-    "txt": "Kopf eines öffentlichen Konstruktors der Klasse Zielscheibe mit einem ganzzahligen Parameter radius",
+    "txt": "Kopf eines öffentlichen Konstruktors der Klasse Zielscheibe mit einem Parameter radius vom Typ double",
       "lsg": [
-        "public Zielscheibe(int radius){"
+        "public Zielscheibe(double radius){"
       ],
       "thisLoeschen": false
     }, 
     {
-      "txt": "Kopf eines öffentlichen Konstruktors der Klasse Zielscheibe mit einer Parameter: Zeichenkette farbe",
+      "txt": "Kopf eines öffentlichen Konstruktors der Klasse Zielscheibe mit einem Parameter: farbe vom Typ Color",
         "lsg": [
-          "public Zielscheibe(String farbe){"
+          "public Zielscheibe(Color farbe){"
          ],
         "thisLoeschen": false
       }, 
      
     {
-      "txt": "Kopf eines öffentlichen Konstruktors der Klasse Zielscheibe mit zwei Parametern: Zeichenkette farbe, Ganzzahl radius ",
+      "txt": "Kopf eines öffentlichen Konstruktors der Klasse Zielscheibe mit zwei Parametern: Color farbe, double radius ",
       "lsg": [
-        "public Zielscheibe(String farbe,int radius){"
+        "public Zielscheibe(Color farbe,double radius){"
       ],
       "thisLoeschen": false
     },
-    {"txt": "Erzeugen eines neuen Objekts der Klasse Kreis mit den Parameter-Werten 100, 100, 80, \"blue\"",
+    {"txt": "Erzeugen eines neuen Objekts der Klasse Kreis mit den Parameter-Werten 100, 100, 80, Color.blue",
         "lsg": [
-          "new Kreis(100,100,80,\"blue\");"
+          "new Kreis(100,100,80,Color.blue);"
          ],
         "thisLoeschen": false
       },
