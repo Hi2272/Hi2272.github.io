@@ -11,7 +11,7 @@
       "thisLoeschen": false
     },
     {
-      "txt": "Kopf eines öffentlichen Konstruktors der Klasse Zielscheibe ohne Parameter",
+      "txt": "Kopf eines öffentlichen Konstruktors der Klasse Zielscheibe ohne Parameter (Standard-Konstruktor)",
       "lsg": [
         "public Zielscheibe(){"
        ],
