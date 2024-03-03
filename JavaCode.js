@@ -39,9 +39,11 @@ function start() {
         }
     }
     document.getElementById("quelle").innerHTML = "2022 Rainer Hille <br> Unter Verwwendung von  <a href='https://www.cssscript.com/toast-style-web-notifications-in-vanilla-javascript-vanillatoasts/'>VanillaToasts.js</a>";
+    let s_ang="";
     for (var i = 0; i < angabe.length; i++) {
-        console.log(angabe[i].txt);
+        s_ang=s_ang+angabe[i].txt+"<br>"+"<i>"+angabe[i].lsg+"</i><br>";
     }
+    console.log(s_ang);
     nummer = 0;
     richtig = 0;
 
