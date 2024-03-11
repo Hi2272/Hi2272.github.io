@@ -38,8 +38,10 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
    ![Alt text](03Processing/2023-06-24_14-01.png)
    4. [Daten über die Serielle Schnittstelle einlesen](03Processing/Serial.html)
    5. [Messwerte als Diagramm am Computer darstellen](03Processing/Grafica.html)  
+   ![Alt text](03Processing/2023-06-26_10-03.png)  
+   6. [Messwerte ins Internet schicken](07Blynk/index.html)  
    
-   ![Alt text](03Processing/2023-06-26_10-03.png)
+   
    
 #### Entfernungsmessung
 Mit Hilfe eines Ultraschallsensors, der zum Beispiel auch in Einparkhilfen von Autos verbaut ist, messen wir den Abstand zu einem Objekt.   
