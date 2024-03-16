@@ -41,10 +41,13 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
    ![Alt text](03Processing/2023-06-26_10-03.png)  
    6. [Messwerte ins Internet schicken](07Blynk/index.html)  
    
-   
-   
+#### Helligkeitsmessung
+Mit einem Fotowiderstand kann die Helligkeit bestimmt werden.  
+[Der Fotowiderstand](05Widerstand/index.html)   
+![alt text](05Widerstand/2024-03-16_08-07.png)    
 #### Entfernungsmessung
 Mit Hilfe eines Ultraschallsensors, der zum Beispiel auch in Einparkhilfen von Autos verbaut ist, messen wir den Abstand zu einem Objekt.   
+![alt text](06Ultraschall/Anschluss.png)  
 
 [Der Ultraschallsensor](06Ultraschall/index.html)    
 [Mehrere Sensoren: Felder und Schleifen](06Ultraschall/MehrereSensoren.html)  
