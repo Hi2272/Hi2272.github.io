@@ -32,7 +32,8 @@
 
 
 ### Powerpoint
-[Powerpoint Schule](https://Hi2272.github.io/00Informatik/00Informatik6/PowerpointSchule/index.html)   
+[Animationen](00Informatik6/Powerpoint/Animation/index.html)  
+[Powerpoint Schule](00Informatik/00Informatik6/PowerpointSchule/index.html)   
 
 ## Mikrocontroller
 ***
