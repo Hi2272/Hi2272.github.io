@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Temperaturwerte ins Internet schicken</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+             <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="temperaturwerte-ins-internet-schicken">Temperaturwerte ins Internet schicken</h1>
+<h2 id="1-grundlagen">1. Grundlagen</h2>
+<p>Das Internet der Dinge (Internet of Things, IoT) besteht aus Mikrocontrollern, die über das Internet mit Server-Rechnern verbunden sind. Sie können Daten an den Server senden und Befehle von ihm empfangen.<br>
+Der Mikrocontroller ESP32 kann sich im Wlan anmelden und darüber ins Internet gehen.<br>
+Als IoT-Dienst verwenden wir <a href="https://blynk.io">Blynk</a>. Diese Firma betreibt IoT-Server, die rund um die Uhr über das Internet erreichbar sind.</p>
+<h2 id="2-anmeldung-bei-blynk">2. Anmeldung bei Blynk</h2>
+<ol>
+<li>Gehe auf die Internetseite <a href="https://blynk.io">blynk.io</a>.</li>
+<li>Klicke auf <strong>Start free</strong></li>
+<li>Erstelle mit deiner E-Mail-Adresse einen neuen Account.</li>
+<li>Bestätige den Account in der E-Mail, die dir automatisch geschickt wurde.</li>
+</ol>
+<p>Die kostenlose Version hat einige Einschränkungen. Sie reicht aber für unsere Zwecke voll aus.</p>
+<h2 id="3-neue-vorlage-zur-temperaturmessung-erstellen">3. Neue Vorlage zur Temperaturmessung erstellen</h2>
+<ol>
+<li>Logge dich bei Blynk ein.</li>
+<li>Klicke links oben auf <strong>Developer Zone</strong>.</li>
+<li>Klicke rechts oben auf <strong>+Neue Vorlage</strong>.</li>
+<li>Fülle das Formular aus und klicke auf <strong>Fertig</strong>:<br>
+<img src="2024-03-11_18-49.png" alt="alt text"></li>
+</ol>
+<h2 id="4-datenströme-einrichten">4. Datenströme einrichten</h2>
+<p>Über einen Datenstrom kann ein Typ von Information zwischen dem Mikrocontroller und dem Blynk-Server ausgetauscht werden. Bei unserem Aufbau benötigen wir einen Datenstrom für die Temperatur-Messwerte.</p>
+<ol>
+<li>Klicke auf <strong>Datenströme einrichten</strong>.</li>
+<li>Klicke auf <strong>+Neuer Datenstrom</strong>.</li>
+<li>Wähle <strong>Virtueller Pin</strong> und fülle das Formular aus und klicke auf <strong>Erstellen</strong>:<br>
+<img src="2024-03-11_18-57.png" alt="alt text"></li>
+</ol>
+<h2 id="5-temperatur-diagramm-erstellen">5. Temperatur-Diagramm erstellen</h2>
+<ol>
+<li>Klicke auf <strong>Web-Dashboard</strong></li>
+<li>Suche in der <strong>Widget-Box</strong> ein <strong>Diagramm</strong> und ziehe es nach rechts auf das Dashboard:<br>
+<img src="2024-03-11_19-01.png" alt="alt text"></li>
+<li>Klicke auf das Zahnrad im Diagramm<br>
+<img src="2024-03-11_19-03.png" alt="alt text"></li>
+<li>Fülle das Formular aus und klicke auf Speichern.<br>
+<img src="2024-03-11_19-05.png" alt="alt text"></li>
+</ol>
+<h2 id="6-vorlage-speichern">6. Vorlage speichern</h2>
+<p>Klicke rechts oben auf Speichern, um die neu erstellte Vorlage <strong>Temperatur</strong> zu speichern.</p>
+<h2 id="7-esp32-bei-blynk-anmelden">7. ESP32 bei Blynk anmelden</h2>
+<ol>
+<li>Klicke auf <strong>Hause</strong> (engl. Home).</li>
+<li>Wähle <strong>Fügen Sie Ihr erstes Gerät hinzu</strong>.</li>
+<li>Trage als Namen <strong>Thermometer</strong> ein.</li>
+<li>Klicke auf <strong>Erstellen</strong>.<br>
+Blynk hat deinem System jetzt mehrere eindeutige Id-Nummern gegeben, die du später im Arduino-Sketch einfügen musst:</li>
+</ol>
+<ul>
+<li>BLYNK_TEMPLATE_NAME &quot;Thermometer&quot;: Name der Vorlage, die du erstellt hast.</li>
+<li>BLYNK_TEMPLATE_ID &quot;TMP...&quot;: Id dieser Vorlage.</li>
+<li>BLYNK_AUTH_TOKEN &quot;AMT...&quot;: Id des Gerätes, das du erstellt hast.
+Mit diesen Kennzahlen erkennt Blynk das Gerät und ruft automatisch das passende Web-Dashboard auf.</li>
+</ul>
+<h2 id="8-esp32-programmieren">8. ESP32 programmieren</h2>
+<ol>
+<li>Starte die Arduino IDE.</li>
+<li>Schließe den ESP32 über USB an den Rechner an.</li>
+<li>Installiere die Blynk-Bibliothek:<br>
+<img src="2024-03-11_19-17.png" alt="alt text"></li>
+<li>Erstelle einen neuen Sketch</li>
+<li>Kopiere diesen Code in den Sketch:</li>
+</ol>
+<pre><code class="language-C++"><span class="hljs-comment">// Konstanten für die Anbindung an blynk.io</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> BLYNK_TEMPLATE_NAME <span class="hljs-string">&quot;&quot;</span> <span class="hljs-comment">// Dein Wert von blynk.io</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> BLYNK_AUTH_TOKEN <span class="hljs-string">&quot;&quot;</span> <span class="hljs-comment">// Dein Wert von blynk.io</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> BLYNK_TEMPLATE_ID <span class="hljs-string">&quot;&quot;</span> <span class="hljs-comment">// Dein Wert von blynk.io</span></span>
+
+<span class="hljs-comment">// Ermöglicht die Ausgabe von Nachrichten der blynk.io-Seite</span>
+<span class="hljs-comment">// an die Serielle Schnittstelle.</span>
+<span class="hljs-comment">// Kann auch gelöscht werden, um Daten zu sparen</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> BLYNK_PRINT Serial</span>
+
+<span class="hljs-comment">// Bibliotheken einbinden</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WiFi.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WiFiClient.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;BlynkSimpleEsp32.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Arduino.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;OneWire.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;DallasTemperature.h&gt;</span></span>
+
+<span class="hljs-comment">// Wifi Zugangsdaten</span>
+<span class="hljs-type">char</span> ssid[] = <span class="hljs-string">&quot;&quot;</span>; <span class="hljs-comment">// Dein Netzwerk</span>
+<span class="hljs-type">char</span> pass[] = <span class="hljs-string">&quot;&quot;</span>; <span class="hljs-comment">// Dein Kennwort</span>
+
+<span class="hljs-comment">// Temperaturmessung</span>
+<span class="hljs-type">int</span> tempPin=<span class="hljs-number">34</span>;
+<span class="hljs-function">OneWire <span class="hljs-title">oneWire</span><span class="hljs-params">(tempPin)</span></span>;
+<span class="hljs-function">DallasTemperature <span class="hljs-title">sensors</span><span class="hljs-params">(&amp;oneWire)</span></span>;
+
+
+<span class="hljs-comment">// Timer zum zeitgesteuerten Senden der Daten an blynk.io</span>
+BlynkTimer timer;
+
+<span class="hljs-comment">// Timer-Funktion</span>
+<span class="hljs-comment">// Hier muss das Senden der Daten an blynk.io programmiert werden</span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">myTimerEvent</span><span class="hljs-params">()</span>
+</span>{
+  <span class="hljs-comment">// Sende Signal zum Abfragen der Temperatur</span>
+  sensors.<span class="hljs-built_in">requestTemperatures</span>(); 
+  <span class="hljs-comment">// Lese den Wert des Sensors mit dem Index 0 (es können mehrere Sensoren angeschlossen werden)</span>
+  <span class="hljs-type">float</span> tempC = sensors.<span class="hljs-built_in">getTempCByIndex</span>(<span class="hljs-number">0</span>); 
+  <span class="hljs-comment">// Sendet den Messwert an den Virtuellen Pin V0</span>
+  <span class="hljs-comment">// von blynk.io</span>
+  Blynk.<span class="hljs-built_in">virtualWrite</span>(V0, tempC);
+  Serial.<span class="hljs-built_in">println</span>(tempC);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span>
+</span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);
+
+  <span class="hljs-comment">// Baut die Verbindung zum blynk.io Server auf</span>
+  Blynk.<span class="hljs-built_in">begin</span>(BLYNK_AUTH_TOKEN, ssid, pass);
+
+  <span class="hljs-comment">// Legt fest, wie oft die Timer-Funktion myTimerEvent aufgerufen wird</span>
+  <span class="hljs-comment">// 5000L bedeutet 5000 ms als long-Wert</span>
+  <span class="hljs-comment">// d.h. die Daten werden alle 5 Sek. erfasst und an blynk.io gesendet </span>
+  timer.<span class="hljs-built_in">setInterval</span>(<span class="hljs-number">5000L</span>, myTimerEvent);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span>
+</span>{
+  <span class="hljs-comment">// Startet die Routinen für Blynk </span>
+  Blynk.<span class="hljs-built_in">run</span>();
+
+  <span class="hljs-comment">// Startet dieTimerfunktion</span>
+  <span class="hljs-comment">// damit wird die Funktion myTimerEvent regelmäßig aufgerufen</span>
+  <span class="hljs-comment">// ACHTUNG: Es darf keine delay()-Funktion verwendet werden!</span>
+  timer.<span class="hljs-built_in">run</span>();
+  
+}
+
+</code></pre>
+<p><a href="../index.html">zurück</a></p>
+<footer style="font-size:x-small;text-align: center;
+    padding: 10px;
+    margin: 10px;
+    height: 10%;
+    ">
+<p>Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.</p>
+</footer>
+
+            
+            
+        </body>
+        </html>
