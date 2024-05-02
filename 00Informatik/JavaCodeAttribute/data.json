@@ -3,14 +3,14 @@
   "shuffle": false,
   "angabe": [
     {
-      "txt": "Deklaration eines privaten Attributs x1 vom Typ Ganzzahl.",
+      "txt": "Deklaration eines privaten Attributs x1 vom Typ int (=ganze Zahl).",
       "lsg": [
         "private int x1;"
       ],
       "thisLoeschen": false
     },
     {
-      "txt": "Deklaration eines öffentlichen Attributs s vom Typ Zeichenkette.",
+      "txt": "Deklaration eines öffentlichen Attributs s vom Typ String (=Zeichenkette).",
       "lsg": [
         "public String s;"
     ],

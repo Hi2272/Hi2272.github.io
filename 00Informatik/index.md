@@ -24,9 +24,16 @@
 [Pixelgrafik](https://www.inf-schule.de/kids/datennetze/pixelgrafik)  
 [SVG Klassen und Attribute](00Informatik6/SVG/index.html)  
 [Attribut Editor](00Informatik6/Attributeditor/index.html)  
-[Graphix Editor](00Informatik6/Graphics/index.html) 
+[Graphix Editor](00Informatik6/Graphics/index.html)   
+
+[Klassen Attribute Methoden](00Informatik6/KlasseAttribut/index.html)  
+[Punktnotation](00Informatik6/Punktnotation/index.html)  
+[Punktnotation 2](https://learningapps.org/view34317198)
+
+
 ### Powerpoint
-[Powerpoint Schule](https://Hi2272.github.io/00Informatik/00Informatik6/PowerpointSchule/index.html)   
+[Animationen](00Informatik6/Powerpoint/Animation/index.html)  
+[Powerpoint Schule](00Informatik/00Informatik6/PowerpointSchule/index.html)   
 
 ## Mikrocontroller
 ***
@@ -69,6 +76,8 @@
 ### Klassen und Konstruktoren
 
 [Klassen und Konstruktoren](https://Hi2272.github.io/00Informatik/KlassenKonstruktoren/index.html)  
+[Klassen und Konstruktoren 2](https://Hi2272.github.io/00Informatik/JavaZeilenBenennen/index.html )  
+[JavaCode: Klassen, Attribute, Konstruktoren, Methoden](https://Hi2272.github.io/00Informatik/JavaCodeKlassen2/index.html)   
 [JavaCode: Klassen und Konstruktoren](https://Hi2272.github.io/00Informatik/JavaCodeKlassen/index.html)  
 [BlueJ-Projekt: Zielscheibe](https://Hi2272.github.io/00Informatik/AufgabenstellungZielscheibe/index.html)  
 [BlueJ-Projekt: Dorf](https://Hi2272.github.io/00Informatik/AufgabenstellungDorf/index.html)  
