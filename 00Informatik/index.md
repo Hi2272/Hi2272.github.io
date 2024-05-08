@@ -118,6 +118,7 @@
 [Anleitung: Kara bedingte Anweisungen](https://Hi2272.github.io/00Informatik/AufgabenstellungKaraBedingteAnweisung/12%20Bedingte%20Anweisung%20Kara.pdf)  
 [Java-Code-Zeilen: Bedingte Anweisungen I](https://Hi2272.github.io/00Informatik/JavaCodeIf/index.html)  
 [Java-Code-Zeilen: Bedingte Anweisungen II](https://Hi2272.github.io/00Informatik/JavaCodeLogik/index.html)  
+[Kniffel](../Online-IDE/Kniffel/index.html)
 
 ### Zählschleifen
 
