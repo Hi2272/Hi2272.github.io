@@ -11,7 +11,7 @@ Für die Programmierung benötigen wir eine Bibliothek, die du auf dieser Intern
 Speichere die ZIP-Datei an einem Ort, an den du sie wiederfindest.  
 Anschließend müssen wir diese Bibliothek in unseren Sketch importieren:
 1. Starte die Arduino-IDE.
-2. Erstelle ein neues Projekt.
+2. Erstelle ein neues Projekt.  
 3. Importiere die Bibliothek als ZIP-Datei:  
    ![alt text](2024-05-08_08-23.png)
 ## 4. Programmieren des Sketches

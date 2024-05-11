@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -142,14 +144,14 @@
 Wir verwenden hierbei den Standard Bluetooth-Low-Energy (BLE), mit dem üblicherweise Tastaturen, Mäuse oder andere Eingabegeräte, die nur wenig Daten erzeugen, angeschlossen werden.</p>
 <h2 id="1-vorbereitung">1. Vorbereitung</h2>
 <p>Für die Programmierung benötigen wir eine Bibliothek, die du auf dieser Internetseite herunterladen kannst: <a href="https://github.com/T-vK/ESP32-BLE-Keyboard">https://github.com/T-vK/ESP32-BLE-Keyboard</a><br>
-<img src="file:///c:\Users\hille\Documents\Hi2272.github.io\00Informatik\00Mikrocontroller\Wahlkurs\05ESP32\04GameController\2024-05-08_08-25.png" alt="alt text"><br>
+<img src="2024-05-08_08-25.png" alt="alt text"><br>
 Speichere die ZIP-Datei an einem Ort, an den du sie wiederfindest.<br>
 Anschließend müssen wir diese Bibliothek in unseren Sketch importieren:</p>
 <ol>
 <li>Starte die Arduino-IDE.</li>
 <li>Erstelle ein neues Projekt.</li>
 <li>Importiere die Bibliothek als ZIP-Datei:<br>
-<img src="file:///c:\Users\hille\Documents\Hi2272.github.io\00Informatik\00Mikrocontroller\Wahlkurs\05ESP32\04GameController\2024-05-08_08-23.png" alt="alt text"></li>
+<img src="2024-05-08_08-23.png" alt="alt text"></li>
 </ol>
 <h2 id="4-programmieren-des-sketches">4. Programmieren des Sketches</h2>
 <h3 id="41-aufbau-der-ble-verbindung">4.1 Aufbau der BLE-Verbindung</h3>
