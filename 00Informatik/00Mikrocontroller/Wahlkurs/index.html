@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -136,7 +138,7 @@
         
         </head>
         <body class="vscode-body vscode-light">
-               <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 <h1 id="wahlunterricht-mikroelektronik-am-gymnasium-waldkraiburg">Wahlunterricht Mikroelektronik am Gymnasium Waldkraiburg</h1>
 <h5 id="diese-seite-befindet-sich-im-aufbau-im-schuljahr-202324-werden-zu-den-einzelnen-kapiteln-weitere-inhalte-hinzugefügt">Diese Seite befindet sich im Aufbau. Im Schuljahr 2023/24 werden zu den einzelnen Kapiteln weitere Inhalte hinzugefügt.</h5>
 <h2 id="grundausstattung">Grundausstattung</h2>
@@ -166,36 +168,24 @@
 <h4 id="temperaturmessung">Temperaturmessung</h4>
 <p>Wir bauen ein digitales Thermometer und verwenden es, um Messreihen am Computer aufzuzeichnen.</p>
 <ol>
-<li>
-<p><a href="03Temperatur/index.html">Temperatursensor Dallas DS18B20</a><br>
-<img src="file:///c:\Users\hille\Documents\Hi2272.github.io\00Informatik\00Mikrocontroller\Wahlkurs\03Temperatur\2023-06-26_16-04.png" alt="Alt text"></p>
-</li>
-<li>
-<p><a href="03Temperatur/OLED/index.html">OLED-Display zur Darstellung der Messwerte</a></p>
-</li>
-<li>
-<p><a href="03Processing/index.html">Grafische Ausgabe am Computer</a><br>
-<img src="file:///c:\Users\hille\Documents\Hi2272.github.io\00Informatik\00Mikrocontroller\Wahlkurs\03Processing\2023-06-24_14-01.png" alt="Alt text"></p>
-</li>
-<li>
-<p><a href="03Processing/Serial.html">Daten über die Serielle Schnittstelle einlesen</a></p>
-</li>
-<li>
-<p><a href="03Processing/Grafica.html">Messwerte als Diagramm am Computer darstellen</a><br>
-<img src="file:///c:\Users\hille\Documents\Hi2272.github.io\00Informatik\00Mikrocontroller\Wahlkurs\03Processing\2023-06-26_10-03.png" alt="Alt text"></p>
-</li>
-<li>
-<p><a href="07Blynk/index.html">Messwerte ins Internet schicken</a></p>
-</li>
+<li><a href="03Temperatur/index.html">Temperatursensor Dallas DS18B20</a>
+<img src="03Temperatur/2023-06-26_16-04.png" alt="Alt text"></li>
+<li><a href="03Temperatur/OLED/index.html">OLED-Display zur Darstellung der Messwerte</a></li>
+<li><a href="03Processing/index.html">Grafische Ausgabe am Computer</a>
+<img src="03Processing/2023-06-24_14-01.png" alt="Alt text"></li>
+<li><a href="03Processing/Serial.html">Daten über die Serielle Schnittstelle einlesen</a></li>
+<li><a href="03Processing/Grafica.html">Messwerte als Diagramm am Computer darstellen</a>
+<img src="03Processing/2023-06-26_10-03.png" alt="Alt text"></li>
+<li><a href="07Blynk/index.html">Messwerte ins Internet schicken</a></li>
 </ol>
 <h4 id="helligkeitsmessung">Helligkeitsmessung</h4>
-<p>Mit einem Fotowiderstand kann die Helligkeit bestimmt werden.<br>
-<a href="05Widerstand/index.html">Der Fotowiderstand</a><br>
-<img src="file:///c:\Users\hille\Documents\Hi2272.github.io\00Informatik\00Mikrocontroller\Wahlkurs\05Widerstand\2024-03-16_08-07.png" alt="alt text"></p>
+<p>Mit einem Fotowiderstand kann die Helligkeit bestimmt werden.
+<a href="05Widerstand/index.html">Der Fotowiderstand</a>
+<img src="05Widerstand/2024-03-16_08-07.png" alt="alt text"></p>
 <h4 id="entfernungsmessung">Entfernungsmessung</h4>
-<p>Mit Hilfe eines Ultraschallsensors, der zum Beispiel auch in Einparkhilfen von Autos verbaut ist, messen wir den Abstand zu einem Objekt.<br>
-<img src="file:///c:\Users\hille\Documents\Hi2272.github.io\00Informatik\00Mikrocontroller\Wahlkurs\06Ultraschall\Anschluss.png" alt="alt text"></p>
-<p><a href="06Ultraschall/index.html">Der Ultraschallsensor</a><br>
+<p>Mit Hilfe eines Ultraschallsensors, der zum Beispiel auch in Einparkhilfen von Autos verbaut ist, messen wir den Abstand zu einem Objekt.
+<img src="06Ultraschall/Anschluss.png" alt="alt text"></p>
+<p><a href="06Ultraschall/index.html">Der Ultraschallsensor</a>
 <a href="06Ultraschall/MehrereSensoren.html">Mehrere Sensoren: Felder und Schleifen</a></p>
 <h4 id="geschwindigkeitsmessung">Geschwindigkeitsmessung</h4>
 <p>Wir bauen Lichtschranken, mit denen die Geschwindigkeit von Fahrzeugen gemessen werden können.</p>
@@ -204,21 +194,18 @@
 <li>Laserlichtschranke</li>
 </ol>
 <h3 id="4-diskobeleuchtung">4. Diskobeleuchtung</h3>
-<p>Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.<br>
-<img src="file:///c:\Users\hille\Documents\Hi2272.github.io\00Informatik\00Mikrocontroller\Wahlkurs\03-01.png" alt="Partylicht"><br>
-In folgendem Video könnt ihr die Funktion des Lichtes sehen:  <a href="https://youtu.be/V1RZFxpPh4s">YouTube Video Partylicht</a></p>
+<p>Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.<img src="03-01.png" alt="Partylicht">In folgendem Video könnt ihr die Funktion des Lichtes sehen:  <a href="https://youtu.be/V1RZFxpPh4s">YouTube Video Partylicht</a></p>
 <ol>
 <li>RGB-LEDs</li>
 <li>Tonaufnahmen mit einem Mikrofon</li>
 </ol>
 <h3 id="5-esp32">5. ESP32</h3>
 <h3 id="a-ein-mikrocontroller-im-netzwerk">a) Ein Mikrocontroller im Netzwerk</h3>
-<p>Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.<br>
-Seine Programmierung kann auch über die bekannte Arduino-IDE erfolgen.</p>
+<p>Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.Seine Programmierung kann auch über die bekannte Arduino-IDE erfolgen.</p>
 <ol>
 <li><a href="05ESP32/01/index.html">Vorbereitung der Arduino-IDE für den ESP32</a></li>
-<li><a href="05ESP32/02/index.html">Schalten einer LED über einen Internetbrowser</a><br>
-<img src="file:///c:\Users\hille\Documents\Hi2272.github.io\00Informatik\00Mikrocontroller\Wahlkurs\05ESP32\02\Sc02.png" alt="Alt text"></li>
+<li><a href="05ESP32/02/index.html">Schalten einer LED über einen Internetbrowser</a>
+<img src="05ESP32/02/Sc02.png" alt="Alt text"></li>
 <li><a href="05ESP32/03/index.html">Senden und Empfangen von Daten über Bluetooth</a></li>
 </ol>
 <h3 id="b-ein-bluetooth-gamepad-für-pac-man">b) Ein Bluetooth-Gamepad für Pac Man</h3>
@@ -236,7 +223,7 @@ Seine Programmierung kann auch über die bekannte Arduino-IDE erfolgen.</p>
 <hr>
 <footer >
 <p>Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.</p>
-  <h5>Haftungsausschluss</h5>
+<h5>Haftungsausschluss</h5>
   <h5>Inhalt des Onlineangebotes</h5>
   <p>Der Autor übernimmt keinerlei Gewähr für die Aktualität, Richtigkeit und Vollständigkeit der bereitgestellten Informationen auf unserer Website. Haftungsansprüche gegen den Autor, welche sich auf Schäden materieller oder ideeller Art beziehen, die durch die Nutzung oder Nichtnutzung der dargebotenen Informationen bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen verursacht wurden, sind grundsätzlich ausgeschlossen, sofern seitens des Autors kein nachweislich vorsätzliches oder grob fahrlässiges Verschulden vorliegt.<br>
   Alle Angebote sind freibleibend und unverbindlich. Der Autor behält es sich ausdrücklich vor, Teile der Seiten oder das gesamte Angebot ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen.</p>
