@@ -130,7 +130,7 @@
 
 ### While Schleife
 
-[Kara While Schleife](https://Hi2272.github.io\00Informatik\AufgabenstellungWhile\index.html)  
+[Kara While Schleife](https://Hi2272.github.io/00Informatik/AufgabenstellungWhile/index.html)  
 
 ### Spiele
 
