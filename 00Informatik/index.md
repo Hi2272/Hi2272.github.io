@@ -118,6 +118,7 @@
 [Anleitung: Kara bedingte Anweisungen](https://Hi2272.github.io/00Informatik/AufgabenstellungKaraBedingteAnweisung/12%20Bedingte%20Anweisung%20Kara.pdf)  
 [Java-Code-Zeilen: Bedingte Anweisungen I](https://Hi2272.github.io/00Informatik/JavaCodeIf/index.html)  
 [Java-Code-Zeilen: Bedingte Anweisungen II](https://Hi2272.github.io/00Informatik/JavaCodeLogik/index.html)  
+[Kniffel](../Online-IDE/Kniffel/index.html)
 [Kniffel](../Online-IDE/Kniffel/index.html)  
 
 ### Zählschleifen
@@ -130,7 +131,7 @@
 
 ### While Schleife
 
-[Kara While Schleife](https://Hi2272.github.io\00Informatik\AufgabenstellungWhile\index.html)  
+[Kara While Schleife](https://Hi2272.github.io/00Informatik/AufgabenstellungWhile/index.html)  
 
 ### Spiele
 
@@ -140,7 +141,7 @@
 [Vier gewinnt](https://Hi2272.github.io/00Informatik/AufgabenstellungVierGewinnt/index.html)  
 
 ### Zusammenfassung
-
+[Online-IDE: Die if-Anweisung](https://www.learnj.de/doku.php?id=wenndann:if:start)
 [Java-Code-Zeilen: Zusammenfassung](https://Hi2272.github.io/00Informatik/JavaCodeZusammenfassung/index.html)  
 [Aufbau einer Java Klasse](https://Hi2272.github.io/00Informatik/AufbauKlasse/index.html)  
 [Aufbau einer Java-Klasse: Code](/00Informatik/KlasseAufbau/index.html)  

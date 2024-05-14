@@ -1,6 +1,8 @@
 { "typ":"Bild",   
   "titel":"FOR-Schleife",
-  "untertitel":"Löse diese Aufgabe in BlueJ und klicke dann auf <i>Weiter</i>.",
+  "untertitel":"Löse diese Aufgabe in BlueJ und klicke dann auf <i>Weiter</i>.<br>Alternativ: <a href='https://Hi2272.github.io/Online-IDE/Rechnungen/index.html'>Online-IDE</a>",
+  
+
   "angabe":[
     {"zeit":3,"txt":"Erstelle in BlueJ ein neues Projekt.<br>Erstelle eine Klasse <b>Zahlen</b> und programmiere einen Konstruktor ohne Parameter und Inhalt."},
     {"zeit":3,"txt":"Die Methode <b>System.out.println(i);</b> gibt den Wert der Variable i in einem Fenster, der sogenannten Konsole, aus.<br>Programmiere im Konstruktor eine Schleife, die die Zahlen zwischen 0 und 9 ausgibt."},
