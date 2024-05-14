@@ -132,7 +132,7 @@
 ### While Schleife
 
 [Kara While Schleife](https://Hi2272.github.io/00Informatik/AufgabenstellungWhile/index.html)  
-
+[Teilbarkeit und Primzahlen](/00Informatik/OnlineIDETeilbarkeit/index.htlm)
 ### Spiele
 
 [Kara braucht Klee!](https://Hi2272.github.io/00Informatik/AufgabenstellungKara/index.html)  
