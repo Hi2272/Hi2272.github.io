@@ -1,0 +1,84 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title id="Titel"></title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
+  <style>
+    ol{
+      text-align: left;
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1>Der Modulo-Operator</h1>
+  Untersuche diesen Code.
+  <ol><li>Durch welchen Operator wird der Rest einer ganzzahligen Division ermittelt?
+  </li><li>Mit welcher Methode der Klasse String wird eine int-Variable in eine Zeichenkette umgewandelt?
+  </li><li>Was bewirkt der "+"-Operator bei Zeichenketten?
+  </li></ol> 
+  Scrolle nach unten für die nächste Aufgabe...
+  <div id="quelle" style="font-size: x-small; text-align: right;">
+    2024 Rainer Hille  Unter Verwwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a>
+
+  </div>
+  <section>
+    <iframe
+    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+    width="100%" height="80%" frameborder="0">
+    {'id': 'Java', 'speed': 2000, 
+    'withBottomPanel': false ,'withPCode': false ,'withConsole': true ,
+    'withFileList': false ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Zahlen.java" src="Zahlen.java"></script>
+  </script>
+   </iframe>
+</section>
+<hr>
+<h1>Teilbarkeit durch 2 bis 10</h1>
+Verändere den Code so, dass die geprüft wird, ob die eingegebene Zahl durch alle Zahlen zwischen 2 und 10 teilbar ist.<br>
+Verwende hierzu eine Zählschleife.<br>
+Scrolle nach unten für die nächste Aufgabe...
+<div id="quelle" style="font-size: x-small; text-align: right;">
+  2024 Rainer Hille  Unter Verwwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a>
+
+</div>
+<section>
+  <iframe
+  srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+  width="100%" height="80%" frameborder="0">
+  {'id': 'Java', 'speed': 2000, 
+  'withBottomPanel': false ,'withPCode': false ,'withConsole': true ,
+  'withFileList': false ,'withErrorList': true}
+  <script id="javaCode" type="plain/text" title="Zahlen.java" src="Zahlen.java"></script>
+</script>
+ </iframe>
+</section>
+<hr>
+<h1>Lösungsvorschlag:</h1>
+<code class="language-C++">
+  public class Zahlen {
+
+    public Zahlen() {
+       rechnen();
+    }
+ 
+    public void rechnen() {
+       int zahl = Input.readInt("Geben Sie eine Zahl ein:");
+       for (int teiler = 2; teiler < 11; teiler = teiler + 1) {
+          int rest = zahl % teiler;
+          System.out.println("Wir untersuchen die Zahl " + String.valueOf(zahl));
+          System.out.println("auf die Teilbarkeit durch " + String.valueOf(teiler) + ".");
+          System.out.println("Der Rest beträgt: " + String.valueOf(rest));
+       }
+    }
+   
+ }
+ 
+ new Zahlen();
+
+</code>
+</body>
+
+</html>
