@@ -280,3 +280,6 @@ public class Zahlen {
 new Zahlen();
 ```
 
+[Weitere Übungsaufgaben auf LearnJ](https://www.learnj.de/doku.php?id=einstieg:wiederholung:start)  
+
+
