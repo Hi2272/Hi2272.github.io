@@ -319,7 +319,9 @@ Verwende hierzu eine While-Schleife und eine logische Verknüpfung (UND = &amp;&
       System.out.println(<span class="hljs-string">&quot;Wir untersuchen die Zahl &quot;</span> + String.valueOf(zahl));
       <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">teiler</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; teiler &lt; zahl; teiler = teiler + <span class="hljs-number">1</span>) {
          <span class="hljs-type">int</span> <span class="hljs-variable">rest</span> <span class="hljs-operator">=</span> zahl % teiler;
-         <span class="hljs-keyword">if</span>(rest == <span class="hljs-number">0</span> &amp;&amp; teiler!=zahl) {
+         <span class="hljs-keyword">if</span>(rest == <span class="hljs-number">0</span>) {
+            <span class="hljs-comment">// Es muss nicht geprüft werden, ob der Teiler gleich der Zahl ist,</span>
+            <span class="hljs-comment">// da die Schleife abbricht, bevor zahl erreicht wird.</span>
             System.out.println(<span class="hljs-string">&quot;Sie ist durch &quot;</span> + String.valueOf(teiler) + <span class="hljs-string">&quot; teilbar.&quot;</span>);
             primzahl = <span class="hljs-literal">false</span>;
          }
@@ -371,7 +373,9 @@ Sie ist durch <span class="hljs-number">2</span> teilbar.
       System.out.println(<span class="hljs-string">&quot;Wir untersuchen die Zahl &quot;</span> + String.valueOf(zahl));
       <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">teiler</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; teiler &lt; zahl; teiler = teiler + <span class="hljs-number">1</span>) {
          <span class="hljs-type">int</span> <span class="hljs-variable">rest</span> <span class="hljs-operator">=</span> zahl % teiler;
-         <span class="hljs-keyword">if</span>(rest == <span class="hljs-number">0</span> &amp;&amp; teiler != zahl) {
+         <span class="hljs-keyword">if</span>(rest == <span class="hljs-number">0</span>) {
+            <span class="hljs-comment">// Es muss nicht geprüft werden, ob der Teiler gleich der Zahl ist,</span>
+            <span class="hljs-comment">// da die Schleife abbricht, bevor zahl erreicht wird.</span>
             System.out.println(<span class="hljs-string">&quot;Sie ist durch &quot;</span> + String.valueOf(teiler) + <span class="hljs-string">&quot; teilbar.&quot;</span>);
             primzahl = <span class="hljs-literal">false</span>;
             teiler = <span class="hljs-number">99</span>;

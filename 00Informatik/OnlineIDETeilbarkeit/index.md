@@ -208,7 +208,9 @@ public class Zahlen {
       System.out.println("Wir untersuchen die Zahl " + String.valueOf(zahl));
       for (int teiler = 2; teiler < zahl; teiler = teiler + 1) {
          int rest = zahl % teiler;
-         if(rest == 0 && teiler!=zahl) {
+         if(rest == 0) {
+            // Es muss nicht geprüft werden, ob der Teiler gleich der Zahl ist,
+            // da die Schleife abbricht, bevor zahl erreicht wird.
             System.out.println("Sie ist durch " + String.valueOf(teiler) + " teilbar.");
             primzahl = false;
          }
@@ -265,7 +267,9 @@ public class Zahlen {
       System.out.println("Wir untersuchen die Zahl " + String.valueOf(zahl));
       for (int teiler = 2; teiler < zahl; teiler = teiler + 1) {
          int rest = zahl % teiler;
-         if(rest == 0 && teiler != zahl) {
+         if(rest == 0) {
+            // Es muss nicht geprüft werden, ob der Teiler gleich der Zahl ist,
+            // da die Schleife abbricht, bevor zahl erreicht wird.
             System.out.println("Sie ist durch " + String.valueOf(teiler) + " teilbar.");
             primzahl = false;
             teiler = 99;
