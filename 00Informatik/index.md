@@ -118,7 +118,7 @@
 [Anleitung: Kara bedingte Anweisungen](https://Hi2272.github.io/00Informatik/AufgabenstellungKaraBedingteAnweisung/12%20Bedingte%20Anweisung%20Kara.pdf)  
 [Java-Code-Zeilen: Bedingte Anweisungen I](https://Hi2272.github.io/00Informatik/JavaCodeIf/index.html)  
 [Java-Code-Zeilen: Bedingte Anweisungen II](https://Hi2272.github.io/00Informatik/JavaCodeLogik/index.html)  
-[Kniffel](../Online-IDE/Kniffel/index.html)
+[Kniffel](../Online-IDE/Kniffel/index.html)  
 
 ### Zählschleifen
 
@@ -130,8 +130,8 @@
 
 ### While Schleife
 
-[Kara While Schleife](https://Hi2272.github.io/00Informatik/AufgabenstellungWhile/index.html)  
-
+[Kara While Schleife](https://Hi2272.github.io/00Informatik/AufgabenstellungWhile/index.html)    
+[Teilbarkeit und Primzahlen](../00Informatik/OnlineIDETeilbarkeit/index.html)  
 ### Spiele
 
 [Kara braucht Klee!](https://Hi2272.github.io/00Informatik/AufgabenstellungKara/index.html)  

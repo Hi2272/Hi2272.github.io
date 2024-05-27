@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Teilbarkeit durch 2 bis 10</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+              <meta charset="utf-8" />
+  <title>Informatik</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="der-modulo-operator">Der Modulo-Operator</h1>
+<p>Untersuche diesen Code:</p>
+<ol>
+<li>Durch welchen Operator wird der Rest einer ganzzahligen Division ermittelt?</li>
+<li>Mit welcher Methode der Klasse String wird eine int-Variable in eine Zeichenkette umgewandelt?</li>
+<li>Was bewirkt der &quot;+&quot;-Operator bei Zeichenketten?</li>
+</ol>
+<p>Scrolle nach unten für die nächste Aufgabe...</p>
+<div id="quelle" style="font-size: x-small; text-align: right;">
+    2024 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
+  </div>
+  <section>
+    <iframe
+    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+    width="100%" height="300" frameborder="0">
+    {'id': 'Java', 'speed': 2000, 
+    'withBottomPanel': false ,'withPCode': false ,'withConsole': true ,
+    'withFileList': false ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Zahlen.java" src="Zahlen.java"></script>
+  </script>
+   </iframe>
+</section>
+<h1 id="teilbarkeit-durch-2-bis-10">Teilbarkeit durch 2 bis 10</h1>
+<p>Verändere den Code so, dass geprüft wird, ob die eingegebene Zahl durch alle Zahlen zwischen 2 und 10 teilbar ist.</p>
+<div id="quelle" style="font-size: x-small; text-align: right;">
+    2024 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
+  </div>
+  <section>
+    <iframe
+    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+    width="100%" height="300" frameborder="0">
+    {'id': 'Java', 'speed': 2000, 
+    'withBottomPanel': false ,'withPCode': false ,'withConsole': true ,
+    'withFileList': false ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Zahlen.java" src="Zahlen.java"></script>
+  </script>
+   </iframe>
+</section>
+<h2 id="lösungsvorschlag">Lösungsvorschlag</h2>
+<p>Scrolle nach unten für die nächste Aufgabe...</p>
+<pre><code class="language-Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Zahlen</span> {
+
+   <span class="hljs-keyword">public</span> <span class="hljs-title function_">Zahlen</span><span class="hljs-params">()</span> {
+      rechnen();
+   }
+
+   <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">rechnen</span><span class="hljs-params">()</span> {
+      <span class="hljs-type">int</span> <span class="hljs-variable">zahl</span> <span class="hljs-operator">=</span> Input.readInt(<span class="hljs-string">&quot;Geben Sie eine Zahl ein:&quot;</span>);
+      <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">teiler</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; teiler &lt; <span class="hljs-number">11</span>; teiler = teiler + <span class="hljs-number">1</span>) {
+         <span class="hljs-type">int</span> <span class="hljs-variable">rest</span> <span class="hljs-operator">=</span> zahl % teiler;
+         System.out.println(<span class="hljs-string">&quot;Wir untersuchen die Zahl &quot;</span> + String.valueOf(zahl));
+         System.out.println(<span class="hljs-string">&quot;auf die Teilbarkeit durch &quot;</span> + String.valueOf(teiler) + <span class="hljs-string">&quot;.&quot;</span>);
+         System.out.println(<span class="hljs-string">&quot;Der Rest beträgt: &quot;</span> + String.valueOf(rest));
+      }
+   }
+  
+}
+
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Zahlen</span>();
+</code></pre>
+<h1 id="verbesserte-ausgabe">Verbesserte Ausgabe</h1>
+<p>Die Ausgabe unseres Systems ist sehr unübersichtlich.<br>
+Verbessere den Code so, dass nur noch dann ein Text ausgegeben wird, wenn eine Zahl durch einen bestimmten Teiler teilbar ist.<br>
+Die Ausgabe soll zum Beispiel so aussehen:</p>
+<pre><code class="language-Java">Geben Sie eine Zahl ein:  
+<span class="hljs-number">15</span>  
+Wir untersuchen die Zahl <span class="hljs-number">15</span>  
+Sie ist durch <span class="hljs-number">3</span> teilbar.  
+Sie ist durch <span class="hljs-number">5</span> teilbar.   
+</code></pre>
+<div id="quelle" style="font-size: x-small; text-align: right;">
+    2024 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
+  </div>
+  <section>
+    <iframe
+    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+    width="100%" height="300" frameborder="0">
+    {'id': 'Java', 'speed': 2000, 
+    'withBottomPanel': false ,'withPCode': false ,'withConsole': true ,
+    'withFileList': false ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Zahlen2.java" src="Zahlen2.java"></script>
+  </script>
+   </iframe>
+</section>
+<h2 id="lösungsvorschlag-1">Lösungsvorschlag</h2>
+<pre><code class="language-Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Zahlen</span> {
+
+   <span class="hljs-keyword">public</span> <span class="hljs-title function_">Zahlen</span><span class="hljs-params">()</span> {
+      rechnen();
+   }
+
+   <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">rechnen</span><span class="hljs-params">()</span> {
+      <span class="hljs-type">int</span> <span class="hljs-variable">zahl</span> <span class="hljs-operator">=</span> Input.readInt(<span class="hljs-string">&quot;Geben Sie eine Zahl ein:&quot;</span>);
+      System.out.println(<span class="hljs-string">&quot;Wir untersuchen die Zahl &quot;</span> + String.valueOf(zahl));
+      <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">teiler</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; teiler &lt; <span class="hljs-number">11</span>; teiler = teiler + <span class="hljs-number">1</span>) {
+         <span class="hljs-type">int</span> <span class="hljs-variable">rest</span> <span class="hljs-operator">=</span> zahl % teiler;
+         <span class="hljs-keyword">if</span>(rest == <span class="hljs-number">0</span>) {
+            System.out.println(<span class="hljs-string">&quot;Sie ist durch &quot;</span> + String.valueOf(teiler) + <span class="hljs-string">&quot; teilbar.&quot;</span>);
+         }
+      }
+   }
+}
+
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Zahlen</span>();
+</code></pre>
+<h1 id="nur-noch-zahlen-bis-99">Nur noch Zahlen bis 99</h1>
+<p>Ändere den Code so ab, dass nur noch Zahlen zwischen 2 und 99 akzeptiert werden.<br>
+Verwende hierzu eine While-Schleife und eine logische Verknüpfung (UND = &amp;&amp;, ODER = ||)</p>
+<div id="quelle" style="font-size: x-small; text-align: right;">
+    2024 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
+  </div>
+  <section>
+    <iframe
+    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+    width="100%" height="300" frameborder="0">
+    {'id': 'Java', 'speed': 2000, 
+    'withBottomPanel': false ,'withPCode': false ,'withConsole': true ,
+    'withFileList': false ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Zahlen3.java" src="Zahlen3.java"></script>
+  </script>
+   </iframe>
+</section>
+<h2 id="lösungsvorschlag-2">Lösungsvorschlag</h2>
+<pre><code class="language-Java">
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Zahlen</span> {
+
+   <span class="hljs-keyword">public</span> <span class="hljs-title function_">Zahlen</span><span class="hljs-params">()</span> {
+      rechnen();
+   }
+
+   <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">rechnen</span><span class="hljs-params">()</span> {
+      <span class="hljs-type">int</span> <span class="hljs-variable">zahl</span> <span class="hljs-operator">=</span> Input.readInt(<span class="hljs-string">&quot;Geben Sie eine Zahl zwischen 2 und 99 ein:&quot;</span>);
+      <span class="hljs-keyword">while</span> (zahl &gt; <span class="hljs-number">99</span> || zahl &lt; <span class="hljs-number">2</span>) {
+         zahl = Input.readInt(<span class="hljs-string">&quot;Geben Sie eine Zahl zwischen 2 und 99 ein:&quot;</span>);
+      }
+      System.out.println(<span class="hljs-string">&quot;Wir untersuchen die Zahl &quot;</span> + String.valueOf(zahl));
+      <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">teiler</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; teiler &lt; <span class="hljs-number">11</span>; teiler = teiler + <span class="hljs-number">1</span>) {
+         <span class="hljs-type">int</span> <span class="hljs-variable">rest</span> <span class="hljs-operator">=</span> zahl % teiler;
+         <span class="hljs-keyword">if</span>(rest == <span class="hljs-number">0</span>) {
+            System.out.println(<span class="hljs-string">&quot;Sie ist durch &quot;</span> + String.valueOf(teiler) + <span class="hljs-string">&quot; teilbar.&quot;</span>);
+         }
+      }
+   }
+}
+
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Zahlen</span>();
+</code></pre>
+<h1 id="primzahlerkennung">Primzahlerkennung</h1>
+<p>Mit dem bisherigen Programm können wir relativ leicht erkennen, ob es sich bei der eingegebenen Zahl um eine Primzahl handelt.<br>
+Ändere das Programm so ab, dass am Ende ausgegeben wird, ob es sich bei der Zahl um eine Primzahl handelt.</p>
+<div id="quelle" style="font-size: x-small; text-align: right;">
+    2024 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
+  </div>
+  <section>
+    <iframe
+    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+    width="100%" height="300" frameborder="0">
+    {'id': 'Java', 'speed': 2000, 
+    'withBottomPanel': false ,'withPCode': false ,'withConsole': true ,
+    'withFileList': false ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Zahlen4.java" src="Zahlen4.java"></script>
+  </script>
+   </iframe>
+</section>
+<h2 id="lösungsvorschlag-3">Lösungsvorschlag</h2>
+<pre><code class="language-Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Zahlen</span> {
+
+   <span class="hljs-keyword">public</span> <span class="hljs-title function_">Zahlen</span><span class="hljs-params">()</span> {
+      rechnen();
+   }
+
+   <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">rechnen</span><span class="hljs-params">()</span> {
+      <span class="hljs-type">boolean</span> <span class="hljs-variable">primzahl</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;
+      <span class="hljs-type">int</span> <span class="hljs-variable">zahl</span> <span class="hljs-operator">=</span> Input.readInt(<span class="hljs-string">&quot;Geben Sie eine Zahl zwischen 2 und 99 ein:&quot;</span>);
+      <span class="hljs-keyword">while</span> (zahl &gt; <span class="hljs-number">99</span> || zahl &lt; <span class="hljs-number">2</span>) {
+         zahl = Input.readInt(<span class="hljs-string">&quot;Geben Sie eine Zahl zwischen 2 und 99 ein:&quot;</span>);
+      }
+      System.out.println(<span class="hljs-string">&quot;Wir untersuchen die Zahl &quot;</span> + String.valueOf(zahl));
+      <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">teiler</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; teiler &lt; zahl; teiler = teiler + <span class="hljs-number">1</span>) {
+         <span class="hljs-type">int</span> <span class="hljs-variable">rest</span> <span class="hljs-operator">=</span> zahl % teiler;
+         <span class="hljs-keyword">if</span>(rest == <span class="hljs-number">0</span>) {
+            <span class="hljs-comment">// Es muss nicht geprüft werden, ob der Teiler gleich der Zahl ist,</span>
+            <span class="hljs-comment">// da die Schleife abbricht, bevor zahl erreicht wird.</span>
+            System.out.println(<span class="hljs-string">&quot;Sie ist durch &quot;</span> + String.valueOf(teiler) + <span class="hljs-string">&quot; teilbar.&quot;</span>);
+            primzahl = <span class="hljs-literal">false</span>;
+         }
+      }
+      <span class="hljs-keyword">if</span>(primzahl) {
+         System.out.println(<span class="hljs-string">&quot;Sie ist eine Primzahl!&quot;</span>);
+      }
+   }
+}
+
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Zahlen</span>();
+</code></pre>
+<h1 id="bewertung-des-primzahl-algorithmus">Bewertung des Primzahl-Algorithmus</h1>
+<p>Das Programm erkennt die Primzahlen zwischen 2 und 99 sicher. Allerdings benötigt der Algorithmus vor allem bei größeren Zahl zu viel Zeit dazu.<br>
+Erläutere, weshalb für die Erkennung der Primzahlen zu viele Tests durchgeführt werden und passe den Code so an, dass er möglichst wenig Teiler prüft und Primzahlen erkennt.<br>
+Die Ausgabe könnte zum Beispiel so aussehen:</p>
+<pre><code class="language-Java">Geben Sie eine Zahl ein:
+<span class="hljs-number">98</span>
+Wir untersuchen die Zahl <span class="hljs-number">98</span>
+Sie ist durch <span class="hljs-number">2</span> teilbar.
+</code></pre>
+<div id="quelle" style="font-size: x-small; text-align: right;">
+    2024 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
+  </div>
+  <section>
+    <iframe
+    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+    width="100%" height="300" frameborder="0">
+    {'id': 'Java', 'speed': 2000, 
+    'withBottomPanel': false ,'withPCode': false ,'withConsole': true ,
+    'withFileList': false ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Zahlen5.java" src="Zahlen5.java"></script>
+  </script>
+   </iframe>
+</section>
+<h1 id="lösungsvorschlag-4">Lösungsvorschlag</h1>
+<pre><code class="language-Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Zahlen</span> {
+
+   <span class="hljs-keyword">public</span> <span class="hljs-title function_">Zahlen</span><span class="hljs-params">()</span> {
+      rechnen();
+   }
+
+   <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">rechnen</span><span class="hljs-params">()</span> {
+      <span class="hljs-type">boolean</span> <span class="hljs-variable">primzahl</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;
+      <span class="hljs-type">int</span> <span class="hljs-variable">zahl</span> <span class="hljs-operator">=</span> Input.readInt(<span class="hljs-string">&quot;Geben Sie eine Zahl zwischen 2 und 99 ein:&quot;</span>);
+      <span class="hljs-keyword">while</span> (zahl &gt; <span class="hljs-number">99</span> || zahl &lt; <span class="hljs-number">2</span>) {
+         zahl = Input.readInt(<span class="hljs-string">&quot;Geben Sie eine Zahl zwischen 2 und 99 ein:&quot;</span>);
+      }
+      System.out.println(<span class="hljs-string">&quot;Wir untersuchen die Zahl &quot;</span> + String.valueOf(zahl));
+      <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">teiler</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; teiler &lt; zahl; teiler = teiler + <span class="hljs-number">1</span>) {
+         <span class="hljs-type">int</span> <span class="hljs-variable">rest</span> <span class="hljs-operator">=</span> zahl % teiler;
+         <span class="hljs-keyword">if</span>(rest == <span class="hljs-number">0</span>) {
+            <span class="hljs-comment">// Es muss nicht geprüft werden, ob der Teiler gleich der Zahl ist,</span>
+            <span class="hljs-comment">// da die Schleife abbricht, bevor zahl erreicht wird.</span>
+            System.out.println(<span class="hljs-string">&quot;Sie ist durch &quot;</span> + String.valueOf(teiler) + <span class="hljs-string">&quot; teilbar.&quot;</span>);
+            primzahl = <span class="hljs-literal">false</span>;
+            teiler = <span class="hljs-number">99</span>;
+         }
+      }
+      <span class="hljs-keyword">if</span>(primzahl) {
+         System.out.println(<span class="hljs-string">&quot;Sie ist eine Primzahl!&quot;</span>);
+      }
+   }
+}
+
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Zahlen</span>();
+</code></pre>
+<p><a href="https://www.learnj.de/doku.php?id=einstieg:wiederholung:start">Weitere Übungsaufgaben auf LearnJ</a></p>
+
+            
+            
+        </body>
+        </html>
