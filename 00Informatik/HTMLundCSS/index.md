@@ -5,6 +5,7 @@
 # CSS
 [CSS-Selektoren](#css-selektoren) | [Rahmen](#rahmen) | [Abstände](#abstände) | [Cascade](#cascade) | [Links](#hyperlinks)  
 
+
 ## CSS-Selektoren
 ### HTML-Element
 HTML Elemente werden direkt durch den Namen des HTML-Tags selektiert:  
@@ -95,7 +96,7 @@ Bei **padding**, **border** und **margin** können zusätzlich die vier Seiten d
 Wichtig ist in diesem Zusammenhang, dass **padding, border und margin** zu den Werte von **width** und **height** des Inhalts addiert werden. 
 
 ## Cascade
-CSS ist kaskaden- oder stufenartig aufgebaut (Cascading Style Sheet). Die sogenannte kleine Cascade umfasst dabei drei Stufen:    
+CSS ist kaskaden- oder stufenartig aufgebaut (Cascading Style Sheet).   
 ### Stufe 0: Grundeinstellungen
 Wenn für ein Attribut keine Regeln vorgegeben sind, wird die Grundeinstellung des Browsers verwendet.
 ### Stufe 1: Vererbung
