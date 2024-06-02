@@ -140,12 +140,12 @@
 [Vier gewinnt](https://Hi2272.github.io/00Informatik/AufgabenstellungVierGewinnt/index.html)  
 
 ### Zusammenfassung
-[Online-IDE: Die if-Anweisung](https://www.learnj.de/doku.php?id=wenndann:if:start)
+[Online-IDE: Die if-Anweisung](https://www.learnj.de/doku.php?id=wenndann:if:start)  
 [Java-Code-Zeilen: Zusammenfassung](https://Hi2272.github.io/00Informatik/JavaCodeZusammenfassung/index.html)  
 [Aufbau einer Java Klasse](https://Hi2272.github.io/00Informatik/AufbauKlasse/index.html)  
 [Aufbau einer Java-Klasse: Code](/00Informatik/KlasseAufbau/index.html)  
-[Aufbau einer Java-Klasse: Bezeichnungen](/00Informatik/KlassenAufbau2/index.html)
-[Wiederholung Java](/00Informatik/WiederholungJava/index.html)
+[Aufbau einer Java-Klasse: Bezeichnungen](/00Informatik/KlassenAufbau2/index.html)  
+[Wiederholung Java](/00Informatik/WiederholungJava/index.html)  
 ## Datenschutz
 ***
 
