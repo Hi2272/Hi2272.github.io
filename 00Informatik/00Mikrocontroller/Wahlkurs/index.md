@@ -104,6 +104,11 @@ Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) v
 1. Motorsteuerung
 2. Ultraschall-Entfernungsmesser
 3. Servomotoren
+   
+
+     
+### 7. Die Kugelbahn in Schaukasten
+[Kugelbahn](Kugelbahn/index.html)   
 
 ---
 
