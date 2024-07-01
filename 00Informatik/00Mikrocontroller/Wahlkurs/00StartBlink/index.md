@@ -2,25 +2,39 @@
 
 
 # Blink - das erste Programm
-Der Arduino Uno hat eine eingebaute LED. Diese ist am Pin 13 angeschlossen. Mit folgendem Programm lassen wir die LED blinken.
-1. Schreibe dieses Programm ab:
+Der Arduino Uno hat eine eingebaute LED. Diese ist am Pin 13 angeschlossen. Mit folgendem Programm lassen wir diese LED blinken.
+
+## 1. Blockbasierte Programmierung des Arduino Unos
+
+Auf der Internetseite [https://sensebox.github.io/blockly/](https://sensebox.github.io/blockly/) steht ein Editor zur blockbasierten Programmierung des Arduino Unos zur Verfügung.
+
+Erstelle folgendes Block-Programm:  
+![Alt text](2024-06-14_10-06.png)  
+Auf der rechten Seite wird dir der automatisch erzeugt Arduino-Quellcode angezeigt:  
+
 ```C++
 void setup() {
-  pinMode(13,OUTPUT);
+  pinMode(13, OUTPUT);
 }
 
 void loop() {
-  digitalWrite(13,HIGH);
-  delay(500);
-  digitalWrite(13,LOW);
-  delay(500);
+  digitalWrite(13, HIGH);
+  delay(1000);
+  digitalWrite(13, LOW);
+  delay(1000);
 }
 ```
-2. Klicke auf den Pfeil in der linken oberen Ecke, um  
+Diesen Code können wir jetzt in die Arduino-IDE kopieren.
+
+## 2. Textbasierte Programmierung des Arduino Unos.
+1. Starte das Programm Arduino-IDE
+2. Kopiere den Code aus der Internetseite in das Editorfeld
+3. Stelle ggf. das passende Board ein: [vgl. Start](../00Start/index.html)
+4. Klicke auf den Pfeil in der linken oberen Ecke, um  
    1. Das Programm in Maschinensprache zu übersetzen (Kompilieren des Programms).
    2. Den Maschinencode über das USB-Kabel auf den Mikrocontroller zu laden (Flashen des Programmcodes).  
 ![Alt text](sc4.png)
-3. Warte bis die Meldung **Done uploading** (Hochladen erfolgreich) erscheint.  
+1. Warte bis die Meldung **Done uploading** (Hochladen erfolgreich) erscheint.  
 Die LED auf dem Arduino Uno blinkt jetzt schnell.
 
 ## Erläuterungen zum Code
@@ -47,12 +61,12 @@ Die loop-Methode wird beim Betrieb des Arduinos immer wieder durchlaufen. Sie st
 
 ### digitalWrite(13,HIGH);
 Diese Methode legt am Pin 13 ein positives Potential (+5 V) an. Die mit dem Pin 13 verbundene interne LED beginnt zu leuchten.
-###  delay(500);
-Das Programm pausiert 500 ms lang. So lange leuchtet die LED.
+###  delay(1000);
+Das Programm pausiert 1000 ms lang. So lange leuchtet die LED.
 ### digitalWrite(13,LOW);
 Der Pin 13 wird mit Masse verschaltet, d.h. sein Potential wird auf 0 V festgelegt. Die interne LED leuchtet nicht mehr, da keine Spannung mehr anliegt.
-### delay(500);
-Die zweite Pause bedingt, dass die LED 500 ms lang ausgeschaltet bleibt.  
+### delay(1000);
+Die zweite Pause bedingt, dass die LED 1000 ms lang ausgeschaltet bleibt.  
 Da die loop()-Methode immer wieder durchlaufen wird, beginnt sie anschließend wieder zu leuchten. Sie blinkt also ungefähr einmal pro Sekunde.
 
 ## Experimentieraufgabe

@@ -1,18 +1,21 @@
 <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
-# Wahlunterricht Mikroelektronik am Gymnasium Waldkraiburg
+# Wahlunterricht Mikroelektronik und Technik am Gymnasium Waldkraiburg
 
-##### Diese Seite befindet sich im Aufbau. Im Schuljahr 2023/24 werden zu den einzelnen Kapiteln weitere Inhalte hinzugefügt.
-
+##### Diese Seite befindet sich im Aufbau. 
 ## Grundausstattung
 
 Die Materialien für den Kurs wurden durch Spenden folgender Organisationen finanziert:  
 
 - [Förderverein des Gymnasium Waldkraiburgs](https://www.gymnasiumwaldkraiburg.de/schule/foerderverein/)
-
+- [Wilhelm-Stemmer-Stiftung](https://www.wilhelm-stemmer-stiftung.de)
+  
 Wir danken den Spendern herzlich für Ihre Unterstützung.
 
 [Materialliste](00Material/index.html)
+
+## 3D-Druck und CAD
+[3D-Druck](003D-Druck/index.html)  
 
 ## Projekte mit dem Calliope mini
 
