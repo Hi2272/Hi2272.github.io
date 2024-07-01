@@ -31,7 +31,7 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
 
 ### 2. Alarmanlage
 
-Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung aktiviert werden kann:
+Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung aktiviert werden kann:  
 ![Alarmanlage.png](Alarmanlage.png)
 
 1. [Leuchtdioden](01/index.html)
@@ -44,27 +44,27 @@ Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung a
 
 #### Temperaturmessung
 
-Wir bauen ein digitales Thermometer und verwenden es, um Messreihen am Computer aufzuzeichnen.
+Wir bauen ein digitales Thermometer und verwenden es, um Messreihen am Computer aufzuzeichnen.  
 
-1. [Temperatursensor Dallas DS18B20](03Temperatur/index.html)
+1. [Temperatursensor Dallas DS18B20](03Temperatur/index.html)  
    ![Alt text](03Temperatur/2023-06-26_16-04.png)
 2. [OLED-Display zur Darstellung der Messwerte](03Temperatur/OLED/index.html)
-3. [Grafische Ausgabe am Computer](03Processing/index.html)
-   ![Alt text](03Processing/2023-06-24_14-01.png)
-4. [Daten über die Serielle Schnittstelle einlesen](03Processing/Serial.html)
-5. [Messwerte als Diagramm am Computer darstellen](03Processing/Grafica.html)
+3. [Grafische Ausgabe am Computer](03Processing/index.html)  
+   ![Alt text](03Processing/2023-06-24_14-01.png)  
+4. [Daten über die Serielle Schnittstelle einlesen](03Processing/Serial.html)  
+5. [Messwerte als Diagramm am Computer darstellen](03Processing/Grafica.html)  
    ![Alt text](03Processing/2023-06-26_10-03.png)
-6. [Messwerte ins Internet schicken](07Blynk/index.html)
+6. [Messwerte ins Internet schicken](07Blynk/index.html)  
 
 #### Helligkeitsmessung
 
-Mit einem Fotowiderstand kann die Helligkeit bestimmt werden.
-[Der Fotowiderstand](05Widerstand/index.html)
+Mit einem Fotowiderstand kann die Helligkeit bestimmt werden.  
+[Der Fotowiderstand](05Widerstand/index.html)  
 ![alt text](05Widerstand/2024-03-16_08-07.png)
 
 #### Entfernungsmessung
 
-Mit Hilfe eines Ultraschallsensors, der zum Beispiel auch in Einparkhilfen von Autos verbaut ist, messen wir den Abstand zu einem Objekt.
+Mit Hilfe eines Ultraschallsensors, der zum Beispiel auch in Einparkhilfen von Autos verbaut ist, messen wir den Abstand zu einem Objekt.  
 ![alt text](06Ultraschall/Anschluss.png)
 
 [Der Ultraschallsensor](06Ultraschall/index.html)
@@ -72,14 +72,16 @@ Mit Hilfe eines Ultraschallsensors, der zum Beispiel auch in Einparkhilfen von A
 
 #### Geschwindigkeitsmessung
 
-Wir bauen Lichtschranken, mit denen die Geschwindigkeit von Fahrzeugen gemessen werden können.
+Wir bauen Lichtschranken, mit denen die Geschwindigkeit von Fahrzeugen gemessen werden können.  
 
 1. Reflexlichtschranke
 2. Laserlichtschranke
 
 ### 4. Diskobeleuchtung
 
-Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.![Partylicht](03-01.png)In folgendem Video könnt ihr die Funktion des Lichtes sehen:  [YouTube Video Partylicht](https://youtu.be/V1RZFxpPh4s)
+Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.!  
+[Partylicht](03-01.png)  
+In folgendem Video könnt ihr die Funktion des Lichtes sehen:  [YouTube Video Partylicht](https://youtu.be/V1RZFxpPh4s)  
 
 1. RGB-LEDs
 2. Tonaufnahmen mit einem Mikrofon
@@ -88,10 +90,10 @@ Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partyl
 
 ### a) Ein Mikrocontroller im Netzwerk
 
-Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.Seine Programmierung kann auch über die bekannte Arduino-IDE erfolgen.
+Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.Seine Programmierung kann auch über die bekannte Arduino-IDE erfolgen.  
 
 1. [Vorbereitung der Arduino-IDE für den ESP32](05ESP32/01/index.html)
-2. [Schalten einer LED über einen Internetbrowser](05ESP32/02/index.html)
+2. [Schalten einer LED über einen Internetbrowser](05ESP32/02/index.html)  
    ![Alt text](05ESP32/02/Sc02.png)
 3. [Senden und Empfangen von Daten über Bluetooth](05ESP32/03/index.html)
 
@@ -110,7 +112,7 @@ Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) v
    
 
      
-### 7. Die Kugelbahn in Schaukasten
+### 7. Die Kugelbahn im Schaukasten
 [Kugelbahn](Kugelbahn/index.html)   
 
 ---
