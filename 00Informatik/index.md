@@ -164,5 +164,10 @@
 [CSS](HTMLundCSS/index.html)
 * * *
 
+## Zahlen aus der Informatik
+[Jahreszahlen](https://learningapps.org/view36416559)  
+[Allgemeine Zahlen](https://learningapps.org/view36416718)  
+
+
 [zurück](https://Hi2272.github.io/)
 </div>
