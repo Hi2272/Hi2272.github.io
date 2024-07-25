@@ -165,12 +165,13 @@
 [CSS](HTMLundCSS/index.html)
 * * *
 
-## Spiele aus der Informatik
-[Jahreszahlen](https://learningapps.org/view36416559)  
-[Allgemeine Zahlen](https://learningapps.org/view36416718)  
+## Spiele für kleine Gruppen
+[Geschichte der Informatik](https://learningapps.org/view36416559)  
+[Allgemeine Zahlen zur Informatik](https://learningapps.org/view36416718)  
 [Cybermobbing](https://learningapps.org/view14543873)  
 [Internetquiz](https://learningapps.org/view36419163)    
 [Pferderennen Java](https://learningapps.org/19211906)  
+[Struktur einer Java Klasse](https://learningapps.org/view36419316)  
 [Robot Karol](https://karol.arrrg.de/#SPIELWIESE)  
 
 [zurück](https://Hi2272.github.io/)
