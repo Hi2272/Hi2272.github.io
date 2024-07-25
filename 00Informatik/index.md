@@ -110,6 +110,7 @@
 [Processing-Projekt: Formen V: Linienstärke](https://Hi2272.github.io/00Informatik/ProcessingLinienstaerke/index.html)  
 [Processing-Projekt: Formen VI: Transparente Farben: Der alpha-Wert](https://Hi2272.github.io/00Informatik/ProcessingAlpha/index.html)  
 [Processing-Projekt: Formen VII: Quadrat - eine Unterklasse von Rechteck](https://Hi2272.github.io/00Informatik/ProcessingQuadrat/index.html)  
+[Private oder public?](https://learningapps.org/3839793)  
 
 ### Bedingte Anweisungen
 
@@ -119,7 +120,7 @@
 [Java-Code-Zeilen: Bedingte Anweisungen I](https://Hi2272.github.io/00Informatik/JavaCodeIf/index.html)  
 [Java-Code-Zeilen: Bedingte Anweisungen II](https://Hi2272.github.io/00Informatik/JavaCodeLogik/index.html)  
 [Kniffel](../Online-IDE/Kniffel/index.html)  
-
+[Logische Funktionen in Java](https://learningapps.org/3093705)  
 ### Zählschleifen
 
 [Java-Code-Zeilen: For-Schleifen](https://Hi2272.github.io/00Informatik/JavaCodeFor/index.html)  
@@ -168,7 +169,8 @@
 [Jahreszahlen](https://learningapps.org/view36416559)  
 [Allgemeine Zahlen](https://learningapps.org/view36416718)  
 [Cybermobbing](https://learningapps.org/view14543873)  
-[Internetquiz](https://learningapps.org/view36419163)  
+[Internetquiz](https://learningapps.org/view36419163)    
+[Pferderennen Java](https://learningapps.org/19211906)  
 [Robot Karol](https://karol.arrrg.de/#SPIELWIESE)  
 
 [zurück](https://Hi2272.github.io/)
