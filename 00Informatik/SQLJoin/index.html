@@ -1,206 +1,91 @@
 <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <title>Abfragen &uuml;ber zwei Tabellen</title>
-            <style>
-/* From extension vscode.github */
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
+<html>
 
-.vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only],
-.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
-.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
-	display: none;
-}
+<head>
+  <script src="https://Hi2272.github.io/vanillatoasts.js"></script>
+  <link href="https://Hi2272.github.io/vanillatoasts.css" rel="stylesheet">
 
-</style>
-            
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
-<style>
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
-                font-size: 14px;
-                line-height: 1.6;
-            }
-        </style>
-        <style>
-.task-list-item {
-    list-style-type: none;
-}
+  <meta charset="utf-8" />
+  <title id="Titel"></title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
+  <style>
+    td {
+      vertical-align: top;
+    }
 
-.task-list-item-checkbox {
-    margin-left: -20px;
-    vertical-align: middle;
-    pointer-events: none;
-}
-</style>
-<style>
-:root {
-  --color-note: #0969da;
-  --color-tip: #1a7f37;
-  --color-warning: #9a6700;
-  --color-severe: #bc4c00;
-  --color-caution: #d1242f;
-  --color-important: #8250df;
-}
+    button {
+      font-size: large;
+      background-color: lightblue;
+      border-radius: 5px;
+      margin: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
 
-</style>
-<style>
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-note: #2f81f7;
-    --color-tip: #3fb950;
-    --color-warning: #d29922;
-    --color-severe: #db6d28;
-    --color-caution: #f85149;
-    --color-important: #a371f7;
-  }
-}
+    #Loesung {
+      font-size: medium;
+      text-align: left;
+    }
 
-</style>
-<style>
-.markdown-alert {
-  padding: 0.5rem 1rem;
-  margin-bottom: 16px;
-  color: inherit;
-  border-left: .25em solid #888;
-}
+    #Ueberschrift {
+      font-weight: bold;
+      padding: 0.2em;
+    }
 
-.markdown-alert>:first-child {
-  margin-top: 0
-}
+    #Angabe {
+      padding-bottom: 0.2em;
+    }
 
-.markdown-alert>:last-child {
-  margin-bottom: 0
-}
+    #Legende {
+      font-size: xx-small;
+    }
 
-.markdown-alert .markdown-alert-title {
-  display: flex;
-  font-weight: 500;
-  align-items: center;
-  line-height: 1
-}
+    #Hilfe {
+      font-size: medium;
+      text-align: left;
 
-.markdown-alert .markdown-alert-title .octicon {
-  margin-right: 0.5rem;
-  display: inline-block;
-  overflow: visible !important;
-  vertical-align: text-bottom;
-  fill: currentColor;
-}
-
-.markdown-alert.markdown-alert-note {
-  border-left-color: var(--color-note);
-}
-
-.markdown-alert.markdown-alert-note .markdown-alert-title {
-  color: var(--color-note);
-}
-
-.markdown-alert.markdown-alert-important {
-  border-left-color: var(--color-important);
-}
-
-.markdown-alert.markdown-alert-important .markdown-alert-title {
-  color: var(--color-important);
-}
-
-.markdown-alert.markdown-alert-warning {
-  border-left-color: var(--color-warning);
-}
-
-.markdown-alert.markdown-alert-warning .markdown-alert-title {
-  color: var(--color-warning);
-}
-
-.markdown-alert.markdown-alert-tip {
-  border-left-color: var(--color-tip);
-}
-
-.markdown-alert.markdown-alert-tip .markdown-alert-title {
-  color: var(--color-tip);
-}
-
-.markdown-alert.markdown-alert-caution {
-  border-left-color: var(--color-caution);
-}
-
-.markdown-alert.markdown-alert-caution .markdown-alert-title {
-  color: var(--color-caution);
-}
-
-</style>
-        
-        </head>
-        <body class="vscode-body vscode-light">
-              <meta charset="utf-8" />
-  <title>SQL</title>
-  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
-<h1 id="abfragen-über-zwei-tabellen">Abfragen über zwei Tabellen</h1>
-<p>(Einstieg im Schulbuch, &quot;Informatik 4 (Oldenbourg), ISBN 978-3-637-02470-0, Cornelsen-Verlag)</p>
-<h2 id="vorbereitung-der-datenbank">Vorbereitung der Datenbank</h2>
-<ol>
-<li>Kopiere den SQL-Code in die Zwischenablage</li>
-</ol>
-<pre><code class="language-SQL">
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Schueler (
-  schueler_nr <span class="hljs-type">int</span>,
-  name text,
-  vorname text,
-  kurswahl text
-);
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Wahlkurs (
-  name text,
-  ort text,
-  lehrer text
-);
-  
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Wahlkurs <span class="hljs-keyword">VALUES</span>(&quot;Bouldern&quot;,&quot;Turnhalle 1&quot;,&quot;Hr. Schlaukopf&quot;);
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Wahlkurs <span class="hljs-keyword">VALUES</span>(&quot;Big Band&quot;,&quot;Musiksaal&quot;,&quot;Fr. Kluge&quot;);
+    }
+  </style>
+  <!--
+  <script src="https://Hi2272.github.io/SQLCode.js"></script>
+ -->
 
 
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Schueler <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">4347653</span>,&quot;Ellmann&quot;,&quot;Heinz&quot;,&quot;Big Band&quot;);
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Schueler <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">4357451</span>,&quot;Diener&quot;,&quot;Bernhard&quot;,&quot;Big Band&quot;);
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Schueler <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">5643611</span>,&quot;Nette&quot;,&quot;Marion&quot;,&quot;Bouldern&quot;);
-</code></pre>
-<ol start="2">
-<li>
-<p>Öffne die Internetseite (<a href="https://www.db-fiddle.com">https://www.db-fiddle.com</a>)</p>
-</li>
-<li>
-<p>Füge den kopierten Code in die linke Fläche ein:</p>
-</li>
-</ol>
-<h2 id="abfragen-über-beide-tabellen">Abfragen über beide Tabellen</h2>
-<p>Trage die folgenden SQL-Anweisungen ins rechte Feld ein und klicke oben auf Run, um das Ergebnis zu sehen.</p>
-<ol>
-<li>Kreuzprodukt</li>
-</ol>
-<pre><code class="language-SQL"><span class="hljs-keyword">Select</span> <span class="hljs-operator">*</span> 
-<span class="hljs-keyword">FROM</span> Schueler s,Wahlkurs w
-</code></pre>
-<ol start="2">
-<li>Einschränkung auf sinnvolle Ergebnisse</li>
-</ol>
-<pre><code class="language-SQL"><span class="hljs-keyword">Select</span> <span class="hljs-operator">*</span> 
-<span class="hljs-keyword">FROM</span> Schueler s,Wahlkurs w
-<span class="hljs-keyword">WHERE</span> s.kurswahl<span class="hljs-operator">=</span>w.name;
-</code></pre>
-<ol start="3">
-<li>Einschränkung auf sinnvolle Attribute</li>
-</ol>
-<pre><code class="language-SQL"><span class="hljs-keyword">Select</span> s.name,s.vorname,s.kurswahl,w.ort,w.lehrer 
-<span class="hljs-keyword">FROM</span> Schueler s,Wahlkurs w
-<span class="hljs-keyword">WHERE</span> s.kurswahl<span class="hljs-operator">=</span>w.name;
-</code></pre>
+  <script src="SQLCode.js"></script>
 
-            
-            
-        </body>
-        </html>
+</head>
+
+<body>
+  <div id="Ueberschrift">SQL-Übung</div>
+
+  <table>
+    <tr>
+      <td>
+        <section id="Angabe">Lasse dir alle Gemeinden des Landkreises Mühldorf a.Inn anzeigen!</section>
+
+        <section>
+          <button id="btnLsg" onclick="loesung()">Lösung anzeigen</button>
+          <button id="btnHilfe" onclick="hilfe()">Hilfestellung</button>
+          <p id="Hilfe"></p>
+
+        </section>
+        <p id="Loesung">SELECT *<br />FROM Gemeinde<br />where kreis='M&uuml;hldorf a.Inn'</p>
+        <button id="btnWeiter" onclick="weiter()">Weiter zur nächsten Aufgabe</button>
+
+      </td>
+      <td>
+        <fieldset>
+          <legend id="Legende"></legend>
+          <iframe id="Eingabe" src="https://www.dbiu.de/bayern_erweitert/" title="Iframe">
+          </iframe>
+        </fieldset>
+        <div id="quelle" style="font-size: xx-small;text-align: right;"></div>
+
+      </td>
+
+    </tr>
+  </table>
+
+</body>
+
+</html>
