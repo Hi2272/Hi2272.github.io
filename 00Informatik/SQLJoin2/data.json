@@ -1,0 +1,49 @@
+{
+  "titel": "Freizeit in Bayern",
+  "url": "https://www.dbiu.de/bayern/",
+  "shuffle": false,
+  "angabe": [
+    {
+      "txt": "Erzeuge eine Tabelle aller Zoos mit dem Namen der Gemeinde, in der sie liegen. Die Liste soll nach dem Gemeindenamen sortiert sein.",
+      "lsg": [
+        "<p>SELECT z.name as Zoo, g.name AS Gemeinde<br />FROM Gemeinde g, Zoo z<br />WHERE g.schluessel=z.gemeindeschluessel<br />ORDER BY g.name</p>"
+       ],
+      "hilfe":"<p>Verwende AS um die Spaltenköpfe neu zu benennen und ORDER BY um zu sortieren.</p>",
+      "zeit": 1
+    },{
+      "txt": "Erzeuge jetzt eine Liste der Gemeinden mit der Anzahl ihrer Zoos. Sie soll absteigend nach dieser Zahl sortiert sein.",
+      "lsg": [
+        "<p>SELECT g.name AS Gemeinde, count(z.id) AS Zoos<br />FROM Gemeinde g, Zoo z<br />WHERE g.schluessel=z.gemeindeschluessel<br />GROUP BY g.schluessel<br />ORDER by Zoos DESC</p>"
+      ],
+      "hilfe":"<p>Gruppiere die Daten nach den Gemeinden.</p>",
+      "zeit": 1
+    },
+    {
+      "txt": "Ändere die Anfrage so ab, dass die Regierungsbezirke und die Anzahl ihrer Zoos ausgegeben wird.",
+      "lsg": [
+        "<p>SELECT g.regierungsbezirk AS Bezirk, count(z.id) AS Zoos<br />FROM Gemeinde g, Zoo z<br />WHERE g.schluessel=z.gemeindeschluessel<br />GROUP BY g.regierungsbezirk<br />ORDER by Zoos DESC</p>"
+      ],
+      "hilfe":"Im SELECT-Teil musst du jetzt die Namen der Attribute angeben. Da beide Namen gleich sind, musst du den jeweiligen Tabellenname über die Punktnotation angeben.",
+      "zeit": 1
+    }
+    ,
+    {
+      "txt": "Erzeuge eine Liste mit den Namen aller Wanderwege, die zu Gemeinden im Landkreis Mühldorf führen. Die Liste soll nach dem Namen der Gemeinde sortiert werden.",
+      "lsg": [
+        "<p>SELECT w.name AS Wanderweg,g.name AS Gemeinde<br />FROM Gemeinde g, Wanderweg w, Wanderweg_zu_Gemeinde wzg<br />WHERE g.schluessel=wzg.gemeindeschluessel<br />AND w.wanderweg_id=wzg.wanderweg_id<br />AND g.kreis LIKE \"%Mühldorf%\"<br />ORDER BY g.name</p>"
+      ],
+      "hilfe":"Hierzu musst du die drei Tabellen Wanderweg, Gemeinde und Wanderweg_zu_Gemeinde kombinieren.",
+      "zeit": 1
+    }
+    ,
+    {
+      "txt": "Erzeuge jetzt eine Liste der Gemeinden in Bayern, zu denen mehr als 80 Wanderwege führen. Sortiere die Liste absteigend nach dieser Zahl.",
+      "lsg": [
+        "<p>SELECT g.name as Gemeinde, COUNT(wzg.wanderweg_id) AS Wanderwege<br />FROM Gemeinde g, Wanderweg_zu_Gemeinde wzg<br />WHERE g.schluessel=wzg.gemeindeschluessel<br />GROUP BY g.schluessel<br />HAVING Wanderwege>80<br />ORDER BY Wanderwege DESC</p>"
+      ],
+      "hilfe":"Verwende AS zum Benennen der Spalten, gruppiere deine Tabelle nach den Gemeinden und schränke die Ergebnisse mit HAVING ein.",
+      "zeit": 1
+    }
+    
+  ]
+}

@@ -57,12 +57,19 @@
 [LIKE in SQL-Abfragen](https://Hi2272.github.io/00Informatik/SQL2/index.html)  
 [Wiederholung SQL mit Datenbanken im Unterricht (www.dbiu.de)](https://Hi2272.github.io/00Informatik/SQLFrageListe/index.html)  
 [Verschiedene SQL-Anfragen](https://Hi2272.github.io/00Informatik/SQL/index.html)  
+
+
+#### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
+[Start](https://sql.hauptquartier.eu/start-abenteuer)  
+
 ### Abfragen über mehrere Tabellen
-[Schwimmbäder in Bayern (www.dbiu.de)](SQLJoin/index.html)  
+[Schwimmbäder in Bayern (www.dbiu.de)](SQLJoin/index.html)   
+[Zoos und Wanderwege (www.dbiu.de)](SQLJoin2/index.html)  
+[Nachbargemeinden (www.dbiu.de)](SQLJoin3/index.html)  
 
+#### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
+[Anfragen über mehrere Tabellen](https://sql.hauptquartier.eu/2-tabellen-abfragen/primaerschluessel-fremdschluessel)    
 
-### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
-[Start](https://sql.hauptquartier.eu/start-abenteuer)
 
 ## Objektorientierte Programmierung
 ***
