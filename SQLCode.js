@@ -41,12 +41,18 @@ function start() {
         }
     }
     document.getElementById("quelle").innerHTML = "2022 Rainer Hille <br> Unter Verwwendung von  <a href='https://www.cssscript.com/toast-style-web-notifications-in-vanilla-javascript-vanillatoasts/'>VanillaToasts.js</a><br>und <a href='https://www.dbiu.de'>Datenbanken im Unterricht</a>";
-    document.getElementById("Eingabe").src = jsonData.url;    
-    document.getElementById("Eingabe").width=window.innerWidth*0.6;
-    document.getElementById("Eingabe").height=window.innerHeight*0.75;
+    document.getElementById("Eingabe").src = jsonData.url;
+    document.getElementById("Eingabe").width = window.innerWidth * 0.6;
+    document.getElementById("Eingabe").height = window.innerHeight * 0.75;
+
+    const dropdown = document.getElementById('questions');
 
     for (var i = 0; i < angabe.length; i++) {
         console.log(angabe[i].txt);
+        const option = document.createElement('option');
+        option.value = i; // Setzt den Wert auf die Nummer der Frage
+        option.text = `Frage Nr. ${(i+1)} von ${angabe.length}`;
+        dropdown.appendChild(option);
     }
     nummer = 0;
     richtig = 0;
@@ -54,10 +60,16 @@ function start() {
     anzeigen();
 }
 
+function wahl() {
+    const dropdown = document.getElementById('questions');
+    nummer = dropdown.value;
+    anzeigen();
+}
+
 function anzeigen() {
-    document.getElementById("Angabe").innerHTML = "Frage " + (nummer + 1) + "/" + angabe.length + ": " + angabe[nummer].txt;
+    document.getElementById("Angabe").innerHTML = angabe[nummer].txt;
     document.getElementById("Loesung").innerHTML = "";
-    document.getElementById("Hilfe").innerHTML="";
+    document.getElementById("Hilfe").innerHTML = "";
 
     document.getElementById("btnWeiter").style.visibility = "hidden";
     document.getElementById("btnLsg").style.visibility = "visible";
@@ -71,7 +83,8 @@ function anzeigen() {
     document.getElementById("Eingabe").focus();
     zeit = Date.now();
     console.log(zeit);
-
+    const dropdown = document.getElementById('questions');
+    dropdown.value=nummer;
 }
 
 function endeAnzeigen() {
@@ -83,7 +96,7 @@ function endeAnzeigen() {
     document.getElementById("btnHilfe").style.visibility = "hidden";
     document.getElementById("Angabe").style.visibility = "hidden";
     document.getElementById("Eingabe").style.visibility = "hidden";
-    document.getElementById("Hilfe").innerHTML="";
+    document.getElementById("Hilfe").innerHTML = "";
 
 }
 
@@ -110,7 +123,7 @@ function weiter() {
 
 function hilfe() {
     document.getElementById("Hilfe").innerHTML = angabe[nummer].hilfe;
-    document.getElementById("btnHilfe").style.visibility="hidden";
+    document.getElementById("btnHilfe").style.visibility = "hidden";
 }
 
 function loesung() {
@@ -129,12 +142,13 @@ function loesung() {
 
         document.getElementById("btnWeiter").style.visibility = "visible";
         document.getElementById("btnLsg").style.visibility = "hidden";
-        var s = angabe[nummer].lsg[0];
+        var s ="<hr> <h3>Lösungsvorschlag:</h3>"+angabe[nummer].lsg[0];
         if (angabe.length > 0) {
             for (var i = 1; i < angabe[nummer].lsg.length; i++) {
                 s = s + "<br><b>oder</b><br>" + angabe[nummer].lsg[i];
             }
         }
         document.getElementById("Loesung").innerHTML = s;
+
     }
 }

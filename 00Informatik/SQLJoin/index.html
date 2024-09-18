@@ -8,48 +8,10 @@
   <meta charset="utf-8" />
   <title id="Titel"></title>
   <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
-  <style>
-    td {
-      vertical-align: top;
-    }
-
-    button {
-      font-size: large;
-      background-color: lightblue;
-      border-radius: 5px;
-      margin: 5px;
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-
-    #Loesung {
-      font-size: medium;
-      text-align: left;
-    }
-
-    #Ueberschrift {
-      font-weight: bold;
-      padding: 0.2em;
-    }
-
-    #Angabe {
-      padding-bottom: 0.2em;
-    }
-
-    #Legende {
-      font-size: xx-small;
-    }
-
-    #Hilfe {
-      font-size: medium;
-      text-align: left;
-
-    }
-  </style>
+  <link rel="stylesheet" href="https://Hi2272.github.io/SQLCode.css">
+  <script src="https://Hi2272.github.io/SQLCode.js"></script>
  
 
- <script src="https://Hi2272.github.io/SQLCode.js"></script>
- 
 </head>
 
 <body>
@@ -58,16 +20,24 @@
   <table>
     <tr>
       <td>
+       
+        <select name="questions" id="questions"  onchange="wahl()">
+          <!-- Optionen werden hier durch JavaScript hinzugefügt -->
+       </select>
+       <hr>
         <section id="Angabe">Lasse dir alle Gemeinden des Landkreises Mühldorf a.Inn anzeigen!</section>
+       <p id="Loesung"></p>
 
         <section>
+         
+          <hr>
           <button id="btnLsg" onclick="loesung()">Lösung anzeigen</button>
           <button id="btnHilfe" onclick="hilfe()">Hilfestellung</button>
           <p id="Hilfe"></p>
 
         </section>
-        <p id="Loesung">SELECT *<br />FROM Gemeinde<br />where kreis='M&uuml;hldorf a.Inn'</p>
         <button id="btnWeiter" onclick="weiter()">Weiter zur nächsten Aufgabe</button>
+       
 
       </td>
       <td>
