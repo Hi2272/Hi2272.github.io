@@ -143,7 +143,25 @@
     ],
       "hilfe":"Hier brauchst du wieder ein ALIAS mit AS im SELECT-Teil.",
       "zeit":1
+    },
+    {
+      "txt": "Lasse dir nur den Namen der nördlichsten Gemeinde ausgeben, für die ein Bad in der Datenbank eingetragen ist.",
+      "lsg": [
+        "<p>SELECT g.name<br />FROM Schwimmbad s, Gemeinde g<br />WHERE g.schluessel=s.gemeindeschluessel<br />AND s.breitengrad = (<br />SELECT max(s.breitengrad)<br />FROM Schwimmbad s<br />)</p>"
+      ]
+        ,
+      "hilfe":"Die benötigst hierfür eine geschachtelte Anfrage.<br>Der nördlichste Eintrag ist der mit dem maximalen Breitengrad.",
+      "zeit":1
+    },
+    {
+      "txt": "Schränke die Anfrage so ein, dass der Name der nördlichsten Gemeinde mit einem Hallenbad ausgegeben wird.",
+      "lsg": [
+        "<p>SELECT g.name<br />FROM Schwimmbad s, Gemeinde g<br />WHERE g.schluessel=s.gemeindeschluessel<br />AND s.art=\"Hallenbad\"<br />AND s.breitengrad = (<br />SELECT max(s.breitengrad)<br />FROM Schwimmbad s<br />WHERE s.art=\"Hallenbad\")</p>"
+    ],
+      "hilfe":"Die Einschränkung mit AND muss in beiden SELECT-Abfragen verwendet werden.",
+      "zeit":1
     }
+
 
 
 
