@@ -83,7 +83,7 @@ Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partyl
 [Partylicht](03-01.png)  
 In folgendem Video könnt ihr die Funktion des Lichtes sehen:  [YouTube Video Partylicht](https://youtu.be/V1RZFxpPh4s)  
 
-1. RGB-LEDs
+1. [RGB-LED-Matrix](08LEDMatrix/index.html)
 2. Tonaufnahmen mit einem Mikrofon
 
 ### 5. ESP32

@@ -1,0 +1,102 @@
+<link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+
+# LED Matrix
+## Allgemeines
+Die LED-Matrix besteht aus 64 RGB-LEDs, die alle einzeln über eine einzige Datenleitung programmiert werden können. Da die Matrix relativ viel Strom benötigt, schließen wir sie an eine externe Spannungsquelle an:
+
+Rotes Kabel : + Pol der externen Spannungsquelle (+5 V)
+Schwarzes Kabel: - Pol der externen Spannungsquelle (GND)
+Gelbes Kabel: Datenkabel: Port 6 am Arduino
+## Adafruit-Bibliothek
+Für die Ansteuerung der Matrix benötigen wir die Adafruit_Neopixel Bibliothek, die wir wie üblich in der Arduino-IDE installieren.
+## Programm-Code
+Programmiere folgenden Code:
+  
+```C++
+#include <Adafruit_NeoPixel.h>
+
+// Pin für die WS2812 LEDs
+#define DATA_PIN 6
+
+// Anzahl der LEDs in der Matrix
+#define NUM_LEDS 64
+
+// Erstellen eines NeoPixel-Objekts
+Adafruit_NeoPixel matrix = Adafruit_NeoPixel(NUM_LEDS, DATA_PIN, NEO_GRB + NEO_KHZ800);
+
+void setup() {
+  matrix.begin();           // Initialisieren des NeoPixel-Streifens
+  matrix.show();            // Alle LEDs ausschalten
+  Serial.begin(9600);      // Serielle Kommunikation starten
+}
+
+void loop() {
+  for (int i = 0; i < NUM_LEDS; i++) {
+    // Zufällig RGB-Farbe erzeugen
+    int red = random(0, 256);    
+    int green = random(0, 256);
+    int blue = random(0, 256);
+    matrix.setPixelColor(i, matrix.Color(red, green, blue));  // LED einschalten mit zufälliger Farbe
+  }
+
+  matrix.show();  // Aktualisieren der LEDs
+  delay(500);    // Kurze Pause
+}
+```
+### Erläuterung des Codes
+#### #include <Adafruit_NeoPixel.h>
+Bindet die Neopixel-Bibliothek von Adafruit ein. Die WS2812-LEDs werden auch als Neopixel bezeichnet. 
+#### Adafruit_NeoPixel matrix = Adafruit_NeoPixel(NUM_LEDS, DATA_PIN, NEO_GRB + NEO_KHZ800);
+Erzeugt das Objekt matrix, mit dem die LED-Matrix angesprochen werden kann.  
+Die Parameter haben folgende Bedeutung:  
+- NUM_LEDS: Anzahl der LEDs (64)
+- DATA_PIN: Digitalpin, über den die Matrix angeschlossen ist (6)
+- NEO_GRB: Die Reihenfolge in der Farbkanäle unserer LEDs angesteuert werden (**G**rün, **R**ot, **B**lau)
+- NEO_KHZ800: Die LEDs werden mit einer Frequenz von **800 kHz** angesteuert.
+  
+
+  
+```C++
+
+#include <Adafruit_NeoPixel.h>
+
+// Pin für die WS2812 LEDs
+#define DATA_PIN 6
+
+// Anzahl der LEDs in der Matrix
+#define NUM_LEDS 64
+
+// Mikrofon-Pin
+const int MIC_PIN = A0;
+
+// Erstellen eines NeoPixel-Objekts
+Adafruit_NeoPixel matrix = Adafruit_NeoPixel(NUM_LEDS, DATA_PIN, NEO_GRB + NEO_KHZ800);
+
+void setup() {
+  matrix.begin();           // Initialisieren des NeoPixel-Streifens
+  matrix.show();            // Alle LEDs ausschalten
+  Serial.begin(9600);      // Serielle Kommunikation starten
+  randomSeed(analogRead(0)); // Zufallsgenerator initialisieren
+}
+
+void loop() {
+  int micValue = analogRead(MIC_PIN);  // Mikrofonwert lesen
+  int ledCount = map(micValue, 0, 1023, 0, NUM_LEDS);  // Mikrofonwert auf LED-Anzahl abbilden
+
+  // LEDs entsprechend der Lautstärke einschalten
+  for (int i = 0; i < NUM_LEDS; i++) {
+    if (i < ledCount) {
+      // Zufällige Farbe generieren
+      int red = random(0, 256);
+      int green = random(0, 256);
+      int blue = random(0, 256);
+      matrix.setPixelColor(i, matrix.Color(red, green, blue));  // LED einschalten mit zufälliger Farbe
+    } else {
+      matrix.setPixelColor(i, matrix.Color(0, 0, 0));    // LED ausschalten
+    }
+  }
+
+  matrix.show();  // Aktualisieren der LEDs
+  delay(100);    // Kurze Pause
+}
+```
