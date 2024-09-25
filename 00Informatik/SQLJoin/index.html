@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://Hi2272.github.io/vanillatoasts.js"></script>
+  <link href="https://Hi2272.github.io/vanillatoasts.css" rel="stylesheet">
+
+  <meta charset="utf-8" />
+  <title id="Titel"></title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
+  <link rel="stylesheet" href="https://Hi2272.github.io/SQLCode.css">
+  <script src="https://Hi2272.github.io/SQLCode.js"></script>
+ 
+
+</head>
+
+<body>
+  <div id="Ueberschrift">SQL-Übung</div>
+
+  <table>
+    <tr>
+      <td>
+       
+        <select name="questions" id="questions"  onchange="wahl()">
+          <!-- Optionen werden hier durch JavaScript hinzugefügt -->
+       </select>
+       <hr>
+        <section id="Angabe">Lasse dir alle Gemeinden des Landkreises Mühldorf a.Inn anzeigen!</section>
+       <p id="Loesung"></p>
+
+        <section>
+         
+          <hr>
+          <button id="btnLsg" onclick="loesung()">Lösung anzeigen</button>
+          <button id="btnHilfe" onclick="hilfe()">Hilfestellung</button>
+          <p id="Hilfe"></p>
+
+        </section>
+        <button id="btnWeiter" onclick="weiter()">Weiter zur nächsten Aufgabe</button>
+       
+
+      </td>
+      <td>
+        <fieldset>
+          <legend id="Legende"></legend>
+          <iframe id="Eingabe" src="https://www.dbiu.de/bayern_erweitert/" title="Iframe">
+          </iframe>
+        </fieldset>
+        <div id="quelle" style="font-size: xx-small;text-align: right;"></div>
+
+      </td>
+
+    </tr>
+  </table>
+
+</body>
+
+</html>
