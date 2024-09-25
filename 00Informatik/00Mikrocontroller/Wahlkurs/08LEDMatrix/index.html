@@ -186,11 +186,9 @@ Die Parameter haben folgende Bedeutung:</p>
 <ul>
 <li>NUM_LEDS: Anzahl der LEDs (64)</li>
 <li>DATA_PIN: Digitalpin, über den die Matrix angeschlossen ist (6)</li>
-<li>NEO_GRB: Die Reihenfolge der Farbkanäle unserer LEDs (Grün, Rot, Blau)</li>
-<li>NEO_KHZ800: Die LEDs werden mit 800 Hz Frequenz angesteuert.</li>
+<li>NEO_GRB: Die Reihenfolge in der Farbkanäle unserer LEDs angesteuert werden (<strong>G</strong>rün, <strong>R</strong>ot, <strong>B</strong>lau)</li>
+<li>NEO_KHZ800: Die LEDs werden mit einer Frequenz von <strong>800 kHz</strong> angesteuert.</li>
 </ul>
-<p>NEO_GRB: Dies gibt die Reihenfolge der Farbkanäle an. WS2812 LEDs verwenden normalerweise die Reihenfolge Grün, Rot, Blau (GRB) für die Farbwerte. Es gibt auch andere Varianten wie NEO_RGB oder NEO_BRG, je nach Reihenfolge der Farbkanäle der LEDs1.
-NEO_KHZ800: Dies gibt die Frequenz des Datenprotokolls an, das zur Steuerung der LEDs verwendet wird. WS2812 LEDs arbeiten typischerweise mit einer Frequenz von 800 kHz. Es gibt auch Varianten wie NEO_KHZ400 für LEDs, die mit 400 kHz arbeiten</p>
 <pre><code class="language-C++">
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_NeoPixel.h&gt;</span></span>
 
