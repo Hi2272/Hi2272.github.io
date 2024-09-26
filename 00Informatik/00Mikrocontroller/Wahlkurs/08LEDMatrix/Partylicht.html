@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>LED Matrix</title>
+            <title>Partylicht</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -139,18 +139,27 @@
         </head>
         <body class="vscode-body vscode-light">
             <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
-<h1 id="led-matrix">LED Matrix</h1>
+<h1 id="partylicht">Partylicht</h1>
 <h2 id="allgemeines">Allgemeines</h2>
-<p>Die LED-Matrix besteht aus 64 RGB-LEDs, die alle einzeln über eine einzige Datenleitung programmiert werden können. Da die Matrix relativ viel Strom benötigt, schließen wir sie an eine externe Spannungsquelle an:</p>
+<p>Auf der LED-Matrix sollen umso mehr LEDs leuchten, je lauter der Ton ist, der vom Mikrofon aufgezeichnet wird.<br>
+Überprüfe vor dem Start noch einmal die Verkabelung:</p>
+<ul>
+<li>LED-Matrix:
 <ul>
 <li>Rotes Kabel : + Pol der externen Spannungsquelle (+5 V)</li>
 <li>Schwarzes Kabel: - Pol der externen Spannungsquelle (GND)</li>
 <li>Gelbes Kabel: Datenkabel: Port 6 am Arduino</li>
 </ul>
-<h2 id="adafruit-bibliothek">Adafruit-Bibliothek</h2>
-<p>Für die Ansteuerung der Matrix benötigen wir die Adafruit_Neopixel Bibliothek, die wir wie üblich in der Arduino-IDE installieren.</p>
-<h2 id="programm-code">Programm-Code</h2>
-<p>Programmiere folgenden Code:</p>
+</li>
+<li>Mikrofon
+<ul>
+<li>V : + Pol am Arduino oder an der externen Spannungsquelle (+5 V)</li>
+<li>G : - Pol am Arduino oder an der externen Spannungsquelle (GND)</li>
+<li>S : Signal- oder Datenkabel: Pin A0 am Arduino</li>
+</ul>
+</li>
+</ul>
+<h2 id="programmcode">Programmcode</h2>
 <pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_NeoPixel.h&gt;</span></span>
 
 <span class="hljs-comment">// Pin für die WS2812 LEDs</span>
@@ -170,6 +179,9 @@ Adafruit_NeoPixel matrix = <span class="hljs-built_in">Adafruit_NeoPixel</span>(
 }
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-type">int</span> micValue = <span class="hljs-built_in">analogRead</span>(MIC_PIN);  <span class="hljs-comment">// Mikrofonwert lesen</span>
+  <span class="hljs-type">int</span> ledCount = <span class="hljs-built_in">map</span>(micValue, <span class="hljs-number">0</span>, <span class="hljs-number">1023</span>, <span class="hljs-number">0</span>, NUM_LEDS);  <span class="hljs-comment">// Mikrofonwert auf LED-Anzahl abbilden</span>
+
   <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM_LEDS; i++) {
     <span class="hljs-comment">// Zufällig RGB-Farbe erzeugen</span>
     <span class="hljs-type">int</span> red = <span class="hljs-built_in">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">256</span>);    
@@ -183,27 +195,10 @@ Adafruit_NeoPixel matrix = <span class="hljs-built_in">Adafruit_NeoPixel</span>(
 }
 </code></pre>
 <h3 id="erläuterung-des-codes">Erläuterung des Codes</h3>
-<h4 id="include-adafruit_neopixelh">#include &lt;Adafruit_NeoPixel.h&gt;</h4>
-<p>Bindet die Neopixel-Bibliothek von Adafruit ein. Die WS2812-LEDs werden auch als Neopixel bezeichnet.</p>
-<h4 id="adafruit_neopixel-matrix--adafruit_neopixelnum_leds-data_pin-neo_grb--neo_khz800">Adafruit_NeoPixel matrix = Adafruit_NeoPixel(NUM_LEDS, DATA_PIN, NEO_GRB + NEO_KHZ800);</h4>
-<p>Erzeugt das Objekt matrix, mit dem die LED-Matrix angesprochen werden kann.<br>
-Die Parameter haben folgende Bedeutung:</p>
-<ul>
-<li>NUM_LEDS: Anzahl der LEDs (64)</li>
-<li>DATA_PIN: Digitalpin, über den die Matrix angeschlossen ist (6)</li>
-<li>NEO_GRB: Die Reihenfolge in der Farbkanäle unserer LEDs angesteuert werden (<strong>G</strong>rün, <strong>R</strong>ot, <strong>B</strong>lau)</li>
-<li>NEO_KHZ800: Die LEDs werden mit einer Frequenz von <strong>800 kHz</strong> angesteuert.</li>
-</ul>
-<h4 id="randomseedanalogread0">randomSeed(analogRead(0));</h4>
-<p>Mit diesem Befehl wird der Zufallsgenerator auf einen zufälligen Wert gesetzt. Hierzu verwendet man den Wert zwischen 0 und 1023 der gerade zufällig an Pin 0 anliegt.</p>
-<h4 id="int-red--random0-256">int red = random(0, 256);</h4>
-<p>Setzt den Rot-Wert der Farbe auf eine Zufallszahl zwischen 0 und 255. Die obere Grenze wird 256 wird generell nicht erreicht.</p>
-<h4 id="matrixsetpixelcolori-matrixcolorred-green-blue">matrix.setPixelColor(i, matrix.Color(red, green, blue));</h4>
-<p>Setzt die Farbe des Pixels mit der Nr. i auf den Farbwert, der in matrix.Color(r,g,b) definiert wird.</p>
-<h4 id="matrixshow">matrix.show();</h4>
-<p>Mit diesem Befehl werden die neuen Farben auf den LEDs angezeigt.</p>
-<p><a href="mikrofon.html">weiter zum Mikrofon</a><br>
-<a href="../index.html">zurück</a></p>
+<h4 id="int-ledcount--mapmicvalue-0-1023-0-num_leds">int ledCount = map(micValue, 0, 1023, 0, NUM_LEDS);</h4>
+<p>Mit dem <strong>map</strong>-Befehl werden die Messwerte des Mikrofons (0-1023) in Werte für die LED-Matrix (0-63) umgeschrieben.<br>
+Alternativ hätten wir auch einfach jeden Wert durch 4 teilen können. Der map-Befehl ist aber leichter zu programmieren.</p>
+<p><a href="../index.html">zurück</a></p>
 
             
             
