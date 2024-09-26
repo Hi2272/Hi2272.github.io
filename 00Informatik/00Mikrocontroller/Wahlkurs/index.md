@@ -80,8 +80,8 @@ Wir bauen Lichtschranken, mit denen die Geschwindigkeit von Fahrzeugen gemessen 
 
 ### 4. Diskobeleuchtung
 
-Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.!  
-[Partylicht](03-01.png)  
+Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.  
+![Partylicht](03-01.png)  
 In folgendem Video könnt ihr die Funktion des Lichtes sehen:  [YouTube Video Partylicht](https://youtu.be/V1RZFxpPh4s)  
 
 1. [RGB-LED-Matrix](08LEDMatrix/index.html)
