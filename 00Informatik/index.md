@@ -49,6 +49,7 @@
 [Wenn-Funktion](https://Hi2272.github.io/00Informatik/WennFunktion/index.html)  
 
 ## Datenbanken
+### Einfache Abfragen
 ***
 [w3schools.com: SELECT](https://www.w3schools.com/sql/exercise.asp?filename=exercise_select1)  
 [w3schools.com: WHERE](https://www.w3schools.com/sql/exercise.asp?filename=exercise_where1)  
@@ -56,11 +57,19 @@
 [LIKE in SQL-Abfragen](https://Hi2272.github.io/00Informatik/SQL2/index.html)  
 [Wiederholung SQL mit Datenbanken im Unterricht (www.dbiu.de)](https://Hi2272.github.io/00Informatik/SQLFrageListe/index.html)  
 [Verschiedene SQL-Anfragen](https://Hi2272.github.io/00Informatik/SQL/index.html)  
-[SQL-IDE](00Informatik9/SQL-Editor/index.html)  
 
 
-### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
-[Start](https://sql.hauptquartier.eu/start-abenteuer)
+#### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
+[Start](https://sql.hauptquartier.eu/start-abenteuer)  
+
+### Abfragen über mehrere Tabellen
+[Schwimmbäder in Bayern (www.dbiu.de)](SQLJoin/index.html)   
+[Zoos und Wanderwege (www.dbiu.de)](SQLJoin2/index.html)  
+[Nachbargemeinden (www.dbiu.de)](SQLJoin3/index.html)  
+
+#### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
+[Anfragen über mehrere Tabellen](https://sql.hauptquartier.eu/2-tabellen-abfragen/primaerschluessel-fremdschluessel)    
+
 
 ## Objektorientierte Programmierung
 ***
@@ -110,6 +119,7 @@
 [Processing-Projekt: Formen V: Linienstärke](https://Hi2272.github.io/00Informatik/ProcessingLinienstaerke/index.html)  
 [Processing-Projekt: Formen VI: Transparente Farben: Der alpha-Wert](https://Hi2272.github.io/00Informatik/ProcessingAlpha/index.html)  
 [Processing-Projekt: Formen VII: Quadrat - eine Unterklasse von Rechteck](https://Hi2272.github.io/00Informatik/ProcessingQuadrat/index.html)  
+[Private oder public?](https://learningapps.org/3839793)  
 
 ### Bedingte Anweisungen
 
@@ -119,7 +129,7 @@
 [Java-Code-Zeilen: Bedingte Anweisungen I](https://Hi2272.github.io/00Informatik/JavaCodeIf/index.html)  
 [Java-Code-Zeilen: Bedingte Anweisungen II](https://Hi2272.github.io/00Informatik/JavaCodeLogik/index.html)  
 [Kniffel](../Online-IDE/Kniffel/index.html)  
-
+[Logische Funktionen in Java](https://learningapps.org/3093705)  
 ### Zählschleifen
 
 [Java-Code-Zeilen: For-Schleifen](https://Hi2272.github.io/00Informatik/JavaCodeFor/index.html)  
@@ -163,6 +173,15 @@
 ## CSS
 [CSS](HTMLundCSS/index.html)
 * * *
+
+## Spiele für kleine Gruppen
+[Geschichte der Informatik](https://learningapps.org/view36416559)  
+[Allgemeine Zahlen zur Informatik](https://learningapps.org/view36416718)  
+[Cybermobbing](https://learningapps.org/view14543873)  
+[Internetquiz](https://learningapps.org/view36419163)    
+[Pferderennen Java](https://learningapps.org/19211906)  
+[Struktur einer Java Klasse](https://learningapps.org/view36419316)  
+[Robot Karol](https://karol.arrrg.de/#SPIELWIESE)  
 
 [zurück](https://Hi2272.github.io/)
 </div>

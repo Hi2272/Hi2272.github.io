@@ -13,6 +13,7 @@ Die Materialien für den Kurs wurden durch Spenden folgender Organisationen fina
 Wir danken den Spendern herzlich für Ihre Unterstützung.
 
 [Materialliste](00Material/index.html)
+[Bezugsquellen](00Material/bezugsquellen.html)
 
 ## 3D-Druck und CAD
 [3D-Druck](003D-Druck/index.html)  
@@ -79,12 +80,13 @@ Wir bauen Lichtschranken, mit denen die Geschwindigkeit von Fahrzeugen gemessen 
 
 ### 4. Diskobeleuchtung
 
-Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.!  
-[Partylicht](03-01.png)  
+Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.  
+![Partylicht](03-01.png)  
 In folgendem Video könnt ihr die Funktion des Lichtes sehen:  [YouTube Video Partylicht](https://youtu.be/V1RZFxpPh4s)  
 
-1. RGB-LEDs
-2. Tonaufnahmen mit einem Mikrofon
+1. [RGB-LED-Matrix](08LEDMatrix/index.html)
+2. [Tonaufnahmen mit einem Mikrofon](08LEDMatrix/mikrofon.html)  
+3. [Das Partylicht](08LEDMatrix/Partylicht.html)  
 
 ### 5. ESP32
 

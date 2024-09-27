@@ -1,0 +1,171 @@
+{
+  "titel": "Schwimmbäder in Bayern",
+  "url": "https://www.dbiu.de/bayern/",
+  "shuffle": false,
+  "angabe": [
+    {
+      "txt": "Bilde des Kreuzprodukt aus den Tabellen Gemeinde und Schwimmbad!",
+      "lsg": [
+        "<p>SELECT *<br />FROM Gemeinde g, Schwimmbad s</p>"
+      ],
+      "hilfe":"<p>Mit SELECT * lässt du dir alle Spalten anzeigen. Die beiden Tabellen kombinierst du im FROM-Teil, indem du sie durch Komma trennst.</p>",
+      "zeit": 1
+    },{
+      "txt": "Schränke das Kreuzprodukt so ein, dass die Gemeinden mit ihren zugehörigen Schwimmbädern angezeigt werden!",
+      "lsg": [
+        "<p>SELECT *<br />FROM Gemeinde g, Schwimmbad s<br />WHERE g.schluessel=s.gemeindeschluessel</p>"
+      ],
+      "hilfe":"<p>Im WHERE-Teil müssen die Datensätze ausgefiltert werden, bei denen der Gemeindeschlüssel gleich ist.</p>",
+      "zeit": 1
+    },
+    {
+      "txt": "Lasse dir nur den Namen der Gemeinde und den Namen des Bades anzeigen.",
+      "lsg": [
+        "<p>SELECT g.name,s.name<br />FROM Gemeinde g, Schwimmbad s<br />WHERE g.schluessel=s.gemeindeschluessel</p>"
+      ],
+      "hilfe":"Im SELECT-Teil musst du jetzt die Namen der Attribute angeben. Da beide Namen gleich sind, musst du den jeweiligen Tabellenname über die Punktnotation angeben.",
+      "zeit": 1
+    },
+    {
+      "txt": "Ändere die Anfrage so ab, dass die Spalten mit Gemeinde und Bad überschrieben sind.",
+      "lsg": [
+        "<p>SELECT g.name AS Gemeinde,s.name AS Bad<br />FROM Gemeinde g, Schwimmbad s<br />WHERE g.schluessel=s.gemeindeschluessel</p>"
+      ],
+      "hilfe":"Im SELECT-Teil kannst du eine Spalte mit AS Name umbenennen. Dieses ALIAS kannst du auch weiter unten in der Abfrage wieder verwenden.",
+      "zeit": 1
+    },
+    {
+      "txt": "Sortiere die Tabelle aufsteigend nach den Gemeindenamen.",
+      "lsg": [
+        "<p>SELECT g.name AS Gemeinde,s.name AS Bad<br />FROM Gemeinde g, Schwimmbad s<br />WHERE g.schluessel=s.gemeindeschluessel<br>ORDER BY Gemeinde</p>",
+        "<p>SELECT g.name AS Gemeinde,s.name AS Bad<br />FROM Gemeinde g, Schwimmbad s<br />WHERE g.schluessel=s.gemeindeschluessel<br>ORDER BY g.name</p>"
+    
+      ],
+      "hilfe":"Im SELECT-Teil kannst du eine Spalte mit AS Name umbenennen. Dieses ALIAS kannst du auch weiter unten in der Abfrage wieder verwenden.",
+      "zeit": 1
+    },
+
+    {
+      "txt": "Lasse dir den Namen der Gemeinde und alle Daten ihrer Bäder ausgeben.",
+      "lsg": [
+        "<p>SELECT g.name AS Gemeinde,s.*<br />FROM Gemeinde g, Schwimmbad s<br />WHERE g.schluessel=s.gemeindeschluessel <br>ORDER BY Gemeinde</p>"
+      ],
+      "hilfe":"Der * kann auch in der Punktnotation verwendet werden.",
+      "zeit": 1
+    },
+ 
+    {
+      "txt": "Schränke die Anfrage so ein, dass nur Hallenbäder berücksichtigt werden.",
+      "lsg": [
+        "<p>SELECT g.name AS Gemeinde,s.*<br />FROM Gemeinde g, Schwimmbad s<br />WHERE g.schluessel=s.gemeindeschluessel<br>AND art=\"Hallenbad\"<br> ORDER BY Gemeinde</p>"
+      ],
+      "hilfe":"Zusätzliche Einschränkungen können durch AND im WHERE-Teil angefügt werden.",
+      "zeit":1
+    },
+    {
+      "txt": "Neben den Hallenbädern sollen jetzt auch Freibäder ausgegeben werden.",
+      "lsg": [
+        "<p>SELECT g.name AS Gemeinde,s.*<br />FROM Gemeinde g, Schwimmbad s<br />WHERE g.schluessel=s.gemeindeschluessel<br>AND (art=\"Hallenbad\" OR art=\"Freibad\")<br> ORDER BY Gemeinde</p>"
+      ],
+      "hilfe":"Die Einschränkung \"Hallenbad oder Freibad\" wird im WHERE-Teil über eine OR-Verknüpfung realisiert. Dieser Teil muss im Klammern stehen, da OR weniger stark bindet als AND.",
+      "zeit":1
+    },
+    {
+      "txt": "Lasse dir die Namen der Gemeinde, des Landkreises und des Hallenbads für alle Hallenbäder in den Landkreisen Mühldorf und Altötting anzeigen.",
+      "lsg": [
+        "<p>SELECT g.name, g.kreis, s.name<br>FROM Gemeinde g,Schwimmbad s<br>WHERE g.schluessel=s.gemeindeschluessel<br>AND s.art=\"Hallenbad\"<br>AND (g.kreis LIKE \"%Mühldorf%\"OR g.kreis LIKE \"%Altötting%\")"
+            ],
+      "hilfe":"Da du nicht weißt, ob der Name des Landkreises als Mühldorf oder Mühldorf am Inn gespeichert ist, solltest du im WHERE-Teil LIKE und % verwenden.",
+      "zeit":1
+    },
+
+    {
+      "txt": "Lasse dir die Zahl aller Schwimmbäder ausgeben. Hierzu reicht eine Anfrage an eine Tabelle.",
+      "lsg": [
+        "<p>SELECT count(s.id)<br>FROM Schwimmbad s</p>"
+      ],
+      "hilfe":"Verwende hierzu die Aggregatsfunktion COUNT().",
+      "zeit":1
+    },
+    
+    {
+      "txt": "Lasse dir die Namen der Gemeinde und die Zahl ihrer Bäder anzeigen.",
+      "lsg": ["SELECT g.name, count(s.id)<br>FROM Gemeinde g,Schwimmbad s<br>WHERE g.schluessel=s.gemeindeschluessel<br>GROUP BY g.schluessel"
+    ],
+      "hilfe":"Hierzu muss die Ausgabe zunächst mit GROUP BY nach dem Schlüssel der Gemeinden gruppiert werden. Anschließend kannst du mit der Aggregatsfunktion COUNT() die Zahl der Bäder-IDs in der Gemeinde anzeigen lassen.",
+      "zeit":1
+    },
+    {
+      "txt": "Ändere die Anfrage so, dass die Zahl ihrer Bäder anzeigen mit \"Bäder\" überschrieben ist.",
+      "lsg": ["SELECT g.name, count(s.id) AS Bäder<br>FROM Gemeinde g,Schwimmbad s<br>WHERE g.schluessel=s.gemeindeschluessel<br>GROUP BY g.schluessel"
+    ],
+      "hilfe":"Dazu brauchst du wieder das ALIAS mit AS.",
+      "zeit":1
+    },
+    {
+      "txt": "Sortiere die Ausgabe absteigend nach der Zahl der Bäder. Verwende hierzu das Alias, das du definiert hast.",
+      "lsg": ["SELECT g.name, count(s.id) AS Bäder<br>FROM Gemeinde g,Schwimmbad s<br>WHERE g.schluessel=s.gemeindeschluessel<br>GROUP BY g.schluessel<br>ORDER BY Bäder DESC"
+    ],
+      "hilfe":"Mit dem Zusatz DESC schaltest du die Sortierrichtung um.",
+      "zeit":1
+    },
+    {
+      "txt": "Schränke die Ausgabe so ein, dass nur Orte angezeigt werden, die mindestens 10 Bäder haben.",
+      "lsg": ["SELECT g.name, count(s.id) AS Bäder<br>FROM Gemeinde g,Schwimmbad s<br>WHERE g.schluessel=s.gemeindeschluessel<br>GROUP BY g.schluessel<br>HAVING Bäder>=10<br>ORDER BY Bäder DESC"
+    ],
+      "hilfe":"Hierzu muss die GROUP BY-Funktion durch HAVING eingegrenzt werden.",
+      "zeit":1
+    },
+    {
+      "txt": "Ändere die Anfrage so ab, dass nur die Hallenbäder gezählt werden. Es sollen nur die Städte angezeigt werden, die mindestens 5 Hallenbäder haben.",
+      "lsg": ["SELECT g.name, count(s.id) AS Bäder<br>FROM Gemeinde g,Schwimmbad s<br>WHERE g.schluessel=s.gemeindeschluessel<br>AND s.art=\"Hallenbad\"<br>GROUP BY g.schluessel<br>HAVING Bäder>=5<br>ORDER BY Bäder DESC"
+    ],
+      "hilfe":"Hierzu muss die zweite Bedingung im WHERE-Teil eingefügt werden.",
+      "zeit":1
+    },
+    {
+      "txt": "Lasse dir für jede Gemeinde, die ein Hallenbad hat, den Namen und die Gesamtzahl der Einwohner ausgeben.",
+      "lsg": ["SELECT g.name, (g.einwohner_w+g.einwohner_m)<br>FROM Gemeinde g,Schwimmbad s<br>WHERE g.schluessel=s.gemeindeschluessel<br>AND s.art=\"Hallenbad\"<br>"
+    ],
+      "hilfe":"Hierzu muss im SELECT-Teil die Zahl der weiblichen und männlichen Einwohner addiert werden.",
+      "zeit":1
+    },
+    {
+      "txt": "Teile diese Zahl jetzt durch die Zahl der Hallenbäder in der Gemeinde. Damit erfährst du, wie viele Menschen sich ein Hallenbad teilen.",
+      "lsg": ["SELECT g.name, (g.einwohner_w+g.einwohner_m)/count(s.id)<br>FROM Gemeinde g,Schwimmbad s<br>WHERE g.schluessel=s.gemeindeschluessel<br>AND s.art=\"Hallenbad\"<br>GROUP BY g.schluessel"
+    ],
+      "hilfe":"Jetzt musst du im SELECT-Teil die Summe durch die Zahl der Bäder teilen.",
+      "zeit":1
+    },
+    {
+      "txt": "Ändere die Ausgabe so, dass die Spalte mit \"EinwohnerProHallbad\" überschrieben ist und sortiere das Ergebnis absteigend nach dieser Zahl.",
+      "lsg": ["SELECT g.name, (g.einwohner_w+g.einwohner_m)/count(s.id) AS EinwohnerProHallenbad<br>FROM Gemeinde g,Schwimmbad s<br>WHERE g.schluessel=s.gemeindeschluessel<br>AND s.art=\"Hallenbad\"<br>GROUP BY g.schluessel<br>ORDER BY EinwohnerProHallenbad DESC"
+    ],
+      "hilfe":"Hier brauchst du wieder ein ALIAS mit AS im SELECT-Teil.",
+      "zeit":1
+    },
+    {
+      "txt": "Lasse dir nur den Namen der nördlichsten Gemeinde ausgeben, für die ein Bad in der Datenbank eingetragen ist.",
+      "lsg": [
+        "<p>SELECT g.name<br />FROM Schwimmbad s, Gemeinde g<br />WHERE g.schluessel=s.gemeindeschluessel<br />AND s.breitengrad = (<br />SELECT max(s.breitengrad)<br />FROM Schwimmbad s<br />)</p>"
+      ]
+        ,
+      "hilfe":"Die benötigst hierfür eine geschachtelte Anfrage.<br>Der nördlichste Eintrag ist der mit dem maximalen Breitengrad.",
+      "zeit":1
+    },
+    {
+      "txt": "Schränke die Anfrage so ein, dass der Name der nördlichsten Gemeinde mit einem Hallenbad ausgegeben wird.",
+      "lsg": [
+        "<p>SELECT g.name<br />FROM Schwimmbad s, Gemeinde g<br />WHERE g.schluessel=s.gemeindeschluessel<br />AND s.art=\"Hallenbad\"<br />AND s.breitengrad = (<br />SELECT max(s.breitengrad)<br />FROM Schwimmbad s<br />WHERE s.art=\"Hallenbad\")</p>"
+    ],
+      "hilfe":"Die Einschränkung mit AND muss in beiden SELECT-Abfragen verwendet werden.",
+      "zeit":1
+    }
+
+
+
+
+
+
+ ]
+}
