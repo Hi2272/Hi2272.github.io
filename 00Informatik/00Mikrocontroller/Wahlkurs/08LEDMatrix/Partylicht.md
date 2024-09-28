@@ -17,6 +17,8 @@ Auf der LED-Matrix sollen umso mehr LEDs leuchten, je lauter der Ton ist, der vo
 ```C++
 #include <Adafruit_NeoPixel.h>
 
+const int MIC_PIN = A0;
+
 // Pin für die WS2812 LEDs
 #define DATA_PIN 6
 
@@ -34,15 +36,23 @@ void setup() {
 }
 
 void loop() {
-  int micValue = analogRead(MIC_PIN);  // Mikrofonwert lesen
+  int micValue = analogRead(MIC_PIN); 
+  Serial.print(micValue);
+  Serial.print(": ");
+  
+   // Mikrofonwert lesen
   int ledCount = map(micValue, 0, 1023, 0, NUM_LEDS);  // Mikrofonwert auf LED-Anzahl abbilden
-
-  for (int i = 0; i < NUM_LEDS; i++) {
+  Serial.println(ledCount);
+  for (int i = 0; i < ledCount; i++) {
     // Zufällig RGB-Farbe erzeugen
     int red = random(0, 256);    
     int green = random(0, 256);
     int blue = random(0, 256);
     matrix.setPixelColor(i, matrix.Color(red, green, blue));  // LED einschalten mit zufälliger Farbe
+  }
+  for (int i=ledCount;i<NUM_LEDS;i++){
+    matrix.setPixelColor(i, matrix.Color(0,0,0));  // LED einschalten mit zufälliger Farbe
+    
   }
 
   matrix.show();  // Aktualisieren der LEDs
