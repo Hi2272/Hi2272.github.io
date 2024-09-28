@@ -191,13 +191,16 @@
 <h4 id="delay1">delay(1);</h4>
 <p>Bei jedem Durchgang wird eine Pause von 1 ms eingehalten. Insgesamt blinkt unsere LED damit wieder ungefähr zweimal pro Sekunde.</p>
 <h2 id="3-blinken-mit-interrupt">3. Blinken mit Interrupt</h2>
-<p>Eine sehr elegante Methode unsere LED blinken zu lassen verwendet einen <strong>Interrupt</strong>. Hierbei unterbricht der Prozessor regelmäßig seine Aufgaben und führt eine vorher definerte <strong>Interrupt-Service-Routine (ISR)</strong> aus. Diese ISRs müssen relativ kurz sein, damit der Prozessor nicht zu sehr ausgebremst wird.</p>
-<pre><code class="language-C++"><span class="hljs-type">const</span> <span class="hljs-type">int</span> ledPin = <span class="hljs-number">13</span>; <span class="hljs-comment">// LED an Pin 13</span>
+<p>Eine sehr elegante Methode unsere LED blinken zu lassen verwendet einen <strong>Interrupt</strong>. Hierbei unterbricht der Prozessor regelmäßig seine Aufgaben und führt eine vorher definerte <strong>Interrupt-Service-Routine (ISR)</strong> aus. Diese ISRs müssen relativ kurz sein, damit der Prozessor nicht zu sehr ausgebremst wird.<br>
+Der Sketch verwendet die <strong>TimerOne Bibliothek</strong> von <strong>Stoyko Dimitrov</strong>, die wir ggf. installieren müssen.</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;TimerOne.h&gt;</span> <span class="hljs-comment">// TimerOne-Bibliothek einbinden</span></span>
+
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> ledPin = <span class="hljs-number">13</span>; <span class="hljs-comment">// LED an Pin 13</span>
 <span class="hljs-keyword">volatile</span> <span class="hljs-type">bool</span> ledState = LOW; <span class="hljs-comment">// LED-Status</span>
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
   <span class="hljs-built_in">pinMode</span>(ledPin, OUTPUT); <span class="hljs-comment">// LED-Pin als Ausgang setzen</span>
-  Timer1.<span class="hljs-built_in">initialize</span>(<span class="hljs-number">500000</span>); <span class="hljs-comment">// Timer1 auf 500 ms (500000 µs) einstellen</span>
+  Timer1.<span class="hljs-built_in">initialize</span>(<span class="hljs-number">1000000</span>); <span class="hljs-comment">// Timer1 auf 500 ms (500000 µs) einstellen</span>
   Timer1.<span class="hljs-built_in">attachInterrupt</span>(toggleLED); <span class="hljs-comment">// Interrupt-Funktion zuweisen</span>
 }
 
@@ -209,6 +212,7 @@
   ledState = !ledState; <span class="hljs-comment">// LED-Status umschalten</span>
   <span class="hljs-built_in">digitalWrite</span>(ledPin, ledState); <span class="hljs-comment">// LED ein- oder ausschalten</span>
 }
+
 </code></pre>
 <h3 id="erläuterung-des-codes-1">Erläuterung des Codes</h3>
 <h4 id="volatile-bool-ledstate--low">volatile bool ledState = LOW;</h4>
@@ -217,7 +221,7 @@
 Alle Variablen, die von einem Interrupt geändert werden, müssen <strong>volatile</strong> deklariert werden.</p>
 <h2 id="4-taster-über-interrupt-abfragen">4. Taster über Interrupt abfragen</h2>
 <h3 id="a-prinzip">a) Prinzip</h3>
-<p>Für den folgenden Sketch muss ein Taster an Pin 2 des Arduinos angeschlossen werden.<br>
+<p>Für den folgenden Sketch muss ein Taster an Pin 2 und GND des Arduinos angeschlossen werden.<br>
 Die interne LED soll durch einen Druck auf den Taster ein- und wieder ausgeschaltet werden.</p>
 <h3 id="b-sketch">b) Sketch</h3>
 <pre><code class="language-C++"><span class="hljs-type">const</span> <span class="hljs-type">int</span> ledPin = <span class="hljs-number">13</span>; <span class="hljs-comment">// LED an Pin 13</span>

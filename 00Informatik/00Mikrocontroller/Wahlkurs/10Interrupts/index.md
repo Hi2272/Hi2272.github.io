@@ -11,6 +11,7 @@ void loop() {
   delay(500);            // 500 ms Pause: LED leuchtet nicht.
 }
 ```
+
 In dieser Zeit kann er keine anderen Aufgaben erfüllen, also zum Beispiel auf einen Tastendruck des Nutzers reagieren.  
 ## 2. Blinken mit Zähler
 Bei folgendem Sketch tritt dieses Problem nicht mehr auf:
@@ -53,7 +54,8 @@ In dieser Zeile wird der Wert der Variable ledState umgekehrt:
 Bei jedem Durchgang wird eine Pause von 1 ms eingehalten. Insgesamt blinkt unsere LED damit wieder ungefähr zweimal pro Sekunde.
 ## 3. Blinken mit Interrupt
 Eine sehr elegante Methode unsere LED blinken zu lassen verwendet einen **Interrupt**. Hierbei unterbricht der Prozessor regelmäßig seine Aufgaben und führt eine vorher definerte **Interrupt-Service-Routine (ISR)** aus. Diese ISRs müssen relativ kurz sein, damit der Prozessor nicht zu sehr ausgebremst wird.  
-Der Sketch verwendet die **TimerOne Bibliothek** von **Stoyko Dimitrov**, die wir ggf. installieren müssen.
+Der Sketch verwendet die **TimerOne Bibliothek** von **Stoyko Dimitrov**, die wir ggf. installieren müssen.  
+
 ```C++
 #include <TimerOne.h> // TimerOne-Bibliothek einbinden
 
