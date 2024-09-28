@@ -52,14 +52,17 @@ In dieser Zeile wird der Wert der Variable ledState umgekehrt:
 #### delay(1);
 Bei jedem Durchgang wird eine Pause von 1 ms eingehalten. Insgesamt blinkt unsere LED damit wieder ungefähr zweimal pro Sekunde.
 ## 3. Blinken mit Interrupt
-Eine sehr elegante Methode unsere LED blinken zu lassen verwendet einen **Interrupt**. Hierbei unterbricht der Prozessor regelmäßig seine Aufgaben und führt eine vorher definerte **Interrupt-Service-Routine (ISR)** aus. Diese ISRs müssen relativ kurz sein, damit der Prozessor nicht zu sehr ausgebremst wird.   
+Eine sehr elegante Methode unsere LED blinken zu lassen verwendet einen **Interrupt**. Hierbei unterbricht der Prozessor regelmäßig seine Aufgaben und führt eine vorher definerte **Interrupt-Service-Routine (ISR)** aus. Diese ISRs müssen relativ kurz sein, damit der Prozessor nicht zu sehr ausgebremst wird.  
+Der Sketch verwendet die **TimerOne Bibliothek** von **Stoyko Dimitrov**, die wir ggf. installieren müssen.
 ```C++
+#include <TimerOne.h> // TimerOne-Bibliothek einbinden
+
 const int ledPin = 13; // LED an Pin 13
 volatile bool ledState = LOW; // LED-Status
 
 void setup() {
   pinMode(ledPin, OUTPUT); // LED-Pin als Ausgang setzen
-  Timer1.initialize(500000); // Timer1 auf 500 ms (500000 µs) einstellen
+  Timer1.initialize(1000000); // Timer1 auf 500 ms (500000 µs) einstellen
   Timer1.attachInterrupt(toggleLED); // Interrupt-Funktion zuweisen
 }
 
@@ -71,6 +74,7 @@ void toggleLED() {
   ledState = !ledState; // LED-Status umschalten
   digitalWrite(ledPin, ledState); // LED ein- oder ausschalten
 }
+
 ```
 ### Erläuterung des Codes
 #### volatile bool ledState = LOW;
@@ -78,11 +82,9 @@ Das Schlüsselwort **volatile** muss verwendet werden, da sich der Wert der Vari
 **Merke:**  
  Alle Variablen, die von einem Interrupt geändert werden, müssen **volatile** deklariert werden.  
 
-
-
 ## 4. Taster über Interrupt abfragen
 ### a) Prinzip
-Für den folgenden Sketch muss ein Taster an Pin 2 des Arduinos angeschlossen werden.  
+Für den folgenden Sketch muss ein Taster an Pin 2 und GND des Arduinos angeschlossen werden.  
 Die interne LED soll durch einen Druck auf den Taster ein- und wieder ausgeschaltet werden.  
 ### b) Sketch
 ```C++
