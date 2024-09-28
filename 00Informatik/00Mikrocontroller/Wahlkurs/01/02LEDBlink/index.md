@@ -25,5 +25,4 @@ void loop() {
 Die **setup-Methode läuft einmal ab**, wenn der Mikrocontroller an den Strom angeschlossen wird. Hier stehen Befehle, die zu Beginn ausgeführt werden müssen. In unserem Beispiel, wird der Pin 9 dauerhaft auf LOW geschaltet.  
 Die **loop-Methode läuft immer wieder ab.** Die Befehle *LED ein, Pause, LED aus, Pause* wiederholen sich solange, wie der Mikrocontroller am Strom angeschlossen ist.
 
-       
 [zurück](../index.html)

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Blinken ohne Blockieren</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="blinken-ohne-blockieren">Blinken ohne Blockieren</h1>
+<h2 id="1-grundlagen">1. Grundlagen</h2>
+<p>Bei unserem bisherigen Blink-Sketch wartet der Mikrocontroller die meiste Zeit in einem <strong>delay(..)</strong>-Befehl:</p>
+<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>, HIGH); <span class="hljs-comment">// Pin 13 = Pluspol -&gt; LED ein</span>
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);            <span class="hljs-comment">// 500 ms Pause: LED leuchtet</span>
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>, LOW);  <span class="hljs-comment">// Pin 13 = Minuspol -&gt; LED aus</span>
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);            <span class="hljs-comment">// 500 ms Pause: LED leuchtet nicht.</span>
+}
+</code></pre>
+<p>In dieser Zeit kann er keine anderen Aufgaben erfüllen, also zum Beispiel auf einen Tastendruck des Nutzers reagieren.</p>
+<h2 id="2-blinken-mit-zähler">2. Blinken mit Zähler</h2>
+<p>Bei folgendem Sketch tritt dieses Problem nicht mehr auf:</p>
+<pre><code class="language-C++"><span class="hljs-type">int</span> zaehler=<span class="hljs-number">0</span>; <span class="hljs-comment">// Zählvariable</span>
+<span class="hljs-type">int</span> zeit=<span class="hljs-number">500</span>;  <span class="hljs-comment">// Pausenzeit fürs Blinken</span>
+<span class="hljs-type">bool</span> ledState=LOW; <span class="hljs-comment">// Zustand der LED: LOW=aus</span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">13</span>, OUTPUT);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>,ledState);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  zaehler=zaehler+<span class="hljs-number">1</span>;
+  <span class="hljs-keyword">if</span> (zaehler&gt;zeit){
+    zaehler=<span class="hljs-number">0</span>;
+    ledState=!ledState;
+    <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>,ledState);
+  } 
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">// 1 ms Pause</span>
+}
+</code></pre>
+<h3 id="erläuterung-des-codes">Erläuterung des Codes</h3>
+<h4 id="int-zaehler0">int zaehler=0;</h4>
+<p>Wir definieren eine Zählvariable, die wir zunächst auf 0 setzen.</p>
+<h4 id="zaehlerzaehler1">zaehler=zaehler+1;</h4>
+<p>Bei jedem Durchlauf wird die Variable um eins erhöht.</p>
+<h4 id="if-zaehlerzeit">if (zaehler&gt;zeit){</h4>
+<p>Wenn der Wert der Zählvariable größer als unsere Pausenzeit ist, dann wird:</p>
+<ol>
+<li>Die Zählvariable wieder auf 0 gesetzt.</li>
+<li>Die LED aus- oder eingeschaltet.</li>
+</ol>
+<h4 id="ledstateledstate">ledState=!ledState;</h4>
+<p>In dieser Zeile wird der Wert der Variable ledState umgekehrt:</p>
+<ul>
+<li>Wenn ledState HIGH (1, true) ist, dann wird ledState LOW(0, false) gesetzt.</li>
+<li>Wenn ledState LOW(0, false) ist, dann wird ledState HIGH (1, true) gesetzt.</li>
+</ul>
+<h4 id="delay1">delay(1);</h4>
+<p>Bei jedem Durchgang wird eine Pause von 1 ms eingehalten. Insgesamt blinkt unsere LED damit wieder ungefähr zweimal pro Sekunde.</p>
+<h2 id="3-blinken-mit-interrupt">3. Blinken mit Interrupt</h2>
+<p>Eine sehr elegante Methode unsere LED blinken zu lassen verwendet einen <strong>Interrupt</strong>. Hierbei unterbricht der Prozessor regelmäßig seine Aufgaben und führt eine vorher definerte <strong>Interrupt-Service-Routine (ISR)</strong> aus. Diese ISRs müssen relativ kurz sein, damit der Prozessor nicht zu sehr ausgebremst wird.</p>
+<pre><code class="language-C++"><span class="hljs-type">const</span> <span class="hljs-type">int</span> ledPin = <span class="hljs-number">13</span>; <span class="hljs-comment">// LED an Pin 13</span>
+<span class="hljs-keyword">volatile</span> <span class="hljs-type">bool</span> ledState = LOW; <span class="hljs-comment">// LED-Status</span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">pinMode</span>(ledPin, OUTPUT); <span class="hljs-comment">// LED-Pin als Ausgang setzen</span>
+  Timer1.<span class="hljs-built_in">initialize</span>(<span class="hljs-number">500000</span>); <span class="hljs-comment">// Timer1 auf 500 ms (500000 µs) einstellen</span>
+  Timer1.<span class="hljs-built_in">attachInterrupt</span>(toggleLED); <span class="hljs-comment">// Interrupt-Funktion zuweisen</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// Hauptprogramm bleibt leer, da alles über den Interrupt gesteuert wird</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">toggleLED</span><span class="hljs-params">()</span> </span>{
+  ledState = !ledState; <span class="hljs-comment">// LED-Status umschalten</span>
+  <span class="hljs-built_in">digitalWrite</span>(ledPin, ledState); <span class="hljs-comment">// LED ein- oder ausschalten</span>
+}
+</code></pre>
+<h3 id="erläuterung-des-codes-1">Erläuterung des Codes</h3>
+<h4 id="volatile-bool-ledstate--low">volatile bool ledState = LOW;</h4>
+<p>Das Schlüsselwort <strong>volatile</strong> muss verwendet werden, da sich der Wert der Variable ledState  jederzeit ändern kann, ohne dass der Code dies explizit tut. Dies ist besonders wichtig bei Variablen, die von Interrupt-Service-Routinen (ISRs) oder von Hardware geändert werden können. Der Compiler wird dadurch daran gehindert, Optimierungen durchzuführen, die davon ausgehen, dass sich der Wert der Variable zwischen zwei Zugriffen nicht ändert.<br>
+<strong>Merke:</strong><br>
+Alle Variablen, die von einem Interrupt geändert werden, müssen <strong>volatile</strong> deklariert werden.</p>
+<h2 id="4-taster-über-interrupt-abfragen">4. Taster über Interrupt abfragen</h2>
+<h3 id="a-prinzip">a) Prinzip</h3>
+<p>Für den folgenden Sketch muss ein Taster an Pin 2 des Arduinos angeschlossen werden.<br>
+Die interne LED soll durch einen Druck auf den Taster ein- und wieder ausgeschaltet werden.</p>
+<h3 id="b-sketch">b) Sketch</h3>
+<pre><code class="language-C++"><span class="hljs-type">const</span> <span class="hljs-type">int</span> ledPin = <span class="hljs-number">13</span>; <span class="hljs-comment">// LED an Pin 13</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> buttonPin = <span class="hljs-number">2</span>; <span class="hljs-comment">// Taster an Pin 2</span>
+<span class="hljs-keyword">volatile</span> <span class="hljs-type">bool</span> ledState = <span class="hljs-literal">false</span>; <span class="hljs-comment">// Zustand der LED</span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">pinMode</span>(ledPin, OUTPUT); <span class="hljs-comment">// LED als Ausgang</span>
+  <span class="hljs-built_in">pinMode</span>(buttonPin, INPUT_PULLUP); <span class="hljs-comment">// Taster als Eingang mit Pullup-Widerstand</span>
+  <span class="hljs-built_in">attachInterrupt</span>(<span class="hljs-built_in">digitalPinToInterrupt</span>(buttonPin), toggleLED, CHANGE); <span class="hljs-comment">// Interrupt bei Zustandsänderung des Tasters</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// Hauptschleife bleibt leer, da die LED im Interrupt gesteuert wird</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">toggleLED</span><span class="hljs-params">()</span> </span>{
+  ledState = !ledState; <span class="hljs-comment">// LED-Zustand umschalten</span>
+  <span class="hljs-built_in">digitalWrite</span>(ledPin, ledState); <span class="hljs-comment">// LED ein- oder ausschalten</span>
+}
+</code></pre>
+<h3 id="erläuterung-des-sketchs">Erläuterung des Sketchs</h3>
+<h4 id="attachinterruptdigitalpintointerruptbuttonpin-toggleled-change">attachInterrupt(digitalPinToInterrupt(buttonPin), toggleLED, CHANGE);</h4>
+<p>Hier wird ein Interrupt erzeugt, der regelmäßig prüft, ob sich der Zustand eines Pins am Arduino ändert (<strong>CHANGE</strong>).<br>
+Der Pin wird über die Variable buttonPin definert - bei uns ist das die Nummer 2.<br>
+Wenn sich der Zustand ändert, wird die Methode <strong>toggleLED</strong> aufgerufen, die dafür sorgt, dass die LED aus- oder eingeschaltet wird.<br>
+<strong>Merke:</strong></p>
+<p>Beim Arduino Uno können <strong>nur die Pins 2 und 3</strong> als <strong>Interrupt-Pins</strong> verwendet werden.</p>
+<p><a href="../index.html">zurück</a></p>
+
+            
+            
+        </body>
+        </html>
