@@ -68,11 +68,16 @@ Alternativ hätten wir auch einfach jeden Wert durch 4 teilen können. Der map-B
 Teste das Programm durch Klatschen.
 
 ### Verbesserungen
+#### a) Ständig leuchtende Pixel
 Abhängig vom Grundgeräusch-Pegel leuchten die ersten LEDs ständig.  
 Um dies zu beseitigen, sind folgende Schritte nötig:  
 1. Ermittele in der **setup**-Methode durch 10 Messungen mit 10 ms Pause den Grund-Pegel.
 2. Speichere diesen Wert in einer globalen Variable.
 3. Ziehe diesen Wert von jedem Messwert ab. 
+#### b) Empfindlichkeit verändern.
+Experimentiere mit den Messwerten oder der map-Funktion, damit die Matrix empfindlicher wird.
+
+
 
 
 
