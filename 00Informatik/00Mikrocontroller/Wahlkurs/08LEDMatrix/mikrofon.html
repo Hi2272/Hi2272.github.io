@@ -11,9 +11,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only],
-.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
-.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -146,8 +144,9 @@
 <ul>
 <li>V : + Pol am Arduino (+5 V)</li>
 <li>G : - Pol am Arduino (GND)</li>
-<li>S : Signal- oder Datenkabel: Pin A0 am Arduino</li>
+<li>A0 : Analoges Mikrofonsignal (0-1023) : Pin A0 am Arduino</li>
 </ul>
+<p>Der Pin D0 wird nicht verkabelt. Er liefert ein digitales Signal mit den Werten 0 und 1: 0 = kein Ton, 1=Ton.</p>
 <p>Die Lautstärke des Mikrofons wird als analoges Signal am Pin A0 ausgelesen. Die Werte liegen zwischen 0 (leise) und 1023 (laut).</p>
 <h2 id="programmierung">Programmierung</h2>
 <p>Der Code zum Auslesen des Mikrofons ist sehr einfach:</p>
@@ -162,9 +161,10 @@
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
   <span class="hljs-type">int</span> micValue = <span class="hljs-built_in">analogRead</span>(MIC_PIN);  <span class="hljs-comment">// Mikrofonwert lesen</span>
   Serial.<span class="hljs-built_in">println</span>(micValue);
-  <span class="hljs-built_in">delay</span>(<span class="hljs-number">100</span>);    <span class="hljs-comment">// Kurze Pause</span>
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);    <span class="hljs-comment">// Kurze Pause</span>
 }
 </code></pre>
+<p>Am besten verfolgst du die Messwerte am seriellen Plotter.</p>
 <p><a href="Partylicht.html">weiter zum Partylicht</a><br>
 <a href="index.html">zurück zur LED-Matrix</a><br>
 <a href="../index.html">zurück zum Hauptverzeichnis</a></p>

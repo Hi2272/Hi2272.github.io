@@ -17,6 +17,7 @@ Auf der LED-Matrix sollen umso mehr LEDs leuchten, je lauter der Ton ist, der vo
 ```C++
 #include <Adafruit_NeoPixel.h>
 
+// Mikrofon-Pin
 const int MIC_PIN = A0;
 
 // Pin für die WS2812 LEDs
@@ -56,14 +57,25 @@ void loop() {
   }
 
   matrix.show();  // Aktualisieren der LEDs
-  delay(500);    // Kurze Pause
+  delay(1);    // Kurze Pause
 }
 ```
 ### Erläuterung des Codes
 ####   int ledCount = map(micValue, 0, 1023, 0, NUM_LEDS); 
 Mit dem **map**-Befehl werden die Messwerte des Mikrofons (0-1023) in Werte für die LED-Matrix (0-63) umgeschrieben.  
-Alternativ hätten wir auch einfach jeden Wert durch 4 teilen können. Der map-Befehl ist aber leichter zu programmieren. 
- 
+Alternativ hätten wir auch einfach jeden Wert durch 4 teilen können. Der map-Befehl ist aber leichter zu programmieren.   
+
+Teste das Programm durch Klatschen.
+
+### Verbesserungen
+Abhängig vom Grundgeräusch-Pegel leuchten die ersten LEDs ständig.  
+Um dies zu beseitigen, sind folgende Schritte nötig:  
+1. Ermittele in der **setup**-Methode durch 10 Messungen mit 10 ms Pause den Grund-Pegel.
+2. Speichere diesen Wert in einer globalen Variable.
+3. Ziehe diesen Wert von jedem Messwert ab. 
+
+
+
 
 [zurück](../index.html)
 
