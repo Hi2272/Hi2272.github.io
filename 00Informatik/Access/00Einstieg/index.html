@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Datenbank-Design in Access</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="datenbank-design-in-access">Datenbank-Design in Access</h1>
+<h2 id="entwurfs--und-eingabemodus">Entwurfs- und Eingabemodus</h2>
+<p>In Access muss grundsätzlich zwischen zwei Bearbeitungsmodi unterschieden werden:</p>
+<h3 id="entwurfsmodus">Entwurfsmodus</h3>
+<p><img src="00Entwurf.png" alt="alt text"><br>
+schaltet in den Entwurfsmodus um.<br>
+Hier können die Datenbanktabellen gestaltet werden.</p>
+<h3 id="eingabemodus">Eingabemodus</h3>
+<ul>
+<li><img src="00Eingabe.png" alt="alt text"><br>
+schaltet in den Eingabemodus um.<br>
+Hier werden Daten in die bestehenden Tabellen eingetragen.</li>
+</ul>
+<h2 id="erzeugen-der-tabelle-schueler">Erzeugen der Tabelle Schueler</h2>
+<p>Schalte in den Entwurfsmodus und erzeuge folgende Tabelle:<br>
+<img src="01Schueler.png" alt="alt text"><br>
+Speichere die Tabelle unter dem Namen &quot;Schueler&quot;. (Evtl. musst du die Tabelle1 mit einem Rechtsklick in Schueler umbenennen.)</p>
+<h2 id="erzeugen-der-tabelle-klasse">Erzeugen der Tabelle Klasse</h2>
+<p>Erzeuge im <strong>Erstellen</strong>-Menü eine neue Tabelle und speichere sie unter dem Namen <strong>Klassen.</strong><br>
+<img src="03NeueTabelle.png" alt="alt text"><br>
+Trage im Entwurfsmodus folgende Attribute ein:<br>
+<img src="03Attribute.png" alt="alt text"><br>
+Überprüfe, dass für das Attribut ID folgende Feldeigenschaften gelten:<br>
+<img src="03Constraints.png" alt="alt text"><br>
+Damit legen wir ID als Primärschlüssel fest, der aber nicht automatisch erzeugt wird.</p>
+<h2 id="beziehungen-erzeugen">Beziehungen erzeugen</h2>
+<p>Schließe alle Tabellen durch eine Rechtsklick auf den Tabellenkopf:<br>
+<img src="04AlleSchliessen.png" alt="alt text"></p>
+<ul>
+<li>
+<p>Wechsele ins Menü <strong>Datenbanktools</strong> und klicke dort auf Beziehungen:<br>
+<img src="04Beziehungen.png" alt="alt text"></p>
+</li>
+<li>
+<p>Ziehe beide Tabellen auf die Arbeitsfläche.<br>
+Beziehungen zwischen den Tabellen werden jetzt erstellt, indem der Primärschlüssel der einen Tabelle auf das passende Attribut der zweiten Tabelle gezogen wird.</p>
+</li>
+<li>
+<p>Ziehe die <strong>ID</strong> der Tabelle <strong>Klassen</strong> auf das Attribut <strong>Klasse</strong> der Tabelle <strong>Schüler</strong>.</p>
+</li>
+<li>
+<p>Die Kardinalität der Beziehung wird automatisch gesetzt. Da jeder Schüler genau eine Klasse besucht, eine Klasse aber von beliebig vielen Schüler besucht wird, entsteht eine 1:n-Beziehung.</p>
+</li>
+<li>
+<p>Wähle zusätzlich <strong>referentielle Integrität</strong>, damit Access automatisch prüft, ob die Klasse, die in der Tabelle Schüler eingetragen wird, auch tatsächlich existiert:<br>
+<img src="04Relationstyp.png" alt="alt text"></p>
+</li>
+<li>
+<p>Im Ergebnis wird die Relation korrekt dargestellt:<br>
+<img src="04Relationfertig.png" alt="alt text"></p>
+</li>
+</ul>
+<h2 id="die-tabelle-raum">Die Tabelle Raum</h2>
+<ul>
+<li>Erstelle eine Tabelle <strong>Raum</strong> mit folgenden Attributen:<br>
+<img src="05Raum.png" alt="alt text"></li>
+<li>Ändere die Feldeigenschaften des Attributs <strong>Klassenzimmer</strong> in der Tabelle <strong>Klasse</strong> auf <strong>Indiziert: Ja (Ohne Duplikate)</strong></li>
+<li>Erzeuge diese 1:1-Beziehung:<br>
+<img src="06RelationRaum.png" alt="alt text">
+Da wir bei beiden Attributen keine Duplikate zulassen, erzeugt Access automatisch eine 1:1-Relation.</li>
+</ul>
+<h2 id="daten-eintragen">Daten eintragen</h2>
+<p>Trage in die drei Tabelle in folgender Reihenfolge Werte ein:<br>
+<img src="06WerteRaum.png" alt="alt text"><br>
+<img src="06WerteKlassen.png" alt="alt text"><br>
+<img src="06WerteSchueler.png" alt="alt text"></p>
+<h2 id="die-tabelle-lehrer">Die Tabelle Lehrer</h2>
+<p>Erstelle eine Tabelle Lehrer und binde sie in den Datenbankschema ein:<br>
+<img src="07RelationLehrer.png" alt="alt text"></p>
+<h2 id="wahlkurse">Wahlkurse</h2>
+<p>Ergänze deine Datenbank um die Tabellen <strong>Wahlkurs</strong> und <strong>Kurswahl</strong>:<br>
+<img src="08RelationsWahlkursWahlunterricht.png" alt="alt text"><br>
+Trage in deine Tabellen in der richtigen Reihenfolge Daten ein, so dass Schüler Wahlkurse belegt haben.</p>
+<p><a href="../index.html">zurück</a></p>
+
+            
+            
+        </body>
+        </html>
