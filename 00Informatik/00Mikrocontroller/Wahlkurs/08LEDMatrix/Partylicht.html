@@ -11,9 +11,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only],
-.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
-.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -162,6 +160,9 @@
 <h2 id="programmcode">Programmcode</h2>
 <pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_NeoPixel.h&gt;</span></span>
 
+<span class="hljs-comment">// Mikrofon-Pin</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> MIC_PIN = A0;
+
 <span class="hljs-comment">// Pin für die WS2812 LEDs</span>
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> DATA_PIN 6</span>
 
@@ -179,25 +180,45 @@ Adafruit_NeoPixel matrix = <span class="hljs-built_in">Adafruit_NeoPixel</span>(
 }
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-type">int</span> micValue = <span class="hljs-built_in">analogRead</span>(MIC_PIN);  <span class="hljs-comment">// Mikrofonwert lesen</span>
+  <span class="hljs-type">int</span> micValue = <span class="hljs-built_in">analogRead</span>(MIC_PIN); 
+  Serial.<span class="hljs-built_in">print</span>(micValue);
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;: &quot;</span>);
+  
+   <span class="hljs-comment">// Mikrofonwert lesen</span>
   <span class="hljs-type">int</span> ledCount = <span class="hljs-built_in">map</span>(micValue, <span class="hljs-number">0</span>, <span class="hljs-number">1023</span>, <span class="hljs-number">0</span>, NUM_LEDS);  <span class="hljs-comment">// Mikrofonwert auf LED-Anzahl abbilden</span>
-
-  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM_LEDS; i++) {
+  Serial.<span class="hljs-built_in">println</span>(ledCount);
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; ledCount; i++) {
     <span class="hljs-comment">// Zufällig RGB-Farbe erzeugen</span>
     <span class="hljs-type">int</span> red = <span class="hljs-built_in">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">256</span>);    
     <span class="hljs-type">int</span> green = <span class="hljs-built_in">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">256</span>);
     <span class="hljs-type">int</span> blue = <span class="hljs-built_in">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">256</span>);
     matrix.<span class="hljs-built_in">setPixelColor</span>(i, matrix.<span class="hljs-built_in">Color</span>(red, green, blue));  <span class="hljs-comment">// LED einschalten mit zufälliger Farbe</span>
   }
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=ledCount;i&lt;NUM_LEDS;i++){
+    matrix.<span class="hljs-built_in">setPixelColor</span>(i, matrix.<span class="hljs-built_in">Color</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>));  <span class="hljs-comment">// LED einschalten mit zufälliger Farbe</span>
+    
+  }
 
   matrix.<span class="hljs-built_in">show</span>();  <span class="hljs-comment">// Aktualisieren der LEDs</span>
-  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);    <span class="hljs-comment">// Kurze Pause</span>
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);    <span class="hljs-comment">// Kurze Pause</span>
 }
 </code></pre>
 <h3 id="erläuterung-des-codes">Erläuterung des Codes</h3>
 <h4 id="int-ledcount--mapmicvalue-0-1023-0-num_leds">int ledCount = map(micValue, 0, 1023, 0, NUM_LEDS);</h4>
 <p>Mit dem <strong>map</strong>-Befehl werden die Messwerte des Mikrofons (0-1023) in Werte für die LED-Matrix (0-63) umgeschrieben.<br>
 Alternativ hätten wir auch einfach jeden Wert durch 4 teilen können. Der map-Befehl ist aber leichter zu programmieren.</p>
+<p>Teste das Programm durch Klatschen.</p>
+<h3 id="verbesserungen">Verbesserungen</h3>
+<h4 id="a-ständig-leuchtende-pixel">a) Ständig leuchtende Pixel</h4>
+<p>Abhängig vom Grundgeräusch-Pegel leuchten die ersten LEDs ständig.<br>
+Um dies zu beseitigen, sind folgende Schritte nötig:</p>
+<ol>
+<li>Ermittele in der <strong>setup</strong>-Methode durch 10 Messungen mit 10 ms Pause den Grund-Pegel.</li>
+<li>Speichere diesen Wert in einer globalen Variable.</li>
+<li>Ziehe diesen Wert von jedem Messwert ab.</li>
+</ol>
+<h4 id="b-empfindlichkeit-verändern">b) Empfindlichkeit verändern.</h4>
+<p>Experimentiere mit den Messwerten oder der map-Funktion, damit die Matrix empfindlicher wird.</p>
 <p><a href="../index.html">zurück</a></p>
 
             
