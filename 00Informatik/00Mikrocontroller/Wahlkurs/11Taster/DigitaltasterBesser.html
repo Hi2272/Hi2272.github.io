@@ -140,7 +140,7 @@
         <body class="vscode-body vscode-light">
             <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 <h1 id="taster">Taster</h1>
-<h2 id="ein-taster-als-digitaler-sensor">Ein Taster als digitaler Sensor</h2>
+<h2 id="verbesserter-code">Verbesserter Code</h2>
 <p><img src="2024-10-09_09-01.png" alt="alt text"></p>
 <p>Der Code kann an zwei Stellen verbessert werden.</p>
 <pre><code class="language-C++"><span class="hljs-type">bool</span> zustand=LOW;
@@ -176,6 +176,34 @@
 </ul>
 <h4 id="while-digitalreadtasterhigh">while (digitalRead(taster)==HIGH){...}</h4>
 <p>Diese Schleife wird so lange ausgeführt, wie der Taster gedrückt ist. Damit wird garantiert, dass ein Tastendruck nur einmal registriert wird.</p>
+<h2 id="vereinfachte-schaltung">Vereinfachte Schaltung</h2>
+<p>Der Pull-Down-Widerstand kann auch weggelassen werden, da der Arduino über interne Widerstände verfügt, die über Software geschaltet werden können:<br>
+<img src="2024-10-09_21-22.png" alt="alt text"><br>
+Im Code muss nur angegeben werden, dass der taster jetzt über einen internen Pull-Down-Widerstand geschaltet ist.<br>
+Dies geschieht in der <strong>setup()</strong>-Methode:</p>
+<pre><code class="language-C++"><span class="hljs-type">bool</span> zustand=LOW;
+<span class="hljs-type">int</span> taster=<span class="hljs-number">2</span>;
+<span class="hljs-type">int</span> ledPin=<span class="hljs-number">6</span>
+
+<span class="hljs-type">void</span> <span class="hljs-built_in">setup</span>() {
+  <span class="hljs-built_in">pinMode</span>(ledPin, OUTPUT);
+  <span class="hljs-built_in">digitalWrite</span>(ledPin,LOW);  <span class="hljs-comment">// aus</span>
+  
+  <span class="hljs-built_in">pinMode</span>(taster,INPUT_PULLDOWN);  
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">digitalRead</span>(taster)==HIGH){
+   zustand=!zustand; 
+   <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">6</span>, zustand); 
+   <span class="hljs-keyword">while</span> (<span class="hljs-built_in">digitalRead</span>(taster)==HIGH){
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
+   }
+  }  
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
+}
+</code></pre>
+<p>Analog kann auch ein interner <strong>Pull-Up-Widerstand</strong> geschaltet werden.</p>
 <p><a href="../index.html">zurück</a></p>
 
             
