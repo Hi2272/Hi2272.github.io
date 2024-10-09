@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
 # Wahlunterricht Mikroelektronik und Technik am Gymnasium Waldkraiburg
-##### [Alarmanlage](#2-alarmanlage) | [Messwerterfassung](#3-messwerterfassung) | [Diskoleuchte](#4-diskobeleuchtung) | [ESP32](#5-esp32) | [Gamepad](#b-ein-bluetooth-gamepad-für-pac-man) | [Interrupts](#8-blinken-ohne-pause---interrupts) | [3DDruck](#3d-druck-und-cad)
+##### [LEDs](#leuchtdioden-leds) | [Taster](#taster) | [Alarmanlage](#2-alarmanlage) | [Messwerterfassung](#3-messwerterfassung) | [Diskoleuchte](#4-diskobeleuchtung) | [ESP32](#5-esp32) | [Gamepad](#b-ein-bluetooth-gamepad-für-pac-man) | [Interrupts](#8-blinken-ohne-pause---interrupts) | [3DDruck](#3d-druck-und-cad)
 
 ##### Diese Seite befindet sich im Aufbau. 
 ## Grundausstattung
@@ -25,24 +25,32 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
 
 ## Projekte mit dem Arduino Uno und dem ESP32
 
-### 1. Die ersten Schritte
+### Die ersten Schritte
 
 [Start von Linux und Anschließen des Arduinos](00Start/index.html)
 
 [Blink - das erste Programm](00StartBlink/index.html)
 
-### 2. Alarmanlage
+### Leuchtdioden: LEDs
+[Leuchtdioden](01LEDs/01LED/index.html)  
+[Blinkende LEDs](01LEDs/02LEDBlink/index.html)  
+[Lauflicht](01LEDs/03LEDLauflicht/index.html)  
+[LED Modul](01LEDs/04LEDModul/index.html)
+
+### Taster
+
+
+### Alarmanlage
 
 Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung aktiviert werden kann:  
 ![Alarmanlage.png](Alarmanlage.png)
 
-1. [Leuchtdioden](01/index.html)
-2. [Bewegungsmelder](02/index.html)
-3. [Passiver Buzzer](03/index.html)
-4. [Infrarot-Fernbedienung](04/index.html)
-5. [Rotations-Encoder](05/index.html)
+1. [Bewegungsmelder](02/index.html)
+2. [Passiver Buzzer](03/index.html)
+3. [Infrarot-Fernbedienung](04/index.html)
+4. [Rotations-Encoder](05/index.html)
 
-### 3. Messwerterfassung
+### Messwerterfassung
 
 #### Temperaturmessung
 
@@ -79,7 +87,7 @@ Wir bauen Lichtschranken, mit denen die Geschwindigkeit von Fahrzeugen gemessen 
 1. Reflexlichtschranke
 2. Laserlichtschranke
 
-### 4. Diskobeleuchtung
+### Diskobeleuchtung
 
 Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.  
 ![Partylicht](03-01.png)  
@@ -89,7 +97,7 @@ In folgendem Video könnt ihr die Funktion des Lichtes sehen:  [YouTube Video Pa
 2. [Tonaufnahmen mit einem Mikrofon](08LEDMatrix/mikrofon.html)  
 3. [Das Partylicht](08LEDMatrix/Partylicht.html)  
 
-### 5. ESP32
+### ESP32
 
 ### a) Ein Mikrocontroller im Netzwerk
 
@@ -105,7 +113,7 @@ Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.Seine 
 1. [Joystick-Modul](05ESP32/04GameController/index.html)
 2. [Bluetooth Low Energy (BLE)](05ESP32/04GameController/BLEKeyboard.html)
 
-### 6. Selbstfahrender Roboter
+### Selbstfahrender Roboter
 
 Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) von rtheiss bauen wir einen Roboter, der Hindernisse erkennt und ihnen ausweichen kann.
 
@@ -115,10 +123,10 @@ Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) v
    
 
      
-### 7. Die Kugelbahn im Schaukasten
+### Die Kugelbahn im Schaukasten
 [Kugelbahn](Kugelbahn/index.html)   
 
-### 8. Blinken ohne Pause - Interrupts  
+### Blinken ohne Pause - Interrupts  
 [Interrupts](10Interrupts/index.html)  
 
 
