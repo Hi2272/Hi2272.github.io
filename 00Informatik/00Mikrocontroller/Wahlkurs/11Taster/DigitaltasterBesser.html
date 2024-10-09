@@ -142,21 +142,7 @@
 <h1 id="taster">Taster</h1>
 <h2 id="ein-taster-als-digitaler-sensor">Ein Taster als digitaler Sensor</h2>
 <p><img src="2024-10-09_09-01.png" alt="alt text"></p>
-<h3 id="blink-code">Blink-Code:</h3>
-<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">6</span>, OUTPUT);
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">6</span>,LOW);  <span class="hljs-comment">// aus</span>
-}
-
-<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">6</span>, HIGH); <span class="hljs-comment">// ein</span>
-  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);            <span class="hljs-comment">// 500 ms Pause: LED leuchtet</span>
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">6</span>, LOW);  <span class="hljs-comment">// aus</span>
-  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);            <span class="hljs-comment">// 500 ms Pause: LED leuchtet nicht.</span>
-}
-</code></pre>
-<h3 id="taster-code">Taster-Code</h3>
-<p>Als nächstes bauen wir den Taster in unseren Sketch ein:</p>
+<p>Der Code kann an zwei Stellen verbessert werden.</p>
 <pre><code class="language-C++"><span class="hljs-type">bool</span> zustand=LOW;
 <span class="hljs-type">int</span> taster=<span class="hljs-number">2</span>;
 <span class="hljs-type">int</span> ledPin=<span class="hljs-number">6</span>
@@ -170,44 +156,26 @@
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
   <span class="hljs-keyword">if</span> (<span class="hljs-built_in">digitalRead</span>(taster)==HIGH){
-    <span class="hljs-keyword">if</span> (zustand==LOW){
-        zustand=HIGH;
-    } <span class="hljs-keyword">else</span> {
-        zustand=LOW;
-    }
-   <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">6</span>, zustand); <span class="hljs-comment">// ein</span>
-   <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
+   zustand=!zustand; 
+   <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">6</span>, zustand); 
+   <span class="hljs-keyword">while</span> (<span class="hljs-built_in">digitalRead</span>(taster)==HIGH){
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
+   }
   }  
   <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
 }
 </code></pre>
 <h3 id="erläuterungen-zum-code">Erläuterungen zum Code</h3>
-<h4 id="bool-zustandlow">bool zustand=LOW;</h4>
-<p>Wir definieren eine Variable, die den Zustand unserer LED speichert. Zu Beginn soll sie ausgeschaltet (LOW) sein.<br>
-Der Datentyp bool lässt nur zwei Werte zu:</p>
+<h4 id="zustandzustand">zustand=!zustand;</h4>
+<p>Das <strong>!</strong>-Symbol bedeutet <strong>NOT</strong> oder <strong>Nicht</strong>. Mit dieser Zeile wird der Wert der Variable <strong>zustand</strong> umgekehrt:</p>
 <ul>
-<li>false = 0 = LOW</li>
-<li>true = 1 = HIGH</li>
+<li>zustand = HIGH = true<br>
+⇒!zustand = LOW = false</li>
+<li>zustand = LOW = false<br>
+⇒ !zustand = HIGH = true</li>
 </ul>
-<p>Wir verwenden ihn, um zu speichern, ob unsere LED ein- oder ausgeschaltet ist.</p>
-<h4 id="if-digitalreadtasterhigh">if (digitalRead(taster)==HIGH){</h4>
-<p>Mit dieser Zeile wird geprüft, ob der Taster gedrückt ist. Der Arduino liest dazu das Potential des Pins D2 ab, der mit dem Taster verbunden ist.</p>
-<ul>
-<li>
-<p>Wenn der Taster gedrückt ist, verbindet er D2 mit dem +5V-Pin des Arduinos. Damit liegen diese 5 V an D2 an und der Pin ist HIGH.</p>
-</li>
-<li>
-<p>Wenn der Taster nicht gedrückt ist, ist Pin2 über den 10 kOhm Widerstand mit GND verbunden. Er wird damit auf LOW heruntergezogen (engl. Pull Down).</p>
-</li>
-<li>
-<p>Der Widerstand verhindert einen Kurzschluss zwischen +5V und GND, wenn der Taster gedrückt ist. (Pull-Down-Widerstand)</p>
-</li>
-</ul>
-<h4 id="if-zustandlow">if (zustand==LOW){...</h4>
-<p>Hier wird die LED ein- oder ausgeschaltet.</p>
-<h4 id="delay1000">delay(1000);</h4>
-<p>Die Pause von 1000 ms soll verhindern, dass ein Tastendruck mehrfach ausgelesen wird.</p>
-<p><a href="DigitaltasterBesser.html">verbesserter Code</a></p>
+<h4 id="while-digitalreadtasterhigh">while (digitalRead(taster)==HIGH){...}</h4>
+<p>Diese Schleife wird so lange ausgeführt, wie der Taster gedrückt ist. Damit wird garantiert, dass ein Tastendruck nur einmal registriert wird.</p>
 <p><a href="../index.html">zurück</a></p>
 
             
