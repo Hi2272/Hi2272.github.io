@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -158,11 +160,17 @@
 <p><a href="00Start/index.html">Start von Linux und Anschließen des Arduinos</a></p>
 <p><a href="00StartBlink/index.html">Blink - das erste Programm</a></p>
 <h3 id="leuchtdioden-leds">Leuchtdioden: LEDs</h3>
-<p><a href="01LEDs/01LED/index.html">Leuchtdioden</a><br>
-<a href="01LEDs/02LEDBlink/index.html">Blinkende LEDs</a><br>
-<a href="01LEDs/03LEDLauflicht/index.html">Lauflicht</a><br>
-<a href="01LEDs/04LEDModul/index.html">LED Modul</a></p>
+<ul>
+<li><a href="01LEDs/01LED/index.html">Leuchtdioden</a></li>
+<li><a href="01LEDs/02LEDBlink/index.html">Blinkende LEDs</a></li>
+<li><a href="01LEDs/03LEDLauflicht/index.html">Lauflicht</a></li>
+<li><a href="01LEDs/04LEDModul/index.html">LED Modul</a></li>
+</ul>
 <h3 id="taster">Taster</h3>
+<ul>
+<li><a href="11Taster/index.html">Taster im Stromkreis</a></li>
+<li><a href="11Taster/Digitaltaster.html">Digitaltaster</a></li>
+</ul>
 <h3 id="alarmanlage">Alarmanlage</h3>
 <p>Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung aktiviert werden kann:<br>
 <img src="Alarmanlage.png" alt="Alarmanlage.png"></p>

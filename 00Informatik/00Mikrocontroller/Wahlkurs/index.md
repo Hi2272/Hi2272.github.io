@@ -32,12 +32,14 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
 [Blink - das erste Programm](00StartBlink/index.html)
 
 ### Leuchtdioden: LEDs
-[Leuchtdioden](01LEDs/01LED/index.html)  
-[Blinkende LEDs](01LEDs/02LEDBlink/index.html)  
-[Lauflicht](01LEDs/03LEDLauflicht/index.html)  
-[LED Modul](01LEDs/04LEDModul/index.html)
+- [Leuchtdioden](01LEDs/01LED/index.html)  
+- [Blinkende LEDs](01LEDs/02LEDBlink/index.html)  
+- [Lauflicht](01LEDs/03LEDLauflicht/index.html)  
+- [LED Modul](01LEDs/04LEDModul/index.html)
 
 ### Taster
+- [Taster im Stromkreis](11Taster/index.html)  
+- [Digitaltaster](11Taster/Digitaltaster.html)  
 
 
 ### Alarmanlage
