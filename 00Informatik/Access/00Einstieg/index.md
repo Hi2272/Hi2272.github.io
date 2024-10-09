@@ -51,7 +51,7 @@ Speichere die Tabelle unter dem Namen "Schueler". (Evtl. musst du die Tabelle1 m
  ![alt text](06WerteKlassen.png)  
  ![alt text](06WerteSchueler.png)  
  ## Die Tabelle Lehrer
- Erstelle eine Tabelle Lehrer und binde sie in den Datenbankschema ein:  
+ Erstelle eine Tabelle Lehrer und binde sie in dein Datenbankschema ein:  
  ![alt text](07RelationLehrer.png)  
  ## Wahlkurse
  Ergänze deine Datenbank um die Tabellen **Wahlkurs** und **Kurswahl**:  

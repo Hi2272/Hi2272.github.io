@@ -13,8 +13,8 @@ Die Materialien für den Kurs wurden durch Spenden folgender Organisationen fina
   
 Wir danken den Spendern herzlich für Ihre Unterstützung.
 
-[Materialliste](00Material/index.html)
-[Bezugsquellen](00Material/bezugsquellen.html)
+[Materialliste](00Material/index.html)  
+[Bezugsquellen](00Material/bezugsquellen.html)  
 
 ## 3D-Druck und CAD
 [3D-Druck](003D-Druck/index.html)  

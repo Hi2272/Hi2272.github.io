@@ -1,6 +1,5 @@
  <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
-
 # Einrichten der Programmierungumgebug
 ## Starten von Linux Mint auf den Rechnern
 1. Stecke den USB-Stick in die Buchse auf der linken Seite des Rechners.

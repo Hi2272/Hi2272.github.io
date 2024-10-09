@@ -73,6 +73,5 @@ Da die loop()-Methode immer wieder durchlaufen wird, beginnt sie anschließend w
 
 Ändere das Programm so ab, dass die LED langsamer blinkt und lade es erneut hoch.
     
-
-   
+  
 [zurück](../index.html)
