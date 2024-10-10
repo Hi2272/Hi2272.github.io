@@ -5,7 +5,7 @@ namen = ["Max","Muster","Martha","Mathilde","Matthias"];
 module namensschild(name) {
         // Rechteckiges Schild mit abgerundeten Ecken
        linear_extrude(height=1)
-          rounded_rectangle([80, 15], 2);
+          rounded_rectangle([80, 18], 2);
       
        translate([0, 0, 1])
             linear_extrude(height = 1)
@@ -25,7 +25,7 @@ module rounded_rectangle(size, radius) {
 for (i = [0:len(namen)-1]) {
     // Berechnung der Position für zwei Spalten
     x = (i % 2) * 90; // 80 mm Breite + 10 mm Abstand
-    y = floor(i / 2) * 20; // 15 mm Höhe + 5 mm Abstand
+    y = floor(i / 2) * 20; // 18 mm Höhe + 2 mm Abstand
     translate([x, y, 0])
         namensschild(namen[i]);
 }
