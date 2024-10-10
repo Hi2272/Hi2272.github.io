@@ -4,7 +4,7 @@ namen = ["Max","Muster","Martha","Mathilde","Matthias"];
 // Funktion zur Erstellung eines Namensschilds
 module namensschild(name) {
         // Rechteckiges Schild mit abgerundeten Ecken
-       linear_extrude(height=2)
+       linear_extrude(height=1)
           rounded_rectangle([80, 15], 2);
       
        translate([0, 0, 1])
