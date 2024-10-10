@@ -49,7 +49,7 @@ Dies geschieht in der **setup()**-Methode:
 ```C++
 bool zustand=LOW;
 int taster=2;
-int ledPin=6
+int ledPin=6;
 
 void setup() {
   pinMode(ledPin, OUTPUT);

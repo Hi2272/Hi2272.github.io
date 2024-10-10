@@ -19,5 +19,7 @@ Zur Arbeit mit Onshape müsst ihr euch auf dieser Seite registrieren: [onshape.c
 
 [Schlüsselanhänger mit Symbol](https://www.youtube.com/watch?v=SL83vYpNZw4)  
 
+## Programmierte Skizzen mit OpenSCAD
+[Programm für Namensschilder](Namensschilder.scad)
 
 [zurück](../index.html)
