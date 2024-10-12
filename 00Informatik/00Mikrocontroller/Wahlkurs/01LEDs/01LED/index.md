@@ -36,5 +36,5 @@ void loop() {
 
 
 
-[Weiter zum Blinklicht](/00Informatik/00Mikrocontroller/Wahlkurs/01/02LEDBlink/index.html)       
+[Weiter zum Blinklicht](../02LEDBlink/index.html)       
 [zurück](../index.html)
