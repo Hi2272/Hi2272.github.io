@@ -69,8 +69,4 @@ Suche dazu im AppStore nach folgenden Begriffen **Bluetooth Terminal** oder **Bl
   In der App müsste jetzt jede Sekunde eine neue Zahl angezeigt werden.
 
 
-
-  
-[weiter](weiter.html)  
-
 [zurück](../../index.html)   
