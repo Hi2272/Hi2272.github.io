@@ -59,7 +59,7 @@ Speichere die Tabelle unter dem Namen "Schueler". (Evtl. musst du die Tabelle1 m
  Trage in deine Tabellen in der richtigen Reihenfolge Daten ein, so dass Schüler Wahlkurse belegt haben.  
 
  
-[zurück](../../index.html../index.html)  
+[zurück](../../index.html)  
 
 
 
