@@ -67,5 +67,11 @@ Die Minkowski-Funktion kombiniert das Rechteck und den Kreis. Das Ergebnis ist e
 
 Unter folgender Adresse kannst du eine Anleitung für OpenSCAD herunterladen: [OpenSCAD Tutorial](https://knopper.net/fablab/OpenSCAD/OpenScad-Tutorial.pdf)   
   
+## Weitere Beispiele
+[Dominosteine Säuren](DominoSaeuren.scad)  
+[Dominosteine Ionen](DominoIonen.scad)  
+[Memory](Memory.scad)  
+
+
 
 [zurück](../index.html)
