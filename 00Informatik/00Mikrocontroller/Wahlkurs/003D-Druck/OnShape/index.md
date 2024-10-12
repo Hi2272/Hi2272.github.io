@@ -1,24 +1,36 @@
  <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
 # Anleitung Onshape
-## 1. Erstellen eines neuen Dokuments
+##### [Einleitung](#1-einleitung) | [Schluesselanhänger](#2-anleitung-schluesselanhänger) | [Schraube](#3-alarmanlage) 
+## 1. Einleitung 
+### a) Registrierung bei Onshape
+Zur Arbeit mit Onshape müsst ihr euch auf dieser Seite registrieren: [onshape.com/de/sign-up](https://www.onshape.com/de/sign-up). Die Verwendung der Software ist für private Zwecke kostenlos.
+### b) Anleitungsvideos zum Start
+[Onshape Grundkurs 2023/1](https://youtu.be/gloEpUt8_RM?list=PLw48L7HmCgMLBuNFmJOGZYsJtjEEr83jm)  
+[Übungsaufgabe](https://youtu.be/qpmfzolbTYY)  
+
+[Schlüsselanhänger mit Symbol](https://www.youtube.com/watch?v=SL83vYpNZw4)  
+
+### c) Erstellen eines neuen Dokuments
 Melde dich auf der Internetseite von onShape an.  
 Klicke auf Erstellen und wähle ein neues Dokument:  
 ![alt text](2024-06-27_11-54.png)  
 
 Gib dem Dokument einen sinnvollen Namen und warte, bis es geladen ist.  
-## 2. Ausblenden der unnötigen Ebenen
+### d) Ausblenden der unnötigen Ebenen
 Blende durch Klicks auf die Augensymbole alle Ebenen außer der Top-Ebene aus:  
 ![alt text](2024-06-27_11-57.png)
-## 3. Vorbereiten der ersten Skizze
-In OnShape zeichnen wir grundsätzlich zunächst eine Skizze in einer Ebene, die wir später in ein 3D-Objekt umwandeln.  
+### e) Vorbereiten der ersten Skizze
+In Onshape zeichnen wir grundsätzlich zunächst eine Skizze in einer Ebene, die wir später in ein 3D-Objekt umwandeln.  
 Wir zeichnen in der sichtbaren Top-Ebene:  
 1. Klicke die Ebene an, um sie zu markieren
 2. Klicke links das Symbol "Skizze" in der Menüleiste an.
 3. Klicke rechts auf "oben", um die Ebene so zu drehen, dass du von oben darauf schaust.
 ![alt text](2024-06-27_12-03.png)
-[zurück](../index.html)
-## 4. Zeichnen eines Rechtecks
+
+## 2. Anleitung Schluesselanhänger
+### a) Erstellen einer neuen Skizze 
+### b) Zeichnen eines Rechtecks
 1. Klicke im Menü das Rechteck-Symbol an.
 2. Klicke den Mittelpunkt der Ebene an, um den ersten Eckpunkt zu setzen
 3. Ziehe mit der Maus nach rechts oben, um das Rechteck aufzuziehen
@@ -26,12 +38,12 @@ Wir zeichnen in der sichtbaren Top-Ebene:
 5. Trage 60 als Breite ein (= 60 mm) und drücke Return
 6. Trage 20 als Höhe ein (=20 mm) und drücke Return.
 ![alt text](2024-06-27_12-08.png)   
-## 5. Umwandeln des Rechtecks in einen Quader
+### c) Umwandeln des Rechtecks in einen Quader
 1. Klicke auf das Symbol "Linear austragen"
 2. Trage als Wert 2 (=2 mm Dicke) ein und drücke Return.
    ![alt text](2024-06-27_12-18.png)  
 Unser Rechteck wird in einen Quader mit den exakten Maßen 60 mm x 20 mm x2 mm umgewandelt.
-## 6. Bohren eines Loches
+### d) Bohren eines Loches
 Um das Loch für den Schlüsselring zu bohren, zeichnen wir einen Kreis auf die obere Ebene des Quaders und senken diesen in das Werkstück ein.
 1. Klicke die obere Ebene des Quaders an, um sie zu markieren.
 2. Erstelle eine neues Skizze auf dieser Ebene.
@@ -62,3 +74,10 @@ Zum Schluss senken wir den Kreis jetzt noch ein, um eine Bohrung zu erzeugen.
 
 Dsa Plättchen hat jetzt eine Bohrung mit dem Radius 6 mm.
 
+## 3. Anleitung Schraube
+Unter dieser Adresse kannst du eine Anleitung herunterladen:
+[Onshape Tutorial](https://ap.physik.unibas.ch/PDF/Manuals/German/IIZ1.pdf)  
+  
+
+
+[zurück](../index.html)

@@ -58,5 +58,14 @@ Mit diesem Befehl wird das folgende Objekt um 1 mm nach oben verschoben. Damit l
 
 #### minkowski() {
 Die Minkowski-Funktion kombiniert das Rechteck und den Kreis. Das Ergebnis ist ein Rechteck mit abgerundeten Ecken.  
+### Bedienung von OpenSCAD
+Über dem Editor-Bereich, in dem der Code geschrieben wird, sind drei Steuerbuttons:  
+![alt text](2024-10-12_06-42.png)  
+1. **Vorschau:** Das Programm wird ausgeführt und ein 3D-Modell der Konstruktion wird dargestellt. Dieser Vorgang ist sehr schnell.   
+2. **Rendern:** Die Konstruktion wird gerendert, d.h. ein exaktes 3D-Modell wird berechnet. Dieser Prozess dauert relativ lang.
+3. **STL-Datei erzeugen:** Das mit Nr. 2 gerenderte Modell wird als STL-Datei exportiert.  
+
+Unter folgender Adresse kannst du eine Anleitung für OpenSCAD herunterladen: [OpenSCAD Tutorial](https://knopper.net/fablab/OpenSCAD/OpenScad-Tutorial.pdf)   
+  
 
 [zurück](../index.html)
