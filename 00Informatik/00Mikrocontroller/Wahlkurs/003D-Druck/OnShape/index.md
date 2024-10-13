@@ -78,14 +78,21 @@ Dsa Plättchen hat jetzt eine Bohrung mit dem Radius 6 mm.
 ## 3. Anleitung Schraube
 Unter dieser Adresse kannst du eine Anleitung herunterladen:
 [Onshape Tutorial](https://ap.physik.unibas.ch/PDF/Manuals/German/IIZ1.pdf)  
-
+Sehr viel einfacher geht das Erstellen von Schrauben und Muttern aber mit dem folgenden Video-Tutorial.
 ## 4. Video-Tutorials
 #### a) Custom Features
 Custom Features sind Werkzeuge, die zu Onshape hinzugefügt werden können. In den Videos wird die Installation erklärt.
 
-- [Gewinde-Werkzeug](https://youtu.be/lY9D7eie-Bg)     
-- [Gitter-Werkzeug](https://youtu.be/6XbfaVHAPZ0)  
-- [Zahnrad und Zahnstange](https://youtu.be/nDwVnotmvoE)  
+- [Video Gewinde-Werkzeug](https://youtu.be/lY9D7eie-Bg)  
+Custom Feature Gewinde: 
+https://cad.onshape.com/documents/6b640a407d78066bd5e41c7a/v/21ef017a4e386179c3be31f3/e/c953720c264ce001f1a82dc1     
+- [Video Gitter-Werkzeug](https://youtu.be/6XbfaVHAPZ0)  
+Custom Feature Gitter: 
+https://cad.onshape.com/documents/d1489499c6bfdc52ce5cf32a/w/c544b659a37041d14e810028/e/1e65c10a40f2fe803e5816de
+- [Video Zahnrad und Zahnstange](https://youtu.be/nDwVnotmvoE)  
+Custom Feature Zahnrad:  
+https://cad.onshape.com/documents/5742c8cde4b06c68b362d748/v/1db29081376c095cf10e2a3d/e/01a666571e625f8b819fd75b
+
 #### b) Nachbearbeiten von STL-Dateien
 
 STL-Dateien werden in Onshape als sogenannte Mesh-Objekte eingefügt. Ihre Oberfläche wird als Sammlung von Punkten (Vertices), Kanten und Flächen dargestellt. Diese Objekte können wir in Onshape nicht direkt verändern. Wir können aber auf dem Mesh-Objekt neue Ebenen und Formen anlegen, mit denen wir dann wie gewohnt arbeiten können. Die folgenden Videos zeigen das Vorgehen:  
