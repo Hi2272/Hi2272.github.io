@@ -80,14 +80,14 @@ Unter dieser Adresse kannst du eine Anleitung herunterladen:
 
 ## 4. Video-Tutorials
 #### a) Custom Features
-Sie verwenden **Custom Features**. Das sind Werkzeuge, die Onshape hinzugefügt werden können. In den Videos wird die Installation erklärt.
+Custom Features sind Werkzeuge, die zu Onshape hinzugefügt werden können. In den Videos wird die Installation erklärt.
 
 - [Gewinde-Werkzeug](https://youtu.be/lY9D7eie-Bg)     
 - [Gitter-Werkzeug](https://youtu.be/6XbfaVHAPZ0)  
 - [Zahnrad und Zahnstange](https://youtu.be/nDwVnotmvoE)  
 #### b) Nachbearbeiten von STL-Dateien
 
-STL-Dateien werden in Onshape als Mesh-Objekte eingefügt. Das bedeutet, dass wir diese Objekte nicht direkt verändern können. Wir können aber auf dem Mesh-Objekt Onshape Ebenen und Formen anlegen, mit denen wir wie gewohnt arbeiten können. Die folgenden Videos zeigen das Vorgehen:  
+STL-Dateien werden in Onshape als sogenannte Mesh-Objekte eingefügt. Ihre Oberfläche wird als Sammlung von Punkten (Vertices), Kanten und Flächen dargestellt. Diese Objekte können wir in Onshape nicht direkt verändern. Wir können aber auf dem Mesh-Objekt neue Ebenen und Formen anlegen, mit denen wir dann wie gewohnt arbeiten können. Die folgenden Videos zeigen das Vorgehen:  
 - [Bohrung verschließen oder vergrößern](https://youtu.be/WLT_AozSL_E)  
 - [Bohrung verkleinern](https://youtu.be/HNV7gATUfGo)  
 - [Komplexe Operationen (englisch)](https://youtu.be/Lm_uuB9_2yg)  
