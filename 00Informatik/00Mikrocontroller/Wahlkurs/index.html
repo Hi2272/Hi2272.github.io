@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Wahlunterricht Mikroelektronik am Gymnasium Waldkraiburg</title>
-        <style>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Wahlunterricht Mikroelektronik und Technik am Gymnasium Waldkraiburg</title>
+            <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -11,12 +11,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
 </style>
-        
+            
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
@@ -37,81 +39,215 @@
     pointer-events: none;
 }
 </style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
         
-    </head>
-    <body class="vscode-body vscode-light">
-           <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
-<h1 id="wahlunterricht-mikroelektronik-am-gymnasium-waldkraiburg">Wahlunterricht Mikroelektronik am Gymnasium Waldkraiburg</h1>
-<h5 id="diese-seite-befindet-sich-im-aufbau-im-schuljahr-202324-werden-zu-den-einzelnen-kapiteln-weitere-inhalte-hinzugefügt">Diese Seite befindet sich im Aufbau. Im Schuljahr 2023/24 werden zu den einzelnen Kapiteln weitere Inhalte hinzugefügt.</h5>
+        </head>
+        <body class="vscode-body vscode-light">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="wahlunterricht-mikroelektronik-und-technik-am-gymnasium-waldkraiburg">Wahlunterricht Mikroelektronik und Technik am Gymnasium Waldkraiburg</h1>
+<h5 id="leds--taster--alarmanlage--messwerterfassung--diskoleuchte--esp32--gamepad--interrupts--3ddruck"><a href="#leuchtdioden-leds">LEDs</a> | <a href="#taster">Taster</a> | <a href="#2-alarmanlage">Alarmanlage</a> | <a href="#3-messwerterfassung">Messwerterfassung</a> | <a href="#4-diskobeleuchtung">Diskoleuchte</a> | <a href="#5-esp32">ESP32</a> | <a href="#b-ein-bluetooth-gamepad-f%C3%BCr-pac-man">Gamepad</a> | <a href="#8-blinken-ohne-pause---interrupts">Interrupts</a> | <a href="#3d-druck-und-cad">3DDruck</a></h5>
+<h5 id="diese-seite-befindet-sich-im-aufbau">Diese Seite befindet sich im Aufbau.</h5>
 <h2 id="grundausstattung">Grundausstattung</h2>
 <p>Die Materialien für den Kurs wurden durch Spenden folgender Organisationen finanziert:</p>
-<!---- [Wilhelm Stemmer Stiftung](https://www.wilhelm-stemmer-stiftung.de))
----->
 <ul>
 <li><a href="https://www.gymnasiumwaldkraiburg.de/schule/foerderverein/">Förderverein des Gymnasium Waldkraiburgs</a></li>
+<li><a href="https://www.wilhelm-stemmer-stiftung.de">Wilhelm-Stemmer-Stiftung</a></li>
 </ul>
 <p>Wir danken den Spendern herzlich für Ihre Unterstützung.</p>
-<p><a href="00Material/index.html">Materialliste</a></p>
-<h2 id="projekte">Projekte</h2>
-<h3 id="1-die-ersten-schritte">1. Die ersten Schritte</h3>
+<p><a href="00Material/index.html">Materialliste</a><br>
+<a href="00Material/bezugsquellen.html">Bezugsquellen</a></p>
+<h2 id="3d-druck-und-cad">3D-Druck und CAD</h2>
+<p><a href="003D-Druck/index.html">3D-Druck</a></p>
+<h2 id="projekte-mit-dem-calliope-mini">Projekte mit dem Calliope mini</h2>
+<p><a href="00Calliope/index.html">Calliope mini</a></p>
+<h2 id="projekte-mit-dem-arduino-uno-und-dem-esp32">Projekte mit dem Arduino Uno und dem ESP32</h2>
+<h3 id="die-ersten-schritte">Die ersten Schritte</h3>
 <p><a href="00Start/index.html">Start von Linux und Anschließen des Arduinos</a></p>
 <p><a href="00StartBlink/index.html">Blink - das erste Programm</a></p>
-<h3 id="2-alarmanlage">2. Alarmanlage</h3>
-<p>Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung aktiviert werden kann.<br>
+<h3 id="leuchtdioden-leds">Leuchtdioden: LEDs</h3>
+<ul>
+<li><a href="01LEDs/01LED/index.html">Leuchtdioden</a></li>
+<li><a href="01LEDs/02LEDBlink/index.html">Blinkende LEDs</a></li>
+<li><a href="01LEDs/03LEDLauflicht/index.html">Lauflicht</a></li>
+<li><a href="01LEDs/04LEDModul/index.html">LED Modul</a></li>
+</ul>
+<h3 id="taster">Taster</h3>
+<ul>
+<li><a href="11Taster/index.html">Taster im Stromkreis</a></li>
+<li><a href="11Taster/Digitaltaster.html">Digitaltaster</a></li>
+<li><a href="11Taster/Reaktionszeit.html">Projekt Reaktionszeit messen</a></li>
+</ul>
+<h3 id="alarmanlage">Alarmanlage</h3>
+<p>Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung aktiviert werden kann:<br>
 <img src="Alarmanlage.png" alt="Alarmanlage.png"></p>
 <ol>
-<li><a href="01/index.html">Leuchtdioden</a></li>
 <li><a href="02/index.html">Bewegungsmelder</a></li>
 <li><a href="03/index.html">Passiver Buzzer</a></li>
 <li><a href="04/index.html">Infrarot-Fernbedienung</a></li>
 <li><a href="05/index.html">Rotations-Encoder</a></li>
 </ol>
-<h3 id="3-messwerterfassung">3. Messwerterfassung</h3>
+<h3 id="messwerterfassung">Messwerterfassung</h3>
 <h4 id="temperaturmessung">Temperaturmessung</h4>
 <p>Wir bauen ein digitales Thermometer und verwenden es, um Messreihen am Computer aufzuzeichnen.</p>
 <ol>
 <li><a href="03Temperatur/index.html">Temperatursensor Dallas DS18B20</a><br>
 <img src="03Temperatur/2023-06-26_16-04.png" alt="Alt text"></li>
-<li>OLED-Display zur Darstellung der Messwerte</li>
+<li><a href="03Temperatur/OLED/index.html">OLED-Display zur Darstellung der Messwerte</a></li>
 <li><a href="03Processing/index.html">Grafische Ausgabe am Computer</a><br>
 <img src="03Processing/2023-06-24_14-01.png" alt="Alt text"></li>
 <li><a href="03Processing/Serial.html">Daten über die Serielle Schnittstelle einlesen</a></li>
-<li><a href="03Processing/Grafica.html">Messwerte als Diagramm am Computer darstellen</a></li>
+<li><a href="03Processing/Grafica.html">Messwerte als Diagramm am Computer darstellen</a><br>
+<img src="03Processing/2023-06-26_10-03.png" alt="Alt text"></li>
+<li><a href="07Blynk/index.html">Messwerte ins Internet schicken</a></li>
 </ol>
-<p><img src="03Processing/2023-06-26_10-03.png" alt="Alt text"></p>
+<h4 id="helligkeitsmessung">Helligkeitsmessung</h4>
+<p>Mit einem Fotowiderstand kann die Helligkeit bestimmt werden.<br>
+<a href="05Widerstand/index.html">Der Fotowiderstand</a><br>
+<img src="05Widerstand/2024-03-16_08-07.png" alt="alt text"></p>
+<h4 id="entfernungsmessung">Entfernungsmessung</h4>
+<p>Mit Hilfe eines Ultraschallsensors, der zum Beispiel auch in Einparkhilfen von Autos verbaut ist, messen wir den Abstand zu einem Objekt.<br>
+<img src="06Ultraschall/Anschluss.png" alt="alt text"></p>
+<p><a href="06Ultraschall/index.html">Der Ultraschallsensor</a>
+<a href="06Ultraschall/MehrereSensoren.html">Mehrere Sensoren: Felder und Schleifen</a></p>
 <h4 id="geschwindigkeitsmessung">Geschwindigkeitsmessung</h4>
 <p>Wir bauen Lichtschranken, mit denen die Geschwindigkeit von Fahrzeugen gemessen werden können.</p>
 <ol>
 <li>Reflexlichtschranke</li>
 <li>Laserlichtschranke</li>
 </ol>
-<h3 id="4-diskobeleuchtung">4. Diskobeleuchtung</h3>
+<h3 id="diskobeleuchtung">Diskobeleuchtung</h3>
 <p>Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.<br>
 <img src="03-01.png" alt="Partylicht"><br>
 In folgendem Video könnt ihr die Funktion des Lichtes sehen:  <a href="https://youtu.be/V1RZFxpPh4s">YouTube Video Partylicht</a></p>
 <ol>
-<li>RGB-LEDs</li>
-<li>Tonaufnahmen mit einem Mikrofon</li>
+<li><a href="08LEDMatrix/index.html">RGB-LED-Matrix</a></li>
+<li><a href="08LEDMatrix/mikrofon.html">Tonaufnahmen mit einem Mikrofon</a></li>
+<li><a href="08LEDMatrix/Partylicht.html">Das Partylicht</a></li>
 </ol>
-<h3 id="5-esp32---ein-mikrocontroller-im-netzwerk">5. ESP32 - ein Mikrocontroller im Netzwerk</h3>
-<p>Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.<br>
-Seine Programmierung kann auch über die bekannte Arduino-IDE erfolgen.</p>
+<h3 id="esp32">ESP32</h3>
+<h3 id="a-ein-mikrocontroller-im-netzwerk">a) Ein Mikrocontroller im Netzwerk</h3>
+<p>Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.Seine Programmierung kann auch über die bekannte Arduino-IDE erfolgen.</p>
 <ol>
 <li><a href="05ESP32/01/index.html">Vorbereitung der Arduino-IDE für den ESP32</a></li>
 <li><a href="05ESP32/02/index.html">Schalten einer LED über einen Internetbrowser</a><br>
 <img src="05ESP32/02/Sc02.png" alt="Alt text"></li>
+<li><a href="05ESP32/03/index.html">Senden und Empfangen von Daten über Bluetooth</a></li>
 </ol>
-<h3 id="6-selbstfahrender-roboter">6. Selbstfahrender Roboter</h3>
+<h3 id="b-ein-bluetooth-gamepad-für-pac-man">b) Ein Bluetooth-Gamepad für Pac Man</h3>
+<ol>
+<li><a href="05ESP32/04GameController/index.html">Joystick-Modul</a></li>
+<li><a href="05ESP32/04GameController/BLEKeyboard.html">Bluetooth Low Energy (BLE)</a></li>
+</ol>
+<h3 id="selbstfahrender-roboter">Selbstfahrender Roboter</h3>
 <p>Auf Grundlage des <a href="https://www.thingiverse.com/thing:780050">Scru-Fe-Roboters</a> von rtheiss bauen wir einen Roboter, der Hindernisse erkennt und ihnen ausweichen kann.</p>
 <ol>
 <li>Motorsteuerung</li>
 <li>Ultraschall-Entfernungsmesser</li>
 <li>Servomotoren</li>
 </ol>
+<h3 id="die-kugelbahn-im-schaukasten">Die Kugelbahn im Schaukasten</h3>
+<p><a href="Kugelbahn/index.html">Kugelbahn</a></p>
+<h3 id="blinken-ohne-pause---interrupts">Blinken ohne Pause - Interrupts</h3>
+<p><a href="10Interrupts/index.html">Interrupts</a></p>
 <hr>
 <footer >
 <p>Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.</p>
-  <h5>Haftungsausschluss</h5>
+<h5>Haftungsausschluss</h5>
   <h5>Inhalt des Onlineangebotes</h5>
   <p>Der Autor übernimmt keinerlei Gewähr für die Aktualität, Richtigkeit und Vollständigkeit der bereitgestellten Informationen auf unserer Website. Haftungsansprüche gegen den Autor, welche sich auf Schäden materieller oder ideeller Art beziehen, die durch die Nutzung oder Nichtnutzung der dargebotenen Informationen bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen verursacht wurden, sind grundsätzlich ausgeschlossen, sofern seitens des Autors kein nachweislich vorsätzliches oder grob fahrlässiges Verschulden vorliegt.<br>
   Alle Angebote sind freibleibend und unverbindlich. Der Autor behält es sich ausdrücklich vor, Teile der Seiten oder das gesamte Angebot ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen.</p>
@@ -122,10 +258,10 @@ Seine Programmierung kann auch über die bekannte Arduino-IDE erfolgen.</p>
   <p>Der Autor ist bestrebt, in allen Publikationen die Urheberrechte der verwendeten Bilder, Grafiken, Tondokumente, Videosequenzen und Texte zu beachten, von ihm selbst erstellte Bilder, Grafiken, Tondokumente, Videosequenzen und Texte zu nutzen oder auf lizenzfreie Grafiken, Tondokumente, Videosequenzen und Texte zurückzugreifen.<br>
   Alle innerhalb des Internetangebotes genannten und ggf. durch Dritte geschützten Marken- und Warenzeichen unterliegen uneingeschränkt den Bestimmungen des jeweils gültigen Kennzeichenrechts und den Besitzrechten der jeweiligen eingetragenen Eigentümer. Allein aufgrund der bloßen Nennung ist nicht der Schluss zu ziehen, dass Markenzeichen nicht durch Rechte Dritter geschützt sind!<br>
   Das Copyright für veröffentlichte, vom Autor selbst erstellte Objekte bleibt allein beim Autor der Seiten. Eine Vervielfältigung oder Verwendung solcher Grafiken, Tondokumente, Videosequenzen und Texte in anderen elektronischen oder gedruckten Publikationen ist ohne ausdrückliche Zustimmung des Autors nicht gestattet.</p>
-<p>Quelle: <a href="http://www.haftungsausschluss-vorlage.de/">Haftungsausschluss Muster</a> von <a href="http://www.haftungsausschluss.org/">Haftungsausschluss.org</a> und das <a href="http://www.datenschutzgesetz.de/">Datenschutzgesetz</a></p>
+<p>Quelle: <a href="http://www.haftungsausschluss-vorlage.de/">Haftungsausschluss Muster</a> von <a href="http://www.haftungsausschluss.org/">Haftungsausschluss.org</a> und das <a href="http://www.dsgvo-gesetz.de/">Datenschutzgesetz</a></p>
 </footer>
 
-        
-        
-    </body>
-    </html>
+            
+            
+        </body>
+        </html>

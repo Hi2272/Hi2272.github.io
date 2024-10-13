@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Informatik 6&period; Klasse</title>
-        <style>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Informatik 6&period; Klasse</title>
+            <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -11,12 +11,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
 </style>
-        
+            
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
@@ -37,10 +39,106 @@
     pointer-events: none;
 }
 </style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
         
-    </head>
-    <body class="vscode-body vscode-light">
-          <meta charset="utf-8" />
+        </head>
+        <body class="vscode-body vscode-light">
+              <meta charset="utf-8" />
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
   <div style="text-align:center">
@@ -50,19 +148,29 @@
 | <a href="#funktionale-modellierung">Funktionale Modellierung</a>
 | <a href="#datenbanken">Datenbanken</a>
 | <a href="#objektorientierte-programmierung">Objektorientierung</a>
-| <a href="#datenschutz">Datenschutz</a></p>
+| <a href="#datenschutz">Datenschutz</a>
+|</p>
 <h2 id="informatik-6-klasse">Informatik 6. Klasse</h2>
 <hr>
+<h3 id="aufbau-eines-computers">Aufbau eines Computers</h3>
 <p><a href="https://learningapps.org/watch?app=7732450">Festspeicher oder Arbeitsspeicher?</a><br>
 <a href="https://learningapps.org/watch?app=7732389">Eingabegerät oder Ausgabegerät?</a><br>
 <a href="https://Hi2272.github.io/00Informatik/00Informatik6/AufbauComputer/index.html">Aufbau eines Computers</a><br>
-<a href="https://Hi2272.github.io/00Informatik/00Informatik6/PowerpointSchule/index.html">Powerpoint Schule</a><br>
 <a href="https://learningapps.org/watch?app=14045032">Laufwerk, Ordner, Datei?</a></p>
+<h3 id="grafik">Grafik</h3>
+<p><a href="https://www.inf-schule.de/kids/datennetze/pixelgrafik">Pixelgrafik</a><br>
+<a href="00Informatik6/SVG/index.html">SVG Klassen und Attribute</a><br>
+<a href="00Informatik6/Attributeditor/index.html">Attribut Editor</a><br>
+<a href="00Informatik6/Graphics/index.html">Graphix Editor</a></p>
+<p><a href="00Informatik6/KlasseAttribut/index.html">Klassen Attribute Methoden</a><br>
+<a href="00Informatik6/Punktnotation/index.html">Punktnotation</a><br>
+<a href="https://learningapps.org/view34317198">Punktnotation 2</a></p>
+<h3 id="powerpoint">Powerpoint</h3>
+<p><a href="00Informatik6/Powerpoint/Animation/index.html">Animationen</a>
+<a href="00Informatik6/PowerpointSchule/index.html">Powerpoint Schule</a></p>
 <h2 id="mikrocontroller">Mikrocontroller</h2>
 <hr>
-<p><a href="https://Hi2272.github.io/00Informatik/00Mikrocontroller/01CalliopeStart/index.html">Einführung Calliope mini</a><br>
-<a href="https://Hi2272.github.io/00Informatik/00Mikrocontroller/02Calliope/index.html">Aufgaben Calliope mini</a><br>
-<a href="https://Hi2272.github.io/00Informatik/00Mikrocontroller/Wahlkurs/index.html">Wahlkurs</a></p>
+<p><a href="https://Hi2272.github.io/00Informatik/00Mikrocontroller/Wahlkurs/index.html">Wahlkurs</a></p>
 <h2 id="funktionale-modellierung">Funktionale Modellierung</h2>
 <hr>
 <p><a href="https://Hi2272.github.io/00Informatik/AbsoluteAdressierung/index.html">Absolute und Relative Adressierung</a><br>
@@ -72,18 +180,35 @@
 <a href="https://Hi2272.github.io/00Informatik/NICHT/index.html">NICHT</a><br>
 <a href="https://Hi2272.github.io/00Informatik/WennFunktion/index.html">Wenn-Funktion</a></p>
 <h2 id="datenbanken">Datenbanken</h2>
+<h3 id="einfache-abfragen">Einfache Abfragen</h3>
 <hr>
-<p><a href="https://Hi2272.github.io/00Informatik/SQL/index.html">Verschiedene SQL-Anfragen</a><br>
+<p><a href="https://www.w3schools.com/sql/exercise.asp?filename=exercise_select1">w3schools.com: SELECT</a><br>
+<a href="https://www.w3schools.com/sql/exercise.asp?filename=exercise_where1">w3schools.com: WHERE</a><br>
+<a href="https://www.w3schools.com/sql/exercise.asp?filename=exercise_like1">w3schools.com: LIKE</a><br>
 <a href="https://Hi2272.github.io/00Informatik/SQL2/index.html">LIKE in SQL-Abfragen</a><br>
-<a href="https://Hi2272.github.io/00Informatik/SQLFrageListe/index.html">Wiederholung SQL mit Datenbanken im Unterricht (www.dbiu.de)</a></p>
+<a href="https://Hi2272.github.io/00Informatik/SQLFrageListe/index.html">Wiederholung SQL mit Datenbanken im Unterricht (www.dbiu.de)</a><br>
+<a href="https://Hi2272.github.io/00Informatik/SQL/index.html">Verschiedene SQL-Anfragen</a></p>
+<h4 id="kommissar-smiths-abenteuer-pt-2-maulwurfsstadt-2023">Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023</h4>
+<p><a href="https://sql.hauptquartier.eu/start-abenteuer">Start</a></p>
+<h3 id="abfragen-über-mehrere-tabellen">Abfragen über mehrere Tabellen</h3>
+<p><a href="SQLJoin/index.html">Schwimmbäder in Bayern (www.dbiu.de)</a><br>
+<a href="SQLJoin2/index.html">Zoos und Wanderwege (www.dbiu.de)</a><br>
+<a href="SQLJoin3/index.html">Nachbargemeinden (www.dbiu.de)</a></p>
+<h4 id="kommissar-smiths-abenteuer-pt-2-maulwurfsstadt-2023-1">Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023</h4>
+<p><a href="https://sql.hauptquartier.eu/2-tabellen-abfragen/primaerschluessel-fremdschluessel">Anfragen über mehrere Tabellen</a></p>
+<h3 id="datenbank-design-in-access">Datenbank-Design in Access</h3>
+<p><a href="Access/00Einstieg/index.html">Wahlunterricht</a></p>
 <h2 id="objektorientierte-programmierung">Objektorientierte Programmierung</h2>
 <hr>
 <h3 id="wiederholung">Wiederholung</h3>
 <p><a href="https://Hi2272.github.io/00Informatik/KlasseObjekt2/index.html">Definitionen zur Objektorientierten Modellierung</a><br>
 <a href="https://Hi2272.github.io/00Informatik/KlassenObjekt3/index.html">Objekt- und Klassenkarte</a><br>
-<a href="https://Hi2272.github.io/00Informatik/KlasseObjekt/index.html">Grundbegriffe Objekt Klasse</a></p>
+<a href="https://Hi2272.github.io/00Informatik/KlasseObjekt/index.html">Grundbegriffe Objekt Klasse</a><br>
+<a href="https://www.learnj.de/doku.php?id=klassen1:start">LearnJ Objektorientierung</a></p>
 <h3 id="klassen-und-konstruktoren">Klassen und Konstruktoren</h3>
 <p><a href="https://Hi2272.github.io/00Informatik/KlassenKonstruktoren/index.html">Klassen und Konstruktoren</a><br>
+<a href="https://Hi2272.github.io/00Informatik/JavaZeilenBenennen/index.html">Klassen und Konstruktoren 2</a><br>
+<a href="https://Hi2272.github.io/00Informatik/JavaCodeKlassen2/index.html">JavaCode: Klassen, Attribute, Konstruktoren, Methoden</a><br>
 <a href="https://Hi2272.github.io/00Informatik/JavaCodeKlassen/index.html">JavaCode: Klassen und Konstruktoren</a><br>
 <a href="https://Hi2272.github.io/00Informatik/AufgabenstellungZielscheibe/index.html">BlueJ-Projekt: Zielscheibe</a><br>
 <a href="https://Hi2272.github.io/00Informatik/AufgabenstellungDorf/index.html">BlueJ-Projekt: Dorf</a></p>
@@ -107,13 +232,16 @@
 <a href="https://Hi2272.github.io/00Informatik/ProcessingLinienfarbe/index.html">Processing-Projekt: Formen IV: Linienfarbe</a><br>
 <a href="https://Hi2272.github.io/00Informatik/ProcessingLinienstaerke/index.html">Processing-Projekt: Formen V: Linienstärke</a><br>
 <a href="https://Hi2272.github.io/00Informatik/ProcessingAlpha/index.html">Processing-Projekt: Formen VI: Transparente Farben: Der alpha-Wert</a><br>
-<a href="https://Hi2272.github.io/00Informatik/ProcessingQuadrat/index.html">Processing-Projekt: Formen VII: Quadrat - eine Unterklasse von Rechteck</a></p>
+<a href="https://Hi2272.github.io/00Informatik/ProcessingQuadrat/index.html">Processing-Projekt: Formen VII: Quadrat - eine Unterklasse von Rechteck</a><br>
+<a href="https://learningapps.org/3839793">Private oder public?</a></p>
 <h3 id="bedingte-anweisungen">Bedingte Anweisungen</h3>
 <p><a href="https://Hi2272.github.io/00Informatik/ProcessingBedingteAnweisung/index.html">Processing-Projekt: Ampeln schalten</a><br>
 <a href="https://Hi2272.github.io/00Informatik/AufgabenstellungKaraBedingteAnweisung/12%20Kara%20bedingte%20Anweisung.zip">BlueJ Vorlage: Kara bedingte Anweisungen</a><br>
 <a href="https://Hi2272.github.io/00Informatik/AufgabenstellungKaraBedingteAnweisung/12%20Bedingte%20Anweisung%20Kara.pdf">Anleitung: Kara bedingte Anweisungen</a><br>
 <a href="https://Hi2272.github.io/00Informatik/JavaCodeIf/index.html">Java-Code-Zeilen: Bedingte Anweisungen I</a><br>
-<a href="https://Hi2272.github.io/00Informatik/JavaCodeLogik/index.html">Java-Code-Zeilen: Bedingte Anweisungen II</a></p>
+<a href="https://Hi2272.github.io/00Informatik/JavaCodeLogik/index.html">Java-Code-Zeilen: Bedingte Anweisungen II</a><br>
+<a href="../Online-IDE/Kniffel/index.html">Kniffel</a><br>
+<a href="https://learningapps.org/3093705">Logische Funktionen in Java</a></p>
 <h3 id="zählschleifen">Zählschleifen</h3>
 <p><a href="https://Hi2272.github.io/00Informatik/JavaCodeFor/index.html">Java-Code-Zeilen: For-Schleifen</a><br>
 <a href="https://Hi2272.github.io/00Informatik/AufgabenstellungSchleifen/index.html">Zählschleifen: Kacheln</a><br>
@@ -121,14 +249,20 @@
 <a href="https://Hi2272.github.io/00Informatik/AufgabenstellungTurtle/index.html">Turtlegrafik</a><br>
 <a href="https://Hi2272.github.io/00Informatik/AufgabenstellungKugel/index.html">Kugelspiel</a></p>
 <h3 id="while-schleife">While Schleife</h3>
-<p><a href="https://Hi2272.github.io%5C00Informatik%5CAufgabenstellungWhile%5Cindex.html">Kara While Schleife</a></p>
+<p><a href="https://Hi2272.github.io/00Informatik/AufgabenstellungWhile/index.html">Kara While Schleife</a><br>
+<a href="../00Informatik/OnlineIDETeilbarkeit/index.html">Teilbarkeit und Primzahlen</a></p>
 <h3 id="spiele">Spiele</h3>
 <p><a href="https://Hi2272.github.io/00Informatik/AufgabenstellungKara/index.html">Kara braucht Klee!</a><br>
 <a href="https://Hi2272.github.io/00Informatik/AufgabenstellungGlueckspiel/index.html">Glücksspiel</a><br>
 <a href="https://Hi2272.github.io/00Informatik/AufgabenstellungTTT/index.html">TicTacToe</a><br>
 <a href="https://Hi2272.github.io/00Informatik/AufgabenstellungVierGewinnt/index.html">Vier gewinnt</a></p>
 <h3 id="zusammenfassung">Zusammenfassung</h3>
-<p><a href="https://Hi2272.github.io/00Informatik/JavaCodeZusammenfassung/index.html">Java-Code-Zeilen: Zusammenfassung</a></p>
+<p><a href="https://www.learnj.de/doku.php?id=wenndann:if:start">Online-IDE: Die if-Anweisung</a><br>
+<a href="https://Hi2272.github.io/00Informatik/JavaCodeZusammenfassung/index.html">Java-Code-Zeilen: Zusammenfassung</a><br>
+<a href="https://Hi2272.github.io/00Informatik/AufbauKlasse/index.html">Aufbau einer Java Klasse</a><br>
+<a href="/00Informatik/KlasseAufbau/index.html">Aufbau einer Java-Klasse: Code</a><br>
+<a href="/00Informatik/KlassenAufbau2/index.html">Aufbau einer Java-Klasse: Bezeichnungen</a><br>
+<a href="/00Informatik/WiederholungJava/index.html">Wiederholung Java</a></p>
 <h2 id="datenschutz">Datenschutz</h2>
 <hr>
 <p><a href="https://Hi2272.github.io/00Informatik/KlassischeMedien/index.html">Klassische Medien</a><br>
@@ -136,10 +270,22 @@
 <h2 id="planspiel">Planspiel</h2>
 <hr>
 <p><a href="https://Hi2272.github.io/00Informatik/Planspiel/index.html">9a</a></p>
+<h2 id="javascript">Javascript</h2>
+<p><a href="/00Informatik/00Javascript/index.html">Lerneinheiten von TheCodingTrain</a></p>
+<h2 id="css">CSS</h2>
+<p><a href="HTMLundCSS/index.html">CSS</a></p>
 <hr>
+<h2 id="spiele-für-kleine-gruppen">Spiele für kleine Gruppen</h2>
+<p><a href="https://learningapps.org/view36416559">Geschichte der Informatik</a><br>
+<a href="https://learningapps.org/view36416718">Allgemeine Zahlen zur Informatik</a><br>
+<a href="https://learningapps.org/view14543873">Cybermobbing</a><br>
+<a href="https://learningapps.org/view36419163">Internetquiz</a><br>
+<a href="https://learningapps.org/19211906">Pferderennen Java</a><br>
+<a href="https://learningapps.org/view36419316">Struktur einer Java Klasse</a><br>
+<a href="https://karol.arrrg.de/#SPIELWIESE">Robot Karol</a></p>
 <p><a href="https://Hi2272.github.io/">zurück</a></p>
 </div>
-        
-        
-    </body>
-    </html>
+            
+            
+        </body>
+        </html>

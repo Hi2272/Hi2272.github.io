@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>SPI Displays</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="spi-displays">SPI Displays</h1>
+<h2 id="allgemeines">Allgemeines</h2>
+<p><strong>SPI</strong> steht für <strong>Serial Peripheral Interface</strong>. Mit diesem Standard ist es möglich, Geräte wie Displays oder Sensoren über einen seriellen Anschluss mit dem Arduino zu verbinden.<br>
+Leider ist die Bezeichnung der Pins bei SPI-Geräten nicht einheitlich geregelt. Die folgende Tabelle kann als Hilfestellung verwendet werden:</p>
+<table>
+<thead>
+<tr>
+<th>Pin-Name</th>
+<th>Alternative</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCK</td>
+<td>SCLK, CLK</td>
+<td>Serial Clock</td>
+</tr>
+<tr>
+<td>CS</td>
+<td>SS</td>
+<td>Chip Select</td>
+</tr>
+<tr>
+<td>MISO</td>
+<td>SDO, DO, CIPO, RS</td>
+<td>Master in Slave Out</td>
+</tr>
+<tr>
+<td>MOSI</td>
+<td>SDI, DI, COPI</td>
+<td>Master out Slave In</td>
+</tr>
+</tbody>
+</table>
+<p>Beim SPI-Protokoll kommuniziert <strong>ein Master- oder Controller-Gerät</strong> (z.B. ein Arduino) mit <strong>einem oder mehreren Slave- oder Peripheral-Geräten</strong> (z.B. ein Sensor und ein Display).</p>
+<h2 id="bedeutung-der-pins">Bedeutung der Pins</h2>
+<h3 id="sck">SCK</h3>
+<p>Die Serial-Clock-Pin dient als Taktgeber für die Datenübertragung. Er legt also fest, mit welcher Geschwindigkeit die einzelnen Datenbits übertragen werden. Bei der Datenübertragung erzeugt der <strong>Master</strong> die CLK-Impulse und legt damit die Datenrate fest.</p>
+<h3 id="cs">CS</h3>
+<p>Der Chip-Select-Pin dient dazu festzulegen, welches Slave-Gerät vom Master-Gerät angesprochen wird.</p>
+<h3 id="miso-sdo-cipo">MISO, SDO, CIPO</h3>
+<p>Der Master-In-Slave-Out-Pin (Controller-In-Peripheral-Out) dient zur Datenübertragung vom Slave- zum Master-Gerät. Sobald das Slave-Gerät ein CLK-Signal empfängt, muss es ein Signal über den MISO-Pin schicken.</p>
+<h3 id="mosi-sdi-copi">MOSI, SDI, COPI</h3>
+<p>Der Master-Out-Slave-In-Pin (Controller-Out-Peripheral-In) dient zur Datenübertragung vom Master- zum Slave-Gerät.<br>
+Da im SPI-Protokoll also für jede Richtung ein eigener Kanal vorliegt, könnnen Daten gleichzeitig in beide Rictungen übertragen werden.</p>
+<h2 id="spi-pins-am-arduino-uno">SPI-Pins am Arduino Uno</h2>
+<p>Am Arduino sind folgende SPI-Pins als Standard festgelegt:</p>
+<table>
+<thead>
+<tr>
+<th>Pin-Nr.</th>
+<th>SPI-Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>CS, SS</td>
+</tr>
+<tr>
+<td>11</td>
+<td>MOSI, SDI, DI, COPI</td>
+</tr>
+<tr>
+<td>12</td>
+<td>MISO, SDO, DO, CIPO, RS</td>
+</tr>
+<tr>
+<td>13</td>
+<td>SCK, CLK</td>
+</tr>
+</tbody>
+</table>
+<p>Für die Verwendung muss die SPI.h Bibliothek in den Sketch eingebunden werden:</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;SPI.h&gt;</span></span>
+</code></pre>
+<h2 id="weitere-pins-am-display">Weitere Pins am Display</h2>
+<p>Am Display sind in der Regel weitere Pins vorhanden, die wie folgt verkabelt werden müssen:</p>
+<table>
+<thead>
+<tr>
+<th>Display</th>
+<th>Arduino</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VCC</td>
+<td>5V</td>
+<td>+ Pol</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+<td>- Pol</td>
+</tr>
+<tr>
+<td>LED, BL</td>
+<td>3,3 V</td>
+<td>Hintergrundbeleuchtung</td>
+</tr>
+<tr>
+<td>RES, RST</td>
+<td>Pin 8</td>
+<td>Reset</td>
+</tr>
+</tbody>
+</table>
+<p>Der LED-Pin kann auch mit einem PWM-Pin am Arduino (3, 5, 6, 9) verbunden werden. Dann kann die Helligkeit reguliert werden.</p>
+<p>Manche Displays haben einen SDA-Pin. Dies ist ein SPI-Pin, der Daten senden und empfangen kann. Am Arduino sollte er mit dem MOSI-Pin (11) verbunden werden, das das Dislay als Slave nur Daten vom Master empfängt. Der MISO-Pin (12) bleibt in diesem Fall frei.</p>
+<h2 id="177-zoll-160x128-rgb-display-blau">1,77 Zoll 160x128 RGB Display (blau)</h2>
+<h3 id="anschluss">Anschluss</h3>
+<p>Diese Displays dürfen nur an 3,3V angeschlossen werden. Da der Arduino Uno auf seinen GPIO-Pins 5 V ausgibt, müssen die Pins über einen Logic-Level-Converter (LLC) auf 3,3V reduziert werden.</p>
+<table>
+<thead>
+<tr>
+<th>Display</th>
+<th>LLC</th>
+<th>Arduino</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCK</td>
+<td>A1 - B1</td>
+<td>13</td>
+</tr>
+<tr>
+<td>SDA</td>
+<td>A2 - B2</td>
+<td>11</td>
+</tr>
+<tr>
+<td>RES</td>
+<td>A3-B3</td>
+<td>8</td>
+</tr>
+<tr>
+<td>RS</td>
+<td>A4 . B4</td>
+<td>9</td>
+</tr>
+<tr>
+<td>CS</td>
+<td>A5 - B5</td>
+<td>10</td>
+</tr>
+<tr>
+<td>LEDA</td>
+<td>VA</td>
+<td>3,3 V</td>
+</tr>
+<tr>
+<td>VCC</td>
+<td>VB</td>
+<td>5V</td>
+</tr>
+<tr>
+<td>OE (via 1kOhm)</td>
+<td>3,3 V</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="code">Code</h3>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_GFX.h&gt;</span></span>
+<span class="hljs-comment">// Core graphics library</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Fonts/FreeSansBold9pt7b.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_ST7735.h&gt;</span> <span class="hljs-comment">// Hardware-specific library</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;SPI.h&gt;</span></span>
+
+Adafruit_ST7735 tft = <span class="hljs-built_in">Adafruit_ST7735</span>(<span class="hljs-number">10</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>);
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+    tft.<span class="hljs-built_in">initR</span>(INITR_GREENTAB);
+    tft.<span class="hljs-built_in">fillScreen</span>(ST77XX_BLACK);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+    <span class="hljs-built_in">testbild</span>();
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
+    tft.<span class="hljs-built_in">setTextColor</span>(ST77XX_WHITE, ST77XX_BLACK);
+    tft.<span class="hljs-built_in">setTextSize</span>(<span class="hljs-number">2</span>);
+    tft.<span class="hljs-built_in">setFont</span>(); <span class="hljs-comment">// reset font to default</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">uint8_t</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) {
+        <span class="hljs-built_in">changing_value</span>(i);
+        <span class="hljs-built_in">delay</span>(<span class="hljs-number">100</span>);
+    }
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">testbild</span><span class="hljs-params">()</span> </span>{
+    tft.<span class="hljs-built_in">setFont</span>(&amp;FreeSansBold9pt7b);
+    tft.<span class="hljs-built_in">fillScreen</span>(ST77XX_BLACK);
+    tft.<span class="hljs-built_in">setTextColor</span>(ST77XX_RED);
+    tft.<span class="hljs-built_in">setCursor</span>(<span class="hljs-number">14</span>, <span class="hljs-number">22</span>);
+    tft.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Testbild&quot;</span>);
+    tft.<span class="hljs-built_in">drawFastHLine</span>(<span class="hljs-number">0</span>, <span class="hljs-number">35</span>, <span class="hljs-number">128</span>, ST77XX_GREEN);
+    tft.<span class="hljs-built_in">drawTriangle</span>(<span class="hljs-number">1</span>, <span class="hljs-number">45</span>, <span class="hljs-number">28</span>, <span class="hljs-number">70</span>, <span class="hljs-number">55</span>, <span class="hljs-number">45</span>, ST77XX_WHITE);
+    tft.<span class="hljs-built_in">fillTriangle</span>(<span class="hljs-number">78</span>, <span class="hljs-number">70</span>, <span class="hljs-number">104</span>, <span class="hljs-number">45</span>, <span class="hljs-number">127</span>, <span class="hljs-number">70</span>, <span class="hljs-number">0xA3F6</span>);
+    tft.<span class="hljs-built_in">drawRect</span>(<span class="hljs-number">1</span>, <span class="hljs-number">80</span>, <span class="hljs-number">50</span>, <span class="hljs-number">30</span>, ST77XX_BLUE);
+    tft.<span class="hljs-built_in">fillRoundRect</span>(<span class="hljs-number">78</span>, <span class="hljs-number">80</span>, <span class="hljs-number">50</span>, <span class="hljs-number">30</span>, <span class="hljs-number">5</span>, <span class="hljs-number">0x2D4E</span>);
+    tft.<span class="hljs-built_in">fillCircle</span>(<span class="hljs-number">25</span>, <span class="hljs-number">135</span>, <span class="hljs-number">15</span>, <span class="hljs-number">0x5BA9</span>);
+    tft.<span class="hljs-built_in">drawCircle</span>(<span class="hljs-number">102</span>, <span class="hljs-number">135</span>, <span class="hljs-number">15</span>, ST77XX_GREEN);
+    tft.<span class="hljs-built_in">drawLine</span>(<span class="hljs-number">45</span>, <span class="hljs-number">150</span>, <span class="hljs-number">80</span>, <span class="hljs-number">40</span>, ST77XX_ORANGE);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">changing_value</span><span class="hljs-params">(<span class="hljs-type">uint8_t</span> value)</span> </span>{
+    <span class="hljs-keyword">if</span>(value &lt; <span class="hljs-number">10</span>) {
+        tft.<span class="hljs-built_in">setCursor</span>(<span class="hljs-number">15</span>, <span class="hljs-number">88</span>);
+        tft.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;0&quot;</span>);
+        tft.<span class="hljs-built_in">print</span>(value);
+    } <span class="hljs-keyword">else</span> {
+        tft.<span class="hljs-built_in">setCursor</span>(<span class="hljs-number">15</span>, <span class="hljs-number">88</span>);
+        tft.<span class="hljs-built_in">print</span>(value);
+    }
+}
+</code></pre>
+<h2 id="18-zoll-128x160-rgb-display-rot">1,8 Zoll 128x160 RGB Display (rot)</h2>
+<h3 id="anschluss-1">Anschluss</h3>
+<table>
+<thead>
+<tr>
+<th>Display</th>
+<th>Arduino</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LED</td>
+<td>3,3 V</td>
+<td>Hintergrundbeleuchtung</td>
+</tr>
+<tr>
+<td>SCK</td>
+<td>13</td>
+<td>Taktgeber</td>
+</tr>
+<tr>
+<td>SDA</td>
+<td>11</td>
+<td>MOSI: Datenübetragung Arduino - Display</td>
+</tr>
+<tr>
+<td>A0</td>
+<td>9</td>
+<td></td>
+</tr>
+<tr>
+<td>RES, RST</td>
+<td>Pin 8</td>
+<td>Reset</td>
+</tr>
+<tr>
+<td>CS</td>
+<td>10</td>
+<td>Chip Select</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+<td></td>
+</tr>
+<tr>
+<td>VCC</td>
+<td>5V</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="code-1">Code</h3>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_GFX.h&gt;</span> <span class="hljs-comment">// Core graphics library</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_ST7735.h&gt;</span> <span class="hljs-comment">// Hardware-specific library for ST7735</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;SPI.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> TFT_CS 10</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> TFT_RST 8</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> TFT_DC 9</span>
+Adafruit_ST7735 tft = <span class="hljs-built_in">Adafruit_ST7735</span>(TFT_CS, TFT_DC, TFT_RST);
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>{
+    Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
+    tft.<span class="hljs-built_in">initR</span>(INITR_BLACKTAB); <span class="hljs-comment">// Init ST7735S chip, black tab</span>
+    tft.<span class="hljs-built_in">fillScreen</span>(ST77XX_BLACK);
+    <span class="hljs-built_in">drawtext</span>(<span class="hljs-string">&quot;Hallo!&quot;</span>, ST77XX_RED);
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Setup abgeschlossen!&quot;</span>);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+    tft.<span class="hljs-built_in">invertDisplay</span>(<span class="hljs-literal">true</span>);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+    tft.<span class="hljs-built_in">invertDisplay</span>(<span class="hljs-literal">false</span>);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">drawtext</span><span class="hljs-params">(<span class="hljs-type">char</span> *text, <span class="hljs-type">uint16_t</span> color)</span> </span>{
+    tft.<span class="hljs-built_in">setCursor</span>(<span class="hljs-number">0</span>, <span class="hljs-number">50</span>);
+    tft.<span class="hljs-built_in">setTextColor</span>(color);
+    tft.<span class="hljs-built_in">setTextSize</span>(<span class="hljs-number">2</span>);
+    tft.<span class="hljs-built_in">setTextWrap</span>(<span class="hljs-literal">true</span>);
+    tft.<span class="hljs-built_in">print</span>(text);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">fillScreenBlink</span><span class="hljs-params">(<span class="hljs-type">uint16_t</span> color1, <span class="hljs-type">uint16_t</span> color2)</span> </span>{
+    tft.<span class="hljs-built_in">fillScreen</span>(color1);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
+    tft.<span class="hljs-built_in">fillScreen</span>(color2);
+}
+</code></pre>
+
+            
+            
+        </body>
+        </html>

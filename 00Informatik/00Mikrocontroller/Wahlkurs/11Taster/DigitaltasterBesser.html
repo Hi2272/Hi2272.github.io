@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Taster</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="taster">Taster</h1>
+<h2 id="verbesserter-code">Verbesserter Code</h2>
+<p><img src="2024-10-09_09-01.png" alt="alt text"></p>
+<p>Der Code kann an zwei Stellen verbessert werden.</p>
+<pre><code class="language-C++"><span class="hljs-type">bool</span> zustand=LOW;
+<span class="hljs-type">int</span> taster=<span class="hljs-number">2</span>;
+<span class="hljs-type">int</span> ledPin=<span class="hljs-number">6</span>
+
+<span class="hljs-type">void</span> <span class="hljs-built_in">setup</span>() {
+  <span class="hljs-built_in">pinMode</span>(ledPin, OUTPUT);
+  <span class="hljs-built_in">digitalWrite</span>(ledPin,LOW);  <span class="hljs-comment">// aus</span>
+  
+  <span class="hljs-built_in">pinMode</span>(taster,INPUT);  
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">digitalRead</span>(taster)==HIGH){
+   zustand=!zustand; 
+   <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">6</span>, zustand); 
+   <span class="hljs-keyword">while</span> (<span class="hljs-built_in">digitalRead</span>(taster)==HIGH){
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
+   }
+  }  
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
+}
+</code></pre>
+<h3 id="erläuterungen-zum-code">Erläuterungen zum Code</h3>
+<h4 id="zustandzustand">zustand=!zustand;</h4>
+<p>Das <strong>!</strong>-Symbol bedeutet <strong>NOT</strong> oder <strong>Nicht</strong>. Mit dieser Zeile wird der Wert der Variable <strong>zustand</strong> umgekehrt:</p>
+<ul>
+<li>zustand = HIGH = true<br>
+⇒!zustand = LOW = false</li>
+<li>zustand = LOW = false<br>
+⇒ !zustand = HIGH = true</li>
+</ul>
+<h4 id="while-digitalreadtasterhigh">while (digitalRead(taster)==HIGH){...}</h4>
+<p>Diese Schleife wird so lange ausgeführt, wie der Taster gedrückt ist. Damit wird garantiert, dass ein Tastendruck nur einmal registriert wird.</p>
+<h2 id="vereinfachte-schaltung">Vereinfachte Schaltung</h2>
+<p>Der Pull-Down-Widerstand kann auch weggelassen werden, da der Arduino über interne Widerstände verfügt, die über Software geschaltet werden können:<br>
+<img src="2024-10-09_21-22.png" alt="alt text"><br>
+Im Code muss nur angegeben werden, dass der taster jetzt über einen internen Pull-Down-Widerstand geschaltet ist.<br>
+Dies geschieht in der <strong>setup()</strong>-Methode:</p>
+<pre><code class="language-C++"><span class="hljs-type">bool</span> zustand=LOW;
+<span class="hljs-type">int</span> taster=<span class="hljs-number">2</span>;
+<span class="hljs-type">int</span> ledPin=<span class="hljs-number">6</span>
+
+<span class="hljs-type">void</span> <span class="hljs-built_in">setup</span>() {
+  <span class="hljs-built_in">pinMode</span>(ledPin, OUTPUT);
+  <span class="hljs-built_in">digitalWrite</span>(ledPin,LOW);  <span class="hljs-comment">// aus</span>
+  
+  <span class="hljs-built_in">pinMode</span>(taster,INPUT_PULLDOWN);  
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">digitalRead</span>(taster)==HIGH){
+   zustand=!zustand; 
+   <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">6</span>, zustand); 
+   <span class="hljs-keyword">while</span> (<span class="hljs-built_in">digitalRead</span>(taster)==HIGH){
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
+   }
+  }  
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
+}
+</code></pre>
+<p>Analog kann auch ein interner <strong>Pull-Up-Widerstand</strong> geschaltet werden.</p>
+<p><a href="../index.html">zurück</a></p>
+
+            
+            
+        </body>
+        </html>

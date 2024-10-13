@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>p5&period;js</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+         <meta charset="utf-8" />
+  <title>Informatik</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="p5js">p5.js</h1>
+<h2 id="der-p5-web-editor">Der p5-Web-Editor</h2>
+<p>Quelle: <a href="https://thecodingtrain.com/tracks/code-programming-with-p5-js/code/1-intro/2-web-editor">TheCodingTrain</a><br>
+p5.js ist eine Javascript-Bibliothek, mit der Grafiken programmiert werden können.<br>
+Unter <a href="https://editor.p5js.org">https://editor.p5js.org</a>   kann ein Web-Editor aufgerufen werden, in dem der Code direkt ausgeführt wird.<br>
+Zum Speichern und Veröffentlichen von Code muss sich der Nutzer auf der Seite mit einer E-Mail-Adresse registrieren.</p>
+<h2 id="p5js-in-eine-webseite-einbinden">p5.js in eine Webseite einbinden</h2>
+<p>p5.js kann in jedes HTML-Element eingebunden werden. Folgende HTML-Datei definiert hierfür ein DIV-Element:</p>
+<pre><code class="language-HTML"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>P5.js Demo<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;p5jsDemo.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>P5.js in HMTL<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;p5js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<h3 id="erläuterungen-zum-code">Erläuterungen zum Code</h3>
+<pre><code class="language-HTML"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>fügt die p5.js-Bibliothek zur Seite hinzu.</p>
+<pre><code class="language-HTML"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;p5jsDemo.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>ruft das eigentliche Skript auf.</p>
+<h3 id="javascript-datei">Javascript-Datei</h3>
+<pre><code class="language-Javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">var</span> canvas = <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">400</span>, <span class="hljs-number">400</span>);
+    canvas.<span class="hljs-title function_">parent</span>(<span class="hljs-string">&#x27;p5js&#x27;</span>);
+  }
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-title function_">background</span>(<span class="hljs-number">127</span>);
+    <span class="hljs-title function_">stroke</span>(<span class="hljs-string">&quot;white&quot;</span>);
+    <span class="hljs-title function_">line</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">400</span>,<span class="hljs-number">400</span>);
+
+  }
+</code></pre>
+<p><strong>canvas.parent('p5js');</strong> sorgt dafür, dass das p5js-Objekt in der DIV mit der id &quot;p5js&quot; eingebunden wird.</p>
+<h2 id="p5-canvas-an-fenstergröße-anpassen">P5-Canvas an Fenstergröße anpassen</h2>
+<p>Die Maße des p5-Canvas-Objekts werden in Pixel angegeben. Mit folgender Funktion wird das Canvas-Objekte automatisch halb so breit wie das Fenster und 90% so hoch.</p>
+<pre><code class="language-Javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> xm = windowWidth;
+    <span class="hljs-keyword">const</span> ym = windowHeight;
+    <span class="hljs-keyword">var</span> canvas = <span class="hljs-title function_">createCanvas</span>(xm/<span class="hljs-number">2</span>, ym*<span class="hljs-number">0.9</span>);
+    canvas.<span class="hljs-title function_">parent</span>(<span class="hljs-string">&#x27;p5js&#x27;</span>);
+}
+</code></pre>
+<h2 id="mausereignisse-in-p5js">Mausereignisse in p5.js</h2>
+<pre><code class="language-JavaScript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">mousePressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; objekte.<span class="hljs-property">length</span>; i++) {
+    objekte[i].<span class="hljs-title function_">clicked</span>(mouseX, mouseY);
+  }
+}
+</code></pre>
+<p>p5.js stellt eine globale Methode <strong>mousePressed()</strong> zur Verfügung, die ausgelöst wird, sobalb der Nutzer auf das p5.js-Canvas Objekt klickt. Diese Methode kann mit eigenem Code überschrieben werden.
+Die Variablen <strong>mouseX</strong> und <strong>mouseY</strong> enthalten die Koordinaten der Maus.<br>
+In diesem Beispiel werden bei einem Mausklick für alle Objekte im Array <strong>objekte</strong> die Methode <strong>clicked(x,y)</strong> aufgerufen. In dieser Methode muss jetzt jeweils überprüft werden, ob die Koordinaten des Mausklicks im Inneren des Objekts liegen.</p>
+<p><a href="../index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>

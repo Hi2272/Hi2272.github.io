@@ -29,6 +29,16 @@
       "zeit": 1
     },
     {
+      "txt": "Lasse dir nur die Namen und die Einwohnerzahl (männlich + weiblich) der Gemeinden des Landkreises Mühldorf a.Inn anzeigen!",
+      "lsg": [
+        "<p>SELECT name, einwohner_w+einwohner_m<br />FROM Gemeinde<br />WHERE kreis='M&uuml;hldorf a.Inn'</p>",
+        "<p>SELECT name, einwohner_w+einwohner_m<br />FROM Gemeinde<br />where kreis LIKE '%M&uuml;hldorf a.Inn%'</p>"
+      ],
+      "hilfe":"Für die gesamte Einwohnerzahl musst du einwohner_m und einwohner_w addieren.",
+      "zeit": 1
+    },
+ 
+    {
       "txt": "Lasse dir den Namen der Gemeinde des Landkreises Mühldorf a.Inn mit den meisten weiblichen Einwohnern anzeigen!",
       "lsg": [
         "<p>SELECT name <br />FROM Gemeinde<br />WHERE kreis='M&uuml;hldorf a.Inn'<br />AND einwohner_w=(<br />SELECT max(einwohner_w)<br />FROM Gemeinde<br />WHERE kreis='M&uuml;hldorf a.Inn'<br />);</p>"  

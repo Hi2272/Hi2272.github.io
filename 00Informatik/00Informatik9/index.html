@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://Hi2272.github.io/vanillatoasts.js"></script>
+  <link href="https://Hi2272.github.io/vanillatoasts.css" rel="stylesheet">
+  <link rel="stylesheet" href="grid.css">
+  <meta charset="utf-8" />
+  <title>Attributeditor</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
+  <script src="csvtosql.js"></script>
+
+</head>
+
+<body>
+  <div class="grid-container">
+    <div class="csv">
+      <h2>CSV</h2>
+      <textarea id="csv" wrap="hard" cols="80" rows="30" onchange="convert()"></textarea>
+    </div>
+  <div class="sql">
+    <h2>SQL</h2>
+    <textarea id="sql" wrap="hard" cols="80" rows="30"></textarea>  
+  </div>
+  <div class="anl">
+    * 1. Zeile = Name der Tabelle<br>
+    * 2. Zeile = Attributnamen<br>
+    * 3. Zeile = Datentypen der Attribute (int, float, text)<br>
+    IN SQL-Fiddle muss SQL-Lite als Codierung gewählt werden.
+   </div>
+   
+
+  <div class="button">
+    <button>Kopieren</button>
+</div>
+  <div class="footer">
+    <div id="quelle" style="font-size: x-small; text-align: right;">2023 Rainer Hille, Gymnasium Waldkraiburg
+    </div>
+
+  </div>
+
+</body>
+
+</html>
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Blockly</title>
+<!-- Load Blockly core -->
+<script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
+<!-- Load the default blocks -->
+<script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
+<!-- Load a generator -->
+<script src="https://unpkg.com/blockly/javascript_compressed.js"></script>
+<!-- Load a message file -->
+<script src="https://unpkg.com/blockly/msg/en.js"></script>
+        </head>
+        <body>
+            <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+        </body>
+    </html>
+    <script>
+        const toolbox = {
+            // There are two kinds of toolboxes. The simpler one is a flyout toolbox.
+            kind: 'flyoutToolbox',
+            // The contents is the blocks and other items that exist in your toolbox.
+            contents: [
+              {
+                kind: 'block',
+                type: 'controls_if'
+              },
+              {
+                kind: 'block',
+                type: 'controls_whileUntil'
+              },
+              {kind: 'block',
+            type: 'controls_repeat'}
+              // You can add more blocks to this array.
+            ]
+          };
+
+       // The toolbox gets passed to the configuration struct during injection.
+const workspace = Blockly.inject('blocklyDiv', {toolbox: toolbox});
+    
+    </script>
+    

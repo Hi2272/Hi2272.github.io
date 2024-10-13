@@ -1,0 +1,27 @@
+{ "typ":"Text",   
+  "titel":"Ein Schachbrett",
+  "untertitel":"Zählschleifen in Aktion",
+  "angabe":[
+    {"zeit":1,"txt":"Schreibe den Kopf der Klasse Schachbrett mit leerem Rumpf."},
+    {"zeit":1,"txt":"Deklariere ein Attribut <b>breite</b> vom Typ int."},
+    {"zeit":1,"txt":"Schreibe den Kopf des Konstruktors der  Klasse Schachbrett mit einem Parameter breite vom Tyo int und mit leerem Rumpf."},
+    {"zeit":1,"txt":"Initialisiere das Attribut <b>breite</b> im Konstruktor mit dem Wert des Parameters."},
+    {"zeit":1,"txt":"Deklariere im Konstruktor eine lokale Variable re vom Typ Rectangle."},
+
+    {"zeit":1,"txt":"Initialisiere die lokale Variable re mit einem neuen Objekt vom Typ Rectangle mit den Parametern 10,10,100,100."},
+    
+    
+    
+    {"zeit":1,"txt":"Ändere die Klasse Rechteck genauso ab, wie die Klasse Kreis."}    
+  
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Super, du hast alle Aufgaben gelöst.",
+  "copyright":"<a href='https://processing.org/'>Processing</a> "
+    
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch Bilddaten</title>
+  </head>
+  <body>
+    <h1>Einlesen von Bilddaten</h1>
+    <img src="" id="bild" width="480" />
+    <script>
+      catchBild()
+        .then(response => {
+          console.log('Bild geladen');
+        })
+        .catch(error => {
+          console.log('Fehler beim Laden!');
+          console.error(error);
+        });
+
+      async function catchBild() {
+        const response = await fetch('bild.png');
+        const blob = await response.blob();
+        document.getElementById('bild').src = URL.createObjectURL(blob);
+      }
+    </script>
+  </body>
+</html>

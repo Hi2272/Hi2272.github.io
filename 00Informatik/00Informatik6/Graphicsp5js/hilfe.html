@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Graphix-Editor</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+          <meta charset="utf-8" />
+  <title>Informatik</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="graphix-editor">Graphix-Editor</h1>
+<p><a href="#1-erzeugen-neuer-objekte">Erzeugen neuer Objekte</a>|
+<a href="#2-aufruf-von-methoden">Aufruf von Methoden</a>|
+<a href="#alle-klassen">Alle Klassen</a>|
+<a href="#linie-line">Linie</a>|
+<a href="#rechteck-rect-rectangle">Rechteck</a>|
+<a href="#dreieck-triangle">Dreieck</a>|
+<a href="#kreis-circle">Kreis</a></p>
+<h2 id="1-erzeugen-neuer-objekte">1. Erzeugen neuer Objekte</h2>
+<p>Vor der Verwendung müssen Objekte erzeugt werden. Dies geschieht nach folgendem Muster:</p>
+<p><strong>Objektname:Klassenname</strong></p>
+<p>Graphix kennt folgende Klassen:</p>
+<ul>
+<li>Rechteck (Rect, Rectangle)</li>
+<li>Kreis (Circle)</li>
+<li>Linie (Line)</li>
+<li>Dreieck (Triangle)</li>
+</ul>
+<p>Es können sowohl die deutschen, als auch die englischen Klassenbezeichner verwendet werden.<br>
+Groß- und Kleinschreibung wird allgemein nicht beachtet.<br>
+<strong>re:rect, Re:Rect, re:Rectangle</strong> oder <strong>re:Rechteck</strong> erzeugen alle ein Objekt mit dem Namen <strong>re</strong> aus der Klasse <strong>Rechteck</strong>.</p>
+<h2 id="2-aufruf-von-methoden">2. Aufruf von Methoden</h2>
+<p>Methoden werden nach folgendem Muster aufgerufen:</p>
+<p><strong>Objektname.Methodenname(Parameter)</strong></p>
+<p>Auch bei den Methodennamen können deutsche oder englische Bezeichnungen verwendet werden.</p>
+<h2 id="3-klassen-und-methoden">3. Klassen und Methoden</h2>
+<h3 id="alle-klassen">Alle Klassen</h3>
+<h4 id="attribute">Attribute</h4>
+<ul>
+<li>x,y: Koordinaten des Objekts</li>
+<li>stroke: Linienfarbe</li>
+<li>strokeWidth: Linienbreite</li>
+<li>fill: Füllfarbe (außer bei der Klasse Linie)</li>
+</ul>
+<h4 id="methoden">Methoden</h4>
+<ul>
+<li><strong>setFill(color), setColor(farbe), füllfarbeSetzen(farbe), setzeFüllfarbe(farbe), setFüllfarbe(farbe)</strong><br>
+Setzt die Füllfarbe eines geschlossenen Objekts.</li>
+<li><strong>setStroke(color),  linienfarbeSetzen(farbe), setzeLinienfarbe(farbe), setLinienfarbe(farbe)</strong><br>
+Setzt die Linienfarbe des Objekts.</li>
+<li><strong>setStrokeWidth(width), linienbreiteSetzen(breite), setzeLinienbreite(breite), setLinienbreite(breite)</strong><br>
+Setzt die Breite der Linie des Objekts.</li>
+<li><strong>moveX(dx), verschiebeX(dx)</strong><br>
+Verschiebt das Objekt um dx Einheiten nach rechts (postives dx) oder links (negatives dx)</li>
+<li><strong>moveY(dy), verschiebeY(dy)</strong><br>
+Verschiebt das Objekt um dy Einheiten nach unten (positives dy) oder oben (negatives dy)</li>
+<li><strong>moveTo(x,y), verschiebeZu(x,y), verschiebeNach(x,y)</strong><br>
+Verschiebt das Objekt auf die Position mit den Koordinaten (x,y)</li>
+</ul>
+<h4 id="parameter">Parameter</h4>
+<p>Farben werden als englische Wörter ohne Anführungszeichen eingetragen:</p>
+<h3 id="linie-line">Linie (Line)</h3>
+<h4 id="attribute-1">Attribute</h4>
+<ul>
+<li>x,y,x1,y1 : Koordinaten der beiden Endpunkte der Linie</li>
+<li>stroke: Linienfarbe</li>
+<li>strokeWidth: Linienbreite</li>
+</ul>
+<p><em>Achtung:<br>
+Eine Linie ist keine geschlossene Figur. Sie hat daher auch kein Attribut Füllfarbe.</em></p>
+<h4 id="zusätzliche-methoden">Zusätzliche Methoden</h4>
+<ul>
+<li><strong>setPoints(x1,y1,x2,y2), punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2)</strong><br>
+Setzt die Koordinaten der beiden Endpunkte der Linie.</li>
+</ul>
+<h3 id="rechteck-rect-rectangle">Rechteck (Rect, Rectangle)</h3>
+<h4 id="attribute-2">Attribute</h4>
+<ul>
+<li>x,y : Koordinaten der linken oberen Ecke</li>
+<li>width : Breite</li>
+<li>height: Höhe</li>
+<li>fill: Füllfarbe</li>
+<li>stroke: Linienfarbe</li>
+<li>strokeWidth: Linienbreite</li>
+</ul>
+<h4 id="zusätzliche-methoden-1">Zusätzliche Methoden</h4>
+<ul>
+<li><strong>setWidth(width), breiteSetzen(breite), setzeBreite(breite), setBreite(breite)</strong><br>
+Setzt den Wert des Attributs Breite.</li>
+<li><strong>setHeight(height), höheSetzen(höhe), setzeHöhe(höhe), setHöhe(höhe)</strong><br>
+Setzt den Wert des Attributs Höhe.</li>
+<li><strong>setPoints(x1,y1,x2,y2), punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2),eckenSetzen(x1,y1,x2,y2)</strong><br>
+Setzt die Koordinaten der linken unteren und der rechten oberen Ecke des Rechtecks.</li>
+</ul>
+<h3 id="dreieck-triangle">Dreieck (Triangle)</h3>
+<h4 id="attribute-3">Attribute</h4>
+<ul>
+<li>x,y,x1,y1,x2,y2 : Koordinaten der drei Ecken</li>
+<li>fill: Füllfarbe</li>
+<li>stroke: Linienfarbe</li>
+<li>strokeWidth: Linienbreite</li>
+</ul>
+<h4 id="zusätzliche-methoden-2">Zusätzliche Methoden</h4>
+<ul>
+<li><strong>setPoints(x1,y1,x2,y2,x3,y3), punkteSetzen(x1,y1,x2,y2,x3,y3), setzePunkte(x1,y1,x2,y2,x3,y3), setPunkte(x1,y1,x2,y2,x3,y3), eckensetzen(x1,y1,x2,y2,x3,y3)</strong><br>
+Setzt die Koordinaten der drei Ecken.</li>
+</ul>
+<h3 id="kreis-circle">Kreis (Circle)</h3>
+<h4 id="attribute-4">Attribute</h4>
+<ul>
+<li>x,y : Koordinaten des Mittelpunkts</li>
+<li>radius : Radius</li>
+<li>fill: Füllfarbe</li>
+<li>stroke: Linienfarbe</li>
+<li>strokeWidth: Linienbreite</li>
+</ul>
+<h4 id="zusätzliche-methoden-3">Zusätzliche Methoden</h4>
+<ul>
+<li><strong>setRadius(radius), setzeRadius(radius), radiusSetzen(radius)</strong><br>
+Setzt den Wert des Attributs Radius.</li>
+<li><strong>setPoints(x,y), mittelpunktSetzen(x,y), setzeMittelpunkt(x,y), setMittelpunkt(x,y)</strong><br>
+Setzt die Koordinaten des Mittelpunkts.</li>
+</ul>
+<p><a href="index.html">zurück</a></p>
+
+        
+        
+    </body>
+    </html>

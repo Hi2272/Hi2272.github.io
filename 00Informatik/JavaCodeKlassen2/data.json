@@ -1,0 +1,69 @@
+{
+  "titel": "Klassen, Attribute, Konstruktoren, Methoden",
+  "shuffle": false,
+  "angabe": [
+    {
+      "txt": "Kopf der Klasse Rechteck",
+      "lsg": [
+        "public class Rechteck{"
+        
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Deklaration des Attributs breite vom Typ double",
+      "lsg": [
+        "private double breite;"
+        
+       ],
+      "thisLoeschen": false
+    },
+   {
+    "txt": "Kopf des Standardkonstruktors der Klasse Rechteck",
+      "lsg": [
+        "public Rechteck(){"
+    
+      ],
+      "thisLoeschen": false
+    }, 
+    {
+      "txt": "Kopf des Vollkonstruktors der Klasse Rechteck mit den Parametern x,y,b,h vom Typ double.",
+        "lsg": [
+          "public Rechteck(double x,double y,double b,double h){"
+         ],
+        "thisLoeschen": false
+      }, 
+      
+     
+    {
+      "txt": "Initialisierung des Attributs x mit dem Wert des Parameters x.",
+      "lsg": [
+        "this.x=x;"
+       ],
+      "thisLoeschen": false
+    },
+    
+    {
+      "txt": "Kopf der Methode draw, die keinen Wert zurückgibt und keinen Parameter hat.",
+      "lsg": [
+        "public void draw(){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf der Methode getFlaeche, die einen Wert vom Typ double zurück gibt und keinen Parameter hat.",
+      "lsg": [
+        "public double getFlaeche(){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Rückgabe des Wertes des Attributs breite im Rumpf einer Methode.",
+      "lsg": [
+        "return this.breite;"
+       ],
+      "thisLoeschen": true
+    }
+    
+ ]
+}

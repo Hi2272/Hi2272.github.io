@@ -1,0 +1,42 @@
+{
+  "titel": "Graphix-Code",
+  "shuffle": false,
+  "angabe": [
+    {
+      "txt": "Erstelle ein neues Objekt k1 aus der Klasse Kreis.",
+      "lsg": [
+        "k1:Kreis"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Rufe für k1 die Methode füllfarbeSetzen mit dem Parameter grün auf.",
+      "lsg": [
+        "k1.füllfarbeSetzen(grün)"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Setze das Attribut linienfarbe des Objekts k1 auf den Wert schwarz.",
+      "lsg": [
+        "k1.linienfarbe=schwarz"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Erzeuge ein Objekt g aus der Klasse Gruppe.",
+      "lsg": [
+        "g:Gruppe"
+      ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Füge die Objekte k1 und k2 zur Gruppe g hinzu.",
+      "lsg": [
+        "g.add(k1,k2)",
+        "g.add(k2,k1)"
+      ],
+      "thisLoeschen": true
+    }
+ ]
+}

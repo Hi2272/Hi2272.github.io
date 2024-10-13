@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Graphix-Editor</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+              <meta charset="utf-8" />
+  <title>Informatik</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="graphix-editor">Graphix-Editor</h1>
+<p><a href="#1-erzeugen-neuer-objekte">Erzeugen neuer Objekte</a>|
+<a href="#2-%C3%A4ndern-von-attributwerten">Attributwerte</a>|
+<a href="#3-aufruf-von-methoden">Aufruf von Methoden</a>|
+<a href="#alle-klassen">Alle Klassen</a>|
+<a href="#linie-line">Linie</a>|
+<a href="#rechteck-rect-rectangle">Rechteck</a>|
+<a href="#dreieck-triangle">Dreieck</a>|
+<a href="#kreis-circle">Kreis</a>|
+<a href="#gruppe-group">Gruppe</a>|
+<a href="#farben">Farben</a>|
+<a href="#deckkraft">Deckkraft</a>|
+<a href="#wiederholungen">Wiederholungen</a>|
+<a href="#skalieren-vergr%C3%B6%C3%9Fern-und-verkleinern-von-objekten">Skalieren</a>|
+<a href="#kopieren-von-objekten-oder-gruppen">Kopieren</a></p>
+<h2 id="voreinstellungen">Voreinstellungen</h2>
+<p>Im Editorfenster können folgende Einstellungen vorgenommen werden:<br>
+<img src="2024-01-11_10-02.png" alt="Alt text"></p>
+<ol>
+<li>Stellt die Deckkraft des gesamten Bildes ein. Hierdurch kann das Gitternetz auch hinter gefüllten Objekten sichtbar gemacht werden.</li>
+<li>Stellt die Verzögerung zwischen den einzelnen Programmschritten ein. Damit kann das schrittweise Abarbeiten des Programm beobachtet werden.</li>
+<li>Die Attributnamen werden aus dem Englischen ins Deutsche übersetzt.</li>
+<li>Die y-Achse steigt von unten nach oben oder umgekehrt.</li>
+</ol>
+<h2 id="1-erzeugen-neuer-objekte">1. Erzeugen neuer Objekte</h2>
+<p>Vor der Verwendung müssen Objekte erzeugt werden. Dies geschieht nach folgendem Muster:</p>
+<p><strong>Objektname:Klassenname</strong></p>
+<p>Graphix kennt folgende Klassen:</p>
+<ul>
+<li>Rechteck (Rect, Rectangle)</li>
+<li>Kreis (Circle)</li>
+<li>Linie (Line)</li>
+<li>Dreieck (Triangle)</li>
+</ul>
+<p>Es können sowohl die deutschen, als auch die englischen Klassenbezeichner verwendet werden.<br>
+Groß- und Kleinschreibung wird allgemein nicht beachtet.<br>
+<strong>re:rect, Re:Rect, re:Rectangle</strong> oder <strong>re:Rechteck</strong> erzeugen alle ein Objekt mit dem Namen <strong>re</strong> aus der Klasse <strong>Rechteck</strong>.<br>
+<a href="#voreinstellungen">nach oben</a></p>
+<h2 id="2-ändern-von-attributwerten">2. Ändern von Attributwerten</h2>
+<p>Den Attributen eines Objekts können neue Werte zugewiesen werden.<br>
+Diese Zeile weist dem Attribut <strong>x</strong> des Objekts <strong>re</strong> den Wert <strong>20</strong> zu:</p>
+<pre><code class="language-Javascript">re.<span class="hljs-property">x</span>=<span class="hljs-number">20</span>
+</code></pre>
+<p>Hier wird dem Attribut <strong>füllfarbe</strong> des Objekts <strong>c</strong> der Wert <strong>rot</strong> zugewiesen:</p>
+<pre><code class="language-Javascript">c.<span class="hljs-property">f</span>üllfarbe=rot
+</code></pre>
+<h2 id="3-aufruf-von-methoden">3. Aufruf von Methoden</h2>
+<p>Methoden werden nach folgendem Muster aufgerufen:</p>
+<p><strong>Objektname.Methodenname(Parameter)</strong></p>
+<p>Auch bei den Methodennamen können deutsche oder englische Bezeichnungen verwendet werden.<br>
+<a href="#voreinstellungen">nach oben</a></p>
+<h2 id="4-klassen-und-methoden">4. Klassen und Methoden</h2>
+<h3 id="alle-klassen">Alle Klassen</h3>
+<h4 id="attribute">Attribute</h4>
+<ul>
+<li>x,y: Koordinaten des Objekts</li>
+<li>stroke: Linienfarbe</li>
+<li>strokeWidth: Linienbreite</li>
+<li>fill: Füllfarbe (außer bei der Klasse Linie)</li>
+</ul>
+<h4 id="methoden">Methoden</h4>
+<ul>
+<li><strong>füllfarbeSetzen(farbe), setzeFüllfarbe(farbe), setFüllfarbe(farbe), setFill(color), setColor(farbe)</strong><br>
+Setzt die Füllfarbe eines geschlossenen Objekts.</li>
+<li><strong>linienfarbeSetzen(farbe), setzeLinienfarbe(farbe), setLinienfarbe(farbe), setStroke(color)</strong><br>
+Setzt die Linienfarbe des Objekts.</li>
+<li><strong>linienbreiteSetzen(breite), setzeLinienbreite(breite), setLinienbreite(breite), setStrokeWidth(width)</strong><br>
+Setzt die Breite der Linie des Objekts.</li>
+<li><strong>verschiebeX(dx), moveX(dx)</strong><br>
+Verschiebt das Objekt um dx Einheiten nach rechts (postives dx) oder links (negatives dx)</li>
+<li><strong>verschiebeY(dy), moveY(dy)</strong><br>
+Verschiebt das Objekt um dy Einheiten nach unten (positives dy) oder oben (negatives dy)</li>
+<li><strong>verschiebeZu(x,y), verschiebeNach(x,y), moveTo(x,y)</strong><br>
+Verschiebt das Objekt auf die Position mit den Koordinaten (x,y)</li>
+</ul>
+<h4 id="parameter">Parameter</h4>
+<p>Farben werden als deutsch oder englische Wörter ohne Anführungszeichen eingetragen.<br>
+<a href="#voreinstellungen">nach oben</a></p>
+<h3 id="linie-line">Linie (Line)</h3>
+<h4 id="attribute-1">Attribute</h4>
+<ul>
+<li>x,y,x1,y1 : Koordinaten der beiden Endpunkte der Linie</li>
+<li>stroke: Linienfarbe</li>
+<li>strokeWidth: Linienbreite</li>
+</ul>
+<p><em>Achtung:<br>
+Eine Linie ist keine geschlossene Figur. Sie hat daher auch kein Attribut Füllfarbe.</em></p>
+<h4 id="zusätzliche-methoden">Zusätzliche Methoden</h4>
+<ul>
+<li><strong>punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2), setPoints(x1,y1,x2,y2)</strong><br>
+Setzt die Koordinaten der beiden Endpunkte der Linie.<br>
+<a href="#voreinstellungen">nach oben</a></li>
+</ul>
+<h3 id="rechteck-rect-rectangle">Rechteck (Rect, Rectangle)</h3>
+<h4 id="attribute-2">Attribute</h4>
+<ul>
+<li>x,y : Koordinaten der linken oberen Ecke</li>
+<li>width : Breite</li>
+<li>height: Höhe</li>
+<li>fill: Füllfarbe</li>
+<li>stroke: Linienfarbe</li>
+<li>strokeWidth: Linienbreite</li>
+</ul>
+<h4 id="zusätzliche-methoden-1">Zusätzliche Methoden</h4>
+<ul>
+<li><strong>breiteSetzen(breite), setzeBreite(breite), setBreite(breite), setWidth(width)</strong><br>
+Setzt den Wert des Attributs Breite.</li>
+<li><strong>höheSetzen(höhe), setzeHöhe(höhe), setHöhe(höhe), setHeight(height)</strong><br>
+Setzt den Wert des Attributs Höhe.</li>
+<li><strong>eckenSetzen(x1,y1,x2,y2), punkteSetzen(x1,y1,x2,y2), setzePunkte(x1,y1,x2,y2), setPunkte(x1,y1,x2,y2), setPoints(x1,y1,x2,y2)</strong><br>
+Setzt die Koordinaten der linken unteren und der rechten oberen Ecke des Rechtecks.<br>
+<a href="#voreinstellungen">nach oben</a></li>
+</ul>
+<h3 id="dreieck-triangle">Dreieck (Triangle)</h3>
+<h4 id="attribute-3">Attribute</h4>
+<ul>
+<li>x,y,x1,y1,x2,y2 : Koordinaten der drei Ecken</li>
+<li>fill: Füllfarbe</li>
+<li>stroke: Linienfarbe</li>
+<li>strokeWidth: Linienbreite</li>
+</ul>
+<h4 id="zusätzliche-methoden-2">Zusätzliche Methoden</h4>
+<ul>
+<li><strong>eckenSetzen(x1,y1,x2,y2,x3,y3), punkteSetzen(x1,y1,x2,y2,x3,y3), setzePunkte(x1,y1,x2,y2,x3,y3), setPunkte(x1,y1,x2,y2,x3,y3),setPoints(x1,y1,x2,y2,x3,y3)</strong><br>
+Setzt die Koordinaten der drei Ecken.<br>
+<a href="#voreinstellungen">nach oben</a></li>
+</ul>
+<h3 id="kreis-circle">Kreis (Circle)</h3>
+<h4 id="attribute-4">Attribute</h4>
+<ul>
+<li>x,y : Koordinaten des Mittelpunkts</li>
+<li>radius : Radius</li>
+<li>fill: Füllfarbe</li>
+<li>stroke: Linienfarbe</li>
+<li>strokeWidth: Linienbreite</li>
+</ul>
+<h4 id="zusätzliche-methoden-3">Zusätzliche Methoden</h4>
+<ul>
+<li><strong>radiusSetzen(radius), setzeRadius(radius), setRadius(radius)</strong><br>
+Setzt den Wert des Attributs Radius.</li>
+<li><strong>mittelpunktSetzen(x,y), setzeMittelpunkt(x,y), setMittelpunkt(x,y), setPoints(x,y)</strong><br>
+Setzt die Koordinaten des Mittelpunkts.<br>
+<a href="#voreinstellungen">nach oben</a></li>
+</ul>
+<h3 id="gruppe-group">Gruppe (Group)</h3>
+<p>In eine Gruppe können zuvor gebildete Objekte aufgenommen worden.<br>
+Für alle Objekte der Gruppe können anschließend gemeinsame Methoden aufgerufen werden.</p>
+<h4 id="attribute-5">Attribute</h4>
+<p>Die Attribute sind die Objekte, die in die Gruppe aufgenommen wurden.</p>
+<h4 id="methoden-1">Methoden</h4>
+<ul>
+<li>
+<p><strong>add(Objektname), schlucke(Objektname), fügezu(Objektname), hinzufügen(Objektname)</strong><br>
+Fügt das entsprechende Objekt der Gruppe hinzu.</p>
+<p>Es können auch mehrere Objekte gleichzeitig hinzugefügt werden. Die Objektnamen müssen dann als Parameterliste durch Kommas getrennt werden:</p>
+<pre><code class="language-Javascript">g.<span class="hljs-title function_">add</span>(re,c,d)
+</code></pre>
+<p>Fügt die Objekte <strong>re, c</strong> und <strong>d</strong> zur Gruppe <strong>g</strong> hinzu.<br>
+<strong>Wichtig: Einer Gruppe kann keine weitere Gruppe hinzugefügt werden.</strong></p>
+</li>
+<li>
+<p><strong>beliebige Methode</strong><br>
+Führt diese Methode für alle Objekte der Gruppe aus. In diesem Fall wird der Radius für beide Kreise in der Gruppe auf 10 gesetzt:</p>
+<pre><code class="language-Javascript"><span class="hljs-attr">c1</span>:<span class="hljs-title class_">Kreis</span>
+<span class="hljs-attr">c2</span>:<span class="hljs-title class_">Kreis</span>
+<span class="hljs-attr">g</span>:<span class="hljs-title class_">Gruppe</span>
+g.<span class="hljs-title function_">add</span>(c1,c2)
+g.<span class="hljs-title function_">radiusSetzen</span>(<span class="hljs-number">10</span>)
+</code></pre>
+<p>Hier erscheint eine Fehlermeldung, da das Rechteck r1 keine Methode <strong>radiusSetzen</strong> hat:</p>
+<pre><code class="language-Javascript"><span class="hljs-attr">c1</span>:<span class="hljs-title class_">Kreis</span>
+<span class="hljs-attr">r1</span>:<span class="hljs-title class_">Rechteck</span>
+<span class="hljs-attr">g</span>:<span class="hljs-title class_">Gruppe</span>
+g.<span class="hljs-title function_">add</span>(c1,r1)
+g.<span class="hljs-title function_">radiusSetzen</span>(<span class="hljs-number">10</span>)
+</code></pre>
+<p>Der Radius von c1 kann aber trotzdem verändert werden:</p>
+<pre><code class="language-Javascript"><span class="hljs-attr">c1</span>:<span class="hljs-title class_">Kreis</span>
+<span class="hljs-attr">r1</span>:<span class="hljs-title class_">Rechteck</span>
+<span class="hljs-attr">g</span>:<span class="hljs-title class_">Gruppe</span>
+g.<span class="hljs-title function_">add</span>(c1,r1)
+c1.<span class="hljs-title function_">radiusSetzen</span>(<span class="hljs-number">10</span>)
+</code></pre>
+<p>Sinnvolle Methoden für Rechtecke sind Methoden zum Vergrößern oder Verkleinern der Objekte in der Gruppe (g.skaliere(...) und solche, die die ganze Gruppe verschieben (g.verschiebeX(...)).</p>
+</li>
+</ul>
+<p><a href="#voreinstellungen">nach oben</a></p>
+<h3 id="farben">Farben</h3>
+<p>Für die Füll- und Linienfarben können deutsche oder englische Bezeichnungen verwendet werden:</p>
+<ul>
+<li>blau: blue,</li>
+<li>gruen: green,</li>
+<li>grün: green,</li>
+<li>gelb: yellow,</li>
+<li>rot: red,</li>
+<li>weiß: white,</li>
+<li>weiss: white,</li>
+<li>schwarz: black,</li>
+<li>hellblau: lightblue,</li>
+<li>hellgrün: lightgreen,</li>
+<li>violett: violet,</li>
+<li>lila: violet,</li>
+<li>hellgelb: lightyellow,</li>
+<li>hellrot: pink,</li>
+<li>rosa: pink,</li>
+<li>braun: brown,</li>
+<li>silber: silver,</li>
+<li>dunkelblau: darkblue,</li>
+<li>olivgrün: olive,</li>
+<li>grau: grey,</li>
+<li>hellgrau: lightgrey</li>
+</ul>
+<p><strong>Die Farben können auch aus den Grundfarben definiert werden:</strong></p>
+<ul>
+<li>##RotGrünBlau</li>
+<li>#000000: Schwarz</li>
+<li>#FFFFFF: Weiß</li>
+<li>#AAAAAA: Grau</li>
+<li>#FF0000 : Rot</li>
+<li>#00FF00: Grün</li>
+<li>#0000FF: Blau</li>
+<li>#0000AA: dunkleres Blau</li>
+<li>#000066: noch dunkleres Blau</li>
+</ul>
+<p>Mit dem Parameter-Wert <strong>keine</strong> oder <strong>none</strong> kann eine Figur ohne Füllung gezeichnet werden.<br>
+<a href="#voreinstellungen">nach oben</a></p>
+<h3 id="deckkraft">Deckkraft</h3>
+<p>Die Deckkraft (engl. opacity) der Objekte kann zum einen über einen Schieberegler eingestellt werden. Durch eine niedrigere Deckkraft kann das Koordinatensystem auch hinter gefüllten Objekten sichtbar gemacht werden.<br>
+Mit der Methode <strong>deckkraftSetzen(), setDeckkraft(), setOpac(), setOpacity()</strong> kann die individuelle Deckkraft eines Objektes angepasst werden. Hierdurch sind interessante Farbmischungen möglich.</p>
+<h3 id="wiederholungen">Wiederholungen</h3>
+<p>Graphix kann einfache Wiederholschleifen umsetzen.<br>
+Eine Schleife beginnt mit dem Schlüsselwort <strong>wdh</strong> und der Zahl der gewünschten Wiederholungen. Alternativ kann auch <strong>wiederhole</strong> oder <strong>repeat</strong> verwendet werden.<br>
+Die Schleife endet mit einem *  .<br>
+<strong>Beispiel:</strong></p>
+<pre><code class="language-Javascript">wdh <span class="hljs-number">50</span> 
+  g.<span class="hljs-title function_">moveX</span>(<span class="hljs-number">1</span>)
+*
+</code></pre>
+<p>Lässt das Objekt g 50 einzelne Schritte nach rechts machen.<br>
+<a href="#voreinstellungen">nach oben</a></p>
+<h3 id="kopieren-von-objekten-oder-gruppen">Kopieren von Objekten oder Gruppen</h3>
+<p>Mit der Methode <strong>copyPaste(nam,dx,dy)</strong> können bestehende Objekte verdoppelt werden. Alternativ können auch die Methodennamen <strong>dupliziere, duplicate</strong> oder <strong>verdoppele</strong> verwendet werden.<br>
+Die Methode benötigt drei Parameter:</p>
+<ul>
+<li>nam: Name des neuen Objekts</li>
+<li>dx: Verschiebung in x-Richtung</li>
+<li>dy: Verschiebung in y-Richtung<br>
+<strong>Beispiel:</strong></li>
+</ul>
+<pre><code class="language-Javascript">wdh <span class="hljs-number">50</span> 
+  g.<span class="hljs-title function_">copyPaste</span>(g1,<span class="hljs-number">100</span>,<span class="hljs-number">0</span>)
+*
+</code></pre>
+<p>Erzeugt ein Objekt g1 als Kopie von g - g1 ist um 100 Punkte nach rechts verschoben.<br>
+<a href="#voreinstellungen">nach oben</a></p>
+<h3 id="skalieren-vergrößern-und-verkleinern-von-objekten">Skalieren: Vergrößern und Verkleinern von Objekten</h3>
+<p>Mit der Methode <strong>skaliere, scale, strecke, vergrößere, verkleinere</strong> kann ein Objekt vergrößert oder verkleinert werden.<br>
+Der Parameter gibt den Vergrößerungsfaktor in Prozent an:</p>
+<ul>
+<li>o.skaliere(110) vergrößert das Objekt o auf 110% seiner Originalgröße</li>
+<li>o.skaliere(90) verkleinert das Objekt o auf 90% seiner Orginalgröße</li>
+</ul>
+<p><a href="#voreinstellungen">nach oben</a><br>
+<a href="index.html">zurück</a></p>
+
+            
+            
+        </body>
+        </html>

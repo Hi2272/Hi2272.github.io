@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://Hi2272.github.io/vanillatoasts.js"></script>
+  <link href="https://Hi2272.github.io/vanillatoasts.css" rel="stylesheet">
+  <link rel="stylesheet" href="grid.css">
+  <meta charset="utf-8" />
+  <title>Attributeditor</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
+  <script src="Klassen.js"></script>
+  <script src="Graphics.js"></script>
+  <style>
+    input {
+      text-align: center;
+      background-color:azure;
+      max-width: 40%;
+      margin:3px;
+  }
+  button {
+    width:90%
+  }
+  </style>
+  
+</head>
+
+<body onload="drawAll()">
+  <div class="grid-container">
+    <div class="editor">
+      <b>Attribut-Editor</b>
+          <div id="editor">
+          </div>
+          <div id="Button">
+            <fieldset>
+              <legend>Neues Objekt der Klasse</legend>
+            <button onclick="neu(0)">Rechteck</button>
+            <button onclick="neu(1)">Kreis</button>
+            <button onclick="neu(2)">Dreieck</button>
+            <button onclick="neu(3)">Linie</button>
+          </fieldset><br>
+            <a href="hilfe.html" target=”_blank”><button>Hilfe</button></a><br><br>
+            Deckkraft: <input type="range" min="0" max="100" value="70" class="slider" id="opacity" onchange="drawAll()">
+           <br>
+          Attributnamen:
+          <input type="checkbox" id="translate" name="translate" checked onchange="selection()"/>
+          <label for="translate">übersetzen</label>
+          <br>
+          y-Achse:
+          <input type="checkbox"  id="yAchse" onchange="drawAll()">
+          <label for="yAchse">umdrehen</label>
+      
+          </div>
+      </div>
+    <div class="svg">
+      <svg id="svg" width="100%" height="100%" viewBox="0 0 200 200">
+      </svg>
+   </div>
+    <div class="karte">
+      <h2>Objektkarte</h2>
+      <div id="Karte" >
+      </div>
+        
+  </div>  
+  <div class="liste">
+    <h2>Objekte</h2>
+      
+    <div>
+      <form>
+        <select name="Objekte" id="Objekte" size="8" onInput="selection()">
+          <option value=""></option>
+        </select>
+      </form>
+    </div>
+     
+</div>
+    <div class="footer">
+      <div id="quelle" style="font-size: x-small; text-align: right;">2023 Rainer Hille, Gymnasium Waldkraiburg  
+  </div>
+  
+    </div>
+  </div>
+  
+  </body>
+  </html>
+
+</body>
+
+</html>

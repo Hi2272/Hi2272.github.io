@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>BLE-Keyboard</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+               <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="ble-keyboard">BLE-Keyboard</h1>
+<p>Der Joystick soll jetzt über Bluetooth an den Computer angeschlossen werden und die Tastatursignale senden.<br>
+Wir verwenden hierbei den Standard Bluetooth-Low-Energy (BLE), mit dem üblicherweise Tastaturen, Mäuse oder andere Eingabegeräte, die nur wenig Daten erzeugen, angeschlossen werden.</p>
+<h2 id="1-vorbereitung">1. Vorbereitung</h2>
+<p>Für die Programmierung benötigen wir eine Bibliothek, die du auf dieser Internetseite herunterladen kannst: <a href="https://github.com/T-vK/ESP32-BLE-Keyboard">https://github.com/T-vK/ESP32-BLE-Keyboard</a><br>
+<img src="2024-05-08_08-25.png" alt="alt text"><br>
+Speichere die ZIP-Datei an einem Ort, an den du sie wiederfindest.<br>
+Anschließend müssen wir diese Bibliothek in unseren Sketch importieren:</p>
+<ol>
+<li>Starte die Arduino-IDE.</li>
+<li>Erstelle ein neues Projekt.</li>
+<li>Importiere die Bibliothek als ZIP-Datei:<br>
+<img src="2024-05-08_08-23.png" alt="alt text"></li>
+</ol>
+<h2 id="4-programmieren-des-sketches">4. Programmieren des Sketches</h2>
+<h3 id="41-aufbau-der-ble-verbindung">4.1 Aufbau der BLE-Verbindung</h3>
+<p>Kopiere diesen Code in deinen Sketch</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;BleKeyboard.h&gt;</span></span>
+
+BleKeyboard bleKeyboard;
+
+<span class="hljs-type">int</span> pinX = <span class="hljs-number">12</span>;
+<span class="hljs-type">int</span> pinY = <span class="hljs-number">14</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">pinMode</span>(pinX, INPUT);
+  <span class="hljs-built_in">pinMode</span>(pinY, INPUT);
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);
+  <span class="hljs-comment">// Bluetooth einschalten -&gt; Wartet auf Kopplung</span>
+  bleKeyboard.<span class="hljs-built_in">begin</span>();
+}
+</code></pre>
+<h2 id="erläuterung-des-codes">Erläuterung des Codes</h2>
+<h2 id="include-blekeyboardh">#include &lt;BleKeyboard.h&gt;</h2>
+<p>Hier binden wir die Bibliothek in den Sketch ein, die wir vorher importiert haben.</p>
+<h2 id="blekeyboard-blekeyboard">BleKeyboard bleKeyboard;</h2>
+<p>Wir erzeugen ein Objekt bleKeyboard der Klasse BleKeyboard, mit dem wir anschließend weiter arbeiten können.</p>
+<h2 id="blekeyboardbegin">bleKeyboard.begin();</h2>
+<p>Der ESP32 arbeitet jetzt als BLE-Gerät und versucht sich mit einem Endgerät (Computer, Handy, etc.) zu koppeln.</p>
+<h3 id="2-senden-von-probedaten">2. Senden von Probedaten</h3>
+<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">if</span> (bleKeyboard.<span class="hljs-built_in">isConnected</span>()) {
+    <span class="hljs-type">int</span> x = <span class="hljs-built_in">analogRead</span>(pinX);
+    <span class="hljs-type">int</span> y = <span class="hljs-built_in">analogRead</span>(pinY);
+
+    <span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">3000</span>) {
+      Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Links&quot;</span>);
+      bleKeyboard.<span class="hljs-built_in">press</span>(KEY_LEFT_ARROW);
+      <span class="hljs-built_in">delay</span>(<span class="hljs-number">50</span>);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x &lt; <span class="hljs-number">1000</span>) {
+      Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Rechts&quot;</span>);
+      bleKeyboard.<span class="hljs-built_in">press</span>(KEY_RIGHT_ARROW);
+      <span class="hljs-built_in">delay</span>(<span class="hljs-number">50</span>);
+    }
+    <span class="hljs-keyword">if</span> (y &lt; <span class="hljs-number">1000</span>) {
+      Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Hoch&quot;</span>);
+      bleKeyboard.<span class="hljs-built_in">press</span>(KEY_UP_ARROW);
+      <span class="hljs-built_in">delay</span>(<span class="hljs-number">50</span>);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (y &gt; <span class="hljs-number">3000</span>) {
+      Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Runter&quot;</span>);
+      bleKeyboard.<span class="hljs-built_in">press</span>(KEY_DOWN_ARROW);
+      <span class="hljs-built_in">delay</span>(<span class="hljs-number">50</span>);
+   }
+     bleKeyboard.<span class="hljs-built_in">releaseAll</span>();
+  }
+}
+</code></pre>
+<h2 id="erläuterung-des-codes-1">Erläuterung des Codes</h2>
+<h2 id="ifblekeyboardisconnected-">if(bleKeyboard.isConnected()) {</h2>
+<p>Der Code wird nur ausgeführt, wenn eine Bluetooth-Verbindung aufgebaut wurde.</p>
+<h2 id="blekeyboardpresskey_left_arrow">bleKeyboard.press(KEY_LEFT_ARROW);</h2>
+<p>Der ESP32 sendet den entsprechende Tastencode an den Computer - in diesem Fall den Code für die linke Cursor-Taste.</p>
+<h2 id="blekeyboardreleaseall">bleKeyboard.releaseAll();</h2>
+<p>Mit diesem Befehl wird die Taste wieder gelöst - damit kann ein erneuter Tastendruck gesendet werden.</p>
+<h2 id="42-aufbau-der-ble-verbindung">4.2 Aufbau der BLE-Verbindung</h2>
+<p>Wenn du den Sketch auf den ESP32 hochgeladen hast, ist das Gerät bereit, sich mit einem Computer zu koppeln.<br>
+Am Rechner musst du jetzt in den Bluetooth-Einstellungen nach einem ESP32-Keyboard suchen und dieses Gerät koppeln.<br>
+Anschließend sollte sich der Cursor mit dem Joystick bewegen lassen und du kannst Pac Man spielen:<br>
+<a href="https://www.google.com/logos/2010/pacman10-i.html">Google Pac Man</a></p>
+<p><a href="../../index.html">zurück</a></p>
+
+            
+            
+        </body>
+        </html>

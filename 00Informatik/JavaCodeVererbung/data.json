@@ -47,7 +47,8 @@
     {
       "txt": "Aufruf der öffentlichen Methode count() der Oberklasse in der Unterklasse.",
       "lsg": [
-        "this.count();"
+        "this.count();",
+        "super.count();"
       ],
       "thisLoeschen": true
     },

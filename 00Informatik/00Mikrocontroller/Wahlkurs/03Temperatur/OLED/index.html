@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ausgabe der Messwerte an einem OLED-Display</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+         <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="ausgabe-der-messwerte-an-einem-oled-display">Ausgabe der Messwerte an einem OLED-Display</h1>
+<h2 id="1-anschluss">1. Anschluss</h2>
+<p>Das OLED-Display verfügt über 4 Anschlüsse:</p>
+<table>
+<thead>
+<tr>
+<th>Display</th>
+<th>Arduino Uno</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VCC</td>
+<td>5V</td>
+<td>Spannung</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+<td>Spannung</td>
+</tr>
+<tr>
+<td>SCL</td>
+<td>SCL</td>
+<td>Clock = Taktgeber</td>
+</tr>
+<tr>
+<td>SDA</td>
+<td>SDA</td>
+<td>Daten</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-installation-der-ssd1306ascii-biblitothek">2. Installation der SSD1306Ascii-Biblitothek</h2>
+<p>Zum Betrieb des OLED-Displays müssen wir zunächst eine Bibliothek installieren.</p>
+<ol>
+<li>Öffne den Bibliotheksmanager:</li>
+<li>Suche nach <strong>SSD1306As</strong>.</li>
+<li>Installiere die OneWire-Bibliothek von Jim Studt:<br>
+<img src="2023-10-25_18-14.png" alt="Alt text"></li>
+</ol>
+<h2 id="3-test-des-displays">3. Test des Displays</h2>
+<p>Zum Testen des Displays schreiben wir zunächst einen neuen Sketch, der nur ein Wort auf dem Display ausgibt.</p>
+<ol>
+<li>Erstelle einen neuen Sketch und speichere ihn unter dem Namen Display.</li>
+<li>Kopiere folgende Coden in den Sketch:</li>
+</ol>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Wire.h&gt;</span>               </span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;SSD1306Ascii.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;SSD1306AsciiWire.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> I2C_ADDRESS 0x3C      <span class="hljs-comment">// Adresse des Displays</span></span>
+
+SSD1306AsciiWire oled;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Wire.<span class="hljs-built_in">begin</span>();
+  Wire.<span class="hljs-built_in">setClock</span>(<span class="hljs-number">400000L</span>);
+  oled.<span class="hljs-built_in">begin</span>(&amp;Adafruit128x64, I2C_ADDRESS);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> 
+</span>{
+  oled.<span class="hljs-built_in">setFont</span>(System5x7);  <span class="hljs-comment">// Schriftart festlegen</span>
+  oled.<span class="hljs-built_in">clear</span>();             <span class="hljs-comment">//Display löschen</span>
+  oled.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Temperatur&quot;</span>); 
+  <span class="hljs-built_in">delay</span> (<span class="hljs-number">1000</span>);
+}
+</code></pre>
+<h3 id="erläuterungen-zu-den-codezeilen">Erläuterungen zu den Codezeilen</h3>
+<ol>
+<li>Das Display wird über den sogenannten I²C-Bus angesteuert. Um ihn zu verwenden, müssen wir zunächst die entsprechende Bibliothek <strong>Wire.h</strong> importieren.</li>
+<li>Die beiden folgenden Bibliotheken stellen die Funktionen zum Schreiben auf dem Display zur Verfügung.</li>
+<li>Am I²C-Bus können mehrere verschiedene Geräte angeschlossen werden. Diese Geräte unterscheiden sich in ihrer Adresse. Unsere Displays haben die Adresse 0x3C.</li>
+<li>In der nächsten Zeile wird das Objekt <strong>oled</strong> aus der Klasse <strong>SSD1306AsciiWire</strong> erzeugt. Mit Hilfe dieses Objektes können wir jetzt das Display ansteuern.</li>
+<li>In der <strong>setup</strong>-Methode wird die Datenrate festgelegt, mit der Daten zum Display geschickt werden. Anschließend wird das Display gestartet.</li>
+<li>In der <strong>loop</strong>-Methode wird jede Sekunde das Display gelöscht und neu beschrieben.</li>
+</ol>
+<h3 id="4-testen-des-programms">4. Testen des Programms</h3>
+<p>Wenn du den Sketch hochgeladen hast, müsste der Text <strong>Temperatur</strong> auf dem Display erscheinen und im Sekundentakt blinken.</p>
+<h3 id="5-kombination-mit-dem-sketch-zur-temperaturmessung">5. Kombination mit dem Sketch zur Temperaturmessung</h3>
+<p>Kopiere den neuen Sketch in den alten zur Temperaturmessung und ändere diesen so ab, dass die aktuelle Temperatur am OLED-Display angezeigt wird.<br>
+<br><a href="weiter.html">Lösung</a></p>
+
+        
+        
+    </body>
+    </html>

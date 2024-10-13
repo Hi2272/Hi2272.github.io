@@ -1,0 +1,19 @@
+{ "typ":"Text",   
+  "titel":"Teilbarkeitsregeln",
+  "untertitel":"Zählschleifen und bedingte Anweisungen",
+  "angabe":[
+    {"zeit":1,"typA":"Text","typL":"Text",
+    "txt":"Untersuche den Code - welche Funktion hat die Methode rechnen()?",
+    "lsg":"Die Methode rechnen() fordert zur Eingabe einer beliebigen Zahl auf.<br>Anschließend gibt sie aus, ob diese Zahl durch 2 teilbar ist oder nicht."
+  },
+   {"zeit":1,"typA":"Text","typL":"Text",
+    "txt":"Ändere den Code so ab, dass er die Teilbarkeit durch alle Zahlen zwischen 2 und 10 untersucht.<br>Die Teiler sollen durch Kommas getrennt ausgegeben werden.",
+    "lsg":"Die Lösung benötigt eine Zählschleife:"
+  }
+  
+  ],
+ 
+  "ende":"Super, du hast alle Aufgaben gelöst.",
+  "copyright":""
+    
+}
