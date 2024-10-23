@@ -1,7 +1,7 @@
  <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
 # Anleitung Onshape
-##### [Einleitung](#1-einleitung) | [Schluesselanhänger](#2-anleitung-schluesselanhänger) | [Schraube](#3-alarmanlage) 
+##### [Einleitung](#1-einleitung) | [Schluesselanhänger](#2-anleitung-schluesselanhänger) | [Schraube](#3-alarmanlage) | [Video-Tutorials](#4-video-tutorials)
 ## 1. Einleitung 
 ### a) Registrierung bei Onshape
 Zur Arbeit mit Onshape müsst ihr euch auf dieser Seite registrieren: [onshape.com/de/sign-up](https://www.onshape.com/de/sign-up). Die Verwendung der Software ist für private Zwecke kostenlos.
@@ -38,6 +38,7 @@ Wir zeichnen in der sichtbaren Top-Ebene:
 5. Trage 60 als Breite ein (= 60 mm) und drücke Return
 6. Trage 20 als Höhe ein (=20 mm) und drücke Return.
 ![alt text](2024-06-27_12-08.png)   
+
 ### c) Umwandeln des Rechtecks in einen Quader
 1. Klicke auf das Symbol "Linear austragen"
 2. Trage als Wert 2 (=2 mm Dicke) ein und drücke Return.
@@ -77,7 +78,50 @@ Dsa Plättchen hat jetzt eine Bohrung mit dem Radius 6 mm.
 ## 3. Anleitung Schraube
 Unter dieser Adresse kannst du eine Anleitung herunterladen:
 [Onshape Tutorial](https://ap.physik.unibas.ch/PDF/Manuals/German/IIZ1.pdf)  
-  
+Sehr viel einfacher geht das Erstellen von Schrauben und Muttern aber mit dem folgenden Video-Tutorial.
+## 4. Video-Tutorials
+#### a) Custom Features
+Custom Features sind Werkzeuge, die zu Onshape hinzugefügt werden können. In den Videos wird die Installation erklärt.
+
+- [Video Gewinde-Werkzeug](https://youtu.be/lY9D7eie-Bg)  
+Custom Feature Gewinde: 
+https://cad.onshape.com/documents/6b640a407d78066bd5e41c7a/v/21ef017a4e386179c3be31f3/e/c953720c264ce001f1a82dc1     
+- [Video Gitter-Werkzeug](https://youtu.be/6XbfaVHAPZ0)  
+Custom Feature Gitter: 
+https://cad.onshape.com/documents/d1489499c6bfdc52ce5cf32a/w/c544b659a37041d14e810028/e/1e65c10a40f2fe803e5816de
+- [Video Zahnrad und Zahnstange](https://youtu.be/nDwVnotmvoE)  
+Custom Feature Zahnrad:  
+https://cad.onshape.com/documents/5742c8cde4b06c68b362d748/v/1db29081376c095cf10e2a3d/e/01a666571e625f8b819fd75b
+
+#### b) Nachbearbeiten von STL-Dateien
+
+STL-Dateien werden in Onshape als sogenannte Mesh-Objekte eingefügt. Ihre Oberfläche wird als Sammlung von Punkten (Vertices), Kanten und Flächen dargestellt. Diese Objekte können wir in Onshape nicht direkt verändern. Wir können aber auf dem Mesh-Objekt neue Ebenen und Formen anlegen, mit denen wir dann wie gewohnt arbeiten können. Die folgenden Videos zeigen das Vorgehen:  
+- [Bohrung verschließen oder vergrößern](https://youtu.be/WLT_AozSL_E)  
+- [Bohrung verkleinern](https://youtu.be/HNV7gATUfGo)  
+- [Komplexe Operationen (englisch)](https://youtu.be/Lm_uuB9_2yg)  
+
 
 
 [zurück](../index.html)
+
+---
+
+<footer >
+
+Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.
+
+<h5>Haftungsausschluss</h5>
+  <h5>Inhalt des Onlineangebotes</h5>
+  <p>Der Autor übernimmt keinerlei Gewähr für die Aktualität, Richtigkeit und Vollständigkeit der bereitgestellten Informationen auf unserer Website. Haftungsansprüche gegen den Autor, welche sich auf Schäden materieller oder ideeller Art beziehen, die durch die Nutzung oder Nichtnutzung der dargebotenen Informationen bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen verursacht wurden, sind grundsätzlich ausgeschlossen, sofern seitens des Autors kein nachweislich vorsätzliches oder grob fahrlässiges Verschulden vorliegt.<br>
+  Alle Angebote sind freibleibend und unverbindlich. Der Autor behält es sich ausdrücklich vor, Teile der Seiten oder das gesamte Angebot ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen.</p>
+  <h5>Verweise und Links</h5>
+  <p>Bei direkten oder indirekten Verweisen auf fremde Webseiten (“Hyperlinks”), die außerhalb des Verantwortungsbereiches des Autors liegen, würde eine Haftungsverpflichtung ausschließlich in dem Fall in Kraft treten, in dem der Autor von den Inhalten Kenntnis hat und es ihm technisch möglich und zumutbar wäre, die Nutzung im Falle rechtswidriger Inhalte zu verhindern.<br>
+  Der Autor erklärt hiermit ausdrücklich, dass zum Zeitpunkt der Linksetzung keine illegalen Inhalte auf den zu verlinkenden Seiten erkennbar waren. Auf die aktuelle und zukünftige Gestaltung, die Inhalte oder die Urheberschaft der verlinkten/verknüpften Seiten hat der Autor keinerlei Einfluss. Deshalb distanziert er sich hiermit ausdrücklich von allen Inhalten aller verlinkten /verknüpften Seiten, die nach der Linksetzung verändert wurden. Diese Feststellung gilt für alle innerhalb des eigenen Internetangebotes gesetzten Links und Verweise sowie für Fremdeinträge in vom Autor eingerichteten Gästebüchern, Diskussionsforen, Linkverzeichnissen, Mailinglisten und in allen anderen Formen von Datenbanken, auf deren Inhalt externe Schreibzugriffe möglich sind. Für illegale, fehlerhafte oder unvollständige Inhalte und insbesondere für Schäden, die aus der Nutzung oder Nichtnutzung solcherart dargebotener Informationen entstehen, haftet allein der Anbieter der Seite, auf welche verwiesen wurde, nicht derjenige, der über Links auf die jeweilige Veröffentlichung lediglich verweist.</p>
+  <h5>Urheber- und Kennzeichenrecht</h5>
+  <p>Der Autor ist bestrebt, in allen Publikationen die Urheberrechte der verwendeten Bilder, Grafiken, Tondokumente, Videosequenzen und Texte zu beachten, von ihm selbst erstellte Bilder, Grafiken, Tondokumente, Videosequenzen und Texte zu nutzen oder auf lizenzfreie Grafiken, Tondokumente, Videosequenzen und Texte zurückzugreifen.<br>
+  Alle innerhalb des Internetangebotes genannten und ggf. durch Dritte geschützten Marken- und Warenzeichen unterliegen uneingeschränkt den Bestimmungen des jeweils gültigen Kennzeichenrechts und den Besitzrechten der jeweiligen eingetragenen Eigentümer. Allein aufgrund der bloßen Nennung ist nicht der Schluss zu ziehen, dass Markenzeichen nicht durch Rechte Dritter geschützt sind!<br>
+  Das Copyright für veröffentlichte, vom Autor selbst erstellte Objekte bleibt allein beim Autor der Seiten. Eine Vervielfältigung oder Verwendung solcher Grafiken, Tondokumente, Videosequenzen und Texte in anderen elektronischen oder gedruckten Publikationen ist ohne ausdrückliche Zustimmung des Autors nicht gestattet.</p>
+
+Quelle: <a href="http://www.haftungsausschluss-vorlage.de/">Haftungsausschluss Muster</a> von <a href="http://www.haftungsausschluss.org/">Haftungsausschluss.org</a> und das <a href="http://www.dsgvo-gesetz.de/">Datenschutzgesetz</a>
+
+</footer>
