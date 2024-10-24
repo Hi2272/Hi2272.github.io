@@ -2,7 +2,7 @@
   <div style="text-align:center">
 
 # Kurzanleitung ISpartan auf dem IPad
-([Methan](#1-methan) | [Ethen: π-Orbital](#2-π-orbital-beim-ethen) | [E/Z-Isomerie](#3-e--und-z-isomerie-beim-buta-2-en) | [Konformere](#4-konformere-beim-12-dichlorethan) )
+([Methan](#1-methan) | [Ethen: π-Orbital](#2-π-orbital-beim-ethen) | [E/Z-Isomerie](#3-e--und-z-isomerie-beim-buta-2-en) | [Konformere](#4-konformere-beim-12-dichlorethan) | [Elektronendichteverteilung](#5-elektronendichteverteilung) )
 </div> 
 
 ## 1. Methan
@@ -78,5 +78,18 @@ Das System sucht jetzt nach stabilen räumlichen Ausrichtungen der Atome und fin
 ![alt text](IMG_0028.PNG)  
 Bei größeren Molekülen findet das System eine Vielzahl metastabiler Konformere:  
 ![alt text](IMG_0029.PNG)
- 
+
+## 5. Elektronendichteverteilung
+### Sketch-Modus
+Zeichne ein Ethanol-Molekül:  
+![alt text](IMG_0032.PNG)  
+Wechsele in den 3D-Modus.  
+### Elektronendichteverteilung
+1. Lade die Daten aus der Datenbank herunter.
+2. Klicke auf das Symbol für die Darstellung der Elektronendichteverteilung:  
+ ![alt text](IMG_0031.PNG)  
+3. Durch langes Drücken auf die Schaltfläche (2) kannst du den Drahtgitter-Modus auswählen:  
+ ![alt text](IMG_0030.PNG)  
+
+   
 [zurück](../index.html)
