@@ -2,7 +2,7 @@
   <div style="text-align:center">
 
 # Kurzanleitung ISpartan auf dem IPad
-([Methan](#1-methan) | [Ethen: π-Orbital](#2-π-orbital-beim-ethen) | [E/Z-Isomerie](#3-e--und-z-isomerie-beim-buta-2-en) | [Konformere](#4-konformere-beim-12-dichlorethan) | [Elektronendichteverteilung](#5-elektronendichteverteilung) )
+([Methan](#1-methan) | [Ethen: π-Orbital](#2-π-orbital-beim-ethen) | [E/Z-Isomerie](#3-e--und-z-isomerie-beim-buta-2-en) | [Konformere](#4-konformere-beim-12-dichlorethan) | [Elektronendichteverteilung](#5-elektronendichteverteilung) | [Grenzen des Systems](#6-grenzen-des-systems))
 </div> 
 
 ## 1. Methan
@@ -90,6 +90,12 @@ Wechsele in den 3D-Modus.
  ![alt text](IMG_0031.PNG)  
 3. Durch langes Drücken auf die Schaltfläche (2) kannst du den Drahtgitter-Modus auswählen:  
  ![alt text](IMG_0030.PNG)  
+### 6. Grenzen des Systems
+1. Geladene Teilchen  
+Im Sketch-Modus können positive oder negative Formalladungen auf Atome übertragen werden. Die entstehenden Ionen sind aber nicht in der Datenbank gespeichert. Damit kann zum Beispiel nicht gezeigt werden, dass die Ladung beider O-Atome im Ethanoat-Ion gleich groß ist.
+In [Molview.org](https://molview.org/) ist diese Darstellung möglich.  
+2. Rotation um C-C-Bindungen  
+Die verschiedenen Konformere werden durch Rotation um C-C-Bindungen erzeugt. Hierbei rotiert das System auch um Bindungen, die aufgrund von Delokalisierung partiellen Doppelbindungscharakter haben (Bsp. Buta-1,3-dien).  
 
    
 [zurück](../index.html)
