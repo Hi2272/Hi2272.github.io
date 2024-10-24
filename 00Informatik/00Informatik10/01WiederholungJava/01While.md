@@ -2,19 +2,18 @@
 
 # Wiederholung Grundstrukturen Java
 
-## Die While-Schleife
+## Die Definition von Methoden
 
-Erstelle im **Blöcke**-Modus dieses Programm:  
+Wandele das Programm unter Verwendung eines selbstdefinierten Methode um:  
+![alt text](2024-10-22_13-27.png)
 
-![alt text](2024-10-22_13-06.png)  
-
-1. Schalte in den **Code**-Modus und analysiere die Grundstruktur der **While**-Schleife.  
-2. Ergänze dein Programm um eine Zählschleife, um eine Mauer rund um die Welt bauen zu lassen, die genau einen Stein hoch ist:  
-   
+## Aufgabenstellung  
+1. Schalte in den **Code**-Modus und analysiere die Grundstruktur einer **Methoden**-Deklaration.  
+2. Ergänze dein Programm um eine Erstelle eine weitere Methode **steinSchritt**, die einen Stein legt und einen Schritt geht.   
 ![alt text](2024-10-22_13-16.png)
 
 
-[Lösung](01Loesung.html)  
+[Lösung](02Loesung.html)  
 
 
 
