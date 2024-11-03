@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
 # Wahlunterricht Mikroelektronik und Technik am Gymnasium Waldkraiburg
-##### [LEDs](#leuchtdioden-leds) | [Taster](#taster) | [Alarmanlage](#2-alarmanlage) | [Messwerterfassung](#3-messwerterfassung) | [Diskoleuchte](#4-diskobeleuchtung) | [ESP32](#5-esp32) | [Gamepad](#b-ein-bluetooth-gamepad-für-pac-man) | [Interrupts](#8-blinken-ohne-pause---interrupts) | [3DDruck](#3d-druck-und-cad)
+##### [LEDs](#leuchtdioden-leds) | [Taster](#taster) | [Alarmanlage](#alarmanlage) | [Messwerterfassung](#messwerterfassung) | [Diskoleuchte](#diskobeleuchtung) | [ESP32](#esp32) | [Gamepad](#b-ein-bluetooth-gamepad-für-pac-man) | [Interrupts](#blinken-ohne-pause---interrupts) | [3DDruck](#3d-druck-und-cad)
 
 ##### Diese Seite befindet sich im Aufbau. 
 ## Grundausstattung
@@ -11,7 +11,7 @@ Die Materialien für den Kurs wurden durch Spenden folgender Organisationen fina
 - [Förderverein des Gymnasium Waldkraiburgs](https://www.gymnasiumwaldkraiburg.de/schule/foerderverein/)
 - [Wilhelm-Stemmer-Stiftung](https://www.wilhelm-stemmer-stiftung.de)
   
-Wir danken den Spendern herzlich für Ihre Unterstützung.
+Wir danken den Spendern herzlich für ihre Unterstützung.
 
 [Materialliste](00Material/index.html)  
 [Bezugsquellen](00Material/bezugsquellen.html)  
@@ -46,11 +46,12 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
 
 Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung aktiviert werden kann:  
 ![Alarmanlage.png](Alarmanlage.png)
-
 1. [Bewegungsmelder](02/index.html)
 2. [Passiver Buzzer](03/index.html)
 3. [Infrarot-Fernbedienung](04/index.html)
 4. [Rotations-Encoder](05/index.html)
+5. [Platinenentwurf mit Fritzing](Fritzing/Alarmanlage/index.html)  
+   
 
 ### Messwerterfassung
 
