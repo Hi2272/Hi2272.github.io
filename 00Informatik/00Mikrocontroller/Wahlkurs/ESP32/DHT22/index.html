@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Daten in Goggle Sheets speichern</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="daten-in-goggle-sheets-speichern">Daten in Goggle Sheets speichern</h1>
+<h2 id="einleitung">Einleitung</h2>
+<p>Ein ESP32 soll Temperatur und Luftfeuchtigkeit messen und in einem Tabellenblatt von Google Sheets speichern. Diese Daten können dann von einem beliebigen Rechner über das Internet ausgelesen werden.</p>
+<h2 id="vorbereitungen">Vorbereitungen</h2>
+<p>Das Vorgehen orientiert sich an dieser Anleitung:<br>
+<a href="https://randomnerdtutorials.com/esp32-datalogging-google-sheets/">https://randomnerdtutorials.com/esp32-datalogging-google-sheets/</a></p>
+<h3 id="anmeldung-bei-google">Anmeldung bei Google</h3>
+<p>Um Daten in Google Sheets speichern zu können, benötigst einen Google-Account. (<a href="https://myaccount.google.com/">https://myaccount.google.com/</a>)</p>
+<p>Melde dich damit auf der Google Cloud-Console an: <a href="https://console.cloud.google.com/projectselector2/iam-admin/settings">https://console.cloud.google.com/projectselector2/iam-admin/settings</a></p>
+<h3 id="neues-projekt-erstellen">Neues Projekt erstellen</h3>
+<p>Erstelle ein neues Projekt:<br>
+<img src="NeuesProjekt.png" alt="alt text"><br>
+Trage einen sinnvollen Namen ein und klicken auf &quot;Erstellen&quot;:<br>
+<img src="Erstellen.png" alt="alt text"></p>
+<h3 id="dienstkonto---service-account">Dienstkonto - Service-Account</h3>
+<p>Als nächstes musst du einen Service-Account für dieses Projekt erstellen. Der ESP32 wird diesen Zugang nutzen, um die Daten auf das Google Sheet zu schreiben.</p>
+<ol>
+<li>Klicke hierzu links auf <strong>IAM</strong></li>
+<li>Klicke jetzt auf <strong>Dienstkonten</strong></li>
+<li>Klicke jetzt auf <strong>Dienstkonto erstellen</strong>:<br>
+<img src="DienstkontoErstellen.png" alt="alt text"></li>
+<li>Trage für das Dienstkonto einen sinnvollen Namen ein.</li>
+<li>Wähle als Rolle <strong>Inhaber</strong></li>
+<li>Klicke abschließend auf <strong>Fertig</strong></li>
+</ol>
+<h3 id="schlüsseldatei-mit-allen-daten">Schlüsseldatei mit allen Daten</h3>
+<p>Zusätzlich benötigst du noch einen Schlüssel, um auf das Projekt vom ESP32 aus zugreifen zu können.</p>
+<ol>
+<li>Klicke auf die drei Punkte rechts.</li>
+<li>Wähle <strong>Schlüssel hinzufügen</strong> und <strong>Neuen Schlüssel erstellen</strong>.<br>
+<img src="Schluessel.png" alt="alt text"></li>
+<li>Klicke auf <strong>Erstellen</strong> um den Schlüssel im JSON-Format zu erzeugen.</li>
+<li>Das System lädt jetzt eine JSON-Datei auf deinen Rechner herunter, die allen Daten für den Zugang zu unserem Projekt enthält.</li>
+</ol>
+<h3 id="apis-aktivieren">APIs aktivieren</h3>
+<p>Eine API (engl. Aplication Programmiung Interface) ist eine Schnittstelle, über die Programme mit einer Internetseite oder einem anderen Programm interagieren können. Du benötigst zwei verschiedene APIs:</p>
+<ol>
+<li>Aktiviere die Google Sheets API :
+<a href="https://console.cloud.google.com/apis/library/sheets.googleapis.com">https://console.cloud.google.com/apis/library/sheets.googleapis.com</a></li>
+<li>Aktiviere die Google Drive API:<br>
+<a href="https://console.cloud.google.com/apis/library/drive.googleapis.com">https://console.cloud.google.com/apis/library/drive.googleapis.com</a></li>
+</ol>
+<h3 id="google-sheet-erstellen-und-freigeben">Google Sheet erstellen und freigeben</h3>
+<ol>
+<li>Erstelle auf dieser Seite ein neues Google Sheet:<br>
+<a href="https://docs.google.com/spreadsheets/u/0/?ec=asw-sheets-hero-goto">https://docs.google.com/spreadsheets/u/0/?ec=asw-sheets-hero-goto</a></li>
+<li>Gib der Datei über das Menü <strong>Datei.Umbenennen</strong> einen sinnvollen Namen.</li>
+<li>Kopiere aus der URL der Datei den Bereich zwischen <strong>spreadsheets/d/</strong> und <strong>/edit</strong> heraus. Diese Zeichenkette benötigst du später um Zugriff auf genau dieses Google Sheet zu bekommen.</li>
+<li>Klicke auf <strong>Freigeben</strong> und trage die <strong>client_email</strong>-Adresse ein. Du findest sie in der <strong>json-Datei</strong>, die du als Schlüsseldatei heruntergeladen hast.</li>
+</ol>
+<h2 id="sketch-zum-messen-und-übertragen-der-daten">Sketch zum Messen und Übertragen der Daten</h2>
+<pre><code class="language-C++"><span class="hljs-comment">// DHT-Temperatur und Luftfeuchtigkeitsmesser</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;DHTesp.h&quot;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Arduino.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WiFi.h&gt;</span></span>
+
+<span class="hljs-comment">// Zeitserver</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;time.h&quot;</span></span>
+<span class="hljs-comment">// Google Sheets Client</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;ESP_Google_Sheet_Client.h&gt;</span></span>
+
+<span class="hljs-comment">// For SD/SD_MMC mounting helper</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;GS_SDHelper.h&gt;</span></span>
+
+<span class="hljs-comment">// WLan-Daten</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> WIFI_SSID <span class="hljs-string">&quot;Name deines WLANS&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> WIFI_PASSWORD <span class="hljs-string">&quot;Passwort deines WLANs&quot;</span></span>
+
+<span class="hljs-comment">// Google Project ID </span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> PROJECT_ID <span class="hljs-string">&quot;Wert aus der Schlüsseldatei&quot;</span></span>
+
+<span class="hljs-comment">// Service Account&#x27;s client email</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> CLIENT_EMAIL <span class="hljs-string">&quot;Wert aus der Schlüsseldatei&quot;</span></span>
+
+
+<span class="hljs-comment">// Service Account&#x27;s private key</span>
+
+<span class="hljs-type">const</span> <span class="hljs-type">char</span> PRIVATE_KEY[] PROGMEM = <span class="hljs-string">&quot;langer Wert aus der Schlüsseldatei&quot;</span>;
+
+<span class="hljs-comment">// The ID of the spreadsheet where you&#x27;ll publish the data</span>
+<span class="hljs-type">const</span> <span class="hljs-type">char</span> spreadsheetId[] = <span class="hljs-string">&quot;Kopierter Bereich aus der URL des Sheets&quot;</span>;
+
+<span class="hljs-comment">// Timer variables</span>
+<span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> lastTime = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Alle 30 Sekunden wird ein Messwert geschrieben</span>
+
+<span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> timerDelay = <span class="hljs-number">30000</span>;
+
+<span class="hljs-comment">// Token Callback function</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">tokenStatusCallback</span><span class="hljs-params">(TokenInfo info)</span></span>;
+
+<span class="hljs-comment">// NTP server to request epoch time</span>
+<span class="hljs-type">const</span> <span class="hljs-type">char</span>* ntpServer = <span class="hljs-string">&quot;pool.ntp.org&quot;</span>;
+
+<span class="hljs-comment">// Variable to save current epoch time</span>
+<span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> epochTime;
+
+<span class="hljs-comment">// Function that gets current epoch time</span>
+<span class="hljs-function"><span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> <span class="hljs-title">getTime</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-type">time_t</span> now;
+  <span class="hljs-keyword">struct</span> <span class="hljs-title class_">tm</span> timeinfo;
+  <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">getLocalTime</span>(&amp;timeinfo)) {
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Failed to obtain time&quot;</span>);
+    <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>);
+  }
+  <span class="hljs-built_in">time</span>(&amp;now);
+
+  <span class="hljs-keyword">return</span> now;
+}
+
+<span class="hljs-function">String <span class="hljs-title">getZeit</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-type">time_t</span> now;
+  <span class="hljs-keyword">struct</span> <span class="hljs-title class_">tm</span> timeinfo;
+  <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">getLocalTime</span>(&amp;timeinfo)) {
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Failed to obtain time&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;
+  }
+  <span class="hljs-built_in">time</span>(&amp;now);
+  <span class="hljs-type">char</span> buffer[<span class="hljs-number">80</span>];
+  <span class="hljs-built_in">strftime</span>(buffer, <span class="hljs-built_in">sizeof</span>(buffer), <span class="hljs-string">&quot;%d.%m.%Y %H:%M:%S&quot;</span>, &amp;timeinfo);
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>(buffer);
+}
+
+DHTesp dhtSensor;
+TempAndHumidity data;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> DHT_PIN = <span class="hljs-number">15</span>;
+<span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// put your setup code here, to run once:</span>
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);
+  dhtSensor.<span class="hljs-built_in">setup</span>(DHT_PIN, DHTesp::DHT22);
+
+  WiFi.<span class="hljs-built_in">begin</span>(WIFI_SSID, WIFI_PASSWORD);
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Connecting to Wi-Fi&quot;</span>);
+  <span class="hljs-keyword">while</span> (WiFi.<span class="hljs-built_in">status</span>() != WL_CONNECTED) {
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;.&quot;</span>);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">300</span>);
+  }
+  Serial.<span class="hljs-built_in">println</span>();
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Connected with IP: &quot;</span>);
+  Serial.<span class="hljs-built_in">println</span>(WiFi.<span class="hljs-built_in">localIP</span>());
+  Serial.<span class="hljs-built_in">println</span>();
+
+  <span class="hljs-comment">//Configure time</span>
+  <span class="hljs-built_in">configTime</span>(<span class="hljs-number">3600</span>, <span class="hljs-number">3600</span>, ntpServer);
+
+  GSheet.<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;ESP Google Sheet Client v%s\n\n&quot;</span>, ESP_GOOGLE_SHEET_CLIENT_VERSION);
+  <span class="hljs-comment">// Set the callback for Google API access token generation status (for debug only)</span>
+  GSheet.<span class="hljs-built_in">setTokenCallback</span>(tokenStatusCallback);
+
+  <span class="hljs-comment">// Set the seconds to refresh the auth token before expire (60 to 3540, default is 300 seconds)</span>
+  GSheet.<span class="hljs-built_in">setPrerefreshSeconds</span>(<span class="hljs-number">10</span> * <span class="hljs-number">60</span>);
+
+  <span class="hljs-comment">// Begin the access token generation for Google API authentication</span>
+  GSheet.<span class="hljs-built_in">begin</span>(CLIENT_EMAIL, PROJECT_ID, PRIVATE_KEY);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// Call ready() repeatedly in loop for authentication checking and processing</span>
+  <span class="hljs-type">bool</span> ready = GSheet.<span class="hljs-built_in">ready</span>();
+
+  <span class="hljs-keyword">if</span> (ready &amp;&amp; <span class="hljs-built_in">millis</span>() - lastTime &gt; timerDelay) {
+    lastTime = <span class="hljs-built_in">millis</span>();
+
+    FirebaseJson response;
+
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;\nFüge Daten zur Tabelle hinzu...&quot;</span>);
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;----------------------------&quot;</span>);
+
+    FirebaseJson valueRange;
+
+    data = dhtSensor.<span class="hljs-built_in">getTempAndHumidity</span>();
+
+    count++;
+    valueRange.<span class="hljs-built_in">add</span>(<span class="hljs-string">&quot;majorDimension&quot;</span>, <span class="hljs-string">&quot;COLUMNS&quot;</span>);
+    valueRange.<span class="hljs-built_in">set</span>(<span class="hljs-string">&quot;values/[0]/[0]&quot;</span>, <span class="hljs-built_in">getZeit</span>());
+
+    valueRange.<span class="hljs-built_in">set</span>(<span class="hljs-string">&quot;values/[1]/[0]&quot;</span>, data.temperature);
+    valueRange.<span class="hljs-built_in">set</span>(<span class="hljs-string">&quot;values/[2]/[0]&quot;</span>, data.humidity);
+    valueRange.<span class="hljs-built_in">set</span>(<span class="hljs-string">&quot;values/[3]/[0]&quot;</span>, count);
+
+
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Humidity: &quot;</span> + <span class="hljs-built_in">String</span>(data.humidity, <span class="hljs-number">1</span>));
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Temperature: &quot;</span> + <span class="hljs-built_in">String</span>(data.temperature, <span class="hljs-number">2</span>));
+
+    <span class="hljs-type">bool</span> success = GSheet.values.<span class="hljs-built_in">append</span>(&amp;response <span class="hljs-comment">/* returned response */</span>, spreadsheetId <span class="hljs-comment">/* spreadsheet Id to append */</span>, <span class="hljs-string">&quot;Tabellenblatt1!A1&quot;</span> <span class="hljs-comment">/* range to append */</span>, &amp;valueRange <span class="hljs-comment">/* data range to append */</span>);
+    <span class="hljs-keyword">if</span> (success) {
+      response.<span class="hljs-built_in">toString</span>(Serial, <span class="hljs-literal">true</span>);
+      valueRange.<span class="hljs-built_in">clear</span>();
+    } <span class="hljs-keyword">else</span> {
+      Serial.<span class="hljs-built_in">println</span>(GSheet.<span class="hljs-built_in">errorReason</span>());
+    }
+    Serial.<span class="hljs-built_in">println</span>();
+    Serial.<span class="hljs-built_in">println</span>(ESP.<span class="hljs-built_in">getFreeHeap</span>());
+  }
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">tokenStatusCallback</span><span class="hljs-params">(TokenInfo info)</span> </span>{
+  <span class="hljs-keyword">if</span> (info.status == token_status_error) {
+    GSheet.<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Token info: type = %s, status = %s\n&quot;</span>, GSheet.<span class="hljs-built_in">getTokenType</span>(info).<span class="hljs-built_in">c_str</span>(), GSheet.<span class="hljs-built_in">getTokenStatus</span>(info).<span class="hljs-built_in">c_str</span>());
+    GSheet.<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Token error: %s\n&quot;</span>, GSheet.<span class="hljs-built_in">getTokenError</span>(info).<span class="hljs-built_in">c_str</span>());
+  } <span class="hljs-keyword">else</span> {
+    GSheet.<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Token info: type = %s, status = %s\n&quot;</span>, GSheet.<span class="hljs-built_in">getTokenType</span>(info).<span class="hljs-built_in">c_str</span>(), GSheet.<span class="hljs-built_in">getTokenStatus</span>(info).<span class="hljs-built_in">c_str</span>());
+  }
+}
+</code></pre>
+<p><a href="../../index.html">zurück</a></p>
+<hr>
+<footer >
+<p>Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.</p>
+<h5>Haftungsausschluss</h5>
+  <h5>Inhalt des Onlineangebotes</h5>
+  <p>Der Autor übernimmt keinerlei Gewähr für die Aktualität, Richtigkeit und Vollständigkeit der bereitgestellten Informationen auf unserer Website. Haftungsansprüche gegen den Autor, welche sich auf Schäden materieller oder ideeller Art beziehen, die durch die Nutzung oder Nichtnutzung der dargebotenen Informationen bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen verursacht wurden, sind grundsätzlich ausgeschlossen, sofern seitens des Autors kein nachweislich vorsätzliches oder grob fahrlässiges Verschulden vorliegt.<br>
+  Alle Angebote sind freibleibend und unverbindlich. Der Autor behält es sich ausdrücklich vor, Teile der Seiten oder das gesamte Angebot ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen.</p>
+  <h5>Verweise und Links</h5>
+  <p>Bei direkten oder indirekten Verweisen auf fremde Webseiten (“Hyperlinks”), die außerhalb des Verantwortungsbereiches des Autors liegen, würde eine Haftungsverpflichtung ausschließlich in dem Fall in Kraft treten, in dem der Autor von den Inhalten Kenntnis hat und es ihm technisch möglich und zumutbar wäre, die Nutzung im Falle rechtswidriger Inhalte zu verhindern.<br>
+  Der Autor erklärt hiermit ausdrücklich, dass zum Zeitpunkt der Linksetzung keine illegalen Inhalte auf den zu verlinkenden Seiten erkennbar waren. Auf die aktuelle und zukünftige Gestaltung, die Inhalte oder die Urheberschaft der verlinkten/verknüpften Seiten hat der Autor keinerlei Einfluss. Deshalb distanziert er sich hiermit ausdrücklich von allen Inhalten aller verlinkten /verknüpften Seiten, die nach der Linksetzung verändert wurden. Diese Feststellung gilt für alle innerhalb des eigenen Internetangebotes gesetzten Links und Verweise sowie für Fremdeinträge in vom Autor eingerichteten Gästebüchern, Diskussionsforen, Linkverzeichnissen, Mailinglisten und in allen anderen Formen von Datenbanken, auf deren Inhalt externe Schreibzugriffe möglich sind. Für illegale, fehlerhafte oder unvollständige Inhalte und insbesondere für Schäden, die aus der Nutzung oder Nichtnutzung solcherart dargebotener Informationen entstehen, haftet allein der Anbieter der Seite, auf welche verwiesen wurde, nicht derjenige, der über Links auf die jeweilige Veröffentlichung lediglich verweist.</p>
+  <h5>Urheber- und Kennzeichenrecht</h5>
+  <p>Der Autor ist bestrebt, in allen Publikationen die Urheberrechte der verwendeten Bilder, Grafiken, Tondokumente, Videosequenzen und Texte zu beachten, von ihm selbst erstellte Bilder, Grafiken, Tondokumente, Videosequenzen und Texte zu nutzen oder auf lizenzfreie Grafiken, Tondokumente, Videosequenzen und Texte zurückzugreifen.<br>
+  Alle innerhalb des Internetangebotes genannten und ggf. durch Dritte geschützten Marken- und Warenzeichen unterliegen uneingeschränkt den Bestimmungen des jeweils gültigen Kennzeichenrechts und den Besitzrechten der jeweiligen eingetragenen Eigentümer. Allein aufgrund der bloßen Nennung ist nicht der Schluss zu ziehen, dass Markenzeichen nicht durch Rechte Dritter geschützt sind!<br>
+  Das Copyright für veröffentlichte, vom Autor selbst erstellte Objekte bleibt allein beim Autor der Seiten. Eine Vervielfältigung oder Verwendung solcher Grafiken, Tondokumente, Videosequenzen und Texte in anderen elektronischen oder gedruckten Publikationen ist ohne ausdrückliche Zustimmung des Autors nicht gestattet.</p>
+<p>Quelle: <a href="http://www.haftungsausschluss-vorlage.de/">Haftungsausschluss Muster</a> von <a href="http://www.haftungsausschluss.org/">Haftungsausschluss.org</a> und das <a href="http://www.dsgvo-gesetz.de/">Datenschutzgesetz</a></p>
+</footer>
+
+            
+            
+        </body>
+        </html>
