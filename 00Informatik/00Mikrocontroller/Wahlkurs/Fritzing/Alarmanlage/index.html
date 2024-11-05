@@ -11,9 +11,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only],
-.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
-.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -181,7 +179,7 @@
 <li>Stelle im Inspektor ein, dass er um 90° gedreht ist und 3 Pins hat.</li>
 <li>Beschrifte ihn mit <strong>LED</strong></li>
 <li>Ziehe aus dem <strong>Basis</strong>-Bereich einen Widerstand auf den Arduino.</li>
-<li>Verbinde den Widerstand mit dem mittleren Pol der LED und GND.</li>
+<li>Verbinde den Widerstand mit dem mittleren Pol der LED und 5V.</li>
 <li>Verbinde die beiden anderen Pole der LED mit den Pins 7 und 8.
 Hierbei musst du den Draht von D zu Pin 6 kreuzen. Klicke ihn mit der rechten Maustaste an und verschiebe ihn auf die untere Ebene:<br>
 <img src="2024-11-03_08-52.png" alt="alt text"></li>
@@ -189,7 +187,8 @@ Hierbei musst du den Draht von D zu Pin 6 kreuzen. Klicke ihn mit der rechten Ma
 <h3 id="buzzer">Buzzer</h3>
 <ol>
 <li>Ziehe aus dem <strong>Anschlüsse</strong>-Bereich einen weiteren <strong>Generic female Header</strong> auf den Arduino</li>
-<li>Stelle im Inspektor ein, dass er um 90° gedreht ist und 2 Pins hat.</li>
+<li>Stelle im Inspektor ein, dass er um 90° gedreht ist und 4 Pins hat.<br>
+Wir benötigen später nur die beiden äußeren Pins.</li>
 <li>Beschrifte ihn mit <strong>Buzzer</strong></li>
 <li>Beschrifte ihn mit - und A</li>
 <li>Schließe - an GND und A an Pin 5 an.</li>

@@ -38,13 +38,14 @@ Wenn wir die Platine später herstellen lassen, werden
 2.  Stelle im Inspektor ein, dass er um 90° gedreht ist und 3 Pins hat.
 3.  Beschrifte ihn mit **LED**
 4.  Ziehe aus dem **Basis**-Bereich einen Widerstand auf den Arduino.
-5.  Verbinde den Widerstand mit dem mittleren Pol der LED und GND.
+5.  Verbinde den Widerstand mit dem mittleren Pol der LED und 5V.
 6.  Verbinde die beiden anderen Pole der LED mit den Pins 7 und 8. 
 Hierbei musst du den Draht von D zu Pin 6 kreuzen. Klicke ihn mit der rechten Maustaste an und verschiebe ihn auf die untere Ebene:  
 ![alt text](2024-11-03_08-52.png)  
 ### Buzzer
 1. Ziehe aus dem **Anschlüsse**-Bereich einen weiteren **Generic female Header** auf den Arduino
-2.  Stelle im Inspektor ein, dass er um 90° gedreht ist und 2 Pins hat.
+2.  Stelle im Inspektor ein, dass er um 90° gedreht ist und 4 Pins hat.  
+Wir benötigen später nur die beiden äußeren Pins.
 3.  Beschrifte ihn mit **Buzzer**
 4.  Beschrifte ihn mit - und A
 5.  Schließe - an GND und A an Pin 5 an.
