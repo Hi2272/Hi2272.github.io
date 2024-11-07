@@ -143,17 +143,32 @@
   Robot karol = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Robot</span>();
 
   <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++) {
-      <span class="hljs-keyword">while</span> (karol.<span class="hljs-built_in">nichtIstWand</span>()) {
-        karol.<span class="hljs-built_in">hinlegen</span>();
-        karol.<span class="hljs-built_in">schritt</span>();
-      }
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">40</span>; i++) {
+      <span class="hljs-built_in">mauerBisZurWand</span>();
       karol.<span class="hljs-built_in">linksDrehen</span>();
+    }
+  }
+
+  <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">mauerBisZurWand</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">while</span> (karol.<span class="hljs-built_in">nichtIstWand</span>()) {
+      <span class="hljs-built_in">schrittStein</span>();
+    }
+  }
+
+  <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">schrittStein</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">tauschen</span>();
+    karol.<span class="hljs-built_in">schritt</span>();
+  }
+
+  <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">tauschen</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (karol.<span class="hljs-built_in">nichtIstZiegel</span>()) {
+      karol.<span class="hljs-built_in">hinlegen</span>();
+    } <span class="hljs-keyword">else</span> {
+      karol.<span class="hljs-built_in">aufheben</span>();
     }
   }
 }
 </code></pre>
-<p><a href="02Methoden.html">Methoden</a></p>
 <p><a href="../../index.html">zurück</a></p>
 
             
