@@ -51,6 +51,7 @@ Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung a
 3. [Infrarot-Fernbedienung](04/index.html)
 4. [Rotations-Encoder](05/index.html)
 5. [Platinenentwurf mit Fritzing](Fritzing/Alarmanlage/index.html)  
+6. [Hinweise zum Löten](Löten/index.html)  
    
 
 ### Messwerterfassung
