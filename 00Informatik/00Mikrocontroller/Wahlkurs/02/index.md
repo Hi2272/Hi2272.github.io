@@ -10,17 +10,21 @@ Verbinde jetzt die Pins passend zur Beschriftung:
 2. VCC -> +5V
 3. OUT -> Pin 6
    
-![Alt text](../03/Screenshot_1.png)
+Schließe eine rote LED wie folgt an:
+1. Langes Bein über 1 kOhm Widerstand an +5 V
+2. Kurzes Bein an Pin 8
+![Alt text](2024-11-13_13-43.png)   
 
 ## 2. Der Code
 Definiere zunächst für die Pins Variablen und setze in der  **setup()**-Methode den Modus für die Pins.
 ```C++
-int led = 7;
+int led = 8;
 int sensor = 6;
 
 void setup(){
     pinMode(led,OUTPUT);
     pinMode(sensor,INPUT);
+    Serial.begin(9600);
 }
 
 ```
@@ -30,10 +34,11 @@ Wenn dieser Wert **HIGH** ist, wird die LED eingeschaltet, sonst wird sie ausges
 void loop(){
     int wert=digitalRead(sensor);
     if (wert==HIGH){
-        digitalWrite(led,HIGH);
+        digitalWrite(led,LOW);
+        Serial.println("Bewegung");
         delay(1000);
     } else {
-        digitalWrite(led,LOW);
+        digitalWrite(led,HIGH);
     }
     delay(10);
 }
@@ -46,13 +51,12 @@ Wenn die Alarmanlage eingeschaltet ist, soll die LED grün leuchten.
 Sobald eine Bewegung wahrgenommen wird, soll die Farbe der LED von grün auf rot wechseln.  
 ### Die Schaltung
 Ersetze die rote LED auf dem Breadboard durch eine Zweifarb-LED.  
-Achtung: Bei unseren Zweifarb-LEDs muss der gemeinsame Pol an den Pluspol angeschlossen werden. Du musst deine Schaltung daher etwas stärker umbauen:  
   
 ![Alt text](Screenshot_2.png)
 ### Der Programmcode
 Ändere dein Programm wie folgt ab:
 1. Benenne die Variable led in ledRot um.
-2. Deklariere eine neue Variable ledGruen vom Typ int und weise ihr den Wert 8 zu.
+2. Deklariere eine neue Variable ledGruen vom Typ int und weise ihr den Wert 7 zu.
 3. Setze in der **setup()**-Methode den pinMode von ledGruen auf **OUTPUT**
 4. Ändere die Sequenz, die ausgeführt wird, wenn eine Bewegung wahrgenommen wird:
    1. Die grüne LED soll ausgeschaltet werden.  
