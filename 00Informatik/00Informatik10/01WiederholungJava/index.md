@@ -6,7 +6,7 @@
 <a href="https://karol.arrrg.de/#SPIELWIESE" target="_blank">Online-Version von Robot Karol</a>
 
 
-## Die Zählschleife
+## 1. Die Zählschleife
 Erstelle im **Blöcke**-Modus dieses Programmm:  
 ![Block](2024-10-22_12-51.png)  
 Schalte in den **Code**-Modus um und stelle als Programmiersprache **Java** ein:  
