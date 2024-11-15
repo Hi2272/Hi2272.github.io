@@ -37,5 +37,7 @@ delay(500);
 delay(500);
 noTone(buzzer);
 ```
+***
 ["Musik" mit dem Buzzer](weiter.html)   
+***
 [zurück](../index.html)

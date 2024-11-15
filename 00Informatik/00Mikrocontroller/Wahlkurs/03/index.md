@@ -2,9 +2,10 @@
 
 # Der passive Buzzer
 En passiver Buzzer erzeugt Töne. Die Tonhöhe kann hierbei über den Arduino gesteuert werden.  
-Aktive Buzzer erzeugen einen Ton, der stets die gleiche Höhe hat.
 ## 1. Die Schaltung
 Erweitere die Schaltung deiner Alarmanlage um den Buzzer:  
+- Pluspol -> Pin 5
+- Minuspol -> GND 
 ![Buzzer auf GND und Pin5](Screenshot_1.png)
 ## 2. Die Programmierung
 Der passive Buzzer muss an einen Pin angeschlossen werden, der mit einem ~ gekennzeichnet ist. Über diese Pins können analoge Signale zwischen 0 und 1024 augegeben werden. Je höher dieser Wert ist, desto höher ist der Ton, den der Buzzer aussendet.  

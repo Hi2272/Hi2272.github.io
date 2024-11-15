@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -147,52 +149,62 @@ Verbinde jetzt die Pins passend zur Beschriftung:</p>
 <li>VCC -&gt; +5V</li>
 <li>OUT -&gt; Pin 6</li>
 </ol>
-<p>Schließe eine rote LED wie folgt an:</p>
-<ol>
-<li>Langes Bein über 1 kOhm Widerstand an +5 V</li>
-<li>Kurzes Bein an Pin 8
-<img src="2024-11-13_13-43.png" alt="Alt text"></li>
-</ol>
+<p>Auf der Vorderseite des Sensor befinden sich zwei Potentiometer:<br>
+<img src="IMG_20241115_165157.jpg" alt="alt text"></p>
+<ul>
+<li>Das linke regelt die Ausschaltverzögerung des Sensors.</li>
+<li>Das rechte regelt seine Empfindlichkeit.</li>
+</ul>
+<p>Sie können mit einem kleinen Schraubenzieher verstellt werden.</p>
+<ul>
+<li>Drehe beide Potentiometer gegen den Uhrzeigersinn auf den minimalen Wert.</li>
+</ul>
 <h2 id="2-der-code">2. Der Code</h2>
-<p>Definiere zunächst für die Pins Variablen und setze in der  <strong>setup()</strong>-Methode den Modus für die Pins.</p>
-<pre><code class="language-C++"><span class="hljs-type">int</span> led = <span class="hljs-number">8</span>;
-<span class="hljs-type">int</span> sensor = <span class="hljs-number">6</span>;
+<p>Definiere zunächst für den Sensor-Pin eine Variable und setze in der  <strong>setup()</strong>-Methode diesen Pin als Eingang.
+Außerdem schalten wir den seriellen Monitor ein und stellen seine Datenrate auf 9600 Baud. Die serielle Schnittstelle überträgt jetzt maximal 9600 Zeichen pro Sekunde.</p>
+<pre><code class="language-C++"><span class="hljs-type">int</span> sensor = <span class="hljs-number">6</span>;
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>{
-    <span class="hljs-built_in">pinMode</span>(led,OUTPUT);
     <span class="hljs-built_in">pinMode</span>(sensor,INPUT);
     Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
 }
 
 </code></pre>
 <p>In der <strong>loop()</strong>-Methode wird der Wert des Sensors ausgelesen.<br>
-Wenn dieser Wert <strong>HIGH</strong> ist, wird die LED eingeschaltet, sonst wird sie ausgeschaltet.</p>
+Wenn dieser Wert <strong>HIGH</strong> ist, wird eine entsprechende Nachricht über die serielle Schnittstelle ausgegeben.</p>
 <pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{
     <span class="hljs-type">int</span> wert=<span class="hljs-built_in">digitalRead</span>(sensor);
     <span class="hljs-keyword">if</span> (wert==HIGH){
-        <span class="hljs-built_in">digitalWrite</span>(led,LOW);
         Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Bewegung&quot;</span>);
         <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
-    } <span class="hljs-keyword">else</span> {
-        <span class="hljs-built_in">digitalWrite</span>(led,HIGH);
-    }
+    } 
     <span class="hljs-built_in">delay</span>(<span class="hljs-number">10</span>);
 }
 </code></pre>
 <h2 id="3-der-test">3. Der Test</h2>
-<p>Teste deine Alarmanalage.</p>
+<p>Teste deine Alarmanalage. Nach dem Hochladen des Programms musst du den Seriellen Monitor einschalten:<br>
+<img src="Serieller%20Monitor.png" alt="alt text"></p>
 <h2 id="4-die-zweifarb-led">4. Die Zweifarb-LED</h2>
 <p>Wenn die Alarmanlage eingeschaltet ist, soll die LED grün leuchten.<br>
 Sobald eine Bewegung wahrgenommen wird, soll die Farbe der LED von grün auf rot wechseln.</p>
 <h3 id="die-schaltung">Die Schaltung</h3>
-<p>Ersetze die rote LED auf dem Breadboard durch eine Zweifarb-LED.</p>
+<p>Baue eine Zweifarb-LED ein und schließe die 3 Beinchen wie folgt an:</p>
+<ul>
+<li>links -&gt; Pin 8</li>
+<li>Mitte -&gt; 1 kOhm-Widerstand -&gt; +5V</li>
+<li>rechts -&gt; Pin 7</li>
+</ul>
 <p><img src="Screenshot_2.png" alt="Alt text"></p>
 <h3 id="der-programmcode">Der Programmcode</h3>
 <p>Ändere dein Programm wie folgt ab:</p>
 <ol>
-<li>Benenne die Variable led in ledRot um.</li>
-<li>Deklariere eine neue Variable ledGruen vom Typ int und weise ihr den Wert 7 zu.</li>
-<li>Setze in der <strong>setup()</strong>-Methode den pinMode von ledGruen auf <strong>OUTPUT</strong></li>
+<li>Deklariere zwei Variablen für die LED-Pins:
+<ol>
+<li>ledRot = 8</li>
+<li>ledGruen = 7</li>
+</ol>
+</li>
+<li>Setze in der <strong>setup()</strong>-Methode den pinMode der beiden LED-Pins auf <strong>OUTPUT</strong></li>
 <li>Ändere die Sequenz, die ausgeführt wird, wenn eine Bewegung wahrgenommen wird:
 <ol>
 <li>Die grüne LED soll ausgeschaltet werden.<br>
