@@ -166,8 +166,10 @@
 ## Java in der 10. Klasse
 [01Artikel.jar](00Informatik10/BlueJDateien/01Artikel/01Artikel.jar)   
 [Assembler Simulator](https://exuanbo.xyz/assembler-simulator)  
+[Variablen in Java: Text](00Informatik10/JavaVariablen/mindmap.html)  
+[Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)  
 [02Lieferant.jar](00Informatik10/BlueJDateien/02Lieferant.jar)  
-[03Webshop.jar](00Informatik10/BlueJDateien/03Webshop.jar)
+[03Webshop.jar](00Informatik10/BlueJDateien/03Webshop.jar)  
 
 ## Datenschutz
 ***
