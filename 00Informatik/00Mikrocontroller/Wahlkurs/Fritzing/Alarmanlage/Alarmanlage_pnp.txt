@@ -4,8 +4,8 @@
 *eMail=
 *
 *Project=Alarmanlage
-*Date=09:10:48
-*CreatedBy=Fritzing 0.9.10b.2022-07-01.CD-2134-0-40d23c29
+*Date=18:33:11
+*CreatedBy=Fritzing 0.9.6b..
 *
 *
 *Coordinates in mm, always center of component
@@ -13,16 +13,21 @@
 *Rotation in degree (0-360, math. pos.)
 *
 *No;Value;Package;X;Y;Rotation;Side;Name
-1;;;16.9126;-26.7451;0;Bottom;TXT1
-2;;;49.3212;-24.2221;0;Bottom;TXT2
-3;;THT;39.0103;-29.098;90;Bottom;J2
-4;;;14.7371;-33.2328;0;Bottom;TXT2
-5;;;34.1532;-26.558;0;Bottom;Bauteil1
-6;;THT;58.0603;-34.178;90;Bottom;J4
-7;;THT;49.1703;-21.478;90;Bottom;J3
-8;;;57.611;-30.5656;0;Bottom;TXT3
-9;;;48.4901;-17.6623;0;Bottom;TXT3
-10;;THT;14.8803;-30.368;90;Bottom;J1
-11;;;39.2292;-25.7359;0;Bottom;TXT3
-12;;;58.016;-36.9091;0;Bottom;TXT2
-13;220;THT;39.0103;-18.938;90;Bottom;R1
+1;;THT;59.3302;-34.178;90;Bottom;J4
+2;;;11.5179;-10.8137;0;Bottom;TXT1
+3;;;12.255;-5.67503;0;Bottom;TXT1
+4;220;THT;39.0102;-22.748;90;Bottom;R1
+5;;;18.0931;-35.7968;0;Bottom;TXT1
+6;;THT;39.0102;-32.908;90;Bottom;J2
+7;;;34.1529;-26.558;0;Bottom;Bauteil1
+8;;;39.2292;-29.2778;0;Bottom;TXT3
+9;;;57.6109;-30.5656;0;Bottom;TXT3
+10;;THT;49.1702;-18.938;90;Bottom;J3
+11;;;12.35;-7.84784;0;Bottom;TXT1
+12;;;11.5824;-14.0933;0;Bottom;TXT1
+13;;;49.0545;-15.4046;0;Bottom;TXT3
+14;;;59.3277;-37.4339;0;Bottom;TXT2
+15;;;48.9971;-22.2837;0;Bottom;TXT2
+16;;THT;14.8802;-39.258;90;Bottom;J1
+17;;;33.6214;-22.0955;0;Bottom;TXT3
+18;;;15.1306;-42.0221;0;Bottom;TXT2
