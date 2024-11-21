@@ -138,12 +138,11 @@
         
         </head>
         <body class="vscode-body vscode-light">
-            <p>markdown</p>
-<h1 id="variablen-in-java">Variablen in Java</h1>
+            <h1 id="variablen-in-java">Variablen in Java</h1>
 <h2 id="1-definition">1. Definition</h2>
 <ul>
 <li>Speicherplatz für Daten</li>
-<li>Benannte Referenzen auf Werte</li>
+<li>Benannte Adressen im Speicher</li>
 </ul>
 <h2 id="2-arten-von-variablen">2. Arten von Variablen</h2>
 <ul>
@@ -151,19 +150,27 @@
 <ul>
 <li>Innerhalb von Methoden oder Blöcken</li>
 <li>Sichtbarkeit beschränkt auf den Block</li>
+<li>Lebensdauer beschränkt auf den Block</li>
 </ul>
 </li>
-<li><strong>Instanzvariablen</strong>
+<li><strong>Attribute = Instanzvariablen</strong>
 <ul>
 <li>Zugehörig zu einem Objekt</li>
+<li>Sichtbarkeit einstellbar:
+<ul>
+<li>public</li>
+<li>private</li>
+<li>protected</li>
+</ul>
+</li>
 <li>Lebensdauer entspricht der Lebensdauer des Objekts</li>
 </ul>
 </li>
-<li><strong>Klassenvariablen (statische Variablen)</strong>
+<li><strong>Parameter</strong>
 <ul>
-<li>Zugehörig zur Klasse, nicht zu einem Objekt</li>
-<li>Mit dem Schlüsselwort <code>static</code> deklariert</li>
-<li>Geteilt von allen Instanzen der Klasse</li>
+<li>Deklaration im Kopf einer Methode</li>
+<li>Sichtbarkeit beschränkt auf diese Methode</li>
+<li>Lebensdauer beschränkt auf diese Methode</li>
 </ul>
 </li>
 </ul>
@@ -203,77 +210,12 @@
 </ul>
 </li>
 </ul>
-<h2 id="5-sichtbarkeit-und-zugriffsmodifizierer">5. Sichtbarkeit und Zugriffsmodifizierer</h2>
-<ul>
-<li><strong>Öffentlich (public)</strong></li>
-<li><strong>Privat (private)</strong></li>
-<li><strong>Geschützt (protected)</strong></li>
-<li><strong>Standard (package-private)</strong></li>
-</ul>
-<h2 id="6-konstante-variablen">6. Konstante Variablen</h2>
-<ul>
-<li>Verwendung von <code>final</code></li>
-<li>Beispiel: <code>final int MAX_WERT = 100;</code></li>
-</ul>
-<h2 id="7-typkonvertierung">7. Typkonvertierung</h2>
-<ul>
-<li><strong>Automatische Typkonvertierung (Widening)</strong>
-<ul>
-<li>Beispiel: <code>int</code> zu <code>double</code></li>
-</ul>
-</li>
-<li><strong>Manuelle Typkonvertierung (Narrowing)</strong>
-<ul>
-<li>Beispiel: <code>double</code> zu <code>int</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="8-gültigkeitsbereich-scope">8. Gültigkeitsbereich (Scope)</h2>
-<ul>
-<li><strong>Methoden-Scope</strong>
-<ul>
-<li>Parameter</li>
-</ul>
-</li>
-<li><strong>Klassenscope</strong>
-<ul>
-<li>Attribute</li>
-</ul>
-</li>
-<li><strong>Block-Scope</strong>
-<ul>
-<li>lokale Variablen</li>
-</ul>
-</li>
-</ul>
-<h2 id="9-best-practices">9. Best Practices</h2>
+<h2 id="5-best-practices">5. Best Practices</h2>
 <ul>
 <li>aussagekräftige Namen wählen</li>
 <li>Variablen möglichst nah am Einsatzort deklarieren</li>
 <li>Verwendung von Konstanten für feststehende Werte</li>
 <li>Vermeidung von globalen Variablen</li>
-</ul>
-<h2 id="10-beispiele">10. Beispiele</h2>
-<ul>
-<li>
-<p>Einfache Deklaration:
-java
-int zahl = 10;</p>
-</li>
-<li>
-<p>Verwendung von Instanzvariablen:
-java
-public class Beispiel {
-int instanzVariable;
-}</p>
-</li>
-<li>
-<p>Verwendung von Klassenvariablen:
-java
-public class Beispiel {
-static int klassenVariable;
-}</p>
-</li>
 </ul>
 
             
