@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Variablen in Java</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <p>markdown</p>
+<h1 id="variablen-in-java">Variablen in Java</h1>
+<h2 id="1-definition">1. Definition</h2>
+<ul>
+<li>Speicherplatz für Daten</li>
+<li>Benannte Referenzen auf Werte</li>
+</ul>
+<h2 id="2-arten-von-variablen">2. Arten von Variablen</h2>
+<ul>
+<li><strong>Lokale Variablen</strong>
+<ul>
+<li>Innerhalb von Methoden oder Blöcken</li>
+<li>Sichtbarkeit beschränkt auf den Block</li>
+</ul>
+</li>
+<li><strong>Instanzvariablen</strong>
+<ul>
+<li>Zugehörig zu einem Objekt</li>
+<li>Lebensdauer entspricht der Lebensdauer des Objekts</li>
+</ul>
+</li>
+<li><strong>Klassenvariablen (statische Variablen)</strong>
+<ul>
+<li>Zugehörig zur Klasse, nicht zu einem Objekt</li>
+<li>Mit dem Schlüsselwort <code>static</code> deklariert</li>
+<li>Geteilt von allen Instanzen der Klasse</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-datentypen">3. Datentypen</h2>
+<ul>
+<li><strong>Primitive Datentypen</strong>
+<ul>
+<li><code>int</code> - Ganzzahlen</li>
+<li><code>double</code> - Gleitkommazahlen</li>
+<li><code>char</code> - Einzelne Zeichen</li>
+<li><code>boolean</code> - Wahrheitswerte</li>
+</ul>
+</li>
+<li><strong>Referenzdatentypen</strong>
+<ul>
+<li>Objekte</li>
+<li>Arrays</li>
+<li>Strings</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-deklaration-und-initialisierung">4. Deklaration und Initialisierung</h2>
+<ul>
+<li><strong>Deklaration</strong>
+<ul>
+<li>Beispiel: <code>int zahl;</code></li>
+</ul>
+</li>
+<li><strong>Initialisierung</strong>
+<ul>
+<li>Beispiel: <code>zahl = 5;</code></li>
+</ul>
+</li>
+<li><strong>Kombination</strong>
+<ul>
+<li>Beispiel: <code>int zahl = 5;</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="5-sichtbarkeit-und-zugriffsmodifizierer">5. Sichtbarkeit und Zugriffsmodifizierer</h2>
+<ul>
+<li><strong>Öffentlich (public)</strong></li>
+<li><strong>Privat (private)</strong></li>
+<li><strong>Geschützt (protected)</strong></li>
+<li><strong>Standard (package-private)</strong></li>
+</ul>
+<h2 id="6-konstante-variablen">6. Konstante Variablen</h2>
+<ul>
+<li>Verwendung von <code>final</code></li>
+<li>Beispiel: <code>final int MAX_WERT = 100;</code></li>
+</ul>
+<h2 id="7-typkonvertierung">7. Typkonvertierung</h2>
+<ul>
+<li><strong>Automatische Typkonvertierung (Widening)</strong>
+<ul>
+<li>Beispiel: <code>int</code> zu <code>double</code></li>
+</ul>
+</li>
+<li><strong>Manuelle Typkonvertierung (Narrowing)</strong>
+<ul>
+<li>Beispiel: <code>double</code> zu <code>int</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="8-gültigkeitsbereich-scope">8. Gültigkeitsbereich (Scope)</h2>
+<ul>
+<li><strong>Methoden-Scope</strong>
+<ul>
+<li>Parameter</li>
+</ul>
+</li>
+<li><strong>Klassenscope</strong>
+<ul>
+<li>Attribute</li>
+</ul>
+</li>
+<li><strong>Block-Scope</strong>
+<ul>
+<li>lokale Variablen</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-best-practices">9. Best Practices</h2>
+<ul>
+<li>aussagekräftige Namen wählen</li>
+<li>Variablen möglichst nah am Einsatzort deklarieren</li>
+<li>Verwendung von Konstanten für feststehende Werte</li>
+<li>Vermeidung von globalen Variablen</li>
+</ul>
+<h2 id="10-beispiele">10. Beispiele</h2>
+<ul>
+<li>
+<p>Einfache Deklaration:
+java
+int zahl = 10;</p>
+</li>
+<li>
+<p>Verwendung von Instanzvariablen:
+java
+public class Beispiel {
+int instanzVariable;
+}</p>
+</li>
+<li>
+<p>Verwendung von Klassenvariablen:
+java
+public class Beispiel {
+static int klassenVariable;
+}</p>
+</li>
+</ul>
+
+            
+            
+        </body>
+        </html>
