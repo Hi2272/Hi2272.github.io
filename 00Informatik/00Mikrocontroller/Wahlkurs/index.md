@@ -44,13 +44,16 @@ Wir danken den Spendern herzlich für ihre Unterstützung.
 
 ### Alarmanlage
 
-Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung aktiviert werden kann:  
+Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung aktiviert werden kann:     
+<video controls src="VID_20241115_164923.mp4" title="Title" width=300px></video>  
+
 ![Alarmanlage.png](Alarmanlage.png)
 1. [Bewegungsmelder](02/index.html)
 2. [Passiver Buzzer](03/index.html)
 3. [Infrarot-Fernbedienung](04/index.html)
 4. [Rotations-Encoder](05/index.html)
 5. [Platinenentwurf mit Fritzing](Fritzing/Alarmanlage/index.html)  
+6. [Hinweise zum Löten](Löten/index.html)  
    
 
 ### Messwerterfassung

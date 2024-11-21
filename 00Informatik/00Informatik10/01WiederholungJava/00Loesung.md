@@ -10,6 +10,7 @@ Es wird ein Attribut **karol** vom Datentyp **Robot** *deklariert*.
 Dieses Attribut wird mit einem neuen Objekte der Klasse **Robot** *initialisiert*.  
 Hierzu wird mit dem Schlüsselwort **new** der **Konstruktor** der Klasse **Robot** aufgerufen.
 
+
 2. Beschreibe die Struktur einer Zählschleife.  
 Eine Zählschleife beginnt mit dem Schlüsselwort **for**.  
 Anschließend wird eine *Zählvariable* **i** vom Datentyp **int** *deklariert* und mit dem Startwert **0** *initialisiert*.  
