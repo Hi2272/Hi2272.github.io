@@ -36,7 +36,7 @@
 [Powerpoint Schule](00Informatik6/PowerpointSchule/index.html)  
 
 ### Verfassungsviertelstunde
-[Snap Map](00Informatik6/Verfassungsviertelstunde/mindmap.html)
+[Snap Map](00Informatik6/Verfassungsviertelstunde/index.html)
 
 ## Mikrocontroller
 ***
