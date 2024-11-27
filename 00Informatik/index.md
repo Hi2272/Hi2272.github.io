@@ -31,10 +31,12 @@
 [Punktnotation](00Informatik6/Punktnotation/index.html)  
 [Punktnotation 2](https://learningapps.org/view34317198)
 
-
 ### Powerpoint
 [Animationen](00Informatik6/Powerpoint/Animation/index.html)
 [Powerpoint Schule](00Informatik6/PowerpointSchule/index.html)  
+
+### Verfassungsviertelstunde
+[Snap Map](00Informatik6/Verfassungsviertelstunde/SnapMap/index.html)
 
 ## Mikrocontroller
 ***
@@ -166,8 +168,10 @@
 ## Java in der 10. Klasse
 [01Artikel.jar](00Informatik10/BlueJDateien/01Artikel/01Artikel.jar)   
 [Assembler Simulator](https://exuanbo.xyz/assembler-simulator)  
+[Variablen in Java: Text](00Informatik10/JavaVariablen/mindmap.html)  
+[Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)  
 [02Lieferant.jar](00Informatik10/BlueJDateien/02Lieferant.jar)  
-[03Webshop.jar](00Informatik10/BlueJDateien/03Webshop.jar)
+[03Webshop.jar](00Informatik10/BlueJDateien/03Webshop.jar)  
 
 ## Datenschutz
 ***
