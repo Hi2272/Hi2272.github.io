@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Ein automatisch gef&uuml;llter Webshop</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="ein-automatisch-gefüllter-webshop">Ein automatisch gefüllter Webshop</h1>
+<h2 id="problemstellung">Problemstellung:</h2>
+<p>Für Testzwecke soll ein Webshop erstellt werden, der automatisch 10 Lieferanten und 100 Turnschuhe verschiedener Arten, Preise und Lieferanten enthält.
+Wir verwenden hierzu lokale Felder mit konstantem Inhalt und Zufallszahlen.</p>
+<h2 id="vorgehen">Vorgehen:</h2>
+<ol>
+<li>Öffne die Klasse Webshop im Editor.</li>
+<li>Importiere die Bibliothek java.util.Random, um Zufallszahlen zu erzeugen.</li>
+<li>Schreibe eine private Methode zufallszahl mit einem ganzzahligen Parameter max, die mit folgender Zeile eine Zufallszahl zwischen 0 und max-1 zurückgibt:</li>
+</ol>
+<pre><code class="language-Java"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Random</span>().nextInt(max);
+</code></pre>
+<ol start="4">
+<li>Füge folgende Zeile in den Konstruktor ein und erzeuge ein lokales Feld mit konstanten Lieferantennamen:</li>
+</ol>
+<pre><code class="language-Java">String[] lieferantenNamen = {
+<span class="hljs-string">&quot;Adidas&quot;</span>,<span class="hljs-string">&quot;Nike&quot;</span>,<span class="hljs-string">&quot;Puma&quot;</span>,<span class="hljs-string">&quot;Assics&quot;</span>,<span class="hljs-string">&quot;Rebook&quot;</span>,
+<span class="hljs-string">&quot;Kangaroos&quot;</span>,<span class="hljs-string">&quot;Sketchers&quot;</span>,<span class="hljs-string">&quot;CMP&quot;</span>,<span class="hljs-string">&quot;Meindl&quot;</span>,<span class="hljs-string">&quot;Lowa&quot;</span>};
+</code></pre>
+<ol start="5">
+<li>Verwende eine Zählschleife, um das Feld lieferanten[] automatisch zu füllen.</li>
+<li>Erstelle ein weiteres lokales Feld mit Schuharten:</li>
+</ol>
+<pre><code class="language-Java">String[] schuhArten={
+<span class="hljs-string">&quot;Laufschuhe&quot;</span>,<span class="hljs-string">&quot;Fußballschuhe - Halle&quot;</span>,<span class="hljs-string">&quot;Fußballschuhe - Rasen&quot;</span>,<span class="hljs-string">&quot;Basketballstiefel&quot;</span>,
+<span class="hljs-string">&quot;Wanderschuhe&quot;</span>,<span class="hljs-string">&quot;Volleyballschuhe&quot;</span>,<span class="hljs-string">&quot;Hallenschuhe&quot;</span>};
+</code></pre>
+<ol start="7">
+<li>Verwende eine weitere Zählschleife, um die 100 Artikel zu deklarieren und zu initalisieren.
+<ol>
+<li>Deklariere eine lokale Variable <strong>schuhNr</strong> und initialisiere sie mit einer Zufallszahl zwischen 0 und <strong>schuhArten.length</strong>-1.</li>
+<li>Deklariere eine lokale Variable <strong>preis</strong> und weise ihr einen Wert zwischen 39.95 und 229.95 zu. Hierbei sollen nur Schritte von 10 EUR möglich sein.</li>
+<li>Deklariere eine lokale Variable <strong>lieferNr</strong> und initialisiere sie mir einer Zufallszahl zwischen 0 und <strong>lieferanten.length</strong>-1.</li>
+<li>Initialisiere die Artikel mit diesen Werten.</li>
+</ol>
+</li>
+<li>Rufe die printAlles-Methode zur Kontrolle auf.</li>
+</ol>
+
+            
+            
+        </body>
+        </html>
