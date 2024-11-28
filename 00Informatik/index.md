@@ -172,6 +172,8 @@
 [Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)  
 [02Lieferant.jar](00Informatik10/BlueJDateien/02Lieferant.jar)  
 [03Webshop.jar](00Informatik10/BlueJDateien/03Webshop.jar)  
+[Assoziation oder Aggregation?](https://learningapps.org/view38043424)  
+
 
 ## Datenschutz
 ***

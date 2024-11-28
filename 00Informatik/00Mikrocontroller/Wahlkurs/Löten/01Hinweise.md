@@ -10,7 +10,7 @@ Schmirgele sie vorsichtig mit einem feinen Schleifpapier ab, bis sie wieder glä
 Auf der Lötspitze sammelt sich im Laufe der Zeit altes Lötzinn und verbranntes Flussmittel an. Diese Ablagerungen behindern die Wärmeabgabe des Lötkolbens.  
 Reinige die heiße Spitze regelmäßig am Lötschwamm.
 ## 3. Befestigen der Bauteile
-Die Bauteile dürfen beim Löten nicht wackeln. Befestige sie auf der Rückseite mit einem Streifen Klebeband.  
+Die Bauteile dürfen beim Löten nicht wackeln. Befestige sie auf der Rückseite mit einem Streifen Klebeband oder einem Stück Draht.  
 Beim Löten brauchst du beide Hände für Lötkolben und Lötzinn. Du hast daher keine Hand mehr frei, um wackelnde Bauteile festzuhalten.
 
 ## 4. Temperatur
