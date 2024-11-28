@@ -166,7 +166,8 @@
 [Wiederholung Java](/00Informatik/WiederholungJava/index.html)  
 
 ## Java in der 10. Klasse
-[Assembler Simulator](https://exuanbo.xyz/assembler-simulator)  
+[Assembler Simulator](https://exuanbo.xyz/assembler-simulator) 
+ 
 [Variablen in Java: Text](00Informatik10/JavaVariablen/mindmap.html)    
 [Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)  
   
