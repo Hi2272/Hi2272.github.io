@@ -28,5 +28,4 @@ String[] schuhArten={
     2.  Deklariere eine lokale Variable **preis** und weise ihr einen Wert zwischen 39.95 und 229.95 zu. Hierbei sollen nur Schritte von 10 EUR möglich sein.  
     3.  Deklariere eine lokale Variable **lieferNr** und initialisiere sie mir einer Zufallszahl zwischen 0 und **lieferanten.length**-1.
     4.  Initialisiere die Artikel mit diesen Werten.  
-8.	Rufe die printAlles-Methode zur Kontrolle auf.
-
+8.	Rufe die printAlles-Methode zur Kontrolle auf.  
