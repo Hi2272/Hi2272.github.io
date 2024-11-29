@@ -41,9 +41,9 @@ Wir zeichnen in der sichtbaren Top-Ebene:
 
 ### c) Umwandeln des Rechtecks in einen Quader
 1. Klicke auf das Symbol "Linear austragen"
-2. Trage als Wert 2 (=2 mm Dicke) ein und drücke Return.
+2. Trage als Wert 2 (=2 mm Dicke) ein und drücke Return.  
    ![alt text](2024-06-27_12-18.png)  
-Unser Rechteck wird in einen Quader mit den exakten Maßen 60 mm x 20 mm x2 mm umgewandelt.
+Unser Rechteck wird in einen Quader mit den exakten Maßen 60 mm x 20 mm x 2 mm umgewandelt.
 ### d) Bohren eines Loches
 Um das Loch für den Schlüsselring zu bohren, zeichnen wir einen Kreis auf die obere Ebene des Quaders und senken diesen in das Werkstück ein.
 1. Klicke die obere Ebene des Quaders an, um sie zu markieren.
@@ -73,7 +73,40 @@ Zum Schluss senken wir den Kreis jetzt noch ein, um eine Bohrung zu erzeugen.
 3. Trage als Wert 4 ein und drücke Return.
 ![alt text](2024-06-27_12-40.png)  
 
-Dsa Plättchen hat jetzt eine Bohrung mit dem Radius 6 mm.
+Das Plättchen hat jetzt eine Bohrung mit dem Radius 6 mm.  
+![alt text](2024-11-27_16-37.png)  
+
+Anschließend runden wir die Kanten des Anhängers ab.
+1. Klicke auf das Verrundungswerkzeug.
+2. Klicke die senkrechten Kanten des Quaders an.
+3. Stelle als Radius 8 mm ein.
+4. Klicke auf den grünen Haken, um die Verrundung durchzuführen.  
+
+![alt text](2024-11-27_16-39.png)  
+Jetzt beschriften wir den Schlüsselanhänger.  
+1. Klicke die Oberseite des Schlüsselanhängers an und markiere damit diese Fläche.
+2. Erstelle eine Skizze auf dieser Fläche.
+3. Wähle das Textwerkzeug,
+klicke auf die Oberfläche des Anhängers
+und trage einen Namen oder eine Abkürzung (max. 5 Buchstaben) ein.
+4. Wähle das Bemaßungswerkzeug und stelle die Abstände nach oben und unten so ein, dass der Text gut auf die Fläche passt. Stelle zum Loch einen Abstand von 2 mm ein.  
+![alt text](2024-11-27_16-54.png)   
+5. Wähle das Extrusionswerkzeug und ziehe den Text 1 mm weit aus.
+
+Zum Schluss verdicken wir den Rand des Anhängers.
+1. Klicke die Oberseite des Schlüsselanhängers an und markiere damit diese Fläche.
+2. Erstelle eine Skizze auf dieser Fläche.
+3. Wähle das Versatz-Werkzeug
+4. Markiere alle Streckenteile des Randes des Anhängers.
+5. Ziehe den Pfeil so, dass der Rand um 1 mm nach innen versetzt wird und drücke Return:  
+![alt text](2024-11-27_17-04.png)
+6. Wähle das Extrusionswerkzeug und ziehe den Rand 1 mm weit aus.
+
+Um das Modell drucken zu können, müssen wir es noch als STL-Datei exportieren.
+1.  Klicke mit rechts auf das Part1 um Partstudio.
+2.  Wähle Exportieren.  
+![alt text](2024-11-27_17-03.png)  
+Das Modell wird als STL-Datei im Download-Ordner gespeichert und kann jetzt in einem Slicer-Programm importiert werden.
 
 ## 3. Anleitung Schraube
 Unter dieser Adresse kannst du eine Anleitung herunterladen:

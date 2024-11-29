@@ -36,7 +36,7 @@
 [Powerpoint Schule](00Informatik6/PowerpointSchule/index.html)  
 
 ### Verfassungsviertelstunde
-[Snap Map](00Informatik6/Verfassungsviertelstunde/index.html)
+[Snap Map](00Informatik6/Verfassungsviertelstunde/SnapMap/index.html)
 
 ## Mikrocontroller
 ***
@@ -166,13 +166,20 @@
 [Wiederholung Java](/00Informatik/WiederholungJava/index.html)  
 
 ## Java in der 10. Klasse
-[01Artikel.jar](00Informatik10/BlueJDateien/01Artikel/01Artikel.jar)   
-[Assembler Simulator](https://exuanbo.xyz/assembler-simulator)  
-[Variablen in Java: Text](00Informatik10/JavaVariablen/mindmap.html)  
+[Assembler Simulator](https://exuanbo.xyz/assembler-simulator) 
+ 
+[Variablen in Java: Text](00Informatik10/JavaVariablen/mindmap.html)    
 [Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)  
+<<<<<<< HEAD
 [02Lieferant.jar](00Informatik10/BlueJDateien/02Lieferant.jar)  
 [03Webshop.jar](00Informatik10/BlueJDateien/03Webshop.jar)  
 [Assoziation oder Aggregation?](https://learningapps.org/view38043424)  
+=======
+  
+[Anleitung Webshop automatisch](00Informatik10/WebshopAutomatisch.html)  
+[BlueJ-Dateien Webshop-Projekt](00Informatik10/BlueJDateien/index.html)  
+
+>>>>>>> 0ef9a2bee5d2d48c832f74c70b138ef306484092
 
 
 ## Datenschutz
