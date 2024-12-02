@@ -173,6 +173,7 @@
   
 [Anleitung Webshop automatisch](00Informatik10/WebshopAutomatisch.html)  
 [BlueJ-Dateien Webshop-Projekt](00Informatik10/BlueJDateien/index.html)  
+[Java Editor-Dateien für Webshop-Projekt](00Informatik10/JavaEditorDateien/index.html)
 
 
 
