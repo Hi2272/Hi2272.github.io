@@ -170,11 +170,17 @@
  
 [Variablen in Java: Text](00Informatik10/JavaVariablen/mindmap.html)    
 [Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)  
+<<<<<<< HEAD
+[02Lieferant.jar](00Informatik10/BlueJDateien/02Lieferant.jar)  
+[03Webshop.jar](00Informatik10/BlueJDateien/03Webshop.jar)  
+[Assoziation oder Aggregation?](https://learningapps.org/view38043424)  
+=======
   
 [Anleitung Webshop automatisch](00Informatik10/WebshopAutomatisch.html)  
 [BlueJ-Dateien Webshop-Projekt](00Informatik10/BlueJDateien/index.html)  
 [Java Editor-Dateien für Webshop-Projekt](00Informatik10/JavaEditorDateien/index.html)
 
+>>>>>>> 0ef9a2bee5d2d48c832f74c70b138ef306484092
 
 
 ## Datenschutz
