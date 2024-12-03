@@ -130,8 +130,9 @@ Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) v
    
 
      
-### Die Kugelbahn im Schaukasten
-[Kugelbahn](Kugelbahn/index.html)   
+### Der Schaukasten
+[Kugelbahn](Kugelbahn/index.html)  
+[Binäruhr](BinaerUhr/index.html) 
 
 ### Blinken ohne Pause - Interrupts  
 [Interrupts](10Interrupts/index.html)  
