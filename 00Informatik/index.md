@@ -166,14 +166,19 @@
 [Wiederholung Java](/00Informatik/WiederholungJava/index.html)  
 
 ## Java in der 10. Klasse
+[Wiederholung Schleifen](00Informatik10/01WiederholungJava/index.html)  
+
 [Assembler Simulator](https://exuanbo.xyz/assembler-simulator) 
  
 [Variablen in Java: Text](00Informatik10/JavaVariablen/mindmap.html)    
 [Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)  
+[02Lieferant.jar](00Informatik10/BlueJDateien/02Lieferant.jar)  
+[03Webshop.jar](00Informatik10/BlueJDateien/03Webshop.jar)  
+[Assoziation oder Aggregation?](https://learningapps.org/view38043424)  
 
+  
 [Anleitung Webshop automatisch](00Informatik10/WebshopAutomatisch.html)  
 [BlueJ-Dateien Webshop-Projekt](00Informatik10/BlueJDateien/index.html)  
-[Java Editor-Dateien für Webshop-Projekt](00Informatik10/JavaEditorDateien/index.html)
 
 
 ## Datenschutz
