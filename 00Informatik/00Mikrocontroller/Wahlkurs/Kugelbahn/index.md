@@ -40,10 +40,14 @@ loop wird immer wieder ausgeführt
 */
 void loop() {
   if (digitalRead(taster) == LOW) {       // Wenn der Taster gedrückt ist,
-    zeit = 15000;                         // dann soll der Motor 15000 ms = 15 Sekunden laufen
-    while (digitalRead(taster) == LOW) {  // Warte, bis der Taster losgelassen wurde
+    while (digitalRead(taster) == LOW) {  // dann warte, bis der Taster losgelassen wurde
       delay(1);
     }
+    digitalWrite(in1,LOW);                // dann soll der Motor zunächst 100 ms rückwärts laufen,
+    digitalWrite(in2,HIGH);               // damit evtl. verklemmte Kugeln sich lösen
+    delay(100);
+    zeit = 15000;                         // und anschließend 15000 ms = 15 Sekunden vorwärts laufen
+   
   }
   if (zeit > 0) {             // Wenn noch Laufzeit übrig ist,
     digitalWrite(in1, HIGH);  // dann soll der Motor laufen
