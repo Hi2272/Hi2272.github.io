@@ -23,5 +23,28 @@ Schließe den Arduino mit dem blauen USB-Kabel an einer der beiden Buchsen auf d
 ![Alt text](sc3.png)
 5. Klicke auf **OK**  
 
+## Hinweise zur Verwendung von Mikrocontrollern unter Windows
+
+### CH340-Treiber:
+Billige Arduino Nachbauten verwenden für den USB-Anschluss in der Regel ein CH-340-Modul.
+Auf Windows-Rechnern muss ein Treiber installiert werden, um dieses Modul anzusprechen:  
+
+https://sparks.gogo.co.nz/ch340.html
+
+
+### CP210-Treiber:
+ESP32-Boards verwenden für den USB-Anschluss CP210-Module.
+Auf Windows-Rechnern muss ein Treiber installiert werden, um dieses Modul anzusprechen:  
+
+https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads  
+
+1. Windows-Datei Herunterladen
+2. Datei entpacken
+3. Im entpackten Ordner mit Rechts auf silabser.inf klicken
+4. Weitere Optionen anzeigen anklicken
+5. Installieren anklicken
+
+
+
 [zurück](../index.html)
    
