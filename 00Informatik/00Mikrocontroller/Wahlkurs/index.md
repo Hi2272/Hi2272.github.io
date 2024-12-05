@@ -128,6 +128,8 @@ Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) v
 2. Ultraschall-Entfernungsmesser
 3. Servomotoren
    
+### Große OLED-Displays
+[SPI-Displays](<SPI Displays/index.html>)
 
      
 ### Der Schaukasten
