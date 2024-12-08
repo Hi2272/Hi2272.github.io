@@ -24,15 +24,25 @@ for (let i = 0; i < numTextBlocks; i++) {
 
 
     // Erstelle ein Label
-    const label = new Konva.Label({
+    var label = new Konva.Label({
         x: Math.floor(width / 2) - ((5 - i) * (textWidth + padding)), // Horizontale Position
         y: (height - textHeight) / 2, // Vertikale Position zentriert
         draggable: true // Label draggable machen
+       
     });
+    // Füge Event-Listener für Drag-Events hinzu
+label.on('dragstart', () => {
+    console.log('Dragging started');
+    // Hier kannst du weitere Aktionen hinzufügen, die beim Starten des Dragvorgangs ausgeführt werden sollen
+});
+
+label.on('dragend', () => {
+    console.log('Dragging ended');
+    // Hier kannst du weitere Aktionen hinzufügen, die beim Beenden des Dragvorgangs ausgeführt werden sollen
+});
 
     // Füge ein Rechteck als Hintergrund hinzu
     const farbWert = Math.floor(number / 10);
-    console.log(farbWert);
     const backgroundColor = colors[farbWert]; // Zufällige Hintergrundfarbe auswählen
     const background = new Konva.Rect({
         width: textWidth,
