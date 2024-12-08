@@ -17,8 +17,8 @@ const textWidth = 75; // Breite des Textes
 const textHeight = 75; // Höhe des Textes
 const padding = 10; // Abstand zwischen den Textblöcken
 
-const colors = ['blue', 'lightseagreen', 'lime', 'greenyellow', 'yellow', 'gold', 'orange', 'orangered', 'red', 'crimson']; // Farben für den Hintergrund
-
+const colors = ['purple', 'darkblue', 'blue', 'green', 'olive', 'orange','maroon', 'orangered', 'red', 'crimson']; // Farben für den Hintergrund
+   
 for (let i = 0; i < numTextBlocks; i++) {
     const number = Math.floor(Math.random() * 100);
 
@@ -58,7 +58,7 @@ label.on('dragend', () => {
         fontSize: 32,
         fontStyle: 'bold',
         fontFamily: 'Calibri',
-        fill: 'black',
+        fill: 'white',
         width: textWidth,
         height: textHeight,
         align: 'center',

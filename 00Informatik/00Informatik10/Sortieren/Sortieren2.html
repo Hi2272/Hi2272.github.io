@@ -4,18 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sortieren</title>
-    <script src="https://cdn.rawgit.com/konvajs/konva/2.5.1/konva.min.js"></script>
-    <link rel="stylesheet" href="Sortieren.css">
-    
+    <link rel="stylesheet" href="https://Hi2272.github.io/Style.css">
+
+  <style>
+        body {
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        canvas {
+            border: 1px solid #000;
+            background-color: #fff;
+ 
+        }
+        footer {
+    margin-top: auto;
+    padding: 10px;
+    text-align: right;
+    /* Text im Footer rechtsbündig */
+    font-size: xx-small;
+    /* XXSmall Schriftgröße */
+    /* Footer nimmt die volle Breite ein */
+}
+     </style>
 </head>
 <body>
-    <h1>Sortieren</h1>
-    <div id="container"></div>
-    <footer>
-        2024 Rainer Hille, Gymnasium Waldkraiburg unter Verwendung von konva.js
-    </footer>
-    <script src="Sortieren.js"></script>
-   
+<h1>Sortieren</h1>
+<canvas id="canvas" width="1000 px" height="400 px"></canvas>
+
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const rectangles = [];
+
+    function getColor(value) {
+        const colors = ['purple', 'darkblue', 'blue', 'green', 'olive', 'orange','maroon', 'orangered', 'red', 'crimson']; // Farben für den Hintergrund
+        return colors[Math.floor(value/10)];
+    }
+
+    function createRectangle(x,y) {
+        const value = Math.floor(Math.random() * 100);
+        const color = getColor(value);
+
+        const rectangle = {
+            x: x,
+            y: y,
+            width: 50,
+            height: 50,
+            color: color,
+            value: value,
+            stroke: 'black',
+            
+            isDragging: false
+        };
+
+        rectangles.push(rectangle);
+        drawRectangles();
+    }
+
+    function drawRectangles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Canvas leeren
+        rectangles.forEach(rect => {
+            ctx.fillStyle = rect.color;
+            ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
+           
+            ctx.fillStyle = 'white';
+            ctx.font = '24pt Arial'; // 'pt' für Punkt und 'Arial' als Schriftart
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(rect.value, rect.x + rect.width / 2, rect.y + rect.height / 2 );
+        });
+    }
+
+    canvas.addEventListener('mousedown', (event) => {
+        const mouseX = event.offsetX;
+        const mouseY = event.offsetY;
+
+        rectangles.forEach(rect => {
+            if (mouseX > rect.x && mouseX < rect.x + rect.width &&
+                mouseY > rect.y && mouseY < rect.y + rect.height) {
+                rect.isDragging = true;
+                rect.offsetX = mouseX - rect.x;
+                rect.offsetY = mouseY - rect.y;
+            }
+        });
+    });
+
+    canvas.addEventListener('mousemove', (event) => {
+        const mouseX = event.offsetX;
+        const mouseY = event.offsetY;
+
+        rectangles.forEach(rect => {
+            if (rect.isDragging) {
+                rect.x = mouseX - rect.offsetX;
+                rect.y = mouseY - rect.offsetY;
+
+                // Begrenzung, damit die Rechtecke im Canvas bleiben
+                if (rect.x < 0) rect.x = 0;
+                if (rect.y < 0) rect.y = 0;
+                if (rect.x + rect.width > canvas.width) rect.x = canvas.width - rect.width;
+                if (rect.y + rect.height > canvas.height) rect.y = canvas.height - rect.height;
+
+                drawRectangles();
+            }
+        });
+    });
+
+    canvas.addEventListener('mouseup', () => {
+        rectangles.forEach(rect => {
+            rect.isDragging = false;
+        });
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+        rectangles.forEach(rect => {
+            rect.isDragging = false;
+        });
+    });
+
+    for (let i = 0; i < 10; i++) {
+        createRectangle(500+(i-5)*60,50);
+    }
+</script>
+<footer>
+    2024 Rainer Hille, Gymnasium Waldkraiburg
+</footer>
+
 </body>
 </html>
-
