@@ -179,6 +179,8 @@
   
 [Anleitung Webshop automatisch](00Informatik10/WebshopAutomatisch.html)  
 [BlueJ-Dateien Webshop-Projekt](00Informatik10/BlueJDateien/index.html)  
+
+[getMinIndex()](00Informatik10/minIndex/getMinIndex.html)  
 [Sortieren](00Informatik10/Sortieren/Sortieren.html)      
 
 
