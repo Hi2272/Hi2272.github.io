@@ -171,9 +171,7 @@
 [Assembler Simulator](https://exuanbo.xyz/assembler-simulator) 
  
 [Variablen in Java: Text](00Informatik10/JavaVariablen/mindmap.html)    
-[Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)  
-[02Lieferant.jar](00Informatik10/BlueJDateien/02Lieferant.jar)  
-[03Webshop.jar](00Informatik10/BlueJDateien/03Webshop.jar)  
+[Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)   
 [Assoziation oder Aggregation?](https://learningapps.org/view38043424)  
 
   
@@ -182,7 +180,7 @@
 
 [getMinIndex()](00Informatik10/minIndex/getMinIndex.html)  
 [Sortieren](00Informatik10/Sortieren/Sortieren.html)      
-
+[Weihnachtsbaum](00Informatik10/Weihnachtsbaum/index.html)
 
 ## Datenschutz
 ***
