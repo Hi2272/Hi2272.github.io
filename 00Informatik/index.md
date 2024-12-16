@@ -170,16 +170,19 @@
 
 [Assembler Simulator](https://exuanbo.xyz/assembler-simulator) 
  
-[Variablen in Java: Text](00Informatik10/JavaVariablen/mindmap.html)    
+[Variablen in Java: Text](00Informatik10/JavaVariablen/mindmap.html)      
+
 [Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)   
 [Assoziation oder Aggregation?](https://learningapps.org/view38043424)  
 
   
 [Anleitung Webshop automatisch](00Informatik10/WebshopAutomatisch.html)  
 [BlueJ-Dateien Webshop-Projekt](00Informatik10/BlueJDateien/index.html)  
-
+  
+[Länge von Feldern](00Informatik10/ArrayLaenge/index.html)  
 [getMinIndex()](00Informatik10/minIndex/getMinIndex.html)  
-[Sortieren](00Informatik10/Sortieren/Sortieren.html)      
+[Sortieren](00Informatik10/Sortieren/Sortieren.html)     
+ 
 [Weihnachtsbaum](00Informatik10/Weihnachtsbaum/index.html)
 
 ## Datenschutz
