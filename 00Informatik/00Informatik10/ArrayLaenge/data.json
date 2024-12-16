@@ -6,13 +6,10 @@
   "copyright":"eigene Zeichnung",
   "titel":"",
   "angabe":"Ziehe die Wörter in die passende Lücke:",
-  "txt":[
-    {"x":0.278 ,"y":0.582,"width":0.116,"height":0.11,"pos":[0]},
-    {"x":0.133 ,"y":0.722,"width":0.124,"height":0.118,"pos":[1]},
-    {"x":0.597 ,"y":0.725,"width":0.106,"height":0.118,"pos":[2]},
-    {"x":0.361 ,"y":0.878,"width":0.037,"height":0.092,"pos":[3,4]},
-    {"x":0.955 ,"y":0.582,"width":0.034,"height":0.105,"pos":[3,4]},
-    {"x":0.706 ,"y":0.722,"width":0.079,"height":0.123,"pos":[5]},
-    {"x":0.485 ,"y":0.712,"width":0.111,"height":0.133,"pos":[6]}
-    ]
+    "txt":[
+      {"x":0.128 ,"y":0.719,"width":0.13,"height":0.119,"pos":[0]},
+      {"x":0.274 ,"y":0.569,"width":0.126,"height":0.109,"pos":[1]},
+      {"x":0.587 ,"y":0.724,"width":0.11,"height":0.109,"pos":[2]},
+      {"x":0.356 ,"y":0.874,"width":0.037,"height":0.091,"pos":[3]}
+      ]
     }
