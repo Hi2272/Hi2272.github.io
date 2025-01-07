@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Einrichten der Programmierungumgebug</title>
-        <style>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Einrichten der Programmierungumgebug</title>
+            <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -16,7 +16,7 @@
 }
 
 </style>
-        
+            
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
@@ -37,11 +37,107 @@
     pointer-events: none;
 }
 </style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
         
-    </head>
-    <body class="vscode-body vscode-light">
-         <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
-<h1 id="einrichten-der-programmierungumgebug">Einrichten der Programmierungumgebug</h1>
+        </head>
+        <body class="vscode-body vscode-light">
+             <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="einrichten-der-programmierungumgebug">Einrichten der Programmierungumgebung</h1>
 <h2 id="starten-von-linux-mint-auf-den-rechnern">Starten von Linux Mint auf den Rechnern</h2>
 <ol>
 <li>Stecke den USB-Stick in die Buchse auf der linken Seite des Rechners.</li>
@@ -69,9 +165,25 @@
 <img src="sc3.png" alt="Alt text"></li>
 <li>Klicke auf <strong>OK</strong></li>
 </ol>
+<h2 id="hinweise-zur-verwendung-von-mikrocontrollern-unter-windows">Hinweise zur Verwendung von Mikrocontrollern unter Windows</h2>
+<h3 id="ch340-treiber">CH340-Treiber:</h3>
+<p>Billige Arduino Nachbauten verwenden für den USB-Anschluss in der Regel ein CH-340-Modul.
+Auf Windows-Rechnern muss ein Treiber installiert werden, um dieses Modul anzusprechen:</p>
+<p><a href="https://sparks.gogo.co.nz/ch340.html">https://sparks.gogo.co.nz/ch340.html</a></p>
+<h3 id="cp210-treiber">CP210-Treiber:</h3>
+<p>ESP32-Boards verwenden für den USB-Anschluss CP210-Module.
+Auf Windows-Rechnern muss ein Treiber installiert werden, um dieses Modul anzusprechen:</p>
+<p><a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads">https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads</a></p>
+<ol>
+<li>Windows-Datei Herunterladen</li>
+<li>Datei entpacken</li>
+<li>Im entpackten Ordner mit Rechts auf silabser.inf klicken</li>
+<li>Weitere Optionen anzeigen anklicken</li>
+<li>Installieren anklicken</li>
+</ol>
 <p><a href="../index.html">zurück</a></p>
 
-        
-        
-    </body>
-    </html>
+            
+            
+        </body>
+        </html>

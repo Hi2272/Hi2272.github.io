@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>CSS</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+              <meta charset="utf-8" />
+  <title>HTML und CSS</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="css">CSS</h1>
+<p><a href="#css-selektoren">CSS-Selektoren</a> | <a href="#rahmen">Rahmen</a> | <a href="#abst%C3%A4nde">Abstände</a> | <a href="#cascade">Cascade</a> | <a href="#hyperlinks">Links</a></p>
+<h2 id="css-selektoren">CSS-Selektoren</h2>
+<h3 id="html-element">HTML-Element</h3>
+<p>HTML Elemente werden direkt durch den Namen des HTML-Tags selektiert:</p>
+<pre><code class="language-CSS">  <span class="hljs-selector-tag">h1</span>{<span class="hljs-attribute">color</span>:red;}
+</code></pre>
+<p>Mehrere HTML-Elemente können hierbei durch Kommas getrennt werden:</p>
+<pre><code class="language-CSS">  <span class="hljs-selector-tag">h1</span>, <span class="hljs-selector-tag">h2</span>, <span class="hljs-selector-tag">h3</span>{<span class="hljs-attribute">color</span>:red;}
+</code></pre>
+<p>Dies gilt grundsätzlich auch für HTML-Klassen und Ids.</p>
+<h3 id="html-klassen">HTML-Klassen</h3>
+<p>HTML Klassen werden mit einem <strong>führenden Punkt</strong> selektiert:</p>
+<pre><code class="language-CSS"><span class="hljs-selector-class">.wichtig</span>{
+    <span class="hljs-attribute">color</span>:red;
+    <span class="hljs-attribute">background-color</span>:yellow;
+    }
+</code></pre>
+<p>Im HTML-Code wird die Klasse mit dem Zusatz <strong>class</strong> definiert:</p>
+<pre><code class="language-HTML"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;wichtig&quot;</span>&gt;</span>
+Dieser Text wird mit roter Schrift auf gelbem Grund dargestellt.  
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>Damit können mehrere gleichartig formatierte Bereiche in einem Text erzeugt werden.</p>
+<h3 id="html-ids">HTML-Ids</h3>
+<p>Mit Ids können einzelne HTML-Elemente formatiert werden. Im CSS werden sie mit einem <strong>führenden #</strong> defininert:</p>
+<pre><code class="language-CSS"><span class="hljs-selector-id">#impressum</span>{
+    <span class="hljs-attribute">color</span>:red;
+    <span class="hljs-attribute">font-size</span>:small;
+    <span class="hljs-attribute">text-align</span><span class="hljs-selector-pseudo">:right</span>;
+}
+</code></pre>
+<p>Der Text wird rechtsbündig, mit kleiner roter Schrift dargestellt.</p>
+<pre><code class="language-HTML"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;impressum&quot;</span>&gt;</span>
+2024 Gymnasium Waldkraiburg
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<h3 id="universalselektor">Universalselektor</h3>
+<p>Mit dem Universalselektor <b>*</b> können die CSS-Attribute für alle HTML-Element geändert werden:</p>
+<pre><code class="language-CSS">*{
+    <span class="hljs-attribute">margin</span>:<span class="hljs-number">0px</span>;
+}
+</code></pre>
+<p>Mit dieser Regel wird der Außenabstand aller HTML-Elemente auf 0 gesetzt. Damit werden die Standard-Einstellungen des Browsers überschrieben.</p>
+<h2 id="rahmen">Rahmen</h2>
+<p>Das <strong>border</strong>-Attribut besteht aus drei Untereinheiten:</p>
+<pre><code class="language-CSS"><span class="hljs-selector-tag">table</span>, <span class="hljs-selector-tag">tr</span>, <span class="hljs-selector-tag">td</span>{
+    <span class="hljs-attribute">border-width</span>: <span class="hljs-number">1px</span>;
+    <span class="hljs-attribute">border-style</span>: solid;
+    <span class="hljs-attribute">border-color</span>: gray;
+}
+</code></pre>
+<p>Diese drei Attribute können in einem Aufruf gesetzt werden:</p>
+<pre><code class="language-CSS"><span class="hljs-selector-tag">table</span>, <span class="hljs-selector-tag">tr</span>, <span class="hljs-selector-tag">td</span>{
+    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid gray;
+}
+</code></pre>
+<p>Das Problem hierbei ist, dass alle Rahmenlinien doppelt gesetzt werden. Dies kann durch das Attribut <strong>border-collapse</strong> beseitigt werden:</p>
+<pre><code class="language-CSS"><span class="hljs-selector-tag">table</span>, <span class="hljs-selector-tag">tr</span>, <span class="hljs-selector-tag">td</span>{
+    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid gray;
+    <span class="hljs-attribute">border-collapse</span>: collapse;
+}
+</code></pre>
+<h2 id="abstände">Abstände</h2>
+<p>Im <strong>Box</strong>-Modell von CSS werden Abstände zwischen Inhalt und Rahmen definiert.</p>
+<ul>
+<li>width: Breite des Inhalts</li>
+<li>height: Höhe des Inhalts</li>
+<li>padding: Abstand des Rahmens vom Inhalt</li>
+<li>border: Breite des Rahmens</li>
+<li>margin: Abstand des Rahmens zum nächsten Inhalt.</li>
+</ul>
+<p>Bei <strong>padding</strong>, <strong>border</strong> und <strong>margin</strong> können zusätzlich die vier Seiten definiert werden:</p>
+<ul>
+<li>margin-top: 10px;</li>
+<li>margin-right: 5px;</li>
+<li>margin-bottom: 10 px;</li>
+<li>margin-left: 5px;</li>
+</ul>
+<p>Wichtig ist in diesem Zusammenhang, dass <strong>padding, border und margin</strong> zu den Werte von <strong>width</strong> und <strong>height</strong> des Inhalts addiert werden.</p>
+<h2 id="cascade">Cascade</h2>
+<p>CSS ist kaskaden- oder stufenartig aufgebaut (Cascading Style Sheet).</p>
+<h3 id="stufe-0-grundeinstellungen">Stufe 0: Grundeinstellungen</h3>
+<p>Wenn für ein Attribut keine Regeln vorgegeben sind, wird die Grundeinstellung des Browsers verwendet.</p>
+<h3 id="stufe-1-vererbung">Stufe 1: Vererbung</h3>
+<p>Eine Kind-Klasse erbt die Attribute der Elternklasse.<br>
+Bsp.:</p>
+<pre><code class="language-HTML"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Überschrift<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</code></pre>
+<pre><code class="language-CSS"><span class="hljs-selector-tag">body</span>{<span class="hljs-attribute">color</span>:red;}
+</code></pre>
+<p>Die Überschrift wird rot dargestellt, da die <strong>h1</strong>-Klasse als Kind das Attribut der <strong>body</strong>-Klasse erbt.<br>
+Aus diesem Grund sollten Attribute, die das ganze HTML-Dokument beeinflussen, möglichst weit oben im Vererbungsbaum gesetzt werden: <strong>body</strong> oder <strong>html</strong>.</p>
+<h3 id="stufe-2-direkte-attributzuweisung">Stufe 2: Direkte Attributzuweisung</h3>
+<p>Die Vererbung kann durch eine direkte Zuweisung von Attributen zu HTML-Klassen überschrieben werden.<br>
+Bsp.:</p>
+<pre><code class="language-HTML"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Überschrift<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</code></pre>
+<pre><code class="language-CSS"><span class="hljs-selector-tag">body</span>{<span class="hljs-attribute">color</span>:red;}
+<span class="hljs-selector-tag">h1</span>{<span class="hljs-attribute">color</span>:yellow;}
+</code></pre>
+<p>In diesem Fall wird die Überschrift gelb dargestellt.</p>
+<h3 id="reihenfolge-gleichartiger-zuweisungen">Reihenfolge gleichartiger Zuweisungen</h3>
+<p>Werden zwei Attribute auf der gleichen Ebene zweimal zugewiesen, so gilt die Zuweisung, die später erfolgt.<br>
+Bsp.:</p>
+<pre><code class="language-HTML"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Überschrift<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</code></pre>
+<pre><code class="language-CSS"><span class="hljs-selector-tag">h1</span>{ <span class="hljs-attribute">color</span>:yellow;
+    <span class="hljs-attribute">color</span>: red;
+}
+</code></pre>
+<p>In diesem Fall wird die Überschrift rot dargestellt, da die zweite Zuweisung die erste überschreibt.<br>
+Besonders relevant wird diese Regel bei der <strong>inline</strong>-Zuweisung:</p>
+<pre><code class="language-HTML"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;color: blue;&quot;</span>&gt;</span>Überschrift<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</code></pre>
+<p>In diesem Fall wird die Überschrift immer blau dargestellt, da alle Zuweisungen aus der CSS-Datei durch die inline-Zuweisung überschrieben werden. Sie ist immer die letzte und damit entscheidende Zuweisung.</p>
+<h2 id="hyperlinks">Hyperlinks</h2>
+<p>In CSS kann das Aussehen von Hyperlinks angepasst werden:</p>
+<pre><code class="language-CSS"><span class="hljs-comment">/* Vor dem Klick*/</span>
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:link</span>{
+    <span class="hljs-attribute">color</span>:green;
+}
+
+<span class="hljs-comment">/* Nach dem Klick*/</span>
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:visited</span>{
+    <span class="hljs-attribute">color</span>:red;
+}
+
+<span class="hljs-comment">/* Beim Klick */</span>
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:active</span> {
+    <span class="hljs-attribute">color</span>:gray;
+}
+
+<span class="hljs-comment">/* Beim Hovern mit der Maus*/</span>
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:hover</span>{
+    <span class="hljs-attribute">color</span>:black;
+}
+
+<span class="hljs-comment">/* Beim Durchklicken mit der Tab-Taste*/</span>
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:focus</span>{
+    <span class="hljs-attribute">color</span>:black;
+}
+</code></pre>
+
+            
+            
+        </body>
+        </html>
