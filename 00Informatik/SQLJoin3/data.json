@@ -1,0 +1,44 @@
+{
+  "titel": "Nachbargemeinde - zwei Anfragen an eine Tabelle",
+  "url": "https://www.dbiu.de/bayern/",
+  "shuffle": false,
+  "angabe": [
+    {
+    "txt": "Die Tabelle Nachbargemeinde enthält die Schlüssel benachbarter Gemeinden.<br>Erzeuge eine Liste mit den Namen aller benachbarter Gemeinden. Die Tabelle soll zwei Spalten mit den Überschriften Gemeinde1 und Gemeinde2 haben.",
+      "lsg": [
+            "<p>SELECT g1.name AS Gemeinde1, g2.name AS Gemeinde2<br />FROM Gemeinde g1, Gemeinde g2, Nachbargemeinde n<br />WHERE g1.schluessel=n.gemeindeschluessel_1<br />AND g2.schluessel=n.gemeindeschluessel_2<br />ORDER BY Gemeinde1</p>"
+     ],
+      "hilfe":"Hierzu musst du die Tabelle Gemeinde zweimal mit verschiedenen Alias anfragen.",
+      "zeit": 1
+    }
+    ,
+    {
+      "txt": "Lasse dir nur die Nachbargemeinden der Gemeinde Waldkraiburg anzeigen.",
+      "lsg": [
+            "<p>SELECT g1.name AS Gemeinde1, g2.name AS Gemeinde2<br />FROM Gemeinde g1, Gemeinde g2, Nachbargemeinde n<br />WHERE g1.schluessel=n.gemeindeschluessel_1<br />AND g2.schluessel=n.gemeindeschluessel_2<br />AND g1.name=\"Waldkraiburg\"</p>"
+            ],
+      "hilfe":"Erweitere einfach den WHERE-Teil mit einer weiteren Bedingung.",
+      "zeit": 1
+    },
+    {
+      "txt": "Erzeuge eine Liste aller Gemeinden und der Zahl ihrer Nachbargemeinden. Sortiere sie absteigend nach dieser Zahl.",
+      "lsg": [
+            "<p>SELECT g1.name AS Gemeinde1, COUNT(g2.name) AS Nachbargemeinden<br />FROM Gemeinde g1, Gemeinde g2, Nachbargemeinde n<br />WHERE g1.schluessel=n.gemeindeschluessel_1<br />AND g2.schluessel=n.gemeindeschluessel_2<br />GROUP BY g1.schluessel<br />ORDER BY Nachbargemeinden DESC</p>"
+     ],
+      "hilfe":"Gruppiere die Tabelle nach der 1. Gemeinde.",
+      "zeit": 1
+    },
+    {
+      "txt": "Schränke diese Liste auf die Gemeinden ein, die mehr als 15 Nachbargemeinden haben.",
+      "lsg": [
+        "<p>SELECT g1.name AS Gemeinde1, COUNT(g2.name) AS Nachbargemeinden<br />FROM Gemeinde g1, Gemeinde g2, Nachbargemeinde n<br />WHERE g1.schluessel=n.gemeindeschluessel_1<br />AND g2.schluessel=n.gemeindeschluessel_2<br />GROUP BY g1.schluessel<br />HAVING Nachbargemeinden &gt; 15<br />ORDER BY Nachbargemeinden DESC</p>"    
+     ],
+      "hilfe":"Verwende HAVING nach der Gruppierung.",
+      "zeit": 1
+    }
+    
+
+
+
+     ]
+}

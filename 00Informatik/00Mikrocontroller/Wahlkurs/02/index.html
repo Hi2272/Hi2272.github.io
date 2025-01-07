@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Der Bewegungsmelder</title>
-        <style>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Der Bewegungsmelder</title>
+            <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -11,12 +11,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
 </style>
-        
+            
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
@@ -37,10 +39,106 @@
     pointer-events: none;
 }
 </style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
         
-    </head>
-    <body class="vscode-body vscode-light">
-         <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+        </head>
+        <body class="vscode-body vscode-light">
+             <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 <h1 id="der-bewegungsmelder">Der Bewegungsmelder</h1>
 <p>Der PIR-Sensor gibt über einen Pin ein Signal aus, sobald er eine Bewegung registriert.</p>
 <h2 id="1-die-schaltung">1. Die Schaltung</h2>
@@ -51,46 +149,62 @@ Verbinde jetzt die Pins passend zur Beschriftung:</p>
 <li>VCC -&gt; +5V</li>
 <li>OUT -&gt; Pin 6</li>
 </ol>
-<p><img src="../03/Screenshot_1.png" alt="Alt text"></p>
+<p>Auf der Vorderseite des Sensor befinden sich zwei Potentiometer:<br>
+<img src="IMG_20241115_165157.jpg" alt="alt text"></p>
+<ul>
+<li>Das linke regelt die Ausschaltverzögerung des Sensors.</li>
+<li>Das rechte regelt seine Empfindlichkeit.</li>
+</ul>
+<p>Sie können mit einem kleinen Schraubenzieher verstellt werden.</p>
+<ul>
+<li>Drehe beide Potentiometer gegen den Uhrzeigersinn auf den minimalen Wert.</li>
+</ul>
 <h2 id="2-der-code">2. Der Code</h2>
-<p>Definiere zunächst für die Pins Variablen und setze in der  <strong>setup()</strong>-Methode den Modus für die Pins.</p>
-<pre><code class="language-C++"><span class="hljs-type">int</span> led = <span class="hljs-number">7</span>;
-<span class="hljs-type">int</span> sensor = <span class="hljs-number">6</span>;
+<p>Definiere zunächst für den Sensor-Pin eine Variable und setze in der  <strong>setup()</strong>-Methode diesen Pin als Eingang.
+Außerdem schalten wir den seriellen Monitor ein und stellen seine Datenrate auf 9600 Baud. Die serielle Schnittstelle überträgt jetzt maximal 9600 Zeichen pro Sekunde.</p>
+<pre><code class="language-C++"><span class="hljs-type">int</span> sensor = <span class="hljs-number">6</span>;
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>{
-    <span class="hljs-built_in">pinMode</span>(led,OUTPUT);
     <span class="hljs-built_in">pinMode</span>(sensor,INPUT);
+    Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
 }
 
 </code></pre>
 <p>In der <strong>loop()</strong>-Methode wird der Wert des Sensors ausgelesen.<br>
-Wenn dieser Wert <strong>HIGH</strong> ist, wird die LED eingeschaltet, sonst wird sie ausgeschaltet.</p>
+Wenn dieser Wert <strong>HIGH</strong> ist, wird eine entsprechende Nachricht über die serielle Schnittstelle ausgegeben.</p>
 <pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{
     <span class="hljs-type">int</span> wert=<span class="hljs-built_in">digitalRead</span>(sensor);
     <span class="hljs-keyword">if</span> (wert==HIGH){
-        <span class="hljs-built_in">digitalWrite</span>(led,HIGH);
+        Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Bewegung&quot;</span>);
         <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
-    } <span class="hljs-keyword">else</span> {
-        <span class="hljs-built_in">digitalWrite</span>(led,LOW);
-    }
+    } 
     <span class="hljs-built_in">delay</span>(<span class="hljs-number">10</span>);
 }
 </code></pre>
 <h2 id="3-der-test">3. Der Test</h2>
-<p>Teste deine Alarmanalage.</p>
+<p>Teste deine Alarmanalage. Nach dem Hochladen des Programms musst du den Seriellen Monitor einschalten:<br>
+<img src="Serieller%20Monitor.png" alt="alt text"></p>
 <h2 id="4-die-zweifarb-led">4. Die Zweifarb-LED</h2>
 <p>Wenn die Alarmanlage eingeschaltet ist, soll die LED grün leuchten.<br>
 Sobald eine Bewegung wahrgenommen wird, soll die Farbe der LED von grün auf rot wechseln.</p>
 <h3 id="die-schaltung">Die Schaltung</h3>
-<p>Ersetze die rote LED auf dem Breadboard durch eine Zweifarb-LED.<br>
-Achtung: Bei unseren Zweifarb-LEDs muss der gemeinsame Pol an den Pluspol angeschlossen werden. Du musst deine Schaltung daher etwas stärker umbauen:</p>
+<p>Baue eine Zweifarb-LED ein und schließe die 3 Beinchen wie folgt an:</p>
+<ul>
+<li>links -&gt; Pin 8</li>
+<li>Mitte -&gt; 1 kOhm-Widerstand -&gt; +5V</li>
+<li>rechts -&gt; Pin 7</li>
+</ul>
 <p><img src="Screenshot_2.png" alt="Alt text"></p>
 <h3 id="der-programmcode">Der Programmcode</h3>
 <p>Ändere dein Programm wie folgt ab:</p>
 <ol>
-<li>Benenne die Variable led in ledRot um.</li>
-<li>Deklariere eine neue Variable ledGruen vom Typ int und weise ihr den Wert 8 zu.</li>
-<li>Setze in der <strong>setup()</strong>-Methode den pinMode von ledGruen auf <strong>OUTPUT</strong></li>
+<li>Deklariere zwei Variablen für die LED-Pins:
+<ol>
+<li>ledRot = 8</li>
+<li>ledGruen = 7</li>
+</ol>
+</li>
+<li>Setze in der <strong>setup()</strong>-Methode den pinMode der beiden LED-Pins auf <strong>OUTPUT</strong></li>
 <li>Ändere die Sequenz, die ausgeführt wird, wenn eine Bewegung wahrgenommen wird:
 <ol>
 <li>Die grüne LED soll ausgeschaltet werden.<br>
@@ -118,7 +232,7 @@ Hierzu muss der Pin auf <strong>LOW</strong> gestellt werden.</li>
     ">
 <p>Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.</p>
 </footer>
-        
-        
-    </body>
-    </html>
+            
+            
+        </body>
+        </html>

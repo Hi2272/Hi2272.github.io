@@ -1,0 +1,28 @@
+{ "typ":"Bild",   
+  "titel":"Robot Karol",
+  "untertitel":"",
+  "blueJ":"AufgabenstellungRobotKarol/19VierGewinnt.jar",
+  
+  "angabe":[
+    {"zeit":1,"txt":"Mit der Methode <b>schritt()</b> geht Karol einen Schritt weit.<br>Erstelle eine neue Methode <b>schritte</b> mit einem ganzzahligen Parameter n, mit dem Karol n Schritte weit geht."},
+    {"zeit":1,"txt":"Mit der Methode <b>linksDrehen()</b> dreht sich Karol um 90° nach links.<br>Erstelle eine neue Methode <b>umdrehen()</b> mit der sich Karol um 180° dreht."},
+    {"zeit":1,"txt":"Mit der Methode <b>hinlegen()</b> legt Karol einen Ziegelstein vor sich hin.<br>Erstelle eine neue Methode <b>steinUnterMich()</b>, mit der Karol einen Stein unter seine Position legt. Verwende hierbei zusätzlich die Methoden <b>schritt()</b> und <b>umdrehen()</b>."},
+    {"zeit":1,"txt":"Mit der Methode <b>treppeAuf()</b> mit einem ganzzahligen Parameter soll Karol eine beliebig hohe Treppe vor sich bauen. Am Ende soll er oben auf der Treppe stehen."},
+    {"zeit":1,"txt":"Mit der Methode <b>treppeAb()</b> soll Karol von einer bestimmten Höhe aus wieder eine Treppe nach unten bauen.<br>In diesem Bild wurde zuerst treppeAuf(4) und dann treppeAb(4) aufgerufen."},
+   
+    {"zeit":1,"txt":"Mit der Methode <b>wand()</b> mit einem ganzzahligen Parameter soll Karol eine Wand bauen, die einen Stein hoch und n Steine lang ist.<br>In diesem Bild wurde die Methode <b>wand(9)</b> aufgerufen."},
+    {"zeit":1,"txt":"Mit der Methode <b>mauer()</b> soll eine quadratische Mauer gebaut werden Hierbei soll mit einem Parameter die Breite des Quadrates und mit einem zweiten Parameter die Höhe der Mauer angegeen werden.<br>In diesem Bild wurde die Methode mauer(4,2) aufgerufen."},
+    {"zeit":1,"txt":"Mit der Methode <b>mauer(int breite, int laenge, int hoehe)</b> soll eine rechteckige Mauer gebaut werden.<br>In diesem Bild wurde die Methode <b>mauer(3,4,2)</b> aufgerufen."},
+    {"zeit":1,"txt":"Mit der Methode <b>wand(int laenge, int hoehe)</b> soll eine beliebig hohe und lange Wand gebaut werden. Der erste Stein soll hierbei unter Karol liegen.<br>In diesem Bild wurde die Methode wand(3,2) aufgerufen."}
+    
+  ],
+ 
+  "txtAngabe": [
+
+   ],
+ 
+
+  "ende":"Viel Spaß beim Bauen mit Karol!",
+  "copyright":"<a href='https://www.bluej.org'>BlueJ</a>, <a href='http://www.java-online.ch/gamegrid/gamegridEnglish/index.php?inhalt_links=navigation.inc.php&inhalt_mitte=grundelemente/grid.inc.php'> JGameGrid</a>, <a href='https://github.com/marcojakob/gamegrid-kara/tree/master/scenarios-eclipse-project/src/kara/gamegrid'>GameGrid Kara</a>"
+    
+}

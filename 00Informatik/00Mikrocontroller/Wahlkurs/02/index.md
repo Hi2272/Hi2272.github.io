@@ -8,62 +8,72 @@ Die Pins des PIR-Sensors sind meistens unter der weißen Plastikhaube beschrifte
 Verbinde jetzt die Pins passend zur Beschriftung:
 1. GND -> GND
 2. VCC -> +5V
-3. OUT -> Pin 6
-   
-![Alt text](../03/Screenshot_1.png)
+3. OUT -> Pin 6  
+
+Auf der Vorderseite des Sensor befinden sich zwei Potentiometer:  
+![alt text](IMG_20241115_165157.jpg)  
+- Das linke regelt die Ausschaltverzögerung des Sensors.
+- Das rechte regelt seine Empfindlichkeit.  
+  
+Sie können mit einem kleinen Schraubenzieher verstellt werden. 
+- Drehe beide Potentiometer gegen den Uhrzeigersinn auf den minimalen Wert.
 
 ## 2. Der Code
-Definiere zunächst für die Pins Variablen und setze in der  **setup()**-Methode den Modus für die Pins.
+Definiere zunächst für den Sensor-Pin eine Variable und setze in der  **setup()**-Methode diesen Pin als Eingang. 
+Außerdem schalten wir den seriellen Monitor ein und stellen seine Datenrate auf 9600 Baud. Die serielle Schnittstelle überträgt jetzt maximal 9600 Zeichen pro Sekunde.
+
 ```C++
-int led = 7;
 int sensor = 6;
 
 void setup(){
-    pinMode(led,OUTPUT);
     pinMode(sensor,INPUT);
+    Serial.begin(9600);
 }
 
 ```
 In der **loop()**-Methode wird der Wert des Sensors ausgelesen.  
-Wenn dieser Wert **HIGH** ist, wird die LED eingeschaltet, sonst wird sie ausgeschaltet.
+Wenn dieser Wert **HIGH** ist, wird eine entsprechende Nachricht über die serielle Schnittstelle ausgegeben.
 ```C++
 void loop(){
     int wert=digitalRead(sensor);
     if (wert==HIGH){
-        digitalWrite(led,HIGH);
+        Serial.println("Bewegung");
         delay(1000);
-    } else {
-        digitalWrite(led,LOW);
-    }
+    } 
     delay(10);
 }
 ``` 
 ## 3. Der Test
-Teste deine Alarmanalage. 
+Teste deine Alarmanalage. Nach dem Hochladen des Programms musst du den Seriellen Monitor einschalten:  
+![alt text](<Serieller Monitor.png>)  
+
 
 ## 4. Die Zweifarb-LED
 Wenn die Alarmanlage eingeschaltet ist, soll die LED grün leuchten.  
 Sobald eine Bewegung wahrgenommen wird, soll die Farbe der LED von grün auf rot wechseln.  
 ### Die Schaltung
-Ersetze die rote LED auf dem Breadboard durch eine Zweifarb-LED.  
-Achtung: Bei unseren Zweifarb-LEDs muss der gemeinsame Pol an den Pluspol angeschlossen werden. Du musst deine Schaltung daher etwas stärker umbauen:  
+Baue eine Zweifarb-LED ein und schließe die 3 Beinchen wie folgt an:
+- links -> Pin 8
+- Mitte -> 1 kOhm-Widerstand -> +5V
+- rechts -> Pin 7  
   
 ![Alt text](Screenshot_2.png)
 ### Der Programmcode
 Ändere dein Programm wie folgt ab:
-1. Benenne die Variable led in ledRot um.
-2. Deklariere eine neue Variable ledGruen vom Typ int und weise ihr den Wert 8 zu.
-3. Setze in der **setup()**-Methode den pinMode von ledGruen auf **OUTPUT**
-4. Ändere die Sequenz, die ausgeführt wird, wenn eine Bewegung wahrgenommen wird:
+1. Deklariere zwei Variablen für die LED-Pins:
+   1. ledRot = 8
+   2. ledGruen = 7
+2. Setze in der **setup()**-Methode den pinMode der beiden LED-Pins auf **OUTPUT**
+3. Ändere die Sequenz, die ausgeführt wird, wenn eine Bewegung wahrgenommen wird:
    1. Die grüne LED soll ausgeschaltet werden.  
       Hierzu muss der Pin auf **HIGH** gestellt werden.  
       (Beide Pole der LED sind jetzt HIGH. Es liegt also kein Spannungsunterschied vor und kein Strom fließt.)
    2. Die rote LED soll eingeschaltet werden.  
    Hierzu muss der Pin auf **LOW** gestellt werden.
-5. Ändere die Sequenz, die ausgeführt wird, wenn keine Bewegung wahrgenommen wird:
+4. Ändere die Sequenz, die ausgeführt wird, wenn keine Bewegung wahrgenommen wird:
    1. die rote LED soll ausgeschaltet werden.
    2. die grüne LED soll eingechaltet werden.
-6. Teste deine Alarmanlage
+5. Teste deine Alarmanlage
 
 
 [Lösung](loesung.html)  

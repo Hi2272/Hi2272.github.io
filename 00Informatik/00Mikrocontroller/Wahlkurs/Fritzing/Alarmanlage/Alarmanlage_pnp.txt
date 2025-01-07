@@ -1,0 +1,33 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=Alarmanlage
+*Date=18:33:11
+*CreatedBy=Fritzing 0.9.6b..
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;THT;59.3302;-34.178;90;Bottom;J4
+2;;;11.5179;-10.8137;0;Bottom;TXT1
+3;;;12.255;-5.67503;0;Bottom;TXT1
+4;220;THT;39.0102;-22.748;90;Bottom;R1
+5;;;18.0931;-35.7968;0;Bottom;TXT1
+6;;THT;39.0102;-32.908;90;Bottom;J2
+7;;;34.1529;-26.558;0;Bottom;Bauteil1
+8;;;39.2292;-29.2778;0;Bottom;TXT3
+9;;;57.6109;-30.5656;0;Bottom;TXT3
+10;;THT;49.1702;-18.938;90;Bottom;J3
+11;;;12.35;-7.84784;0;Bottom;TXT1
+12;;;11.5824;-14.0933;0;Bottom;TXT1
+13;;;49.0545;-15.4046;0;Bottom;TXT3
+14;;;59.3277;-37.4339;0;Bottom;TXT2
+15;;;48.9971;-22.2837;0;Bottom;TXT2
+16;;THT;14.8802;-39.258;90;Bottom;J1
+17;;;33.6214;-22.0955;0;Bottom;TXT3
+18;;;15.1306;-42.0221;0;Bottom;TXT2

@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#container {
+    border: 2px solid black;
+    /* Schwarzer Rahmen um das Canvas */
+    overflow: hidden;
+    /* Verhindert Überlauf */
+}
+
+footer {
+    margin-top: auto;
+    padding: 10px;
+    text-align: right;
+    /* Text im Footer rechtsbündig */
+    font-size: xx-small;
+    /* XXSmall Schriftgröße */
+ }

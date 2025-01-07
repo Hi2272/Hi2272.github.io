@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Kugelbahn</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="kugelbahn">Kugelbahn</h1>
+<h2 id="allgemeines">Allgemeines</h2>
+<p>Die Firma Bambu Labs stellt auf ihrer Homepage die Druckvorlage für diese Kugelbahn zum Download zur Verfügung: <a href="https://makerworld.com/en/models/14265#profileId-14275">Marble Run V3</a><br>
+Wir haben das Modell ausgedruckt und im Schaukasten aufgebaut. Durch einen Druck auf den Taster startet der Motor für den Kugel-Lift:</p>
+<p>Das Modell wird mit folgender Schaltung gesteuert:</p>
+<p><img src="SchaltungKugelbahn_Steckplatine.png" alt="alt text"></p>
+<p>Der enstprechende Programmsketch ist relativ kurz:</p>
+<pre><code class="language-C++"><span class="hljs-comment">/*
+Deklaration und Initialisierung der Variablen
+*/</span>
+
+<span class="hljs-type">int</span> motor = <span class="hljs-number">10</span>;  <span class="hljs-comment">// Motor-Pin zur Geschwindigkeiteinstellung</span>
+<span class="hljs-type">int</span> in1 = <span class="hljs-number">9</span>;     <span class="hljs-comment">// Motor-Pins zur Richtungseinstellung</span>
+<span class="hljs-type">int</span> in2 = <span class="hljs-number">8</span>;
+<span class="hljs-type">int</span> taster = <span class="hljs-number">7</span>;  <span class="hljs-comment">// Taster-Pin</span>
+<span class="hljs-type">int</span> zeit = <span class="hljs-number">0</span>;    <span class="hljs-comment">// Zeitvariable</span>
+
+<span class="hljs-comment">/* 
+Setup wird einmalig beim Start ausgeführt
+*/</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">pinMode</span>(motor, OUTPUT);   <span class="hljs-comment">// Motor ist ein Ausgangs-Pin</span>
+  <span class="hljs-built_in">analogWrite</span>(motor, <span class="hljs-number">100</span>);  <span class="hljs-comment">// Geschwindigkeit: 100 von max. 255 Stufen</span>
+
+  <span class="hljs-built_in">pinMode</span>(in1, OUTPUT);  <span class="hljs-comment">// Motor-Pins sind Ausgänge</span>
+  <span class="hljs-built_in">pinMode</span>(in2, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(taster, INPUT_PULLUP);  <span class="hljs-comment">// Taster-Pin ist ein Eingang,</span>
+                                  <span class="hljs-comment">// der automatisch auf HIGH gezogen wird.</span>
+}
+
+<span class="hljs-comment">/*
+loop wird immer wieder ausgeführt
+*/</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">digitalRead</span>(taster) == LOW) {       <span class="hljs-comment">// Wenn der Taster gedrückt ist,</span>
+    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">digitalRead</span>(taster) == LOW) {  <span class="hljs-comment">// dann warte, bis der Taster losgelassen wurde</span>
+      <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
+    }
+    <span class="hljs-built_in">digitalWrite</span>(in1,LOW);                <span class="hljs-comment">// dann soll der Motor zunächst 100 ms rückwärts laufen,</span>
+    <span class="hljs-built_in">digitalWrite</span>(in2,HIGH);               <span class="hljs-comment">// damit evtl. verklemmte Kugeln sich lösen</span>
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">100</span>);
+    zeit = <span class="hljs-number">15000</span>;                         <span class="hljs-comment">// und anschließend 15000 ms = 15 Sekunden vorwärts laufen</span>
+   
+  }
+  <span class="hljs-keyword">if</span> (zeit &gt; <span class="hljs-number">0</span>) {             <span class="hljs-comment">// Wenn noch Laufzeit übrig ist,</span>
+    <span class="hljs-built_in">digitalWrite</span>(in1, HIGH);  <span class="hljs-comment">// dann soll der Motor laufen</span>
+    <span class="hljs-built_in">digitalWrite</span>(in2, LOW);
+    zeit = zeit - <span class="hljs-number">1</span>;         <span class="hljs-comment">// und die Zeit nach unten gezählt werden</span>
+  } <span class="hljs-keyword">else</span> {                   <span class="hljs-comment">// sonst</span>
+    <span class="hljs-built_in">digitalWrite</span>(in1, LOW);  <span class="hljs-comment">// soll der Motor stoppen</span>
+    <span class="hljs-built_in">digitalWrite</span>(in2, LOW);
+  }
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);  <span class="hljs-comment">// 1 ms Pause zwischen den loop-Runden</span>
+}
+</code></pre>
+<p><a href="../index.html">zurück</a></p>
+
+            
+            
+        </body>
+        </html>
