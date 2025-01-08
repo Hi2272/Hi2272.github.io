@@ -24,12 +24,12 @@ function numeric(string) {
 
 
 /**
- * Zeigt 5 Sek. lang eine Fehlermeldung an
+ * Zeigt 10 Sek. lang eine Fehlermeldung an
  * @param {*} i: Zeilennummer, in der der Fehler auftritt 
  * @param {*} s : Text der ausgegeben wird
  */
 function error(zeile, s) {
-    ausgabe("Fehler: " + zeile, s, 5000, "error");
+    ausgabe("Fehler: " + zeile, s, 10000, "error");
 
 }
 
