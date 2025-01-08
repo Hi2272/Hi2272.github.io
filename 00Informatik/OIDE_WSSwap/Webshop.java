@@ -4,16 +4,19 @@ public class Webshop {
 
 
    public Webshop() {
-      this.art = new Artikel[100];
-      for (int i = 0; i < 5; i++) {
+      this.art = new Artikel[10];
+      for (int i = 0; i < art.length; i++) {
          this.art[i] = new Artikel(i, "Turnschuh", Math.round(59.95 + Math.random() * 100) + 0.95);
       }
    }
 
    public int getLaenge() {
       int i = 0;
-      while (art[i] != null && i < art.length) {
+      while (art[i] != null) {
          i = i + 1;
+         if(i == art.length) {
+            return i;
+         }
       }
       return i;
    }
@@ -24,9 +27,10 @@ public class Webshop {
       }
    }
 
-   public int getIndexOfCheapest() {
-      int index=0;
-      for (int i = 0; i < getLaenge(); i++) {
+
+   public int getIndexOfCheapest(int start, int ende) {
+      int index = 0;
+      for (int i = start; i < ende; i++) {
          if(art[i].getPreis() < art[index].getPreis()) {
             index = i;
          }
@@ -35,11 +39,13 @@ public class Webshop {
    }
 
    public void printCheapest() {
-      art[getIndexOfCheapest()].drucken();
+      art[getIndexOfCheapest(0, getLaenge())].drucken();
    }
+
 }
 
 Webshop w = new Webshop();
 w.printAlles();
 println("--------------");
-w.printCheapest();
+w.swap(1,2);
+w.printAlles();

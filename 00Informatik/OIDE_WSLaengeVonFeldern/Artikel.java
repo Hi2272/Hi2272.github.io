@@ -11,6 +11,6 @@ public class Artikel{
     }
 
     public void drucken(){
-        print("Nr. "+this.nr+": "+this.name+" "+this.preis+" EUR");
+        println("Nr. "+this.nr+": "+this.name+" "+this.preis+" EUR");
     }
 }
