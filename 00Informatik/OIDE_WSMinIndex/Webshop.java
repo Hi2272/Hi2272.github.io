@@ -9,15 +9,18 @@ public class Webshop {
          this.art[i] = new Artikel(i, "Turnschuh", Math.round(59.95 + Math.random() * 100) + 0.95);
       }
    }
-
+ 
    public int getLaenge() {
       int i = 0;
-      while (art[i] != null && i < art.length) {
+      while (art[i] != null) {
          i = i + 1;
+         if (i == art.length){
+            return i;
+         }
       }
       return i;
    }
-   
+
    public void printAlles() {
       for (int i = 0; i < getLaenge(); i++) {
          this.art[i].drucken();
