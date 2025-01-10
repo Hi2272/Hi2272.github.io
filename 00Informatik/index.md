@@ -178,11 +178,17 @@
   
 [Anleitung Webshop automatisch](00Informatik10/WebshopAutomatisch.html)  
 [BlueJ-Dateien Webshop-Projekt](00Informatik10/BlueJDateien/index.html)  
-  
+
+
 [Länge von Feldern](00Informatik10/ArrayLaenge/index.html)  
 [getMinIndex()](00Informatik10/minIndex/getMinIndex.html)  
 [Sortieren](00Informatik10/Sortieren/Sortieren.html)     
- 
+
+[OnlineIDE: Länge des Feldes](OIDE_WSLaengeVonFeldern/index.md)  
+[OnlineIDE: Billigster Artikel](OIDE_WSMinIndex/index.md)  
+[OnlineIDE: Billigster Artikel in einem Bereich](OIDE_WSMinIndex2/index.md)  
+[OnlineIDE: Artikel tauschen](OIDE_WSSwap/index.md)  
+
 [Weihnachtsbaum](00Informatik10/Weihnachtsbaum/index.html)
 
 ## Datenschutz
