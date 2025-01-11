@@ -37,6 +37,6 @@ Verwende hierzu eine Zählschleife.
 </section>
 
 
+| [zurück](../OIDE_Noten04NeueNoten/index.html) | [Index](../index.html) |
+| ---- | ---- |
 
-[zurück](../OIDE_Noten03Note/index.html)  
-[Index](../index.html)

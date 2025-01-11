@@ -5,7 +5,7 @@
  # Eine Notenverwaltung
 ## 4. Methoden für die Mittelwerte der Noten
 
-1. Programmieren zunächst eine allgemeine Methode **getMw(int[] feld)**, die den Mittelwert der Werte des Feldes ausgibt.  
+1. Programmiere zunächst eine allgemeine Methode **getMw(int[] feld)**, die den Mittelwert der Werte des Feldes ausgibt.  
 Setze hierzu dieses Struktogramm um:  
 ![alt text](StruktogrammGetMW.png)  
 2. Programmiere anschließend die Methoden **getMwKleineLN()** und **getMwGrosseLN()**, die diese Methode aufrufen.
@@ -27,6 +27,7 @@ Setze hierzu dieses Struktogramm um:
    </iframe>
 </section>
 
-[zurück](../OIDE_Noten01Anz/index.html)  
-[Weiter](../OIDE_Noten03Note/index.html)  
-[Index](../index.html)
+
+| [zurück](../OIDE_Noten01Anz/index.html) | [weiter](../OIDE_Noten03Note/index.html) | [Index](../index.html) |
+| --- | ---- | ---- |
+

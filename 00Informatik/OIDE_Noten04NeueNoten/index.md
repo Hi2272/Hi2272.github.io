@@ -32,7 +32,5 @@ Neue Noten werden hinter dem letzten Element in das Feld eingefügt.
 </section>
 
 
-
-[zurück](../OIDE_Noten03Note/index.html)  
-[weiter](../OIDE_Noten05Faecher/index.html)  
-[Index](../index.html)
+| [zurück](../OIDE_Noten03Note/index.html) | [weiter](../OIDE_Noten05Faecher/index.html) | [Index](../index.html) |
+| --- | ---- | ---- |
