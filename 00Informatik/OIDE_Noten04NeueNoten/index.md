@@ -3,12 +3,9 @@
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
  
  # Eine Notenverwaltung
-## 4. Methoden für die Mittelwerte der Noten
+## 5. Speichern neuer Noten
 
-1. Programmieren zunächst eine allgemeine Methode **getMw(int[] feld)**, die den Mittelwert der Werte des Feldes ausgibt.  
-Setze hierzu dieses Struktogramm um:  
-![alt text](StruktogrammGetMW.png)  
-2. Programmiere anschließend die Methoden **getMwKleineLN()** und **getMwGrosseLN()**, die diese Methode aufrufen.
+
 <div id="quelle" style="font-size: x-small; text-align: right;">
     2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
 
@@ -27,6 +24,7 @@ Setze hierzu dieses Struktogramm um:
    </iframe>
 </section>
 
-[zurück](../OIDE_Noten01Anz/index.html)  
-[Weiter](../OIDE_Noten03Note/index.html)  
+
+
+[zurück](../OIDE_Noten03Note/index.html)  
 [Index](../index.html)

@@ -50,5 +50,5 @@ Struktogramm:
    </iframe>
 </section>
 
-[Weiter](../OIDE_Noten02MW/index.html)  
+[Weiter](../OIDE_Noten02MW/index.html)   
 [zurück](../index.html)

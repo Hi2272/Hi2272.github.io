@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>5&period; Methoden f&uuml;r die Berechnung der Gesamtnote</title>
+            <title>5&period; F&auml;cher des Sch&uuml;lers</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -142,23 +142,22 @@
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
 <h1 id="eine-notenverwaltung">Eine Notenverwaltung</h1>
-<h2 id="5-methoden-für-die-berechnung-der-gesamtnote">5. Methoden für die Berechnung der Gesamtnote</h2>
-<h3 id="1-berechnung-des-mittelwertes-des-faches">1. Berechnung des Mittelwertes des Faches.</h3>
+<h2 id="5-fächer-des-schülers">5. Fächer des Schülers</h2>
+<h3 id="attribute-des-schülers">Attribute des Schülers</h3>
 <ol>
-<li>Um den Mittelwert zu berechnen, müssen wir zunächst festlegen, ob der Schnitt der großen LN einfach oder doppelt gewichtet wird.</li>
+<li>Deklariere in der Klasse <strong>Schueler</strong> Attribute zum Speichern seines Vor- und Nachnamens.</li>
+<li>Deklariere ein Feld <strong>faecher</strong> vom Typ <strong>Fach</strong>.</li>
 </ol>
-<ul>
-<li>Deklariere ein Attribut <strong>gewichtung</strong> vom Typ <strong>int</strong>.</li>
-<li>Erweitere die Parameterliste des Konstruktors um einen Parameter <strong>gewichtung</strong>.</li>
-<li>Initialisiere das Attribut <strong>gewichtung</strong> im Konstruktor.</li>
-</ul>
-<ol start="2">
-<li>Erstelle eine Methode <strong>getGesMw()</strong> und setze folgendes Struktogramm um:<br>
-<img src="StruktogrammGesMW.png" alt="alt text"></li>
+<h3 id="anpassen-des-konstruktors">Anpassen des Konstruktors</h3>
+<ol>
+<li>Erstelle einen Konstruktor, der die Parameter <strong>vorname</strong> und <strong>nachname</strong> übernimmt und die Attribute initialisiert.</li>
+<li>Deklariere und initialisiere ein konstantes Feld <strong>fachNamen</strong>, in dem du die Namen von 5 Fächern des Schülers speicherst.</li>
+<li>Erstelle ein analoges Feld <strong>fachKuerzel</strong> für die Fachkürzel.</li>
+<li>Erstelle ein drittes Feld <strong>gewichtung</strong> für die Gewichtung der großen LN im jeweiligen Fach.</li>
+<li>Initialisiere das Attribut <strong>faecher</strong> als Feld vom Typ <strong>Fach</strong> mit der Länge des Feldes <strong>fachkuerzel</strong>.</li>
+<li>Initialisiere die Elemente des Feldes faecher mit Feld-Objekten, die den Namen, das Kürzel und die Gewichtung aus dem jeweiligen Konstanten-Feld beziehen.<br>
+Verwende hierzu eine Zählschleife.</li>
 </ol>
-<h3 id="2-berechnung-der-note">2. Berechnung der Note</h3>
-<p>Erstelle eine Methode <strong>getNote()</strong> vom Typ <strong>int</strong>, die folgendes Struktogramm umsetzt:<br>
-<img src="StruktogrammNote.png" alt="alt text"></p>
 <div id="quelle" style="font-size: x-small; text-align: right;">
     2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
   </div>
@@ -174,8 +173,7 @@
   </script>
    </iframe>
 </section>
-<p><a href="../OIDE_Noten02MW/index.html">zurück</a><br>
-<a href="../OIDE_Noten04Faecher/index.html">weiter</a><br>
+<p><a href="../OIDE_Noten03Noten/index.html">zurück</a><br>
 <a href="../index.html">Index</a></p>
 
             

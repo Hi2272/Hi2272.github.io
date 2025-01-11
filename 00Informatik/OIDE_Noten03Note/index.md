@@ -36,6 +36,6 @@ Erstelle eine Methode **getNote()** vom Typ **int**, die folgendes Struktogramm 
 </section>
 
 
-
-[zurück](../OIDE_Noten03Noten/index.html)  
+[zurück](../OIDE_Noten02MW/index.md)  
+[weiter](../OIDE_Noten04Faecher/index.html)  
 [Index](../index.html)
