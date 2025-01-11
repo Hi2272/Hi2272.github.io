@@ -187,7 +187,9 @@
 [OnlineIDE: Länge des Feldes](OIDE_WSLaengeVonFeldern/index.md)  
 [OnlineIDE: Billigster Artikel](OIDE_WSMinIndex/index.md)  
 [OnlineIDE: Billigster Artikel in einem Bereich](OIDE_WSMinIndex2/index.md)  
-[OnlineIDE: Artikel tauschen](OIDE_WSSwap/index.md)  
+[OnlineIDE: Artikel tauschen](OIDE_WSSwap/index.md)    
+
+[OnlineIDE: Notenverwaltung](OIDE_Noten01Anz/index.html)  
 
 [Weihnachtsbaum](00Informatik10/Weihnachtsbaum/index.html)
 

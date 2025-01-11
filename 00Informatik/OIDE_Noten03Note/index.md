@@ -3,12 +3,20 @@
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
  
  # Eine Notenverwaltung
-## 4. Methoden für die Mittelwerte der Noten
+## 5. Methoden für die Berechnung der Gesamtnote
 
-1. Programmieren zunächst eine allgemeine Methode **getMw(int[] feld)**, die den Mittelwert der Werte des Feldes ausgibt.  
-Setze hierzu dieses Struktogramm um:  
-![alt text](StruktogrammGetMW.png)  
-2. Programmiere anschließend die Methoden **getMwKleineLN()** und **getMwGrosseLN()**, die diese Methode aufrufen.
+### 1. Berechnung des Mittelwertes des Faches.
+1. Um den Mittelwert zu berechnen, müssen wir zunächst festlegen, ob der Schnitt der großen LN einfach oder doppelt gewichtet wird.  
+
+-  Deklariere ein Attribut **gewichtung** vom Typ **int**.
+-  Erweitere die Parameterliste des Konstruktors um einen Parameter **gewichtung**.
+-  Initialisiere das Attribut **gewichtung** im Konstruktor.
+2. Erstelle eine Methode **getGesMw()** und setze folgendes Struktogramm um:  
+  ![alt text](StruktogrammGesMW.png)  
+### 2. Berechnung der Note
+Erstelle eine Methode **getNote()** vom Typ **int**, die folgendes Struktogramm umsetzt:  
+     ![alt text](StruktogrammNote.png)  
+
 <div id="quelle" style="font-size: x-small; text-align: right;">
     2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
 
@@ -27,6 +35,7 @@ Setze hierzu dieses Struktogramm um:
    </iframe>
 </section>
 
-[Weiter](../OIDE_Noten03Noten/index.html)  
-[zurück](../OIDE_Noten02MW/index.html)  
+
+
+[zurück](../OIDE_Noten03Noten/index.html)  
 [Index](../index.html)
