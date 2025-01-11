@@ -2,8 +2,15 @@
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
  
- # Eine Notenverwaltung
+# Eine Notenverwaltung
 ## 5. Speichern neuer Noten
+Neue Noten werden hinter dem letzten Element in das Feld eingefügt. 
+1. Erstelle eine allgemeine Methode **neuerLN**, die ein Feld **feld** vom Typ **int** und eine Note vom Typ **int** als Parameter übernimmt.
+2. Setze dieses Struktogramm um:  
+![alt text](StruktogrammNeuerLN.png)
+1. Erstelle eine Methode **neuerKleinerLN(int note)**, in der die allgemeine Methode **neuerLN** aufgerufen wird.
+2. Erstelle analog eine Methode **neuerGrosserLN(int note)**.
+  
 
 
 <div id="quelle" style="font-size: x-small; text-align: right;">
@@ -27,4 +34,5 @@
 
 
 [zurück](../OIDE_Noten03Note/index.html)  
+[weiter](../OIDE_Noten05Faecher/index.html)  
 [Index](../index.html)

@@ -19,21 +19,21 @@ public class Fach {
       grosseLN[0] = 2;
    }
 
-   public void neuerLN(int[] feld,int note){
-      int anzahl=getAnzahl(feld);
-      if (anzahl<feld.length){
-         feld[anzahl]=note;
+   public void neuerLN(int[] feld, int note) {
+      int anzahl = getAnzahl(feld);
+      if(anzahl < feld.length) {
+         feld[anzahl] = note;
       } else {
-         println("Fehler: "+feld.toString()+" ist voll.");
+         println("Fehler: Das Notenfeld ist voll.");
       }
    }
 
-   public void neuerGrosserLN(int note){
-      neuerLN(this.grosseLN);
-   }   
+   public void neuerGrosserLN(int note) {
+      neuerLN(this.grosseLN, note);
+   } 
 
-   publci void neuerKleinerLN(int note){
-      neuerLN(this.kleineLN);
+   public void neuerKleinerLN(int note) {
+      neuerLN(this.kleineLN, note);
    }
    
    public double getGesMw() {
@@ -54,7 +54,7 @@ public class Fach {
       if(nachKomma <= 0.5) {
          return note;
       } else {
-         return note+1;
+         return note + 1;
       }
    }
 
