@@ -4,7 +4,11 @@
  
  # Die Länge von Feldern
 Das Programm wirft beim Ausführen einen Laufzeitfehler.  
-Finde den Grund hierfür und erstelle eine Methode **getLaenge**, mit der die tatsächliche Anzahl der Objekte in einem Feld ermittelt wird.  
+1. Finde den Grund hierfür 
+2. Erstelle eine Methode **getLaenge**, mit der die tatsächliche Anzahl der Objekte in einem Feld ermittelt wird.  
+Setze dafür dieses Struktogramm um:  
+![alt text](2025-01-11_20-10.png)  
+3. Passe die Methode **printAlles()** so an, dass sie keinen Fehler mehr erzeugt.
 
   
 <div id="quelle" style="font-size: x-small; text-align: right;">
