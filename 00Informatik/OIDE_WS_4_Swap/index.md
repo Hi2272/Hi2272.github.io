@@ -23,4 +23,5 @@
    </iframe>
 </section>
 
-[zurück](../index.html)
+|[weiter](../OIDE_WS_5_Sort/index.html)|[zurück](../OIDE_WS_3_Swap/index.html)|[Index](../index.html)|
+|----|----|----|

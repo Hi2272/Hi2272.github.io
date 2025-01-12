@@ -29,4 +29,5 @@ Setze dafür dieses Struktogramm um:
    </iframe>
 </section>
 
-[zurück](../index.html)
+|[weiter](../OIDE_WS_2_MinIndex/index.html)|[zurück](../OIDE_WS_0_Sortieralgorithmus/index.html)|[Index](../index.html)|
+|----|----|----|
