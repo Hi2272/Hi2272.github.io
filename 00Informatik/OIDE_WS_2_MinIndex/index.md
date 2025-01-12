@@ -3,7 +3,13 @@
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
  
  # Der Index des kleinsten Wertes
- Dieses Programm soll den Artikel mit dem kleinsten Preis ausdrucken.  
+ Die Methode soll den Artikel mit dem kleinsten Preis ausgeben.  
+ 
+ Auf folgender Seite kann diese Methode simuliert werden:   
+
+ <a href="../00Informatik10/minIndex/getMinIndex.html" >Simulation</a>
+ 
+
 Programmiere eine Methode **getIndexOfCheapest()**, die den Index des Artikels mit dem niedrigsten Preis ausgibt.
   
 <div id="quelle" style="font-size: x-small; text-align: right;">
