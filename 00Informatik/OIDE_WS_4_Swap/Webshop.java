@@ -29,7 +29,7 @@ public class Webshop {
 
 
    public int getIndexOfCheapest(int start, int ende) {
-      int index = 0;
+      int index = start;
       for (int i = start; i < ende; i++) {
          if(art[i].getPreis() < art[index].getPreis()) {
             index = i;
@@ -40,12 +40,6 @@ public class Webshop {
 
    public void printCheapest() {
       art[getIndexOfCheapest(0, getLaenge())].drucken();
-   }
-
-   public void swap(int index1, int index2){
-      Artikel a=art[index1];
-      art[index1]=art[index2];
-      art[index2]=a;
    }
 
 }
