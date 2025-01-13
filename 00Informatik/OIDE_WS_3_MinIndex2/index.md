@@ -26,3 +26,4 @@
 
 |[weiter](../OIDE_WS_4_Swap/index.html)|[zurück](../OIDE_WS_2_MinIndex/index.html)|[Index](../index.html)|
 |----|----|----|
+

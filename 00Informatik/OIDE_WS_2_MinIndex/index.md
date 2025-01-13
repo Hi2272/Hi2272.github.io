@@ -30,5 +30,5 @@ Programmiere eine Methode **getIndexOfCheapest()**, die den Index des Artikels m
    </iframe>
 </section>
 
-|[weiter](../OIDE_WS_1_laengeVonFeldern/index.html)|[zurück](../OIDE_WS_3_MinIndex2/index.html)|[Index](../index.html)|
+|[weiter](../OIDE_WS_3_MinIndex2/index.html)|[zurück](../OIDE_WS_1_LaengeVonFeldern/index.html)|[Index](../index.html)|
 |----|----|----|

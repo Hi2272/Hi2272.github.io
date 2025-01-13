@@ -4,7 +4,7 @@
  
  # Die Sortieren von Feldern
 
-1. [Ein Sortieralgorithmus](00Informatik/00Informatik10/Sortieren/Sortieren.html)
+1. [Ein Sortieralgorithmus](../00Informatik10/Sortieren/Sortieren.html)
 2. [Wie viele Elemente sind in meinem Feld?](../OIDE_WS_1_LaengeVonFeldern/index.html)
 3. [Finde den Index des kleinsten Elements im ganzen Feld](../OIDE_WS_2_MinIndex/index.html)
 4. [Finde den Index des kleinsten Elements in einem Teil des Feldes](../OIDE_WS_3_MinIndex2/index.html)

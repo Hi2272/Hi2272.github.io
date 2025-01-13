@@ -25,4 +25,5 @@
    </iframe>
 </section>
 
-[Index](../index.html)
+|[zurück](index.html)|[Index](../index.html)|
+|---|---|

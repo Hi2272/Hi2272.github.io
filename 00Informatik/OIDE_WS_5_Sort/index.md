@@ -19,5 +19,5 @@ Sie unterscheiden sich nur in einem Zahlenwert, der regelmäßig ansteigt.
 Der Algorithmus kann daher mit einer Zählschleife realisiert werden.
 ## 3. Struktogramm
 Zeichne ein Struktogramm der Methode **sortieren()**
-[zurück](../OIDE_WS_5_Sort/index.html)|[Index](../index.html)|
-|---|---|
+|[weiter](Loesung.html)|[zurück](../OIDE_WS_4_Swap/index.html)|[Index](../index.html)|
+|---|---|---|

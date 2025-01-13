@@ -23,5 +23,5 @@
    </iframe>
 </section>
 
-|[weiter](../OIDE_WS_5_Sort/index.html)|[zurück](../OIDE_WS_3_Swap/index.html)|[Index](../index.html)|
+|[weiter](../OIDE_WS_5_Sort/index.html)|[zurück](../OIDE_WS_3_MinIndex2/index.html)|[Index](../index.html)|
 |----|----|----|
