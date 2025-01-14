@@ -2,21 +2,21 @@
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
  
- # Löschen von Elementen
+ # Einfügen von Elementen
 
-Die Methode **loesche(int index)** soll ein Element aus dem Feld löschen:
-
-|Index|0|1|2|3|4|5|6|7|8|9|
-|---|---|---|---|---|---|---|---|---|---|---|
-|Wert|5|9|15|15|**25**|37|44|54|null|null|
-
-loeschen(4)
+Die Methode **einfuegen(int index, Artikel a)** soll einen Artikel an der Position **index** in das Feld einfügen
 
 |Index|0|1|2|3|4|5|6|7|8|9|
 |---|---|---|---|---|---|---|---|---|---|---|
-|Wert|5|9|15|15|**37**|**44**|**54**|**null**|**null**|**null**|
+|Wert|5|9|15|15|25|37|44|54|null|null|
 
-1.  Schreibe einen Algorithmus für die Methode **loeschen(int index)**.
+einfuegen(2,10)
+
+|Index|0|1|2|3|4|5|6|7|8|9|
+|---|---|---|---|---|---|---|---|---|---|---|
+|Wert|5|9|**10**|**15**|**15**|**37**|**44**|**54**|**null**|**null**|
+
+1.  Schreibe einen Algorithmus für diese Methode.
 2.  Zeichne ein Struktogramm für die Methode.
 3.  Programmiere die Methode.
 4.  Passe deine Methode so an, dass nur Index-Werte zwischen 0 und getLaenge()-1 akzeptiert werden.
