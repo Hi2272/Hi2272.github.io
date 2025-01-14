@@ -181,7 +181,7 @@
 
 [OnlineIDE: Sortieren von Feldern](OIDE_WS_0_Sortieralgorithmus/index.html)  
 
-[getMinIndex()](00Informatik10/minIndex/getMinIndex.html)  
+[OnlineIde: Löschen von Elementen](OIDE_Loeschen/index.html)  
 
 
 [OnlineIDE: Notenverwaltung](OIDE_Noten01Anz/index.html)  
