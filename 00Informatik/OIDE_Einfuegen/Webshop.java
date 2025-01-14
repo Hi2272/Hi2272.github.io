@@ -10,18 +10,6 @@ public class Webshop {
       }
    }
 
-   public void einfuegen(int index, Artikel a) {
-      if(getLaenge() == art.length) {
-         println("Das Feld ist voll - neue Elemente können nicht eingefügt werden!");
-         return;
-      } 
-         for (int i = getLaenge() - 1; i > index; i--) {
-            art[i] = art[i - 1];
-         }
-         art[index] = a;
-      
-   }
-   
    public void loesche(int index) {
       if(index >= 0 && index < getLaenge()) {
          for (int i = index; i < getLaenge() - 1; i++) {

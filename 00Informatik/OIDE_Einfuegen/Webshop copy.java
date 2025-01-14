@@ -5,11 +5,23 @@ public class Webshop {
 
    public Webshop() {
       this.art = new Artikel[10];
-      for (int i = 0; i < art.length; i++) {
+      for (int i = 0; i < art.length-3; i++) {
          this.art[i] = new Artikel(i, "Turnschuh", Math.round(59.95 + Math.random() * 100) + 0.95);
       }
    }
 
+   public void einfuegen(int index, Artikel a) {
+      if(getLaenge() == art.length) {
+         println("Das Feld ist voll - neue Elemente können nicht eingefügt werden!");
+         return;
+      } 
+         for (int i = getLaenge() - 1; i > index; i--) {
+            art[i] = art[i - 1];
+         }
+         art[index] = a;
+      
+   }
+   
    public void loesche(int index) {
       if(index >= 0 && index < getLaenge()) {
          for (int i = index; i < getLaenge() - 1; i++) {
@@ -72,5 +84,5 @@ public class Webshop {
 Webshop w = new Webshop();
 w.printAlles();
 println("--------------");
-w.loesche(4);
+w.einfuegen(4, new Artikel(4, "Neuer Artikel", 6.95));
 w.printAlles();
