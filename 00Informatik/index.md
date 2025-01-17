@@ -174,14 +174,16 @@
 
 [Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)   
 [Assoziation oder Aggregation?](https://learningapps.org/view38043424)  
-
   
 [Anleitung Webshop automatisch](00Informatik10/WebshopAutomatisch.html)  
 [BlueJ-Dateien Webshop-Projekt](00Informatik10/BlueJDateien/index.html)  
 
-[OnlineIDE: Sortieren von Feldern](OIDE_WS_0_Sortieralgorithmus/index.html)  
+[OnlineIDE: Sortieren von Feldern: Selektion-Sort](OIDE_WS_0_Sortieralgorithmus/index.html)  
+[OnlineIDE: Sortieren von Feldern: Bubble-Sort](OIDE_WS_6_Bubblesort/index.html)  
+[OnlineIDE: Löschen von Elementen](OIDE_Loeschen/index.html)  
+[OnlineIDE: Einfügen von Elementen](OIDE_Einfuegen/index.html)  
 
-[OnlineIde: Löschen von Elementen](OIDE_Loeschen/index.html)  
+
 
 
 [OnlineIDE: Notenverwaltung](OIDE_Noten01Anz/index.html)  
