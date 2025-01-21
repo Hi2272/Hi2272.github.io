@@ -1,0 +1,71 @@
+<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Definition der Marker für Pfeilspitzen -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
+      <polygon points="0 0, 6 3, 0 6" fill="black" />
+    </marker>
+  </defs>
+
+  <!-- Gitternetz -->
+  <g stroke="#e0e0e0" stroke-width="1">
+    <!-- Vertikale Linien -->
+    <line x1="50" y1="0" x2="50" y2="500"/>
+    <line x1="100" y1="0" x2="100" y2="500"/>
+    <line x1="150" y1="0" x2="150" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="250" y1="0" x2="250" y2="500"/>
+    <line x1="300" y1="0" x2="300" y2="500"/>
+    <line x1="350" y1="0" x2="350" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="450" y1="0" x2="450" y2="500"/>
+    
+    <!-- Horizontale Linien -->
+    <line x1="0" y1="450" x2="500" y2="450"/>
+    <line x1="0" y1="400" x2="500" y2="400"/>
+    <line x1="0" y1="350" x2="500" y2="350"/>
+    <line x1="0" y1="300" x2="500" y2="300"/>
+    <line x1="0" y1="250" x2="500" y2="250"/>
+    <line x1="0" y1="200" x2="500" y2="200"/>
+    <line x1="0" y1="150" x2="500" y2="150"/>
+    <line x1="0" y1="100" x2="500" y2="100"/>
+    <line x1="0" y1="50" x2="500" y2="50"/>
+  </g>
+  
+  <!-- Achsen mit Pfeilspitzen -->
+  <line x1="50" y1="490" x2="50" y2="20" stroke="black" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="10" y1="450" x2="480" y2="450" stroke="black" stroke-width="2" marker-end="url(#arrow)" />
+  
+  <!-- Achsenbeschriftungen -->
+  <text x="30" y="20" font-family="Arial" font-size="12">y</text>
+  <text x="480" y="475" font-family="Arial" font-size="12">x</text>
+
+  <!-- Skalierung -->
+  <g font-family="Arial" font-size="10" fill="black">
+    <!-- Vertikale Beschriftungen -->
+    <text x="30" y="450" dy="-5">0</text>
+    <text x="30" y="400" dy="-5">10</text>
+    <text x="30" y="350" dy="-5">20</text>
+    <text x="30" y="300" dy="-5">30</text>
+    <text x="30" y="250" dy="-5">40</text>
+    <text x="30" y="200" dy="-5">50</text>
+    <text x="30" y="150" dy="-5">60</text>
+    <text x="30" y="100" dy="-5">70</text>
+    <text x="30" y="50" dy="-5">80</text>
+    
+    <!-- Horizontale Beschriftungen -->
+    <text x="55" y="475">0</text>
+    <text x="105" y="475">10</text>
+    <text x="155" y="475">20</text>
+    <text x="205" y="475">30</text>
+    <text x="255" y="475">40</text>
+    <text x="305" y="475">50</text>
+    <text x="355" y="475">60</text>
+    <text x="405" y="475">70</text>
+    <text x="455" y="475">80</text>
+  </g>
+
+     <circle cx="150" cy="300" r="100" fill="none" stroke="red" stroke-width="1"/>
+   
+   </svg>
+
