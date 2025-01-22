@@ -182,7 +182,7 @@
 [OnlineIDE: Sortieren von Feldern: Bubble-Sort](OIDE_WS_6_Bubblesort/index.html)  
 [OnlineIDE: Löschen von Elementen](OIDE_Loeschen/index.html)  
 [OnlineIDE: Einfügen von Elementen](OIDE_Einfuegen/index.html)  
-
+[OnlineIDE: Tauschen von Namen](OIDE_WS_7_TauscheNamen/index.html)
 
 
 
