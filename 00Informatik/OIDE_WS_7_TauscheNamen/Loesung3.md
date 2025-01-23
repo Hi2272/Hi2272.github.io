@@ -5,16 +5,33 @@
  # Suchen von Elementen und Ändern von Inhalten
  Mit der Methode **tauscheNamen("Bergschuh","Bergschuh Meindl")** soll der Name eines Artikel ausgetauscht werden.
 
- ## 1. Grundprinzip
 
-1. Finde den Index des Artikels mit dem Namen "Bergschuh".
-2. Setze den Namen dieses Artikels auf "Bergschuh Meindl".
+## 4. Methode zum Tauschen eines Wertes im gesamten Feld:
+### 1. Prinzip:
+|index i|0|1|2|3|4|5|6|
+|--|--|--|--|--|--|--|--|
+wert[i]|5|**3**|2|**3**|6|7|**3**|
 
-## 2. Methode zum Finden des Artikels
+tausche(3,9):
 
-## 3. Methode zum Tauschen des Namens
+|index i|0|1|2|3|4|5|6|
+|--|--|--|--|--|--|--|--|
+wert[i]|5|**9**|2|**3**|6|7|**3**|
 
-Programmiere die Methode **tauscheNamen** und teste sie.
+tausche(3,9):
+
+|index i|0|1|2|3|4|5|6|
+|--|--|--|--|--|--|--|--|
+wert[i]|5|**9**|2|**9**|6|7|**3**|
+
+tausche(3,9):
+
+|index i|0|1|2|3|4|5|6|
+|--|--|--|--|--|--|--|--|
+wert[i]|5|**9**|2|**9**|6|7|**9**|
+
+### 2. Algorithmus
+Plane einen Algorithmus für eine Methode **tauscheNamenAlle**. Verwende hierzu die Methode **tauscheNamen** und überlege, wie lange diese Methode aufgerufen werden muss.
 
 <div id="quelle" style="font-size: x-small; text-align: right;">
     2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
@@ -34,6 +51,6 @@ Programmiere die Methode **tauscheNamen** und teste sie.
    </iframe>
 </section>
 
-|[weiter](Loesung3.html)|[zurück](Loesung.html)|[Index](../index.html)|
-|---|---|---|
+|[zurück](Loesung2.html)|[Index](../index.html)|
+|---|---|
 

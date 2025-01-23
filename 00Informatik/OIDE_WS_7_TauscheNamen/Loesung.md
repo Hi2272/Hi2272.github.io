@@ -35,6 +35,6 @@ Um zu prüfen, ob zwei Zeichenketten gleich sind, verwendet man in Java die Meth
 </section>
 
 
-|[weiter](Loesung2.html)|[Index](../index.html)|
-|---|---|
+|[weiter](Loesung2.html)|[zurück](index.html)|[Index](../index.html)|
+|---|---|---|
 

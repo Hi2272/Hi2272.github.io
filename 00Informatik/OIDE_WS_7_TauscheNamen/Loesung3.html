@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>2&period; Algorithmus der Methode zum Finden des Artikels</title>
+            <title>4&period; Methode zum Tauschen eines Wertes im gesamten Feld&colon;</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -143,16 +143,120 @@
  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
 <h1 id="suchen-von-elementen-und-ändern-von-inhalten">Suchen von Elementen und Ändern von Inhalten</h1>
 <p>Mit der Methode <strong>tauscheNamen(&quot;Bergschuh&quot;,&quot;Bergschuh Meindl&quot;)</strong> soll der Name eines Artikel ausgetauscht werden.</p>
-<h2 id="1-grundprinzip">1. Grundprinzip</h2>
-<ol>
-<li>Finde den Index des Artikels mit dem Namen &quot;Bergschuh&quot;.</li>
-<li>Setze den Namen dieses Artikels auf &quot;Bergschuh Meindl&quot;.</li>
-</ol>
-<h2 id="2-algorithmus-der-methode-zum-finden-des-artikels">2. Algorithmus der Methode zum Finden des Artikels</h2>
-<p>Laufe das Feld vom ersten bis zum letzten Element durch und erhöhe dabei den Index-Wert i. Wenn der Name des Elements mit dem Index i dem Parameter-Wert entspricht, dann gib i zurück.
-Wenn das Ende der Schleife überschritten wird, dann gib -1 zurück.</p>
-<p>Programmiere diese Methode und teste sie.</p>
-<p>Um zu prüfen, ob zwei Zeichenketten gleich sind, verwendet man in Java die Methode <strong>equals(String txt)</strong> der Klasse <strong>String</strong>.</p>
+<h2 id="4-methode-zum-tauschen-eines-wertes-im-gesamten-feld">4. Methode zum Tauschen eines Wertes im gesamten Feld:</h2>
+<h3 id="1-prinzip">1. Prinzip:</h3>
+<table>
+<thead>
+<tr>
+<th>index i</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wert[i]</td>
+<td>5</td>
+<td><strong>3</strong></td>
+<td>2</td>
+<td><strong>3</strong></td>
+<td>6</td>
+<td>7</td>
+<td><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+<p>tausche(3,9):</p>
+<table>
+<thead>
+<tr>
+<th>index i</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wert[i]</td>
+<td>5</td>
+<td><strong>9</strong></td>
+<td>2</td>
+<td><strong>3</strong></td>
+<td>6</td>
+<td>7</td>
+<td><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+<p>tausche(3,9):</p>
+<table>
+<thead>
+<tr>
+<th>index i</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wert[i]</td>
+<td>5</td>
+<td><strong>9</strong></td>
+<td>2</td>
+<td><strong>9</strong></td>
+<td>6</td>
+<td>7</td>
+<td><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+<p>tausche(3,9):</p>
+<table>
+<thead>
+<tr>
+<th>index i</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wert[i]</td>
+<td>5</td>
+<td><strong>9</strong></td>
+<td>2</td>
+<td><strong>9</strong></td>
+<td>6</td>
+<td>7</td>
+<td><strong>9</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-algorithmus">2. Algorithmus</h3>
+<p>Plane einen Algorithmus für eine Methode <strong>tauscheNamenAlle</strong>. Verwende hierzu die Methode <strong>tauscheNamen</strong> und überlege, wie lange diese Methode aufgerufen werden muss.</p>
+<div id="quelle" style="font-size: x-small; text-align: right;">
+    2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
+  </div>
   <section>
     <iframe
     srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
@@ -168,8 +272,7 @@ Wenn das Ende der Schleife überschritten wird, dann gib -1 zurück.</p>
 <table>
 <thead>
 <tr>
-<th><a href="Loesung2.html">weiter</a></th>
-<th><a href="index.html">zurück</a></th>
+<th><a href="Loesung2.html">zurück</a></th>
 <th><a href="../index.html">Index</a></th>
 </tr>
 </thead>
