@@ -66,11 +66,8 @@
   </g>
   
 
-   <rect 
-    x="150" y="100" width="200" height="200" fill="yellow" stroke="red" stroke-width="0"
-   />
-  <line x1="100" y1="50" x2="400" y2="350" stroke="blue" stroke-width="10"/>
-  <line x1="100" y1="350" x2="400" y2="50" stroke="red" stroke-width="10"/>
-  
+  <line x1="100" y1="50" x2="400" y2="350" stroke="yellow" stroke-width="10"/>
+  <text x="200" y="200" font-family="Arial" font-size="24" fill="black">lin</text>
+
    </svg>
 

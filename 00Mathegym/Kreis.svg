@@ -65,7 +65,9 @@
     <text x="455" y="475">80</text>
   </g>
 
-     <circle cx="150" cy="300" r="100" fill="none" stroke="red" stroke-width="1"/>
+     <circle cx="150" cy="300" r="50" fill="blue" stroke="red" stroke-width="5"/>
+    <text x="145" y="305" font-family="Arial" font-size="24" fill="black">k</text>
+
    
    </svg>
 
