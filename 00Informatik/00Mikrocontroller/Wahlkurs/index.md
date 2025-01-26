@@ -59,6 +59,9 @@ Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung a
 
 ### Messwerterfassung
 
+#### Pulsmessung
+[Pulssensor](12Puls/index.html)  
+
 #### Temperaturmessung
 
 Wir bauen ein digitales Thermometer und verwenden es, um Messreihen am Computer aufzuzeichnen.  
