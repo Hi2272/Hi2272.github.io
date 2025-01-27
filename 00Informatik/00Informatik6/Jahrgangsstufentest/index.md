@@ -3,6 +3,8 @@
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
 
 # Jahrgangsstufentest NT 6. Klasse
+Damit die Tests vollständig dargestellt werden, müssen Sie sich bei mebis anmelden.  
+
 
 [2024: Textverarbeitung, Klassendiagramm](https://archiv.bycs.de/edu-sharing/components/render/8eb13f38-9cdc-4b47-9af2-9d1b96d1476c)  
 
