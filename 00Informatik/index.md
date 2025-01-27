@@ -31,6 +31,8 @@
 [Punktnotation](00Informatik6/Punktnotation/index.html)  
 [Punktnotation 2](https://learningapps.org/view34317198)
 
+[Jahrgangsstufentest](00Informatik6/Jahrgangsstufentest/index.html)  
+
 ### Powerpoint
 [Animationen](00Informatik6/Powerpoint/Animation/index.html)
 [Powerpoint Schule](00Informatik6/PowerpointSchule/index.html)  
