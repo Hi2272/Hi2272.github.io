@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Der Pulssensor</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="der-pulssensor">Der Pulssensor</h1>
+<h2 id="messprinzip">Messprinzip</h2>
+<p>Pulssensoren sind zum Beispiel in Fitness-Uhren eingebaut. Sie bestehen aus einer grünen LED und einer Fotozelle. Das grüne Licht wird vom roten Blutfarbstoff (Hämoglobin) absorbiert. Je weiter die Blutgefäße sind, desto mehr Blut und damit Hämoglobin wird durchleuchtet, desto mehr grünes Licht wird absorbiert, desto weniger grünes Licht gelangt zur Fotozelle.</p>
+<h2 id="anschluss">Anschluss</h2>
+<p>Der Pulssensor wird über 3 Kabel an den Arduino angeschlossen</p>
+<table>
+<thead>
+<tr>
+<th>Sensorpin</th>
+<th>Arduino</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>A0</td>
+</tr>
+<tr>
+<td>-</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>mittlerer Pin</td>
+<td>5V oder 3,3V</td>
+</tr>
+</tbody>
+</table>
+<h2 id="programmierung">Programmierung</h2>
+<p>Für die Programmierung werden keine Bibliotheken benötigt. Wir lesen nur regelmäßig den analogen Wert von Pin A0 ein:</p>
+<pre><code class="language-c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>{
+    Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>); <span class="hljs-comment">// Serielle Schnittstelle starten</span>
+    <span class="hljs-built_in">pinMode</span>(A0,INPUT);
+
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-type">int</span> wert=<span class="hljs-built_in">analogRead</span>(A0);
+    Serial.<span class="hljs-built_in">println</span>(wert);
+}
+</code></pre>
+<p>Lade den Sketch hoch und teste ihn mit dem Seriellen Plotter.</p>
+<p>Lege deinen Finger <strong>leicht</strong> auf das weiße Herz. Am Plotter sollte eine regelmäßige Wellenlinie erscheinen:
+<img src="2025-01-26_08-11.png" alt="alt text"><br>
+Um die Darstellung zu glätten, definieren wir einen Grenzwert.<br>
+Nur wenn der Messwert diesen Grenzwert überschreitet, soll er ausgegeben werden, sonst soll 0 ausgegeben werden:</p>
+<pre><code class="language-C++"><span class="hljs-type">int</span> grenze=<span class="hljs-number">600</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>{
+    Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>); <span class="hljs-comment">// Serielle Schnittstelle starten</span>
+    <span class="hljs-built_in">pinMode</span>(A0,INPUT);
+
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-type">int</span> wert=<span class="hljs-built_in">analogRead</span>(A0);
+    <span class="hljs-keyword">if</span> (wert&gt;grenze){
+        Serial.<span class="hljs-built_in">println</span>(wert);
+
+    } <span class="hljs-keyword">else</span> {
+        Serial.<span class="hljs-built_in">println</span>(<span class="hljs-number">0</span>);
+    }
+}
+</code></pre>
+<p>Um den Puls unabhängig von der Seriellen Schnittstelle anzuzeigen soll, die eingebaute LED am Pin13 im Pulstakt blinken. Hierzu ändern wir den loop-Teil etwas ab:</p>
+<pre><code class="language-C++"><span class="hljs-type">int</span> grenze=<span class="hljs-number">600</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>{
+    Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>); <span class="hljs-comment">// Serielle Schnittstelle starten</span>
+    <span class="hljs-built_in">pinMode</span>(A0,INPUT);
+
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-type">int</span> wert=<span class="hljs-built_in">analogRead</span>(A0);
+    <span class="hljs-keyword">if</span> (wert&gt;grenze){
+        Serial.<span class="hljs-built_in">println</span>(wert);
+        <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>,HIGH);
+
+    } <span class="hljs-keyword">else</span> {
+        Serial.<span class="hljs-built_in">println</span>(<span class="hljs-number">0</span>);
+        <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>,LOW);
+    }
+}
+</code></pre>
+<p>Der Puls wird in Schlägen pro Minute ausgegeben. Um ihn zu ermitteln müssen wir also zum einen die Schlagzahl und zum anderen die Zeit messen.</p>
+<h3 id="bestimmung-der-schlagzahl">Bestimmung der Schlagzahl</h3>
+<p>Um die Schlagzahl zu ermitteln, definieren wir eine Variable und erhöhen sie immer um 1, wenn unser Messwert die Grenze überschreitet.<br>
+Damit jeder Herzschlag nur einmal registriert wird, warten wir nach dem Zählen, bis der Messwert wird unter der Grenze liegt.</p>
+<pre><code class="language-C++"><span class="hljs-type">int</span> grenze = <span class="hljs-number">600</span>;
+<span class="hljs-type">int</span> anz = <span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);  <span class="hljs-comment">// Serielle Schnittstelle starten</span>
+  <span class="hljs-built_in">pinMode</span>(A0, INPUT);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-type">int</span> wert = <span class="hljs-built_in">analogRead</span>(A0);
+  <span class="hljs-keyword">if</span> (wert &gt; grenze) {
+    anz = anz + <span class="hljs-number">1</span>;
+    Serial.<span class="hljs-built_in">println</span>(anz);
+    <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>,HIGH);
+    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">analogRead</span>(A0) &gt; grenze) {
+      <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
+    }
+    <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>,LOW);
+  }
+}
+
+</code></pre>
+<h3 id="zeitmessung">Zeitmessung</h3>
+<p>Zur Zeitmessung verwenden wird die Methode <strong>millis()</strong>:</p>
+<pre><code class="language-c++">
+<span class="hljs-type">int</span> grenze = <span class="hljs-number">600</span>;
+<span class="hljs-type">int</span> anz = <span class="hljs-number">0</span>;
+<span class="hljs-type">long</span> zeit;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);  <span class="hljs-comment">// Serielle Schnittstelle starten</span>
+  <span class="hljs-built_in">pinMode</span>(A0, INPUT);
+  zeit = <span class="hljs-built_in">millis</span>();
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-type">int</span> wert = <span class="hljs-built_in">analogRead</span>(A0);
+  <span class="hljs-keyword">if</span> (wert &gt; grenze) {
+    anz = anz + <span class="hljs-number">1</span>;
+    <span class="hljs-type">double</span> dauer = (<span class="hljs-built_in">millis</span>() - zeit) * <span class="hljs-number">1.0</span> / <span class="hljs-number">1000</span>;
+    zeit = <span class="hljs-built_in">millis</span>();
+    <span class="hljs-type">double</span> puls = <span class="hljs-number">60</span> / dauer;
+
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-built_in">String</span>(anz) + <span class="hljs-string">&quot; Dauer : &quot;</span> + <span class="hljs-built_in">String</span>(dauer) + <span class="hljs-string">&quot; Puls: &quot;</span> + <span class="hljs-built_in">String</span>(puls));
+    
+    <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>, HIGH);
+    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">analogRead</span>(A0) &gt; grenze) {
+      <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
+    }
+    <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>, LOW);
+  }
+}
+</code></pre>
+<h3 id="erläuterungen-zum-code">Erläuterungen zum Code</h3>
+<p>Der Puls wird in diesen Code-Zeilen berechnet:</p>
+<pre><code class="language-C++">  <span class="hljs-type">double</span> dauer = (<span class="hljs-built_in">millis</span>() - zeit) * <span class="hljs-number">1.0</span> / <span class="hljs-number">1000</span>;
+  zeit = <span class="hljs-built_in">millis</span>();
+  <span class="hljs-type">double</span> puls = <span class="hljs-number">60</span> / dauer;
+</code></pre>
+<p>Die Funktion <strong>millis()</strong> liefert die Zeit, die seit dem Einschalten des Arduinos vergangen ist in Millisekunden.<br>
+Die Variable <strong>dauer</strong> enthält die Zeit in Sekunden, die pro Pulsschlag benötigt wird. Hierzu ziehen wir von der aktuellen <strong>millis()</strong>-Zeit die letzte gespeicherte Zeit ab und teilen das Ergebnis durch 1000.<br>
+Anschließend speichern wir die aktuelle Zeit für die nächste Messung.<br>
+Um den Puls zu ermitteln, d.h. die Anzahl der Schläge, die das Herz pro Minute macht, teilen wir 60 Sekunden durch die Dauer eines Schlages.</p>
+<p>Um den dargestellten Puls zu glätten, können wir Mittelwerte aus mehreren Messwerten bilden.</p>
+<p><a href="../index.html">zurück</a></p>
+
+            
+            
+        </body>
+        </html>
