@@ -8,7 +8,7 @@
   </defs>
 
   <!-- Gitternetz -->
-  <g stroke="#e0e0e0" stroke-width="1">
+  <g stroke="#2a2aaa" stroke-width="1">
     <!-- Vertikale Linien -->
     <line x1="50" y1="0" x2="50" y2="500"/>
     <line x1="100" y1="0" x2="100" y2="500"/>
@@ -65,8 +65,13 @@
     <text x="455" y="475">80</text>
   </g>
 
-     <circle cx="150" cy="300" r="50" fill="blue" stroke="red" stroke-width="5"/>
-    <text x="145" y="305" font-family="Arial" font-size="24" fill="black">k</text>
+<rect 
+      x="225" y="250" width="50" height="150" fill="brown" stroke="red" stroke-width="0"
+   />
+    <text x="240" y="320" font-family="Arial" font-size="24" fill="white">re</text>
+
+     <circle cx="250" cy="150" r="100" fill="green" stroke="green" stroke-width="0"/>
+   <text x="250" y="150" font-family="Arial" font-size="24" fill="white">k</text>
 
    
    </svg>
