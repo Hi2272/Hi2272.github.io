@@ -128,7 +128,7 @@ Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.Seine 
 
 Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) von rtheiss bauen wir einen Roboter, der Hindernisse erkennt und ihnen ausweichen kann.
 
-1. Motorsteuerung
+1. [Motoren](Motoren/index.html)  
 2. Ultraschall-Entfernungsmesser
 3. Servomotoren
    
