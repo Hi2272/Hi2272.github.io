@@ -1,70 +1,66 @@
 <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
-# Servo-Motoren 
+# Schrittmotoren (Stepper-Motoren) 
 ## 1. Grundlegende Eigenschaften 
-Servo-Motoren (kurz: Servos) sind typische Bauteile im Flugzeugmodellbau. Sie haben folgende Eigenschaften:
-- Die Drehung ist nur in einem **eingeschränkten Winkelbereich** von 0° - 180° möglich.  
-- Der Servo kann den aktuellen Drehwinkel messen und gezielt einen anderen Winkel anfahren.
-- Ein Servomotor kann **nicht vollständig rotieren** und eignet sich nicht zum Antrieb von Rädern.
-- Die Drehung erfolgt mit einem hohen Drehmoment, d.h. der Motor kann **große Kraft** entfalten.
-## 2. Bestandteile
-Ein Servo enthält folgende Bauteile
-- Der **Elektromotor** dreht sich mit hoher Drehzahl aber geringem Drehmoment, d.h. er erzeugt eine geringen Kraft.
-- Das **Getriebe** verringert die Drehzahl und erhöht das Drehmoment der Bewegung.
-- Das **Potentiometer** ist ein Drehwiderstand. Mit ihm kann der Servo messen, in welcher Position der Servomotor steht.
+Schrittmotoren drehen sich in winzigen Schritten. Bei unserem Modell ist eine 360°-Umdrehung in 2048 Schritte unterteilt. Pro Schritt dreht sich der Motor also um 360°/2048 = 0,175°. Damit sind sehr feine Bewegungen möglich.  
+Schrittmotoren werden zum Beispiel in 3D-Druckern verwendet.
 
-Ein Servomotor benötigt immer eine Steuereinheit, die ihm ein Positionssignal sendet. In unserem Fall ist dies der Arduino. Sobald dieses Positionssignal nicht mit der aktuellen Position des Servos übereinstimmt, dreht sich der Servo.  
-Die Funktion eines Servos wird auf dieser Internetseite sehr gut beschrieben: https://www.electronicsplanet.ch/Roboter/Servo/servo-funktionsweise/servo-funktionsweise.php  
+## 2. Bestandteile
+
+Schrittmotoren enthalten im Gehäuse stets ein Getriebe, durch dass die Bewegung des Motors verlangsamt und sein Drehmoment erhöht wird. Grundsätzlich haben auch kleine Schrittmotoren ein hohes Drehmoment.
+
 
 ## 3. Verkabelung
-Servos werden immer mit drei Kabeln angeschlossen:
-- braun -> GND
-- rot -> +5 V
-- orange -> Pin 2
 
-Über das rote und braune Kabel bezieht der Elektromotor im Servo die Spannung, um sich zu bewegen.
+Der Schrittmotor wird mit einem speziellen Kabel an das Steuermodul angeschlossen. 
 
-**ACHTUNG:** Der Arduino UNO liefert genug Strom, um einen kleinen Servomotor zu betreiben.  
-Sollen mehrere oder größere Servos angeschlossen werden, muss die Spannung von einer externen Spannungsquelle bezogen werden.  
+Dieses Steuermodul wird mit dem Arduino verbunden:
+- GND: GND
+- VCC: +5V
+- IN1: Pin 6 
+- IN2: Pin 5
+- IN3: Pin 4
+- IN4: Pin 3
+  
+Über GND und VCC erhält das Modul die Betriebsspannung. Mit dieser Spannung wird auch der Motor versorgt.
+
+Über IN1-IN4 werden die Steuersignale an das Modul gesendet.  
 
 ## 4. Programmierung
-### 4.1 Installation der Servo-Bibliothek
-Für die Programmierung des Servos benötigen wir wieder eine Bibliothek:  
-![alt text](2025-02-05_19-45.png)  
+### 4.1 Installation der Stepper-Bibliothek
+Für die Programmierung des Schrittmotors benötigen wir wieder eine Bibliothek:  
+![alt text](2025-02-05_21-57.png)
 1. Aktiviere den Bibliotheksmanager
-2. Tippe den Suchbegriff "Servo" ein.
-3. Installiere die Servo-Bibliothek von Michael Margolis  
+2. Tippe den Suchbegriff "Stepper" ein.
+3. Installiere die Stepper-Bibliothek von Arduino.
+
 ### 4.2 Einfaches Rotations-Programm
 
 Mit dem folgenden Programm dreht der Servo einmal langsam um 180° und anschließend wieder zurück.
 ```C++
+#include <Stepper.h> // Einbinden der Bibliothek.
+int SPU = 2048; // 2048 Schritte pro 360° Umdrehung
+Stepper motor(SPU, 3,5,4,6); // Ein Motor-Objekt wird an den Pins 3,5,4 und 6 angeschlossen
 
-#include <Servo.h>  // Bindet die Servo-Bib. ein
-
-Servo myservo;  // Erzeugt ein Servo-Objekt
-
-void setup() {
-  myservo.attach(2);  // Servo ist an Pin 2 angeschlossen
+void setup() 
+{
+Motor.setSpeed(5); // Geschwindigkeit: 5 Umdrehungen pro Minute
 }
 
 void loop() {
-  for (int pos = 0; pos <= 180; pos=pos+1) { // von 0 bis 180 °
-    myservo.write(pos); // dreht Servo auf pos °
-    delay(15); // 15 ms Pause, damit der Servo die Position erreicht.
-  }
-  for (int pos = 180; pos >= 0; pos=pos-1) { // von 180 bis 0° zurück
-    myservo.write(pos); 
-    delay(15); 
-  }
+Motor.step(2048); // 2048 Schritte = 360°
+delay(1000); // 1 Sek. Pause
+Motor.step(-2048); // 360° rückwärts
+delay(1000); // 1 Sek. Pause
 }
+
 ```
+
 ### Anpassungen
 
 Ändere das Programm ab, so dass
-   1. der Servo nur noch 90° weit dreht.
-   2. sich der Servo doppelt so schnell dreht, d.h. pro Schritt eine Drehung um 2° durchführt.
-   3. der Servo mit einem einzigen Schritt von 0 auf 180° dreht und wieder zurück.   
-   Ermittele die Zeit, die als Pause eingelegt werden muss, damit die Drehung jeweils vollständig durchgeführt wird.
+   1. der Motor nur noch 90° weit dreht.
+   2. der Motor doppelt so schnell dreht, also mit 10 Umdrehungen pro Minute.
 
 
 ---

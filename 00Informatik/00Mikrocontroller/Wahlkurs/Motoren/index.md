@@ -3,7 +3,7 @@
 # Motoren am Arduino
 
 ## [Servos](Servomotor/index.html)  
-## Schrittmotoren
+## [Schrittmotoren](Schrittmotor/index.html)  
 ## Getriebemotoren
 
 [zurück](../index.html)  

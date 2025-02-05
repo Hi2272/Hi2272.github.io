@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Motoren am Arduino</title>
+            <title>Schrittmotoren &lpar;Stepper-Motoren&rpar;</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -139,11 +139,59 @@
         </head>
         <body class="vscode-body vscode-light">
             <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
-<h1 id="motoren-am-arduino">Motoren am Arduino</h1>
-<h2 id="servos"><a href="Servomotor/index.html">Servos</a></h2>
-<h2 id="schrittmotoren"><a href="Schrittmotor/index.html">Schrittmotoren</a></h2>
-<h2 id="getriebemotoren">Getriebemotoren</h2>
-<p><a href="../index.html">zurück</a></p>
+<h1 id="schrittmotoren-stepper-motoren">Schrittmotoren (Stepper-Motoren)</h1>
+<h2 id="1-grundlegende-eigenschaften">1. Grundlegende Eigenschaften</h2>
+<p>Schrittmotoren drehen sich in winzigen Schritten. Bei unserem Modell ist eine 360°-Umdrehung in 2048 Schritte unterteilt. Pro Schritt dreht sich der Motor also um 360°/2048 = 0,175°. Damit sind sehr feine Bewegungen möglich.<br>
+Schrittmotoren werden zum Beispiel in 3D-Druckern verwendet.</p>
+<h2 id="2-bestandteile">2. Bestandteile</h2>
+<p>Schrittmotoren enthalten im Gehäuse stets ein Getriebe, durch dass die Bewegung des Motors verlangsamt und sein Drehmoment erhöht wird. Grundsätzlich haben auch kleine Schrittmotoren ein hohes Drehmoment.</p>
+<h2 id="3-verkabelung">3. Verkabelung</h2>
+<p>Der Schrittmotor wird mit einem speziellen Kabel an das Steuermodul angeschlossen.</p>
+<p>Dieses Steuermodul wird mit dem Arduino verbunden:</p>
+<ul>
+<li>GND: GND</li>
+<li>VCC: +5V</li>
+<li>IN1: Pin 6</li>
+<li>IN2: Pin 5</li>
+<li>IN3: Pin 4</li>
+<li>IN4: Pin 3</li>
+</ul>
+<p>Über GND und VCC erhält das Modul die Betriebsspannung. Mit dieser Spannung wird auch der Motor versorgt.</p>
+<p>Über IN1-IN4 werden die Steuersignale an das Modul gesendet.</p>
+<h2 id="4-programmierung">4. Programmierung</h2>
+<h3 id="41-installation-der-stepper-bibliothek">4.1 Installation der Stepper-Bibliothek</h3>
+<p>Für die Programmierung des Schrittmotors benötigen wir wieder eine Bibliothek:<br>
+<img src="2025-02-05_21-57.png" alt="alt text"></p>
+<ol>
+<li>Aktiviere den Bibliotheksmanager</li>
+<li>Tippe den Suchbegriff &quot;Stepper&quot; ein.</li>
+<li>Installiere die Stepper-Bibliothek von Arduino.</li>
+</ol>
+<h3 id="42-einfaches-rotations-programm">4.2 Einfaches Rotations-Programm</h3>
+<p>Mit dem folgenden Programm dreht der Servo einmal langsam um 180° und anschließend wieder zurück.</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Stepper.h&gt;</span> <span class="hljs-comment">// Einbinden der Bibliothek.</span></span>
+<span class="hljs-type">int</span> SPU = <span class="hljs-number">2048</span>; <span class="hljs-comment">// 2048 Schritte pro 360° Umdrehung</span>
+<span class="hljs-function">Stepper <span class="hljs-title">motor</span><span class="hljs-params">(SPU, <span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>)</span></span>; <span class="hljs-comment">// Ein Motor-Objekt wird an den Pins 3,5,4 und 6 angeschlossen</span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> 
+</span>{
+Motor.<span class="hljs-built_in">setSpeed</span>(<span class="hljs-number">5</span>); <span class="hljs-comment">// Geschwindigkeit: 5 Umdrehungen pro Minute</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+Motor.<span class="hljs-built_in">step</span>(<span class="hljs-number">2048</span>); <span class="hljs-comment">// 2048 Schritte = 360°</span>
+<span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 1 Sek. Pause</span>
+Motor.<span class="hljs-built_in">step</span>(<span class="hljs-number">-2048</span>); <span class="hljs-comment">// 360° rückwärts</span>
+<span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 1 Sek. Pause</span>
+}
+
+</code></pre>
+<h3 id="anpassungen">Anpassungen</h3>
+<p>Ändere das Programm ab, so dass</p>
+<ol>
+<li>der Motor nur noch 90° weit dreht.</li>
+<li>der Motor doppelt so schnell dreht, also mit 10 Umdrehungen pro Minute.</li>
+</ol>
 <hr>
 <footer >
 <p>Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.</p>
