@@ -61,6 +61,8 @@ delay(1000); // 1 Sek. Pause
 Ändere das Programm ab, so dass
    1. der Motor nur noch 90° weit dreht.
    2. der Motor doppelt so schnell dreht, also mit 10 Umdrehungen pro Minute.
+   3. der Motor einen Sekundenzeiger antreibt, sich also jede Sekunde um 6° dreht.   
+   Berechne hierzu die nötige Schrittzahl: 360° ≙ 2048 Schritte ⇒ 6° = 2048/60 = 34 Schritte. 
 
 
 ---
