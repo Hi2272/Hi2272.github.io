@@ -33,6 +33,12 @@
 
 [Jahrgangsstufentest](00Informatik6/Jahrgangsstufentest/index.html)  
 
+### Textverarbeitung
+[Kopieren und Korrigieren von Text](00Informatik6/Textverarbeitung/01Einstieg/index.html)  
+[Klassen einer Textverarbeitung](00Informatik6/Textverarbeitung/02Klassen/index.html)  
+  
+
+
 ### Powerpoint
 [Animationen](00Informatik6/Powerpoint/Animation/index.html)
 [Powerpoint Schule](00Informatik6/PowerpointSchule/index.html)  
