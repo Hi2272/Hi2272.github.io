@@ -34,8 +34,11 @@ image_filenames = [
 # Lade die Bilder
 images = []
 for img in image_filenames:
+    print(os.path)
     if os.path.exists(img):
         images.append(pygame.image.load(img))
+        print(f"Bild '{img}' geladen.")
+
     else:
         print(f"Bild '{img}' nicht gefunden.")
 
@@ -61,13 +64,13 @@ while running:
                 print(f"Starte {program_name}")  # Hier wird das Programm gestartet
 
     # Zeichne Hintergrund
-    screen.fill((0, 0, 0))
+    screen.fill((150, 150, 150))
 
     # Zeichne die sichtbaren Buttons
     for i in range(VISIBLE_BUTTONS):
         index = (current_index + i) % TOTAL_BUTTONS
         img = images[index]
-        img_rect = img.get_rect(center=(SCREEN_WIDTH // 2, (SCREEN_HEIGHT // 2) + (i - 1) * (BUTTON_HEIGHT + BUTTON_SPACING)))
+        img_rect = img.get_rect(center=(SCREEN_WIDTH // 2+ (i - 1) * (BUTTON_WIDTH + BUTTON_SPACING), (SCREEN_HEIGHT // 2) ))
         screen.blit(img, img_rect)
 
     pygame.display.flip()
