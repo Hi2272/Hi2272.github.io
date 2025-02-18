@@ -36,7 +36,7 @@
 ### Textverarbeitung
 [Kopieren und Korrigieren von Text](00Informatik6/Textverarbeitung/01Einstieg/index.html)  
 [Klassen einer Textverarbeitung](00Informatik6/Textverarbeitung/02Klassen/index.html)  
-  
+[Markieren von Text](00Informatik6/Textverarbeitung/03Markieren%20von%20Text/index.html)  
 
 
 ### Powerpoint
