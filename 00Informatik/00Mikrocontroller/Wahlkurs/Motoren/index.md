@@ -4,7 +4,7 @@
 
 ## [Servos](Servomotor/index.html)  
 ## [Schrittmotoren](Schrittmotor/index.html)  
-## Getriebemotoren
+## [Motorsteuerung über H-Brücken](HBruecke/index.html)  
 
 [zurück](../index.html)  
 
