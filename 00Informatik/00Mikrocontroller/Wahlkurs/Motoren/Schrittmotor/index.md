@@ -15,8 +15,8 @@ Schrittmotoren enthalten im Gehäuse stets ein Getriebe, durch dass die Bewegung
 Der Schrittmotor wird mit einem speziellen Kabel an das Steuermodul angeschlossen. 
 
 Dieses Steuermodul wird mit dem Arduino verbunden:
-- GND: GND
-- VCC: +5V
+- -: GND
+- +: +5V
 - IN1: Pin 6 
 - IN2: Pin 5
 - IN3: Pin 4
@@ -36,7 +36,7 @@ Für die Programmierung des Schrittmotors benötigen wir wieder eine Bibliothek:
 
 ### 4.2 Einfaches Rotations-Programm
 
-Mit dem folgenden Programm dreht der Servo einmal langsam um 180° und anschließend wieder zurück.
+Mit dem folgenden Programm dreht der Stepper einmal langsam um 180° und anschließend wieder zurück.
 ```C++
 #include <Stepper.h> // Einbinden der Bibliothek.
 int SPU = 2048; // 2048 Schritte pro 360° Umdrehung
