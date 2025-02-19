@@ -2,7 +2,7 @@
 
 # Wahlunterricht Mikroelektronik und Technik am Gymnasium Waldkraiburg
 ##### [Stichwortliste](Keywords.html)  
-##### [LEDs](#leuchtdioden-leds) | [Taster](#taster) | [Alarmanlage](#alarmanlage) | [Messwerterfassung](#messwerterfassung) | [Diskoleuchte](#diskobeleuchtung) | [ESP32](#esp32) | [Gamepad](#b-ein-bluetooth-gamepad-für-pac-man) | [Interrupts](#blinken-ohne-pause---interrupts) | [3DDruck](#3d-druck-und-cad)
+##### [LEDs](#leuchtdioden-leds) | [Taster](#taster) | [Alarmanlage](#alarmanlage) | [Messwerterfassung](#messwerterfassung) | [Diskoleuchte](#diskobeleuchtung) | [ESP32](#esp32) | [Gamepad](#b-ein-bluetooth-gamepad-für-pac-man) | [Interrupts](#blinken-ohne-pause---interrupts) | [3DDruck](#3d-druck-und-cad) | [Motoren](#selbstfahrender-roboter)
 
 ##### Diese Seite befindet sich im Aufbau. 
 ## Grundausstattung
@@ -129,8 +129,9 @@ Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.Seine 
 Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) von rtheiss bauen wir einen Roboter, der Hindernisse erkennt und ihnen ausweichen kann.
 
 1. [Motoren](Motoren/index.html)  
-2. Ultraschall-Entfernungsmesser
-3. Servomotoren
+2. [Ultraschall-Entfernungsmesser](06Ultraschall/index.html)  
+3. [Servomotoren](Motoren/Servomotor/index.html)  
+   
    
 ### Große OLED-Displays
 [SPI-Displays](<SPI Displays/index.html>)
