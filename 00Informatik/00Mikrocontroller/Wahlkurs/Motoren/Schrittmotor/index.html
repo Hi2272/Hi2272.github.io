@@ -175,13 +175,13 @@ Schrittmotoren werden zum Beispiel in 3D-Druckern verwendet.</p>
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> 
 </span>{
-Motor.<span class="hljs-built_in">setSpeed</span>(<span class="hljs-number">5</span>); <span class="hljs-comment">// Geschwindigkeit: 5 Umdrehungen pro Minute</span>
+motor.<span class="hljs-built_in">setSpeed</span>(<span class="hljs-number">5</span>); <span class="hljs-comment">// Geschwindigkeit: 5 Umdrehungen pro Minute</span>
 }
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
-Motor.<span class="hljs-built_in">step</span>(<span class="hljs-number">2048</span>); <span class="hljs-comment">// 2048 Schritte = 360°</span>
+motor.<span class="hljs-built_in">step</span>(<span class="hljs-number">2048</span>); <span class="hljs-comment">// 2048 Schritte = 360°</span>
 <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 1 Sek. Pause</span>
-Motor.<span class="hljs-built_in">step</span>(<span class="hljs-number">-2048</span>); <span class="hljs-comment">// 360° rückwärts</span>
+motor.<span class="hljs-built_in">step</span>(<span class="hljs-number">-2048</span>); <span class="hljs-comment">// 360° rückwärts</span>
 <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 1 Sek. Pause</span>
 }
 

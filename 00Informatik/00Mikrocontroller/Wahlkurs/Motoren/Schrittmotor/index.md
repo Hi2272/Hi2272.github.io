@@ -44,13 +44,13 @@ Stepper motor(SPU, 3,5,4,6); // Ein Motor-Objekt wird an den Pins 3,5,4 und 6 an
 
 void setup() 
 {
-Motor.setSpeed(5); // Geschwindigkeit: 5 Umdrehungen pro Minute
+motor.setSpeed(5); // Geschwindigkeit: 5 Umdrehungen pro Minute
 }
 
 void loop() {
-Motor.step(2048); // 2048 Schritte = 360°
+motor.step(2048); // 2048 Schritte = 360°
 delay(1000); // 1 Sek. Pause
-Motor.step(-2048); // 360° rückwärts
+motor.step(-2048); // 360° rückwärts
 delay(1000); // 1 Sek. Pause
 }
 
