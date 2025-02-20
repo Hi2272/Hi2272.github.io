@@ -149,8 +149,8 @@ Schrittmotoren werden zum Beispiel in 3D-Druckern verwendet.</p>
 <p>Der Schrittmotor wird mit einem speziellen Kabel an das Steuermodul angeschlossen.</p>
 <p>Dieses Steuermodul wird mit dem Arduino verbunden:</p>
 <ul>
-<li>GND: GND</li>
-<li>VCC: +5V</li>
+<li>-: GND</li>
+<li>+: +5V</li>
 <li>IN1: Pin 6</li>
 <li>IN2: Pin 5</li>
 <li>IN3: Pin 4</li>
@@ -168,20 +168,20 @@ Schrittmotoren werden zum Beispiel in 3D-Druckern verwendet.</p>
 <li>Installiere die Stepper-Bibliothek von Arduino.</li>
 </ol>
 <h3 id="42-einfaches-rotations-programm">4.2 Einfaches Rotations-Programm</h3>
-<p>Mit dem folgenden Programm dreht der Servo einmal langsam um 180° und anschließend wieder zurück.</p>
+<p>Mit dem folgenden Programm dreht der Stepper einmal langsam um 180° und anschließend wieder zurück.</p>
 <pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Stepper.h&gt;</span> <span class="hljs-comment">// Einbinden der Bibliothek.</span></span>
 <span class="hljs-type">int</span> SPU = <span class="hljs-number">2048</span>; <span class="hljs-comment">// 2048 Schritte pro 360° Umdrehung</span>
 <span class="hljs-function">Stepper <span class="hljs-title">motor</span><span class="hljs-params">(SPU, <span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>)</span></span>; <span class="hljs-comment">// Ein Motor-Objekt wird an den Pins 3,5,4 und 6 angeschlossen</span>
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> 
 </span>{
-Motor.<span class="hljs-built_in">setSpeed</span>(<span class="hljs-number">5</span>); <span class="hljs-comment">// Geschwindigkeit: 5 Umdrehungen pro Minute</span>
+motor.<span class="hljs-built_in">setSpeed</span>(<span class="hljs-number">5</span>); <span class="hljs-comment">// Geschwindigkeit: 5 Umdrehungen pro Minute</span>
 }
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
-Motor.<span class="hljs-built_in">step</span>(<span class="hljs-number">2048</span>); <span class="hljs-comment">// 2048 Schritte = 360°</span>
+motor.<span class="hljs-built_in">step</span>(<span class="hljs-number">2048</span>); <span class="hljs-comment">// 2048 Schritte = 360°</span>
 <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 1 Sek. Pause</span>
-Motor.<span class="hljs-built_in">step</span>(<span class="hljs-number">-2048</span>); <span class="hljs-comment">// 360° rückwärts</span>
+motor.<span class="hljs-built_in">step</span>(<span class="hljs-number">-2048</span>); <span class="hljs-comment">// 360° rückwärts</span>
 <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 1 Sek. Pause</span>
 }
 
