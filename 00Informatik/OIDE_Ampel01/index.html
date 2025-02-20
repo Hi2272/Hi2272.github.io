@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>1&period; Attribute und Konstruktoren</title>
+            <title>Klassendiagramm</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -141,38 +141,12 @@
               <meta charset="utf-8" />
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
-<h1 id="eine-notenverwaltung">Eine Notenverwaltung</h1>
-<h2 id="1-attribute-und-konstruktoren">1. Attribute und Konstruktoren</h2>
-<p>Erstelle in der Klasse Fach folgende Attribute und passe den Konstruktor entsprechend an:</p>
-<ul>
-<li>ein Feld <strong>kleineLN</strong> mit 10 Elementen für die Noten in kleinen Leistungsnachweisen</li>
-<li>ein Feld <strong>grosseLN</strong> mit 4 Elementen für die Noten in großen Leistungsnachweisen</li>
-<li>ein Attribut <strong>name</strong> für den Namen des Faches (Bsp.: Informatik)</li>
-<li>ein Attribut <strong>kurz</strong> für ein Kürzel des Faches (Bsp. Inf)</li>
-</ul>
-<h2 id="2-eine-methode-für-die-anzahl-der-kleinen-ln">2. Eine Methode für die Anzahl der kleinen LN</h2>
-<ol>
-<li>Initalisiere im Konstruktor die ersten drei kleinen Leistungsnachweise mit den Werten 2,4 und 3.</li>
-<li>Erstelle eine Methode <strong>getAnzahlKleineLN()</strong>, die die Zahl der kleinen Leistungsnachweise ausgibt.<br>
-Setze hierzu dieses Struktogramm um:<br>
-<img src="StruktogrammgetAnzahl.png" alt="alt text"></li>
-</ol>
-<h2 id="3-eine-methode-für-die-anzahl-der-großen-ln">3. Eine Methode für die Anzahl der großen LN</h2>
-<h3 id="a-einfache-lösung-mit-codeduplikation">a) Einfache Lösung mit Codeduplikation</h3>
-<p>Um eine Methode zu programmieren, mit der die Anzahl der großen Leistungsnachweise ausgegeben wird, könnten wir einfach die Methode <strong>getAnzahlKleineLN()</strong> kopieren und das Attribut <strong>kleineLN</strong> durch das Attribut <strong>grosseLN</strong> ersetzen.<br>
-Die Methode wäre also fast identisch - ein typisches Beispiel für <strong>Codeduplikation</strong>. Diese sollte vermieden werden.</p>
-<h3 id="b-bessere-lösung-mit-parametern">b) Bessere Lösung mit Parametern</h3>
-<p>Wir programmieren eine allgemeine Methode <strong>getAnzahl</strong>, die ein Feld von Zahl als Parameter hat.  Diese Methode rufen wir anschließend in der Methode <strong>getAnzahlKleineLN</strong> mit dem Attribut <strong>kleineLN</strong> als Parameter-Wert auf und in der Methode <strong>getAnzahlGrosseLN</strong> mit dem Attribut <strong>grosseLN</strong> als Parameter-Wert.</p>
-<ol>
-<li>Ändere den Namen der Methode <strong>getAnzahlKleineLN</strong> in <strong>getAnzahl</strong>.</li>
-<li>Füge einen Parameter <strong>feld</strong> vom Typ int[] hinzu.</li>
-<li>Ersetze im Rumpf der Methode das Attribut <strong>kleineLN</strong> durch den Parameter <strong>feld</strong>.</li>
-<li>Programmiere eine neue Methode <strong>getAnzahlKleineLN()</strong>, die den Wert von <strong>getAnzahl(kleineLN)</strong> zurückgibt.</li>
-<li>Programmiere analog eine neue Methode <strong>getAnzahlGrosseLN()</strong>.</li>
-<li>Ändere die Methode <strong>toString()</strong> so ab, dass sie auch die Anzahl der großen LN ausgibt.</li>
-</ol>
-<p><em>Struktogramm für Aufgabe 2:</em></p>
-<p><img src="StruktogrammgetAnzahl.png" alt="alt text"></p>
+<h1 id="eine-fußgänger-ampel">Eine Fußgänger-Ampel</h1>
+<p>Die Fußgänger-Ampel an der Liszt-Straße besteht aus 2 Ampeln. Jede trägt eine Verkehrsampel mit je 3 Lichtern, und eine Fußgänger-Ampeln mit je 2 Lichtern, sowie einen Tastern. Alle Einheiten sind mit einer Steuerungsanlage verbunden.</p>
+<h2 id="klassendiagramm">Klassendiagramm</h2>
+<p>Zeichne ein Klassendiagramm der Ampel-Anlage.
+Attribute und Methoden musst du in den Klassenkarten nicht angegeben. Unterscheide aber zwischen Assoziationen und Aggregationen und gib die jeweilige Kardinalität an.</p>
+<p><a href="01Klassendiagramm.html">Weiter</a></p>
 <div id="quelle" style="font-size: x-small; text-align: right;">
     2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
   </div>
@@ -183,8 +157,9 @@ Die Methode wäre also fast identisch - ein typisches Beispiel für <strong>Code
     {'id': 'Java', 'speed': 2000, 
     'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
     'withFileList': true ,'withErrorList': true}
-    <script id="javaCode" type="plain/text" title="Fach.java" src="Fach.java"></script>
-    <script id="javaCode" type="plain/text" title="Schueler.java" src="Schueler.java"></script>
+    <script id="javaCode" type="plain/text" title="Steuerug.java" src="Steuerung.java"></script>
+    <script id="javaCode" type="plain/text" title="Ampel.java" src="Ampel.java"></script>
+    <script id="javaCode" type="plain/text" title="Lampe.java" src="Lampe.java"></script>
   </script>
    </iframe>
 </section>

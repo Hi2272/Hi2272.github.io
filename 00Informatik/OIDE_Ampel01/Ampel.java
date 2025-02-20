@@ -3,16 +3,15 @@ public class Ampel extends Rectangle {
    private Lampe[] lampe;
    private boolean schaltet = false;
    
-   public Ampel(int x, int y, int h) {
+   public Ampel(int x, int y, int h, Color[] farben) {
   
       super(x, y, h / 3, h);
       setFillColor(Color.darkcyan);
-      lampe = new Lampe[3];
-      Color[] farbe = { Color.red, Color.yellow, Color.green };
+      lampe = new Lampe[farben.length];
       for (int i = 0; i < lampe.length; i++) {
-         lampe[i] = new Lampe(x + h / 6, y + h / 8 + i * h / 3, (h * 1) / 10, farbe[i]);
+         lampe[i] = new Lampe(x + h / 6, y + h / 8 + i * h / 3, (h * 1) / 10, farben[i]);
       }
-      lampe[2].an();
+      lampe[0].an();
    }
 
    public void allesAus() {
@@ -21,22 +20,24 @@ public class Ampel extends Rectangle {
       }
    }
    
-   public void raufschalten() {
+   public void schalten(int i) {
+      allesAus();
+      lampe[i].an();
+      SystemTools.pause(1000);
+   }
+
+   public void wirdGruen() {
       this.schaltet = true;
       for (int i = lampe.length - 1; i >= 0; i--) {
-         allesAus();
-         lampe[i].an();
-         SystemTools.pause(1000);
+         schalten(i);
       }
       this.schaltet = false;
    } 
 
-   public void runterschalten() {
+   public void wirdRot() {
       this.schaltet = true;
       for (int i = 0; i < lampe.length; i++) {
-         allesAus();
-         lampe[i].an();
-         SystemTools.pause(1000);
+         schalten(i);
       }
       this.schaltet = false;
    }
