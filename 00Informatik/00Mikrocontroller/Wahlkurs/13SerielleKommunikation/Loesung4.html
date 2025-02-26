@@ -140,8 +140,9 @@
         <body class="vscode-body vscode-light">
             <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 <h1 id="daten-an-den-arduino-senden">Daten an den Arduino senden</h1>
-<h2 id="zeichen-darstellen">Zeichen darstellen</h2>
+<h2 id="zahlen-ausgeben">Zahlen ausgeben</h2>
 <pre><code class="language-C++"><span class="hljs-type">int</span> zeichen = <span class="hljs-number">0</span>;  <span class="hljs-comment">// Datenbyte vom Seriellen Eingang</span>
+String txt = <span class="hljs-string">&quot;&quot;</span>;  <span class="hljs-comment">// Ausgabe als Text</span>
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
   Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);  <span class="hljs-comment">// Serielle Schnittstelle öffnen</span>
@@ -152,19 +153,58 @@
   <span class="hljs-keyword">if</span> (Serial.<span class="hljs-built_in">available</span>() &gt; <span class="hljs-number">0</span>) {   <span class="hljs-comment">// Serielle Daten liegen an</span>
     zeichen = Serial.<span class="hljs-built_in">read</span>();      <span class="hljs-comment">// Die Zeichen werden einzeln gelesen</span>
     <span class="hljs-keyword">if</span> (zeichen != <span class="hljs-number">10</span>) {          <span class="hljs-comment">// 10 = Return</span>
-        Serial.<span class="hljs-built_in">println</span>(<span class="hljs-built_in">char</span>(zeichen)); <span class="hljs-comment">// zeichen ausgeben</span>
-    } 
+      txt = txt + <span class="hljs-built_in">char</span>(zeichen);  <span class="hljs-comment">// zeichen zusammensetzen</span>
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-type">int</span> zahl = txt.<span class="hljs-built_in">toInt</span>();  <span class="hljs-comment">// txt zu Zahl umwandeln</span>
+      Serial.<span class="hljs-built_in">println</span>(zahl);   <span class="hljs-comment">// Zahl ausgeben</span>
+      txt = <span class="hljs-string">&quot;&quot;</span>;  <span class="hljs-comment">// Neustart</span>
+    }
   }
 }
 </code></pre>
-<h2 id="zeichen-zum-text-zusammensetzen">Zeichen zum Text zusammensetzen</h2>
-<p>Derzeit werden die einzelnen Zeichen untereinander ausgegeben. Im nächsten Schritt ändern wir den Code so ab, dass er die Zeichen wieder zu einer Zeichenkette, also einem String zusammensetzt.</p>
-<ol>
-<li>Deklariere eine Variable txt vom Datentyp String und initialisiere sie mit einem leeren String &quot;&quot;</li>
-<li>Füge das gelesene Zeichen zum String txt hinzu.</li>
-<li>Wenn das Zeichen RETURN entspricht (10), dann soll die Variable txt ausgegeben werden und wieder auf &quot;&quot; gesetzt werden.</li>
-</ol>
-<p><a href="Loesung3.html">weiter</a><br>
+<h2 id="nur-zahlen-akzeptieren">Nur Zahlen akzeptieren</h2>
+<p>Derzeit werden Buchstaben oder andere Zeichen einfach ignoriert. Mit der Methode <strong>istZahl()</strong> können wir prüfen, ob eine Zeichenkette fehlerfrei in eine Zahl umgewandelt werden kann.</p>
+<pre><code class="language-C++"><span class="hljs-function">boolean <span class="hljs-title">istZahl</span><span class="hljs-params">(String str)</span> </span>{
+  <span class="hljs-keyword">for</span> (byte i = <span class="hljs-number">0</span>; i &lt; str.<span class="hljs-built_in">length</span>(); i++) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isDigit</span>(str.<span class="hljs-built_in">charAt</span>(i))) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+</code></pre>
+<p>Mit dieser Funktion sieht das Gesamtprogramm so aus:</p>
+<pre><code class="language-C++"><span class="hljs-type">int</span> zeichen = <span class="hljs-number">0</span>;  <span class="hljs-comment">// Datenbyte vom Seriellen Eingang</span>
+String txt = <span class="hljs-string">&quot;&quot;</span>;  <span class="hljs-comment">// Ausgabe als Text</span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);  <span class="hljs-comment">// Serielle Schnittstelle öffnen</span>
+}
+
+<span class="hljs-function">boolean <span class="hljs-title">istZahl</span><span class="hljs-params">(String str)</span> </span>{
+  <span class="hljs-keyword">for</span> (byte i = <span class="hljs-number">0</span>; i &lt; str.<span class="hljs-built_in">length</span>(); i++) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isDigit</span>(str.<span class="hljs-built_in">charAt</span>(i))) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+
+  <span class="hljs-keyword">if</span> (Serial.<span class="hljs-built_in">available</span>() &gt; <span class="hljs-number">0</span>) {   <span class="hljs-comment">// Serielle Daten liegen an</span>
+    zeichen = Serial.<span class="hljs-built_in">read</span>();      <span class="hljs-comment">// Die Zeichen werden einzeln gelesen</span>
+    <span class="hljs-keyword">if</span> (zeichen != <span class="hljs-number">10</span>) {          <span class="hljs-comment">// 10 = Return</span>
+      txt = txt + <span class="hljs-built_in">char</span>(zeichen);  <span class="hljs-comment">// zeichen zusammensetzen</span>
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">istZahl</span>(txt)) {
+        <span class="hljs-type">int</span> zahl = txt.<span class="hljs-built_in">toInt</span>();
+        Serial.<span class="hljs-built_in">println</span>(zahl);
+      } <span class="hljs-keyword">else</span> {
+        Serial.<span class="hljs-built_in">println</span>(txt+ <span class="hljs-string">&quot; ist keine Zahl!&quot;</span>);
+      }
+      txt = <span class="hljs-string">&quot;&quot;</span>;  <span class="hljs-comment">// Neustart</span>
+    }
+  }
+}
+</code></pre>
+<p><a href="Loesung5.html">weiter</a><br>
 <a href="../index.html">zurück</a></p>
 
             
