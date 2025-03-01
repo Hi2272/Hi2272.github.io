@@ -1,0 +1,34 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=ArduShield
+*Date=07:34:35
+*CreatedBy=Fritzing 0.9.6b..
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;THT;27.5294;-30.6194;90;Bottom;J5
+2;;THT;32.2648;-17.9951;90;Bottom;J6
+3;;THT;10.6609;-43.2677;90;Bottom;J7
+4;;;9.57979;-26.496;0;Bottom;Bauteil1
+5;;THT;32.3359;-13.085;90;Bottom;J4
+6;;;20.7566;-21.4418;0;Bottom;TXT1
+7;;THT;6.93505;-10.19;90;Bottom;J8
+8;;THT;32.4073;-7.74704;90;Bottom;J2
+9;;THT;27.4803;-37.2696;90;Bottom;J3
+10;;THT;10.5845;-37.2721;90;Bottom;J9
+11;;;14.964;-9.93918;0;Bottom;TXT1
+12;;;20.3376;-23.5477;0;Bottom;TXT1
+13;;;22.4029;-12.863;0;Bottom;TXT1
+14;;;20.163;-26.4507;0;Bottom;TXT1
+15;;;22.3538;-17.9975;0;Bottom;TXT1
+16;;;37.8102;-37.0065;0;Bottom;TXT1
+17;;THT;27.3273;-43.2677;90;Bottom;J1
+18;;;37.4;-30.5103;0;Bottom;TXT1
+19;;THT;10.6928;-30.6868;90;Bottom;J10

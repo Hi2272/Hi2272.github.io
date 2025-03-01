@@ -1,0 +1,18 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=2FarbLED
+*Date=07:33:32
+*CreatedBy=Fritzing 0.9.6b..
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;;4.45368;-4.22496;0;Bottom;TXT1
+2;;5 mm [THT];4.52556;-9.12287;0;Bottom;LED1
+3;;THT;4.46159;-2.13089;90;Bottom;J1
