@@ -1,12 +1,26 @@
 <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
-# Motoren am Arduino
+# H-Brücken-Schaltung
+## 1. Die Drehrichtung von Elektromotoren
+Die Drehrichtung eines Elektromotors kann durch die Polung seiner Anschlüsse geändert werden:  
+![alt text](Drehrichtung.png)  
+Mit Hilfe von vier Schaltern kann diese Umpolung automatisch erfolgen. Die entsprechende Schaltung heißt H-Brücken-Schaltung.  
+Sind alle Schalter geöffnet, läuft der Motor nicht:  
+![alt text](HBridgeAus.png)  
+Durch das Schließen von je zwei gegenüberliegenden Schaltern kann die Drehrichtung des Motors geändert werden:  
+![alt text](HBridgeAn.png)  
 
-## [Servos](Servomotor/index.html)  
-## [Schrittmotoren](Schrittmotor/index.html)  
-## [Motorsteuerung über H-Brücken](HBruecke/index.html)  
+## 2. Die Geschwindigkeit von Elektromotoren
+Bei einem analog gesteuerten Motor wird die Geschwindigkeit einfach dadurch geändert, dass eine mehr oder weniger große Spannung angelegt wird. Je größer diese Spannung ist, desto schneller dreht der Motor.  
 
-[zurück](../index.html)  
+Mikrocontroller können dies durch die Pulsweitenmodulierung (PWM) simulieren. Wie beim Dimmen einer LED wird hierbei die Spannung durch mehr oder weniger viele Phasen ohne Spannung unterbrochen.
+
+## 3. L298N Modul
+
+Am Arduino können zwei Motoren über das L298N-Modul angeschlossen werden. Auf dieser Seite ist der Anschluss beschrieben:  
+https://funduino.de/nr-34-motoren-mit-h-bruecke-l298n-ansteuern  
+
+
 
 ---
 

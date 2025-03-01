@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Motoren am Arduino</title>
+            <title>H-Br&uuml;cken-Schaltung</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -139,11 +139,21 @@
         </head>
         <body class="vscode-body vscode-light">
             <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
-<h1 id="motoren-am-arduino">Motoren am Arduino</h1>
-<h2 id="servos"><a href="Servomotor/index.html">Servos</a></h2>
-<h2 id="schrittmotoren"><a href="Schrittmotor/index.html">Schrittmotoren</a></h2>
-<h2 id="motorsteuerung-über-h-brücken"><a href="HBruecke/index.html">Motorsteuerung über H-Brücken</a></h2>
-<p><a href="../index.html">zurück</a></p>
+<h1 id="h-brücken-schaltung">H-Brücken-Schaltung</h1>
+<h2 id="1-die-drehrichtung-von-elektromotoren">1. Die Drehrichtung von Elektromotoren</h2>
+<p>Die Drehrichtung eines Elektromotors kann durch die Polung seiner Anschlüsse geändert werden:<br>
+<img src="Drehrichtung.png" alt="alt text"><br>
+Mit Hilfe von vier Schaltern kann diese Umpolung automatisch erfolgen. Die entsprechende Schaltung heißt H-Brücken-Schaltung.<br>
+Sind alle Schalter geöffnet, läuft der Motor nicht:<br>
+<img src="HBridgeAus.png" alt="alt text"><br>
+Durch das Schließen von je zwei gegenüberliegenden Schaltern kann die Drehrichtung des Motors geändert werden:<br>
+<img src="HBridgeAn.png" alt="alt text"></p>
+<h2 id="2-die-geschwindigkeit-von-elektromotoren">2. Die Geschwindigkeit von Elektromotoren</h2>
+<p>Bei einem analog gesteuerten Motor wird die Geschwindigkeit einfach dadurch geändert, dass eine mehr oder weniger große Spannung angelegt wird. Je größer diese Spannung ist, desto schneller dreht der Motor.</p>
+<p>Mikrocontroller können dies durch die Pulsweitenmodulierung (PWM) simulieren. Wie beim Dimmen einer LED wird hierbei die Spannung durch mehr oder weniger viele Phasen ohne Spannung unterbrochen.</p>
+<h2 id="3-l298n-modul">3. L298N Modul</h2>
+<p>Am Arduino können zwei Motoren über das L298N-Modul angeschlossen werden. Auf dieser Seite ist der Anschluss beschrieben:<br>
+<a href="https://funduino.de/nr-34-motoren-mit-h-bruecke-l298n-ansteuern">https://funduino.de/nr-34-motoren-mit-h-bruecke-l298n-ansteuern</a></p>
 <hr>
 <footer >
 <p>Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.</p>
