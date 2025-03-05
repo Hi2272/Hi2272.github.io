@@ -1,0 +1,54 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=ProtoShield
+*Date=11:10:30
+*CreatedBy=Fritzing 0.9.6b..
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;THT;38.396;-31.6013;0;Bottom;J9
+2;;THT;2.83602;-16.3613;0;Bottom;J25
+3;;THT;56.176;-26.5213;0;Bottom;J16
+4;;THT;35.856;-11.2813;0;Bottom;J34
+5;;THT;12.996;-26.5213;0;Bottom;J21
+6;;THT;15.536;-26.5213;0;Bottom;J20
+7;;;6.17114;-35.8499;0;Bottom;TXT1
+8;;THT;48.556;-26.5213;0;Bottom;J13
+9;;THT;30.776;-26.5213;0;Bottom;J6
+10;;THT;7.91602;-48.1113;0;Bottom;J31
+11;;THT;7.91602;-16.3613;0;Bottom;J38
+12;;THT;40.936;-31.6013;0;Bottom;J10
+13;;THT;35.856;-31.6013;0;Bottom;J8
+14;;THT;10.456;-16.3613;0;Bottom;J39
+15;;THT;42.206;-11.2813;0;Bottom;J36
+16;;THT;33.316;-26.5213;0;Bottom;J11
+17;;THT;51.096;-26.5213;0;Bottom;J14
+18;;THT;38.396;-11.2813;0;Bottom;J35
+19;;THT;46.016;-26.5213;0;Bottom;J12
+20;;THT;58.716;-26.5213;0;Bottom;J17
+21;;THT;28.236;-26.5213;0;Bottom;J5
+22;;;6.09623;-40.1852;0;Bottom;TXT1
+23;;THT;43.476;-31.6013;0;Bottom;J7
+24;;THT;18.076;-23.9813;0;Bottom;J1
+25;;THT;25.696;-18.9013;0;Bottom;J33
+26;;THT;25.696;-41.7613;0;Bottom;J4
+27;;;5.9318;-37.3327;0;Bottom;TXT1
+28;;THT;63.796;-26.5213;0;Bottom;J19
+29;;THT;2.83602;-48.1113;0;Bottom;J29
+30;;THT;5.37602;-16.3613;0;Bottom;J37
+31;;THT;23.156;-23.9813;0;Bottom;J3
+32;;;5.70291;-34.3376;0;Bottom;TXT1
+33;;THT;61.256;-26.5213;0;Bottom;J18
+34;;;6.20073;-42.0073;0;Bottom;TXT1
+35;;THT;20.616;-23.9813;0;Bottom;J2
+36;;THT;53.636;-26.5213;0;Bottom;J15
+37;;THT;10.456;-48.1113;0;Bottom;J32
+38;;THT;5.37602;-48.1113;0;Bottom;J30
+39;;;34.5546;-26.5213;0;Bottom;Bauteil1
