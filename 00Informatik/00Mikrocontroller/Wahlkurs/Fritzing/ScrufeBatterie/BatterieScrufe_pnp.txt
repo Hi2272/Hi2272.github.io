@@ -1,0 +1,26 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=BatterieScrufe
+*Date=17:27:29
+*CreatedBy=Fritzing 0.9.10b.2022-07-01.CD-2134-0-40d23c29
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;THT;20.776;-11.2566;180;Bottom;J2
+2;;THT;9.13702;-6.15571;0;Bottom;J3
+3;;;20.6972;-19.7388;0;Bottom;Hole2
+4;;;24.1999;-10.5376;90;Bottom;TXT1
+5;;;24.4776;-20.7242;0;Bottom;TXT1
+6;;;1.59023;-5.54987;90;Bottom;TXT1
+7;;;1.67244;-5.99883;0;Bottom;TXT1
+8;;;20.7515;-3.36435;0;Bottom;Hole1
+9;;;2.02103;-16.5526;0;Bottom;TXT1
+10;;;1.83187;-16.384;90;Bottom;TXT1
+11;;THT;9.10385;-16.8656;0;Bottom;J1
