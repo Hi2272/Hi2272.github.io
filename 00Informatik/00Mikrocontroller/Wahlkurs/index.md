@@ -42,6 +42,7 @@ Wir danken den Spendern herzlich für ihre Unterstützung.
 - [Taster im Stromkreis](11Taster/index.html)  
 - [Digitaltaster](11Taster/Digitaltaster.html)  
 - [Projekt Reaktionszeit messen](11Taster/Reaktionszeit.html)
+- [Digitaltaster und 2-FarbLED](11Taster/DigitalTasterBlinkCode.html)  
 
 ### Alarmanlage
 
