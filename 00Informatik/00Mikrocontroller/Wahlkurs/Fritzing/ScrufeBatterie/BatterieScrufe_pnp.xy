@@ -4,7 +4,7 @@
 # eMail=
 #
 # Project=BatterieScrufe
-# Date=11:59:14
+# Date=18:22:42
 # CreatedBy=Fritzing 1.0.4.2024-10-07.1.0.4rc1-4-ga8c6ef7c
 #
 #
@@ -14,4 +14,4 @@
 #
 RefDes,Description,Package,X,Y,Rotation,Side,Mount
 Description: resistance;capacitance;inductance;voltage;current;power;mpn;mn;
-J1,";;;;;;;;","THT",351.995,841.74,0,Top,THT
+J1,";;;;;;;;","THT",360.305,874.391,0,Top,THT
