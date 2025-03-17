@@ -193,8 +193,9 @@
 [OnlineIDE: Tauschen von Namen](OIDE_WS_7_TauscheNamen/index.html)
 
 
-
 [OnlineIDE: Notenverwaltung](OIDE_Noten01Anz/index.html)  
+
+[OnlineIDE: Ampelsteuerung](OIDE_Ampel01/index.html)  
 
 [Weihnachtsbaum](00Informatik10/Weihnachtsbaum/index.html)
 
