@@ -7,7 +7,7 @@
 
 ![alt text](Sequenzdiagramm.png)
 
-[weiter](03Klassen.html)  
+[weiter](03Lampe.html)  
 
 
 
