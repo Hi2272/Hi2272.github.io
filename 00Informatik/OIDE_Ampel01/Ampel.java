@@ -1,17 +1,13 @@
-public class Ampel extends Rectangle {
+public abstract class Ampel extends Rectangle {
    
-   private Lampe[] lampe;
+   protected Lampe[] lampe;
    private boolean schaltet = false;
    
-   public Ampel(int x, int y, int h, Color[] farben) {
-  
-      super(x, y, h / 3, h);
+   public Ampel(int x, int y, int h, int b, Color[] farbe) {
+      super(x,y,h,b);
       setFillColor(Color.darkcyan);
-      lampe = new Lampe[farben.length];
-      for (int i = 0; i < lampe.length; i++) {
-         lampe[i] = new Lampe(x + h / 6, y + h / 8 + i * h / 3, (h * 1) / 10, farben[i]);
-      }
-      lampe[0].an();
+      this.lampe = new Lampe[farbe.length];
+      this.schaltet=false;
    }
 
    public void allesAus() {
