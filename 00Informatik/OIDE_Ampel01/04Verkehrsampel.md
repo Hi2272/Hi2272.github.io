@@ -33,20 +33,8 @@ Teste die Methode durch den Aufruf von **v.allesAus();**
 
 Teste auch diese Methode mit **v.schalten(1);**   
 
-## Methode wirdRot()
-Die Ampel soll von grün über gelb nach rot schalten. Wegen der eingebauten Pausen dauert dieser Vorgang 3 Sekunden. In dieser Zeit soll das Attribut **schaltet** den Wert **true** haben.  
-
-- Weise dem Attribut **schaltet** den Wert **true** zu.
-- Rufe in einer Schleife für alle Lampen die Methode **schalten(i)** auf.
-- Weise dem Attribut den Wert **false** zu.
-
-## Methode wirdGruen()
-Programmiere die analoge Methode um von rot über gelb nach grün zu schalten.
-
-## Methode isSchaltend
-Diese Methode entspricht einer **get-Methode** für das Attribut **schaltet**.    
-Bei Attributen vom Typ **boolean** nennt man **get-Methoden** häufig **is-Methode**.
-
+## Methoden rot(), gelb() und gruen()
+Rufe die Methode **schalten()** mit den passenden Parameter-Werten auf.
 
 <div id="quelle" style="font-size: x-small; text-align: right;">
     2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
@@ -61,7 +49,7 @@ Bei Attributen vom Typ **boolean** nennt man **get-Methoden** häufig **is-Metho
     'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
     'withFileList': true ,'withErrorList': true}
     <script id="javaCode" type="plain/text" title="Lampe.java" src="Lampe.java"></script>
-      <script id="javaCode" type="plain/text" title="Verkehrsampel.java" src="VerkehrsampelLeer.java"></script>
+      <script id="javaCode" type="plain/text" title="Verkehrsampel.java" src="04VerkehrsampelLeer.java"></script>
   
    </iframe>
 </section>

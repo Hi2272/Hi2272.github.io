@@ -22,8 +22,7 @@
    1. den Konstruktor der Oberklasse **Rectangle** aufruft.
    2. Die Hintergrundfarbe setzt.
    3. Das Feld **lampe** initialisiert.
-   4. Das Attribut **schaltet** auf **false** setzt.
-5. Lösche alle Attribute und Methode außer dem Konstruktor aus der Klasse **Verkehrsampel**.
+5. Lösche alle Attribute und Methode außer dem Konstruktor und den Methoden  **gelb()** und **gruen()** aus der Klasse **Verkehrsampel**.
 6. Ändere den Kopf der Klasse so ab, dass sie sich von **Ampel** ableitet.
 7. Ändere den Konstruktor so ab, dass er
    1. den Konstruktor der Oberklasse **Ampel** aufruft.
@@ -48,11 +47,11 @@ Beim Zugriff auf das Feld **lampe** werden jetzt Fehlermeldungen angezeigt. Sie 
     'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
     'withFileList': true ,'withErrorList': true}
     <script id="javaCode" type="plain/text" title="Lampe.java" src="Lampe.java"></script>
-      <script id="javaCode" type="plain/text" title="Verkehrsampel.java" src="Verkehrsampel.java"></script>
-      <script id="javaCode" type="plain/text" title="Ampel.java" src="AmpelLeer.java"></script>
+      <script id="javaCode" type="plain/text" title="Verkehrsampel.java" src="04Verkehrsampel.java"></script>
+      <script id="javaCode" type="plain/text" title="Ampel.java" src="05AmpelLeer.java"></script>
   
    </iframe>
 </section>
 
-| [zurück](../index.html) | [weiter](../04Verkehrsampel.html) | 
+| [zurück](../index.html) | [weiter](../06FussgaengerAmpel.html) | 
 | --- | ---- |

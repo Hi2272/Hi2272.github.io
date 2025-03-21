@@ -23,26 +23,16 @@ public class Verkehrsampel extends Rectangle {
    public void schalten(int i) {
       allesAus();
       lampe[i].an();
-      SystemTools.pause(1000);
    }
 
-   public void wirdGruen() {
-      for (int i = 0; i < lampe.length; i++) {
-         schalten(i);
-      }
+  public void gelb() {
+      schalten(1);
+   }
+  public void gruen() {
+      schalten(2);
    }
 
-   public void wirdRot() {
-      for (int i = lampe.length - 1; i >= 0; i--) {
-         schalten(i);
-      }
-   }
-
-   public boolean isSchaltend() {
-      return this.schaltet;
-   }
 }
 
 Verkehrsampel v = new Verkehrsampel(10, 10, 200,600, new Color[] { Color.red, Color.yellow, Color.green });
-v.wirdRot();
-v.wirdGruen();
+v.rot();
