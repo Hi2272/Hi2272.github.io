@@ -7,3 +7,7 @@
 
 ![alt text](Sequenzdiagramm.png)
 
+[weiter](03Lampe.html)  
+
+
+

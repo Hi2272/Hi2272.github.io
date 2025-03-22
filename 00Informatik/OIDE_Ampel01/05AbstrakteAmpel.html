@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title></title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+              <meta charset="utf-8" />
+  <title>Informatik</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="eine-abstrakte-ampel">Eine abstrakte Ampel</h1>
+<p>Die Verkehrsampel und die Fußgängerampel haben viele gemeinsame Methoden. Der einzige Unterschied zwischen beiden ist die Anzahl der Lampen.</p>
+<p>Um Code-Duplikation zu vermeiden, setzen wir dieses Klassendiagramm um:<br>
+<img src="KlassendiagrammAmpelAbstrakt.png" alt="alt text"><br>
+Die Klasse <strong>Ampel</strong> wird hierbei als <strong>abstrakte Klasse</strong> deklariert. Von einer abstrakten Klasse können keine Objekte erzeugt werden.</p>
+<p>In der Biologie wäre zum Beispiel die Klasse <strong>Säugetiere</strong> eine abstrakte Klasse. Mensch, Hund oder Pottwal sind Unterklassen dieser abstrakten Oberklasse. Ein Mensch ist ein konkretes Objekt, d.h. eine Instanz der Klasse <strong>Mensch</strong>. Es gibt aber kein konkretes Säugetier. Abstrakte Klassen sind daher allgemein Sammel- oder Oberklassen.<br>
+In der abstrakten Klasse <strong>Säugetier</strong> werden alle Eigenschaften oder Attribute gesammelt, die typisch für Säugetiere sind. Also zum Beispiel die Tatsache, dass sie ein Fell aus Haaren haben, lebende Nachkommmen gebären und diese mit Milch säugen.</p>
+<p>Analog können wir alle Attribute und Methoden, die in der Verkehrs- und der Fußgängerampel gemeinsam auftreten in die abstrakte Klasse Ampel auslagern.</p>
+<ol>
+<li>Mit <strong>public abstract class Ampel</strong> erstellst du eine abstrakte Klasse.</li>
+<li>Diese muss sich noch von Rectangle ableiten.</li>
+<li>Kopiere alle Attribute und Methoden aus der Klasse <strong>Verkehrsampel</strong> in die Klasse <strong>Ampel</strong></li>
+<li>Ändere den Konstruktor der Klasse <strong>Ampel</strong> so ab, dass er
+<ol>
+<li>den Konstruktor der Oberklasse <strong>Rectangle</strong> aufruft.</li>
+<li>Die Hintergrundfarbe setzt.</li>
+<li>Das Feld <strong>lampe</strong> initialisiert.</li>
+</ol>
+</li>
+<li>Lösche alle Attribute und Methode außer dem Konstruktor und den Methoden  <strong>gelb()</strong> und <strong>gruen()</strong> aus der Klasse <strong>Verkehrsampel</strong>.</li>
+<li>Ändere den Kopf der Klasse so ab, dass sie sich von <strong>Ampel</strong> ableitet.</li>
+<li>Ändere den Konstruktor so ab, dass er
+<ol>
+<li>den Konstruktor der Oberklasse <strong>Ampel</strong> aufruft.</li>
+<li>Die Elemente des Feldes <strong>lampe</strong> initialisiert.</li>
+</ol>
+</li>
+</ol>
+<p>Beim Zugriff auf das Feld <strong>lampe</strong> werden jetzt Fehlermeldungen angezeigt. Sie treten auf, weil wir in der Unterklasse versuchen auf ein <strong>private</strong> deklariertes Attribut zuzugreifen.<br>
+Ändere den Zugriffsmodifikator in der Klasse <strong>Ampel</strong> so, dass von der Klasse und ihren Unterklassen auf das Attribut zugegriffen werden kann.</p>
+<div id="quelle" style="font-size: x-small; text-align: right;">
+    2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
+  </div>
+  <section>
+    <iframe
+    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+    width="100%" height="600" frameborder="0">
+    {'id': 'Java', 'speed': 2000, 
+    'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
+    'withFileList': true ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Lampe.java" src="Lampe.java"></script>
+      <script id="javaCode" type="plain/text" title="Verkehrsampel.java" src="04Verkehrsampel.java"></script>
+      <script id="javaCode" type="plain/text" title="Ampel.java" src="05AmpelLeer.java"></script>
+   </iframe>
+</section>
+<table>
+<thead>
+<tr>
+<th><a href="../index.html">zurück</a></th>
+<th><a href="../06FussgaengerAmpel.html">weiter</a></th>
+</tr>
+</thead>
+</table>
+
+            
+            
+        </body>
+        </html>

@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Eine Fu&szlig;g&auml;nger-Ampel</title>
+            <title>Attribute&colon;</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -138,13 +138,74 @@
         
         </head>
         <body class="vscode-body vscode-light">
-             <meta charset="utf-8" />
+              <meta charset="utf-8" />
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
-<h1 id="eine-fußgänger-ampel">Eine Fußgänger-Ampel</h1>
-<h2 id="sequenzdiagramm">Sequenzdiagramm</h2>
-<p><img src="Sequenzdiagramm.png" alt="alt text"></p>
-<p><a href="03Lampe.html">weiter</a></p>
+<h1 id="die-klasse-verkehrsampel">Die Klasse Verkehrsampel</h1>
+<p>Das folgende Klassendiagramm zeigt die Klasse Verkehrsampel:<br>
+<img src="KlassendiagrammVerkehrsampel.png" alt="alt text"></p>
+<p>Programmiere die Klasse <strong>Verkehrsampel</strong> in Java. Beachte hierbei folgende Punkte:</p>
+<h2 id="attribute">Attribute:</h2>
+<ul>
+<li>Die Aggregation der Lampen wird über ein Feld <strong>lampe</strong> vom Datentyp <strong>Lampe</strong> gespeichert.</li>
+</ul>
+<h2 id="konstruktor">Konstruktor:</h2>
+<ul>
+<li>
+<p>Die x- und die y-Koordinate, die Breite und die Höhe werden als ganzzahlige Parameter übergeben. Die Farben sind ein Feld vom Datentyp <strong>Color</strong>.</p>
+</li>
+<li>
+<p>Als erstes muss wieder der Konstruktor der Oberklasse aufgerufen werden. Die Parameter sind x, y, b und h.</p>
+</li>
+<li>
+<p>Als nächstes wird der Hintergrund mit der Methode <strong>setFillColor</strong> auf den Wert <strong>Color.darkcyan</strong> gesetzt.</p>
+</li>
+<li>
+<p>Das Feld <strong>lampe</strong> wird mit genauso vielen Elementen initialisiert, wie im Parameter <strong>farben</strong> übergeben werden.</p>
+</li>
+<li>
+<p>Die Elemente des Feldes <strong>lampe</strong> werden mit einer Schleife initialisiert. Der Konstruktor-Aufruf kann hier kopiert werden:<br>
+lampe[i] = new Lampe(x + b/2, y + h / 6 + i * h / 3, h / 10, farbe[i]);</p>
+</li>
+<li>
+<p>Zum Abschluss wird für die erste Lampe die Methode <strong>an</strong> aufgerufen.</p>
+</li>
+</ul>
+<p>Dein Programm sollte jetzt keine Fehlermeldung mehr zeigen und kann getestet werden.</p>
+<h2 id="methode-allesaus">Methode allesAus()</h2>
+<p>Mit einer Schleife soll für alle Elemente des Feldes <strong>lampe</strong> die Methode <strong>aus</strong> aufgerufen werden.</p>
+<p>Teste die Methode durch den Aufruf von <strong>v.allesAus();</strong></p>
+<h2 id="methode-schaltenint-i">Methode schalten(int i)</h2>
+<ul>
+<li>Aufruf der Methode <strong>allesAus</strong></li>
+<li>Aufruf der Methode <strong>an</strong> für die Lampe mit dem Index <strong>i</strong></li>
+<li>1000 ms = 1 Sekunde Pause durch Aufruf der Methode <strong>SystemTools.pause(1000)</strong></li>
+</ul>
+<p>Teste auch diese Methode mit <strong>v.schalten(1);</strong></p>
+<h2 id="methoden-rot-gelb-und-gruen">Methoden rot(), gelb() und gruen()</h2>
+<p>Rufe die Methode <strong>schalten()</strong> mit den passenden Parameter-Werten auf.</p>
+<div id="quelle" style="font-size: x-small; text-align: right;">
+    2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
+  </div>
+  <section>
+    <iframe
+    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+    width="100%" height="600" frameborder="0">
+    {'id': 'Java', 'speed': 2000, 
+    'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
+    'withFileList': true ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Lampe.java" src="Lampe.java"></script>
+      <script id="javaCode" type="plain/text" title="Verkehrsampel.java" src="04VerkehrsampelLeer.java"></script>
+   </iframe>
+</section>
+<table>
+<thead>
+<tr>
+<th><a href="../index.html">zurück</a></th>
+<th><a href="../04Verkehrsampel.html">weiter</a></th>
+</tr>
+</thead>
+</table>
 
             
             
