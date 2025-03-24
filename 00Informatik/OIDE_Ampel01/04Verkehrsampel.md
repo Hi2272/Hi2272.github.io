@@ -54,5 +54,5 @@ Rufe die Methode **schalten()** mit den passenden Parameter-Werten auf.
    </iframe>
 </section>
 
-| [zurück](../index.html) | [weiter](../04Verkehrsampel.html) | 
+| [zurück](../index.html) | [weiter](05AbstrakteAmpel.html) | 
 | --- | ---- |

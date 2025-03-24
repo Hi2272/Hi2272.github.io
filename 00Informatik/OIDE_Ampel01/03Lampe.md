@@ -32,5 +32,6 @@ Programmiere die Klasse **Lampe** in Java. Beachte hierbei folgende Punkte:
    </iframe>
 </section>
 
-| [zurück](../index.html) | [weiter](../04Verkehrsampel.html) | 
+
+| [zurück](../index.html) | [weiter](04Verkehrsampel.html) | 
 | --- | ---- |

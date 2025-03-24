@@ -53,5 +53,5 @@ Beim Zugriff auf das Feld **lampe** werden jetzt Fehlermeldungen angezeigt. Sie 
    </iframe>
 </section>
 
-| [zurück](../index.html) | [weiter](../06FussgaengerAmpel.html) | 
+| [zurück](../index.html) | [weiter](06FussgaengerAmpel.html) | 
 | --- | ---- |

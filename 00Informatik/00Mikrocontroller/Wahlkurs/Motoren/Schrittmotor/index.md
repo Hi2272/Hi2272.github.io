@@ -44,7 +44,7 @@ Stepper motor(SPU, 3,5,4,6); // Ein Motor-Objekt wird an den Pins 3,5,4 und 6 an
 
 void setup() 
 {
-motor.setSpeed(5); // Geschwindigkeit: 5 Umdrehungen pro Minute
+motor.setSpeed(15); // Geschwindigkeit: 5 Umdrehungen pro Minute
 }
 
 void loop() {
