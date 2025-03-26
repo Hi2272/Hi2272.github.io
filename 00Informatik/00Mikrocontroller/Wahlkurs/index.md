@@ -11,6 +11,7 @@ Die Materialien für den Kurs wurden durch Spenden folgender Organisationen fina
 
 - [Förderverein des Gymnasium Waldkraiburgs](https://www.gymnasiumwaldkraiburg.de/schule/foerderverein/)
 - [Wilhelm-Stemmer-Stiftung](https://www.wilhelm-stemmer-stiftung.de)
+- [meine Volksbank Raiffeisenbank eG Waldkraiburg](https://www.vb-rb.de/ihre-bank/gs-ansprechpartner/uebersicht-geschaeftsstellen/waldkraiburg.html)  
   
 Wir danken den Spendern herzlich für ihre Unterstützung.
 
