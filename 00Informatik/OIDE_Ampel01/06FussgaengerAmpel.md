@@ -26,8 +26,7 @@
     'withFileList': true ,'withErrorList': true}
     <script id="javaCode" type="plain/text" title="Lampe.java" src="Lampe.java"></script>
       <script id="javaCode" type="plain/text" title="Verkehrsampel.java" src="06Verkehrsampel.java"></script>
-      <script id="javaCode" type="plain/text" title="Ampel.java" src="Ampel.java"></script>
-      <script id="javaCode" type="plain/text" title="Ampel.java" src="Ampel.java"></script>
+      <script id="javaCode" type="plain/text" title="Ampel.java" src="05Ampel.java"></script>
       <script id="javaCode" type="plain/text" title="Fussgaengerampel.java" src="06FussgaengerampelLeer.java"></script>
    </iframe>
 </section>
