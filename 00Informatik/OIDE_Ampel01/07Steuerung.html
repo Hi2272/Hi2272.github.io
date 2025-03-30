@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title></title>
+            <title>Attribute</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -139,16 +139,39 @@
         </head>
         <body class="vscode-body vscode-light">
               <meta charset="utf-8" />
-  <title>Informatik</title>
+  <title>AmpelSteuerung</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
-<h1 id="die-fußgängerampel">Die Fußgängerampel</h1>
-<p>Um die Fußgängerampel zu programmieren, kannst du einfach den Code der Verkehrsampel kopieren und an zwei Stellen anpassen:</p>
+<h1 id="die-steuerung">Die Steuerung</h1>
+<h2 id="attribute">Attribute</h2>
+<p>Die Steuerung benötigt 3 Attribute:</p>
 <ol>
-<li>Ändere den Namen des Klasse.</li>
-<li>Ändere den Namen des Konstruktors.</li>
-<li>Initialisiere mit dieser Zeile die beiden Lampen der Ampel:<br>
-lampe[i] = new Lampe(x + b / 2, y + h / 4 + i * h / 2, h / 5, farbe[i]);</li>
+<li>Eine Referenz <strong>anlage</strong> auf die Ampelanlage, die sie steuert.</li>
+<li>Ein Feld <strong>vAmpeln</strong> für die Verkehrsampeln dieser Anlage.</li>
+<li>Ein Feld <strong>fAmpeln</strong> für die Fußgängerampeln dieser Anlage.</li>
 </ol>
+<h2 id="konstruktor">Konstruktor</h2>
+<p>Der Konstruktor benötigt einen Parameter mit der Referenz auf die Anlage, die gesteuert wird.<br>
+Im Konstruktor wird das Attribut <strong>anlage</strong> mit dem Parameter-Wert initialisiert.<br>
+Die Felder <strong>vAmpeln</strong> und <strong>fAmpeln</strong> werden durch den Aufruf der entsprechenden get-Methoden der anlage initialisiert.</p>
+<h2 id="die-methoden-schalten">Die Methoden schalten()</h2>
+<p>Programmiere eine Methode <strong>schalten()</strong>, die den gesamten Schaltzyklus der Ampelanlage ablaufen lässt.<br>
+Verwende hierbei Schleifen, um alle Verkehrs- und Fußgängerampeln zu schalten.<br>
+Der Schaltablauf umfasst folgende Schritte:</p>
+<ol>
+<li>Alle Verkehrsampeln werden gelb.</li>
+<li>1 Sekunde Pause:<br>
+SystemTools.pause(1000);</li>
+<li>Alle Verkehrsampeln werden rot.</li>
+<li>1 Sekunde Pause.</li>
+<li>Alle Fußgängerampeln werden grün.</li>
+<li>3 Sekunden Pause.</li>
+<li>Alle Fußgängerampeln werden rot.</li>
+<li>1 Sekunde Pause.</li>
+<li>Alle Verkehrsampeln werden gelb.</li>
+<li>1 Sekunde Pause.</li>
+<li>Alle Verkehrsampeln werden grün.</li>
+</ol>
+<p>Die Methode schalten() wird durch einen Klick auf den Taster aufgerufen. Teste jetzt deine Ampelanlage.</p>
 <div id="quelle" style="font-size: x-small; text-align: right;">
     2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
   </div>
@@ -159,20 +182,16 @@ lampe[i] = new Lampe(x + b / 2, y + h / 4 + i * h / 2, h / 5, farbe[i]);</li>
     {'id': 'Java', 'speed': 2000, 
     'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
     'withFileList': true ,'withErrorList': true}
-    <script id="javaCode" type="plain/text" title="Lampe.java" src="Lampe.java"></script>
-      <script id="javaCode" type="plain/text" title="Verkehrsampel.java" src="06Verkehrsampel.java"></script>
-      <script id="javaCode" type="plain/text" title="Ampel.java" src="05Ampel.java"></script>
-      <script id="javaCode" type="plain/text" title="Fussgaengerampel.java" src="06FussgaengerampelLeer.java"></script>
+    <script id="javaCode" type="plain/text" title="Steuerung.java" src="07Steuerung.java"></script>
+        <script id="javaCode" type="plain/text" title="Ampelanlage.java" src="07Ampelanlage.java"></script>
+        <script id="javaCode" type="plain/text" title="Taster.java" src="07Taster.java"></script>
+     <script id="javaCode" type="plain/text" title="Lampe.java" src="07Lampe.java"></script>
+      <script id="javaCode" type="plain/text" title="Verkehrsampel.java" src="07Verkehrsampel.java"></script>
+      <script id="javaCode" type="plain/text" title="Ampel.java" src="07Ampel.java"></script>
+      <script id="javaCode" type="plain/text" title="Fussgaengerampel.java" src="07Fussgaengerampel.java"></script>
    </iframe>
 </section>
-<table>
-<thead>
-<tr>
-<th><a href="../index.html">zurück</a></th>
-<th><a href="07Steuerung.html">weiter</a></th>
-</tr>
-</thead>
-</table>
+<p><a href="../index.html">zurück</a></p>
 
             
             

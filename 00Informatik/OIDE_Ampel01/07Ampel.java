@@ -4,7 +4,7 @@ public abstract class Ampel extends RoundedRectangle {
    
    public Ampel(int x, int y, int h, int b, Color[] farbe) {
       super(x, y, h, b, 10);
-      setFillColor(Color.darkcyan);
+      setFillColor(Color.lightgray);
       this.lampe = new Lampe[farbe.length];
    }
 

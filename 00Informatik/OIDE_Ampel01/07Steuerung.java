@@ -1,52 +1,40 @@
-public class Steuerung extends Rectangle {
+public class Steuerung {
    
    private Ampelanlage anlage;
-
-   public Steuerung() {
-      super(300, 200, 100, 100);
-      Color[] farben = { Color.red, Color.yellow, Color.green };
-      //Color[] farben = { Color.red, Color.green };
-     
-      ampel = new Ampel(100, 100, 300,farben);
+   private Verkehrsampel[] vAmpel;
+   private Fussgaengerampel[] fAmpel;
+   
+   public Steuerung(Ampelanlage anlage) {
+      this.anlage = anlage;
+      vAmpel = anlage.getVAmpel();
+      fAmpel = anlage.getFAmpel();
    }
 
-   public void schalten(){
-
-      Verkehrsampel[] vAmpel=anlage.getVAmpel;
-      for (int i=0;i<vAmpel.count;i++){
-         for (int j=0;j<3;j++){
-            vAmpel[i].schalten(j);
-         }
-         SystemTools.pause(1000);
-        }
-        ampel.wirdGruen();
-      while (ampel.isSchaltend()) { 
-      } 
-
+   public void schalten() {
+      for (int i = 0; i < vAmpel.length; i++) {
+         vAmpel[i].gelb();
+      }
+      SystemTools.pause(1000);
+      for (int i = 0; i < vAmpel.length; i++) {
+         vAmpel[i].rot();
+      }
+      SystemTools.pause(1000);
+      for (int i = 0; i < fAmpel.length; i++) {
+         fAmpel[i].gruen();
+      }
       SystemTools.pause(3000);
-      ampel.wirdRot();
-      while (ampel.isSchaltend()) {
-         
-      } 
-      
-      print("Fertig");
-   
-
-        ampel.wirdGruen();
-      while (ampel.isSchaltend()) { 
-      } 
-
-      SystemTools.pause(3000);
-      ampel.wirdRot();
-      while (ampel.isSchaltend()) {
-         
-      } 
-      
-      print("Fertig");
-   
+      for (int i = 0; i < fAmpel.length; i++) {
+         fAmpel[i].rot();
+      }
+      SystemTools.pause(1000);
+      for (int i = 0; i < vAmpel.length; i++) {
+         vAmpel[i].gelb();
+      }
+      SystemTools.pause(1000);
+      for (int i = 0; i < vAmpel.length; i++) {
+         vAmpel[i].gruen();
+      }
+      SystemTools.pause(1000);
    }
- 
 }
 
-new World(600, 400);
-new Steuerung();
