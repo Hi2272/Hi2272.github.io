@@ -141,37 +141,30 @@
               <meta charset="utf-8" />
   <title>AmpelSteuerung</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
-<h1 id="die-steuerung">Die Steuerung</h1>
+<h1 id="die-ampelanlage">Die Ampelanlage</h1>
 <h2 id="attribute">Attribute</h2>
-<p>Die Steuerung benötigt 3 Attribute:</p>
+<p>Die Anlage benötigt 4 Attribute:</p>
 <ol>
-<li>Eine Referenz <strong>anlage</strong> auf die Ampelanlage, die sie steuert.</li>
+<li>Eine Referenz <strong>steuerung</strong> auf die Steuerung, die sie steuert.</li>
 <li>Ein Feld <strong>vAmpeln</strong> für die Verkehrsampeln dieser Anlage.</li>
 <li>Ein Feld <strong>fAmpeln</strong> für die Fußgängerampeln dieser Anlage.</li>
+<li>Ein Feld <strong>taster</strong> für die Taster dieser Anlage.</li>
 </ol>
 <h2 id="konstruktor">Konstruktor</h2>
-<p>Der Konstruktor benötigt einen Parameter mit der Referenz auf die Anlage, die gesteuert wird.<br>
-Im Konstruktor wird das Attribut <strong>anlage</strong> mit dem Parameter-Wert initialisiert.<br>
-Die Felder <strong>vAmpeln</strong> und <strong>fAmpeln</strong> werden durch den Aufruf der entsprechenden get-Methoden der anlage initialisiert.</p>
-<h2 id="die-methoden-schalten">Die Methoden schalten()</h2>
-<p>Programmiere eine Methode <strong>schalten()</strong>, die den gesamten Schaltzyklus der Ampelanlage ablaufen lässt.<br>
-Verwende hierbei Schleifen, um alle Verkehrs- und Fußgängerampeln zu schalten.<br>
-Der Schaltablauf umfasst folgende Schritte:</p>
-<ol>
-<li>Alle Verkehrsampeln werden gelb.</li>
-<li>1 Sekunde Pause:<br>
-SystemTools.pause(1000);</li>
-<li>Alle Verkehrsampeln werden rot.</li>
-<li>1 Sekunde Pause.</li>
-<li>Alle Fußgängerampeln werden grün.</li>
-<li>3 Sekunden Pause.</li>
-<li>Alle Fußgängerampeln werden rot.</li>
-<li>1 Sekunde Pause.</li>
-<li>Alle Verkehrsampeln werden gelb.</li>
-<li>1 Sekunde Pause.</li>
-<li>Alle Verkehrsampeln werden grün.</li>
-</ol>
-<p>Die Methode schalten() wird durch einen Klick auf den Taster aufgerufen. Teste jetzt deine Ampelanlage.</p>
+<p>Der Konstruktor benötigt 5 Parameter vom Typ int:</p>
+<ul>
+<li>x,y: Koordinaten der ersten Ampel</li>
+<li>breite, hoehe: Größe der Ampeln</li>
+<li>anzAmpeln: Zahl der Ampeln in der Anlage</li>
+</ul>
+<p>Im Konstruktor werden die Felder <strong>vAmpeln</strong>, <strong>fAmpeln</strong> und <strong>taster</strong> mit der Länge <strong>anzAmpeln</strong> initialisiert.<br>
+Die einzelnen Elemente der Felder werden in einer Zählschleife mit dieser Sequenz initialisiert:</p>
+<pre><code class="language-C++">   vAmpel[i] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Verkehrsampel</span>(x + i * <span class="hljs-number">2</span> * breite + <span class="hljs-number">20</span>, y, breite - <span class="hljs-number">10</span>, hoehe, <span class="hljs-keyword">new</span> Color[] { Color.red, Color.yellow, Color.green });
+   fAmpel[i] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Fussgaengerampel</span>(x + i * <span class="hljs-number">2</span> * breite + breite + <span class="hljs-number">20</span>, y, breite - <span class="hljs-number">10</span>, hoehe, <span class="hljs-keyword">new</span> Color[] { Color.red, Color.green });
+   taster[i] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Taster</span>(steuerung, x + i * <span class="hljs-number">2</span> * breite + breite + <span class="hljs-number">20</span>, y + hoehe + <span class="hljs-number">20</span>, breite - <span class="hljs-number">5</span>, breite - <span class="hljs-number">5</span>);
+</code></pre>
+<h2 id="get-methoden">Get-Methoden</h2>
+<p>Programmiere eine get-Methode für das Feld <strong>vAmpeln</strong> und eine für das Feld <strong>fAmpeln</strong>.</p>
 <div id="quelle" style="font-size: x-small; text-align: right;">
     2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
   </div>
@@ -182,8 +175,8 @@ SystemTools.pause(1000);</li>
     {'id': 'Java', 'speed': 2000, 
     'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
     'withFileList': true ,'withErrorList': true}
-    <script id="javaCode" type="plain/text" title="Steuerung.java" src="07Steuerung.java"></script>
-        <script id="javaCode" type="plain/text" title="Ampelanlage.java" src="07Ampelanlage.java"></script>
+         <script id="javaCode" type="plain/text" title="Ampelanlage.java" src="07Ampelanlage.java"></script>
+        <script id="javaCode" type="plain/text" title="Steuerung.java" src="07Steuerung.java"></script>
         <script id="javaCode" type="plain/text" title="Taster.java" src="07Taster.java"></script>
      <script id="javaCode" type="plain/text" title="Lampe.java" src="07Lampe.java"></script>
       <script id="javaCode" type="plain/text" title="Verkehrsampel.java" src="07Verkehrsampel.java"></script>
@@ -191,7 +184,14 @@ SystemTools.pause(1000);</li>
       <script id="javaCode" type="plain/text" title="Fussgaengerampel.java" src="07Fussgaengerampel.java"></script>
    </iframe>
 </section>
-<p><a href="../index.html">zurück</a></p>
+<table>
+<thead>
+<tr>
+<th><a href="../index.html">zurück</a></th>
+<th><a href="08Steuerung.html">weiter</a></th>
+</tr>
+</thead>
+</table>
 
             
             

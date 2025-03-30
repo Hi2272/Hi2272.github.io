@@ -31,5 +31,5 @@
    </iframe>
 </section>
 
-| [zurück](../index.html) | [weiter](07Steuerung.html) | 
+| [zurück](../index.html) | [weiter](07Ampelanlage.html) | 
 | --- | ---- |

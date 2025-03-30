@@ -11,7 +11,7 @@
 ## Konstruktor
 Der Konstruktor benötigt einen Parameter mit der Referenz auf die Anlage, die gesteuert wird.  
 Im Konstruktor wird das Attribut **anlage** mit dem Parameter-Wert initialisiert.  
-Die Felder **vAmpeln** und **fAmpeln** werden durch den Aufruf der entsprechenden get-Methoden der anlage initialisiert. 
+Die Felder **vAmpeln** und **fAmpeln** werden durch den Aufruf der entsprechenden get-Methoden der Anlage initialisiert. 
 ## Die Methoden schalten()
 Programmiere eine Methode **schalten()**, die den gesamten Schaltzyklus der Ampelanlage ablaufen lässt.  
 Verwende hierbei Schleifen, um alle Verkehrs- und Fußgängerampeln zu schalten.  
@@ -43,15 +43,14 @@ Die Methode schalten() wird durch einen Klick auf den Taster aufgerufen. Teste j
     {'id': 'Java', 'speed': 2000, 
     'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
     'withFileList': true ,'withErrorList': true}
-    <script id="javaCode" type="plain/text" title="Steuerung.java" src="07Steuerung.java"></script>
-        <script id="javaCode" type="plain/text" title="Ampelanlage.java" src="07Ampelanlage.java"></script>
-        <script id="javaCode" type="plain/text" title="Taster.java" src="07Taster.java"></script>
-     <script id="javaCode" type="plain/text" title="Lampe.java" src="07Lampe.java"></script>
-      <script id="javaCode" type="plain/text" title="Verkehrsampel.java" src="07Verkehrsampel.java"></script>
-      <script id="javaCode" type="plain/text" title="Ampel.java" src="07Ampel.java"></script>
-      <script id="javaCode" type="plain/text" title="Fussgaengerampel.java" src="07Fussgaengerampel.java"></script>
+    <script id="javaCode" type="plain/text" title="Steuerung.java" src="08Steuerung.java"></script>
+    <script id="javaCode" type="plain/text" title="Ampelanlage.java" src="08Ampelanlage.java"></script>
+    <script id="javaCode" type="plain/text" title="Taster.java" src="08Taster.java"></script>
+    <script id="javaCode" type="plain/text" title="Lampe.java" src="07Lampe.java"></script>
+    <script id="javaCode" type="plain/text" title="Verkehrsampel.java" src="07Verkehrsampel.java"></script>
+    <script id="javaCode" type="plain/text" title="Ampel.java" src="07Ampel.java"></script>
+    <script id="javaCode" type="plain/text" title="Fussgaengerampel.java" src="07Fussgaengerampel.java"></script>
    
-      
    </iframe>
 </section>
 
