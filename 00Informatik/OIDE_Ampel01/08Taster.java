@@ -10,5 +10,6 @@ public class Taster extends RoundedRectangle {
    }
 
    public void onMouseDown(double x, double y, int key) {
+      steuerung.schalten();
    }
 }
