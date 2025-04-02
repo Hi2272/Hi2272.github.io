@@ -6,7 +6,7 @@
 Übungsmaterialien Informatik: Hi2272.github.io
 ==============================================
 [6. Klasse](#informatik-6-klasse)
-| [Mikrocontroller](#mikrocontroller)
+| [Mikrocontroller](/00Informatik/00Mikrocontroller/Wahlkurs/index.html)
 | [Funktionale Modellierung](#funktionale-modellierung)
 | [Datenbanken](#datenbanken)
 | [Objektorientierung: 9.Klasse](#objektorientierte-programmierung)
