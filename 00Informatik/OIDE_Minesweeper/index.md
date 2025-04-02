@@ -18,8 +18,8 @@ Das Spielprinzip kannst du hier nachvollziehen, ggf. musst du Code-Reset anklick
     'withBottomPanel': false ,'withPCode': false ,'withConsole': true ,
     'withFileList': false ,'withErrorList': false}
     <script id="javaCode" type="plain/text" title="Hilfe.java" src="Hilfe.java"></script>
-    <script id="javaCode" type="plain/text" title="Kachel.java" src="01Kachel.java"></script>
-    <script id="javaCode" type="plain/text" title="Spielfeld.java" src="01Spielfeld.java"></script>
+    <script id="javaCode" type="plain/text" title="Kachel.java" src="Kachel.java"></script>
+    <script id="javaCode" type="plain/text" title="Spielfeld.java" src="Spielfeld.java"></script>
     <script id="javaCode" type="plain/text" title="Platte.java" src="Platte.java"></script>
     <script id="javaCode" type="plain/text" title="Mine.java" src="Mine.java"></script>
   
@@ -36,7 +36,6 @@ Das Spielprinzip kannst du hier nachvollziehen, ggf. musst du Code-Reset anklick
 
 </section>
 
-## Aufgabenstellung
 ## Aufgabenstellung
 
 Erstelle ein Klassendiagramm für das Minesweeper-Spielfeld. Verwende hierzu folgende Klassen:
