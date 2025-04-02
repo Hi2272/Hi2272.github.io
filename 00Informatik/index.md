@@ -183,6 +183,7 @@
 [Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)   
 [Assoziation oder Aggregation?](https://learningapps.org/view38043424)  
   
+[Übersicht Felder in Java](00Informatik10/ÜbersichtFelder.html)    
 [Anleitung Webshop automatisch](00Informatik10/WebshopAutomatisch.html)  
 [BlueJ-Dateien Webshop-Projekt](00Informatik10/BlueJDateien/index.html)  
 

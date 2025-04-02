@@ -1,6 +1,5 @@
 public class Verkehrsampel extends Rectangle {
 
-   private boolean schaltet;
    private Lampe[] lampe;
 
    public Verkehrsampel(int x, int y, int b, int h, Color[] farbe) {
