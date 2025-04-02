@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>LEDs am Arduino</title>
+            <title>Experimente</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -139,15 +139,56 @@
         </head>
         <body class="vscode-body vscode-light">
              <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
-<h1 id="leds-am-arduino">LEDs am Arduino</h1>
+<pre><code class="language-c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">8</span>, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">9</span>, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">10</span>, OUTPUT);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">8</span>,LOW);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">9</span>,LOW);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">10</span>,LOW);  
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">rot</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">8</span>,LOW);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">9</span>,LOW);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">10</span>,HIGH);
+}
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">gelb</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">8</span>,LOW);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">9</span>,HIGH);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">10</span>,LOW);
+}
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">gruen</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">8</span>,HIGH);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">9</span>,LOW);
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">10</span>,LOW);
+}
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">rot</span>();
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+  
+  <span class="hljs-built_in">gelb</span>();
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+  
+  <span class="hljs-built_in">gruen</span>();
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+  
+  <span class="hljs-built_in">gelb</span>();
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+  }
+</code></pre>
+<h2 id="experimente">Experimente</h2>
+<p>Wenn die Ampel funktioniert, kannst du folgende Änderungen ausprobieren:</p>
 <ol>
-<li><a href="01LED/index.html">Eine LED</a></li>
-<li><a href="02LEDBlink/index.html">Ein Blinklicht</a></li>
-<li><a href="03LEDLauflicht/index.html">Ein Lauflicht</a></li>
-<li><a href="04LEDModul/index.html">Ein LED-Modul</a></li>
-<li><a href="05Ampel/index.html">Das Ampel-Modul</a></li>
+<li>Die Rot- und Grün-Phasen sollen doppelt so lang dauern wie die Gelb-Phasen.</li>
+<li>Die Ampel soll nur gelb blinken.</li>
+<li>Vor dem Schalten von grün zu gelb soll die Ampel 4 x grün blinken und damit das Schalten ankündigen.<br>
+Diese Schaltung ist in Österreich umgesetzt.</li>
 </ol>
-<p><a href="../index.html">zurück</a></p>
+<p><a href="Arrays.html">weiter</a><br>
+<a href="index.html">zurück</a></p>
 
             
             
