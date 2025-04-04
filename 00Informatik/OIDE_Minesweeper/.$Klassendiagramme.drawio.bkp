@@ -10,7 +10,7 @@
         <mxCell id="DREdefmeEKIS18htPZzb-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=diamond;endFill=0;" edge="1" parent="1" source="DREdefmeEKIS18htPZzb-2" target="DREdefmeEKIS18htPZzb-1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="DREdefmeEKIS18htPZzb-2" value="Kachel (abstrakt)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="DREdefmeEKIS18htPZzb-2" value="Element (abstrakt)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="330" y="190" width="120" height="30" as="geometry" />
         </mxCell>
         <mxCell id="DREdefmeEKIS18htPZzb-9" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=block;endFill=0;" edge="1" parent="1" source="DREdefmeEKIS18htPZzb-3" target="DREdefmeEKIS18htPZzb-2">

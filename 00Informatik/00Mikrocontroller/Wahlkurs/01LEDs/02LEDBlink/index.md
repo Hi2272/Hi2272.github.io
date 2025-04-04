@@ -3,8 +3,8 @@
 
 # Eine blinkende LED
 ## 1. Schaltung
-Wir arbeiten mit der gleichen Schaltung:
-![Alt text](Screenshot_4.png)
+Baue diese Schaltung auf:  
+![alt text](../01LED/Screenshot_4.png)
 ## 2. Programmierung
 Programmiere folgenden Code:
 ```C++
@@ -22,7 +22,18 @@ void loop() {
 }
 ```
 ## 3. Erklärung
-Die **setup-Methode läuft einmal ab**, wenn der Mikrocontroller an den Strom angeschlossen wird. Hier stehen Befehle, die zu Beginn ausgeführt werden müssen. In unserem Beispiel, wird der Pin 9 dauerhaft auf LOW geschaltet.  
-Die **loop-Methode läuft immer wieder ab.** Die Befehle *LED ein, Pause, LED aus, Pause* wiederholen sich solange, wie der Mikrocontroller am Strom angeschlossen ist.
+- Die **setup-Methode läuft einmal ab**, wenn der Mikrocontroller an den Strom angeschlossen wird.  
+Hier stehen Befehle, die zu Beginn ausgeführt werden müssen.   
+In unserem Beispiel, wird der Pin 9 dauerhaft auf LOW geschaltet.  
+- Die **loop-Methode läuft immer wieder ab.**   
+Die Befehle *LED ein, Pause, LED aus, Pause* wiederholen sich solange, wie der Mikrocontroller am Strom angeschlossen ist.
+
+## 4. Weitere Experimente
+Ändere den Code so ab, dass  
+1. Die LED doppelt so lang an wie aus ist.
+2. Die LED doppelt so schnell blinkt.
+3. Die LED so schnell blinkt, dass du das Blinken nicht mehr erkennst.  
+   
+
 [weiter zum Lauflicht](../03LEDLauflicht/index.html)  
 [zurück](../index.html)

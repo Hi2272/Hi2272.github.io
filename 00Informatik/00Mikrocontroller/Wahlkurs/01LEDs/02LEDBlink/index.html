@@ -141,8 +141,8 @@
              <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 <h1 id="eine-blinkende-led">Eine blinkende LED</h1>
 <h2 id="1-schaltung">1. Schaltung</h2>
-<p>Wir arbeiten mit der gleichen Schaltung:
-<img src="Screenshot_4.png" alt="Alt text"></p>
+<p>Baue diese Schaltung auf:<br>
+<img src="../01LED/Screenshot_4.png" alt="alt text"></p>
 <h2 id="2-programmierung">2. Programmierung</h2>
 <p>Programmiere folgenden Code:</p>
 <pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
@@ -159,9 +159,21 @@
 }
 </code></pre>
 <h2 id="3-erklärung">3. Erklärung</h2>
-<p>Die <strong>setup-Methode läuft einmal ab</strong>, wenn der Mikrocontroller an den Strom angeschlossen wird. Hier stehen Befehle, die zu Beginn ausgeführt werden müssen. In unserem Beispiel, wird der Pin 9 dauerhaft auf LOW geschaltet.<br>
-Die <strong>loop-Methode läuft immer wieder ab.</strong> Die Befehle <em>LED ein, Pause, LED aus, Pause</em> wiederholen sich solange, wie der Mikrocontroller am Strom angeschlossen ist.
-<a href="../03LEDLauflicht/index.html">weiter zum Lauflicht</a><br>
+<ul>
+<li>Die <strong>setup-Methode läuft einmal ab</strong>, wenn der Mikrocontroller an den Strom angeschlossen wird.<br>
+Hier stehen Befehle, die zu Beginn ausgeführt werden müssen.<br>
+In unserem Beispiel, wird der Pin 9 dauerhaft auf LOW geschaltet.</li>
+<li>Die <strong>loop-Methode läuft immer wieder ab.</strong><br>
+Die Befehle <em>LED ein, Pause, LED aus, Pause</em> wiederholen sich solange, wie der Mikrocontroller am Strom angeschlossen ist.</li>
+</ul>
+<h2 id="4-weitere-experimente">4. Weitere Experimente</h2>
+<p>Ändere den Code so ab, dass</p>
+<ol>
+<li>Die LED doppelt so lang an wie aus ist.</li>
+<li>Die LED doppelt so schnell blinkt.</li>
+<li>Die LED so schnell blinkt, dass du das Blinken nicht mehr erkennst.</li>
+</ol>
+<p><a href="../03LEDLauflicht/index.html">weiter zum Lauflicht</a><br>
 <a href="../index.html">zurück</a></p>
 
             
