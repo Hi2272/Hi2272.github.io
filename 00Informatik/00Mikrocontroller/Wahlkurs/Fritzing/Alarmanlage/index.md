@@ -75,6 +75,20 @@ Für den chinesischen Anbieter PCBWay musst du die Platine zuerst als Sammlung v
 4. Importiere alle Gerber-Dateien, die du vorher exportiert hast.
 5. Klicke auf **Get Instant PCB Quote** um die Platinen zu bestellen.
 
+### Lötunterlage erstellen
+Für Stiftsockelleisten kann eine Lötvorlage erstellt werden:
+1. Exportiere das Projekt als Gerber-Files.
+2. Öffne die zip-Datei und darin die Datei xxdrill.txt
+3. Markiere den Inhalt und kopiere ihn.
+4. Öffne diese Seite:  
+[Drill-to-SVG](../Drill-txt-to-SVG.html)
+5. Füge den kopieren Code ins obere Textfeld ein.
+6. Klicke auf **Umwandeln**
+7. Markiere den SVG-Code und füge ihn in eine leere svg-Datei ein.
+8. Starte Tinkercad und erstelle einen Quader von 10x10x1 cm.
+9. Importiere die SVG-Datei als Bohrung und ziehe die beiden Objekte übereinander.
+10. Exportiere die Datei als STL-Datei.
+
 
 [zurück](../../index.html)   
 

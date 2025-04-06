@@ -16,7 +16,7 @@ Baue hierzu deine Schaltung um:
 ![alt text](2024-10-09_09-01.png)
 
 Der Taster ist jetzt nicht mehr direkt an die LED angeschlossen. Die LED kann vielmehr vom Arduino aus geschaltet werden.
-Erstelle einen Code, mit dem die LED blinkt und teste ihn.  
+Erstelle einen Code, mit dem die gelbe LED blinkt und teste ihn.  
 
 
 [Lösung](DigitaltasterLsg.html)
