@@ -143,23 +143,39 @@
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
 <h1 id="minesweeper">Minesweeper</h1>
 <h2 id="klassendiagramm">Klassendiagramm</h2>
-<p>Erstelle ein Klassendiagramm für das Minesweeper-Spielfeld. Verwende hierzu folgende Klassen:</p>
+<p><img src="01KlassendiagrammSpielfeld.png" alt="alt text"><br>
+In diesem Klassendiagramm sehen wir ein Beispiel von <strong>Polymorphismus</strong>.<br>
+Im Feld des Spielfeldes können Minen oder Platten gespeichert werden.<br>
+Beide Klassen leiten sich von der abstrakten Klasse <strong>Kachel</strong> ab, für die das Feld in der Klasse <strong>Spielfeld</strong> deklariert wurde.</p>
+<h2 id="aufgabenstellung">Aufgabenstellung</h2>
+<p>Programmiere die Klasse Kachel:<br>
+<img src="02KlassendiagrammKachel.png" alt="alt text"></p>
+<h3 id="konstruktor">Konstruktor</h3>
 <ul>
-<li>Spielfeld</li>
-<li>Feld (abstrakt)</li>
-<li>Rectangle</li>
-<li>Mine</li>
-<li>Platte (leeres Feld)</li>
+<li>Im Konstruktor muss zuerst der Konstruktor der Oberklasse mit diesen Parameter-Werten aufgerufen werden:<br>
+<em>spalte * b, zeile * h, b, h</em><br>
+Hiermit werden die <strong>zeilen</strong> und <strong>spalten</strong>-Angaben in x- und y-Koordinaten umgerechnet.</li>
+<li>Anschließend müssen die Attribute <strong>spalte, zeile, breite</strong> und <strong>hoehe</strong> initialisiert werden.</li>
+<li>Das Attribut <strong>markiert</strong> wird mit <strong>false</strong> initialisert.</li>
 </ul>
-<p>Attribute und Methoden der Klassen kannst du zunächst vernachlässigen.</p>
-<table>
-<thead>
-<tr>
-<th><a href="../index.html">zurück</a></th>
-<th><a href="02KlassendiagrammLoesung.html">weiter</a></th>
-</tr>
-</thead>
-</table>
+<h3 id="methoden">Methoden</h3>
+<p>Die Methoden <strong>setNachbarn</strong> und <strong>aufdecken</strong> sollen einen leeren Rumpf haben. Man nennt solche Methoden auch <strong>Dummy-Methoden</strong>. Sie werden in der Unterklassen überschrieben.<br>
+Die Methode <strong>getNachbarn</strong> soll den Wert 9 zurückgeben.</p>
+  <section>
+    <iframe
+    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+    width="100%" height="600" frameborder="0">
+    {'id': 'Java', 'speed': 2000, 
+    'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
+    'withFileList': true ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Kachel.java" src="02Kachel.java"></script>
+    <script id="javaCode" type="plain/text" title="Spielfeld.java" src="02Spielfeld.java"></script>
+  </script>
+   </iframe>
+</section>
+<h3 id="fehlermeldung-beim-testen">Fehlermeldung beim Testen</h3>
+<p>Dein Code zeigt eine Fehlermeldung in der Klasse <strong>Spielfeld</strong>.<br>
+Untersuche diesen Fehler und umgehe ihn, durch eine kleine Änderung in der Klasse <strong>Kachel</strong>.</p>
 
             
             

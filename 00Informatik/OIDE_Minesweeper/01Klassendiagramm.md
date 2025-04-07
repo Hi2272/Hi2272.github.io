@@ -4,35 +4,15 @@
  
  # Minesweeper
 ## Klassendiagramm
- ![alt text](01KlassendiagrammSpielfeld.png)
-In diesem Klassendiagramm sehen wir ein Beispiel von Polymorphismus.  
-Im Feld des Spielfeldes können Minen oder Platten gespeichert werden.   
-Beide Klassen leiten sich von der abstrakten Klasse **Kachel** ab, für die das Feld in der Klasse **Spielfeld** deklariert wurde.
 
-## Aufgabenstellung
+Erstelle ein Klassendiagramm für das Minesweeper-Spielfeld. Verwende hierzu folgende Klassen:
+- Spielfeld
+- Feld (abstrakt)
+- Rectangle
+- Mine
+- Platte (leeres Feld)
 
+Attribute und Methoden der Klassen kannst du zunächst vernachlässigen.
 
-![alt text](Klassendiagramm.png)  
-Programmiere die Klasse Kachel
-
-  
-  <section>
-    <iframe
-    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
-    width="100%" height="600" frameborder="0">
-    {'id': 'Java', 'speed': 2000, 
-    'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
-    'withFileList': true ,'withErrorList': true}
-    <script id="javaCode" type="plain/text" title="Kachel.java" src="01Kachel.java"></script>
-    <script id="javaCode" type="plain/text" title="Spielfeld.java" src="01Spielfeld.java"></script>
-  
-  
-  </script>
-  
-   </iframe>
-</section>
-
-
-![alt text](01KlassendiagrammSpielfeld.png)
-| [zurück](../index.html) | [weiter](01Klassendiagramm.html) | 
+| [zurück](../index.html) | [weiter](02KlassendiagrammLoesung.html) | 
 | --- | ---- |

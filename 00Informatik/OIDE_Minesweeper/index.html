@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Aufgabenstellung</title>
+            <title>Spielprinzip</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -142,6 +142,7 @@
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
 <h1 id="minesweeper">Minesweeper</h1>
+<h2 id="spielprinzip">Spielprinzip</h2>
 <p>Die Versionen 3.1 bis 7 von Microsoft Windows enthielten das Spiel Minesweeper:<br>
 <img src="2025-03-29_17-03.png" alt="alt text"></p>
 <p>Das Spielprinzip kannst du hier nachvollziehen, ggf. musst du Code-Reset anklicken.</p>
@@ -153,26 +154,25 @@
     'withBottomPanel': false ,'withPCode': false ,'withConsole': true ,
     'withFileList': false ,'withErrorList': false}
     <script id="javaCode" type="plain/text" title="Hilfe.java" src="Hilfe.java"></script>
-    <script id="javaCode" type="plain/text" title="Kachel.java" src="01Kachel.java"></script>
-    <script id="javaCode" type="plain/text" title="Spielfeld.java" src="01Spielfeld.java"></script>
+    <script id="javaCode" type="plain/text" title="Kachel.java" src="Kachel.java"></script>
+    <script id="javaCode" type="plain/text" title="Spielfeld.java" src="Spielfeld.java"></script>
     <script id="javaCode" type="plain/text" title="Platte.java" src="Platte.java"></script>
     <script id="javaCode" type="plain/text" title="Mine.java" src="Mine.java"></script>
   </script>
    </iframe>
 </section>
-  <section>
-  <iframe src="https://minesweeper.one/spielen/" width=600px, height=500px></iframe>
-</section>
 <h2 id="aufgabenstellung">Aufgabenstellung</h2>
-<h2 id="aufgabenstellung-1">Aufgabenstellung</h2>
-<p>Erstelle ein Klassendiagramm für das Minesweeper-Spielfeld. Verwende hierzu folgende Klassen:</p>
-<ul>
-<li>Spielfeld</li>
-<li>Feld (abstrakt)</li>
-<li>Mine</li>
-<li>LeeresFeld</li>
-</ul>
-<p>Attribute und Methoden der Klassen kannst du zunächst vernachlässigen.</p>
+<p>Erstelle Sequenzdiagramme für folgende Fälle:</p>
+<ol>
+<li>Rechtsklick auf eine Kachel (k:Kachel) <a href="SequenzRechts.html">Lsg</a></li>
+<li>Linksklick auf eine Mine (m: Mine, s:Spielfeld) <a href="SequenzMine.html">Lsg</a></li>
+<li>Linksklick auf eine Platte
+<ol>
+<li>mit benachbarten Minen (p:Platte) <a href="SequenzLinksPlatte.html">Lsg</a></li>
+<li>ohne benachbarte Minen (p:Platte, nachbarn: Platte[]) <a href="SequenzLinksPlatte.html">Lsg</a></li>
+</ol>
+</li>
+</ol>
 <table>
 <thead>
 <tr>
