@@ -198,6 +198,8 @@
 
 [OnlineIDE: Ampelsteuerung](OIDE_Ampel01/index.html)  
 
+[OnlineIDE: Minesweeper](OIDE_Minesweeper/index.html)  
+
 [Weihnachtsbaum](00Informatik10/Weihnachtsbaum/index.html)
 
 ## Datenschutz
