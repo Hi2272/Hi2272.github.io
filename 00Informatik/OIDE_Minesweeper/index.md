@@ -36,7 +36,7 @@ Erstelle Sequenzdiagramme für folgende Fälle:
 2. Linksklick auf eine Mine (m: Mine, s:Spielfeld) [Lsg](SequenzMine.html)
 3. Linksklick auf eine Platte 
    1. mit benachbarten Minen (p:Platte) [Lsg](SequenzLinksPlatte.html)
-   2. ohne benachbarte Minen (p:Platte, nachbarn: Platte[]) [Lsg](SequenzLinksPlatte.html)  
+   2. ohne benachbarte Minen (p:Platte, nachbarn: Platte[]) [Lsg](SequenzLinksPlatteLeer.html)  
 
 | [zurück](../index.html) | [weiter](01Klassendiagramm.html) | 
 | --- | ---- |
