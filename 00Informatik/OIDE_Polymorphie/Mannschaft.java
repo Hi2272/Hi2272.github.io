@@ -1,8 +1,8 @@
-public class Verein {
+public class Mannschaft {
 
    private Mitglied[] mitglieder;
 
-   public Verein(int anz) {
+   public Mannschaft(int anz) {
       this.mitglieder = new Mitglied[anz];
       mitglieder[0] = new Trainer(0);
       for (int i = 1; i < anz; i++) {
@@ -16,6 +16,6 @@ public class Verein {
 
 }
 
-Verein v = new Verein(12);
-v.getMitglieder()[0].trainieren();
-v.getMitglieder()[1].spielen();
+Mannschaft m = new Mannschaft(12);
+m.getMitglieder()[0].trainieren();
+m.getMitglieder()[1].spielen();
