@@ -8,15 +8,15 @@ EndIf
 ; Chrome starten und die Webseite aufrufen
 Run('"' & $chromePath & '" "https://www.dsbmobile.de"')
 ; Warte auf das Fenster, in dem sich die Textfelder befinden
-WinWait("dsbmobile.de - Google Chrome")
+WinWait("DSBmobile - Login - Google Chrome")
 
 ; Setze den Fokus auf das Fenster
-WinActivate("dsbmobile.de - Google Chrome")
+WinActivate("DSBmobile - Login - Google Chrome")
 
 ; Schreibe in das Textfeld txt1
-ControlSetText("dsbmobile.de - Google Chrome", "", "txtUser", "abcd")
+ControlSetText("DSBmobile - Login - Google Chrome", "", "txtUser", "387841")
 
 ; Schreibe in das Textfeld txt2
-ControlSetText("dsbmobile.de - Google Chrome", "", "txtPass", "asdsad")
+ControlSetText("DSBmobile - Login - Google Chrome", "", "txtPass", "om3ga363")
 
 
