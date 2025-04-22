@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNC Code zu SVG Umwandler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CNC Code zu SVG Umwandler</h1>
+    <h2>Fügen Sie den CNC-Code aus der Datei drill.txt im Gerber-Export ein:</h2>
+    <textarea id="cncCode" placeholder="CNC-Code hier einfügen..."></textarea>
+    
+    <button id="convertBtn">Umwandeln</button>
+    
+    <h2>SVG-Ausgabe:</h2>
+    <p>Fügen Sie den Code in eine .svg-Datei ein.</p>
+    <p>Diese Datei kann anschließend in Tinkercad als Bohrung in eine Platte importiert werden.</p>
+    <textarea id="svgOutput" readonly placeholder="SVG-Ausgabe erscheint hier..."></textarea>
+
+    <script>
+        // Funktion zum Umwandeln von CNC-Code in SVG
+        function convertToSVG(cncCode) {
+            const lines = cncCode.split('\n');
+            const svgHeader = `<svg xmlns="http://www.w3.org/2000/svg" width="1000mm" height="1000mm" viewBox="0 0 1000 1000">`;
+            const svgFooter = `</svg>`;
+            const holes = [];
+
+            const radiusT100 = 1.02; // mm
+            const radiusT101 = 0.96; // mm
+
+            let isT100 = false;
+            let isT101 = false;
+
+            for (const line of lines) {
+                if (line.startsWith("T100")) {
+                    isT100 = true;
+                    isT101 = false;
+                    continue;
+                }
+                if (line.startsWith("T101")) {
+                    isT101 = true;
+                    isT100 = false;
+                    continue;
+                }
+                if (isT100 || isT101) {
+                    const match = line.match(/X(\d+)Y(\d+)/);
+                    if (match) {
+                        const x = parseInt(match[1]) / 1000 * 2.54; // Umrechnung von Tausendstel Zoll zu mm
+                        const y = parseInt(match[2]) / 1000 * 2.54; // Umrechnung von Tausendstel Zoll zu mm
+                        const radius = isT100 ? radiusT100 : radiusT101;
+                        holes.push(`<circle cx="${x}" cy="${y}" r="${radius}" fill="black" />`);
+                    }
+                }
+            }
+
+            return svgHeader + holes.join('\n') + svgFooter;
+        }
+
+        // Event Listener für den Button
+        document.getElementById('convertBtn').addEventListener('click', () => {
+            const cncCode = document.getElementById('cncCode').value;
+            const svgOutput = convertToSVG(cncCode);
+            document.getElementById('svgOutput').value = svgOutput;
+        });
+    </script>
+</body>
+</html>

@@ -17,12 +17,24 @@ public abstract class Ampel extends Rectangle {
    public void schalten(int i) {
       allesAus();
       lampe[i].an();
+      SystemTools.pause(1000);
    }
 
     public void rot() {
       schalten(0);
    }
-  
+   
+   public void wirdGruen(){
+      for (int i=0;i<lampe.length;i++){
+         schalten(i);
+      }
+   }
+
+   public void wirdRot(){
+      for (int i=lampe.length-1;i>=0;i--){
+         schalten(i);
+      }
+   }
    
 }
 

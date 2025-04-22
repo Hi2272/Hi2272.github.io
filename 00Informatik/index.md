@@ -6,7 +6,7 @@
 Übungsmaterialien Informatik: Hi2272.github.io
 ==============================================
 [6. Klasse](#informatik-6-klasse)
-| [Mikrocontroller](#mikrocontroller)
+| [Mikrocontroller](/00Informatik/00Mikrocontroller/Wahlkurs/index.html)
 | [Funktionale Modellierung](#funktionale-modellierung)
 | [Datenbanken](#datenbanken)
 | [Objektorientierung: 9.Klasse](#objektorientierte-programmierung)
@@ -183,6 +183,11 @@
 [Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)   
 [Assoziation oder Aggregation?](https://learningapps.org/view38043424)  
   
+[Übersicht Felder in Java](00Informatik10/ÜbersichtFelder.html)    
+
+[Polymorphie](OIDE_Polymorphie/index.html)  
+
+
 [Anleitung Webshop automatisch](00Informatik10/WebshopAutomatisch.html)  
 [BlueJ-Dateien Webshop-Projekt](00Informatik10/BlueJDateien/index.html)  
 
@@ -196,6 +201,8 @@
 [OnlineIDE: Notenverwaltung](OIDE_Noten01Anz/index.html)  
 
 [OnlineIDE: Ampelsteuerung](OIDE_Ampel01/index.html)  
+
+[OnlineIDE: Minesweeper](OIDE_Minesweeper/index.html)  
 
 [Weihnachtsbaum](00Informatik10/Weihnachtsbaum/index.html)
 

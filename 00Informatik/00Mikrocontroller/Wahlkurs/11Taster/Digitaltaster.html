@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -151,7 +153,7 @@ In dieser Schaltung funktioniert der Taster als elektrisches Schaltelement:</p>
 Baue hierzu deine Schaltung um:</p>
 <p><img src="2024-10-09_09-01.png" alt="alt text"></p>
 <p>Der Taster ist jetzt nicht mehr direkt an die LED angeschlossen. Die LED kann vielmehr vom Arduino aus geschaltet werden.
-Erstelle einen Code, mit dem die LED blinkt und teste ihn.</p>
+Erstelle einen Code, mit dem die gelbe LED blinkt und teste ihn.</p>
 <p><a href="DigitaltasterLsg.html">Lösung</a></p>
 <p><a href="../index.html">zurück</a></p>
 

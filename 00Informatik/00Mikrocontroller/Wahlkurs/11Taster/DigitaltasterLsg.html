@@ -144,15 +144,22 @@
 <p><img src="2024-10-09_09-01.png" alt="alt text"></p>
 <h3 id="blink-code">Blink-Code:</h3>
 <pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">6</span>, OUTPUT);
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">6</span>,LOW);  <span class="hljs-comment">// aus</span>
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">8</span>, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">9</span>, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">10</span>, OUTPUT);
+  
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">8</span>,LOW);  <span class="hljs-comment">// aus</span>
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">9</span>,LOW);  <span class="hljs-comment">// aus</span>
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">10</span>,LOW);  <span class="hljs-comment">// aus</span>
+
+
 }
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">6</span>, HIGH); <span class="hljs-comment">// ein</span>
-  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);            <span class="hljs-comment">// 500 ms Pause: LED leuchtet</span>
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">6</span>, LOW);  <span class="hljs-comment">// aus</span>
-  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);            <span class="hljs-comment">// 500 ms Pause: LED leuchtet nicht.</span>
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">9</span>, HIGH); <span class="hljs-comment">// ein</span>
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);            <span class="hljs-comment">// 500 ms Pause: gelbe LED leuchtet</span>
+  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">9</span>, LOW);  <span class="hljs-comment">// aus</span>
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);            <span class="hljs-comment">// 500 ms Pause: gelbe LED leuchtet nicht.</span>
 }
 </code></pre>
 <h3 id="taster-code">Taster-Code</h3>

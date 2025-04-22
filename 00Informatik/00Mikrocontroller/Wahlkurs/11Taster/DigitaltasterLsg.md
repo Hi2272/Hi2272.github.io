@@ -8,15 +8,22 @@
 ### Blink-Code:
 ```C++
 void setup() {
-  pinMode(6, OUTPUT);
-  digitalWrite(6,LOW);  // aus
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  
+  digitalWrite(8,LOW);  // aus
+  digitalWrite(9,LOW);  // aus
+  digitalWrite(10,LOW);  // aus
+
+
 }
 
 void loop() {
-  digitalWrite(6, HIGH); // ein
-  delay(500);            // 500 ms Pause: LED leuchtet
-  digitalWrite(6, LOW);  // aus
-  delay(500);            // 500 ms Pause: LED leuchtet nicht.
+  digitalWrite(9, HIGH); // ein
+  delay(500);            // 500 ms Pause: gelbe LED leuchtet
+  digitalWrite(9, LOW);  // aus
+  delay(500);            // 500 ms Pause: gelbe LED leuchtet nicht.
 }
 ```
 ### Taster-Code
