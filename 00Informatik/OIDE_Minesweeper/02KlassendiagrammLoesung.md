@@ -18,7 +18,7 @@ Beide Klassen leiten sich von der abstrakten Klasse **Kachel** ab, für die das 
 - Im Konstruktor muss zuerst der Konstruktor der Oberklasse mit diesen Parameter-Werten aufgerufen werden:  
 *spalte * b, zeile * h, b, h*   
 Hiermit werden die **zeilen** und **spalten**-Angaben in x- und y-Koordinaten umgerechnet.
--  Anschließend müssen die Attribute **spalte, zeile, breite** und **hoehe** initialisiert werden.
+-  Anschließend müssen die Attribute **spalte, zeile, breite, hoehe** und **feld** initialisiert werden.
 -  Das Attribut **markiert** wird mit **false** initialisert.
   
   ### Methoden
