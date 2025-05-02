@@ -43,7 +43,3 @@ Hiermit werden die **zeilen** und **spalten**-Angaben in x- und y-Koordinaten um
    </iframe>
 </section>
 
-### Fehlermeldung beim Testen
-
-Dein Code zeigt eine Fehlermeldung in der Klasse **Spielfeld**.  
-Untersuche diesen Fehler und umgehe ihn, durch eine kleine Änderung in der Klasse **Kachel**.
