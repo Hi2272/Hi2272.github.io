@@ -2,8 +2,7 @@ public class Spielfeld {
    
    private Kachel[] kachel;
    private int spalten, zeilen, breite, hoehe, anzMinen;
-   private int kachelBreite, kachelHoehe;
-
+   
    public Spielfeld(int spalten, int zeilen, int breite, int hoehe, int anzMinen) {
       this.kachel = new Kachel[spalten * zeilen];
       this.spalten = spalten;
