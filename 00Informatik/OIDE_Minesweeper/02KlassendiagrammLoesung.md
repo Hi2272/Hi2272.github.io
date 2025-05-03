@@ -12,13 +12,13 @@ Beide Klassen leiten sich von der abstrakten Klasse **Kachel** ab, für die das 
 
 ## Aufgabenstellung
 
-Programmiere die Klasse Kachel:  
+### 1. Programmiere die Klasse Kachel:  
 ![alt text](02KlassendiagrammKachel.png)  
 ### Konstruktor
 - Im Konstruktor muss zuerst der Konstruktor der Oberklasse mit diesen Parameter-Werten aufgerufen werden:  
 *spalte * b, zeile * h, b, h*   
 Hiermit werden die **zeilen** und **spalten**-Angaben in x- und y-Koordinaten umgerechnet.
--  Anschließend müssen die Attribute **spalte, zeile, breite** und **hoehe** initialisiert werden.
+-  Anschließend müssen die Attribute **spalte, zeile, breite, hoehe** und **feld** initialisiert werden.
 -  Das Attribut **markiert** wird mit **false** initialisert.
   
   ### Methoden
@@ -37,13 +37,23 @@ Hiermit werden die **zeilen** und **spalten**-Angaben in x- und y-Koordinaten um
     <script id="javaCode" type="plain/text" title="Kachel.java" src="02Kachel.java"></script>
     <script id="javaCode" type="plain/text" title="Spielfeld.java" src="02Spielfeld.java"></script>
   
-  
   </script>
-  
+
    </iframe>
 </section>
 
-### Fehlermeldung beim Testen
+### 2. Erstelle die Klassen Mine und Platte.  
 
-Dein Code zeigt eine Fehlermeldung in der Klasse **Spielfeld**.  
-Untersuche diesen Fehler und umgehe ihn, durch eine kleine Änderung in der Klasse **Kachel**.
+Die Klassen sollen zunächst nur einen Konstruktor enthalten, der den Konstruktor der Oberklasse aufruft.
+
+### 3. Erstelle die Klasse Spielfeld
+
+![alt text](KlassenkarteSpielfeld.png)
+
+1. Deklariere alle Attribute.
+2. Programmiere den Konstruktor, in dem 
+   1. Die Attribute **breite, hoehe und anzMinen** initialisiert werden.
+   2. Das Attribut kacheln initialisiert wird. Die Zahl der kacheln berechnet sich aus dem Produkt der breite und hoehe.
+   3. Mit einer Schleife die Minen initialisiert werden:
+      1. Wenn die Kachel mit dem Index nicht null ist, soll eine neue Mine erzeugt werden. Der Konstruktor wird dabei 
+   4. 
