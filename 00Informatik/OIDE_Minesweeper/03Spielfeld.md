@@ -7,6 +7,25 @@
 ### 3. Erstelle die Klasse Spielfeld
 
 ![alt text](KlassenkarteSpielfeld.png)
+
+  
+  <section>
+    <iframe
+    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+    width="100%" height="600" frameborder="0">
+    {'id': 'Java', 'speed': 2000, 
+    'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
+    'withFileList': true ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Spielfeld.java" src="03Spielfeld.java"></script>
+    <script id="javaCode" type="plain/text" title="Kachel.java" src="03Kachel.java"></script>
+  <script id="javaCode" type="plain/text" title="Platte.java" src="03Platte.java"></script>
+  <script id="javaCode" type="plain/text" title="Mine.java" src="03Mine.java"></script>
+  
+  </script>
+
+   </iframe>
+</section>
+
 #### Attribute
    Deklariere alle Attribute.
 #### Konstruktor
