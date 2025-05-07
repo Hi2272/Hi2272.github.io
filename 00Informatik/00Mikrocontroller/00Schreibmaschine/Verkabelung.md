@@ -138,7 +138,121 @@ Hierzu können MOSFETs verwendet werden (https://wolles-elektronikkiste.de/der-m
   - A1
 - Derzeit noch frei:
   - D10, D11, D12, A2, A3, A4, A5
-  
+
+# CNC Shield mit A4988 Treibern
+Die Verkabelung mit einem CNC-Shield, das einfach auf den Arduino Uno aufgesteckt wird, ist deutlich einfacher. Außerdem werden viel weniger Pins benötigt.
+An den A4988-Treibern werden nur noch folgende Kabel der Schrittmotoren angeschlossen:
+- gelb + blau: Spule 1
+- weiß + rot: Spule 2  
+
+Die Originalstecker werden durch weibliche Dupont-Kontakte ersetzt.
+
+Folgender Code steuert die Motoren an:
+```C++
+// Pin-Belegung für die Motoren festlegen
+const int pinStep[3] = { 2, 3, 4 };  // 0 = Walze, 1 = Typenrad, 2 = Schlitten (Schlitten = Wagen)
+const int pinDir[3] = { 5, 6, 7 };
+const int pinEn = 8;
+
+/**
+ * Führt eine Bewegungssequenz eines Motors aus.
+ * @param motorNr Nummer des Motors (0=Walze, 1=Typenrad, 2=Schlitten)
+ * @param dir Bewegungsrichtung (HIGH oder LOW)
+ * @param steps Anzahl der Schritte, die bewegt werden sollen
+ * @param speed Geschwindigkeit in Mikrosekunden Verzögerung zwischen den Schritten
+ */
+void move(int motorNr, int dir, int steps, int speed) {
+  digitalWrite(pinDir[motorNr], dir);
+  for (int i = 0; i < steps; i++) {
+    digitalWrite(pinStep[motorNr], HIGH);
+    delayMicroseconds(speed);
+    digitalWrite(pinStep[motorNr], LOW);
+    delayMicroseconds(speed);
+  }
+}
+
+/**
+ * Initialisiert die Pins und die serielle Schnittstelle.
+ */
+void setup() {
+  for (int i = 0; i < 3; i++) {
+    pinMode(pinStep[i], OUTPUT);
+    pinMode(pinDir[i], OUTPUT);
+  }
+  pinMode(pinEn, OUTPUT);
+  digitalWrite(pinEn, LOW);
+  Serial.begin(9600);
+}
+
+/**
+ * Bewegt den Schlitten (Wagen) nach rechts.
+ * @param steps Anzahl der Schritte
+ */
+void wagenLaufRechts(int steps) {
+  move(2, HIGH, steps, 2000);
+}
+
+/**
+ * Bewegt den Schlitten (Wagen) nach links.
+ * @param steps Anzahl der Schritte
+ */
+void wagenLaufLinks(int steps) {
+  move(2, LOW, steps, 2000);
+}
+
+/**
+ * Dreht das Typenrad im Uhrzeigersinn.
+ * @param steps Anzahl der Schritte
+ */
+void typenRadImUhr(int steps) {
+  move(1, HIGH, steps, 1000);
+}
+
+/**
+ * Dreht das Typenrad gegen den Uhrzeigersinn.
+ * @param steps Anzahl der Schritte
+ */
+void typenRadGegenUhr(int steps) {
+  move(1, LOW, steps, 1000);
+}
+
+/**
+ * Bewegt die Walze vorwärts.
+ * @param steps Anzahl der Schritte
+ */
+void walzeVor(int steps) {
+  move(0, HIGH, steps, 25000);
+}
+
+/**
+ * Bewegt die Walze rückwärts.
+ * @param steps Anzahl der Schritte
+ */
+void walzeRueck(int steps) {
+  move(0, LOW, steps, 25000);
+}
+
+/**
+ * Hauptprogramm läuft in Endlosschleife.
+ * Fährt den Wagen 40 mal 5 Steps nach rechts und dreht dabei das Typenrad
+ * Fährt anschließend 200 Steps nach links zurück
+ */
+void loop() {
+  for (int i=0;i<40;i++){
+     wagenLaufRechts(5);
+     typenRadImUhr(10);
+     delay(100);
+  }
+  delay(1000);
+  wagenLaufLinks(200);
+  delay(1000);
+}
+```
+## Probleme
+Der Walzenmotor dreht erst bei sehr hohen Verzögerungswerten. Dann läuft er aber nicht mehr rund, sondern stottert. Teilweise bleibt er auch stecken.  
+Aus diesem Grund versuche ich die Motoren wieder mit der AccelMotor Bibliothek anzusteuern.
+
+
 # Grundaufbau
   - Arduino Uno steuert 
       - Walze, 
