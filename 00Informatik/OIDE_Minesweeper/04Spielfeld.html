@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Klassendiagramm</title>
+            <title>3&period; Erstelle die Klasse Spielfeld II</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -142,25 +142,7 @@
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
 <h1 id="minesweeper">Minesweeper</h1>
-<h2 id="klassendiagramm">Klassendiagramm</h2>
-<p><img src="01KlassendiagrammSpielfeld.png" alt="alt text"><br>
-In diesem Klassendiagramm sehen wir ein Beispiel von <strong>Polymorphismus</strong>.<br>
-Im Feld des Spielfeldes können Minen oder Platten gespeichert werden.<br>
-Beide Klassen leiten sich von der abstrakten Klasse <strong>Kachel</strong> ab, für die das Feld in der Klasse <strong>Spielfeld</strong> deklariert wurde.</p>
-<h2 id="aufgabenstellung">Aufgabenstellung</h2>
-<h3 id="1-programmiere-die-klasse-kachel">1. Programmiere die Klasse Kachel:</h3>
-<p><img src="02KlassendiagrammKachel.png" alt="alt text"></p>
-<h3 id="konstruktor">Konstruktor</h3>
-<ul>
-<li>Im Konstruktor muss zuerst der Konstruktor der Oberklasse mit diesen Parameter-Werten aufgerufen werden:<br>
-<em>spalte * b, zeile * h, b, h</em><br>
-Hiermit werden die <strong>zeilen</strong> und <strong>spalten</strong>-Angaben in x- und y-Koordinaten umgerechnet.</li>
-<li>Anschließend müssen die Attribute <strong>spalte, zeile, breite, hoehe</strong> und <strong>feld</strong> initialisiert werden.</li>
-<li>Das Attribut <strong>markiert</strong> wird mit <strong>false</strong> initialisert.</li>
-</ul>
-<h3 id="methoden">Methoden</h3>
-<p>Die Methoden <strong>setNachbarn</strong> und <strong>aufdecken</strong> sollen einen leeren Rumpf haben. Man nennt solche Methoden auch <strong>Dummy-Methoden</strong>. Sie werden in der Unterklassen überschrieben.<br>
-Die Methode <strong>getNachbarn</strong> soll den Wert 9 zurückgeben.</p>
+<h3 id="3-erstelle-die-klasse-spielfeld-ii">3. Erstelle die Klasse Spielfeld II</h3>
   <section>
     <iframe
     srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
@@ -168,14 +150,51 @@ Die Methode <strong>getNachbarn</strong> soll den Wert 9 zurückgeben.</p>
     {'id': 'Java', 'speed': 2000, 
     'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
     'withFileList': true ,'withErrorList': true}
-    <script id="javaCode" type="plain/text" title="Kachel.java" src="02Kachel.java"></script>
-    <script id="javaCode" type="plain/text" title="Spielfeld.java" src="02Spielfeld.java"></script>
+    <script id="javaCode" type="plain/text" title="Spielfeld.java" src="04Spielfeld.java"></script>
+    <script id="javaCode" type="plain/text" title="Kachel.java" src="03Kachel.java"></script>
+  <script id="javaCode" type="plain/text" title="Platte.java" src="03Platte.java"></script>
+  <script id="javaCode" type="plain/text" title="Mine.java" src="03Mine.java"></script>
   </script>
    </iframe>
 </section>
-<h3 id="2-erstelle-die-klassen-mine-und-platte">2. Erstelle die Klassen Mine und Platte.</h3>
-<p>Die Klassen sollen zunächst nur einen Konstruktor enthalten, der den Konstruktor der Oberklasse aufruft.</p>
-<p><a href="03Spielfeld.html">weiter</a></p>
+<h4 id="konstruktor">Konstruktor</h4>
+<ol>
+<li>In einer weiteren Schleife sollen die leeren Kacheln mit Platten initialisiert werden.</li>
+<li>Als letztes wird diese Schleife eingefügt:</li>
+</ol>
+<pre><code class="language-C++">    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; kachel.length; i++) {
+         <span class="hljs-keyword">if</span>(kachel[i] instanceof Platte) {
+            kachel[i].<span class="hljs-built_in">setNachbarn</span>(<span class="hljs-built_in">anzNachbarn</span>(i));
+         }
+      }
+</code></pre>
+<ol start="3">
+<li>Erläutere diese Schleife</li>
+</ol>
+<h4 id="methoden">Methoden</h4>
+<ol>
+<li>
+<p><strong>isInGrid(x,y)</strong><br>
+Die Methode soll wahr zurückgeben, wenn sich x und y innerhalb der Grenzen des Gitters befinden. x muss also größer gleich 0 und kleiner als die Zahl der spalten sein. y muss analog größer als 0 und kleiner als die Zahl der zeilen sein.</p>
+</li>
+<li>
+<p><strong>getKachel-Methoden</strong><br>
+Programmiere drei Methoden mit dem gleichen Namen, die sich in ihren Parametern unterscheiden:<br>
+a) int nr: gibt die Kachel mit dem Index nr zurück.<br>
+b) int x, int y: gibt die Kachel in der Spalte x und der Zeile y zurück. Hierzu muss die Nummer dieser Kache berechnet werden.<br>
+c) ohne Parameter: gibt das gesamte Feld <strong>kachel</strong> zurück.</p>
+</li>
+<li>
+<p><strong>isMine(int x, int y)</strong><br>
+Die Methode soll wahr zurückgeben, wenn x und y im Gitter liegen und die Kachel eine Mine ist.</p>
+</li>
+<li>
+<p><strong>getNachbarn(int nr)</strong><br>
+Setze dieses Struktogramm um:<br>
+<img src="StruktugrammNachbarn.png" alt="alt text"></p>
+</li>
+</ol>
+<p>Teste das Programm - das Spielfeld müsste jetzt vollständig aufgebaut werden.</p>
 
             
             

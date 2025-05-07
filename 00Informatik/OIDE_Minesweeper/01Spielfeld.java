@@ -21,7 +21,6 @@ public class Spielfeld {
 
       for (int i = 0; i < kachel.length; i++) {
          if(kachel[i] == null) {
-   
             kachel[i] = new Platte(this, getSpalte(i), getZeile(i), breite, hoehe);
          }
       }
