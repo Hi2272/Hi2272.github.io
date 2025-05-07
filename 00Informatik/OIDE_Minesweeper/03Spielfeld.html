@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>3&period; Erstelle die Klasse Spielfeld</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+              <meta charset="utf-8" />
+  <title>Informatik</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="minesweeper">Minesweeper</h1>
+<h3 id="3-erstelle-die-klasse-spielfeld">3. Erstelle die Klasse Spielfeld</h3>
+<p><img src="KlassenkarteSpielfeld.png" alt="alt text"></p>
+<h4 id="attribute">Attribute</h4>
+<p>Deklariere alle Attribute.</p>
+<h4 id="konstruktor">Konstruktor</h4>
+<p>Programmiere den Konstruktor, in dem</p>
+<ol>
+<li>Die Attribute <strong>breite, hoehe und anzMinen</strong> initialisiert werden.</li>
+<li>Das Attribut kacheln initialisiert wird. Die Zahl der kacheln berechnet sich aus dem Produkt der breite und hoehe.</li>
+<li>Diese Schleife eingefügt wird:</li>
+</ol>
+<pre><code class="language-C++">    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; anzMinen; i++) {
+         <span class="hljs-type">int</span> nr = Random.<span class="hljs-built_in">randint</span>(<span class="hljs-number">0</span>, kachel.length - <span class="hljs-number">1</span>);
+         <span class="hljs-keyword">while</span> (kachel[nr] instanceof Mine) {
+            nr = Random.<span class="hljs-built_in">randint</span>(<span class="hljs-number">0</span>, kachel.length - <span class="hljs-number">1</span>);
+         }
+         kachel[nr] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Mine</span>(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">getSpalte</span>(nr), <span class="hljs-built_in">getZeile</span>(nr), breite, hoehe);
+      }
+</code></pre>
+<ol start="4">
+<li>Erläutere den Code dieser Schleife.</li>
+<li>In einer weiteren Schleife sollen die leeren Kacheln mit Platten initialisiert werden.</li>
+<li>Als letztes wird diese Schleife eingefügt:</li>
+</ol>
+<pre><code class="language-C++">    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; kachel.length; i++) {
+         <span class="hljs-keyword">if</span>(kachel[i] instanceof Platte) {
+            kachel[i].<span class="hljs-built_in">setNachbarn</span>(<span class="hljs-built_in">anzNachbarn</span>(i));
+         }
+      }
+</code></pre>
+<ol start="7">
+<li>Erläutere diese Schleife</li>
+</ol>
+<h4 id="methoden">Methoden</h4>
+<ol>
+<li>
+<p><strong>isInGrid(x,y)</strong><br>
+Die Methode soll wahr zurückgeben, wenn sich x und y innerhalb der Grenzen des Gitters befinden. x muss also größer gleich 0 und kleiner als die Zahl der spalten sein. y muss analog größer als 0 und kleiner als die Zahl der zeilen sein.</p>
+</li>
+<li>
+<p><strong>getKachel-Methoden</strong><br>
+Programmiere drei Methoden mit dem gleichen Namen, die sich in ihren Parametern unterscheiden:<br>
+a) int nr: gibt die Kachel mit dem Index nr zurück.<br>
+b) int x, int y: gibt die Kachel in der Spalte x und der Zeile y zurück. Hierzu muss die Nummer dieser Kache berechnet werden.<br>
+c) ohne Parameter: gibt das gesamte Feld <strong>kachel</strong> zurück.</p>
+</li>
+<li>
+<p><strong>isMine(int x, int y)</strong><br>
+Die Methode soll wahr zurückgeben, wenn x und y im Gitter liegen und die Kachel eine Mine ist.</p>
+</li>
+<li>
+<p><strong>getZeile(int i)</strong>
+Die Methode gibt die Zeilennummer der Kachel mit dem Index i zurück. Diese Nummer kannst du durch eine einfach Integer-Division a/b berechnen. Das Ergebnis wird hierbei automatisch abgerundet. (Bsp.: 10/3 = 3)</p>
+</li>
+<li>
+<p><strong>getSpalte(int i)</strong>
+Analog kann auch die Spalte zur Nummer berechnet werden. Hierzu musst du dir Modulo-Funktion a%b verwenden. Das Ergebnis ist der Rest der Integerdivison. (Bsp.: 10%3 = 1)</p>
+</li>
+<li>
+<p><strong>getNachbarn(int nr)</strong><br>
+Setze dieses Struktogramm um:<br>
+<img src="StruktugrammNachbarn.png" alt="alt text"></p>
+</li>
+</ol>
+
+            
+            
+        </body>
+        </html>

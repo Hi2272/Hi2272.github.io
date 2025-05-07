@@ -46,14 +46,4 @@ Hiermit werden die **zeilen** und **spalten**-Angaben in x- und y-Koordinaten um
 
 Die Klassen sollen zunächst nur einen Konstruktor enthalten, der den Konstruktor der Oberklasse aufruft.
 
-### 3. Erstelle die Klasse Spielfeld
-
-![alt text](KlassenkarteSpielfeld.png)
-
-1. Deklariere alle Attribute.
-2. Programmiere den Konstruktor, in dem 
-   1. Die Attribute **breite, hoehe und anzMinen** initialisiert werden.
-   2. Das Attribut kacheln initialisiert wird. Die Zahl der kacheln berechnet sich aus dem Produkt der breite und hoehe.
-   3. Mit einer Schleife die Minen initialisiert werden:
-      1. Wenn die Kachel mit dem Index nicht null ist, soll eine neue Mine erzeugt werden. Der Konstruktor wird dabei 
-   4. 
+[weiter](03Spielfeld.html)  
