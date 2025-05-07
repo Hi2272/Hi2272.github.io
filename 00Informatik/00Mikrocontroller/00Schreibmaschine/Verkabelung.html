@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Anschluss des Schrittmotors f&uuml;r die Papierwalze</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="anschluss-des-schrittmotors-für-die-papierwalze">Anschluss des Schrittmotors für die Papierwalze</h1>
+<h2 id="widerstandsmessungen-am-schrittmotor">Widerstandsmessungen am Schrittmotor</h2>
+<table>
+<thead>
+<tr>
+<th>Kabel1</th>
+<th>Kabel2</th>
+<th>Widerstand in Ohm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>grün</td>
+<td>rot</td>
+<td>27</td>
+</tr>
+<tr>
+<td>grün</td>
+<td>weiß</td>
+<td>27</td>
+</tr>
+<tr>
+<td>weiß</td>
+<td>rot</td>
+<td>52</td>
+</tr>
+<tr>
+<td>grau</td>
+<td>blau</td>
+<td>27</td>
+</tr>
+<tr>
+<td>grau</td>
+<td>gelb</td>
+<td>27</td>
+</tr>
+<tr>
+<td>blau</td>
+<td>gelb</td>
+<td>52</td>
+</tr>
+</tbody>
+</table>
+<h2 id="anschlüsse-der-vier-spulen">Anschlüsse der vier Spulen</h2>
+<table>
+<thead>
+<tr>
+<th>Spule</th>
+<th>Kabel1</th>
+<th>Kabel 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>grün</td>
+<td>rot</td>
+</tr>
+<tr>
+<td>2</td>
+<td>grün</td>
+<td>weiß</td>
+</tr>
+<tr>
+<td>3</td>
+<td>grau</td>
+<td>blau</td>
+</tr>
+<tr>
+<td>4</td>
+<td>grau</td>
+<td>gelb</td>
+</tr>
+</tbody>
+</table>
+<h2 id="verkabelung-der-steuerplatine">Verkabelung der Steuerplatine</h2>
+<table>
+<thead>
+<tr>
+<th>Kabel Schrittmotor</th>
+<th>Kabel Steuerplatine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>grün + grau</td>
+<td>rot</td>
+</tr>
+<tr>
+<td>rot</td>
+<td>orange</td>
+</tr>
+<tr>
+<td>blau</td>
+<td>blau</td>
+</tr>
+<tr>
+<td>weiß</td>
+<td>rosa</td>
+</tr>
+<tr>
+<td>gelb</td>
+<td>gelb</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;AccelStepper.h&gt;</span></span>
+
+<span class="hljs-type">const</span> byte Fullstep = <span class="hljs-number">4</span>;
+<span class="hljs-type">const</span> byte Halfstep = <span class="hljs-number">8</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">short</span> fullRevolution = <span class="hljs-number">2038</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">float</span> SteppDegree = <span class="hljs-number">11.32</span>;  <span class="hljs-comment">// Half/Full 11.32 / 5.66</span>
+<span class="hljs-comment">// Pins IN1-IN3-IN2-IN4</span>
+<span class="hljs-function">AccelStepper <span class="hljs-title">stepper</span><span class="hljs-params">(Halfstep, <span class="hljs-number">11</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">8</span>)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  stepper.<span class="hljs-built_in">setMaxSpeed</span>(<span class="hljs-number">250.0</span>);
+  stepper.<span class="hljs-built_in">setAcceleration</span>(<span class="hljs-number">100.0</span>);
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
+
+  <span class="hljs-built_in">blattEinziehen</span>();
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">2000</span>);
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) {
+    <span class="hljs-built_in">zeileEinziehen</span>(<span class="hljs-number">1</span>);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
+  }
+  <span class="hljs-built_in">blattAuswerfen</span>();
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">einziehen</span><span class="hljs-params">(<span class="hljs-type">float</span> wert)</span> </span>{
+  Serial.<span class="hljs-built_in">print</span>(stepper.<span class="hljs-built_in">currentPosition</span>());
+  stepper.<span class="hljs-built_in">runToNewPosition</span>(stepper.<span class="hljs-built_in">currentPosition</span>() - <span class="hljs-number">1</span> * wert);  <span class="hljs-comment">// Cause an overshoot then back to 0</span>
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;-&gt;&quot;</span>+<span class="hljs-built_in">String</span>(stepper.<span class="hljs-built_in">currentPosition</span>()));
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">blattEinziehen</span><span class="hljs-params">()</span> </span>{
+  stepper.<span class="hljs-built_in">setCurrentPosition</span>(<span class="hljs-number">0</span>);
+  <span class="hljs-built_in">einziehen</span>(<span class="hljs-number">800</span>);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">zeileEinziehen</span><span class="hljs-params">(<span class="hljs-type">float</span> abstand)</span> </span>{
+  <span class="hljs-built_in">einziehen</span>(abstand * <span class="hljs-number">80</span>);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">blattAuswerfen</span><span class="hljs-params">()</span> </span>{
+  stepper.<span class="hljs-built_in">runToNewPosition</span>(<span class="hljs-number">-5000</span>);
+}
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+}
+</code></pre>
+<p>Motor dreht langsam.<br>
+Negative Parameter-Werte führen zum Einzug von Papier.</p>
+<h1 id="verkabelung-des-schrittmotors-für-den-schlitten">Verkabelung des Schrittmotors für den Schlitten</h1>
+<p>Da die gleiche Farbcodierung vorliegt, werden die Kabel identisch angeschlossen.<br>
+Der Schlitten bewegt sich problemlos.<br>
+Die negativen Parameter-Werte bewirken hier eine Bewegung von rechts nach links.</p>
+<h1 id="verkabelung-des-schrittmotors-für-das-typenrad">Verkabelung des Schrittmotors für das Typenrad</h1>
+<p>Auch dieses Kabel hat die gleiche Farbcodierung und wird identisch angeschlossen.<br>
+Die Drehung erfolgt mit negativen Parameter-Werten gegen den Uhrzeigersinn.</p>
+<h1 id="untersuchung-der-weiteren-stecker">Untersuchung der weiteren Stecker</h1>
+<h2 id="roter-stecker-rot-schwarzes-kabel">Roter Stecker: rot, schwarzes Kabel</h2>
+<table>
+<thead>
+<tr>
+<th>Rot</th>
+<th>Schwarz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+5 V</td>
+<td>GND</td>
+</tr>
+</tbody>
+</table>
+<p>Elektromotor im Schlitten dreht dauerhaft, treibt Getriebe mit mehreren Zahnrädern an. Diese führen zu zwei Zylindern, die gebremst sind und sich nicht bewegen.</p>
+<h2 id="blauer-stecker-mit-2-blauen-kabeln">Blauer Stecker mit 2 blauen Kabeln</h2>
+<p>2 blaue Kabel führen zu Elektromagneten.
+Mit +5V wird Bremse gelöst und der schwarze Zylinder dreht sich. Hierbei wird der Kontakt zwischen dem grauen und schwarzen Kabel gedrückt und wieder losgelassen.</p>
+<h2 id="weißer-stecker-mit-2-weißen-kabeln">Weißer Stecker mit 2 weißen Kabeln</h2>
+<p>2 weiße Kabel führen zum Elektromagneten. Mit +5V wird die Bremse gelöst, der weiße Zylinder dreht sich und die Maschine tippt ein Zeichen.</p>
+<p>Über einen Hebel wird das Farbband weitertransportiert.</p>
+<h1 id="verkabelung-am-arduino">Verkabelung am Arduino</h1>
+<ul>
+<li>Schrittmotor Walze
+<ul>
+<li>D2</li>
+<li>D3</li>
+<li>D4</li>
+<li>D5</li>
+</ul>
+</li>
+<li>Schrittmotor Schlitten
+<ul>
+<li>D6</li>
+<li>D7</li>
+<li>D8</li>
+<li>D9</li>
+</ul>
+</li>
+<li>Schrittmotor Typenrad
+<ul>
+<li>D10</li>
+<li>D11</li>
+<li>D12</li>
+<li>A0</li>
+</ul>
+</li>
+<li>Elektromagnet Tippen
+<ul>
+<li>A1</li>
+</ul>
+</li>
+<li>Serieller Anschluss
+<ul>
+<li>RX 0</li>
+<li>TX 1</li>
+</ul>
+</li>
+<li>Derzeit noch frei:
+<ul>
+<li>A2</li>
+<li>A3</li>
+<li>A4</li>
+<li>A5</li>
+</ul>
+</li>
+</ul>
+<h1 id="grundaufbau">Grundaufbau</h1>
+<ul>
+<li>Arduino Uno steuert
+<ul>
+<li>Walze,</li>
+<li>Schlitten,</li>
+<li>Typenrad,</li>
+<li>Druckkopf</li>
+</ul>
+</li>
+<li>ESP32 steuert
+<ul>
+<li>Tastatur,</li>
+<li>Einlesen serieller Daten über USB,</li>
+<li>Einlesen von Daten über Bluetooth, WLan?</li>
+<li>Ausgabe serieller Befehle an Arduino Uno</li>
+</ul>
+</li>
+</ul>
+<h1 id="ablauf">Ablauf</h1>
+<ol>
+<li>ESP sendet Sigmal (1 Byte)</li>
+<li>Uno liest Signal über Serielle Schnittstelle ein</li>
+<li>Uno dekodiert das Signal
+<ol>
+<li>Papier auswerfen</li>
+<li>Zeilenumbruch
+<ol>
+<li>Schlitten zurückfahren</li>
+<li>Walze weiterdrehen</li>
+<li>Wenn Papierende erreicht ist, Papier auswerfen</li>
+</ol>
+</li>
+<li>Zeichen
+<ol>
+<li>Typenrad in Position drehen</li>
+<li>Elektromagnet zum Schlagen aktivieren</li>
+<li>Schlitten eins weiter fahren</li>
+<li>Wenn Zeilenende erreicht ist, Zeilenumbruch.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="ungelöste-probleme">Ungelöste Probleme</h1>
+<ul>
+<li>Positionserkennung Typenrad beim Start</li>
+<li>Positionserkennung Schlitten beim Start</li>
+<li>Tastatur einlesen</li>
+<li>Serielle Daten einlesen</li>
+<li>Serielle Kommunikation ESP -&gt; Uno</li>
+</ul>
+
+            
+            
+        </body>
+        </html>
