@@ -43,8 +43,6 @@ footer {
 img {
   width: auto;
   min-width: 70%;
-  height: 100%;
-  max-height: 50vh;
 
   border: solid;
   border-radius: 10px;
