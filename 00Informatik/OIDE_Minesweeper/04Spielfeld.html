@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>3&period; Erstelle die Klasse Spielfeld</title>
+            <title>3&period; Erstelle die Klasse Spielfeld II</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -142,8 +142,7 @@
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
 <h1 id="minesweeper">Minesweeper</h1>
-<h3 id="3-erstelle-die-klasse-spielfeld">3. Erstelle die Klasse Spielfeld</h3>
-<p><img src="KlassenkarteSpielfeld.png" alt="alt text"></p>
+<h3 id="3-erstelle-die-klasse-spielfeld-ii">3. Erstelle die Klasse Spielfeld II</h3>
   <section>
     <iframe
     srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
@@ -151,46 +150,51 @@
     {'id': 'Java', 'speed': 2000, 
     'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
     'withFileList': true ,'withErrorList': true}
-    <script id="javaCode" type="plain/text" title="Spielfeld.java" src="03Spielfeld.java"></script>
+    <script id="javaCode" type="plain/text" title="Spielfeld.java" src="04Spielfeld.java"></script>
     <script id="javaCode" type="plain/text" title="Kachel.java" src="03Kachel.java"></script>
   <script id="javaCode" type="plain/text" title="Platte.java" src="03Platte.java"></script>
   <script id="javaCode" type="plain/text" title="Mine.java" src="03Mine.java"></script>
   </script>
    </iframe>
 </section>
-<h4 id="attribute">Attribute</h4>
-<p>Deklariere alle Attribute.</p>
 <h4 id="konstruktor">Konstruktor</h4>
-<p>Programmiere den Konstruktor, in dem</p>
 <ol>
-<li>Die Attribute <strong>breite, hoehe und anzMinen</strong> initialisiert werden.</li>
-<li>Das Attribut kachel initialisiert wird. Die Zahl der kacheln berechnet sich aus dem Produkt der Spalten- und Zeilenzahl.</li>
-<li>Diese Schleife eingefügt wird:</li>
+<li>In einer weiteren Schleife sollen die leeren Kacheln mit Platten initialisiert werden.</li>
+<li>Als letztes wird diese Schleife eingefügt:</li>
 </ol>
-<pre><code class="language-C++">    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; anzMinen; i++) {
-         <span class="hljs-type">int</span> nr = Random.<span class="hljs-built_in">randint</span>(<span class="hljs-number">0</span>, kachel.length - <span class="hljs-number">1</span>);
-         <span class="hljs-keyword">while</span> (kachel[nr] instanceof Mine) {
-            nr = Random.<span class="hljs-built_in">randint</span>(<span class="hljs-number">0</span>, kachel.length - <span class="hljs-number">1</span>);
+<pre><code class="language-C++">    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; kachel.length; i++) {
+         <span class="hljs-keyword">if</span>(kachel[i] instanceof Platte) {
+            kachel[i].<span class="hljs-built_in">setNachbarn</span>(<span class="hljs-built_in">anzNachbarn</span>(i));
          }
-         kachel[nr] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Mine</span>(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">getSpalte</span>(nr), <span class="hljs-built_in">getZeile</span>(nr), breite, hoehe);
       }
 </code></pre>
-<ol start="4">
-<li>Erläutere den Code dieser Schleife.</li>
-<li>Die Schleife erzeugt eine Fehlermeldung, da die Methoden <strong>getSpalte</strong> und <strong>getZeile</strong> noch nicht programmiert sind. Wir erstellen Sie jetzt mit folgender Vorüberlegung:<br>
-<img src="getSpalte.png" alt="alt text"></li>
+<ol start="3">
+<li>Erläutere diese Schleife</li>
 </ol>
-<p>Um von der orange markierten Index-Nummer auf die grün markierte Spalten- und die blau markierte Zeilen-Nummer zu kommen, verwenden wir Rechenregeln aus der Grundschule:
-...<br>
-7 geteilt durch 5 ist 1 Rest 2.<br>
-8 geteilt durch 5 ist 1 Rest 3.<br>
-9 geteilt durch 5 ist 1 Rest 4.<br>
-10 geteilt durch 5 ist 2 Rest 0.<br>
-11 geteilt durch 5 ist 2 Rest 1.<br>
-...<br>
-Programmiere die Methoden <strong>getSpalte(int nr)</strong> und <strong>getZeile(int nr)</strong> mit Hilfe des Operators für die ganzzahlig Division <strong>/</strong> und den Rest dieser Divison <strong>%</strong> (Modulo-Operator).</p>
-<p>Teste dein Programm - es müsste jetzt 10 Minen an zehn zufälligen Stellen des Spielfeldes erzeugen.</p>
-<p><a href="04Spielfeld.html">weiter</a></p>
+<h4 id="methoden">Methoden</h4>
+<ol>
+<li>
+<p><strong>isInGrid(x,y)</strong><br>
+Die Methode soll wahr zurückgeben, wenn sich x und y innerhalb der Grenzen des Gitters befinden. x muss also größer gleich 0 und kleiner als die Zahl der spalten sein. y muss analog größer als 0 und kleiner als die Zahl der zeilen sein.</p>
+</li>
+<li>
+<p><strong>getKachel-Methoden</strong><br>
+Programmiere drei Methoden mit dem gleichen Namen, die sich in ihren Parametern unterscheiden:<br>
+a) int nr: gibt die Kachel mit dem Index nr zurück.<br>
+b) int x, int y: gibt die Kachel in der Spalte x und der Zeile y zurück. Hierzu muss die Nummer dieser Kache berechnet werden.<br>
+c) ohne Parameter: gibt das gesamte Feld <strong>kachel</strong> zurück.</p>
+</li>
+<li>
+<p><strong>isMine(int x, int y)</strong><br>
+Die Methode soll wahr zurückgeben, wenn x und y im Gitter liegen und die Kachel eine Mine ist.</p>
+</li>
+<li>
+<p><strong>getNachbarn(int nr)</strong><br>
+Setze dieses Struktogramm um:<br>
+<img src="StruktugrammNachbarn.png" alt="alt text"></p>
+</li>
+</ol>
+<p>Teste das Programm - das Spielfeld müsste jetzt vollständig aufgebaut werden.</p>
 
             
             
