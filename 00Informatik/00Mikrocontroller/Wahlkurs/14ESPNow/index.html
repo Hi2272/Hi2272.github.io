@@ -145,51 +145,54 @@
 <h2 id="auslesen-der-mac-adressen">Auslesen der MAC-Adressen</h2>
 <p>Um zwei ESP32 zu verbinden benötigen wir die <strong>MAC-Adresse</strong> der beiden Controller. Jedes Gerät, das in einem Netzwerk eingebunden werden kann, hat eine eindeutige MAC-Adresse.<br>
 Diese Adresse können wir mit diesem Sketch auslesen:</p>
-<pre><code class="language-C++">
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;WiFi.h&quot;</span>  <span class="hljs-comment">// Einbinden der WiFi-Bibliothek für ESP32</span></span>
+
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>{
-  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);
+    Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);    <span class="hljs-comment">// Serielle Schnittstelle mit 115200 Baud starten</span>
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);             <span class="hljs-comment">// Kurze Wartezeit, damit der Serial Monitor Zeit zum Verbinden hat</span>
 
-  WiFi.<span class="hljs-built_in">mode</span>(WIFI_STA);
-  WiFi.STA.<span class="hljs-built_in">begin</span>();
+    WiFi.<span class="hljs-built_in">mode</span>(WIFI_STA);     <span class="hljs-comment">// WLAN-Modus auf Station (Client) setzen (notwendig für ESP-NOW und MAC-Adresse)</span>
 
-  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;MAC Adresse des ESP32: &quot;</span>);
-  <span class="hljs-type">uint8_t</span> baseMac[<span class="hljs-number">6</span>];
-  <span class="hljs-type">esp_err_t</span> ret = <span class="hljs-built_in">esp_wifi_get_mac</span>(WIFI_IF_STA, baseMac);
-  <span class="hljs-keyword">if</span> (ret == ESP_OK) {
-    Serial.<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%02x:%02x:%02x:%02x:%02x:%02x\n&quot;</span>,
-                  baseMac[<span class="hljs-number">0</span>], baseMac[<span class="hljs-number">1</span>], baseMac[<span class="hljs-number">2</span>],
-                  baseMac[<span class="hljs-number">3</span>], baseMac[<span class="hljs-number">4</span>], baseMac[<span class="hljs-number">5</span>]);
-  } <span class="hljs-keyword">else</span> {
-    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;MAC Adresse konnte nicht gelesen werden.&quot;</span>);
-  }
+    <span class="hljs-comment">// Warten bis WiFi Station (WLAN-Interface) gestartet ist</span>
+    <span class="hljs-keyword">while</span> (!(WiFi.STA.<span class="hljs-built_in">started</span>())) { 
+        <span class="hljs-built_in">delay</span>(<span class="hljs-number">10</span>);           <span class="hljs-comment">// 10 ms warten und nochmal prüfen</span>
+    }
 
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;MAC-Addresse: &quot;</span>);
+    String mac = WiFi.<span class="hljs-built_in">macAddress</span>();   <span class="hljs-comment">// MAC-Adresse als String einlesen (Format: &quot;XX:XX:XX:XX:XX:XX&quot;)</span>
+    Serial.<span class="hljs-built_in">println</span>(mac);              <span class="hljs-comment">// MAC-Adresse als String ausgeben</span>
+
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Formatiert: &quot;</span>);
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;{&quot;</span>);
+    
+    <span class="hljs-type">int</span> index = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// Schleife über 6 Teile (6 Bytes der MAC-Adresse)</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">6</span>; i++){
+        Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;0x&quot;</span>);                           <span class="hljs-comment">// Hex-Zahlenformat angeben</span>
+        Serial.<span class="hljs-built_in">print</span>(mac.<span class="hljs-built_in">substring</span>(index, index+<span class="hljs-number">2</span>)); <span class="hljs-comment">// MAC-Byte als Hex-Paar aus String extrahieren (z.B. &quot;24&quot;)</span>
+        <span class="hljs-keyword">if</span>(i&lt;<span class="hljs-number">5</span>){
+            Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;, &quot;</span>);                        <span class="hljs-comment">// Komma und Leerzeichen zwischen den Bytes (außer nach dem letzten)</span>
+        }
+        index += <span class="hljs-number">3</span>;   <span class="hljs-comment">// Jedes Byte hat Format &quot;XX:&quot; (2 Zeichen Hex + 1 Zeichen Doppelpunkt), also Index-Ziel um 3 erhöhen</span>
+    }
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;}&quot;</span>);  <span class="hljs-comment">// Ausgabe mit geschweifter Klammer abschließen</span>
 }
 
-<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{
-}
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{}
 </code></pre>
+<p>Die MAC-Adressen bestehen aus sechs Bytes:<br>
+uint8_t receiverAddress[] = {0xC8, 0xF0, 0x9E, 0x74, 0x16, 0xC4};</p>
 <h2 id="senden-der-daten-von-einem-esp-zum-anderen">Senden der Daten von einem ESP zum anderen</h2>
-<h3 id="callback-funktionen">Callback-Funktionen</h3>
-<p>Das Senden von Daten läuft über eine sogenannte <strong>Callback-Funktion</strong>. Dies wird automatisch aufgerufen, wenn eine Nachricht gesendet wurde.
-In unserem Sketch heißt diese Funktion <strong>datenGesendet</strong>.<br>
-Im der <strong>setup</strong>-Methode wird sie mit <strong>esp_now_register_send_cb(datenGesendet);</strong> als Callback-Funktion für das Senden registriert.</p>
-<h3 id="sender-sketch">Sender-Sketch</h3>
 <p>Spiele auf den Sender diesen Sketch auf:</p>
 <pre><code class="language-c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;esp_now.h&gt;</span>  <span class="hljs-comment">// Einbinden der ESP-NOW-Bibliothek</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WiFi.h&gt;</span>     <span class="hljs-comment">// Einbinden der WiFi-Bibliothek</span></span>
 
-<span class="hljs-comment">// Hier musst du die MAC-Adresse des Empfängers</span>
-<span class="hljs-type">uint8_t</span> empfaengerMAC[] = {<span class="hljs-number">0xFF</span>, <span class="hljs-number">0xFF</span>, <span class="hljs-number">0xFF</span>, <span class="hljs-number">0xFF</span>, <span class="hljs-number">0xFF</span>, <span class="hljs-number">0xFF</span>};
+<span class="hljs-comment">// MAC-Adresse des Empfängers</span>
+<span class="hljs-type">uint8_t</span> empfaengerMAC[] = {<span class="hljs-number">0xC8</span>, <span class="hljs-number">0xF0</span>, <span class="hljs-number">0x9E</span>, <span class="hljs-number">0x74</span>, <span class="hljs-number">0x16</span>, <span class="hljs-number">0xC4</span>};
 
 <span class="hljs-type">int</span> nr=<span class="hljs-number">0</span>;  <span class="hljs-comment">// Zahl, die gesendet werden soll</span>
 
 <span class="hljs-type">esp_now_peer_info_t</span> peerInfo;  <span class="hljs-comment">// Struktur für Peer-Informationen</span>
-
-<span class="hljs-comment">// Callback-Funktion, die aufgerufen wird, wenn Daten gesendet werden</span>
-<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">datenGesendet</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">uint8_t</span> *mac_addr, <span class="hljs-type">esp_now_send_status_t</span> status)</span> </span>{
-  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\r\nLetzter Paket-Sendestatus:\t&quot;</span>);
-  Serial.<span class="hljs-built_in">println</span>(status == ESP_NOW_SEND_SUCCESS ? <span class="hljs-string">&quot;Lieferung erfolgreich&quot;</span> : <span class="hljs-string">&quot;Lieferung fehlgeschlagen&quot;</span>);
-}
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
   Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);  <span class="hljs-comment">// Start der seriellen Kommunikation mit 115200 Baud</span>
@@ -197,17 +200,15 @@ Im der <strong>setup</strong>-Methode wird sie mit <strong>esp_now_register_send
   WiFi.<span class="hljs-built_in">mode</span>(WIFI_STA);  <span class="hljs-comment">// Setzen des WiFi-Modus auf Station, d.h. der ESP wirkt als Client im Netzwerk</span>
 
   <span class="hljs-comment">// Initialisieren von ESP-NOW und Überprüfen auf Fehler</span>
+
   <span class="hljs-keyword">if</span> (<span class="hljs-built_in">esp_now_init</span>() != ESP_OK) {
     Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Fehler bei der Initialisierung von ESP-NOW&quot;</span>);
     <span class="hljs-keyword">return</span>;  <span class="hljs-comment">// Hier bricht die Ausführung ab.</span>
   }
-
-  <span class="hljs-comment">// Registrieren der Callback-Funktion für gesendete Daten</span>
-  <span class="hljs-built_in">esp_now_register_send_cb</span>(datenGesendet);
   
-  <span class="hljs-comment">// Kopieren der Empfänger-Adresse in die Peer-Info</span>
+  <span class="hljs-comment">// Kopieren der Empfänger-Adresse in die Variable peerInfo</span>
   <span class="hljs-built_in">memcpy</span>(peerInfo.peer_addr, empfaengerMAC, <span class="hljs-number">6</span>);
-  peerInfo.channel = <span class="hljs-number">0</span>;  <span class="hljs-comment">// Festlegen des Kanals (0 bedeutet, dass der aktuell eingestellte Kanal verwendet wird)</span>
+  peerInfo.channel = <span class="hljs-number">0</span>;  <span class="hljs-comment">// Standard-Kanal zum Senden</span>
   peerInfo.encrypt = <span class="hljs-literal">false</span>;  <span class="hljs-comment">// Keine Verschlüsselung verwenden</span>
   
   <span class="hljs-comment">// Hinzufügen des Peers zur ESP-NOW-Liste und Überprüfen auf Fehler</span>
@@ -218,7 +219,6 @@ Im der <strong>setup</strong>-Methode wird sie mit <strong>esp_now_register_send
 }
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-comment">// Setzen der Werte, die gesendet werden sollen</span>
   nr++;
   <span class="hljs-comment">// Senden der Nachricht über ESP-NOW</span>
   <span class="hljs-type">esp_err_t</span> ergebnis = <span class="hljs-built_in">esp_now_send</span>(empfaengerMAC, (<span class="hljs-type">uint8_t</span> *) &amp;nr, <span class="hljs-built_in">sizeof</span>(nr));
@@ -233,15 +233,43 @@ Im der <strong>setup</strong>-Methode wird sie mit <strong>esp_now_register_send
   
   <span class="hljs-built_in">delay</span>(<span class="hljs-number">2000</span>);  <span class="hljs-comment">// Verzögerung von 2 Sekunden vor dem nächsten Senden</span>
 }
+
 </code></pre>
-<h3 id="empfangen-von-daten">Empfangen von Daten</h3>
-<p>Auch beim Empfangen von Daten wird eine Callback-Funktion aufgerufen.<br>
-Wir verwenden die Funktion <strong>datenEmpfangen</strong> und registrieren sie mit <strong>esp_now_register_recv_cb(esp_now_recv_cb_t(datenEmpfangen));</strong> als Callback-Funktion, die beim Empfangen (engl. <strong>rec</strong>ei<strong>v</strong>e) von Daten ausgelöst wird.</p>
+<h3 id="erläuterungen-zum-sketch">Erläuterungen zum Sketch</h3>
+<h4 id="esp_now_peer_info_t-peerinfo">esp_now_peer_info_t peerInfo;</h4>
+<p>ESP-Now speichert alle wesentlichen Faktoren zur Datenübertragung in einer zusammengesetzen Variable vom Typ <strong>esp_now_peer_info_t</strong>. Sie hat folgende Felder:</p>
+<ul>
+<li>peer_addr[6]: Hier wird die MAC-Adresse des ESP-NOW-Partners (engl. peer) gespeichert. Die MAC-Adresse ist 6 Bytes lang und eindeutig.</li>
+<li>encrypt_enable: Ein boolescher Wert, der angibt, ob die Verschlüsselung für diesen Peer aktiviert ist.</li>
+<li>encrypt: Gibt an welche Verschlüsselung für die Verbindung mit diesem Peer verwendet wird (z.B. ESP_NOW_ENCRYPTION_NONE oder ESP_NOW_ENCRYPTION_AES128).</li>
+<li>lmk[16]: Der lokale Verschlüsselungsschlüssel (Local Master Key), wenn Verschlüsselung verwendet wird.</li>
+<li>ifidx: Die WLAN-Schnittstelle, über die kommuniziert wird, entweder Station (STA) oder Access Point (AP) Modus.</li>
+<li>channel: Der WiFi-Kanal, auf dem die Kommunikation mit diesem Peer stattfinden soll. Als Standard wird hierbei 0 verwendet.</li>
+</ul>
+<p>Einzelne Felder werden über die Punktnotation angesprochen:</p>
+<ul>
+<li>peerInfo.channel = 0;  // Standard-Kanal zum Senden</li>
+<li>peerInfo.encrypt = false;  // Keine Verschlüsselung verwenden</li>
+</ul>
+<h4 id="memcpypeerinfopeer_addr-empfaengermac-6">memcpy(peerInfo.peer_addr, empfaengerMAC, 6);</h4>
+<p>Mit <strong>memcpy</strong> wird die Empfängeradresse <strong>empfaengerMAC</strong> Byte-für-Byte in den Speicherbereich <strong>peerInfo.peer_addr</strong> kopiert. Hierbei müssen <strong>6</strong> Bytes kopiert werden.</p>
+<h4 id="if-esp_now_add_peerpeerinfo--esp_ok-">if (esp_now_add_peer(&amp;peerInfo) != ESP_OK) {</h4>
+<p>Vor dem Senden muss der Empfänger in eine Liste von Partnern (peers) aufgenommen werden. Wenn das funktioniert, gibt die Methode <strong>esp_now_add_peer(&amp;peerInfo)</strong> den Wert <strong>ESP_OK</strong> zurück.</p>
+<h4 id="esp_err_t-ergebnis--esp_now_sendempfaengermac-uint8_t--nr-sizeofnr">esp_err_t ergebnis = esp_now_send(empfaengerMAC, (uint8_t *) &amp;nr, sizeof(nr));</h4>
+<p>Die Methode <strong>esp_now_send</strong> sendet Daten über ESPNow. Sie hat 3 Parameter:</p>
+<ul>
+<li>empfaengerMAC: MAC-Adresse des Empfängers</li>
+<li>&amp;nr: Die Variable <strong>nr</strong> enthält die Daten, die gesendet werden sollen. Als Parameter wird aber nicht diese Variable, sondern ein Zeiger auf ihren Speicherort übergeben. Dies wird durch das vorgesetzte <strong>&amp;</strong>-Zeichen erreicht. Außerdem muss diese Variable in eine Folge von 8-Bit-Zahlen umgewandelt werden. Hierzu dient die (uint_8 *) Anweisung.</li>
+<li>sizeof(nr): Abschließend muss die Länge der gesendeten Daten angeben werden.</li>
+</ul>
+<h2 id="empfangen-von-daten">Empfangen von Daten</h2>
+<p>Beim Empfangen von Daten wird automatisch eine <strong>Callback-Funktion</strong> aufgerufen. Diese muss im <strong>setup</strong> registriert werden.</p>
+<p>Wir verwenden die Funktion <strong>datenEmpfangen</strong> und registrieren sie mit <strong>esp_now_register_recv_cb(esp_now_recv_cb_t(datenEmpfangen));</strong> als Callback-Funktion, die beim Empfangen (engl. <strong>rec</strong>ei<strong>v</strong>e) von Daten ausgelöst wird.</p>
 <pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;esp_now.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WiFi.h&gt;</span></span>
 
 <span class="hljs-type">int</span> empfangeneZahl;  <span class="hljs-comment">// Variable zum Speichern des empfangenen Ganzzahlwerts</span>
-
+  
 <span class="hljs-comment">// Callback-Funktion, die bei Empfang von Daten aufgerufen wird</span>
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">datenEmpfangen</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">uint8_t</span> * mac, <span class="hljs-type">const</span> <span class="hljs-type">uint8_t</span> *eingehendeDaten, <span class="hljs-type">int</span> len)</span> </span>{
   <span class="hljs-comment">// Überprüfen, ob die Länge der empfangenen Daten der Größe von empfangeneZahl entspricht</span>
@@ -251,7 +279,13 @@ Wir verwenden die Funktion <strong>datenEmpfangen</strong> und registrieren sie 
     Serial.<span class="hljs-built_in">println</span>(len);
     Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Empfangene Int-Zahl: &quot;</span>);  <span class="hljs-comment">// Ausgabe der empfangenen Ganzzahl</span>
     Serial.<span class="hljs-built_in">println</span>(empfangeneZahl);
-    Serial.<span class="hljs-built_in">println</span>();
+  
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;MAC-Adresse des Senders: &quot;</span>);
+  Serial.<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%02x:%02x:%02x:%02x:%02x:%02x\n&quot;</span>,
+                  mac[<span class="hljs-number">0</span>], mac[<span class="hljs-number">1</span>], mac[<span class="hljs-number">2</span>],
+                  mac[<span class="hljs-number">3</span>], mac[<span class="hljs-number">4</span>], mac[<span class="hljs-number">5</span>]);
+  
+  
   } <span class="hljs-keyword">else</span> {
     Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Fehler: Falsche Datenlänge empfangen&quot;</span>);  <span class="hljs-comment">// Fehlermeldung bei falscher Datenlänge</span>
   }
@@ -274,6 +308,7 @@ Wir verwenden die Funktion <strong>datenEmpfangen</strong> und registrieren sie 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
   <span class="hljs-comment">// Hier ist kein Code nötig, da die Datenverarbeitung in der Callback-Funktion erfolgt. </span>
 }
+
 </code></pre>
 <p><a href="../index.html">zurück</a></p>
 

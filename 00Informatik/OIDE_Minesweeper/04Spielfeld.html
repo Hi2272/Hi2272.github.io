@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Polymorphie</title>
+            <title>3&period; Erstelle die Klasse Spielfeld II</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -141,12 +141,8 @@
               <meta charset="utf-8" />
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
-<h1 id="polymorphie">Polymorphie</h1>
-<h2 id="klassendiagramm">Klassendiagramm</h2>
-<p><img src="Klassendiagramm.png" alt="alt text"></p>
-<h2 id="aufgabenstellung">Aufgabenstellung</h2>
-<p>Dein Code zeigt eine Fehlermeldung in der Klasse <strong>Mannschaft</strong>.<br>
-Untersuche diesen Fehler, begründe weshalb er auftritt und schlage einen Weg vor, wie er behoben werden kann.</p>
+<h1 id="minesweeper">Minesweeper</h1>
+<h3 id="3-erstelle-die-klasse-spielfeld-ii">3. Erstelle die Klasse Spielfeld II</h3>
   <section>
     <iframe
     srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
@@ -154,21 +150,46 @@ Untersuche diesen Fehler, begründe weshalb er auftritt und schlage einen Weg vo
     {'id': 'Java', 'speed': 2000, 
     'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
     'withFileList': true ,'withErrorList': true}
-    <script id="javaCode" type="plain/text" title="Mannschaft.java" src="Mannschaft.java"></script>
-    <script id="javaCode" type="plain/text" title="Mitglied.java" src="Mitglied.java"></script>
-    <script id="javaCode" type="plain/text" title="Spieler.java" src="Spieler.java"></script>
-    <script id="javaCode" type="plain/text" title="Trainer.java" src="Trainer.java"></script>
+    <script id="javaCode" type="plain/text" title="Spielfeld.java" src="04Spielfeld.java"></script>
+    <script id="javaCode" type="plain/text" title="Kachel.java" src="03Kachel.java"></script>
+  <script id="javaCode" type="plain/text" title="Platte.java" src="03Platte.java"></script>
+  <script id="javaCode" type="plain/text" title="Mine.java" src="03Mine.java"></script>
   </script>
    </iframe>
 </section>
-<h2 id="aufgabenstellung-2">Aufgabenstellung 2:</h2>
+<h4 id="konstruktor">Konstruktor</h4>
 <ol>
-<li>Erzeuge eine neue Klasse Manager, die eine Methode kaufen() hat. In dieser Methode soll &quot;Ich kaufe Spieler!&quot; ausgegeben werden.</li>
-<li>Ändere den Konstruktor der Klasse Mannschaft so ab, dass das zweite Mitglied jeweils Manager ist.</li>
-<li>Wenn ein Trainer oder ein Spieler versucht, einen Spieler zu kaufen, soll die Meldung: &quot;Ich bin keine Manager!&quot; ausgegeben werden.</li>
+<li>In einer weiteren Schleife sollen die leeren Kacheln mit Platten initialisiert werden.</li>
+<li>Als letztes wird diese Schleife eingefügt:</li>
 </ol>
-<p><a href="Loesung.html">Lösung</a></p>
-<p><a href="../index.html">Index</a></p>
+<pre><code class="language-C++">    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; kachel.length; i++) {
+         <span class="hljs-keyword">if</span>(kachel[i] instanceof Platte) {
+            kachel[i].<span class="hljs-built_in">setNachbarn</span>(<span class="hljs-built_in">anzNachbarn</span>(i));
+         }
+      }
+</code></pre>
+<ol start="3">
+<li>Erläutere diese Schleife</li>
+</ol>
+<h4 id="methoden">Methoden</h4>
+<ol>
+<li>
+<p><strong>isInGrid(x,y)</strong><br>
+Die Methode soll wahr zurückgeben, wenn sich x und y innerhalb der Grenzen des Gitters befinden. x muss also größer gleich 0 und kleiner als die Zahl der spalten sein. y muss analog größer als 0 und kleiner als die Zahl der zeilen sein.</p>
+</li>
+<li>
+<p><strong>getKachel-Methoden</strong><br>
+Programmiere drei Methoden mit dem gleichen Namen, die sich in ihren Parametern unterscheiden:<br>
+a) int nr: gibt die Kachel mit dem Index nr zurück.<br>
+b) int x, int y: gibt die Kachel in der Spalte x und der Zeile y zurück. Hierzu muss die Nummer dieser Kache berechnet werden.<br>
+c) ohne Parameter: gibt das gesamte Feld <strong>kachel</strong> zurück.</p>
+</li>
+<li>
+<p><strong>isMine(int x, int y)</strong><br>
+Die Methode soll wahr zurückgeben, wenn x und y im Gitter liegen und die Kachel eine Mine ist.</p>
+</li>
+</ol>
+<p><a href="05Spielfeld.html">weiter</a></p>
 
             
             

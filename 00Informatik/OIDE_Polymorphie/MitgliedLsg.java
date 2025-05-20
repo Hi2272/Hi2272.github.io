@@ -12,5 +12,8 @@ public abstract class Mitglied {
    public void spielen() {
       println("Ich bin kein Spieler!");
    }
+   public void kaufen(){
+      println("Ich bin kein Manager!");
+   }
 
 }
