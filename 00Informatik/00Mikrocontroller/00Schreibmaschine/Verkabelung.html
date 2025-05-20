@@ -323,34 +323,40 @@ Mit +5V wird Bremse gelöst und der schwarze Zylinder dreht sich. Hierbei wird d
 <p>2 weiße Kabel führen zum Elektromagneten. Mit +5V wird die Bremse gelöst, der weiße Zylinder dreht sich und die Maschine tippt ein Zeichen.</p>
 <p>Über einen Hebel wird das Farbband weitertransportiert.</p>
 <h1 id="verkabelung-am-arduino">Verkabelung am Arduino</h1>
+<p>Anschluss der Schrittmotoren über DRV8825 Module:<br>
+(<a href="https://starthardware.org/stepper-motor-mit-dem-drv8825-steuern/">https://starthardware.org/stepper-motor-mit-dem-drv8825-steuern/</a>)<br>
+Pro Modul sind nur 2 Pins nötig.</p>
 <ul>
 <li>Schrittmotor Walze
 <ul>
 <li>D2</li>
 <li>D3</li>
-<li>D4</li>
-<li>D5</li>
 </ul>
 </li>
 <li>Schrittmotor Schlitten
 <ul>
-<li>D6</li>
-<li>D7</li>
-<li>D8</li>
-<li>D9</li>
+<li>D4</li>
+<li>D5</li>
 </ul>
 </li>
 <li>Schrittmotor Typenrad
 <ul>
-<li>D10</li>
-<li>D11</li>
-<li>D12</li>
-<li>A0</li>
+<li>D6</li>
+<li>D7</li>
 </ul>
 </li>
+</ul>
+<p>Der Elektromotor und der Elektromagnet zum Tippen sollen ebenfalls elektronisch geschaltet werden.<br>
+Hierzu können MOSFETs verwendet werden (<a href="https://wolles-elektronikkiste.de/der-mosfet-als-schalter">https://wolles-elektronikkiste.de/der-mosfet-als-schalter</a>)</p>
+<ul>
 <li>Elektromagnet Tippen
 <ul>
-<li>A1</li>
+<li>D8</li>
+</ul>
+</li>
+<li>Elektromotor Tippen
+<ul>
+<li>D9</li>
 </ul>
 </li>
 <li>Serieller Anschluss
@@ -359,18 +365,137 @@ Mit +5V wird Bremse gelöst und der schwarze Zylinder dreht sich. Hierbei wird d
 <li>TX 1</li>
 </ul>
 </li>
+<li>Taster für linken Rand-Sensor
+<ul>
+<li>A0</li>
+</ul>
+</li>
+<li>Taster für Bedienfeld (Einzug, Auswurf, Start)
+<ul>
+<li>A1</li>
+</ul>
+</li>
 <li>Derzeit noch frei:
 <ul>
-<li>A2</li>
-<li>A3</li>
-<li>A4</li>
-<li>A5</li>
+<li>D10, D11, D12, A2, A3, A4, A5</li>
 </ul>
 </li>
 </ul>
+<h1 id="cnc-shield-mit-a4988-treibern">CNC Shield mit A4988 Treibern</h1>
+<p>Die Verkabelung mit einem CNC-Shield, das einfach auf den Arduino Uno aufgesteckt wird, ist deutlich einfacher. Außerdem werden viel weniger Pins benötigt.
+An den A4988-Treibern werden nur noch folgende Kabel der Schrittmotoren angeschlossen:</p>
+<ul>
+<li>gelb + blau: Spule 1</li>
+<li>weiß + rot: Spule 2</li>
+</ul>
+<p>Die Originalstecker werden durch weibliche Dupont-Kontakte ersetzt.</p>
+<p>Folgender Code steuert die Motoren an:</p>
+<pre><code class="language-C++"><span class="hljs-comment">// Pin-Belegung für die Motoren festlegen</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinStep[<span class="hljs-number">3</span>] = { <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> };  <span class="hljs-comment">// 0 = Walze, 1 = Typenrad, 2 = Schlitten (Schlitten = Wagen)</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinDir[<span class="hljs-number">3</span>] = { <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span> };
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinEn = <span class="hljs-number">8</span>;
+
+<span class="hljs-comment">/**
+ * Führt eine Bewegungssequenz eines Motors aus.
+ * @param motorNr Nummer des Motors (0=Walze, 1=Typenrad, 2=Schlitten)
+ * @param dir Bewegungsrichtung (HIGH oder LOW)
+ * @param steps Anzahl der Schritte, die bewegt werden sollen
+ * @param speed Geschwindigkeit in Mikrosekunden Verzögerung zwischen den Schritten
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">move</span><span class="hljs-params">(<span class="hljs-type">int</span> motorNr, <span class="hljs-type">int</span> dir, <span class="hljs-type">int</span> steps, <span class="hljs-type">int</span> speed)</span> </span>{
+  <span class="hljs-built_in">digitalWrite</span>(pinDir[motorNr], dir);
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; steps; i++) {
+    <span class="hljs-built_in">digitalWrite</span>(pinStep[motorNr], HIGH);
+    <span class="hljs-built_in">delayMicroseconds</span>(speed);
+    <span class="hljs-built_in">digitalWrite</span>(pinStep[motorNr], LOW);
+    <span class="hljs-built_in">delayMicroseconds</span>(speed);
+  }
+}
+
+<span class="hljs-comment">/**
+ * Initialisiert die Pins und die serielle Schnittstelle.
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) {
+    <span class="hljs-built_in">pinMode</span>(pinStep[i], OUTPUT);
+    <span class="hljs-built_in">pinMode</span>(pinDir[i], OUTPUT);
+  }
+  <span class="hljs-built_in">pinMode</span>(pinEn, OUTPUT);
+  <span class="hljs-built_in">digitalWrite</span>(pinEn, LOW);
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
+}
+
+<span class="hljs-comment">/**
+ * Bewegt den Schlitten (Wagen) nach rechts.
+ * @param steps Anzahl der Schritte
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">wagenLaufRechts</span><span class="hljs-params">(<span class="hljs-type">int</span> steps)</span> </span>{
+  <span class="hljs-built_in">move</span>(<span class="hljs-number">2</span>, HIGH, steps, <span class="hljs-number">2000</span>);
+}
+
+<span class="hljs-comment">/**
+ * Bewegt den Schlitten (Wagen) nach links.
+ * @param steps Anzahl der Schritte
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">wagenLaufLinks</span><span class="hljs-params">(<span class="hljs-type">int</span> steps)</span> </span>{
+  <span class="hljs-built_in">move</span>(<span class="hljs-number">2</span>, LOW, steps, <span class="hljs-number">2000</span>);
+}
+
+<span class="hljs-comment">/**
+ * Dreht das Typenrad im Uhrzeigersinn.
+ * @param steps Anzahl der Schritte
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">typenRadImUhr</span><span class="hljs-params">(<span class="hljs-type">int</span> steps)</span> </span>{
+  <span class="hljs-built_in">move</span>(<span class="hljs-number">1</span>, HIGH, steps, <span class="hljs-number">1000</span>);
+}
+
+<span class="hljs-comment">/**
+ * Dreht das Typenrad gegen den Uhrzeigersinn.
+ * @param steps Anzahl der Schritte
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">typenRadGegenUhr</span><span class="hljs-params">(<span class="hljs-type">int</span> steps)</span> </span>{
+  <span class="hljs-built_in">move</span>(<span class="hljs-number">1</span>, LOW, steps, <span class="hljs-number">1000</span>);
+}
+
+<span class="hljs-comment">/**
+ * Bewegt die Walze vorwärts.
+ * @param steps Anzahl der Schritte
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">walzeVor</span><span class="hljs-params">(<span class="hljs-type">int</span> steps)</span> </span>{
+  <span class="hljs-built_in">move</span>(<span class="hljs-number">0</span>, HIGH, steps, <span class="hljs-number">25000</span>);
+}
+
+<span class="hljs-comment">/**
+ * Bewegt die Walze rückwärts.
+ * @param steps Anzahl der Schritte
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">walzeRueck</span><span class="hljs-params">(<span class="hljs-type">int</span> steps)</span> </span>{
+  <span class="hljs-built_in">move</span>(<span class="hljs-number">0</span>, LOW, steps, <span class="hljs-number">25000</span>);
+}
+
+<span class="hljs-comment">/**
+ * Hauptprogramm läuft in Endlosschleife.
+ * Fährt den Wagen 40 mal 5 Steps nach rechts und dreht dabei das Typenrad
+ * Fährt anschließend 200 Steps nach links zurück
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">40</span>;i++){
+     <span class="hljs-built_in">wagenLaufRechts</span>(<span class="hljs-number">5</span>);
+     <span class="hljs-built_in">typenRadImUhr</span>(<span class="hljs-number">10</span>);
+     <span class="hljs-built_in">delay</span>(<span class="hljs-number">100</span>);
+  }
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
+  <span class="hljs-built_in">wagenLaufLinks</span>(<span class="hljs-number">200</span>);
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
+}
+</code></pre>
+<h2 id="probleme">Probleme</h2>
+<p>Der Walzenmotor dreht erst bei sehr hohen Verzögerungswerten. Dann läuft er aber nicht mehr rund, sondern stottert. Teilweise bleibt er auch stecken.<br>
+Aus diesem Grund versuche ich die Motoren wieder mit der AccelMotor Bibliothek anzusteuern.</p>
 <h1 id="grundaufbau">Grundaufbau</h1>
 <ul>
-<li>Arduino Uno steuert
+<li>
+<p>Arduino Uno steuert</p>
 <ul>
 <li>Walze,</li>
 <li>Schlitten,</li>
@@ -378,7 +503,8 @@ Mit +5V wird Bremse gelöst und der schwarze Zylinder dreht sich. Hierbei wird d
 <li>Druckkopf</li>
 </ul>
 </li>
-<li>ESP32 steuert
+<li>
+<p>ESP32 steuert</p>
 <ul>
 <li>Tastatur,</li>
 <li>Einlesen serieller Daten über USB,</li>
@@ -414,11 +540,24 @@ Mit +5V wird Bremse gelöst und der schwarze Zylinder dreht sich. Hierbei wird d
 </ol>
 <h1 id="ungelöste-probleme">Ungelöste Probleme</h1>
 <ul>
-<li>Positionserkennung Typenrad beim Start</li>
-<li>Positionserkennung Schlitten beim Start</li>
-<li>Tastatur einlesen</li>
-<li>Serielle Daten einlesen</li>
-<li>Serielle Kommunikation ESP -&gt; Uno</li>
+<li>
+<p>Positionserkennung Typenrad beim Start<br>
+Auf dem Typenrad ist ein kleiner Metallstift. Dieser scheint für die Positionserkennung wichtig zu sein (vgl.: <a href="https://support.brother.ca/app/answers/detail/a_id/133688">https://support.brother.ca/app/answers/detail/a_id/133688</a>)</p>
+</li>
+<li>
+<p>Positionserkennung Schlitten beim Start<br>
+Auf der linken Seite einen Taster oder eine Reflexlichtschranke einbauen. Bis zum Kontakt zurückfahren und Position auf 0 setzen.<br>
+Alternativ: Mit Reflexlichtschranke Helligkeit vom Papier messen.</p>
+</li>
+<li>
+<p>Tastatur einlesen</p>
+</li>
+<li>
+<p>Serielle Daten einlesen</p>
+</li>
+<li>
+<p>Serielle Kommunikation ESP -&gt; Uno</p>
+</li>
 </ul>
 
             
