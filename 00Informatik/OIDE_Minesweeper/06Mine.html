@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Spielprinzip</title>
+            <title>3&period; Die Klasse Mine</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -142,48 +142,46 @@
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
 <h1 id="minesweeper">Minesweeper</h1>
- <div style="text-align: center">
-<p>|<a href="03Spielfeld.html">Spielfeld I</a>|<a href="04Spielfeld.html">Spielfeld II</a>|<a href="05Spielfeld.html">Spielfeld III</a>|<a href="06Mine.html">Mine</a>|<a href="07Platte.html">Platte</a></p>
-</div>
-<h2 id="spielprinzip">Spielprinzip</h2>
-<p>Die Versionen 3.1 bis 7 von Microsoft Windows enthielten das Spiel Minesweeper:<br>
-<img src="2025-03-29_17-03.png" alt="alt text"></p>
-<p>Das Spielprinzip kannst du hier nachvollziehen, ggf. musst du Code-Reset anklicken.</p>
-  <section>
+<h3 id="3-die-klasse-mine">3. Die Klasse Mine</h3>
+<p>Damit die Mine beim Linksklick explodiert, musst du eine Methode <strong>public void onMouseDown(double x, double y, int key) {</strong> erstellen.<br>
+Diese Methode wird beim Mausklick aufgerufen. Die Parameter werden automatisch mit Werten gefüllt:</p>
+<ul>
+<li>x,y: Koordinaten des Mauszeigers</li>
+<li>key: Maustaste, die geklickt wurde:
+<ul>
+<li>0: Links</li>
+<li>1: Mitte</li>
+<li>2: Rechts</li>
+</ul>
+</li>
+</ul>
+<p>In dieser Methode soll folgender Algorithmus ablaufen:<br>
+Wenn die linke Taste geklickt wurde,</p>
+<ul>
+<li>dann soll die Methode <strong>setFillColor(Color.red);</strong> aufgerufen werden.</li>
+<li>Anschließend soll eine Schleife alle Kacheln durchlaufen und immer dann, wenn eine Mine vorliegt, ihre Füllfarbe auf rot setzen.</li>
+<li>Zum Schluss soll mit <strong>TextField t = new TextField(100, 100, 400, 50, &quot;GAME OVER&quot;);</strong> das Spielende angezeigt und mit <strong>stopActing();</strong> das Spiel beendet werden.</li>
+</ul>
+<p>Wenn die rechte Maustaste geklickt wurde, soll geprüft werden, ob das Attribut <strong>markiert</strong> false ist.</p>
+<ul>
+<li>Wenn das der Fall ist, werden die Füllfarbe der Kachel auf orange und das Attribut <strong>markiert</strong> auf true gesetzt.</li>
+<li>Sonst wird die Füllfarbe auf <strong>lightgrey</strong> und <strong>markiert</strong> auf false gesetzt.</li>
+</ul>
+<section>
    <iframe
     srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
     width="100%" height="600" frameborder="0">
     {'id': 'Java', 'speed': 'max', 
-    'withBottomPanel': false ,'withPCode': false ,'withConsole': true ,
-    'withFileList': false ,'withErrorList': false}
-    <script id="javaCode" type="plain/text" title="Hilfe.java" src="Hilfe.java"></script>
+    'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
+    'withFileList': true ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Mine.java" src="03Mine.java"></script>
+    <script id="javaCode" type="plain/text" title="Platte.java" src="03Platte.java"></script>
     <script id="javaCode" type="plain/text" title="Kachel.java" src="Kachel.java"></script>
     <script id="javaCode" type="plain/text" title="Spielfeld.java" src="Spielfeld.java"></script>
-    <script id="javaCode" type="plain/text" title="Platte.java" src="Platte.java"></script>
-    <script id="javaCode" type="plain/text" title="Mine.java" src="Mine.java"></script>
   </script>
    </iframe>
 </section>
-<h2 id="aufgabenstellung">Aufgabenstellung</h2>
-<p>Erstelle Sequenzdiagramme für folgende Fälle:</p>
-<ol>
-<li>Rechtsklick auf eine Kachel (k:Kachel) <a href="SequenzRechts.html">Lsg</a></li>
-<li>Linksklick auf eine Mine (m: Mine, s:Spielfeld) <a href="SequenzMine.html">Lsg</a></li>
-<li>Linksklick auf eine Platte
-<ol>
-<li>mit benachbarten Minen (p:Platte) <a href="SequenzLinksPlatte.html">Lsg</a></li>
-<li>ohne benachbarte Minen (p:Platte, nachbarn: Platte[]) <a href="SequenzLinksPlatteLeer.html">Lsg</a></li>
-</ol>
-</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th><a href="../index.html">zurück</a></th>
-<th><a href="01Klassendiagramm.html">weiter</a></th>
-</tr>
-</thead>
-</table>
+<p><a href="07Platte.html">weiter</a></p>
 
             
             

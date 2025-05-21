@@ -4,7 +4,12 @@
  
  # Minesweeper
 
-### 3. Erstelle die Klasse Spielfeld III
+### 4. Die Klasse klasse Spielfeld III
+
+#### Methoden
+1. **getNachbarn(int nr)**  
+   Setze dieses Struktogramm um:  
+   ![alt text](StruktugrammNachbarn.png)
 
   <section>
     <iframe
@@ -24,9 +29,10 @@
 </section>
 
 #### Methoden
-1. **anzNachbarn(int nr)**  
+1. **getNachbarn(int nr)**  
    Setze dieses Struktogramm um:  
    ![alt text](StruktugrammNachbarn.png)
 
 Teste das Programm - das Spielfeld müsste jetzt vollständig aufgebaut werden.
 
+[weiter](06Mine.html)

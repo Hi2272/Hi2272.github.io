@@ -3,6 +3,11 @@
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
  
  # Minesweeper
+ <div style="text-align: center">
+ 
+  |[Spielfeld I](03Spielfeld.html)|[Spielfeld II](04Spielfeld.html)|[Spielfeld III](05Spielfeld.html)|[Mine](06Mine.html)|[Platte](07Platte.html)
+</div>
+
 ## Spielprinzip
 Die Versionen 3.1 bis 7 von Microsoft Windows enthielten das Spiel Minesweeper:  
   ![alt text](2025-03-29_17-03.png)

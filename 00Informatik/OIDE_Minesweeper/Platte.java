@@ -21,9 +21,7 @@ public class Platte extends Kachel {
       if(!aufgedeckt) {
          TextField t = new TextField(x * breite, y * hoehe, breite - 3, 30, String.valueOf(nachbarn));
          aufgedeckt = true;
- 
-         if(nachbarn > 0) {
-        //    setFillColor(Color.orange);
+      if(nachbarn > 0) {
             t.setFillColor(Color.yellow, 0.3);
          }
          if(nachbarn == 0) {
@@ -35,12 +33,11 @@ public class Platte extends Kachel {
             }
             if(feld.isInGrid(x - 1, y)) { feld.getKachel(x - 1, y).aufdecken(); }
             if(feld.isInGrid(x + 1, y)) { feld.getKachel(x + 1, y).aufdecken(); }
-         
-         
-   
          }
       }
    }
+
+   
    public void onMouseDown(double x, double y, int key) {
       if(key == 0) {
  
