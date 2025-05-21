@@ -7,7 +7,7 @@
 ### 4. Die Klasse klasse Spielfeld III
 
 #### Methoden
-1. **getNachbarn(int nr)**  
+1. **anzNachbarn(int nr)**  
    Setze dieses Struktogramm um:  
    ![alt text](StruktugrammNachbarn.png)
 
