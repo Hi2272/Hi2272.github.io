@@ -395,14 +395,6 @@ window.onload = function () {
   sandbox="allow-scripts allow-same-origin">
 </iframe>
 
----
-
-### 9.6 Nächste Ideen
-
-- Lebensanzeige für unterschiedliche Brick-Typen einblenden
-- PowerUps und Boni für schnelleres Level-Überwinden
-- Score-System integrieren und Highscore speichern
-
----
-
-Herzlichen Glückwunsch! Du hast jetzt ein mehrstufiges Breakout-Spiel mit dynamischem Level-Ladevorgang, verschiedenen Brick-Typen und endlichem Spielende erstellt! Weiter so!
+  
+  
+[weiter](09PowerUp.html)  

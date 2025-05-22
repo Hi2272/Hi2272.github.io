@@ -1,6 +1,16 @@
 # Breakout-Game Tutorial mit Phaser.io
 
 In diesem Tutorial lernst du Schritt für Schritt, wie du ein einfaches Breakout-Game mit HTML, CSS und JavaScript unter Verwendung des Phaser.io Frameworks erstellst.
+---
+
+## Vorbereitung: Installation der Entwicklungsumgebung
+Für den Test von HTML-, CSS- und Javascript-Dateien benötigst du in der Regel einen Webserver, der diese Seiten hostet. Anschließend kannst du sie mit einem Internetbrowser anzeigen lassen.    
+Die Entwicklungsumgebung **VisualStudioCode** bietet eine Live-Server-Erweiterung, mit der dieses Problem elegant umgangen werden kann:
+1. Installiere die Software [VisualStudioCode](https://code.visualstudio.com/Download).
+2. Starte VSCode und installiere die Erweiterung **Live Server**.
+3.  Wenn du jetzt mit der rechten Maustaste auf eine HTML-Datei klickst, kannst du sie vom Live Server lokal hosten lassen.   
+VSCode startet dann automatisch einen Webbrowser und zeigt die Datei an.   
+Änderungen an der Datei werden in der Regel automatisch vom Live Server verarbeitet.
 
 ---
 
@@ -130,9 +140,6 @@ Hier läuft die eigentliche Spielmechanik ab. Die `update()`-Funktion wird viele
 
 Im nächsten Tutorial-Schritt fügen wir den Paddle und Ball zum Spiel hinzu und machen diese bewegbar.
 
-[Weiter zum Ball](01ball.html)  
-
-
 ### Live-Test
 
 <iframe 
@@ -142,3 +149,6 @@ Im nächsten Tutorial-Schritt fügen wir den Paddle und Ball zum Spiel hinzu und
   frameborder="0" 
   sandbox="allow-scripts allow-same-origin">
 </iframe>
+
+
+[Weiter](01ball.html)  

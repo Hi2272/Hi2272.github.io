@@ -99,22 +99,6 @@ Außerdem ordnen wir das Sprite des `physics`-Attribut unseres Spieles zu.
 
 ---
 
-## Zusammenfassung
-
-Du hast gelernt, wie man in Phaser:
-
-- ein externes Bild-Asset lädt,
-- mit Arcade-Physik eine Spielfigur (Ball) per Velocity bewegt,
-- und wie man Kollision an den Spielfeldgrenzen einrichtet, damit der Ball abprallt.
-
----
-
-## Nächster Schritt
-
-Im nächsten Schritt fügen wir das Paddle ein, das du mit der Maus oder Tastatur bewegen kannst.
-
----
-
 ### Live-Test
 
 <iframe 
@@ -124,3 +108,6 @@ Im nächsten Schritt fügen wir das Paddle ein, das du mit der Maus oder Tastatu
   frameborder="0" 
   sandbox="allow-scripts allow-same-origin">
 </iframe>
+
+
+[weiter](02Paddle.html)  

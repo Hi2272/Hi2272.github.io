@@ -1,6 +1,6 @@
 # Breakout-Game Tutorial mit Phaser.io
 
-## Schritt 10: Neuer Steintyp mit PowerUp – Kugel fällt und schenkt ein Leben
+## Schritt 10: PowerUp – Kugel fällt und schenkt ein Leben
 
 In diesem Schritt fügen wir einen neuen Steintyp `brick5` hinzu. Wird dieser Stein vom Ball getroffen, verschwindet er und eine Kugel (`sphere1`) fällt vom getroffenem Brick nach unten. Trifft die Kugel das Paddle, erhält der Spieler ein zusätzliches Leben.
 
