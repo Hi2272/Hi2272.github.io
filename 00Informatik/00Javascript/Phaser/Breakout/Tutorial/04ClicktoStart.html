@@ -142,12 +142,12 @@
 <h2 id="schritt-5-ball-per-tastendruckmaus-starten">Schritt 5: Ball per Tastendruck/Maus starten</h2>
 <p>Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir dafür, dass der Ball zunächst auf dem Paddle „liegt“ und erst nach einem Tastendruck (Leertaste) oder Mausklick losfliegt. Solange der Ball noch nicht gestartet ist, bewegt er sich synchron mit dem Paddle.</p>
 <h3 id="51-code-anpassungen-in-gamejs">5.1 Code-Anpassungen in <code>game.js</code></h3>
-<pre><code class="language-js">  ...
+<h3 id="511-variablen">5.1.1 Variablen</h3>
+<pre><code class="language-js">
   <span class="hljs-keyword">let</span> ballLaunched = <span class="hljs-literal">false</span>;  <span class="hljs-comment">// Neuer Zustand: Ball ist gestartet oder nicht</span>
-
-  ...
-
-  <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
+</code></pre>
+<h3 id="512-create">5.1.2 Create</h3>
+<pre><code class="language-js">  <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
     ...
 
     <span class="hljs-comment">// Ball erstellen - Position zunächst auf dem Paddle</span>
@@ -176,7 +176,9 @@
 
     ...
     }
-
+</code></pre>
+<h3 id="513-update">5.1.3 Update</h3>
+<pre><code class="language-js">
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
     ...
     <span class="hljs-comment">// Solange der Ball nicht gestartet ist, wird er an das Paddle gekoppelt</span>
@@ -200,7 +202,7 @@
 };
 </code></pre>
 <hr>
-<h3 id="53-erläuterungen-zu-den-neuerungen">5.3 Erläuterungen zu den Neuerungen</h3>
+<h3 id="52-erläuterungen-zu-den-neuerungen">5.2 Erläuterungen zu den Neuerungen</h3>
 <ul>
 <li>
 <p><strong><code>let ballLaunched = false;</code></strong><br>
@@ -234,7 +236,7 @@ Der Ball bekommt eine fixe Geschwindigkeit (hier: nach oben und leicht nach rech
 </li>
 </ul>
 <hr>
-<h3 id="54-live-test">5.4 Live-Test</h3>
+<h3 id="53-live-test">5.3 Live-Test</h3>
 <iframe 
   src="04ClicktoStart/index.html" 
   width="820" 
@@ -243,7 +245,10 @@ Der Ball bekommt eine fixe Geschwindigkeit (hier: nach oben und leicht nach rech
   sandbox="allow-scripts allow-same-origin">
 </iframe>
 <hr>
-<p><a href="05Leben.html">weiter</a></p>
+<h3 id="dateien">Dateien</h3>
+<p><a href="04ClicktoStart.zip">Zip-Datei</a></p>
+<hr>
+<h3 id="weiter"><a href="05Leben.html">weiter</a></h3>
 
             
             

@@ -146,7 +146,7 @@
 <li>Trifft er das Paddle seitlich, wird der Ball entsprechend schräg abgelenkt.</li>
 </ul>
 <hr>
-<h3 id="42-code-anpassungen-in-gamejs">4.2 Code-Anpassungen in <code>game.js</code></h3>
+<h3 id="41-code-anpassungen-in-gamejs">4.1 Code-Anpassungen in <code>game.js</code></h3>
 <pre><code class="language-js">
   ...
  
@@ -187,7 +187,7 @@
 };
 </code></pre>
 <hr>
-<h3 id="43-erläuterungen-zum-neuen-code">4.3 Erläuterungen zum neuen Code</h3>
+<h3 id="42-erläuterungen-zum-neuen-code">4.2 Erläuterungen zum neuen Code</h3>
 <h4 id="thisphysicsaddcolliderball-paddle-ballpaddlecollision-null-this"><code>this.physics.add.collider(ball, paddle, ballPaddleCollision, null, this);</code></h4>
 <p>Registriert die Funktion <strong>ballPaddleCollision</strong> als  Kollisions-Handler-Funktion. Sie wird automatisch aufgerufen, wenn Ball und Paddle sich berühren.</p>
 <h4 id="funktion-ballpaddlecollisionball-paddle">Funktion <code>ballPaddleCollision(ball, paddle)</code></h4>
@@ -203,7 +203,7 @@ ermittelt zunächst den horizontalen Abstand des Balls zum Mittelpunkt des Paddl
 <li><code>ball.body.velocity.y = -speed * Math.cos(bounceAngle);</code> berechnet analog die y-Komponenten über die Cosinus-Funktion.</li>
 </ul>
 <hr>
-<h3 id="44-live-test">4.4 Live-Test</h3>
+<h3 id="43-live-test">4.3 Live-Test</h3>
 <iframe 
   src="03Squash/index.html" 
   width="820" 
@@ -211,6 +211,11 @@ ermittelt zunächst den horizontalen Abstand des Balls zum Mittelpunkt des Paddl
   frameborder="0" 
   sandbox="allow-scripts allow-same-origin">
 </iframe>
+<hr>
+<h3 id="datei">Datei</h3>
+<p><a href="03Squash.zip">Zip-Datei</a></p>
+<hr>
+<h3 id="weiter"><a href="04ClicktoStart.html">weiter</a></h3>
 
             
             

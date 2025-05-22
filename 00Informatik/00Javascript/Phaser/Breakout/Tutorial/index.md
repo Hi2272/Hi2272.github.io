@@ -153,11 +153,9 @@ Im nächsten Tutorial-Schritt fügen wir den Paddle und Ball zum Spiel hinzu und
 
 ---
 
-### Dateivorlagen (Rechte Maustaste, Link speichern unter)  
+### Dateien
 
-[index.html](00Start/index.html)    
-[style.css](00Start/style.css)  
-[game.js](00Start/game.js)  
+[Zip-Datei](00Start.zip)    
 
 ---
 

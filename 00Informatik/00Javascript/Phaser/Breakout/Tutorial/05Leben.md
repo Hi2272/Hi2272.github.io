@@ -8,15 +8,17 @@ Jetzt sorgen wir dafür, dass der Spieler zu Beginn 3 Leben hat. Diese Leben wer
 
 ### 6.1 Code-Anpassungen in `game.js`
 
+### 6.1.1 Variablen
 ```js
-...
 
   let lives = 3;               // Neue Variable für Leben
   let livesText;               // Textobjekt für Anzeige Lives
   let gameOverText;            // Textobjekt für Game Over
   let gameEnded = false;       // Zustand, ob Spiel beendet ist
+```
+### 6.1.2 Create
 
-...
+```js
 
   function create() {
 ...
@@ -39,6 +41,9 @@ Jetzt sorgen wir dafür, dass der Spieler zu Beginn 3 Leben hat. Diese Leben wer
 
  ...
   }
+```
+### 6.1.3 Update
+```js
 
   function update() {
     if (gameEnded) {
@@ -54,10 +59,9 @@ Jetzt sorgen wir dafür, dass der Spieler zu Beginn 3 Leben hat. Diese Leben wer
       loseLife();
     }
   }
-
-  function launchBall() {
-  ...
-  }
+```
+### 6.1.4 LooseLife
+```js
 
   function loseLife() {
     lives--;
@@ -124,5 +128,11 @@ Jetzt sorgen wir dafür, dass der Spieler zu Beginn 3 Leben hat. Diese Leben wer
   frameborder="0" 
   sandbox="allow-scripts allow-same-origin">
 </iframe>
+---
 
-[weiter](06Bricks.html)  
+### Dateien
+[Zip-Datei](05Leben.zip)  
+
+---
+
+### [weiter](06Bricks.html)  

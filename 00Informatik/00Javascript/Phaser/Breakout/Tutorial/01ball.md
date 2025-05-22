@@ -109,15 +109,13 @@ Außerdem ordnen wir das Sprite des `physics`-Attribut unseres Spieles zu.
   sandbox="allow-scripts allow-same-origin">
 </iframe>
 
-### Dateivorlagen (Rechte Maustaste, Link speichern unter)  
-
-[index.html](01Ball/index.html)    
-[style.css](01Ball/style.css)  
-[game.js](01Ball/game.js)  
-[ball.png](01Ball/assets/ball.png)  
 ---
 
-### [Weiter](01ball.html)  
+### Dateien
+
+[Zip-Datei](01Ball.zip)    
+
 
 ---
+
 ### [weiter](02Paddle.html)  

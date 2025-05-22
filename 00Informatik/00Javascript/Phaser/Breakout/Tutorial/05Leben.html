@@ -143,15 +143,15 @@
 <p>Jetzt sorgen wir dafür, dass der Spieler zu Beginn 3 Leben hat. Diese Leben werden oben links im Spiel als Text angezeigt. Wenn der Ball unten am Paddle vorbei fliegt, verliert der Spieler ein Leben. Sind alle Leben aufgebraucht, wird „Game Over“ angezeigt und das Spiel endet.</p>
 <hr>
 <h3 id="61-code-anpassungen-in-gamejs">6.1 Code-Anpassungen in <code>game.js</code></h3>
-<pre><code class="language-js">...
-
+<h3 id="611-variablen">6.1.1 Variablen</h3>
+<pre><code class="language-js">
   <span class="hljs-keyword">let</span> lives = <span class="hljs-number">3</span>;               <span class="hljs-comment">// Neue Variable für Leben</span>
   <span class="hljs-keyword">let</span> livesText;               <span class="hljs-comment">// Textobjekt für Anzeige Lives</span>
   <span class="hljs-keyword">let</span> gameOverText;            <span class="hljs-comment">// Textobjekt für Game Over</span>
   <span class="hljs-keyword">let</span> gameEnded = <span class="hljs-literal">false</span>;       <span class="hljs-comment">// Zustand, ob Spiel beendet ist</span>
-
-...
-
+</code></pre>
+<h3 id="612-create">6.1.2 Create</h3>
+<pre><code class="language-js">
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
 ...
     cursors = <span class="hljs-variable language_">this</span>.<span class="hljs-property">input</span>.<span class="hljs-property">keyboard</span>.<span class="hljs-title function_">createCursorKeys</span>();
@@ -173,7 +173,9 @@
 
  ...
   }
-
+</code></pre>
+<h3 id="613-update">6.1.3 Update</h3>
+<pre><code class="language-js">
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
     <span class="hljs-keyword">if</span> (gameEnded) {
       paddle.<span class="hljs-title function_">setVelocityX</span>(<span class="hljs-number">0</span>);
@@ -188,11 +190,9 @@
       <span class="hljs-title function_">loseLife</span>();
     }
   }
-
-  <span class="hljs-keyword">function</span> <span class="hljs-title function_">launchBall</span>(<span class="hljs-params"></span>) {
-  ...
-  }
-
+</code></pre>
+<h3 id="614-looselife">6.1.4 LooseLife</h3>
+<pre><code class="language-js">
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">loseLife</span>(<span class="hljs-params"></span>) {
     lives--;
     livesText.<span class="hljs-title function_">setText</span>(<span class="hljs-string">&#x27;Leben: &#x27;</span> + lives);
@@ -258,7 +258,11 @@ Mit der Variable <code>gameEnded</code> verhindern wir, dass das Spiel nach Game
   frameborder="0" 
   sandbox="allow-scripts allow-same-origin">
 </iframe>
-<p><a href="06Bricks.html">weiter</a></p>
+---
+<h3 id="dateien">Dateien</h3>
+<p><a href="05Leben.zip">Zip-Datei</a></p>
+<hr>
+<h3 id="weiter"><a href="06Bricks.html">weiter</a></h3>
 
             
             

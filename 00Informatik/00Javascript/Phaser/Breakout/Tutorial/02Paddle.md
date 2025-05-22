@@ -92,4 +92,9 @@ An dieser Stelle binden wir die x-Koordinate des Paddles direkt an die x-Koordin
 
 ---  
 
-[Weiter](03Squash.html)  
+### Dateien
+[Zip-Datei](02Paddle.zip)  
+
+---
+
+### [Weiter](03Squash.html)  

@@ -7,12 +7,16 @@ Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir daf√
 
 ### 5.1 Code-Anpassungen in `game.js`
 
+
+### 5.1.1 Variablen
 ```js
-  ...
+
   let ballLaunched = false;  // Neuer Zustand: Ball ist gestartet oder nicht
+```
 
-  ...
+### 5.1.2 Create
 
+```js
   function create() {
     ...
 
@@ -42,6 +46,10 @@ Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir daf√
 
     ...
     }
+```
+### 5.1.3 Update
+
+```js
 
   function update() {
     ...
@@ -68,7 +76,7 @@ Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir daf√
 
 ---
 
-### 5.3 Erl√§uterungen zu den Neuerungen
+### 5.2 Erl√§uterungen zu den Neuerungen
 
 - **`let ballLaunched = false;`**  
   Die globale Variable speichert den Zustand, ob der Ball bereits gestartet wurde oder noch auf dem Paddle liegt.
@@ -94,7 +102,7 @@ Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir daf√
 
 ---
 
-### 5.4 Live-Test
+### 5.3 Live-Test
 
 <iframe 
   src="04ClicktoStart/index.html" 
@@ -105,5 +113,9 @@ Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir daf√
 </iframe>
 
 ---
+### Dateien
+[Zip-Datei](04ClicktoStart.zip)
 
-[weiter](05Leben.html)  
+---
+
+### [weiter](05Leben.html)  

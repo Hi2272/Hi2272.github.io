@@ -7,7 +7,7 @@ Der Ball soll jetzt nicht mehr durch das Paddle hindurchfliegen, sondern dynamis
 
 ---
 
-### 4.2 Code-Anpassungen in `game.js`
+### 4.1 Code-Anpassungen in `game.js`
 
 ```js
 
@@ -52,7 +52,7 @@ Der Ball soll jetzt nicht mehr durch das Paddle hindurchfliegen, sondern dynamis
 
 ---
 
-### 4.3 Erläuterungen zum neuen Code
+### 4.2 Erläuterungen zum neuen Code
 
 #### `this.physics.add.collider(ball, paddle, ballPaddleCollision, null, this);`
 Registriert die Funktion **ballPaddleCollision** als  Kollisions-Handler-Funktion. Sie wird automatisch aufgerufen, wenn Ball und Paddle sich berühren.
@@ -68,7 +68,7 @@ ermittelt zunächst den horizontalen Abstand des Balls zum Mittelpunkt des Paddl
 - `ball.body.velocity.y = -speed * Math.cos(bounceAngle);` berechnet analog die y-Komponenten über die Cosinus-Funktion.
 ---
 
-### 4.4 Live-Test
+### 4.3 Live-Test
 
 <iframe 
   src="03Squash/index.html" 
@@ -78,4 +78,11 @@ ermittelt zunächst den horizontalen Abstand des Balls zum Mittelpunkt des Paddl
   sandbox="allow-scripts allow-same-origin">
 </iframe>
 
-[weiter](04ClicktoStart.html)  
+---
+### Datei
+
+[Zip-Datei](03Squash.zip)
+
+---
+
+### [weiter](04ClicktoStart.html)  
