@@ -151,4 +151,14 @@ Im nächsten Tutorial-Schritt fügen wir den Paddle und Ball zum Spiel hinzu und
 </iframe>
 
 
-[Weiter](01ball.html)  
+---
+
+### Dateivorlagen (Rechte Maustaste, Link speichern unter)  
+
+[index.html](00Start/index.html)    
+[style.css](00Start/style.css)  
+[game.js](00Start/game.js)  
+
+---
+
+### [Weiter](01ball.html)  

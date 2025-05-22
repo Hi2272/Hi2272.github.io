@@ -10,7 +10,7 @@ Im zweiten Schritt fügen wir unserem Breakout-Spiel den Ball hinzu. Dieser Ball
 
 Für dieses Beispiel kannst du dieses einfache Ball-Bild verwenden (ca. 16x16 Pixel, transparenter Hintergrund):
 
-![ball.png](https://raw.githubusercontent.com/photonstorm/phaser3-examples/master/public/assets/sprites/shinyball.png)
+![ball.png](01Ball/assets/ball.png)  
 
 Speichere die Datei als `ball.png` in einem Ordner namens `assets` im gleichen Verzeichnis wie deine anderen Dateien.
 
@@ -109,5 +109,15 @@ Außerdem ordnen wir das Sprite des `physics`-Attribut unseres Spieles zu.
   sandbox="allow-scripts allow-same-origin">
 </iframe>
 
+### Dateivorlagen (Rechte Maustaste, Link speichern unter)  
 
-[weiter](02Paddle.html)  
+[index.html](01Ball/index.html)    
+[style.css](01Ball/style.css)  
+[game.js](01Ball/game.js)  
+[ball.png](01Ball/assets/ball.png)  
+---
+
+### [Weiter](01ball.html)  
+
+---
+### [weiter](02Paddle.html)  
