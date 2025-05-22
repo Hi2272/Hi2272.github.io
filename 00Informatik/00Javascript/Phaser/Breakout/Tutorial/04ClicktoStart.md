@@ -2,52 +2,19 @@
 
 ## Schritt 5: Ball per Tastendruck/Maus starten
 
-Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir dafür, dass der Ball zunächst auf dem Paddle „liegt“ und erst nach einem Tastendruck (Leertaste) oder Mausklick losfliegt. Solange der Ball noch nicht gestartet ist, bewegt er sich synchron mit dem Paddle.
+Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir dafür, dass der Ball zunächst auf dem Paddle „liegt“ und erst nach einem Tastendruck (Leertaste) oder Mausklick losfliegt. Solange der Ball noch nicht gestartet ist, bewegt er sich synchron mit dem Paddle.   
+
 
 ### 5.1 Code-Anpassungen in `game.js`
 
 ```js
-window.onload = function() {
-  const config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    backgroundColor: '#000',
-    parent: 'game-container',
-    physics: {
-      default: 'arcade',
-      arcade: {
-        gravity: { y: 0 },
-        debug: false,
-      }
-    },
-    scene: {
-      preload: preload,
-      create: create,
-      update: update,
-    },
-  };
-
-  let ball;
-  let paddle;
-  let cursors;
+  ...
   let ballLaunched = false;  // Neuer Zustand: Ball ist gestartet oder nicht
 
-  const game = new Phaser.Game(config);
-
-  function preload() {
-    this.load.image('ball', 'assets/ball.png');
-    this.load.image('paddle', 'assets/paddle.png');
-  }
+  ...
 
   function create() {
-    const width = this.sys.game.config.width;
-    const height = this.sys.game.config.height;
-
-    // Paddle erstellen
-    paddle = this.physics.add.image(width / 2, height - 50, 'paddle');
-    paddle.setImmovable(true);
-    paddle.setCollideWorldBounds(true);
+    ...
 
     // Ball erstellen - Position zunächst auf dem Paddle
     ball = this.physics.add.image(paddle.x, paddle.y - paddle.height / 2 - 10, 'ball');
@@ -73,20 +40,11 @@ window.onload = function() {
       }
     });
 
-    // Kollisions-Callback zwischen Ball und Paddle
-    this.physics.add.collider(ball, paddle, ballPaddleCollision, null, this);
-  }
-
-  function update() {
-    // Paddle mit Pfeiltasten bewegen
-    if (cursors.left.isDown) {
-      paddle.setVelocityX(-300);
-    } else if (cursors.right.isDown) {
-      paddle.setVelocityX(300);
-    } else {
-      paddle.setVelocityX(0);
+    ...
     }
 
+  function update() {
+    ...
     // Solange der Ball nicht gestartet ist, wird er an das Paddle gekoppelt
     if (!ballLaunched) {
       ball.x = paddle.x;
@@ -102,16 +60,8 @@ window.onload = function() {
     ball.setVelocity(150, -300);
   }
 
-  // Kollisionsfunktion Ball-Paddle mit Winkelberechnung (aus Schritt 4)
   function ballPaddleCollision(ball, paddle) {
-    const relativeIntersectX = ball.x - paddle.x;
-    const normalizedIntersectX = relativeIntersectX / (paddle.width / 2);
-    const maxBounceAngle = Phaser.Math.DegToRad(75);
-    const bounceAngle = normalizedIntersectX * maxBounceAngle;
-    const speed = ball.body.velocity.length();
-
-    ball.body.velocity.x = speed * Math.sin(bounceAngle);
-    ball.body.velocity.y = -speed * Math.cos(bounceAngle);
+  ...
   }
 };
 ```
@@ -156,12 +106,4 @@ window.onload = function() {
 
 ---
 
-### Zusammenfassung
-
-Der Ball startet jetzt erst nach Eingabe und liegt vorher auf dem Paddle. Das gibt dem Spieler die Kontrolle über den Startzeitpunkt und macht das Spiel fairer.
-
-Im nächsten Schritt fügen wir erste Blöcke hinzu, die der Ball zerstören kann!
-
----
-
-Falls du Fragen hast, stehe ich gern zur Verfügung.
+[weiter](05Leben.html)  

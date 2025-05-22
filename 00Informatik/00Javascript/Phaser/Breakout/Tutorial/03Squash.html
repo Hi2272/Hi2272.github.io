@@ -147,72 +147,17 @@
 </ul>
 <hr>
 <h3 id="42-code-anpassungen-in-gamejs">4.2 Code-Anpassungen in <code>game.js</code></h3>
-<pre><code class="language-js"><span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
-  <span class="hljs-keyword">const</span> config = {
-    <span class="hljs-attr">type</span>: <span class="hljs-title class_">Phaser</span>.<span class="hljs-property">AUTO</span>,
-    <span class="hljs-attr">width</span>: <span class="hljs-number">800</span>,
-    <span class="hljs-attr">height</span>: <span class="hljs-number">600</span>,
-    <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&#x27;#000&#x27;</span>,
-    <span class="hljs-attr">parent</span>: <span class="hljs-string">&#x27;game-container&#x27;</span>,
-    <span class="hljs-attr">physics</span>: {
-      <span class="hljs-attr">default</span>: <span class="hljs-string">&#x27;arcade&#x27;</span>,
-      <span class="hljs-attr">arcade</span>: {
-        <span class="hljs-attr">gravity</span>: { <span class="hljs-attr">y</span>: <span class="hljs-number">0</span> },
-        <span class="hljs-attr">debug</span>: <span class="hljs-literal">false</span>,
-      }
-    },
-    <span class="hljs-attr">scene</span>: {
-      <span class="hljs-attr">preload</span>: preload,
-      <span class="hljs-attr">create</span>: create,
-      <span class="hljs-attr">update</span>: update,
-    },
-  };
-
-  <span class="hljs-keyword">let</span> ball;
-  <span class="hljs-keyword">let</span> paddle;
-  <span class="hljs-keyword">let</span> cursors;
-
-  <span class="hljs-keyword">const</span> game = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Phaser</span>.<span class="hljs-title class_">Game</span>(config);
-
-  <span class="hljs-keyword">function</span> <span class="hljs-title function_">preload</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;ball&#x27;</span>, <span class="hljs-string">&#x27;assets/ball.png&#x27;</span>);
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;paddle&#x27;</span>, <span class="hljs-string">&#x27;assets/paddle.png&#x27;</span>);
-  }
-
+<pre><code class="language-js">
+  ...
+ 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">const</span> width = <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">width</span>;
-    <span class="hljs-keyword">const</span> height = <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">height</span>;
-
-    <span class="hljs-comment">// Ball in der Mitte erstellen</span>
-    ball = <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">image</span>(width / <span class="hljs-number">2</span>, height / <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;ball&#x27;</span>);
-    ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">150</span>, <span class="hljs-number">150</span>);
-    ball.<span class="hljs-title function_">setCollideWorldBounds</span>(<span class="hljs-literal">true</span>);
-    ball.<span class="hljs-title function_">setBounce</span>(<span class="hljs-number">1</span>);
-
-    <span class="hljs-comment">// Paddle an unteren Rand setzen, mittig horizontal</span>
-    paddle = <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">image</span>(width / <span class="hljs-number">2</span>, height - <span class="hljs-number">50</span>, <span class="hljs-string">&#x27;paddle&#x27;</span>);
-    paddle.<span class="hljs-title function_">setImmovable</span>(<span class="hljs-literal">true</span>);
-    paddle.<span class="hljs-title function_">setCollideWorldBounds</span>(<span class="hljs-literal">true</span>);
-
-    cursors = <span class="hljs-variable language_">this</span>.<span class="hljs-property">input</span>.<span class="hljs-property">keyboard</span>.<span class="hljs-title function_">createCursorKeys</span>();
-
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">input</span>.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;pointermove&#x27;</span>, <span class="hljs-function"><span class="hljs-params">pointer</span> =&gt;</span> {
-      paddle.<span class="hljs-property">x</span> = <span class="hljs-title class_">Phaser</span>.<span class="hljs-property">Math</span>.<span class="hljs-title class_">Clamp</span>(pointer.<span class="hljs-property">x</span>, paddle.<span class="hljs-property">width</span> / <span class="hljs-number">2</span>, width - paddle.<span class="hljs-property">width</span> / <span class="hljs-number">2</span>);
-    });
-
+    ...
     <span class="hljs-comment">// Neue Ergänzung: Kollision zwischen Ball und Paddle</span>
     <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">collider</span>(ball, paddle, ballPaddleCollision, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">this</span>);
   }
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-comment">// Paddle mit Pfeiltasten bewegen</span>
-    <span class="hljs-keyword">if</span> (cursors.<span class="hljs-property">left</span>.<span class="hljs-property">isDown</span>) {
-      paddle.<span class="hljs-title function_">setVelocityX</span>(-<span class="hljs-number">300</span>);
-    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cursors.<span class="hljs-property">right</span>.<span class="hljs-property">isDown</span>) {
-      paddle.<span class="hljs-title function_">setVelocityX</span>(<span class="hljs-number">300</span>);
-    } <span class="hljs-keyword">else</span> {
-      paddle.<span class="hljs-title function_">setVelocityX</span>(<span class="hljs-number">0</span>);
-    }
+    ...
   }
 
   <span class="hljs-comment">/**

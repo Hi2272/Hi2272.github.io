@@ -21,46 +21,23 @@ Wir erweitern den Code um das Paddle, das mit den Pfeiltasten oder mit der Maus 
 ```js
 window.onload = function() {
   const config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    backgroundColor: '#000',
-    parent: 'game-container',
-    physics: {
-      default: 'arcade',
-      arcade: {
-        gravity: { y: 0 },
-        debug: false,
-      }
-    },
-    scene: {
-      preload: preload,
-      create: create,
-      update: update,
-    },
+    ...
   };
 
   let ball;
+  // Variablen für paddle und Cursor-Tasten
   let paddle;
   let cursors;
 
   const game = new Phaser.Game(config);
 
   function preload() {
-    this.load.image('ball', 'assets/ball.png');
+    ...
     this.load.image('paddle', 'assets/paddle.png');
   }
 
   function create() {
-    const width = this.sys.game.config.width;
-    const height = this.sys.game.config.height;
-
-    // Ball in der Mitte erstellen
-    ball = this.physics.add.image(width / 2, height / 2, 'ball');
-    ball.setVelocity(150, 150);
-    ball.setCollideWorldBounds(true);
-    ball.setBounce(1);
-
+    ...
     // Paddle an unteren Rand setzen, mittig horizontal
     paddle = this.physics.add.image(width / 2, height - 50, 'paddle');
     paddle.setImmovable(true);         // Paddle soll sich nicht durch Kollision bewegen
@@ -112,3 +89,7 @@ An dieser Stelle binden wir die x-Koordinate des Paddles direkt an die x-Koordin
   frameborder="0" 
   sandbox="allow-scripts allow-same-origin">
 </iframe>
+
+---  
+
+[Weiter](03Squash.html)  

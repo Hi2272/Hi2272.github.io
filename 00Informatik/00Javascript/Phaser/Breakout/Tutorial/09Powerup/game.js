@@ -307,7 +307,7 @@ window.onload = function() {
     powerUp.setVisible(true);
   }
 
-  // PowerUp fleht nach unten, wenn es Paddle berührt
+  // PowerUp gibt ein Leben mehr, wenn es Paddel berührt
   function collectPowerUp(sphere, paddle) {
     resetPowerUp();
 

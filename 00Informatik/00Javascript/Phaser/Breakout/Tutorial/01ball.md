@@ -52,9 +52,12 @@ window.onload = function() {
   }
 
   function create() {
-    // Erstelle den Ball in der Mitte des Spielfeldes
-    ball = this.physics.add.image(400, 300, 'ball');
+    const width = this.sys.game.config.width;
+    const height = this.sys.game.config.height;
 
+    // Ball in der Mitte erstellen
+    ball = this.physics.add.image(width / 2, height / 2, 'ball');
+  
     // Ball bewegt sich zu Beginn diagonal mit einer Geschwindigkeit von 150
     ball.setVelocity(150, 150);
 

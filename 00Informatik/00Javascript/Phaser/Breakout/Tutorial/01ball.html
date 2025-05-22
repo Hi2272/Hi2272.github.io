@@ -180,9 +180,12 @@
   }
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-comment">// Erstelle den Ball in der Mitte des Spielfeldes</span>
-    ball = <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">image</span>(<span class="hljs-number">400</span>, <span class="hljs-number">300</span>, <span class="hljs-string">&#x27;ball&#x27;</span>);
+    <span class="hljs-keyword">const</span> width = <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">width</span>;
+    <span class="hljs-keyword">const</span> height = <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">height</span>;
 
+    <span class="hljs-comment">// Ball in der Mitte erstellen</span>
+    ball = <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">image</span>(width / <span class="hljs-number">2</span>, height / <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;ball&#x27;</span>);
+  
     <span class="hljs-comment">// Ball bewegt sich zu Beginn diagonal mit einer Geschwindigkeit von 150</span>
     ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">150</span>, <span class="hljs-number">150</span>);
 
