@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Breakout-Game Tutorial mit Phaser&period;io</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="breakout-game-tutorial-mit-phaserio">Breakout-Game Tutorial mit <a href="http://Phaser.io">Phaser.io</a></h1>
+<h2 id="schritt-2-ball-hinzufügen-und-an-spielfeldränder-abprallen-lassen">Schritt 2: Ball hinzufügen und an Spielfeldränder abprallen lassen</h2>
+<p>Im zweiten Schritt fügen wir unserem Breakout-Spiel den Ball hinzu. Dieser Ball wird aus dem Asset <code>ball.png</code> geladen und soll von allen Spielfeldrändern abprallen, damit er innerhalb des Spielfeldes bleibt.</p>
+<hr>
+<h3 id="21-vorbereitung-asset-ballpng">2.1 Vorbereitung: Asset <code>ball.png</code></h3>
+<p>Für dieses Beispiel kannst du dieses einfache Ball-Bild verwenden (ca. 16x16 Pixel, transparenter Hintergrund):</p>
+<p><img src="01Ball/assets/ball.png" alt="ball.png"></p>
+<p>Speichere die Datei als <code>ball.png</code> in einem Ordner namens <code>assets</code> im gleichen Verzeichnis wie deine anderen Dateien.</p>
+<hr>
+<h3 id="22-code-anpassung-in-gamejs">2.2 Code-Anpassung in <code>game.js</code></h3>
+<p>Wir passen die Phaser-Szene wie folgt an:</p>
+<pre><code class="language-js"><span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> config = {
+        <span class="hljs-attr">type</span>: <span class="hljs-title class_">Phaser</span>.<span class="hljs-property">AUTO</span>,
+        <span class="hljs-attr">width</span>: <span class="hljs-number">800</span>,
+        <span class="hljs-attr">height</span>: <span class="hljs-number">600</span>,
+        <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&#x27;#000&#x27;</span>,
+        <span class="hljs-attr">parent</span>: <span class="hljs-string">&#x27;game-container&#x27;</span>,
+        <span class="hljs-attr">physics</span>: {                      
+            <span class="hljs-attr">default</span>: <span class="hljs-string">&#x27;arcade&#x27;</span>,           
+            <span class="hljs-attr">arcade</span>: {
+              <span class="hljs-attr">gravity</span>: { <span class="hljs-attr">y</span>: <span class="hljs-number">0</span> },
+              <span class="hljs-attr">debug</span>: <span class="hljs-literal">false</span>
+            }
+          },
+        <span class="hljs-attr">scene</span>: {
+          <span class="hljs-attr">preload</span>: preload,
+          <span class="hljs-attr">create</span>: create,
+          <span class="hljs-attr">update</span>: update
+        },
+      };
+
+  <span class="hljs-keyword">let</span> ball;
+
+  <span class="hljs-keyword">const</span> game = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Phaser</span>.<span class="hljs-title class_">Game</span>(config);
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">preload</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-comment">// Lade den Ball als Bild-Asset</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;ball&#x27;</span>, <span class="hljs-string">&#x27;assets/ball.png&#x27;</span>);
+  }
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> width = <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">width</span>;
+    <span class="hljs-keyword">const</span> height = <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">height</span>;
+
+    <span class="hljs-comment">// Ball in der Mitte erstellen</span>
+    ball = <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">image</span>(width / <span class="hljs-number">2</span>, height / <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;ball&#x27;</span>);
+  
+    <span class="hljs-comment">// Ball bewegt sich zu Beginn diagonal mit einer Geschwindigkeit von 150</span>
+    ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">150</span>, <span class="hljs-number">150</span>);
+
+    <span class="hljs-comment">// Ball prallt an den Spielfeldgrenzen ab</span>
+    ball.<span class="hljs-title function_">setCollideWorldBounds</span>(<span class="hljs-literal">true</span>);
+
+    <span class="hljs-comment">// Ball bleibt nicht stehen, sondern prallt ab</span>
+    ball.<span class="hljs-title function_">setBounce</span>(<span class="hljs-number">1</span>);
+  }
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-comment">// Im Moment keine zusätzliche Logik notwendig</span>
+  }
+};
+</code></pre>
+<hr>
+<h3 id="erläuterung-des-codes">Erläuterung des Codes</h3>
+<ul>
+<li><code>physics: {...</code><br>
+<code>physics</code> übernimmt die gesamte Steuerung der Spielphysik für unsere Sprites, d.h. ihre Bewegung und ihr Verhalten bei der Kollision mit den Wänden oder anderen Objekten.
+Wir verwenden in diesem Spiel den <code>arcade</code>-Modus, der für einfache 2D-Spiele optimiert ist.</li>
+<li><code>gravity: { y: 0 },</code><br>
+Hiermit schalten wir die Schwerkraft aus - unser Ball soll sich im schwerelosen Raum bewegen.<br>
+Bei einem Platformer-Game würden wir y:300 wählen, damit die Schwerkraft unsere Objekte nach unten zieht.</li>
+<li><code>debug: false</code><br>
+Im Debug-Modus werden zusätzliche Informationen zu den Sprites eingeblendet, die bei der Fehlersuche helfen. Wir benötigen dies nicht und schalten den Modus aus.</li>
+<li><code>let ball</code><br>
+Wir erzeugen eine globale Variable ball, in dem wir später die Referenz auf unseren Ball speichern.</li>
+<li><code>preload()</code><br>
+<code>this.load.image('ball', 'assets/ball.png');</code> lädt das Bild <code>ball.png</code> und ordnet ihm die Referenz <code>ball</code> zu. Im weiteren Code können wir das Bild jetzt über diese Referenz ansprechen.</li>
+<li><code>create()</code>
+<ul>
+<li>Mit <code>ball = this.physics.add.image(400, 300, 'ball');</code>
+erstellen wir Sprite namens <code>ball</code> und setzen es in die Mitte des Spielfeldes. Wir verwenden die Referenz auf <code>ball</code>, die wir in <code>preload()</code> definiert haben, um dem Sprite ein Bild zuzuordnen.<br>
+Außerdem ordnen wir das Sprite des <code>physics</code>-Attribut unseres Spieles zu.</li>
+<li>Die Methode <code>setVelocity(150, 150)</code> legt fest, dass der Ball diagonal nach rechts unten startet.</li>
+<li>Mit <code>setCollideWorldBounds(true)</code> wird dafür gesorgt, dass der Ball an den Spielfeldrändern erkannt wird.</li>
+<li><code>setBounce(1)</code> sorgt für eine elastische Kollision, d.h. der Ball prallt exakt im gleichen Winkel ab.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="live-test">Live-Test</h3>
+<iframe 
+  src="01Ball/index.html" 
+  width="820" 
+  height="700" 
+  frameborder="0" 
+  sandbox="allow-scripts allow-same-origin">
+</iframe>
+<hr>
+<h3 id="dateien">Dateien</h3>
+<p><a href="01Ball.zip">Zip-Datei</a></p>
+<hr>
+<h3 id="weiter"><a href="02Paddle.html">weiter</a></h3>
+
+            
+            
+        </body>
+        </html>

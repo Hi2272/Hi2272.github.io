@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Breakout-Game Tutorial mit Phaser&period;io</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="breakout-game-tutorial-mit-phaserio">Breakout-Game Tutorial mit <a href="http://Phaser.io">Phaser.io</a></h1>
+<h2 id="schritt-4-ball-prallt-vom-paddle-ab">Schritt 4: Ball prallt vom Paddle ab</h2>
+<p>Der Ball soll jetzt nicht mehr durch das Paddle hindurchfliegen, sondern dynamisch abprallen:</p>
+<ul>
+<li>Trifft der Ball das Paddle in der Mitte, prallt er senkrecht nach oben ab.</li>
+<li>Trifft er das Paddle seitlich, wird der Ball entsprechend schräg abgelenkt.</li>
+</ul>
+<hr>
+<h3 id="41-code-anpassungen-in-gamejs">4.1 Code-Anpassungen in <code>game.js</code></h3>
+<pre><code class="language-js">
+  ...
+ 
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
+    ...
+    <span class="hljs-comment">// Neue Ergänzung: Kollision zwischen Ball und Paddle</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">collider</span>(ball, paddle, ballPaddleCollision, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">this</span>);
+  }
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
+    ...
+  }
+
+  <span class="hljs-comment">/**
+   * Funktion, die ausgeführt wird, wenn Ball das Paddle trifft.
+   * Berechnet die neue Reflexionsrichtung abhängig vom Treffpunkt
+   */</span>
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">ballPaddleCollision</span>(<span class="hljs-params">ball, paddle</span>) {
+    <span class="hljs-comment">// Berechne Abstand X des Balls vom Mittelpunkt des Paddles</span>
+    <span class="hljs-keyword">const</span> relativeIntersectX = ball.<span class="hljs-property">x</span> - paddle.<span class="hljs-property">x</span>;
+
+    <span class="hljs-comment">// Normiere diesen Wert auf [-1, 1]</span>
+    <span class="hljs-keyword">const</span> normalizedIntersectX = relativeIntersectX / (paddle.<span class="hljs-property">width</span> / <span class="hljs-number">2</span>);
+
+    <span class="hljs-comment">// Maximaler Winkel in Grad (z.B. 75° von Vertikal)</span>
+    <span class="hljs-keyword">const</span> maxBounceAngle = <span class="hljs-title class_">Phaser</span>.<span class="hljs-property">Math</span>.<span class="hljs-title class_">DegToRad</span>(<span class="hljs-number">75</span>);
+
+    <span class="hljs-comment">// Berechne Winkel zwischen -maxBounceAngle (links) und +maxBounceAngle (rechts)</span>
+    <span class="hljs-keyword">const</span> bounceAngle = normalizedIntersectX * maxBounceAngle;
+
+    <span class="hljs-comment">// Geschwindigkeit des Balls behalten</span>
+    <span class="hljs-keyword">const</span> speed = ball.<span class="hljs-property">body</span>.<span class="hljs-property">velocity</span>.<span class="hljs-title function_">length</span>();
+
+    <span class="hljs-comment">// Neue Geschwindigkeitskomponenten setzen</span>
+    ball.<span class="hljs-property">body</span>.<span class="hljs-property">velocity</span>.<span class="hljs-property">x</span> = speed * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sin</span>(bounceAngle);
+    ball.<span class="hljs-property">body</span>.<span class="hljs-property">velocity</span>.<span class="hljs-property">y</span> = -speed * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">cos</span>(bounceAngle);
+  }
+};
+</code></pre>
+<hr>
+<h3 id="42-erläuterungen-zum-neuen-code">4.2 Erläuterungen zum neuen Code</h3>
+<h4 id="thisphysicsaddcolliderball-paddle-ballpaddlecollision-null-this"><code>this.physics.add.collider(ball, paddle, ballPaddleCollision, null, this);</code></h4>
+<p>Registriert die Funktion <strong>ballPaddleCollision</strong> als  Kollisions-Handler-Funktion. Sie wird automatisch aufgerufen, wenn Ball und Paddle sich berühren.</p>
+<h4 id="funktion-ballpaddlecollisionball-paddle">Funktion <code>ballPaddleCollision(ball, paddle)</code></h4>
+<p>Die Funktion berechnet zunächst ziemlich aufwändig den Winkel, in dem der Ball zurückprallt:</p>
+<ol>
+<li><code>const relativeIntersectX = ball.x - paddle.x;</code>
+ermittelt zunächst den horizontalen Abstand des Balls zum Mittelpunkt des Paddles.</li>
+<li><code>const normalizedIntersectX = relativeIntersectX / (paddle.width / 2);</code> normiert diesen Wert auf den Bereich [-1, 1], wobei <code>-1</code> die linke Kante, <code>0</code> die Mitte und <code>1</code> die rechte Kante repräsentiert.</li>
+</ol>
+<ul>
+<li><code>const bounceAngle = normalizedIntersectX * maxBounceAngle;</code> verwendet diesen Wert, um den Winkel des zurückprallenden Balls zu berechnen. So erzeugen wir eine Drehung des Balls abhängig vom Trefferpunkt.</li>
+<li><code>ball.body.velocity.x = speed * Math.sin(bounceAngle);</code> berechnet die x-Kompononente des Winkels über die Sinus-Funktion.</li>
+<li><code>ball.body.velocity.y = -speed * Math.cos(bounceAngle);</code> berechnet analog die y-Komponenten über die Cosinus-Funktion.</li>
+</ul>
+<hr>
+<h3 id="43-live-test">4.3 Live-Test</h3>
+<iframe 
+  src="03Squash/index.html" 
+  width="820" 
+  height="700" 
+  frameborder="0" 
+  sandbox="allow-scripts allow-same-origin">
+</iframe>
+<hr>
+<h3 id="datei">Datei</h3>
+<p><a href="03Squash.zip">Zip-Datei</a></p>
+<hr>
+<h3 id="weiter"><a href="04ClicktoStart.html">weiter</a></h3>
+
+            
+            
+        </body>
+        </html>

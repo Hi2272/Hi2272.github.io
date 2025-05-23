@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Breakout-Game Tutorial mit Phaser&period;io</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="breakout-game-tutorial-mit-phaserio">Breakout-Game Tutorial mit <a href="http://Phaser.io">Phaser.io</a></h1>
+<h2 id="schritt-9-levelwechsel">Schritt 9: Levelwechsel</h2>
+<p>In diesem Schritt ergänzen wir unser Breakout-Spiel so, dass die Anzahl der noch zerstörbaren Steine (Bricks) gezählt wird. Sobald alle zerstörbaren Bricks verschwunden sind, wird das nächste Level gestartet.</p>
+<hr>
+<h3 id="91-neue-level-dateien-anlegen">9.1 Neue Level-Dateien anlegen</h3>
+<p>Lege mindestens zwei Level-Dateien an, z.B. <code>assets/level1.json</code> und <code>assets/level2.json</code>, analog zu den bisherigen.</p>
+<p>Beispiel <code>assets/level1.json</code> (nur Steintyp 1):</p>
+<pre><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;layout&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Beispiel <code>assets/level2.json</code> (mit unterschiedlichen Bricktypen, wie Schritt 8):</p>
+<pre><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;layout&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Du kannst beliebig viele Level anlegen (z.B. level3.json, ...), beachte aber unten die maximale Level-Anzahl.</p>
+<hr>
+<h3 id="92-erweiterung-des-codes-in-gamejs">9.2 Erweiterung des Codes in <code>game.js</code></h3>
+<h4 id="übersicht-der-wichtigsten-änderungen">Übersicht der wichtigsten Änderungen</h4>
+<ul>
+<li>Verwaltung aktuelles Level <code>currentLevel</code>, maximale Levelanzahl <code>maxLevel</code></li>
+<li>Dynamisches Laden der Leveldaten per Schlüssel <code>levelX</code> (z.B. <code>level1</code>, <code>level2</code>, ...)</li>
+<li>Zählschleife der noch zerstörbaren Bricks (Typ 1,2,3) nach jedem Treffer</li>
+<li>Automatischer Levelwechsel, wenn alle zerstörbaren Bricks entfernt sind</li>
+<li>Anzeige einer Gratulationsnachricht am Spielende</li>
+</ul>
+<hr>
+<h3 id="93-vollständiger-geändertererweiterter-codeausschnitt-für-gamejs">9.3 Vollständiger geänderter/erweiterter Codeausschnitt für <code>game.js</code></h3>
+<pre><code class="language-js"><span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> config = {
+    <span class="hljs-attr">type</span>: <span class="hljs-title class_">Phaser</span>.<span class="hljs-property">AUTO</span>,
+    <span class="hljs-attr">width</span>: <span class="hljs-number">800</span>,
+    <span class="hljs-attr">height</span>: <span class="hljs-number">600</span>,
+    <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&#x27;#000&#x27;</span>,
+    <span class="hljs-attr">parent</span>: <span class="hljs-string">&#x27;game-container&#x27;</span>,
+    <span class="hljs-attr">physics</span>: {
+      <span class="hljs-attr">default</span>: <span class="hljs-string">&#x27;arcade&#x27;</span>,
+      <span class="hljs-attr">arcade</span>: {
+        <span class="hljs-attr">gravity</span>: { <span class="hljs-attr">y</span>: <span class="hljs-number">0</span> },
+        <span class="hljs-attr">debug</span>: <span class="hljs-literal">false</span>,
+      }
+    },
+    <span class="hljs-attr">scene</span>: {
+      <span class="hljs-attr">preload</span>: preload,
+      <span class="hljs-attr">create</span>: create,
+      <span class="hljs-attr">update</span>: update,
+    },
+  };
+
+  <span class="hljs-keyword">let</span> ball;
+  <span class="hljs-keyword">let</span> paddle;
+  <span class="hljs-keyword">let</span> cursors;
+  <span class="hljs-keyword">let</span> ballLaunched = <span class="hljs-literal">false</span>;
+
+  <span class="hljs-keyword">let</span> lives = <span class="hljs-number">3</span>;
+  <span class="hljs-keyword">let</span> livesText;
+  <span class="hljs-keyword">let</span> gameOverText;
+  <span class="hljs-keyword">let</span> gameEnded = <span class="hljs-literal">false</span>;
+
+  <span class="hljs-keyword">let</span> bricks;
+  <span class="hljs-keyword">let</span> brickHealth = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
+
+  <span class="hljs-comment">// Levelmanagement: Start bei Level 1, max Level 2 (anpassbar)</span>
+  <span class="hljs-keyword">let</span> currentLevel = <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">const</span> maxLevel = <span class="hljs-number">2</span>;
+  <span class="hljs-keyword">let</span> levelText;
+
+  <span class="hljs-keyword">let</span> bricksRemaining = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">let</span> bricksText;
+  <span class="hljs-keyword">let</span> congratsText;
+
+  <span class="hljs-keyword">const</span> game = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Phaser</span>.<span class="hljs-title class_">Game</span>(config);
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">preload</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;ball&#x27;</span>, <span class="hljs-string">&#x27;assets/ball.png&#x27;</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;paddle&#x27;</span>, <span class="hljs-string">&#x27;assets/paddle.png&#x27;</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">4</span>; i++) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;brick&#x27;</span> + i, <span class="hljs-string">&#x27;assets/brick&#x27;</span> + i + <span class="hljs-string">&#x27;.png&#x27;</span>);
+    }
+
+    <span class="hljs-comment">// Lade alle Leveldateien im Voraus (kann auch on-demand optimiert werden)</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> lvl = <span class="hljs-number">1</span>; lvl &lt;= maxLevel; lvl++) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">json</span>(<span class="hljs-string">&#x27;level&#x27;</span> + lvl, <span class="hljs-string">&#x27;assets/level&#x27;</span> + lvl + <span class="hljs-string">&#x27;.json&#x27;</span>);
+    }
+
+  }
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> width = <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">width</span>;
+    <span class="hljs-keyword">const</span> height = <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">height</span>;
+
+    paddle = <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">image</span>(width / <span class="hljs-number">2</span>, height - <span class="hljs-number">100</span>, <span class="hljs-string">&#x27;paddle&#x27;</span>);
+    paddle.<span class="hljs-title function_">setImmovable</span>(<span class="hljs-literal">true</span>);
+    paddle.<span class="hljs-title function_">setCollideWorldBounds</span>(<span class="hljs-literal">true</span>);
+
+    ball = <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">image</span>(paddle.<span class="hljs-property">x</span>, paddle.<span class="hljs-property">y</span> - paddle.<span class="hljs-property">height</span> / <span class="hljs-number">2</span> - <span class="hljs-number">10</span>, <span class="hljs-string">&#x27;ball&#x27;</span>);
+    ball.<span class="hljs-title function_">setCollideWorldBounds</span>(<span class="hljs-literal">true</span>);
+    ball.<span class="hljs-title function_">setBounce</span>(<span class="hljs-number">1</span>);
+    ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+
+    cursors = <span class="hljs-variable language_">this</span>.<span class="hljs-property">input</span>.<span class="hljs-property">keyboard</span>.<span class="hljs-title function_">createCursorKeys</span>();
+
+    livesText = <span class="hljs-variable language_">this</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">text</span>(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-string">&#x27;Leben: 3&#x27;</span>, {
+      <span class="hljs-attr">font</span>: <span class="hljs-string">&#x27;20px Arial&#x27;</span>,
+      <span class="hljs-attr">fill</span>: <span class="hljs-string">&#x27;#ffffff&#x27;</span>,
+    });
+
+    bricksText = <span class="hljs-variable language_">this</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">text</span>(<span class="hljs-number">10</span>, <span class="hljs-number">40</span>, <span class="hljs-string">&#x27;Verbleibende Steine: 0&#x27;</span>, {
+      <span class="hljs-attr">font</span>: <span class="hljs-string">&#x27;20px Arial&#x27;</span>,
+      <span class="hljs-attr">fill</span>: <span class="hljs-string">&#x27;#ffffff&#x27;</span>,
+    });
+
+    levelText = <span class="hljs-variable language_">this</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">text</span>(
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">width</span> - <span class="hljs-number">10</span>, <span class="hljs-comment">// X-Position: rechts innen</span>
+      <span class="hljs-number">10</span>,                              <span class="hljs-comment">// Y-Position: 10 px von oben</span>
+      <span class="hljs-string">&#x27;Level: &#x27;</span> + currentLevel,        <span class="hljs-comment">// Starttext</span>
+      {
+        <span class="hljs-attr">font</span>: <span class="hljs-string">&#x27;20px Arial&#x27;</span>,
+        <span class="hljs-attr">fill</span>: <span class="hljs-string">&#x27;#ffffff&#x27;</span>,
+      }
+    );
+
+    levelText.<span class="hljs-title function_">setOrigin</span>(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>); <span class="hljs-comment">// Rechts oben ausrichten</span>
+
+    gameOverText = <span class="hljs-variable language_">this</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">text</span>(width / <span class="hljs-number">2</span>, height / <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;GAME OVER&#x27;</span>, {
+      <span class="hljs-attr">font</span>: <span class="hljs-string">&#x27;50px Arial&#x27;</span>,
+      <span class="hljs-attr">fill</span>: <span class="hljs-string">&#x27;#ff0000&#x27;</span>,
+      <span class="hljs-attr">fontStyle</span>: <span class="hljs-string">&#x27;bold&#x27;</span>,
+    });
+    gameOverText.<span class="hljs-title function_">setOrigin</span>(<span class="hljs-number">0.5</span>);
+    gameOverText.<span class="hljs-title function_">setVisible</span>(<span class="hljs-literal">false</span>);
+
+    congratsText = <span class="hljs-variable language_">this</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">text</span>(width / <span class="hljs-number">2</span>, height / <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Gratulation,\ndu hast das Spiel erfolgreich beendet!&#x27;</span>, {
+      <span class="hljs-attr">font</span>: <span class="hljs-string">&#x27;40px Arial&#x27;</span>,
+      <span class="hljs-attr">fill</span>: <span class="hljs-string">&#x27;#00ff00&#x27;</span>,
+      <span class="hljs-attr">fontStyle</span>: <span class="hljs-string">&#x27;bold&#x27;</span>,
+      <span class="hljs-attr">align</span>: <span class="hljs-string">&#x27;center&#x27;</span>,
+    });
+    congratsText.<span class="hljs-title function_">setOrigin</span>(<span class="hljs-number">0.5</span>);
+    congratsText.<span class="hljs-title function_">setVisible</span>(<span class="hljs-literal">false</span>);
+
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">input</span>.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;pointerdown&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">if</span> (!ballLaunched &amp;&amp; !gameEnded) {
+        <span class="hljs-title function_">launchBall</span>();
+      }
+    });
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">input</span>.<span class="hljs-property">keyboard</span>.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;keydown-SPACE&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">if</span> (!ballLaunched &amp;&amp; !gameEnded) {
+        <span class="hljs-title function_">launchBall</span>();
+      }
+    });
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">input</span>.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;pointermove&#x27;</span>, <span class="hljs-function"><span class="hljs-params">pointer</span> =&gt;</span> {
+      paddle.<span class="hljs-property">x</span> = <span class="hljs-title class_">Phaser</span>.<span class="hljs-property">Math</span>.<span class="hljs-title class_">Clamp</span>(pointer.<span class="hljs-property">x</span>, paddle.<span class="hljs-property">width</span> / <span class="hljs-number">2</span>, width - paddle.<span class="hljs-property">width</span> / <span class="hljs-number">2</span>);
+    });
+
+    <span class="hljs-comment">// Erster Levelaufbau</span>
+    loadLevel.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, currentLevel);
+
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">collider</span>(ball, paddle, ballPaddleCollision, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">this</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">collider</span>(ball, bricks, ballBrickCollision, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">this</span>);
+  }
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">if</span> (gameEnded) {
+      paddle.<span class="hljs-title function_">setVelocityX</span>(<span class="hljs-number">0</span>);
+      ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+      <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (cursors.<span class="hljs-property">left</span>.<span class="hljs-property">isDown</span>) {
+      paddle.<span class="hljs-title function_">setVelocityX</span>(-<span class="hljs-number">300</span>);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cursors.<span class="hljs-property">right</span>.<span class="hljs-property">isDown</span>) {
+      paddle.<span class="hljs-title function_">setVelocityX</span>(<span class="hljs-number">300</span>);
+    } <span class="hljs-keyword">else</span> {
+      paddle.<span class="hljs-title function_">setVelocityX</span>(<span class="hljs-number">0</span>);
+    }
+
+    <span class="hljs-keyword">if</span> (!ballLaunched) {
+      ball.<span class="hljs-property">x</span> = paddle.<span class="hljs-property">x</span>;
+      ball.<span class="hljs-property">y</span> = paddle.<span class="hljs-property">y</span> - paddle.<span class="hljs-property">height</span> / <span class="hljs-number">2</span> - <span class="hljs-number">10</span>;
+      ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    }
+
+    <span class="hljs-keyword">if</span> (ball.<span class="hljs-property">y</span> &gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">height</span> - ball.<span class="hljs-property">height</span>) {
+      <span class="hljs-title function_">loseLife</span>();
+    }
+  }
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">launchBall</span>(<span class="hljs-params"></span>) {
+    ballLaunched = <span class="hljs-literal">true</span>;
+    ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">150</span>, -<span class="hljs-number">300</span>);
+  }
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">loseLife</span>(<span class="hljs-params"></span>) {
+    lives--;
+    livesText.<span class="hljs-title function_">setText</span>(<span class="hljs-string">&#x27;Leben: &#x27;</span> + lives);
+
+    <span class="hljs-keyword">if</span> (lives &gt; <span class="hljs-number">0</span>) {
+      ballLaunched = <span class="hljs-literal">false</span>;
+      ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+      ball.<span class="hljs-property">x</span> = paddle.<span class="hljs-property">x</span>;
+      ball.<span class="hljs-property">y</span> = paddle.<span class="hljs-property">y</span> - paddle.<span class="hljs-property">height</span> / <span class="hljs-number">2</span> - <span class="hljs-number">10</span>;
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-title function_">gameOver</span>();
+    }
+  }
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">gameOver</span>(<span class="hljs-params"></span>) {
+    gameEnded = <span class="hljs-literal">true</span>;
+    ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    paddle.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    gameOverText.<span class="hljs-title function_">setVisible</span>(<span class="hljs-literal">true</span>);
+  }
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">loadLevel</span>(<span class="hljs-params">levelNumber</span>) {
+    <span class="hljs-keyword">if</span> (bricks) {
+      bricks.<span class="hljs-title function_">clear</span>(<span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>);
+    }
+    brickHealth.<span class="hljs-title function_">clear</span>();
+    bricks = <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">staticGroup</span>();
+
+    <span class="hljs-keyword">const</span> width = <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">width</span>;
+    <span class="hljs-keyword">const</span> height = <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">height</span>;
+
+    <span class="hljs-keyword">const</span> levelKey = <span class="hljs-string">&#x27;level&#x27;</span> + levelNumber;
+    <span class="hljs-keyword">const</span> levelData = <span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-property">json</span>.<span class="hljs-title function_">get</span>(levelKey).<span class="hljs-property">layout</span>;
+
+    <span class="hljs-keyword">const</span> brickWidth = width * <span class="hljs-number">0.09</span>;
+    <span class="hljs-keyword">const</span> brickHeight = height * <span class="hljs-number">0.05</span>;
+    <span class="hljs-keyword">const</span> offsetTop = height * <span class="hljs-number">0.10</span>;
+    <span class="hljs-keyword">const</span> offsetLeft = (width - (brickWidth * levelData[<span class="hljs-number">0</span>].<span class="hljs-property">length</span>)) / <span class="hljs-number">2</span>;
+
+    bricksRemaining = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> row = <span class="hljs-number">0</span>; row &lt; levelData.<span class="hljs-property">length</span>; row++) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> col = <span class="hljs-number">0</span>; col &lt; levelData[row].<span class="hljs-property">length</span>; col++) {
+        <span class="hljs-keyword">const</span> brickType = levelData[row][col];
+        <span class="hljs-keyword">if</span> (brickType &gt;= <span class="hljs-number">1</span> &amp;&amp; brickType &lt;= <span class="hljs-number">4</span>) {
+          <span class="hljs-keyword">const</span> brickX = offsetLeft + col * brickWidth + brickWidth / <span class="hljs-number">2</span>;
+          <span class="hljs-keyword">const</span> brickY = offsetTop + row * brickHeight + brickHeight / <span class="hljs-number">2</span>;
+          <span class="hljs-keyword">const</span> brick = bricks.<span class="hljs-title function_">create</span>(brickX, brickY, <span class="hljs-string">&#x27;brick&#x27;</span> + brickType);
+
+          brick.<span class="hljs-title function_">setDisplaySize</span>(brickWidth * <span class="hljs-number">0.95</span>, brickHeight * <span class="hljs-number">0.9</span>);
+          brick.<span class="hljs-title function_">refreshBody</span>();
+
+          brickHealth.<span class="hljs-title function_">set</span>(brick, brickType);
+
+          <span class="hljs-comment">// Steine mit Typ 1,2,3 sind zerstörbar — zählen wir mit</span>
+          <span class="hljs-keyword">if</span> (brickType !== <span class="hljs-number">4</span>) {
+            bricksRemaining++;
+          }
+        }
+      }
+    }
+
+    bricksText.<span class="hljs-title function_">setText</span>(<span class="hljs-string">&#x27;Verbleibende Steine: &#x27;</span> + bricksRemaining);
+
+    levelText.<span class="hljs-title function_">setText</span>(<span class="hljs-string">&#x27;Level &#x27;</span> + levelNumber + <span class="hljs-string">&#x27; von &#x27;</span> + maxLevel);
+    <span class="hljs-comment">// Neue Kollision mit dem neuen Brick-Set registrieren:</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">collider</span>(ball, bricks, ballBrickCollision, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">this</span>);
+  }
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">ballPaddleCollision</span>(<span class="hljs-params">ball, paddle</span>) {
+    <span class="hljs-keyword">const</span> relativeIntersectX = ball.<span class="hljs-property">x</span> - paddle.<span class="hljs-property">x</span>;
+    <span class="hljs-keyword">const</span> normalizedIntersectX = relativeIntersectX / (paddle.<span class="hljs-property">width</span> / <span class="hljs-number">2</span>);
+    <span class="hljs-keyword">const</span> maxBounceAngle = <span class="hljs-title class_">Phaser</span>.<span class="hljs-property">Math</span>.<span class="hljs-title class_">DegToRad</span>(<span class="hljs-number">75</span>);
+    <span class="hljs-keyword">const</span> bounceAngle = normalizedIntersectX * maxBounceAngle;
+    <span class="hljs-keyword">const</span> speed = ball.<span class="hljs-property">body</span>.<span class="hljs-property">velocity</span>.<span class="hljs-title function_">length</span>();
+
+    ball.<span class="hljs-property">body</span>.<span class="hljs-property">velocity</span>.<span class="hljs-property">x</span> = speed * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sin</span>(bounceAngle);
+    ball.<span class="hljs-property">body</span>.<span class="hljs-property">velocity</span>.<span class="hljs-property">y</span> = -speed * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">cos</span>(bounceAngle);
+  }
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">ballBrickCollision</span>(<span class="hljs-params">ball, brick</span>) {
+    <span class="hljs-keyword">const</span> currentType = brickHealth.<span class="hljs-title function_">get</span>(brick);
+
+    <span class="hljs-keyword">switch</span> (currentType) {
+      <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+        brick.<span class="hljs-title function_">disableBody</span>(<span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>);
+        brickHealth.<span class="hljs-title function_">delete</span>(brick);
+        decrementBricksRemaining.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>);
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+        brickHealth.<span class="hljs-title function_">set</span>(brick, <span class="hljs-number">1</span>);
+        brick.<span class="hljs-title function_">setTexture</span>(<span class="hljs-string">&#x27;brick1&#x27;</span>);
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+        brickHealth.<span class="hljs-title function_">set</span>(brick, <span class="hljs-number">2</span>);
+        brick.<span class="hljs-title function_">setTexture</span>(<span class="hljs-string">&#x27;brick2&#x27;</span>);
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+        <span class="hljs-comment">// unzerstörbar, nichts tun</span>
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-attr">default</span>:
+        <span class="hljs-comment">// Fallback: zerstören</span>
+        brick.<span class="hljs-title function_">disableBody</span>(<span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>);
+        brickHealth.<span class="hljs-title function_">delete</span>(brick);
+        decrementBricksRemaining.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>);
+    }
+  }
+
+  <span class="hljs-comment">// Hilfsfunktion: Zähler verringern, ggf. Level wechseln</span>
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">decrementBricksRemaining</span>(<span class="hljs-params"></span>) {
+    bricksRemaining--;
+    bricksText.<span class="hljs-title function_">setText</span>(<span class="hljs-string">&#x27;Verbleibende Steine: &#x27;</span> + bricksRemaining);
+
+    <span class="hljs-comment">// Wenn keine zerstörbaren Bricks mehr übrig sind:</span>
+    <span class="hljs-keyword">if</span> (bricksRemaining &lt;= <span class="hljs-number">0</span>) {
+      ballLaunched = <span class="hljs-literal">false</span>;
+      ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+      ball.<span class="hljs-property">x</span> = paddle.<span class="hljs-property">x</span>;
+      ball.<span class="hljs-property">y</span> = paddle.<span class="hljs-property">y</span> - paddle.<span class="hljs-property">height</span> / <span class="hljs-number">2</span> - <span class="hljs-number">10</span>;
+
+      <span class="hljs-comment">// Nächstes Level laden oder Spiel beenden</span>
+      <span class="hljs-keyword">if</span> (currentLevel &lt; maxLevel) {
+        currentLevel++;
+        loadLevel.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, currentLevel);
+      } <span class="hljs-keyword">else</span> {
+        winGame.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>);
+      }
+    }
+  }
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">winGame</span>(<span class="hljs-params"></span>) {
+    gameEnded = <span class="hljs-literal">true</span>;
+    ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    paddle.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    congratsText.<span class="hljs-title function_">setVisible</span>(<span class="hljs-literal">true</span>);
+  }
+};
+
+</code></pre>
+<hr>
+<h3 id="94-erläuterungen">9.4 Erläuterungen</h3>
+<ul>
+<li>
+<p><strong>Levelwechsel:</strong><br>
+Die Variable <code>currentLevel</code> hält den aktuellen Level, <code>maxLevel</code> definiert, wie viele Levels es gibt.<br>
+Die Funktion <code>loadLevel(levelNumber)</code> lädt das Level dynamisch neu. Alle Brick-Daten werden eingelesen.</p>
+</li>
+<li>
+<p><strong>Zählung:</strong><br>
+<code>bricksRemaining</code> zählt alle zerstörbaren Bricks (Typ 1, 2, 3). Diese Zahl wird bei jedem Treffer durch <code>decrementBricksRemaining()</code> verringert.</p>
+</li>
+<li>
+<p><strong>Bricks vom Typ 4 (unzerstörbar):</strong><br>
+Diese werden nicht mitgezählt und bleiben auf dem Spielfeld stehen.</p>
+</li>
+<li>
+<p><strong>Levelende &amp; Spielende:</strong><br>
+Sind keine zerstörbaren Bricks mehr da, wird das nächste Level geladen.<br>
+Ist das letzte Level abgeschlossen, erscheint die Gratulationsmeldung, und das Spiel wird beendet (<code>gameEnded = true</code>).</p>
+</li>
+<li>
+<p><strong>UI:</strong><br>
+Der Text <code>bricksText</code> zeigt immer die verbliebenen Bricks an.</p>
+</li>
+</ul>
+<hr>
+<h3 id="95-live-test">9.5 Live-Test</h3>
+<iframe 
+  src="08BreakoutLevels/index.html" 
+  width="820" 
+  height="700" 
+  frameborder="0" 
+  sandbox="allow-scripts allow-same-origin">
+</iframe>
+<hr>
+<h3 id="dateien">Dateien</h3>
+<h2 id="zip-datei"><a href="08Level.zip">Zip-Datei</a></h2>
+<h3 id="weiter"><a href="09PowerUp.html">weiter</a></h3>
+
+            
+            
+        </body>
+        </html>
