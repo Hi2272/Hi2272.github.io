@@ -11,9 +11,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only],
-.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
-.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -140,10 +138,11 @@
         <body class="vscode-body vscode-light">
             <h1 id="breakout-game-tutorial-mit-phaserio">Breakout-Game Tutorial mit <a href="http://Phaser.io">Phaser.io</a></h1>
 <h2 id="schritt-6-leben-hinzufügen-und-game-over-bei-verlust-aller-leben">Schritt 6: Leben hinzufügen und Game Over bei Verlust aller Leben</h2>
-<p>Jetzt sorgen wir dafür, dass der Spieler zu Beginn 3 Leben hat. Diese Leben werden oben links im Spiel als Text angezeigt. Wenn der Ball unten am Paddle vorbei fliegt, verliert der Spieler ein Leben. Sind alle Leben aufgebraucht, wird „Game Over“ angezeigt und das Spiel endet.</p>
+<p>Der Spieler soll zu Beginn 3 Leben haben. Diese Leben werden oben links im Spiel als Text angezeigt. Wenn der Ball unten am Paddle vorbei fliegt, verliert der Spieler ein Leben. Sind alle Leben aufgebraucht, wird „Game Over“ angezeigt und das Spiel endet.</p>
 <hr>
 <h3 id="61-code-anpassungen-in-gamejs">6.1 Code-Anpassungen in <code>game.js</code></h3>
 <h3 id="611-variablen">6.1.1 Variablen</h3>
+<p>Die Variablen <strong>lives, livesText, gameOverText</strong> und <strong>gameEnded</strong> dienen zur Steuerung des Spiels und Anzeige wichtiger Informationen.</p>
 <pre><code class="language-js">
   <span class="hljs-keyword">let</span> lives = <span class="hljs-number">3</span>;               <span class="hljs-comment">// Neue Variable für Leben</span>
   <span class="hljs-keyword">let</span> livesText;               <span class="hljs-comment">// Textobjekt für Anzeige Lives</span>
@@ -151,6 +150,7 @@
   <span class="hljs-keyword">let</span> gameEnded = <span class="hljs-literal">false</span>;       <span class="hljs-comment">// Zustand, ob Spiel beendet ist</span>
 </code></pre>
 <h3 id="612-create">6.1.2 Create</h3>
+<p>Mit <code>this.add.text()</code> werden Textfelder eingefügt. Das Game-Over-Textfeld ist zunächst unsichtbar.</p>
 <pre><code class="language-js">
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
 ...
@@ -175,6 +175,12 @@
   }
 </code></pre>
 <h3 id="613-update">6.1.3 Update</h3>
+<h4 id="update-funktion">update()-Funktion</h4>
+<ul>
+<li><strong>Ball aus dem Feld gefallen:</strong><br>
+Im <code>update()</code> prüfen wir, ob das Spiel beendet wurde. Dann bewegen sich das Paddle und der Ball nicht mehr.<br>
+Außerdem wird getestet, ob der Ball die untere Spielfeldgrenze (minus Ballhöhe) überschritten hat. In diesem Fall verliert der Spieler ein Leben.</li>
+</ul>
 <pre><code class="language-js">
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
     <span class="hljs-keyword">if</span> (gameEnded) {
@@ -192,6 +198,9 @@
   }
 </code></pre>
 <h3 id="614-looselife">6.1.4 LooseLife</h3>
+<p>Nach Verlust eines Lebens wird der Ball wieder auf das Paddle gesetzt und wartet auf einen neuen Start.<br>
+Die Leben-Anzeige wird aktualisiert.</p>
+<p>Wenn keine Leben übrig sind, wird <code>gameOver()</code> aufgerufen.</p>
 <pre><code class="language-js">
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">loseLife</span>(<span class="hljs-params"></span>) {
     lives--;
@@ -208,8 +217,11 @@
       <span class="hljs-title function_">gameOver</span>();
     }
   }
-
-  <span class="hljs-comment">// Game Over Funktion</span>
+</code></pre>
+<h3 id="615-gameover">6.1.5 GameOver</h3>
+<p>Es wird der &quot;GAME OVER&quot;-Text sichtbar gemacht und das Spiel gestoppt (Ball und Paddle bewegen sich nicht mehr).</p>
+<p>Mit der Variable <code>gameEnded</code> verhindern wir, dass das Spiel nach Game Over noch weiter läuft oder Eingaben verarbeitet werden.</p>
+<pre><code class="language-js">  <span class="hljs-comment">// Game Over Funktion</span>
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">gameOver</span>(<span class="hljs-params"></span>) {
     gameEnded = <span class="hljs-literal">true</span>;
     ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
@@ -217,40 +229,9 @@
     gameOverText.<span class="hljs-title function_">setVisible</span>(<span class="hljs-literal">true</span>);
   }
 
-  <span class="hljs-keyword">function</span> <span class="hljs-title function_">ballPaddleCollision</span>(<span class="hljs-params">ball, paddle</span>) {
-  ...
-  }
-};
-
 </code></pre>
 <hr>
-<h3 id="62-erläuterungen-zum-code">6.2 Erläuterungen zum Code</h3>
-<h4 id="globale-variablen">globale Variablen</h4>
-<p><strong>lives, livesText, gameOverText</strong> und <strong>gameEnded</strong> dienen zur Steuerung und Anzeige der Leben des Spielers.</p>
-<h4 id="create-funktion">create()-Funktion</h4>
-<p>Mit <code>this.add.text()</code> werden Textfelder eingefügt. Das Game-Over-Textfeld ist zunächst unsichtbar.</p>
-<h4 id="update-funktion">update()-Funktion</h4>
-<ul>
-<li>
-<p><strong>Ball aus dem Feld gefallen:</strong><br>
-Im <code>update()</code> prüfen wir, ob der Ball die untere Spielfeldgrenze (minus Ballhöhe) überschritten hat.</p>
-</li>
-<li>
-<p><strong>Leben verlieren &amp; Reset:</strong><br>
-Nach Verlust eines Lebens wird der Ball wieder auf das Paddle gesetzt und wartet auf einen neuen Start.<br>
-Die Leben-Anzeige wird aktualisiert.</p>
-</li>
-<li>
-<p><strong>Game Over:</strong><br>
-Wenn keine Leben übrig sind, wird <code>gameOver()</code> aufgerufen. Es wird der &quot;GAME OVER&quot;-Text sichtbar gemacht und das Spiel gestoppt (Ball und Paddle bewegen sich nicht mehr).</p>
-</li>
-<li>
-<p><strong>Spielende steuern:</strong><br>
-Mit der Variable <code>gameEnded</code> verhindern wir, dass das Spiel nach Game Over noch weiter läuft oder Eingaben verarbeitet werden.</p>
-</li>
-</ul>
-<hr>
-<h3 id="63-live-test">6.3 Live-Test</h3>
+<h3 id="62-live-test">6.2 Live-Test</h3>
 <iframe 
   src="05Leben/index.html" 
   width="820" 

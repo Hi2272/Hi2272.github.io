@@ -32,11 +32,17 @@ Unsere json-Datei enthält ein Feld mit dem Namen **layout**, in dem der Aufbau 
 
 ### 7.2 Code-Anpassungen in `game.js`
 ### 7.2.1 Variablen
+
+  Wir erzeugen eine Variable **bricks**, die die gesamte Gruppe der Brick speichert.
 ```js
 
 let bricks; // Gruppe für Bricks
 ```
-### 7.2.2 Preload der Bricks
+### 7.2.2 Preload der Levels und Bricks
+
+Das Bild des ersten Bricks (brick1) wird wieder in den Speicher geladen.  
+  Außerdem laden wir die Level-Daten aus der json-Datei und belegen sie mit der Referenz "level1".
+  
 ```js
   function preload() {
     ...
@@ -45,6 +51,15 @@ let bricks; // Gruppe für Bricks
   }
 ```
 ### 7.2.3 Create bricks
+
+  Die Steine werden als statische Gruppe, d.h. als Gruppe von unbeweglichen Objekten eingefügt. Dies erleichtert dem System das Erkennen von Kollisionen des Balls mit den Steinen.
+
+ Das Feld **layout** wird aus den json-Daten ausgelesen und mit der Refernz levelData versehen.  
+ Anschließend werden die Höhe und Breite der Steine festgelegt und sie in zwei Schleifen in die **bricks**-Gruppe eingefügt und auf dem Bildschirm dargestellt. Die Größe der Steine wird dabei an die Bildschirmgröße angepasst.
+
+  Bei der Kollision des Balls mit einem Brick soll die Funktion **ballBrickCollision**  aufgerufen werden. 
+
+
 ```js
 
   function create() {
@@ -83,7 +98,11 @@ let bricks; // Gruppe für Bricks
     this.physics.add.collider(ball, bricks, ballBrickCollision, null, this);
   }
 ```
+
 ### 7.2.4 Kollision Ball-Brick
+  In dieser Funktion wird der Brick deaktiviert (`disableBody` mit `true, true` verbirgt und deaktiviert den Brick). Der Ball prallt automatisch ab, da wir eine Kollision erkannt haben.
+
+
 ```js
 
   // Neue Funktion: Ball trifft Brick
@@ -91,36 +110,16 @@ let bricks; // Gruppe für Bricks
     brick.disableBody(true, true);
   
   }
-};
+
 
 ```
 
 ---
 
-### 7.3 Erklärung
-
-#### Globale Variablen
-- **let bricks;**  
-  Wir erzeugen eine Variable, die die gesamt Gruppe der Brick speichert.
- #### preload()-Funktion
-- **this.load.json('level1', 'assets/level1.json');**
-  Die Level-Daten werden vor Beginn des Spiels geladen und mit der Referenz "level1" belegt.
-#### create()-Funktion
-- **bricks = this.physics.add.staticGroup();**  
-  Die Steine werden als statische Gruppe, d.h. als Gruppe von unbeweglichen Objekten eingefügt. Dies erleichtert dem System das Erkennen von Kollisionen des Balls mit den Steinen.
-
-- **const levelData = this.cache.json.get('level1').layout;**  
- Das Feld **layout** wird aus den json-Daten ausgelesen und mit der Refernz levelData versehen.  
- Anschließend werden die Höhe und Breite der Steine festgelegt und sie in zwei Schleifen in die **bricks**-Gruppe eingefügt und auf dem Bildschirm dargestellt. Die Größe der Steine wird dabei an die Bildschirmgröße angepasst.
-
-- **this.physics.add.collider(ball, bricks, ballBrickCollision, null, this);**  
-  Bei der Kollision des Balls mit einem Brick soll die Funktion **ballBrickCollision**  aufgerufen werden. 
-  In dieser Funktion wird der deaktiviert (`disableBody` mit `true, true` verbirgt und deaktiviert den Brick). Der Ball prallt automatisch ab, da wir eine Kollision erkannt haben.
-
 
 ---
 
-### 7.4 Live-Test
+### 7.3 Live-Test
 
 <iframe 
   src="06Bricks/index.html" 

@@ -11,9 +11,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only],
-.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
-.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -161,10 +159,13 @@ Unsere json-Datei enthält ein Feld mit dem Namen <strong>layout</strong>, in de
 <hr>
 <h3 id="72-code-anpassungen-in-gamejs">7.2 Code-Anpassungen in <code>game.js</code></h3>
 <h3 id="721-variablen">7.2.1 Variablen</h3>
+<p>Wir erzeugen eine Variable <strong>bricks</strong>, die die gesamte Gruppe der Brick speichert.</p>
 <pre><code class="language-js">
 <span class="hljs-keyword">let</span> bricks; <span class="hljs-comment">// Gruppe für Bricks</span>
 </code></pre>
-<h3 id="722-preload-der-bricks">7.2.2 Preload der Bricks</h3>
+<h3 id="722-preload-der-levels-und-bricks">7.2.2 Preload der Levels und Bricks</h3>
+<p>Das Bild des ersten Bricks (brick1) wird wieder in den Speicher geladen.<br>
+Außerdem laden wir die Level-Daten aus der json-Datei und belegen sie mit der Referenz &quot;level1&quot;.</p>
 <pre><code class="language-js">  <span class="hljs-keyword">function</span> <span class="hljs-title function_">preload</span>(<span class="hljs-params"></span>) {
     ...
     <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;brick1&#x27;</span>, <span class="hljs-string">&#x27;assets/brick1.png&#x27;</span>);
@@ -172,6 +173,10 @@ Unsere json-Datei enthält ein Feld mit dem Namen <strong>layout</strong>, in de
   }
 </code></pre>
 <h3 id="723-create-bricks">7.2.3 Create bricks</h3>
+<p>Die Steine werden als statische Gruppe, d.h. als Gruppe von unbeweglichen Objekten eingefügt. Dies erleichtert dem System das Erkennen von Kollisionen des Balls mit den Steinen.</p>
+<p>Das Feld <strong>layout</strong> wird aus den json-Daten ausgelesen und mit der Refernz levelData versehen.<br>
+Anschließend werden die Höhe und Breite der Steine festgelegt und sie in zwei Schleifen in die <strong>bricks</strong>-Gruppe eingefügt und auf dem Bildschirm dargestellt. Die Größe der Steine wird dabei an die Bildschirmgröße angepasst.</p>
+<p>Bei der Kollision des Balls mit einem Brick soll die Funktion <strong>ballBrickCollision</strong>  aufgerufen werden.</p>
 <pre><code class="language-js">
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
     ...
@@ -210,46 +215,19 @@ Unsere json-Datei enthält ein Feld mit dem Namen <strong>layout</strong>, in de
   }
 </code></pre>
 <h3 id="724-kollision-ball-brick">7.2.4 Kollision Ball-Brick</h3>
+<p>In dieser Funktion wird der Brick deaktiviert (<code>disableBody</code> mit <code>true, true</code> verbirgt und deaktiviert den Brick). Der Ball prallt automatisch ab, da wir eine Kollision erkannt haben.</p>
 <pre><code class="language-js">
   <span class="hljs-comment">// Neue Funktion: Ball trifft Brick</span>
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">ballBrickCollision</span>(<span class="hljs-params">ball, brick</span>) {
     brick.<span class="hljs-title function_">disableBody</span>(<span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>);
   
   }
-};
+
 
 </code></pre>
 <hr>
-<h3 id="73-erklärung">7.3 Erklärung</h3>
-<h4 id="globale-variablen">Globale Variablen</h4>
-<ul>
-<li><strong>let bricks;</strong><br>
-Wir erzeugen eine Variable, die die gesamt Gruppe der Brick speichert.</li>
-</ul>
-<h4 id="preload-funktion">preload()-Funktion</h4>
-<ul>
-<li><strong>this.load.json('level1', 'assets/level1.json');</strong>
-Die Level-Daten werden vor Beginn des Spiels geladen und mit der Referenz &quot;level1&quot; belegt.</li>
-</ul>
-<h4 id="create-funktion">create()-Funktion</h4>
-<ul>
-<li>
-<p><strong>bricks = this.physics.add.staticGroup();</strong><br>
-Die Steine werden als statische Gruppe, d.h. als Gruppe von unbeweglichen Objekten eingefügt. Dies erleichtert dem System das Erkennen von Kollisionen des Balls mit den Steinen.</p>
-</li>
-<li>
-<p><strong>const levelData = this.cache.json.get('level1').layout;</strong><br>
-Das Feld <strong>layout</strong> wird aus den json-Daten ausgelesen und mit der Refernz levelData versehen.<br>
-Anschließend werden die Höhe und Breite der Steine festgelegt und sie in zwei Schleifen in die <strong>bricks</strong>-Gruppe eingefügt und auf dem Bildschirm dargestellt. Die Größe der Steine wird dabei an die Bildschirmgröße angepasst.</p>
-</li>
-<li>
-<p><strong>this.physics.add.collider(ball, bricks, ballBrickCollision, null, this);</strong><br>
-Bei der Kollision des Balls mit einem Brick soll die Funktion <strong>ballBrickCollision</strong>  aufgerufen werden.
-In dieser Funktion wird der deaktiviert (<code>disableBody</code> mit <code>true, true</code> verbirgt und deaktiviert den Brick). Der Ball prallt automatisch ab, da wir eine Kollision erkannt haben.</p>
-</li>
-</ul>
 <hr>
-<h3 id="74-live-test">7.4 Live-Test</h3>
+<h3 id="73-live-test">7.3 Live-Test</h3>
 <iframe 
   src="06Bricks/index.html" 
   width="820" 

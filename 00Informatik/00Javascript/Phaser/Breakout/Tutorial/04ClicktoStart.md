@@ -9,12 +9,17 @@ Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir daf�
 
 
 ### 5.1.1 Variablen
+
+Wir erzeugen eine Variable um zu speichern, ob der Ball bereits gestartet ist:  
+
 ```js
 
   let ballLaunched = false;  // Neuer Zustand: Ball ist gestartet oder nicht
 ```
 
+
 ### 5.1.2 Create
+  Der Ball wird zu Beginn in der Mitte auf dem Paddle positioniert und startet beim Drücken der Leertaste oder beim Klicken mit der Maus.
 
 ```js
   function create() {
@@ -48,6 +53,10 @@ Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir daf�
     }
 ```
 ### 5.1.3 Update
+   
+  Solange `ballLaunched == false` ist, wird die Ball-Position in jedem Frame auf das Paddle angepasst (X und Y), sodass er mitbewegt wird. 
+
+  Bei Klick auf die Maus (`pointerdown`) oder bei Drücken der Leertaste (`keydown-SPACE`) wird die Funktion `launchBall()` ausgeführt, die den Ball mit Startgeschwindigkeit losfliegen lässt.
 
 ```js
 
@@ -60,6 +69,11 @@ Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir daf�
       ball.setVelocity(0, 0);
     }
   }
+```
+# 5.1.4 Funktion launchBall
+  Der Ball bekommt eine feste Geschwindigkeit und Richtung beim Start. (hier: nach oben und leicht nach rechts). Diese kannst du anpassen.
+
+```js
 
   // Funktion um den Ball zu starten
   function launchBall() {
@@ -68,41 +82,11 @@ Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir daf�
     ball.setVelocity(150, -300);
   }
 
-  function ballPaddleCollision(ball, paddle) {
-  ...
-  }
-};
 ```
 
 ---
 
-### 5.2 Erläuterungen zu den Neuerungen
-
-- **`let ballLaunched = false;`**  
-  Die globale Variable speichert den Zustand, ob der Ball bereits gestartet wurde oder noch auf dem Paddle liegt.
-
-- **create()-Funktion** 
-  - `ball = this.physics.add.image(paddle.x, paddle.y - paddle.height / 2 - 10, 'ball');`
-  Der Ball wird zu Beginn in der Mitte auf dem Paddle positioniert.
-  - `this.input.keyboard.on('keydown-SPACE', () => {`  
-  Bei Drücken der Leertaste wird der Ball gestartet.
-  - `this.input.on('pointerdown', () => {`  
-  Das gleiche passiert beim Klicken mit der Maus.
-     
-   
-- **update()-Funktion**
-  - `if (!ballLaunched) {ball.x = paddle.x;...`      
-  Solange `ballLaunched == false` ist, wird die Ball-Position in jedem Frame auf das Paddle angepasst (X und Y), sodass er mitbewegt wird.
-
-- **Start-Events:**  
-  Bei Klick auf die Maus (`pointerdown`) oder bei Drücken der Leertaste (`keydown-SPACE`) wird die Funktion `launchBall()` ausgeführt, die den Ball mit Startgeschwindigkeit losfliegen lässt.
-
-- **Startgeschwindigkeit Ball:**  
-  Der Ball bekommt eine fixe Geschwindigkeit (hier: nach oben und leicht nach rechts). Diese kannst du anpassen.
-
----
-
-### 5.3 Live-Test
+### 5.2 Live-Test
 
 <iframe 
   src="04ClicktoStart/index.html" 

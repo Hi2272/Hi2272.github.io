@@ -11,9 +11,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only],
-.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
-.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -143,10 +141,12 @@
 <p>Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir dafür, dass der Ball zunächst auf dem Paddle „liegt“ und erst nach einem Tastendruck (Leertaste) oder Mausklick losfliegt. Solange der Ball noch nicht gestartet ist, bewegt er sich synchron mit dem Paddle.</p>
 <h3 id="51-code-anpassungen-in-gamejs">5.1 Code-Anpassungen in <code>game.js</code></h3>
 <h3 id="511-variablen">5.1.1 Variablen</h3>
+<p>Wir erzeugen eine Variable um zu speichern, ob der Ball bereits gestartet ist:</p>
 <pre><code class="language-js">
   <span class="hljs-keyword">let</span> ballLaunched = <span class="hljs-literal">false</span>;  <span class="hljs-comment">// Neuer Zustand: Ball ist gestartet oder nicht</span>
 </code></pre>
 <h3 id="512-create">5.1.2 Create</h3>
+<p>Der Ball wird zu Beginn in der Mitte auf dem Paddle positioniert und startet beim Drücken der Leertaste oder beim Klicken mit der Maus.</p>
 <pre><code class="language-js">  <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
     ...
 
@@ -178,6 +178,8 @@
     }
 </code></pre>
 <h3 id="513-update">5.1.3 Update</h3>
+<p>Solange <code>ballLaunched == false</code> ist, wird die Ball-Position in jedem Frame auf das Paddle angepasst (X und Y), sodass er mitbewegt wird.</p>
+<p>Bei Klick auf die Maus (<code>pointerdown</code>) oder bei Drücken der Leertaste (<code>keydown-SPACE</code>) wird die Funktion <code>launchBall()</code> ausgeführt, die den Ball mit Startgeschwindigkeit losfliegen lässt.</p>
 <pre><code class="language-js">
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
     ...
@@ -188,7 +190,10 @@
       ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
     }
   }
-
+</code></pre>
+<h1 id="514-funktion-launchball">5.1.4 Funktion launchBall</h1>
+<p>Der Ball bekommt eine feste Geschwindigkeit und Richtung beim Start. (hier: nach oben und leicht nach rechts). Diese kannst du anpassen.</p>
+<pre><code class="language-js">
   <span class="hljs-comment">// Funktion um den Ball zu starten</span>
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">launchBall</span>(<span class="hljs-params"></span>) {
     ballLaunched = <span class="hljs-literal">true</span>;    
@@ -196,47 +201,9 @@
     ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">150</span>, -<span class="hljs-number">300</span>);
   }
 
-  <span class="hljs-keyword">function</span> <span class="hljs-title function_">ballPaddleCollision</span>(<span class="hljs-params">ball, paddle</span>) {
-  ...
-  }
-};
 </code></pre>
 <hr>
-<h3 id="52-erläuterungen-zu-den-neuerungen">5.2 Erläuterungen zu den Neuerungen</h3>
-<ul>
-<li>
-<p><strong><code>let ballLaunched = false;</code></strong><br>
-Die globale Variable speichert den Zustand, ob der Ball bereits gestartet wurde oder noch auf dem Paddle liegt.</p>
-</li>
-<li>
-<p><strong>create()-Funktion</strong></p>
-<ul>
-<li><code>ball = this.physics.add.image(paddle.x, paddle.y - paddle.height / 2 - 10, 'ball');</code>
-Der Ball wird zu Beginn in der Mitte auf dem Paddle positioniert.</li>
-<li><code>this.input.keyboard.on('keydown-SPACE', () =&gt; {</code><br>
-Bei Drücken der Leertaste wird der Ball gestartet.</li>
-<li><code>this.input.on('pointerdown', () =&gt; {</code><br>
-Das gleiche passiert beim Klicken mit der Maus.</li>
-</ul>
-</li>
-<li>
-<p><strong>update()-Funktion</strong></p>
-<ul>
-<li><code>if (!ballLaunched) {ball.x = paddle.x;...</code><br>
-Solange <code>ballLaunched == false</code> ist, wird die Ball-Position in jedem Frame auf das Paddle angepasst (X und Y), sodass er mitbewegt wird.</li>
-</ul>
-</li>
-<li>
-<p><strong>Start-Events:</strong><br>
-Bei Klick auf die Maus (<code>pointerdown</code>) oder bei Drücken der Leertaste (<code>keydown-SPACE</code>) wird die Funktion <code>launchBall()</code> ausgeführt, die den Ball mit Startgeschwindigkeit losfliegen lässt.</p>
-</li>
-<li>
-<p><strong>Startgeschwindigkeit Ball:</strong><br>
-Der Ball bekommt eine fixe Geschwindigkeit (hier: nach oben und leicht nach rechts). Diese kannst du anpassen.</p>
-</li>
-</ul>
-<hr>
-<h3 id="53-live-test">5.3 Live-Test</h3>
+<h3 id="52-live-test">5.2 Live-Test</h3>
 <iframe 
   src="04ClicktoStart/index.html" 
   width="820" 
