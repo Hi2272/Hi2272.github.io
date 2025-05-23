@@ -156,21 +156,25 @@
 <li>
 <p>Wenn das Attribut <strong>aufgedeckt</strong> falsch ist,</p>
 <ol>
-<li>soll das Attribut auf wahr gesetzt werden und</li>
-<li>ein Textfeld erzeugt werden, das die Zahl der Nachbarn anzeigt:<br>
-TextField t = new TextField(x * breite, y * hoehe, breite - 3, 30, String.valueOf(nachbarn));</li>
-</ol>
+<li>
+<p>soll das Attribut auf wahr gesetzt werden und</p>
+</li>
+<li>
+<p>ein Textfeld erzeugt werden, das die Zahl der Nachbarn anzeigt:<br>
+TextField t = new TextField(x * breite, y * hoehe, breite - 3, 30, String.valueOf(nachbarn));</p>
 </li>
 <li>
 <p>Wenn die Zahl der Nachbarn größer null ist,</p>
-<ol>
-<li>soll die Textfarbe von t auf gelb gesetzt werden:<br>
-<strong>t.setFillColor(Color.yellow, 0.3);</strong></li>
-</ol>
+</li>
+<li>
+<p>soll die Textfarbe von t auf gelb gesetzt werden:<br>
+<strong>t.setFillColor(Color.yellow, 0.3);</strong></p>
 </li>
 <li>
 <p>Sonst soll die Textfarbe von t auf grün gesetzt werden:<br>
 <strong>t.setFillColor(Color.green, 0.3);</strong></p>
+</li>
+</ol>
 <p>Und die Nachbarzellen sollen aufgedeckt werden:</p>
 </li>
 </ol>
