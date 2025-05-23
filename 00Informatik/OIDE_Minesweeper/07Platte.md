@@ -17,11 +17,11 @@ In der Methode aufdecken soll diese Sequenz umgesetzt werden:
    1. soll das Attribut auf wahr gesetzt werden und 
    2. ein Textfeld erzeugt werden, das die Zahl der Nachbarn anzeigt:  
        TextField t = new TextField(x * breite, y * hoehe, breite - 3, 30, String.valueOf(nachbarn));
-  3. Wenn die Zahl der Nachbarn größer null ist, 
+   3. Wenn die Zahl der Nachbarn größer null ist, 
      1. soll die Textfarbe von t auf gelb gesetzt werden:    
         **t.setFillColor(Color.yellow, 0.3);**
       
-  4. Sonst soll die Textfarbe von t auf grün gesetzt werden:  
+   4. Sonst soll die Textfarbe von t auf grün gesetzt werden:  
         **t.setFillColor(Color.green, 0.3);**
      
    
