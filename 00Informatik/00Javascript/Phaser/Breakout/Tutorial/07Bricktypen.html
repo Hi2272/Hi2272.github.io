@@ -11,9 +11,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only],
-.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
-.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -161,7 +159,14 @@
 <span class="hljs-punctuation">}</span>
 </code></pre>
 <h3 id="82-code-anpassungen-in-gamejs">8.2 Code-Anpassungen in <code>game.js</code></h3>
-<h3 id="821-laden-der-bricks">8.2.1 Laden der Bricks</h3>
+<h3 id="821-neue-variablen">8.2.1 Neue Variablen</h3>
+<p>Die Variable <strong>bricks</strong> soll eine Referenz auf alle Bricks im Spielfeld halten.<br>
+Die Anzahl der Leben eines Bricks speichern wir in einer sogenannten <strong>Map</strong>. In diesem Datentyp kann ich Schlüsseln (hier: bricks) Werte (hier: Zahl der Leben des Bricks) zuordnen.</p>
+<pre><code class="language-js"><span class="hljs-keyword">let</span> bricks;
+<span class="hljs-keyword">let</span> brickHealth = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
+</code></pre>
+<h3 id="822-laden-der-bricks">8.2.2 Laden der Bricks</h3>
+<p>Im <code>preload()</code> laden wir alle vier Brick-Bilder mit Hilfe einer Zählschleife.</p>
 <pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">preload</span>(<span class="hljs-params"></span>) {
   ...
   <span class="hljs-comment">// Neu: Mehrere Brick-Sprites laden</span>
@@ -172,11 +177,9 @@
   <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">json</span>(<span class="hljs-string">&#x27;level2&#x27;</span>, <span class="hljs-string">&#x27;assets/level2.json&#x27;</span>);
 }
 </code></pre>
-<h3 id="822-neue-variablen">8.2.2 Neue Variablen</h3>
-<pre><code class="language-js"><span class="hljs-keyword">let</span> bricks;
-<span class="hljs-keyword">let</span> brickHealth = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
-</code></pre>
 <h3 id="823-erzeugen-der-bricks">8.2.3 Erzeugen der Bricks</h3>
+<p>Die Größe und Position der Bricks auf dem Spielfeld wird automatisch aus den Maßen des Spielfeldes berechnet.<br>
+Außerdem wird die Funktion <strong>ballPaddleCollision</strong> registriert, so dass sie bei eine Kollision von Ball und Brick aufgerufen wird.</p>
 <pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
   ...
   <span class="hljs-comment">// Neu: Gruppe für Steine initialisieren</span>
@@ -217,6 +220,8 @@
 }
 </code></pre>
 <h3 id="824-funktion-zur-kollisionsverarbeitung">8.2.4 Funktion zur Kollisionsverarbeitung</h3>
+<p>In der Funktion wird der Typ des Bricks aus der Map ausgelesen. Abhängig von seinem Typ reagiert der Brick unterschiedlich auf die Kollision.<br>
+Wenn du weitere Bricktypen erzeugst, musst du ihr Verhalten an dieser Stelle einprogrammieren.</p>
 <pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">ballBrickCollision</span>(<span class="hljs-params">ball, brick</span>) {
   <span class="hljs-comment">// Neu: aktueller Typ aus Map</span>
   <span class="hljs-keyword">const</span> currentType = brickHealth.<span class="hljs-title function_">get</span>(brick);
@@ -248,28 +253,7 @@
 }
 </code></pre>
 <hr>
-<h3 id="83-erklärung-der-änderungen">8.3 Erklärung der Änderungen</h3>
-<ul>
-<li>
-<p>Im <code>preload()</code> laden wir alle vier Brick-Bilder mit Hilfe einer Zählschleife.</p>
-</li>
-<li>
-<p>Für jeden Brick speichern wir seinen Typ in der zusammengesetzten Variable <code>brickHealth</code>:<br>
-<code>brickHealth.set(brick, brickType);</code><br>
-Hierbei ist jedem brick-Objekt ein brickType-Wert zugeordnet.</p>
-</li>
-<li>
-<p>Im <code>ballBrickCollision</code>-Handler wird geprüft, welchen Typ der Brick hat:</p>
-<ul>
-<li>Typ 1: sofort zerstören.</li>
-<li>Typ 2: Brick wird zu Typ 1, indem wir Textur und brickHealth-Wert ändern.</li>
-<li>Typ 3: Brick wird zu Typ 2 (gleicher Mechanismus).</li>
-<li>Typ 4: unzerstörbar, daher keine Aktion.</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="84-live-test">8.4 Live-Test</h3>
+<h3 id="83-live-test">8.3 Live-Test</h3>
 <iframe 
   src="07BrickTypen/index.html" 
   width="820" 
