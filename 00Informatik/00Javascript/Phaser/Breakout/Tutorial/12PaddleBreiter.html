@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>13&period; Neuer Steintyp&colon; Paddle wird schmaler</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h3 id="13-neuer-steintyp-paddle-wird-schmaler">13. Neuer Steintyp: Paddle wird schmaler</h3>
+<hr>
+<h3 id="131-allgemeines">13.1 Allgemeines</h3>
+<p>In diesem Abschnitt fügen wir einen weiteren Steintyp hinzu, der beim Zerstören eine spezielle Kugel (PowerUp) erzeugt. Wenn das PowerUp eingesammelt wird, wird das Paddle für <strong>10 Sekunden doppelt so breit</strong>!</p>
+<hr>
+<h3 id="132-anpassungen-am-code">13.2 Anpassungen am Code</h3>
+<h3 id="1321-json-dateien">13.2.1 JSON-Dateien</h3>
+<p>Wir nehmen nun an, dass der neue Steintyp die Zahl <strong>7</strong> hat. Diesen kannst du in deinen Level-JSON-Dateien verwenden, um entsprechende Bricks zu definieren.</p>
+<hr>
+<h3 id="1322-variablen-anlegen">13.2.2 Variablen anlegen</h3>
+<p>Im oberen Bereich deiner Skriptdatei definieren wir entsprechende Variablen:</p>
+<pre><code class="language-js"><span class="hljs-keyword">let</span> powerUpExpand;           <span class="hljs-comment">// PowerUp-Sprite für Paddle-Erweiterung</span>
+<span class="hljs-keyword">let</span> paddleOriginalWidth;     <span class="hljs-comment">// Speicher für Breite vor Veränderung</span>
+<span class="hljs-keyword">let</span> paddleExpanded = <span class="hljs-literal">false</span>;  <span class="hljs-comment">// Status: Paddle ist erweitert?</span>
+<span class="hljs-keyword">let</span> paddleExpandTimer;       <span class="hljs-comment">// Timer zum Zurücksetzen</span>
+</code></pre>
+<hr>
+<h3 id="1323-assets-laden">13.2.3 Assets laden</h3>
+<p>Zunächst laden wir im <code>preload()</code> eine neue Grafik für die PowerUp-Kugel, die das Paddle vergrößert, z.B. <code>sphere3.png</code>:</p>
+<pre><code class="language-js"><span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;sphere3&#x27;</span>, <span class="hljs-string">&#x27;assets/sphere3.png&#x27;</span>); <span class="hljs-comment">// Kugel zum Vergrößern des Paddles</span>
+</code></pre>
+<hr>
+<h3 id="1324-powerup-sprite-in-create-erstellen">13.2.4 PowerUp-Sprite in <code>create()</code> erstellen</h3>
+<p>Im <code>create()</code>-Funktionsblock fügen wir den neuen PowerUp-Sprite hinzu und konfigurieren die Kollisionsabfrage mit dem Paddle:</p>
+<pre><code class="language-js">powerUpExpand = <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">image</span>(-<span class="hljs-number">100</span>, -<span class="hljs-number">100</span>, <span class="hljs-string">&#x27;sphere3&#x27;</span>);
+powerUpExpand.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+powerUpExpand.<span class="hljs-title function_">setCollideWorldBounds</span>(<span class="hljs-literal">true</span>);
+powerUpExpand.<span class="hljs-title function_">setBounce</span>(<span class="hljs-number">0.5</span>);
+powerUpExpand.<span class="hljs-title function_">setVisible</span>(<span class="hljs-literal">false</span>);
+powerUpExpand.<span class="hljs-property">body</span>.<span class="hljs-property">allowGravity</span> = <span class="hljs-literal">false</span>;
+
+<span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">overlap</span>(powerUpExpand, paddle, collectPowerUpExpand, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">this</span>);
+</code></pre>
+<p>Vergiss nicht, die Variable <code>paddleOriginalWidth</code> direkt nach Erstellung des Paddles zu speichern:</p>
+<pre><code class="language-js">paddleOriginalWidth = paddle.<span class="hljs-property">displayWidth</span>;
+</code></pre>
+<hr>
+<h3 id="1325-powerupexpand-in-update-bewegen-und-ggf-zurücksetzen">13.2.5 PowerUpExpand in <code>update()</code> bewegen und ggf. zurücksetzen</h3>
+<p>Analog zu den anderen PowerUps sorgen wir dafür, dass die Kugel nach unten fällt und außerhalb des Bildschirms verschwindet:</p>
+<pre><code class="language-js"><span class="hljs-keyword">if</span> (powerUpExpand.<span class="hljs-property">visible</span>) {
+  powerUpExpand.<span class="hljs-title function_">setVelocityY</span>(<span class="hljs-number">200</span>);
+
+  <span class="hljs-keyword">if</span> (powerUpExpand.<span class="hljs-property">y</span> &gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">height</span> - powerUpExpand.<span class="hljs-property">height</span>) {
+    <span class="hljs-title function_">resetPowerUpExpand</span>();
+  }
+}
+</code></pre>
+<hr>
+<h3 id="1326-neues-brick-verhalten-bei-kollision-mit-ball">13.2.6 Neues Brick-Verhalten bei Kollision mit Ball</h3>
+<p>Im <code>ballBrickCollision()</code> ergänzen wir die Behandlung für Steintyp <strong>7</strong>:</p>
+<pre><code class="language-js"><span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:
+  brick.<span class="hljs-title function_">disableBody</span>(<span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>);
+  brickHealth.<span class="hljs-title function_">delete</span>(brick);
+  decrementBricksRemaining.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>);
+
+  spawnPowerUpExpand.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, brick.<span class="hljs-property">x</span>, brick.<span class="hljs-property">y</span>);
+  <span class="hljs-keyword">break</span>;
+</code></pre>
+<hr>
+<h3 id="1327-helferfunktionen-zum-powerupexpand">13.2.7 Helferfunktionen zum PowerUpExpand</h3>
+<p>Füge folgende Funktionen hinzu:</p>
+<pre><code class="language-js"><span class="hljs-comment">// PowerUpExpand erzeugen an Position x,y</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">spawnPowerUpExpand</span>(<span class="hljs-params">x, y</span>) {
+  powerUpExpand.<span class="hljs-title function_">setPosition</span>(x, y);
+  powerUpExpand.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">200</span>);
+  powerUpExpand.<span class="hljs-title function_">setVisible</span>(<span class="hljs-literal">true</span>);
+}
+
+<span class="hljs-comment">// PowerUpExpand auf Paddle trift -&gt; Paddle wird doppelt so breit für 10 Sekunden</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">collectPowerUpExpand</span>(<span class="hljs-params">sphere, paddle</span>) {
+  <span class="hljs-title function_">resetPowerUpExpand</span>();
+
+  <span class="hljs-keyword">if</span> (paddleExpanded) {
+    <span class="hljs-comment">// Timer erneuern, wenn Paddle schon erweitert ist</span>
+    <span class="hljs-keyword">if</span> (paddleExpandTimer) {
+      paddleExpandTimer.<span class="hljs-title function_">remove</span>(<span class="hljs-literal">false</span>);
+    }
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Paddle Breite verdoppeln</span>
+    paddle.<span class="hljs-title function_">setDisplaySize</span>(paddleOriginalWidth * <span class="hljs-number">2</span>, paddle.<span class="hljs-property">displayHeight</span>);
+    paddle.<span class="hljs-title function_">refreshBody</span>();
+    paddleExpanded = <span class="hljs-literal">true</span>;
+  }
+
+  <span class="hljs-comment">// Timer starten bzw. neu starten</span>
+  paddleExpandTimer = <span class="hljs-variable language_">this</span>.<span class="hljs-property">time</span>.<span class="hljs-title function_">delayedCall</span>(<span class="hljs-number">10000</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">// Paddle auf Originalgröße zurücksetzen</span>
+    paddle.<span class="hljs-title function_">setDisplaySize</span>(paddleOriginalWidth, paddle.<span class="hljs-property">displayHeight</span>);
+    paddle.<span class="hljs-title function_">refreshBody</span>();
+    paddleExpanded = <span class="hljs-literal">false</span>;
+  }, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">this</span>);
+}
+
+<span class="hljs-comment">// PowerUpExpand zurücksetzen wenn verloren oder eingesammelt</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">resetPowerUpExpand</span>(<span class="hljs-params"></span>) {
+  powerUpExpand.<span class="hljs-title function_">setVisible</span>(<span class="hljs-literal">false</span>);
+  powerUpExpand.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  powerUpExpand.<span class="hljs-property">x</span> = -<span class="hljs-number">100</span>;
+  powerUpExpand.<span class="hljs-property">y</span> = -<span class="hljs-number">100</span>;
+}
+</code></pre>
+<hr>
+
+            
+            
+        </body>
+        </html>

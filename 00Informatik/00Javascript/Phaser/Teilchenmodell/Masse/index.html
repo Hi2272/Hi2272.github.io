@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teilchenbewegung & Masse Simulation</title>
+    <link rel="stylesheet" href="style.css"> <!-- Wir können das alte CSS wiederverwenden -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+</head>
+<body>
+    <h1>Teilchenbewegung im Gas mit variabler Masse</h1>
+    <div class="controls">
+        <div>
+            <label for="tempSlider">Temperatur:</label>
+            <input type="range" id="tempSlider" min="-272" max="727" value="25">
+            <span id="tempValue">25 °C</span>
+        </div>
+        <hr>
+        <div>
+            <label for="massSlider1">Masse Teilchen Typ 1 (Rot):</label>
+            <input type="range" id="massSlider1" min="1" max="235" value="4"> <!-- Min auf 1u gesetzt, um 0u zu vermeiden -->
+            <span id="massValue1">4 u</span>
+        </div>
+        <div>
+            <label for="massSlider2">Masse Teilchen Typ 2 (Blau):</label>
+            <input type="range" id="massSlider2" min="1" max="235" value="32"> <!-- Min auf 1u gesetzt -->
+            <span id="massValue2">32 u</span>
+        </div>
+    </div>
+    <div id="phaser-game"></div>
+    <script src="game.js"></script> <!-- Verweis auf neues JS -->
+</body>
+</html>

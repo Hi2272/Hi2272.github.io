@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teilchenbewegung Simulation</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    
+</head>
+<body>
+    <h1>Teilchenbewegung im Gas</h1>
+    <div class="controls">
+        <label for="tempSlider">Temperatur:</label>
+        <input type="range" id="tempSlider" min="-273" max="1000" value="25">
+        <span id="tempValue">25 °C</span>
+    </div>
+
+    <div class="main-content-wrapper">
+        <div id="phaser-game"></div>
+        <div class="info-box">
+            <!-- ID hier hinzugefügt -->
+            <p id="speedInfoParagraph">Klicke auf den Button, um die Geschwindigkeiten der Teilchen anzeigen zu lassen.</p>
+        </div>
+    </div>
+
+    <button id="showSpeedsButton" class="action-button">Geschwindigkeiten anzeigen</button>
+
+    <script src="game.js"></script>
+    <hr>
+    <a href="indexMasse.html">Einfluss der Teilchenmasse</a><br>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+}
+
+.controls {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.controls label {
+    margin-right: 10px;
+}
+
+.controls input[type="range"] {
+    width: 200px;
+    vertical-align: middle;
+}
+
+.controls span {
+    margin-left: 10px;
+    font-weight: bold;
+    min-width: 50px; /* Ensure space for "1000 K" */
+    display: inline-block;
+}
+
+#phaser-game {
+    border: 2px solid #333;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+        /* Zusätzliche Stile für die neue Anordnung */
+        .main-content-wrapper {
+            display: flex; /* Ermöglicht die Anordnung von Spiel und Infobox nebeneinander */
+            align-items: flex-start; /* Stellt sicher, dass die Oberkanten bündig sind */
+            margin-bottom: 15px; /* Abstand zum Button darunter */
+        }
+
+        #phaser-game {
+            /* Stelle sicher, dass dein Spiel eine definierte Größe hat,
+               sonst nimmt es ggf. nicht den erwarteten Platz ein.
+               Die Größe wird normalerweise in game.js in der Phaser-Konfiguration festgelegt.
+               z.B. width: 800, height: 600
+            */
+            /* border: 1px solid #ccc; /* Nur zur Visualisierung der Grenzen */
+        }
+
+        .info-box {
+            width: 200px; /* Breite der Infobox */
+            margin-left: 20px; /* Abstand zum Spiel */
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            font-size: 0.9em;
+            height: fit-content; /* Passt die Höhe an den Inhalt an */
+        }
+
+        .action-button {
+            display: block; /* Damit der Button eine eigene Zeile einnimmt */
+            margin: 10px auto; /* Zentriert den Button und gibt etwas Abstand */
+            padding: 8px 15px;
+            cursor: pointer;
+        }
