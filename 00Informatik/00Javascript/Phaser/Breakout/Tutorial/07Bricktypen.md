@@ -27,8 +27,22 @@ Erstelle eine neue Level-Datei `level2.json` im `assets`-Ordner mit der Angabe d
 }
 ```
 ### 8.2 Code-Anpassungen in `game.js`
+### 8.2.1 Neue Variablen
 
-### 8.2.1 Laden der Bricks
+Die Variable **bricks** soll eine Referenz auf alle Bricks im Spielfeld halten.  
+Die Anzahl der Leben eines Bricks speichern wir in einer sogenannten **Map**. In diesem Datentyp kann ich Schlüsseln (hier: bricks) Werte (hier: Zahl der Leben des Bricks) zuordnen.
+
+```js
+let bricks;
+let brickHealth = new Map();
+```
+
+
+### 8.2.2 Laden der Bricks
+
+
+Im `preload()` laden wir alle vier Brick-Bilder mit Hilfe einer Zählschleife.
+
 ```js
 function preload() {
   ...
@@ -40,14 +54,11 @@ function preload() {
   this.load.json('level2', 'assets/level2.json');
 }
 ```
-
-### 8.2.2 Neue Variablen
-
-```js
-let bricks;
-let brickHealth = new Map();
-```
 ### 8.2.3 Erzeugen der Bricks
+
+Die Größe und Position der Bricks auf dem Spielfeld wird automatisch aus den Maßen des Spielfeldes berechnet.  
+Außerdem wird die Funktion **ballPaddleCollision** registriert, so dass sie bei eine Kollision von Ball und Brick aufgerufen wird.
+
 ```js
 function create() {
   ...
@@ -89,6 +100,10 @@ function create() {
 }
 ``` 
 ### 8.2.4 Funktion zur Kollisionsverarbeitung
+
+In der Funktion wird der Typ des Bricks aus der Map ausgelesen. Abhängig von seinem Typ reagiert der Brick unterschiedlich auf die Kollision.  
+Wenn du weitere Bricktypen erzeugst, musst du ihr Verhalten an dieser Stelle einprogrammieren.  
+
 ```js
 function ballBrickCollision(ball, brick) {
   // Neu: aktueller Typ aus Map
@@ -122,24 +137,7 @@ function ballBrickCollision(ball, brick) {
 ```
 ---
 
-### 8.3 Erklärung der Änderungen
-
-- Im `preload()` laden wir alle vier Brick-Bilder mit Hilfe einer Zählschleife.
-
-- Für jeden Brick speichern wir seinen Typ in der zusammengesetzten Variable `brickHealth`:  
-      `brickHealth.set(brick, brickType);`  
-      Hierbei ist jedem brick-Objekt ein brickType-Wert zugeordnet.  
-
-    
-- Im `ballBrickCollision`-Handler wird geprüft, welchen Typ der Brick hat:
-  - Typ 1: sofort zerstören.
-  - Typ 2: Brick wird zu Typ 1, indem wir Textur und brickHealth-Wert ändern.
-  - Typ 3: Brick wird zu Typ 2 (gleicher Mechanismus).
-  - Typ 4: unzerstörbar, daher keine Aktion.
-
----
-
-### 8.4 Live-Test
+### 8.3 Live-Test
 
 <iframe 
   src="07BrickTypen/index.html" 
