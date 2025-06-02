@@ -3,6 +3,16 @@
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
 
 # Grundstruktur des Breakout-Spiels
+
+
+<iframe 
+  src="10Background/index.html" 
+  width="820" 
+  height="700" 
+  frameborder="0" 
+  sandbox="allow-scripts allow-same-origin">
+</iframe>
+
 ## 1. Wurzelverzeichnis:
 ![alt text](01Verzeichnisstrutktur.png)  
 
@@ -122,11 +132,11 @@ Hierzu kann die Internetseite (https://squoosh.app/) verwendet werden.
 ```json
 {
     "layout": [
-      [4,4,4,4,4,4,4,4,4],
-      [0,1,1,1,1,1,1,1,0],
-      [1,1,1,1,1,1,1,1,1],
-      [0,1,1,1,1,1,1,1,0],
-      [2,2,3,3,3,3,3,2,2]
+      [0,0,1,1,1,1,1,0,0],
+      [0,2,2,2,2,2,2,2,0],
+      [0,3,3,3,3,3,3,3,0],
+      [4,5,5,5,5,5,5,5,4]
     ]
 }
-```
+  ```  
+![alt text](Bricks.png)
