@@ -111,6 +111,7 @@ Die Bilder sollten sich an diesen Maßen orientieren:
 - Hintergründe: 800 x 600
 - Bricks: 50 x 20
 - Paddle: 120 x 20
+- Ball: 20 x 20
 
 **Wichtig:**   
 Um die Ladezeit möglichst niedrig zu halten, müssen die Bilder **stark komprimiert** werden.   
