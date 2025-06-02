@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -136,7 +138,10 @@
         
         </head>
         <body class="vscode-body vscode-light">
-            <h1 id="breakout-game-tutorial-mit-phaserio">Breakout-Game Tutorial mit <a href="http://Phaser.io">Phaser.io</a></h1>
+              <meta charset="utf-8" />
+  <title>Breakout</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="breakout-game-tutorial-mit-phaserio">Breakout-Game Tutorial mit <a href="http://Phaser.io">Phaser.io</a></h1>
 <h2 id="schritt-5-ball-per-tastendruckmaus-starten">Schritt 5: Ball per Tastendruck/Maus starten</h2>
 <p>Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir dafür, dass der Ball zunächst auf dem Paddle „liegt“ und erst nach einem Tastendruck (Leertaste) oder Mausklick losfliegt. Solange der Ball noch nicht gestartet ist, bewegt er sich synchron mit dem Paddle.</p>
 <h3 id="51-code-anpassungen-in-gamejs">5.1 Code-Anpassungen in <code>game.js</code></h3>

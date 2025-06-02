@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Breakout-Game Tutorial mit Phaser&period;io</title>
+            <title>Grundstruktur des Breakout-Spiels</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -139,32 +139,31 @@
         </head>
         <body class="vscode-body vscode-light">
               <meta charset="utf-8" />
-  <title>Informatik</title>
+  <title>Projekt</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
-<h1 id="breakout-game-tutorial-mit-phaserio">Breakout-Game Tutorial mit <a href="http://Phaser.io">Phaser.io</a></h1>
-<p><a href="01ball.html">01Ball</a> | <a href="02Paddle.html">02Paddle</a> | <a href="03Squash.html">03Squash</a> | <a href="04ClicktoStart.html">04ClickToStart</a> | <a href="05Leben.html">05Leben</a> | <a href="06Bricks.html">06Bricks</a> | <a href="07Bricktypen.html">07Bricktypen</a> | <a href="08Level.html">08Levels</a> | <a href="09PowerUp.html">09PowerUp</a> | <a href="10Background.html">10Background</a></p>
-<hr>
-<h2 id="in-diesem-tutorial-lernst-du-schritt-für-schritt-wie-du-ein-einfaches-breakout-game-mit-html-css-und-javascript-unter-verwendung-des-phaserio-frameworks-erstellst">In diesem Tutorial lernst du Schritt für Schritt, wie du ein einfaches Breakout-Game mit HTML, CSS und JavaScript unter Verwendung des <a href="http://Phaser.io">Phaser.io</a> Frameworks erstellst.</h2>
-<h2 id="vorbereitung-installation-der-entwicklungsumgebung">Vorbereitung: Installation der Entwicklungsumgebung</h2>
-<p>Für den Test von HTML-, CSS- und Javascript-Dateien benötigst du in der Regel einen Webserver, der diese Seiten hostet. Anschließend kannst du sie mit einem Internetbrowser anzeigen lassen.<br>
-Die Entwicklungsumgebung <strong>VisualStudioCode</strong> bietet eine Live-Server-Erweiterung, mit der dieses Problem elegant umgangen werden kann:</p>
-<ol>
-<li>Installiere die Software <a href="https://code.visualstudio.com/Download">VisualStudioCode</a>.</li>
-<li>Starte VSCode und installiere die Erweiterung <strong>Live Server</strong>.</li>
-<li>Wenn du jetzt mit der rechten Maustaste auf eine HTML-Datei klickst, kannst du sie vom Live Server lokal hosten lassen.<br>
-VSCode startet dann automatisch einen Webbrowser und zeigt die Datei an.<br>
-Änderungen an der Datei werden in der Regel automatisch vom Live Server verarbeitet.</li>
-</ol>
-<hr>
-<h2 id="schritt-1-projektgrundlage-einrichten-html-css-js">Schritt 1: Projektgrundlage einrichten (HTML, CSS, JS)</h2>
-<p>Zu Beginn erstellen wir die grundlegenden Dateien, die wir später für unser Spiel brauchen:</p>
-<ul>
-<li><code>index.html</code></li>
-<li><code>style.css</code></li>
-<li><code>game.js</code></li>
-</ul>
-<hr>
-<h3 id="11-html-datei-indexhtml">1.1 HTML-Datei: <code>index.html</code></h3>
+<h1 id="grundstruktur-des-breakout-spiels">Grundstruktur des Breakout-Spiels</h1>
+<h2 id="1-wurzelverzeichnis">1. Wurzelverzeichnis:</h2>
+<p><img src="01Verzeichnisstrutktur.png" alt="alt text"></p>
+<h3 id="11-css-datei-stylecss">1.1 CSS-Datei: <code>style.css</code></h3>
+<p>Wir geben dem Body eine dunkelgraue Hintergrundfarbe und stellen die Größe des Spielbereichs ein.</p>
+<pre><code class="language-css"><span class="hljs-selector-tag">body</span> {
+    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#222</span>;
+    <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;
+    <span class="hljs-attribute">font-family</span>: Arial, sans-serif;
+    <span class="hljs-attribute">text-align</span>: center;
+}
+
+<span class="hljs-selector-id">#game-container</span> {
+    <span class="hljs-attribute">margin</span>: <span class="hljs-number">20px</span> auto;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">800px</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">600px</span>;
+    <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid white;
+}
+</code></pre>
+<h3 id="12-html-datei-indexhtml">1.2 HTML-Datei: <code>index.html</code></h3>
+<p>(<a href="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js">https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js</a>)</p>
 <p>Unsere HTML-Datei bindet <a href="http://Phaser.io">Phaser.io</a> ein, lädt die CSS-Datei und unser JavaScript-Game-Script.</p>
 <pre><code class="language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;de&quot;</span>&gt;</span>
@@ -184,32 +183,7 @@ VSCode startet dann automatisch einen Webbrowser und zeigt die Datei an.<br>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
-<h3 id="erläuterungen-zum-code">Erläuterungen zum Code</h3>
-<h4 id="script-srchttpscdnjsdelivrnetnpmphaser3distphaserminjsscript"><code>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js&quot;&gt;&lt;/script&gt;</code></h4>
-<p>Diese Zeile lädt die Phaser-3-Bibliothek von einem Server aus dem Internet. Unser eigenes Spiel-Skript kann damit alle Methoden verwenden, die in dieser Bibliothek definiert wurden.</p>
-<h4 id="-div-idgame-containerdiv"><code> &lt;div id=&quot;game-container&quot;&gt;&lt;/div&gt;</code></h4>
-<p>In diesem Bereich wird das Spielfeld automatisch eingefügt.</p>
-<h4 id="script-srcgamejsscript-"><code>&lt;script src=&quot;game.js&quot;&gt;&lt;/script&gt; </code></h4>
-<p>Die Javascript-Datei <strong>game.js</strong> enthält den Code für unser Spiel.</p>
 <hr>
-<h3 id="12-css-datei-stylecss">1.2 CSS-Datei: <code>style.css</code></h3>
-<p>Wir geben dem Body eine helle Hintergrundfarbe und stellen die Größe des Spielbereichs ein.</p>
-<pre><code class="language-css"><span class="hljs-selector-tag">body</span> {
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#222</span>;
-    <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;
-    <span class="hljs-attribute">font-family</span>: Arial, sans-serif;
-    <span class="hljs-attribute">text-align</span>: center;
-}
-
-<span class="hljs-selector-id">#game-container</span> {
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">20px</span> auto;
-    <span class="hljs-attribute">width</span>: <span class="hljs-number">800px</span>;
-    <span class="hljs-attribute">height</span>: <span class="hljs-number">600px</span>;
-    <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid white;
-}
-</code></pre>
 <hr>
 <h3 id="13-javascript-datei-gamejs">1.3 JavaScript-Datei: <code>game.js</code></h3>
 <p>In dieser Datei programmieren wir den gesamten Code des Spieles. Derzeit stellt es nur ein leeres Spiel-Fenster mit einer Breite von 800, einer Höhe von 600 Pixel und einem schwarzen Hintergrund dar.</p>
@@ -230,43 +204,48 @@ VSCode startet dann automatisch einen Webbrowser und zeigt die Datei an.<br>
   <span class="hljs-keyword">const</span> game = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Phaser</span>.<span class="hljs-title class_">Game</span>(config);
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">preload</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-comment">// Hier laden wir später Assets</span>
+    <span class="hljs-comment">// Hier werden Bilder oder Sound-Dateien vor dem Spielstart in den Speicher geladen</span>
   }
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-comment">// Hier bauen wir später die Spielobjekte auf</span>
+    <span class="hljs-comment">// Wird einmalig beim Start des Spiels aufgerufen und baut das Spielfeld auf</span>
   }
 
   <span class="hljs-keyword">function</span> <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-comment">// Hier kommt später die Spiel-Logik rein</span>
+    <span class="hljs-comment">// Wird als Game-Loop 60x pro Sekunde (60fps) aufgerufen und steuert das eigentliche Spiel</span>
   }
 };
 </code></pre>
-<h3 id="erläuterungen-zum-code-1">Erläuterungen zum Code</h3>
-<p>Phaser verwendet in jedem Spiel-Szenario (Scene) drei zentrale Methoden, um das Spiel zu steuern:</p>
-<h3 id="1-preload">1. <code>preload()</code></h3>
-<p>Hier werden Assets wie Bilder, Sounds oder Sprite-Sheets geladen, bevor das Spiel startet. Dies stellt sicher, dass alle benötigten Dateien bereit sind, sobald das Spiel beginnt.</p>
-<hr>
-<h3 id="2-create">2. <code>create()</code></h3>
-<p>Hier werden Spielobjekte erstellt und initialisiert — z.B. der Ball, die Steine oder das Paddle. Die Funktion wird direkt nach dem erfolgreichen Laden aller Assets in <code>preload()</code> aufgerufen und bereitet die Szene für das eigentliche Spiel vor.</p>
-<hr>
-<h3 id="3-update">3. <code>update()</code></h3>
-<p>Hier läuft die eigentliche Spielmechanik ab. Die <code>update()</code>-Funktion wird viele Male pro Sekunde aufgerufen und aktualisiert die Darstellung. Sie stellt die zentrale &quot;Spielschleife&quot; - den game-loop dar.</p>
-<h2 id="nächster-schritt">Nächster Schritt</h2>
-<p>Im nächsten Tutorial-Schritt fügen wir den Paddle und Ball zum Spiel hinzu und machen diese bewegbar.</p>
-<h3 id="live-test">Live-Test</h3>
-<iframe 
-  src="00Start/index.html" 
-  width="820" 
-  height="700" 
-  frameborder="0" 
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
-<hr>
-<h3 id="dateien">Dateien</h3>
-<p><a href="00Start.zip">Zip-Datei</a></p>
-<hr>
-<h3 id="weiter"><a href="01ball.html">Weiter</a></h3>
+<h3 id="2-der-assets-ordner">2. Der assets-Ordner</h3>
+<p><img src="01Assets.png" alt="alt text"></p>
+<h4 id="21-bild-dateien">2.1 Bild-Dateien</h4>
+<p>In der game.js-Datei werden die Maße des Spielfeldes festgelegt:</p>
+<pre><code class="language-JS"> <span class="hljs-keyword">const</span> config = {
+    <span class="hljs-attr">type</span>: <span class="hljs-title class_">Phaser</span>.<span class="hljs-property">AUTO</span>,
+    <span class="hljs-attr">width</span>: <span class="hljs-number">800</span>,
+    <span class="hljs-attr">height</span>: <span class="hljs-number">600</span>,
+ ...
+</code></pre>
+<p>Die Bilder sollten sich an diesen Maßen orientieren:</p>
+<ul>
+<li>Hintergründe: 800 x 600</li>
+<li>Bricks: 50 x 20</li>
+<li>Paddle: 120 x 20</li>
+</ul>
+<p><strong>Wichtig:</strong><br>
+Um die Ladezeit möglichst niedrig zu halten, müssen die Bilder <strong>stark komprimiert</strong> werden.<br>
+Hierzu kann die Internetseite (<a href="https://squoosh.app/">https://squoosh.app/</a>) verwendet werden.</p>
+<h4 id="22-json-dateien">2.2 JSON-Dateien</h4>
+<pre><code class="language-json"><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;layout&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+      <span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-punctuation">[</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-punctuation">[</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
 
             
             

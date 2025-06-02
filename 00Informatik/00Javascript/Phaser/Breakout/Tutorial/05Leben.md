@@ -1,3 +1,8 @@
+  <meta charset="utf-8" />
+  <title>Breakout</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+
+
 # Breakout-Game Tutorial mit Phaser.io
 
 ## Schritt 6: Leben hinzufügen und Game Over bei Verlust aller Leben
