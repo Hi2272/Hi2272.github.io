@@ -58,7 +58,7 @@ h1 {
         }
 
         .info-box {
-            width: 200px; /* Breite der Infobox */
+            width: 300px; /* Breite der Infobox */
             margin-left: 20px; /* Abstand zum Spiel */
             padding: 10px;
             border: 1px solid #ddd;

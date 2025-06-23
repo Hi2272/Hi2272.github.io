@@ -26,8 +26,9 @@ const game = new Phaser.Game(config);
 
 const NUM_PARTICLES = 10;
 const PARTICLE_RADIUS = 8;
-const PARTICLE_COLOR = 0xff0000; // Red
-const HELIUM_MASS_U = 4; // Atomic mass units
+const RED = 0xff0000; // Red
+const BLUE= 0x0000FF;
+const masse = 4; // Atomic mass units
 
 const KELVIN_OFFSET = 273.15;
 const CELSIUS_TO_KELVIN_INT_OFFSET = 273;
@@ -57,8 +58,13 @@ function create() {
         const y = Phaser.Math.Between(PARTICLE_RADIUS, gameHeight - PARTICLE_RADIUS);
 
         const particleGraphics = this.add.graphics();
-        particleGraphics.fillStyle(PARTICLE_COLOR, 1);
-        particleGraphics.fillCircle(PARTICLE_RADIUS, PARTICLE_RADIUS, PARTICLE_RADIUS);
+        if (i%2==0){
+            particleGraphics.fillStyle(RED, 1);
+        } else {
+            particleGraphics.fillStyle(BLUE, 1);
+    
+        }
+            particleGraphics.fillCircle(PARTICLE_RADIUS, PARTICLE_RADIUS, PARTICLE_RADIUS);
         const textureKey = `particleTexture${i}`;
         particleGraphics.generateTexture(textureKey, PARTICLE_RADIUS * 2, PARTICLE_RADIUS * 2);
         particleGraphics.destroy();
@@ -68,7 +74,11 @@ function create() {
         particle.setCircle(PARTICLE_RADIUS);
         particle.setCollideWorldBounds(true);
         particle.setBounce(1);
-        setParticleVelocity(particle, currentTemperatureKelvin);
+        if (i%2==0){
+            particle.setMass(masse);
+        } else{
+            particle.setMass(masse*10);
+        }
     }
 
     this.physics.add.collider(particles, particles, onParticleCollide);
@@ -100,6 +110,9 @@ function create() {
         if (!showSpeedsButton) console.error("Button 'showSpeedsButton' wurde nicht im DOM gefunden!");
         if (!speedInfoDisplay) console.error("Absatz 'speedInfoParagraph' wurde nicht im DOM gefunden!");
     }
+    adjustAllParticleSpeeds(currentTemperatureKelvin);
+    displayParticleSpeeds();
+
 }
 
 function update() {
@@ -107,43 +120,29 @@ function update() {
 }
 
 function setParticleVelocity(particle, temperatureKelvin) {
-    const speed = calculateSpeedForTemperature(temperatureKelvin);
+    console.log(particle.body.mass);
+    const speed = vMittel(temperatureKelvin,particle.body.mass);
     const angle = Phaser.Math.FloatBetween(0, 2 * Math.PI);
-
+    console.log(particle.body.mass+" "+speed+" "+angle);
+ 
     particle.setVelocity(
         Math.cos(angle) * speed,
         Math.sin(angle) * speed
     );
-}
-
-function calculateSpeedForTemperature(temperatureKelvin) {
-    if (temperatureKelvin <= 0) return 0;
-    return BASE_SPEED_PIXELS_PER_SECOND * Math.sqrt(temperatureKelvin / REFERENCE_TEMP_K);
+    
 }
 
 function adjustAllParticleSpeeds(newTemperatureKelvin) {
-    const newSpeedMagnitude = calculateSpeedForTemperature(newTemperatureKelvin);
-
     particles.getChildren().forEach(particle => {
-        const currentVelocity = particle.body.velocity;
-        const currentSpeed = currentVelocity.length();
-
-        if (newSpeedMagnitude === 0) {
-            particle.setVelocity(0, 0);
-        } else if (currentSpeed > 0) {
-            const factor = newSpeedMagnitude / currentSpeed;
-            particle.setVelocity(currentVelocity.x * factor, currentVelocity.y * factor);
-        } else {
-            setParticleVelocity(particle, newTemperatureKelvin);
-        }
+        setParticleVelocity(particle, newTemperatureKelvin);
     });
+    displayParticleSpeeds();
 }
 
 function onParticleCollide(particleA, particleB) {
     // Für diese Simulation nicht weiter relevant, da Bounce=1 die Stöße handhabt.
 }
 
-// NEUE FUNKTION: Zeigt die Geschwindigkeiten der Teilchen an
 function displayParticleSpeeds() {
     if (!particles || !speedInfoDisplay) {
         console.warn("Partikelgruppe oder Anzeigeelement nicht initialisiert.");
@@ -172,14 +171,30 @@ function displayParticleSpeeds() {
     // 4. HTML-String erstellen
     let speedsHTML = "<strong>Teilchengeschwindigkeiten:</strong><br>";
     // NEU: Mittlere Geschwindigkeit hinzufügen
-    speedsHTML += `Mittlere Geschwindigkeit: ${averageSpeed.toFixed(2)}<br><br>`;
+    speedsHTML += `Mittlere Geschwindigkeit: ${averageSpeed.toFixed(2)} m/s<br><br>`;
     speedsHTML += "<strong>Einzelgeschwindigkeiten:</strong><br>";
-
+    speedsHTML+="<table><tr>"
     speedsArray.forEach((speed, index) => {
         // Ohne Einheit "px/s"
-        speedsHTML += `Teilchen ${index + 1}: ${speed.toFixed(2)}<br>`;
+        speedsHTML += `<td> ${speed.toFixed(2)}  m/s</td> `;
+        if (index%3==2){speedsHTML+='</tr><tr>';}
     });
-
+    speedsHTML+="</tr></table>"
+    
     // .innerHTML verwenden, damit <br> und <strong> interpretiert werden
     speedInfoDisplay.innerHTML = speedsHTML;
 }
+
+
+function vMittel(temperaturK, masseU) {
+    const kB = 1.380649e-23; // Boltzmann-Konstante in J/K
+    const uInKg = 1.66053906660e-27; // 1 u in kg
+  
+    // Masse in Kilogramm umrechnen
+    const masseKg = masseU * uInKg;
+  
+    // Formel für die mittlere Geschwindigkeit
+    const vMittlere = Math.sqrt((8 * kB * temperaturK) / (Math.PI * masseKg));
+  
+    return vMittlere; // Ergebnis in m/s
+  }
