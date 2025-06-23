@@ -127,6 +127,13 @@ Die Bilder sollten sich an diesen Maßen orientieren:
 Um die Ladezeit möglichst niedrig zu halten, müssen die Bilder **stark komprimiert** werden.   
 Hierzu kann die Internetseite (https://squoosh.app/) verwendet werden.
 
+#### Zeichenprogramme
+png-Dateien sind pixelorientiert - sie können daher mit jedem einfachen Zeichenprogramm erstellt werden.   
+Online-Werkzeuge sind:  
+- Piksel: https://www.piskelapp.com/p/create/sprite/
+- Draw.io: https://app.diagrams.net  
+Draw.io ist eigentlich ein Vektororientiertes Programm. Die Bilder können aber als png-Dateien exportiert werden.
+
 
 #### 2.2 JSON-Dateien
 ```json
