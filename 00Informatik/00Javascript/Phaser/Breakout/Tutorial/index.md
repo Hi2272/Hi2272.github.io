@@ -1,4 +1,12 @@
+  <meta charset="utf-8" />
+  <title>Informatik</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+ 
+
 # Breakout-Game Tutorial mit Phaser.io
+[01Ball](01ball.html) | [02Paddle](02Paddle.html) | [03Squash](03Squash.html) | [04ClickToStart](04ClicktoStart.html) | [05Leben](05Leben.html) | [06Bricks](06Bricks.html) | [07Bricktypen](07Bricktypen.html) | [08Levels](08Level.html) | [09PowerUp](09PowerUp.html) | [10Background](10Background.html)  
+
+---
 
 In diesem Tutorial lernst du Schritt für Schritt, wie du ein einfaches Breakout-Game mit HTML, CSS und JavaScript unter Verwendung des Phaser.io Frameworks erstellst.
 ---

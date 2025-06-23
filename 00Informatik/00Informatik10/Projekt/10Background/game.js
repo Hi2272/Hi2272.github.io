@@ -1,68 +1,4 @@
-  <meta charset="utf-8" />
-  <title>Breakout</title>
-  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
-
-
-# Breakout-Game Tutorial mit Phaser.io
-
-## Schritt 9: Levelwechsel
-
-In diesem Schritt ergänzen wir unser Breakout-Spiel so, dass die Anzahl der noch zerstörbaren Steine (Bricks) gezählt wird. Sobald alle zerstörbaren Bricks verschwunden sind, wird das nächste Level gestartet.
-
----
-
-### 9.1 Neue Level-Dateien anlegen
-
-Lege mindestens zwei Level-Dateien an, z.B. `assets/level1.json` und `assets/level2.json`, analog zu den bisherigen.
-
-Beispiel `assets/level1.json` (nur Steintyp 1):
-
-```json
-{
-  "layout": [
-    [0,0,0,1,1,1,0,0,0],
-    [0,1,1,1,1,1,1,1,0],
-    [1,1,1,1,1,1,1,1,1],
-    [0,1,1,1,1,1,1,1,0],
-    [0,0,0,1,1,1,0,0,0]
-  ]
-}
-```
-
-Beispiel `assets/level2.json` (mit unterschiedlichen Bricktypen, wie Schritt 8):
-
-```json
-{
-  "layout": [
-    [0,0,0,4,4,4,0,0,0],
-    [0,3,3,3,3,3,3,3,0],
-    [2,2,2,2,2,2,2,2,2],
-    [0,1,1,1,1,1,1,1,0],
-    [0,0,0,1,1,1,0,0,0]
-  ]
-}
-```
-
-Du kannst beliebig viele Level anlegen (z.B. level3.json, ...), beachte aber unten die maximale Level-Anzahl.
-
----
-
-### 9.2 Erweiterung des Codes in `game.js`
-
-#### Übersicht der wichtigsten Änderungen
-
-- Verwaltung aktuelles Level `currentLevel`, maximale Levelanzahl `maxLevel`
-- Dynamisches Laden der Leveldaten per Schlüssel `levelX` (z.B. `level1`, `level2`, ...)
-- Zählschleife der noch zerstörbaren Bricks (Typ 1,2,3) nach jedem Treffer
-- Automatischer Levelwechsel, wenn alle zerstörbaren Bricks entfernt sind
-- Anzeige einer Gratulationsnachricht am Spielende
-
----
-
-### 9.3 Vollständiger geänderter/erweiterter Codeausschnitt für `game.js`
-
-```js
-window.onload = function () {
+window.onload = function() {
   const config = {
     type: Phaser.AUTO,
     width: 800,
@@ -96,35 +32,47 @@ window.onload = function () {
   let bricks;
   let brickHealth = new Map();
 
-  // Levelmanagement: Start bei Level 1, max Level 2 (anpassbar)
   let currentLevel = 1;
-  const maxLevel = 2;
-  let levelText;
+  const maxLevel = 3;  // Level 3 mit brick5 hinzugefügt
 
   let bricksRemaining = 0;
   let bricksText;
   let congratsText;
+  let levelText;
+
+  // Neuer Physik-Sprite für die fallende Kugel (PowerUp)
+  let powerUp;  
+
+  let background;
+
 
   const game = new Phaser.Game(config);
 
   function preload() {
     this.load.image('ball', 'assets/ball.png');
     this.load.image('paddle', 'assets/paddle.png');
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 5; i++) {
       this.load.image('brick' + i, 'assets/brick' + i + '.png');
     }
+    this.load.image('sphere1', 'assets/sphere1.png');  // PowerUp Kugel laden
 
-    // Lade alle Leveldateien im Voraus (kann auch on-demand optimiert werden)
     for (let lvl = 1; lvl <= maxLevel; lvl++) {
       this.load.json('level' + lvl, 'assets/level' + lvl + '.json');
     }
-
+      // Lade Hintergründe per Schleife
+    for (let i = 1; i <= maxLevel; i++) {
+      this.load.image('bg' + i, 'assets/bg' + i + '.png');
+    }
   }
 
   function create() {
     const width = this.sys.game.config.width;
     const height = this.sys.game.config.height;
-
+ 
+    // Hintergrund erstellen, anfangs Level 1
+    background = this.add.image(width / 2, height / 2, 'bg' + currentLevel);
+    background.setDisplaySize(width, height);
+ 
     paddle = this.physics.add.image(width / 2, height - 100, 'paddle');
     paddle.setImmovable(true);
     paddle.setCollideWorldBounds(true);
@@ -146,18 +94,6 @@ window.onload = function () {
       fill: '#ffffff',
     });
 
-    levelText = this.add.text(
-      this.sys.game.config.width - 10, // X-Position: rechts innen
-      10,                              // Y-Position: 10 px von oben
-      'Level: ' + currentLevel,        // Starttext
-      {
-        font: '20px Arial',
-        fill: '#ffffff',
-      }
-    );
-
-    levelText.setOrigin(1, 0); // Rechts oben ausrichten
-
     gameOverText = this.add.text(width / 2, height / 2, 'GAME OVER', {
       font: '50px Arial',
       fill: '#ff0000',
@@ -175,6 +111,17 @@ window.onload = function () {
     congratsText.setOrigin(0.5);
     congratsText.setVisible(false);
 
+    levelText = this.add.text(
+      width - 10,
+      10,
+      'Level ' + currentLevel + ' von ' + maxLevel,
+      {
+        font: '20px Arial',
+        fill: '#ffffff',
+      }
+    );
+    levelText.setOrigin(1, 0);
+
     this.input.on('pointerdown', () => {
       if (!ballLaunched && !gameEnded) {
         launchBall();
@@ -189,7 +136,16 @@ window.onload = function () {
       paddle.x = Phaser.Math.Clamp(pointer.x, paddle.width / 2, width - paddle.width / 2);
     });
 
-    // Erster Levelaufbau
+    powerUp = this.physics.add.image(-100, -100, 'sphere1'); // erstmal ausblenden, außerhalb vom Bildschirm
+    powerUp.setVelocity(0, 0);
+    powerUp.setCollideWorldBounds(true);
+    powerUp.setBounce(0.5);
+    powerUp.setVisible(false);
+    powerUp.body.allowGravity = false;
+
+    // Kollisionsprüfung PowerUp - Paddle
+    this.physics.add.overlap(powerUp, paddle, collectPowerUp, null, this);
+
     loadLevel.call(this, currentLevel);
 
     this.physics.add.collider(ball, paddle, ballPaddleCollision, null, this);
@@ -200,6 +156,7 @@ window.onload = function () {
     if (gameEnded) {
       paddle.setVelocityX(0);
       ball.setVelocity(0, 0);
+      powerUp.setVelocity(0, 0);
       return;
     }
 
@@ -215,6 +172,17 @@ window.onload = function () {
       ball.x = paddle.x;
       ball.y = paddle.y - paddle.height / 2 - 10;
       ball.setVelocity(0, 0);
+    }
+
+    // PowerUp fällt nach unten, wenn sichtbar
+    if (powerUp.visible) {
+      // Kugel fällt mit konstanter Geschwindigkeit nach unten
+      powerUp.setVelocityY(200);
+
+      // Kugel geht verloren, wenn sie den Boden berührt (außerhalb des Bildschirms)
+      if (powerUp.y > this.sys.game.config.height - powerUp.height) {
+        resetPowerUp();
+      }
     }
 
     if (ball.y > this.sys.game.config.height - ball.height) {
@@ -245,10 +213,17 @@ window.onload = function () {
     gameEnded = true;
     ball.setVelocity(0, 0);
     paddle.setVelocity(0, 0);
+    powerUp.setVisible(false);
+    powerUp.setVelocity(0,0);
     gameOverText.setVisible(true);
   }
 
   function loadLevel(levelNumber) {
+
+    if (background) {
+      background.setTexture('bg' + levelNumber);
+    }
+
     if (bricks) {
       bricks.clear(true, true);
     }
@@ -271,7 +246,7 @@ window.onload = function () {
     for (let row = 0; row < levelData.length; row++) {
       for (let col = 0; col < levelData[row].length; col++) {
         const brickType = levelData[row][col];
-        if (brickType >= 1 && brickType <= 4) {
+        if (brickType >= 1 && brickType <= 5) {
           const brickX = offsetLeft + col * brickWidth + brickWidth / 2;
           const brickY = offsetTop + row * brickHeight + brickHeight / 2;
           const brick = bricks.create(brickX, brickY, 'brick' + brickType);
@@ -281,7 +256,6 @@ window.onload = function () {
 
           brickHealth.set(brick, brickType);
 
-          // Steine mit Typ 1,2,3 sind zerstörbar — zählen wir mit
           if (brickType !== 4) {
             bricksRemaining++;
           }
@@ -292,7 +266,7 @@ window.onload = function () {
     bricksText.setText('Verbleibende Steine: ' + bricksRemaining);
 
     levelText.setText('Level ' + levelNumber + ' von ' + maxLevel);
-    // Neue Kollision mit dem neuen Brick-Set registrieren:
+
     this.physics.add.collider(ball, bricks, ballBrickCollision, null, this);
   }
 
@@ -327,27 +301,55 @@ window.onload = function () {
       case 4:
         // unzerstörbar, nichts tun
         break;
+      case 5:
+        // spezieller Brick: zerstören und PowerUp erzeugen
+        brick.disableBody(true, true);
+        brickHealth.delete(brick);
+        decrementBricksRemaining.call(this);
+
+        spawnPowerUp.call(this, brick.x, brick.y);
+        break;
       default:
-        // Fallback: zerstören
         brick.disableBody(true, true);
         brickHealth.delete(brick);
         decrementBricksRemaining.call(this);
     }
   }
 
-  // Hilfsfunktion: Zähler verringern, ggf. Level wechseln
+  // PowerUp erzeugen an Position x,y
+  function spawnPowerUp(x, y) {
+    powerUp.setPosition(x, y);
+    powerUp.setVelocity(0, 200);
+    powerUp.setVisible(true);
+  }
+
+  // PowerUp gibt ein Leben mehr, wenn es Paddel berührt
+  function collectPowerUp(sphere, paddle) {
+    resetPowerUp();
+
+    lives++;
+    livesText.setText('Leben: ' + lives);
+  }
+
+  // PowerUp zurücksetzen wenn verloren oder eingesammelt
+  function resetPowerUp() {
+    powerUp.setVisible(false);
+    powerUp.setVelocity(0, 0);
+    powerUp.x = -100;
+    powerUp.y = -100;
+  }
+
+  // Zählt remaining Bricks runter, wechselt Level oder beendet Spiel
   function decrementBricksRemaining() {
     bricksRemaining--;
     bricksText.setText('Verbleibende Steine: ' + bricksRemaining);
 
-    // Wenn keine zerstörbaren Bricks mehr übrig sind:
     if (bricksRemaining <= 0) {
       ballLaunched = false;
       ball.setVelocity(0, 0);
       ball.x = paddle.x;
       ball.y = paddle.y - paddle.height / 2 - 10;
 
-      // Nächstes Level laden oder Spiel beenden
       if (currentLevel < maxLevel) {
         currentLevel++;
         loadLevel.call(this, currentLevel);
@@ -361,47 +363,8 @@ window.onload = function () {
     gameEnded = true;
     ball.setVelocity(0, 0);
     paddle.setVelocity(0, 0);
+    powerUp.setVisible(false);
+    powerUp.setVelocity(0, 0);
     congratsText.setVisible(true);
   }
 };
-
-```
-
----
-
-### 9.4 Erläuterungen
-
-- **Levelwechsel:**  
-  Die Variable `currentLevel` hält den aktuellen Level, `maxLevel` definiert, wie viele Levels es gibt.  
-  Die Funktion `loadLevel(levelNumber)` lädt das Level dynamisch neu. Alle Brick-Daten werden eingelesen.
-
-- **Zählung:**  
-  `bricksRemaining` zählt alle zerstörbaren Bricks (Typ 1, 2, 3). Diese Zahl wird bei jedem Treffer durch `decrementBricksRemaining()` verringert.
-
-- **Bricks vom Typ 4 (unzerstörbar):**  
-  Diese werden nicht mitgezählt und bleiben auf dem Spielfeld stehen.
-
-- **Levelende & Spielende:**  
-  Sind keine zerstörbaren Bricks mehr da, wird das nächste Level geladen.  
-  Ist das letzte Level abgeschlossen, erscheint die Gratulationsmeldung, und das Spiel wird beendet (`gameEnded = true`).
-
-- **UI:**  
-  Der Text `bricksText` zeigt immer die verbliebenen Bricks an.
-
----
-
-### 9.5 Live-Test
-
-<iframe 
-  src="08BreakoutLevels/index.html" 
-  width="820" 
-  height="700" 
-  frameborder="0" 
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
-
- ---
- ### Dateien
-  [Zip-Datei](08Level.zip)
- --- 
-### [weiter](09PowerUp.html)  

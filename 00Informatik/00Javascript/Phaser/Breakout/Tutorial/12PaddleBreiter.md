@@ -1,3 +1,7 @@
+  <meta charset="utf-8" />
+  <title>Breakout</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+
 ### 13. Neuer Steintyp: Paddle wird schmaler
 
 ---

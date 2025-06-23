@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -136,7 +138,10 @@
         
         </head>
         <body class="vscode-body vscode-light">
-            <h1 id="breakout-game-tutorial-mit-phaserio">Breakout-Game Tutorial mit <a href="http://Phaser.io">Phaser.io</a></h1>
+              <meta charset="utf-8" />
+  <title>Breakout</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="breakout-game-tutorial-mit-phaserio">Breakout-Game Tutorial mit <a href="http://Phaser.io">Phaser.io</a></h1>
 <h2 id="schritt-6-leben-hinzufügen-und-game-over-bei-verlust-aller-leben">Schritt 6: Leben hinzufügen und Game Over bei Verlust aller Leben</h2>
 <p>Der Spieler soll zu Beginn 3 Leben haben. Diese Leben werden oben links im Spiel als Text angezeigt. Wenn der Ball unten am Paddle vorbei fliegt, verliert der Spieler ein Leben. Sind alle Leben aufgebraucht, wird „Game Over“ angezeigt und das Spiel endet.</p>
 <hr>

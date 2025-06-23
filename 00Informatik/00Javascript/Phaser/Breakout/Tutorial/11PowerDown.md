@@ -1,3 +1,7 @@
+  <meta charset="utf-8" />
+  <title>Breakout</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+
 # Breakout-Game Tutorial mit Phaser.io
 
 ## Schritt 12: Neuer Steintyp: Verringert Zahl der Leben
