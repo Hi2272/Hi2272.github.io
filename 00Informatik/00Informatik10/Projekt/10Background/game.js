@@ -173,7 +173,9 @@ window.onload = function () {
       }
     });
     this.input.on('pointermove', pointer => {
-      paddle.x = Phaser.Math.Clamp(pointer.x, paddle.width / 2, width - paddle.width / 2);
+      const paddleHalfWidth = paddle.displayWidth / 2; // Dynamische Breite des Paddles berücksichtigen
+      const clampedX = Phaser.Math.Clamp(pointer.x, paddleHalfWidth, width - paddleHalfWidth);
+      paddle.x = clampedX;
     });
 
     powerUp = this.physics.add.image(-100, -100, 'sphere1');
@@ -399,8 +401,6 @@ window.onload = function () {
             brick4Health.set(brick, 10); // Brick4 needs 10 hits
           }
 
-
-
           // Brick type 4 is indestructible and doesn't count towards bricksRemaining
           if (brickType !== 4) {
             bricksRemaining++;
@@ -483,7 +483,6 @@ window.onload = function () {
         let hits = brick4Health.get(brick);
         if (hits !== undefined) { // Check if it's a brick4 we are tracking
           hits--;
-          console.log(hits);
           if (hits <= 0) {
             brick.disableBody(true, true); // Destroy the brick
             brickHealth.delete(brick);     // Remove from main health map
@@ -738,7 +737,7 @@ window.onload = function () {
 
         // Reset core game state variables
         gameEnded = false;
-        lives = 3; // Reset lives
+        lives = 999; // Reset lives
         livesText.setText('Leben: ' + lives);
         gameOverText.setVisible(false); // Hide game over text
         congratsText.setVisible(false); // Hide congratulations text
