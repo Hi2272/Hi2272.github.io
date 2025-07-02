@@ -32,7 +32,7 @@ window.onload = function() {
   let brickHealth = new Map();
 
   let currentLevel = 1;
-  const maxLevel = 3;
+  const maxLevel = 26; // Assuming 26 levels based on asset loading loop
 
   let bricksRemaining = 0;
   let bricksText;
@@ -40,10 +40,10 @@ window.onload = function() {
   let levelText;
 
   // Extra Power Ups
-  let powerUp;
-  let slowPowerUp;
-  let multiPowerUp;
-  let sizePowerUp;
+  let powerUp; // Life power-up
+  let slowPowerUp; // Slow ball power-up
+  let multiPowerUp; // Multi ball power-up
+  let sizePowerUp; // Paddle size power-up
 
   let background;
 
@@ -73,10 +73,10 @@ window.onload = function() {
     }
     this.load.image('brick8', 'assets/brick8.png'); // NEU: PaddleSize-Brick
 
-    this.load.image('sphere1', 'assets/sphere1.png');
-    this.load.image('sphere2', 'assets/sphere2.png');
-    this.load.image('sphere3', 'assets/sphere3.png');
-    this.load.image('sphere4', 'assets/sphere4.png');
+    this.load.image('sphere1', 'assets/sphere1.png'); // Life
+    this.load.image('sphere2', 'assets/sphere2.png'); // Slow ball
+    this.load.image('sphere3', 'assets/sphere3.png'); // Multi ball
+    this.load.image('sphere4', 'assets/sphere4.png'); // Paddle size
 
     for (let lvl = 1; lvl <= maxLevel; lvl++) {
       this.load.json('level' + lvl, 'assets/level' + lvl + '.json');
@@ -100,7 +100,7 @@ window.onload = function() {
     paddleNormalWidth = paddle.width;
     paddleNormalDisplayWidth = paddle.displayWidth;
 
-    balls = [];
+    balls = []; // Ensure balls array is empty at start of create
     createInitialBall(this);
 
     cursors = this.input.keyboard.createCursorKeys();
@@ -309,7 +309,9 @@ window.onload = function() {
 
   function setBallVelocity(ball) {
     let speedObj = slowActive ? SLOW_BALL_SPEED : NORMAL_BALL_SPEED;
-    ball.setVelocity(speedObj.x, speedObj.y);
+    // Set an initial angle slightly randomized to prevent direct vertical bounce
+    let initialXVelocity = Phaser.Math.Between(100, 200) * (Math.random() < 0.5 ? 1 : -1); // Random left/right initial direction
+    ball.setVelocity(initialXVelocity, speedObj.y);
   }
 
   function setBallVelocityAngle(ball, angle) {
@@ -328,6 +330,13 @@ window.onload = function() {
 
     if (lives > 0) {
       createInitialBall(game.scene.keys.default);
+      // Reset power-up states/timers when losing a life to prevent carry-over effects
+      clearSlowTimer();
+      slowActive = false;
+      slowText.setVisible(false);
+      clearPaddleSizeTimer();
+      resetPaddleSize();
+      paddleSizeText.setVisible(false);
     } else {
       gameOver();
     }
@@ -352,7 +361,7 @@ window.onload = function() {
   function loadLevel(levelNumber) {
     if (background) background.setTexture('bg' + levelNumber);
 
-    if (bricks) bricks.clear(true, true);
+    if (bricks) bricks.clear(true, true); // Destroy existing bricks
     brickHealth.clear();
     bricks = game.scene.keys.default.physics.add.staticGroup();
 
@@ -383,6 +392,7 @@ window.onload = function() {
 
           brickHealth.set(brick, brickType);
 
+          // Brick type 4 is indestructible and doesn't count towards bricksRemaining
           if (brickType !== 4) {
             bricksRemaining++;
           }
@@ -394,15 +404,23 @@ window.onload = function() {
 
     levelText.setText('Level ' + levelNumber + ' von ' + maxLevel);
 
-    createInitialBall(game.scene.keys.default);
+    createInitialBall(game.scene.keys.default); // Always create a single ball for new level
+    // Ensure all existing ball sprites are removed before creating new one
+    // createInitialBall handles this by destroying existing balls first.
 
+    // Reset all power-up states and clear timers when loading a new level
     clearSlowTimer();
-    slowText.setVisible(false);
     slowActive = false;
+    slowText.setVisible(false);
 
     clearPaddleSizeTimer();
     resetPaddleSize();
     paddleSizeText.setVisible(false);
+
+    resetPowerUp();
+    resetSlowPowerUp();
+    resetMultiPowerUp();
+    resetSizePowerUp();
 
     registerAllBallColliders(game.scene.keys.default);
   }
@@ -421,49 +439,65 @@ window.onload = function() {
   }
 
   function onBallBrickCollision(ball, brick, scene) {
+    // Reverse ball velocity if it hits the brick from the top/bottom
+    // or from the sides. This simplifies collision logic for a simple brick game.
+    if (ball.body.velocity.y > 0 && ball.y < brick.y) { // hit from top
+      ball.body.velocity.y *= -1;
+    } else if (ball.body.velocity.y < 0 && ball.y > brick.y) { // hit from bottom
+      ball.body.velocity.y *= -1;
+    } else if (ball.body.velocity.x > 0 && ball.x < brick.x) { // hit from left
+      ball.body.velocity.x *= -1;
+    } else if (ball.body.velocity.x < 0 && ball.x > brick.x) { // hit from right
+      ball.body.velocity.x *= -1;
+    } else { // general case or corner hit
+      ball.body.velocity.y *= -1;
+      ball.body.velocity.x *= -1;
+    }
+
     const currentType = brickHealth.get(brick);
 
     switch (currentType) {
-      case 1:
+      case 1: // Standard brick, breaks on one hit
         brick.disableBody(true, true);
         brickHealth.delete(brick);
         decrementBricksRemaining(scene);
         break;
-      case 2:
+      case 2: // Two-hit brick
         brickHealth.set(brick, 1);
         brick.setTexture('brick1');
         break;
-      case 3:
+      case 3: // Three-hit brick
         brickHealth.set(brick, 2);
         brick.setTexture('brick2');
         break;
-      case 4:
+      case 4: // Indestructible brick
+        // Do nothing, just bounce
         break;
-      case 5:
+      case 5: // Life power-up brick
         brick.disableBody(true, true);
         brickHealth.delete(brick);
         decrementBricksRemaining(scene);
         spawnPowerUp(brick.x, brick.y);
         break;
-      case 6:
+      case 6: // Slow ball power-up brick
         brick.disableBody(true, true);
         brickHealth.delete(brick);
         decrementBricksRemaining(scene);
         spawnSlowPowerUp(brick.x, brick.y);
         break;
-      case 7:
+      case 7: // Multi ball power-up brick
         brick.disableBody(true, true);
         brickHealth.delete(brick);
         decrementBricksRemaining(scene);
         spawnMultiPowerUp(brick.x, brick.y);
         break;
-      case 8:
+      case 8: // Paddle size power-up brick
         brick.disableBody(true, true);
         brickHealth.delete(brick);
         decrementBricksRemaining(scene);
         spawnSizePowerUp(brick.x, brick.y);
         break;
-      default:
+      default: // Should not happen, but for safety
         brick.disableBody(true, true);
         brickHealth.delete(brick);
         decrementBricksRemaining(scene);
@@ -506,13 +540,14 @@ window.onload = function() {
   }
   function activateSlowBall() {
     if (slowActive) {
-      clearSlowTimer();
+      clearSlowTimer(); // Clear existing timer if another slow-powerup is collected
     }
     slowActive = true;
     slowText.setText('Ball verlangsamt! (' + (SLOW_DURATION/1000).toFixed(0) + 's)');
     slowText.setVisible(true);
 
     balls.forEach(obj => {
+      // Preserve current direction, just change speed
       let v = obj.sprite.body.velocity;
       let angle = Math.atan2(v.y, v.x);
       setBallVelocityAngle(obj.sprite, angle);
@@ -558,13 +593,14 @@ window.onload = function() {
     newBall.setCollideWorldBounds(true);
     newBall.setBounce(1);
 
-    let upAngle = Phaser.Math.Between(-60, 60) * (Math.PI/180);
-    setBallVelocityAngle(newBall, upAngle);
+    // Give the new ball a slightly random upward velocity
+    let angle = Phaser.Math.DegToRad(Phaser.Math.Between(200, 340)); // Angle between 200 and 340 degrees (upwards)
+    setBallVelocityAngle(newBall, angle);
 
     let obj = { sprite: newBall, launched: true };
     balls.push(obj);
 
-    registerBallColliders(scene, obj); // <--- WICHTIG: Damit jeder Ball Collider bekommt!
+    registerBallColliders(scene, obj); // <--- IMPORTANT: Register colliders for the new ball
   }
 
   //////////////// PADDLE SIZE POWERUP ///////////////////
@@ -575,7 +611,7 @@ window.onload = function() {
   }
   function collectSizePowerUp(sphere, paddleSprite) {
     resetSizePowerUp();
-    let makeWider = Phaser.Math.Between(0, 1) === 0;
+    let makeWider = Phaser.Math.Between(0, 1) === 0; // Randomly wide or narrow
     activatePaddleSize(makeWider);
   }
   function resetSizePowerUp() {
@@ -585,19 +621,18 @@ window.onload = function() {
     sizePowerUp.y = -100;
   }
   function activatePaddleSize(doubleWidth) {
-    clearPaddleSizeTimer();
+    clearPaddleSizeTimer(); // Clear existing timer if another paddle-size-powerup is collected
     paddleSizeActive = true;
     if (doubleWidth) {
       paddle.displayWidth = paddleNormalDisplayWidth * 2;
-      paddle.body.width = paddle.displayWidth;
       paddleSizeText.setText("Paddle doppelt so breit! (" + (PADDLE_SIZE_DURATION/1000).toFixed(0) + "s)");
     } else {
       paddle.displayWidth = paddleNormalDisplayWidth / 2;
-      paddle.body.width = paddle.displayWidth;
       paddleSizeText.setText("Paddle halb so breit! (" + (PADDLE_SIZE_DURATION/1000).toFixed(0) + "s)");
     }
     paddleSizeText.setVisible(true);
 
+    // Update the physics body size to match the display size
     paddle.body.setSize(paddle.displayWidth, paddle.body.height, true);
 
     paddleSizeTimer = setTimeout(function() {
@@ -607,7 +642,6 @@ window.onload = function() {
   }
   function resetPaddleSize() {
     paddle.displayWidth = paddleNormalDisplayWidth;
-    paddle.body.width = paddleNormalDisplayWidth;
     paddle.body.setSize(paddleNormalDisplayWidth, paddle.body.height, true);
     paddleSizeActive = false;
   }
@@ -623,16 +657,18 @@ window.onload = function() {
     bricksRemaining--;
     bricksText.setText('Verbleibende Steine: ' + bricksRemaining);
     if (bricksRemaining <= 0) {
+      // Destroy all balls when level is cleared
       balls.forEach(obj => obj.sprite.destroy());
       balls = [];
       ballLaunched = false;
 
       if (currentLevel < maxLevel) {
         currentLevel++;
-        loadLevel.call(scene, currentLevel);
+        loadLevel.call(scene, currentLevel); // Load next level
       } else {
-        winGame.call(scene);
+        winGame.call(scene); // Player won the game
       }
+      // Reset all power-up states and clear timers when advancing level
       slowText.setVisible(false);
       clearSlowTimer();
       slowActive = false;
@@ -658,4 +694,60 @@ window.onload = function() {
     resetPaddleSize();
   }
 
-}
+  // --- HTML Interaction ---
+  const startLevelInput = document.getElementById('start-level');
+  const startGameButton = document.getElementById('start-game');
+
+  if (startGameButton && startLevelInput) { // Check if HTML elements exist
+    startGameButton.addEventListener('click', () => {
+      let levelToStart = parseInt(startLevelInput.value, 10);
+
+      // Input validation
+      if (isNaN(levelToStart) || levelToStart < 1) {
+        levelToStart = 1; // Default to level 1 if input is invalid
+      }
+      if (levelToStart > maxLevel) {
+        levelToStart = maxLevel; // Cap at maxLevel if input is too high
+      }
+
+      // Ensure the Phaser scene is active and ready
+      if (game.scene.keys.default && game.scene.keys.default.scene.settings.active) {
+        const scene = game.scene.keys.default;
+
+        // Reset core game state variables
+        gameEnded = false;
+        lives = 3; // Reset lives
+        livesText.setText('Leben: ' + lives);
+        gameOverText.setVisible(false); // Hide game over text
+        congratsText.setVisible(false); // Hide congratulations text
+
+        // Clear and reset all active power-up states and their timers/visuals
+        clearSlowTimer();
+        slowActive = false;
+        slowText.setVisible(false);
+
+        clearPaddleSizeTimer();
+        resetPaddleSize(); // Reset paddle size to normal
+        paddleSizeText.setVisible(false);
+
+        // Reset power-up sprites' positions and visibility (make them disappear from screen)
+        resetPowerUp();
+        resetSlowPowerUp();
+        resetMultiPowerUp();
+        resetSizePowerUp();
+
+        // Set the new current level and load it
+        currentLevel = levelToStart;
+        loadLevel.call(scene, currentLevel); // Call loadLevel with the context of the scene
+
+        // Ensure the ball is not launched immediately
+        ballLaunched = false; // createInitialBall (called by loadLevel) also sets this, but for clarity
+      } else {
+        console.warn("Phaser scene not ready or active. Cannot start new level.");
+      }
+    });
+  } else {
+    console.warn("HTML elements 'start-level' or 'start-game' not found. Make sure they are in your HTML.");
+  }
+
+}; // End of window.onload block
