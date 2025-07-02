@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
   const config = {
     type: Phaser.AUTO,
     width: 800,
@@ -22,7 +22,7 @@ window.onload = function() {
   let balls = [];
   let paddle;
   let cursors;
-  let lives = 3;
+  let lives = 999;
   let livesText;
   let gameOverText;
   let gameEnded = false;
@@ -30,6 +30,7 @@ window.onload = function() {
 
   let bricks;
   let brickHealth = new Map();
+  let brick4Health = new Map(); // NEW: To track hits for brick4
 
   let currentLevel = 1;
   const maxLevel = 26; // Assuming 26 levels based on asset loading loop
@@ -105,7 +106,7 @@ window.onload = function() {
 
     cursors = this.input.keyboard.createCursorKeys();
 
-    livesText = this.add.text(10, 10, 'Leben: 3', {
+    livesText = this.add.text(10, 10, 'Leben: '+lives.toString(), {
       font: '20px Arial',
       fill: '#ffffff',
     });
@@ -143,7 +144,7 @@ window.onload = function() {
     );
     levelText.setOrigin(1, 0);
 
-    slowText = this.add.text(width/2, height-48, '', {
+    slowText = this.add.text(width / 2, height - 48, '', {
       font: '25px Arial',
       fill: '#ffff00',
       fontStyle: 'bold',
@@ -152,7 +153,7 @@ window.onload = function() {
     slowText.setOrigin(0.5);
     slowText.setVisible(false);
 
-    paddleSizeText = this.add.text(width/2, height-80, '', {
+    paddleSizeText = this.add.text(width / 2, height - 80, '', {
       font: '25px Arial',
       fill: '#00aaff',
       fontStyle: 'bold',
@@ -212,11 +213,11 @@ window.onload = function() {
 
   //--- Registriere für einen Ball die Collider ---
   function registerBallColliders(scene, ballObj) {
-    scene.physics.add.collider(ballObj.sprite, paddle, function(ball, pad) {
+    scene.physics.add.collider(ballObj.sprite, paddle, function (ball, pad) {
       onBallPaddleCollision(ball, pad);
     }, null, scene);
 
-    scene.physics.add.collider(ballObj.sprite, bricks, function(ball, brick) {
+    scene.physics.add.collider(ballObj.sprite, bricks, function (ball, brick) {
       onBallBrickCollision(ball, brick, scene);
     }, null, scene);
   }
@@ -231,7 +232,7 @@ window.onload = function() {
 
   function createInitialBall(phaserScene) {
     if (balls.length > 0) {
-      balls.forEach(obj=>obj.sprite.destroy());
+      balls.forEach(obj => obj.sprite.destroy());
     }
     balls = [];
     let ballSprite = phaserScene.physics.add.image(paddle.x, paddle.y - paddle.height / 2 - 10, 'ball');
@@ -289,7 +290,7 @@ window.onload = function() {
       }
     });
     if (removeList.length > 0) {
-      for (let j = removeList.length-1; j >= 0; --j) {
+      for (let j = removeList.length - 1; j >= 0; --j) {
         let idx = removeList[j];
         balls[idx].sprite.destroy();
         balls.splice(idx, 1);
@@ -316,11 +317,11 @@ window.onload = function() {
 
   function setBallVelocityAngle(ball, angle) {
     let speed = slowActive
-      ? Math.sqrt(SLOW_BALL_SPEED.x*SLOW_BALL_SPEED.x+SLOW_BALL_SPEED.y*SLOW_BALL_SPEED.y)
-      : Math.sqrt(NORMAL_BALL_SPEED.x*NORMAL_BALL_SPEED.x+NORMAL_BALL_SPEED.y*NORMAL_BALL_SPEED.y);
+      ? Math.sqrt(SLOW_BALL_SPEED.x * SLOW_BALL_SPEED.x + SLOW_BALL_SPEED.y * SLOW_BALL_SPEED.y)
+      : Math.sqrt(NORMAL_BALL_SPEED.x * NORMAL_BALL_SPEED.x + NORMAL_BALL_SPEED.y * NORMAL_BALL_SPEED.y);
     ball.setVelocity(
-      Math.cos(angle)*speed,
-      Math.sin(angle)*speed
+      Math.cos(angle) * speed,
+      Math.sin(angle) * speed
     );
   }
 
@@ -363,6 +364,8 @@ window.onload = function() {
 
     if (bricks) bricks.clear(true, true); // Destroy existing bricks
     brickHealth.clear();
+    brick4Health.clear(); // NEW: Clear brick4 health on new level load
+
     bricks = game.scene.keys.default.physics.add.staticGroup();
 
     const width = game.config.width;
@@ -391,6 +394,12 @@ window.onload = function() {
           brick.refreshBody();
 
           brickHealth.set(brick, brickType);
+          // NEW: Initialize brick4 specific health
+          if (brickType === 4) {
+            brick4Health.set(brick, 10); // Brick4 needs 10 hits
+          }
+
+
 
           // Brick type 4 is indestructible and doesn't count towards bricksRemaining
           if (brickType !== 4) {
@@ -470,9 +479,22 @@ window.onload = function() {
         brickHealth.set(brick, 2);
         brick.setTexture('brick2');
         break;
-      case 4: // Indestructible brick
-        // Do nothing, just bounce
-        break;
+      case 4: // Indestructible brick (now destructible after 10 hits)
+        let hits = brick4Health.get(brick);
+        if (hits !== undefined) { // Check if it's a brick4 we are tracking
+          hits--;
+          console.log(hits);
+          if (hits <= 0) {
+            brick.disableBody(true, true); // Destroy the brick
+            brickHealth.delete(brick);     // Remove from main health map
+            brick4Health.delete(brick);    // Remove from brick4 specific health map
+            // DO NOT call decrementBricksRemaining(scene) here, as brick4 doesn't count towards total
+          } else {
+            brick4Health.set(brick, hits); // Update remaining hits
+            // Optional: Add visual feedback for hits on brick4 if you have more textures
+          }
+        }
+        break; // Exit switch after handling brick4 collision
       case 5: // Life power-up brick
         brick.disableBody(true, true);
         brickHealth.delete(brick);
@@ -543,7 +565,7 @@ window.onload = function() {
       clearSlowTimer(); // Clear existing timer if another slow-powerup is collected
     }
     slowActive = true;
-    slowText.setText('Ball verlangsamt! (' + (SLOW_DURATION/1000).toFixed(0) + 's)');
+    slowText.setText('Ball verlangsamt! (' + (SLOW_DURATION / 1000).toFixed(0) + 's)');
     slowText.setVisible(true);
 
     balls.forEach(obj => {
@@ -553,7 +575,7 @@ window.onload = function() {
       setBallVelocityAngle(obj.sprite, angle);
     });
 
-    slowTimer = setTimeout(()=>{
+    slowTimer = setTimeout(() => {
       slowActive = false;
       slowText.setVisible(false);
 
@@ -589,7 +611,7 @@ window.onload = function() {
   }
   function spawnExtraBall() {
     let scene = game.scene.keys.default;
-    let newBall = scene.physics.add.image(paddle.x, paddle.y - paddle.height/2 - 10, 'ball');
+    let newBall = scene.physics.add.image(paddle.x, paddle.y - paddle.height / 2 - 10, 'ball');
     newBall.setCollideWorldBounds(true);
     newBall.setBounce(1);
 
@@ -625,17 +647,17 @@ window.onload = function() {
     paddleSizeActive = true;
     if (doubleWidth) {
       paddle.displayWidth = paddleNormalDisplayWidth * 2;
-      paddleSizeText.setText("Paddle doppelt so breit! (" + (PADDLE_SIZE_DURATION/1000).toFixed(0) + "s)");
+      paddleSizeText.setText("Paddle doppelt so breit! (" + (PADDLE_SIZE_DURATION / 1000).toFixed(0) + "s)");
     } else {
       paddle.displayWidth = paddleNormalDisplayWidth / 2;
-      paddleSizeText.setText("Paddle halb so breit! (" + (PADDLE_SIZE_DURATION/1000).toFixed(0) + "s)");
+      paddleSizeText.setText("Paddle halb so breit! (" + (PADDLE_SIZE_DURATION / 1000).toFixed(0) + "s)");
     }
     paddleSizeText.setVisible(true);
 
     // Update the physics body size to match the display size
     paddle.body.setSize(paddle.displayWidth, paddle.body.height, true);
 
-    paddleSizeTimer = setTimeout(function() {
+    paddleSizeTimer = setTimeout(function () {
       resetPaddleSize();
       paddleSizeText.setVisible(false);
     }, PADDLE_SIZE_DURATION);
