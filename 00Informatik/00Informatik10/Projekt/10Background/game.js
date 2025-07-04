@@ -52,9 +52,9 @@ window.onload = function () {
   let slowActive = false;
   let slowTimer = null;
   let slowText;
-  const SLOW_DURATION = 30000;
+  const SLOW_DURATION = 15000;
   const NORMAL_BALL_SPEED = { x: 150, y: -300 };
-  const SLOW_BALL_SPEED = { x: 80, y: -160 };
+  const SLOW_BALL_SPEED = { x: 300, y: -400 };
 
   // Paddle Size PowerUp Timer
   let paddleSizeTimer = null;
@@ -564,7 +564,7 @@ window.onload = function () {
       clearSlowTimer(); // Clear existing timer if another slow-powerup is collected
     }
     slowActive = true;
-    slowText.setText('Ball verlangsamt! (' + (SLOW_DURATION / 1000).toFixed(0) + 's)');
+    slowText.setText('Ball beschleunigt! (' + (SLOW_DURATION / 1000).toFixed(0) + 's)');
     slowText.setVisible(true);
 
     balls.forEach(obj => {
@@ -632,8 +632,7 @@ window.onload = function () {
   }
   function collectSizePowerUp(sphere, paddleSprite) {
     resetSizePowerUp();
-    let makeWider = Phaser.Math.Between(0, 1) === 0; // Randomly wide or narrow
-    activatePaddleSize(makeWider);
+    activatePaddleSize();  
   }
   function resetSizePowerUp() {
     sizePowerUp.setVisible(false);
@@ -641,16 +640,11 @@ window.onload = function () {
     sizePowerUp.x = -100;
     sizePowerUp.y = -100;
   }
-  function activatePaddleSize(doubleWidth) {
+  function activatePaddleSize() {
     clearPaddleSizeTimer(); // Clear existing timer if another paddle-size-powerup is collected
     paddleSizeActive = true;
-    if (doubleWidth) {
-      paddle.displayWidth = paddleNormalDisplayWidth * 2;
-      paddleSizeText.setText("Paddle doppelt so breit! (" + (PADDLE_SIZE_DURATION / 1000).toFixed(0) + "s)");
-    } else {
       paddle.displayWidth = paddleNormalDisplayWidth / 2;
       paddleSizeText.setText("Paddle halb so breit! (" + (PADDLE_SIZE_DURATION / 1000).toFixed(0) + "s)");
-    }
     paddleSizeText.setVisible(true);
 
     // Update the physics body size to match the display size
