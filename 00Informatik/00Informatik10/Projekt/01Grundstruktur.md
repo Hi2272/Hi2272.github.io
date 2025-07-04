@@ -133,6 +133,61 @@ Online-Werkzeuge sind:
 - Piksel: https://www.piskelapp.com/p/create/sprite/
 - Draw.io: https://app.diagrams.net  
 Draw.io ist eigentlich ein Vektororientiertes Programm. Die Bilder können aber als png-Dateien exportiert werden.
+- p5js für programmierte Hintergründe:  
+Auf https://editor.p5js.org können Hintergründe in Javascript programmiert werden. Anschließend kann das Bild mit der rechten Maustaste gespeichert werden.
+Experimentiere mit folgendem Code:  
+#### Bunte Kreise
+```JS
+
+function setup() {
+  createCanvas(600, 400);
+  background(255);
+  for (var x=0;x<600;x=x+30){
+    for (var y=0;y<400;y=y+20){
+    fill(random(255),random(255),random(255));
+    circle(x,y,random(60));
+  }
+  }
+}
+
+function draw() {
+}
+
+```
+
+#### Farbige Linien
+```JS
+function setup() {
+  createCanvas(600, 400);
+  background(255);
+  for (var x=0;x<600;x=x+30){
+    for (var y=0;y<400;y=y+20){
+    fill(random(255),random(255),random(255));
+    circle(x,y,random(60));
+  }
+  }
+}
+
+function draw() {
+}
+```
+#### Verschieden dicke Linien
+````JS
+function setup() {
+  createCanvas(600, 400);
+  background(255);
+    for (var y=0;y<400;y=y+20){
+    stroke(random(255),random(255),random(255));
+    strokeWeight(random(10));
+    line(10,y,590,y);
+  }
+}
+
+function draw() {
+}
+`````
+
+
 
 
 #### 2.2 JSON-Dateien

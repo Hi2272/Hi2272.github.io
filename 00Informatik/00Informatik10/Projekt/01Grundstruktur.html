@@ -250,7 +250,56 @@ Online-Werkzeuge sind:</p>
 <li>Piksel: <a href="https://www.piskelapp.com/p/create/sprite/">https://www.piskelapp.com/p/create/sprite/</a></li>
 <li><a href="http://Draw.io">Draw.io</a>: <a href="https://app.diagrams.net">https://app.diagrams.net</a><br>
 <a href="http://Draw.io">Draw.io</a> ist eigentlich ein Vektororientiertes Programm. Die Bilder können aber als png-Dateien exportiert werden.</li>
+<li>p5js für programmierte Hintergründe:<br>
+Auf <a href="https://editor.p5js.org">https://editor.p5js.org</a> können Hintergründe in Javascript programmiert werden. Anschließend kann das Bild mit der rechten Maustaste gespeichert werden.
+Experimentiere mit folgendem Code:</li>
 </ul>
+<h4 id="bunte-kreise">Bunte Kreise</h4>
+<pre><code class="language-JS">
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">600</span>, <span class="hljs-number">400</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">255</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> x=<span class="hljs-number">0</span>;x&lt;<span class="hljs-number">600</span>;x=x+<span class="hljs-number">30</span>){
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> y=<span class="hljs-number">0</span>;y&lt;<span class="hljs-number">400</span>;y=y+<span class="hljs-number">20</span>){
+    <span class="hljs-title function_">fill</span>(<span class="hljs-title function_">random</span>(<span class="hljs-number">255</span>),<span class="hljs-title function_">random</span>(<span class="hljs-number">255</span>),<span class="hljs-title function_">random</span>(<span class="hljs-number">255</span>));
+    <span class="hljs-title function_">circle</span>(x,y,<span class="hljs-title function_">random</span>(<span class="hljs-number">60</span>));
+  }
+  }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+}
+
+</code></pre>
+<h4 id="farbige-linien">Farbige Linien</h4>
+<pre><code class="language-JS"><span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">600</span>, <span class="hljs-number">400</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">255</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> x=<span class="hljs-number">0</span>;x&lt;<span class="hljs-number">600</span>;x=x+<span class="hljs-number">30</span>){
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> y=<span class="hljs-number">0</span>;y&lt;<span class="hljs-number">400</span>;y=y+<span class="hljs-number">20</span>){
+    <span class="hljs-title function_">fill</span>(<span class="hljs-title function_">random</span>(<span class="hljs-number">255</span>),<span class="hljs-title function_">random</span>(<span class="hljs-number">255</span>),<span class="hljs-title function_">random</span>(<span class="hljs-number">255</span>));
+    <span class="hljs-title function_">circle</span>(x,y,<span class="hljs-title function_">random</span>(<span class="hljs-number">60</span>));
+  }
+  }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+}
+</code></pre>
+<h4 id="verschieden-dicke-linien">Verschieden dicke Linien</h4>
+<pre><code class="language-JS"><span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">600</span>, <span class="hljs-number">400</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">255</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> y=<span class="hljs-number">0</span>;y&lt;<span class="hljs-number">400</span>;y=y+<span class="hljs-number">20</span>){
+    <span class="hljs-title function_">stroke</span>(<span class="hljs-title function_">random</span>(<span class="hljs-number">255</span>),<span class="hljs-title function_">random</span>(<span class="hljs-number">255</span>),<span class="hljs-title function_">random</span>(<span class="hljs-number">255</span>));
+    <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-title function_">random</span>(<span class="hljs-number">10</span>));
+    <span class="hljs-title function_">line</span>(<span class="hljs-number">10</span>,y,<span class="hljs-number">590</span>,y);
+  }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+}
+</code></pre>
 <h4 id="22-json-dateien">2.2 JSON-Dateien</h4>
 <pre><code class="language-json"><span class="hljs-punctuation">{</span>
     <span class="hljs-attr">&quot;layout&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
