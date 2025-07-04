@@ -185,7 +185,24 @@ function setup() {
 
 function draw() {
 }
-`````
+```
+#### Rote Quadrate
+````JS
+function setup() {
+  createCanvas(600, 400);
+  background(255);
+    for (var i=0;i<400;i++){
+    stroke(random(255),0,0);
+    strokeWeight(random(10));
+    fill(random(200),0,0);
+    rect(random(600),random(400),20,20);
+  }
+}
+
+function draw() {
+}
+````
+
 
 
 
