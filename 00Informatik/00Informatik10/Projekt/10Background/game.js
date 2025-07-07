@@ -33,7 +33,7 @@ window.onload = function () {
   let brick4Health = new Map(); // NEW: To track hits for brick4
 
   let currentLevel = 1;
-  const maxLevel = 26; // Assuming 26 levels based on asset loading loop
+  const maxLevel = 24; // Assuming 24 levels based on asset loading loop
 
   let bricksRemaining = 0;
   let bricksText;
@@ -83,7 +83,9 @@ window.onload = function () {
       this.load.json('level' + lvl, 'assets/level' + lvl + '.json');
     }
     for (let i = 1; i <= maxLevel; i++) {
-      this.load.image('bg' + i, 'assets/bg' + i + '.png');
+      let s= 'assets/bg' + i + '.png';
+      this.load.image('bg' + i,s);
+      console.log(s+" geladen!");
     }
   }
 
