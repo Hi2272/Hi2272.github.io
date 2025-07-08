@@ -22,7 +22,7 @@ window.onload = function () {
   let balls = [];
   let paddle;
   let cursors;
-  let lives = 999;
+  let lives = 99;
   let livesText;
   let gameOverText;
   let gameEnded = false;
@@ -33,7 +33,7 @@ window.onload = function () {
   let brick4Health = new Map(); // NEW: To track hits for brick4
 
   let currentLevel = 1;
-  const maxLevel = 24; // Assuming 24 levels based on asset loading loop
+  const maxLevel = 20; // Assuming 21 levels based on asset loading loop
 
   let bricksRemaining = 0;
   let bricksText;
