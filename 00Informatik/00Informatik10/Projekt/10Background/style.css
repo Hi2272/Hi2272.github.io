@@ -1,11 +1,14 @@
 body {
     margin: 0;
     padding: 0;
+    width: 100vw; /* Volle Breite des Viewports */
+    height: 100vh; /* Volle Höhe des Viewports */
     background-color: #222;
     color: #fff;
     font-family: Arial, sans-serif;
     text-align: center;
 }
+
 h1 {
     color:cornflowerblue;
     font-size: 34px;
