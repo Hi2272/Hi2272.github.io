@@ -6,7 +6,7 @@ Der Arduino Uno hat eine eingebaute LED. Diese ist am Pin 13 angeschlossen. Mit 
 
 ## 1. Blockbasierte Programmierung des Arduino Unos
 
-Auf der Internetseite [https://sensebox.github.io/blockly/](https://sensebox.github.io/blockly/) steht ein Editor zur blockbasierten Programmierung des Arduino Unos zur Verfügung.
+Auf der Internetseite <a href="https://sensebox.github.io/blockly/" target="_blank">https://sensebox.github.io/blockly/</a>  steht ein Editor zur blockbasierten Programmierung des Arduino Unos zur Verfügung.
 
 Erstelle folgendes Block-Programm:  
 ![Alt text](2024-06-14_10-06.png)  
@@ -73,5 +73,6 @@ Da die loop()-Methode immer wieder durchlaufen wird, beginnt sie anschließend w
 
 Ändere das Programm so ab, dass die LED langsamer blinkt und lade es erneut hoch.
     
-  
-[zurück](../index.html)
+[Weiter zur Ampel](../01LEDs/05Ampel/index.html)  
+
+[zurück zur Übersicht](../index.html)
