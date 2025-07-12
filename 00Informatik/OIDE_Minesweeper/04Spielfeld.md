@@ -46,9 +46,6 @@ c) ohne Parameter: gibt das gesamte Feld **kachel** zurück.
 
 3.  **isMine(int x, int y)**  
 Die Methode soll wahr zurückgeben, wenn x und y im Gitter liegen und die Kachel eine Mine ist.
-4. **getNachbarn(int nr)**  
-   Setze dieses Struktogramm um:  
-   ![alt text](StruktugrammNachbarn.png)
-
-Teste das Programm - das Spielfeld müsste jetzt vollständig aufgebaut werden.
-
+  
+  
+[weiter](05Spielfeld.html)

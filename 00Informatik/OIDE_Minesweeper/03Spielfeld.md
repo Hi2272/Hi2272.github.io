@@ -30,7 +30,7 @@
    Deklariere alle Attribute.
 #### Konstruktor
 Programmiere den Konstruktor, in dem 
-   1. Die Attribute **breite, hoehe und anzMinen** initialisiert werden.
+   1. Die Attribute **breite, hoehe, spalten, zeilen und anzMinen** initialisiert werden.
    2. Das Attribut kachel initialisiert wird. Die Zahl der kacheln berechnet sich aus dem Produkt der Spalten- und Zeilenzahl.
    3. Diese Schleife eingefügt wird:
 ```C++

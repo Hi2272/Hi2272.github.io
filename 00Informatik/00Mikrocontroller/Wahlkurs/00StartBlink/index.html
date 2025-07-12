@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -140,7 +142,7 @@
 <h1 id="blink---das-erste-programm">Blink - das erste Programm</h1>
 <p>Der Arduino Uno hat eine eingebaute LED. Diese ist am Pin 13 angeschlossen. Mit folgendem Programm lassen wir diese LED blinken.</p>
 <h2 id="1-blockbasierte-programmierung-des-arduino-unos">1. Blockbasierte Programmierung des Arduino Unos</h2>
-<p>Auf der Internetseite <a href="https://sensebox.github.io/blockly/">https://sensebox.github.io/blockly/</a> steht ein Editor zur blockbasierten Programmierung des Arduino Unos zur Verfügung.</p>
+<p>Auf der Internetseite <a href="https://sensebox.github.io/blockly/" target="_blank">https://sensebox.github.io/blockly/</a>  steht ein Editor zur blockbasierten Programmierung des Arduino Unos zur Verfügung.</p>
 <p>Erstelle folgendes Block-Programm:<br>
 <img src="2024-06-14_10-06.png" alt="Alt text"><br>
 Auf der rechten Seite wird dir der automatisch erzeugt Arduino-Quellcode angezeigt:</p>
@@ -194,7 +196,8 @@ Die LED auf dem Arduino Uno blinkt jetzt schnell.</li>
 Da die loop()-Methode immer wieder durchlaufen wird, beginnt sie anschließend wieder zu leuchten. Sie blinkt also ungefähr einmal pro Sekunde.</p>
 <h2 id="experimentieraufgabe">Experimentieraufgabe</h2>
 <p>Ändere das Programm so ab, dass die LED langsamer blinkt und lade es erneut hoch.</p>
-<p><a href="../index.html">zurück</a></p>
+<p><a href="../01LEDs/05Ampel/index.html">Weiter zur Ampel</a></p>
+<p><a href="../index.html">zurück zur Übersicht</a></p>
 
             
             

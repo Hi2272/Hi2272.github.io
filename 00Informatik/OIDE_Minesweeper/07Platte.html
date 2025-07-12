@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>4&period; Die Klasse Platte</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+              <meta charset="utf-8" />
+  <title>Informatik</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="minesweeper">Minesweeper</h1>
+<h3 id="4-die-klasse-platte">4. Die Klasse Platte</h3>
+<h4 id="onmousedown">onMouseDown</h4>
+<p>Die Platte soll durch Linksklick aufgedeckt werden. Wir benötigen also wieder die Methode <strong>public void onMouseDown(double x, double y, int key)</strong>.</p>
+<p>Du kannst sie direkt aus der Klasse Mine kopieren und musst nur eine Kleinigkeit ändern:</p>
+<ul>
+<li>Beim Linksklick soll die Methode <strong>aufdecken()</strong> aufgerufen werden.</li>
+<li>Beim Rechtsklick wird sie genauso markiert wie eine Mine.</li>
+</ul>
+<h4 id="aufdecken">aufdecken</h4>
+<p>In der Methode aufdecken soll diese Sequenz umgesetzt werden:</p>
+<ol>
+<li>
+<p>Wenn das Attribut <strong>aufgedeckt</strong> falsch ist,</p>
+<ol>
+<li>
+<p>soll das Attribut auf wahr gesetzt werden und</p>
+</li>
+<li>
+<p>ein Textfeld erzeugt werden, das die Zahl der Nachbarn anzeigt:<br>
+TextField t = new TextField(x * breite, y * hoehe, breite - 3, 30, String.valueOf(nachbarn));</p>
+</li>
+<li>
+<p>Wenn die Zahl der Nachbarn größer null ist,</p>
+</li>
+<li>
+<p>soll die Textfarbe von t auf gelb gesetzt werden:<br>
+<strong>t.setFillColor(Color.yellow, 0.3);</strong></p>
+</li>
+<li>
+<p>Sonst soll die Textfarbe von t auf grün gesetzt werden:<br>
+<strong>t.setFillColor(Color.green, 0.3);</strong></p>
+</li>
+</ol>
+<p>Und die Nachbarzellen sollen aufgedeckt werden:</p>
+</li>
+</ol>
+<pre><code class="language-C++">      <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">-1</span>; i &lt;= <span class="hljs-number">1</span>; i++) {
+             <span class="hljs-keyword">if</span>(feld.<span class="hljs-built_in">isInGrid</span>(x + i, y - <span class="hljs-number">1</span>)) { feld.<span class="hljs-built_in">getKachel</span>(x + i, y - <span class="hljs-number">1</span>).<span class="hljs-built_in">aufdecken</span>(); }
+             <span class="hljs-keyword">if</span>(feld.<span class="hljs-built_in">isInGrid</span>(x + i, y + <span class="hljs-number">1</span>)) { feld.<span class="hljs-built_in">getKachel</span>(x + i, y + <span class="hljs-number">1</span>).<span class="hljs-built_in">aufdecken</span>(); }
+          }
+          <span class="hljs-keyword">if</span>(feld.<span class="hljs-built_in">isInGrid</span>(x - <span class="hljs-number">1</span>, y)) { feld.<span class="hljs-built_in">getKachel</span>(x - <span class="hljs-number">1</span>, y).<span class="hljs-built_in">aufdecken</span>(); }
+          <span class="hljs-keyword">if</span>(feld.<span class="hljs-built_in">isInGrid</span>(x + <span class="hljs-number">1</span>, y)) { feld.<span class="hljs-built_in">getKachel</span>(x + <span class="hljs-number">1</span>, y).<span class="hljs-built_in">aufdecken</span>(); }
+</code></pre>
+<pre><code>  Analysiere diesen Code. Welche Zellen werden nacheinander aufgedeckt?  
+</code></pre>
+<section>
+   <iframe
+    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+    width="100%" height="600" frameborder="0">
+    {'id': 'Java', 'speed': 'max', 
+    'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
+    'withFileList': true ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Platte.java" src="03Platte.java"></script>
+    <script id="javaCode" type="plain/text" title="Kachel.java" src="Kachel.java"></script>
+    <script id="javaCode" type="plain/text" title="Spielfeld.java" src="Spielfeld.java"></script>
+    <script id="javaCode" type="plain/text" title="Mine.java" src="Mine.java"></script>
+  </script>
+   </iframe>
+</section>
+
+            
+            
+        </body>
+        </html>

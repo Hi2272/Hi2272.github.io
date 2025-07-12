@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Breakout-Game Tutorial mit Phaser&period;io</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+              <meta charset="utf-8" />
+  <title>Breakout</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="breakout-game-tutorial-mit-phaserio">Breakout-Game Tutorial mit <a href="http://Phaser.io">Phaser.io</a></h1>
+<h2 id="schritt-11-unterschiedliche-hintergründe-pro-level">Schritt 11: Unterschiedliche Hintergründe pro Level</h2>
+<p>In diesem Schritt erweitern wir das Spiel um verschiedene Hintergrundbilder, die je nach aktuellem Level automatisch geladen und angezeigt werden.</p>
+<hr>
+<h3 id="111-vorbereitung">11.1 Vorbereitung</h3>
+<ul>
+<li>Lege im Ordner <code>assets</code> drei Hintergrundbilder an:
+<ul>
+<li><code>bg1.png</code> für Level 1</li>
+<li><code>bg2.png</code> für Level 2</li>
+<li><code>bg3.png</code> für Level 3</li>
+</ul>
+</li>
+</ul>
+<p>Die Bilder sollten idealerweise die Spielfeldgröße von <code>800x600</code> Pixeln haben oder in Phaser so skaliert werden, dass sie den ganzen Spielbereich ausfüllen.</p>
+<hr>
+<h3 id="112-code-erweiterungen-in-gamejs">11.2 Code-Erweiterungen in <code>game.js</code></h3>
+<p>Wir passen den Preload-Prozess an, sodass die Hintergründe per Schleife geladen werden, und fügen eine Variable für den aktuellen Hintergrund-Sprite hinzu. Beim Laden eines Levels wird dann der jeweilige Hintergrund angezeigt.</p>
+<h4 id="1121-variablendeklaration-erweitern">11.2.1 Variablendeklaration erweitern</h4>
+<pre><code class="language-js"><span class="hljs-keyword">let</span> background;
+</code></pre>
+<h4 id="1122-preload-hintergründe-mit-schleife-laden">11.2.2 Preload: Hintergründe mit Schleife laden</h4>
+<p>Ersetze im <code>preload</code>-Abschnitt das Laden der Hintergründe durch eine Schleife:</p>
+<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">preload</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;ball&#x27;</span>, <span class="hljs-string">&#x27;assets/ball.png&#x27;</span>);
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;paddle&#x27;</span>, <span class="hljs-string">&#x27;assets/paddle.png&#x27;</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;brick&#x27;</span> + i, <span class="hljs-string">&#x27;assets/brick&#x27;</span> + i + <span class="hljs-string">&#x27;.png&#x27;</span>);
+  }
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;sphere1&#x27;</span>, <span class="hljs-string">&#x27;assets/sphere1.png&#x27;</span>);
+
+  <span class="hljs-comment">// Lade Level-Dateien</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> lvl = <span class="hljs-number">1</span>; lvl &lt;= maxLevel; lvl++) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">json</span>(<span class="hljs-string">&#x27;level&#x27;</span> + lvl, <span class="hljs-string">&#x27;assets/level&#x27;</span> + lvl + <span class="hljs-string">&#x27;.json&#x27;</span>);
+  }
+
+  <span class="hljs-comment">// Lade Hintergründe per Schleife</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= maxLevel; i++) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;bg&#x27;</span> + i, <span class="hljs-string">&#x27;assets/bg&#x27;</span> + i + <span class="hljs-string">&#x27;.png&#x27;</span>);
+  }
+}
+</code></pre>
+<h4 id="1123-hintergrund-beim-spielstart-erstellen">11.2.3 Hintergrund beim Spielstart erstellen</h4>
+<p>Im <code>create()</code>-Abschnitt legen wir den Hintergrundsprite an und skalieren ihn so, dass er den Spielbereich komplett ausfüllt:</p>
+<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> width = <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">width</span>;
+  <span class="hljs-keyword">const</span> height = <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">height</span>;
+
+  <span class="hljs-comment">// Hintergrund erstellen, anfangs Level 1</span>
+  background = <span class="hljs-variable language_">this</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">image</span>(width / <span class="hljs-number">2</span>, height / <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;bg&#x27;</span> + currentLevel);
+  background.<span class="hljs-title function_">setDisplaySize</span>(width, height);
+  
+  <span class="hljs-comment">// ... restlicher create() Code unverändert</span>
+</code></pre>
+<h4 id="1124-hintergrund-beim-levelwechsel-aktualisieren">11.2.4 Hintergrund beim Levelwechsel aktualisieren</h4>
+<p>Im <code>loadLevel()</code>-Funktion fügen wir vor dem Laden der Steine folgenden Code ein, um den Hintergrund zu aktualisieren:</p>
+<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">loadLevel</span>(<span class="hljs-params">levelNumber</span>) {
+  <span class="hljs-keyword">if</span> (background) {
+    background.<span class="hljs-title function_">setTexture</span>(<span class="hljs-string">&#x27;bg&#x27;</span> + levelNumber);
+  }
+
+  <span class="hljs-comment">// ... bestehender loadLevel Code</span>
+}
+</code></pre>
+<hr>
+<h3 id="113-live-test">11.3 Live-Test</h3>
+<iframe 
+  src="10Background/index.html" 
+  width="820" 
+  height="700" 
+  frameborder="0" 
+  sandbox="allow-scripts allow-same-origin">
+</iframe>
+<hr>
+<h3 id="dateien">Dateien</h3>
+<p><a href="10Background.zip">Zip-Datei</a></p>
+
+            
+            
+        </body>
+        </html>

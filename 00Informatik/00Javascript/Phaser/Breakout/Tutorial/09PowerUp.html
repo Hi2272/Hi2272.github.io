@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Breakout-Game Tutorial mit Phaser&period;io</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+              <meta charset="utf-8" />
+  <title>Breakout</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="breakout-game-tutorial-mit-phaserio">Breakout-Game Tutorial mit <a href="http://Phaser.io">Phaser.io</a></h1>
+<h2 id="schritt-10-powerup--kugel-fällt-und-schenkt-ein-leben">Schritt 10: PowerUp – Kugel fällt und schenkt ein Leben</h2>
+<p>In diesem Schritt fügen wir einen neuen Steintyp <code>brick5</code> hinzu. Wird dieser Stein vom Ball getroffen, verschwindet er und eine Kugel (<code>sphere1</code>) fällt vom getroffenem Brick nach unten. Trifft die Kugel das Paddle, erhält der Spieler ein zusätzliches Leben.</p>
+<hr>
+<h3 id="101-vorbereitung">10.1 Vorbereitung</h3>
+<ul>
+<li>Füge im Ordner <code>assets</code> die Grafikdatei <code>brick5.png</code> für den neuen Steintyp hinzu.</li>
+<li>Füge ebenfalls eine neue Grafikdatei <code>sphere1.png</code> für die PowerUp-Kugel hinzu (z.B. eine kleine Kugel oder ein Herz-Symbol).</li>
+</ul>
+<hr>
+<h3 id="102-anpassung-der-level-datei-assetslevel3json">10.2 Anpassung der Level-Datei: <code>assets/level3.json</code></h3>
+<p>Zum Testen des neuen Steintyps erstelle eine neue Datei <code>level3.json</code> mit folgendem Beispielinhalt:</p>
+<pre><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;layout&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">5</span><span class="hljs-punctuation">,</span><span class="hljs-number">5</span><span class="hljs-punctuation">,</span><span class="hljs-number">5</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>Hier steht <code>5</code> für den neuen Brick-Typ.</p>
+<hr>
+<h3 id="103-code-erweiterungen-in-gamejs">10.3 Code-Erweiterungen in <code>game.js</code></h3>
+<h3 id="1031-variablen">10.3.1 Variablen</h3>
+<pre><code class="language-js">  <span class="hljs-keyword">const</span> maxLevel = <span class="hljs-number">3</span>;  <span class="hljs-comment">// Level 3 mit brick5 hinzugefügt</span>
+...
+  <span class="hljs-comment">// Neuer Physik-Sprite für die fallende Kugel (PowerUp)</span>
+  <span class="hljs-keyword">let</span> powerUp;  
+</code></pre>
+<h3 id="1032-preload">10.3.2 Preload</h3>
+<pre><code class="language-js">
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">preload</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;sphere1&#x27;</span>, <span class="hljs-string">&#x27;assets/sphere1.png&#x27;</span>);  <span class="hljs-comment">// PowerUp Kugel laden</span>
+    ...
+  }
+</code></pre>
+<h3 id="1033-create">10.3.3 Create</h3>
+<pre><code class="language-js">
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
+    ...
+    powerUp = <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">image</span>(-<span class="hljs-number">100</span>, -<span class="hljs-number">100</span>, <span class="hljs-string">&#x27;sphere1&#x27;</span>); <span class="hljs-comment">// erstmal ausblenden, außerhalb vom Bildschirm</span>
+    powerUp.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    powerUp.<span class="hljs-title function_">setCollideWorldBounds</span>(<span class="hljs-literal">true</span>);
+    powerUp.<span class="hljs-title function_">setBounce</span>(<span class="hljs-number">0.5</span>);
+    powerUp.<span class="hljs-title function_">setVisible</span>(<span class="hljs-literal">false</span>);
+    powerUp.<span class="hljs-property">body</span>.<span class="hljs-property">allowGravity</span> = <span class="hljs-literal">false</span>;
+
+    <span class="hljs-comment">// Kollisionsprüfung PowerUp - Paddle</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">overlap</span>(powerUp, paddle, collectPowerUp, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">this</span>);
+
+    loadLevel.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, currentLevel);
+
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">collider</span>(ball, paddle, ballPaddleCollision, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">this</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">collider</span>(ball, bricks, ballBrickCollision, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">this</span>);
+  }
+</code></pre>
+<h3 id="1034-update">10.3.4 Update</h3>
+<pre><code class="language-js">
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
+    ...
+
+    <span class="hljs-keyword">if</span> (ball.<span class="hljs-property">y</span> &gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">height</span> - ball.<span class="hljs-property">height</span>) {
+      <span class="hljs-title function_">loseLife</span>();
+    }
+    <span class="hljs-comment">// PowerUp fällt nach unten, wenn sichtbar</span>
+    <span class="hljs-keyword">if</span> (powerUp.<span class="hljs-property">visible</span>) {
+      <span class="hljs-comment">// Kugel fällt mit konstanter Geschwindigkeit nach unten</span>
+      powerUp.<span class="hljs-title function_">setVelocityY</span>(<span class="hljs-number">200</span>);
+
+      <span class="hljs-comment">// Kugel geht verloren, wenn sie den Boden berührt (außerhalb des Bildschirms)</span>
+      <span class="hljs-keyword">if</span> (powerUp.<span class="hljs-property">y</span> &gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">height</span> - powerUp.<span class="hljs-property">height</span>) {
+        <span class="hljs-title function_">resetPowerUp</span>();
+      }
+    }
+  }
+</code></pre>
+<h3 id="1035-powerup-funktionen">10.3.5 PowerUp-Funktionen</h3>
+<pre><code class="language-Js">  <span class="hljs-comment">// PowerUp erzeugen an Position x,y</span>
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">spawnPowerUp</span>(<span class="hljs-params">x, y</span>) {
+    powerUp.<span class="hljs-title function_">setPosition</span>(x, y);
+    powerUp.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">200</span>);
+    powerUp.<span class="hljs-title function_">setVisible</span>(<span class="hljs-literal">true</span>);
+  }
+
+  <span class="hljs-comment">// PowerUp verschwindet, wenn es Paddle berührt</span>
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">collectPowerUp</span>(<span class="hljs-params">sphere, paddle</span>) {
+    <span class="hljs-title function_">resetPowerUp</span>();
+
+    lives++;
+    livesText.<span class="hljs-title function_">setText</span>(<span class="hljs-string">&#x27;Leben: &#x27;</span> + lives);
+  }
+
+  <span class="hljs-comment">// PowerUp zurücksetzen wenn verloren oder eingesammelt</span>
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">resetPowerUp</span>(<span class="hljs-params"></span>) {
+    powerUp.<span class="hljs-title function_">setVisible</span>(<span class="hljs-literal">false</span>);
+    powerUp.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    powerUp.<span class="hljs-property">x</span> = -<span class="hljs-number">100</span>;
+    powerUp.<span class="hljs-property">y</span> = -<span class="hljs-number">100</span>;
+  }
+
+</code></pre>
+<hr>
+<h3 id="104-erklärung">10.4 Erklärung</h3>
+<ul>
+<li><strong>Neuer Brick-Typ 5:</strong> Wird der Ball auf <code>brick5</code> treffen, verschwindet der Brick und das PowerUp (die Kugel <code>sphere1</code>) wird an dieser Position erzeugt.</li>
+<li><strong>PowerUp Kugel:</strong><br>
+Die Kugel fällt mit konstanter Geschwindigkeit nach unten.</li>
+<li><strong>Kollision PowerUp – Paddle:</strong><br>
+Wenn die Kugel das Paddle berührt, wird sie unsichtbar und der Spieler bekommt ein zusätzliches Leben.</li>
+<li><strong>PowerUp geht verloren, wenn es den unteren Bildschirmrand verlässt:</strong><br>
+Die Kugel wird dann unsichtbar und dient nicht mehr.</li>
+</ul>
+<hr>
+<h3 id="105-live-test">10.5 Live-Test</h3>
+<iframe 
+  src="09PowerUp/index.html" 
+  width="820" 
+  height="700" 
+  frameborder="0" 
+  sandbox="allow-scripts allow-same-origin">
+</iframe>
+<hr>
+<h3 id="dateien">Dateien</h3>
+<p><a href="09Powerup.zip">Zip-Datei</a></p>
+<hr>
+<h3 id="weiter"><a href="10Background.html">weiter</a></h3>
+
+            
+            
+        </body>
+        </html>
