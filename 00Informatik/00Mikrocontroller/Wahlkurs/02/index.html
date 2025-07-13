@@ -149,7 +149,8 @@ Verbinde jetzt die Pins passend zur Beschriftung:</p>
 <li>VCC -&gt; +5V</li>
 <li>OUT -&gt; Pin 6</li>
 </ol>
-<p>Auf der Vorderseite des Sensor befinden sich zwei Potentiometer:<br>
+<p><img src="01Bewegungsmelder.png" alt="alt text"></p>
+<p>Auf der Vorderseite des Sensor befinden sich zwei orange Potentiometer:<br>
 <img src="IMG_20241115_165157.jpg" alt="alt text"></p>
 <ul>
 <li>Das linke regelt die Ausschaltverzögerung des Sensors.</li>
@@ -184,54 +185,9 @@ Wenn dieser Wert <strong>HIGH</strong> ist, wird eine entsprechende Nachricht ü
 <h2 id="3-der-test">3. Der Test</h2>
 <p>Teste deine Alarmanalage. Nach dem Hochladen des Programms musst du den Seriellen Monitor einschalten:<br>
 <img src="Serieller%20Monitor.png" alt="alt text"></p>
-<h2 id="4-die-zweifarb-led">4. Die Zweifarb-LED</h2>
-<p>Wenn die Alarmanlage eingeschaltet ist, soll die LED grün leuchten.<br>
-Sobald eine Bewegung wahrgenommen wird, soll die Farbe der LED von grün auf rot wechseln.</p>
-<h3 id="die-schaltung">Die Schaltung</h3>
-<p>Baue eine Zweifarb-LED ein und schließe die 3 Beinchen wie folgt an:</p>
-<ul>
-<li>links -&gt; Pin 8</li>
-<li>Mitte -&gt; 1 kOhm-Widerstand -&gt; +5V</li>
-<li>rechts -&gt; Pin 7</li>
-</ul>
-<p><img src="Screenshot_2.png" alt="Alt text"></p>
-<h3 id="der-programmcode">Der Programmcode</h3>
-<p>Ändere dein Programm wie folgt ab:</p>
-<ol>
-<li>Deklariere zwei Variablen für die LED-Pins:
-<ol>
-<li>ledRot = 8</li>
-<li>ledGruen = 7</li>
-</ol>
-</li>
-<li>Setze in der <strong>setup()</strong>-Methode den pinMode der beiden LED-Pins auf <strong>OUTPUT</strong></li>
-<li>Ändere die Sequenz, die ausgeführt wird, wenn eine Bewegung wahrgenommen wird:
-<ol>
-<li>Die grüne LED soll ausgeschaltet werden.<br>
-Hierzu muss der Pin auf <strong>HIGH</strong> gestellt werden.<br>
-(Beide Pole der LED sind jetzt HIGH. Es liegt also kein Spannungsunterschied vor und kein Strom fließt.)</li>
-<li>Die rote LED soll eingeschaltet werden.<br>
-Hierzu muss der Pin auf <strong>LOW</strong> gestellt werden.</li>
-</ol>
-</li>
-<li>Ändere die Sequenz, die ausgeführt wird, wenn keine Bewegung wahrgenommen wird:
-<ol>
-<li>die rote LED soll ausgeschaltet werden.</li>
-<li>die grüne LED soll eingechaltet werden.</li>
-</ol>
-</li>
-<li>Teste deine Alarmanlage</li>
-</ol>
-<p><a href="loesung.html">Lösung</a></p>
+<p><a href="012FarbLED.html">weiter zur ZweifarbLED</a></p>
 <p><a href="../index.html">zurück</a></p>
-<hr>
-<footer style="font-size:x-small;text-align: center;
-    padding: 10px;
-    margin: 10px;
-    height: 10%;
-    ">
-<p>Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.</p>
-</footer>
+
             
             
         </body>
