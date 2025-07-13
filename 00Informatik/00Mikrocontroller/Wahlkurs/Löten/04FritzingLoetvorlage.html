@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>LEDs am Arduino</title>
+            <title>L&ouml;tvorlage aus Fritzing-Dateien</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -138,19 +138,26 @@
         
         </head>
         <body class="vscode-body vscode-light">
-             <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
-<h1 id="leds-am-arduino">LEDs am Arduino</h1>
-<h2 id="1-eine-led">1. <a href="01LED/index.html">Eine LED</a></h2>
-<h2 id="2-ein-blinklicht">2. <a href="02LEDBlink/index.html">Ein Blinklicht</a></h2>
-<h2 id="3-ein-lauflicht">3. <a href="03LEDLauflicht/index.html">Ein Lauflicht</a></h2>
-<h3 id="kürzerer-code-durch-felder-und-schleifen"><a href="03LEDLauflicht/Arrays.html">Kürzerer Code durch Felder und Schleifen</a></h3>
-<h2 id="4-die-2farbled">4. <a href="03bZweifarbLED/index.html">Die 2FarbLED</a></h2>
-<h2 id="5-die-3farbled">5. <a href="03c3FarbLED/index.html">Die 3FarbLED</a></h2>
-<h2 id="6-ein-led-modul">6. <a href="04LEDModul/index.html">Ein LED-Modul</a></h2>
-<h3 id="a-kürzerer-code-durch-methoden"><a href="04LEDModul/Loesung.html">a) Kürzerer Code durch Methoden</a></h3>
-<h3 id="b-dimmen-einer-led-fadein"><a href="04LEDModul/Loesung2.html">b) Dimmen einer LED (FadeIn)</a></h3>
-<h3 id="c-dimmen-einer-led-fadeout"><a href="04LEDModul/Loesung3.html">c) Dimmen einer LED (FadeOut)</a></h3>
-<h2 id="7-das-ampel-modul">7. <a href="05Ampel/index.html">Das Ampel-Modul</a></h2>
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="lötvorlage-aus-fritzing-dateien">Lötvorlage aus Fritzing-Dateien</h1>
+<p>Mit dem 3D-Drucker kann eine Vorlage gedruckt werden, in die die Stifsockelleisten beim Löten gesteckt werden.</p>
+<p>Hierzu wird neben Fritzing auch die Software Tinkercad benötigt.</p>
+<h3 id="1-fritzing">1. Fritzing:</h3>
+<pre><code>Datei.Exportieren.Für die Produktion.Ätzbar(SVG)  
+Das Programm erzeugt eine Reihe von SVG-Dateien. 
+</code></pre>
+<h3 id="2-tinkercad">2. Tinkercad:</h3>
+<pre><code>Importiere eine SVG-Datei mit den Bohrungen.  
+Tinkercad erzeugt daraus automatisch eine Platte mit Bohrungen.  
+Leider passen die Maße nicht und müssen jetzt noch eingestellt werden.
+</code></pre>
+<h3 id="3-anycubic-slicer">3. Anycubic Slicer</h3>
+<pre><code>Importiere die SVG-Datei jetzt noch in den Slicer. Notiere dir hier die Maße des Modells.  
+</code></pre>
+<h3 id="4-tinkercad">4. Tinkercad</h3>
+<pre><code>Stelle jetzt die Maße aus dem Slicer in Tinkercad ein und exportiere das Modell als STL-Datei.  
+Jetzt kann das Modell im Slicer importiert und gedruckt werden.
+</code></pre>
 <p><a href="../index.html">zurück</a></p>
 
             
