@@ -327,6 +327,9 @@
             </Array>
           </mxGeometry>
         </mxCell>
+        <mxCell id="dNJTktvSiY-5-ggpWots-32" value="&lt;font style=&quot;font-size: 21px;&quot;&gt;&lt;b&gt;Schaltplan mit 2-Farb-LED und Taster&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" vertex="1" parent="1">
+          <mxGeometry x="300" y="-80" width="400" height="40" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

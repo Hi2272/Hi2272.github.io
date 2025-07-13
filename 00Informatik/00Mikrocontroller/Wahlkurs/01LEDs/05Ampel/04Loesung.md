@@ -1,8 +1,8 @@
  <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
-![alt text](Schaltung.png)
-
-
+### Block-Code:
+![alt text](Schaltung.png)  
+### Arduino-Code:
 ```c++
 void setup() {
   pinMode(10, OUTPUT);
@@ -12,7 +12,6 @@ void setup() {
   digitalWrite(10, LOW);
   digitalWrite(9, LOW);
   digitalWrite(8, LOW);
-
 }
 
 void loop() {
@@ -37,4 +36,4 @@ Wenn die Ampel funktioniert, kannst du folgende Änderungen ausprobieren:
 2. Vor dem Schalten von grün zu gelb soll die Ampel 4 x grün blinken und damit das Schalten ankündigen.  
 Diese Schaltung ist in Österreich umgesetzt.
 
-[zurück](index.html)
+[zurück](../index.html)

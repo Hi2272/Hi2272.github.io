@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Experimente</title>
+            <title>4&period; Die Zweifarb-LED</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -139,43 +139,49 @@
         </head>
         <body class="vscode-body vscode-light">
              <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
-<p><img src="Schaltung.png" alt="alt text"></p>
-<pre><code class="language-c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">10</span>, OUTPUT);
-  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">9</span>, OUTPUT);
-  <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">8</span>, OUTPUT);
-
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">10</span>, LOW);
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">9</span>, LOW);
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">8</span>, LOW);
-
-}
-
-<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">10</span>, HIGH);
-  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">10</span>, LOW);
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">9</span>, HIGH);
-  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">9</span>, LOW);
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">8</span>, HIGH);
-  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">8</span>, LOW);
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">9</span>, HIGH);
-  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
-  <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">9</span>, LOW);
-
-}
-</code></pre>
-<h2 id="experimente">Experimente</h2>
-<p>Wenn die Ampel funktioniert, kannst du folgende Änderungen ausprobieren:</p>
+<h2 id="4-die-zweifarb-led">4. Die Zweifarb-LED</h2>
+<p>Wenn die Alarmanlage eingeschaltet ist, soll die LED grün leuchten.<br>
+Sobald eine Bewegung wahrgenommen wird, soll die Farbe der LED von grün auf rot wechseln.</p>
+<h3 id="die-schaltung">Die Schaltung</h3>
+<p>Baue eine Zweifarb-LED ein und schließe die 3 Beinchen wie folgt an:</p>
+<p><img src="03Bewegungsmelder.png" alt="alt text"></p>
+<h3 id="der-programmcode">Der Programmcode</h3>
+<p>Ändere dein Programm wie folgt ab:</p>
 <ol>
-<li>Die Rot- und Grün-Phasen sollen doppelt so lang dauern wie die Gelb-Phasen.</li>
-<li>Vor dem Schalten von grün zu gelb soll die Ampel 4 x grün blinken und damit das Schalten ankündigen.<br>
-Diese Schaltung ist in Österreich umgesetzt.</li>
+<li>Deklariere zwei Variablen für die LED-Pins:
+<ol>
+<li>ledRot = 8</li>
+<li>ledGruen = 7</li>
 </ol>
-<p><a href="index.html">zurück</a></p>
-
+</li>
+<li>Setze in der <strong>setup()</strong>-Methode den pinMode der beiden LED-Pins auf <strong>OUTPUT</strong></li>
+<li>Ändere die Sequenz, die ausgeführt wird, wenn eine Bewegung wahrgenommen wird:
+<ol>
+<li>Die grüne LED soll ausgeschaltet werden.<br>
+Hierzu muss der Pin auf <strong>HIGH</strong> gestellt werden.<br>
+(Beide Pole der LED sind jetzt HIGH. Es liegt also kein Spannungsunterschied vor und kein Strom fließt.)</li>
+<li>Die rote LED soll eingeschaltet werden.<br>
+Hierzu muss der Pin auf <strong>LOW</strong> gestellt werden.</li>
+</ol>
+</li>
+<li>Ändere die Sequenz, die ausgeführt wird, wenn keine Bewegung wahrgenommen wird:
+<ol>
+<li>die rote LED soll ausgeschaltet werden.</li>
+<li>die grüne LED soll eingechaltet werden.</li>
+</ol>
+</li>
+<li>Teste deine Alarmanlage</li>
+</ol>
+<p><a href="loesung.html">Lösung</a></p>
+<p><a href="../index.html">zurück</a></p>
+<hr>
+<footer style="font-size:x-small;text-align: center;
+    padding: 10px;
+    margin: 10px;
+    height: 10%;
+    ">
+<p>Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.</p>
+</footer>
             
             
         </body>

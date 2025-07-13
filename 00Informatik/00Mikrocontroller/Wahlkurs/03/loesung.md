@@ -52,6 +52,6 @@ delay(500);
 noTone(buzzer);
 ```
 ***
-["Musik" mit dem Buzzer](weiter.html)   
+["Musik" mit dem Buzzer](Musik.html)   
 ***
 [zurück](../index.html)
