@@ -6,4 +6,5 @@
 2. Löte den 1 kOhm-Widerstand ein.
 3. Löte Buchsenleisten für die vier Bauteile ein, die aufgesteckt werden sollen.
 
-[zurück](index.html)   
+
+[zurück](../index.html)   

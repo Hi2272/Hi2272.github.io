@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -143,12 +145,7 @@
 Überprüfe vor dem Start noch einmal die Verkabelung:</p>
 <ul>
 <li>LED-Matrix:
-<ul>
-<li>Rotes Kabel : + Pol der externen Spannungsquelle (+5 V)</li>
-<li>Schwarzes Kabel: - Pol der externen Spannungsquelle (GND)</li>
-<li>Gelbes Kabel: Datenkabel: Port 6 am Arduino</li>
-</ul>
-</li>
+Ist durch das Aufstecken automatisch mit dem Arduino verbunden. Der Datenpin ist Pin 13. Alle anderen Pins können an den gelben Buchsen verwendet werden.</li>
 <li>Mikrofon
 <ul>
 <li>V : + Pol am Arduino oder an der externen Spannungsquelle (+5 V)</li>
@@ -164,10 +161,10 @@
 <span class="hljs-type">const</span> <span class="hljs-type">int</span> MIC_PIN = A0;
 
 <span class="hljs-comment">// Pin für die WS2812 LEDs</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> DATA_PIN 6</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> DATA_PIN 13</span>
 
 <span class="hljs-comment">// Anzahl der LEDs in der Matrix</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> NUM_LEDS 64</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> NUM_LEDS 40</span>
 
 <span class="hljs-comment">// Erstellen eines NeoPixel-Objekts</span>
 Adafruit_NeoPixel matrix = <span class="hljs-built_in">Adafruit_NeoPixel</span>(NUM_LEDS, DATA_PIN, NEO_GRB + NEO_KHZ800);

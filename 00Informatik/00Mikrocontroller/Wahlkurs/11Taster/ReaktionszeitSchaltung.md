@@ -3,6 +3,7 @@
 
 # Reaktionszeit messen
 ## Schaltung
+![alt text](2FarbLEDTaster.png)  
 
 ## Code
 ```C++

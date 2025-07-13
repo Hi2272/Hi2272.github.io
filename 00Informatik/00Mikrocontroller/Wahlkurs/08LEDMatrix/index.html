@@ -153,11 +153,11 @@
 <p>Programmiere folgenden Code:</p>
 <pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_NeoPixel.h&gt;</span></span>
 
-<span class="hljs-comment">// Pin für die WS2812 LEDs</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> DATA_PIN 6</span>
+<span class="hljs-comment">// Pin für die WS2812 LEDs: Pin13</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> DATA_PIN 13</span>
 
 <span class="hljs-comment">// Anzahl der LEDs in der Matrix</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> NUM_LEDS 64</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> NUM_LEDS 40</span>
 
 <span class="hljs-comment">// Erstellen eines NeoPixel-Objekts</span>
 Adafruit_NeoPixel matrix = <span class="hljs-built_in">Adafruit_NeoPixel</span>(NUM_LEDS, DATA_PIN, NEO_GRB + NEO_KHZ800);
@@ -189,8 +189,8 @@ Adafruit_NeoPixel matrix = <span class="hljs-built_in">Adafruit_NeoPixel</span>(
 <p>Erzeugt das Objekt matrix, mit dem die LED-Matrix angesprochen werden kann.<br>
 Die Parameter haben folgende Bedeutung:</p>
 <ul>
-<li>NUM_LEDS: Anzahl der LEDs (64)</li>
-<li>DATA_PIN: Digitalpin, über den die Matrix angeschlossen ist (6)</li>
+<li>NUM_LEDS: Anzahl der LEDs (40)</li>
+<li>DATA_PIN: Digitalpin, über den die Matrix angeschlossen ist (13)</li>
 <li>NEO_GRB: Die Reihenfolge in der Farbkanäle unserer LEDs angesteuert werden (<strong>G</strong>rün, <strong>R</strong>ot, <strong>B</strong>lau)</li>
 <li>NEO_KHZ800: Die LEDs werden mit einer Frequenz von <strong>800 kHz</strong> angesteuert.</li>
 </ul>
