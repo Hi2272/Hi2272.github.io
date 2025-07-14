@@ -167,6 +167,57 @@ Um glatte Kurven zu erhalten, sollte hier 1 min eingestellt sein.</li>
 Startet die Messung.</li>
 </ol>
 <p>Mit diesem Versuch kann gezeigt werden, dass verschieden farbige LEDs unterschiedlich viel Strom benötigen.</p>
+<h2 id="messung-des-stromverbrauchs-eines-arduino-unos">Messung des Stromverbrauchs eines Arduino Unos</h2>
+<h3 id="verkabelung-1">Verkabelung</h3>
+<table>
+<thead>
+<tr>
+<th>PowerProfiler</th>
+<th>Arduino</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VOUT</td>
+<td>VIN</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+</tr>
+</tbody>
+</table>
+<p>Am Arduino können jetzt noch beliebige Verbraucher angeschlossen sein.</p>
+<h3 id="software-einstellung">Software Einstellung</h3>
+<p>s. o.</p>
+<h2 id="messung-des-stromverbrauchs-einer-an-den-arduino-angeschlossenen-led">Messung des Stromverbrauchs einer an den Arduino angeschlossenen LED</h2>
+<h3 id="verkabelung-2">Verkabelung</h3>
+<ul>
+<li>Arduino über USB an Rechner</li>
+<li>LED + an +5V am Arduino</li>
+<li>LED - an Schutzwiderstand</li>
+<li>Schutzwiderstand an VIN am PowerProfiler</li>
+<li>VOUT PowerProfiler an GND am Arduino</li>
+</ul>
+<h3 id="software-einstellung-1">Software Einstellung</h3>
+<p><img src="StromMessungLED.png" alt="alt text"></p>
+<ol>
+<li>Ampere-Meter<br>
+Wir messen Stromstärke.</li>
+<li>Enable Power Output<br>
+Auch in diesem Fall muss das System Spannung abgegeben - sonst leuchtet die LED nicht.</li>
+<li>Start</li>
+</ol>
+<p>Die gemessene Stromstärke ist in diesem Fall deutlich geringer als beim direkten Anschluss der LED an den Powerprofiler.</p>
+<h2 id="messen-des-stromverbrauchs-eine-mikrocontrollers-an-einem-akku">Messen des Stromverbrauchs eine Mikrocontrollers an einem Akku</h2>
+<h3 id="verkabelun">Verkabelun</h3>
+<ul>
+<li>Akku + auf VIN am PowerProfiler</li>
+<li>VOUT am Powerprofiler auf VIN am Mikrocontroller</li>
+<li>GND am Mikrocontroller auf - am Akku</li>
+</ul>
+<h3 id="software-einstellung-2">Software Einstellung</h3>
+<p>s.o.</p>
 
             
             
