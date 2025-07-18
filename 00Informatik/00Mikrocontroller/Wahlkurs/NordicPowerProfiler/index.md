@@ -64,11 +64,11 @@ Wir messen Stromstärke.
 Auch in diesem Fall muss das System Spannung abgegeben - sonst leuchtet die LED nicht.
 3. Start
    
-Die gemessene Stromstärke ist in diesem Fall deutlich geringer als beim direkten Anschluss der LED an den Powerprofiler.
+Die gemessene Stromstärke ist in diesem Fall deutlich geringer als beim direkten Anschluss der LED an den PowerProfiler.
 
 ## Messen des Stromverbrauchs eine Mikrocontrollers an einem Akku
 
-### Verkabelun
+### Verkabelung
 - Akku + auf VIN am PowerProfiler
 - VOUT am Powerprofiler auf VIN am Mikrocontroller
 - GND am Mikrocontroller auf - am Akku
