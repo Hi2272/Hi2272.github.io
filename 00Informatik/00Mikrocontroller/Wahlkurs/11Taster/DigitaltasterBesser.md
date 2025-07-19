@@ -42,8 +42,8 @@ Diese Schleife wird so lange ausgeführt, wie der Taster gedrückt ist. Damit wi
 
 ## Vereinfachte Schaltung
 Der Pull-Down-Widerstand kann auch weggelassen werden, da der Arduino über interne Widerstände verfügt, die über Software geschaltet werden können:  
-![alt text](2024-10-09_21-22.png)  
-Im Code muss nur angegeben werden, dass der taster jetzt über einen internen Pull-Down-Widerstand geschaltet ist.   
+![alt text](AmpelTasterDigitalPullDown.drawio.png) 
+Im Code muss nur angegeben werden, dass der Taster jetzt über einen internen Pull-Down-Widerstand geschaltet ist.   
 Dies geschieht in der **setup()**-Methode:   
 
 ```C++

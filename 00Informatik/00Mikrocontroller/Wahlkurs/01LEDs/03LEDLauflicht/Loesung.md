@@ -45,5 +45,5 @@ Wenn das Lauflicht funktioniert, kannst du mit dem Code experimentieren:
 Dein Code enthält noch viele Zeilen, die fast identisch sind. Auf der nächsten Seite werden wir ihn stark verkürzen.  
 
 
-[weiter](Arrays.html)  
-[zurück](index.html)
+[weiter zu Arrays und Schleifen](Arrays.html)  
+[zurück](../index.html)

@@ -22,7 +22,11 @@ Programmiere folgenden Code:
 ```C++
 #include <Adafruit_NeoPixel.h>
 
+<<<<<<< HEAD
 // Pin für die WS2812 LEDs
+=======
+// Pin für die WS2812 LEDs: Pin13
+>>>>>>> 9dd24f0a1d0366791d010a446897f44d20ef55bc
 #define DATA_PIN 13
 
 // Anzahl der LEDs in der Matrix
@@ -57,8 +61,8 @@ Bindet die Neopixel-Bibliothek von Adafruit ein. Die WS2812-LEDs werden auch als
 #### Adafruit_NeoPixel matrix = Adafruit_NeoPixel(NUM_LEDS, DATA_PIN, NEO_GRB + NEO_KHZ800);
 Erzeugt das Objekt matrix, mit dem die LED-Matrix angesprochen werden kann.  
 Die Parameter haben folgende Bedeutung:  
-- NUM_LEDS: Anzahl der LEDs (64)
-- DATA_PIN: Digitalpin, über den die Matrix angeschlossen ist (6)
+- NUM_LEDS: Anzahl der LEDs (40)
+- DATA_PIN: Digitalpin, über den die Matrix angeschlossen ist (13)
 - NEO_GRB: Die Reihenfolge in der Farbkanäle unserer LEDs angesteuert werden (**G**rün, **R**ot, **B**lau)
 - NEO_KHZ800: Die LEDs werden mit einer Frequenz von **800 kHz** angesteuert.
 
