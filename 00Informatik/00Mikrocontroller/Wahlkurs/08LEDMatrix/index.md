@@ -1,11 +1,19 @@
 <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
 # LED Matrix
+
+## Matrix Shield
+Im Kurs arbeiten wir mit einem LED-Matrix-Shield, das einfach auf den Arduino Uno aufgesteckt wird.  
+Die 40 LEDs sind intern an den Pin13 des Unos angeschlossen.
+
+## 64 LED Matrix
+Auf dieser Seite wird eine Matrix mit 64 LEDs programmiert. Hierbei können mehrere Matrizes aneinander gekettet werden:  
+[64LED](64LED.html)  
+
+
 ## Allgemeines
-Die LED-Matrix besteht aus 64 RGB-LEDs, die alle einzeln über eine einzige Datenleitung programmiert werden können. Da die Matrix relativ viel Strom benötigt, schließen wir sie an eine externe Spannungsquelle an:
-- Rotes Kabel : + Pol der externen Spannungsquelle (+5 V)
-- Schwarzes Kabel: - Pol der externen Spannungsquelle (GND)
-- Gelbes Kabel: Datenkabel: Port 6 am Arduino
+Die LED-Matrix besteht aus vielen RGB-LEDs, die alle einzeln über eine einzige Datenleitung programmiert werden können. 
+
 ## Adafruit-Bibliothek
 Für die Ansteuerung der Matrix benötigen wir die Adafruit_Neopixel Bibliothek, die wir wie üblich in der Arduino-IDE installieren.
 ## Programm-Code
@@ -15,10 +23,10 @@ Programmiere folgenden Code:
 #include <Adafruit_NeoPixel.h>
 
 // Pin für die WS2812 LEDs
-#define DATA_PIN 6
+#define DATA_PIN 13
 
 // Anzahl der LEDs in der Matrix
-#define NUM_LEDS 64
+#define NUM_LEDS 40
 
 // Erstellen eines NeoPixel-Objekts
 Adafruit_NeoPixel matrix = Adafruit_NeoPixel(NUM_LEDS, DATA_PIN, NEO_GRB + NEO_KHZ800);
