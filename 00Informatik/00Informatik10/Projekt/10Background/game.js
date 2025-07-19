@@ -439,15 +439,30 @@ window.onload = function () {
   function onBallPaddleCollision(ball, paddle) {
     const relativeIntersectX = ball.x - paddle.x;
     const normalizedIntersectX = relativeIntersectX / (paddle.width / 2);
-    const maxBounceAngle = Phaser.Math.DegToRad(75);
-    const bounceAngle = normalizedIntersectX * maxBounceAngle;
+    const maxBounceAngle = Phaser.Math.DegToRad(75); // Maximaler Winkel vom Vertikalen (y-Achse)
+    
+    // Der Winkel vom Vertikalen (bounceAngle)
+    let bounceAngle = normalizedIntersectX * maxBounceAngle;
+
+    // Definiere den minimalen Winkel vom Horizontalen (was 45 Grad vom Vertikalen entspricht)
+    // Damit der Ball mindestens im 45°-Winkel nach oben fliegt,
+    // darf der Winkel vom Vertikalen (bounceAngle) maximal 45° betragen.
+    const maxAllowedAbsAngleFromVertical = Phaser.Math.DegToRad(45); 
+
+    // Begrenze den bounceAngle so, dass sein Absolutwert maximal 45 Grad ist.
+    // Wenn der berechnete Winkel vom Vertikalen größer als 45 Grad wäre, 
+    // wird er auf 45 Grad gesetzt (unter Beibehaltung des Vorzeichens).
+    if (Math.abs(bounceAngle) > maxAllowedAbsAngleFromVertical) {
+        bounceAngle = Math.sign(bounceAngle) * maxAllowedAbsAngleFromVertical;
+    }
+
     const speed = slowActive
       ? Math.sqrt(SLOW_BALL_SPEED.x * SLOW_BALL_SPEED.x + SLOW_BALL_SPEED.y * SLOW_BALL_SPEED.y)
       : Math.sqrt(NORMAL_BALL_SPEED.x * NORMAL_BALL_SPEED.x + NORMAL_BALL_SPEED.y * NORMAL_BALL_SPEED.y);
 
     ball.body.velocity.x = speed * Math.sin(bounceAngle);
     ball.body.velocity.y = -speed * Math.cos(bounceAngle);
-  }
+}
 
   function onBallBrickCollision(ball, brick, scene) {
     // Reverse ball velocity if it hits the brick from the top/bottom

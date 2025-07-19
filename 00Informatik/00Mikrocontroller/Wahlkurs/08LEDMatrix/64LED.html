@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>LED Matrix</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="led-matrix">LED Matrix</h1>
+<p>Die LED-Matrix wird an Pin6 am Arduino angeschlossen. Da die Matrix relativ viel Strom benötigt, schließen wir sie an eine externe Spannungsquelle an:</p>
+<ul>
+<li>Rotes Kabel : + Pol der externen Spannungsquelle (+5 V)</li>
+<li>Schwarzes Kabel: - Pol der externen Spannungsquelle (GND)</li>
+<li>Gelbes Kabel: Datenkabel: Pin 6 am Arduino</li>
+</ul>
+<h2 id="test-code-für-4-matrizes">Test-Code für 4 Matrizes</h2>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_NeoPixel.h&gt;</span></span>
+
+<span class="hljs-comment">// Pin für die WS2812 LEDs: Pin6</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> DATA_PIN 6</span>
+
+<span class="hljs-comment">// Anzahl der LEDs (64 pro Matrix * 4 Matrizes)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> NUM_LEDS 64*4</span>
+<span class="hljs-comment">// Erstellen eines NeoPixel-Objekts</span>
+Adafruit_NeoPixel matrix = <span class="hljs-built_in">Adafruit_NeoPixel</span>(NUM_LEDS, DATA_PIN, NEO_GRB + NEO_KHZ800);
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  matrix.<span class="hljs-built_in">begin</span>();           <span class="hljs-comment">// Initialisieren der NeoPixel-Matrix</span>
+  matrix.<span class="hljs-built_in">show</span>();            <span class="hljs-comment">// Alle LEDs ausschalten</span>
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);      <span class="hljs-comment">// Serielle Kommunikation starten</span>
+  <span class="hljs-built_in">randomSeed</span>(<span class="hljs-built_in">analogRead</span>(<span class="hljs-number">0</span>)); <span class="hljs-comment">// Zufallsgenerator initialisieren</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM_LEDS; i++) {
+    <span class="hljs-comment">// Zufällig RGB-Farbe erzeugen</span>
+    <span class="hljs-type">int</span> red = <span class="hljs-built_in">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">30</span>);    
+    <span class="hljs-type">int</span> green = <span class="hljs-built_in">random</span>(<span class="hljs-number">0</span>,<span class="hljs-number">30</span>);
+    <span class="hljs-type">int</span> blue = <span class="hljs-built_in">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">30</span>);
+    matrix.<span class="hljs-built_in">setPixelColor</span>(i, matrix.<span class="hljs-built_in">Color</span>(red, green, blue));  <span class="hljs-comment">// LED einschalten mit zufälliger Farbe</span>
+  }
+
+  matrix.<span class="hljs-built_in">show</span>();  <span class="hljs-comment">// Aktualisieren der LEDs</span>
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);    <span class="hljs-comment">// Kurze Pause</span>
+}
+</code></pre>
+<h2 id="text-über-die-matrix-scrollen">Text über die Matrix scrollen</h2>
+<p>Die Bibliothek Adafruit NeoMatrix ermöglicht das Scrollen von Text über die Matrix. Der folgende Code ist das Beispiel MatrixGFXDemo:</p>
+<pre><code class="language-C++"><span class="hljs-comment">// Adafruit_NeoMatrix example for single NeoPixel Shield.</span>
+<span class="hljs-comment">// Scrolls Text across the matrix in a portrait (vertical) orientation.</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_GFX.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_NeoMatrix.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_NeoPixel.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> PIN 6</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> text <span class="hljs-string">&quot;Hallo!&quot;</span></span>
+<span class="hljs-comment">// MATRIX DECLARATION:</span>
+<span class="hljs-comment">// Parameter 1 = width of NeoPixel matrix</span>
+<span class="hljs-comment">// Parameter 2 = height of matrix</span>
+<span class="hljs-comment">// Parameter 3 = pin number (most are valid)</span>
+<span class="hljs-comment">// Parameter 4 = matrix layout flags, add together as needed:</span>
+<span class="hljs-comment">//   NEO_MATRIX_TOP, NEO_MATRIX_BOTTOM, NEO_MATRIX_LEFT, NEO_MATRIX_RIGHT:</span>
+<span class="hljs-comment">//     Position of the FIRST LED in the matrix; pick two, e.g.</span>
+<span class="hljs-comment">//     NEO_MATRIX_TOP + NEO_MATRIX_LEFT for the top-left corner.</span>
+<span class="hljs-comment">//   NEO_MATRIX_ROWS, NEO_MATRIX_COLUMNS: LEDs are arranged in horizontal</span>
+<span class="hljs-comment">//     rows or in vertical columns, respectively; pick one or the other.</span>
+<span class="hljs-comment">//   NEO_MATRIX_PROGRESSIVE, NEO_MATRIX_ZIGZAG: all rows/columns proceed</span>
+<span class="hljs-comment">//     in the same order, or alternate lines reverse direction; pick one.</span>
+<span class="hljs-comment">//   See example below for these values in action.</span>
+<span class="hljs-comment">// Parameter 5 = pixel type flags, add together as needed:</span>
+<span class="hljs-comment">//   NEO_KHZ800  800 KHz bitstream (most NeoPixel products w/WS2812 LEDs)</span>
+<span class="hljs-comment">//   NEO_KHZ400  400 KHz (classic &#x27;v1&#x27; (not v2) FLORA pixels, WS2811 drivers)</span>
+<span class="hljs-comment">//   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)</span>
+<span class="hljs-comment">//   NEO_GRBW    Pixels are wired for GRBW bitstream (RGB+W NeoPixel products)</span>
+<span class="hljs-comment">//   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)</span>
+
+
+<span class="hljs-comment">// Example for NeoPixel Shield.  In this application we&#x27;d like to use it</span>
+<span class="hljs-comment">// as a 5x8 tall matrix, with the USB port positioned at the top of the</span>
+<span class="hljs-comment">// Arduino.  When held that way, the first pixel is at the top right, and</span>
+<span class="hljs-comment">// lines are arranged in columns, progressive order.  The shield uses</span>
+<span class="hljs-comment">// 800 KHz (v2) pixels that expect GRB color data.</span>
+Adafruit_NeoMatrix matrix = <span class="hljs-built_in">Adafruit_NeoMatrix</span>(<span class="hljs-number">8</span>*<span class="hljs-number">4</span>, <span class="hljs-number">8</span>, PIN,
+  NEO_MATRIX_TOP     + NEO_MATRIX_RIGHT +
+  NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
+  NEO_GRB            + NEO_KHZ800);
+
+<span class="hljs-type">const</span> <span class="hljs-type">uint16_t</span> colors[] = {
+  matrix.<span class="hljs-built_in">Color</span>(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), matrix.<span class="hljs-built_in">Color</span>(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>), matrix.<span class="hljs-built_in">Color</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>) };
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  matrix.<span class="hljs-built_in">begin</span>();
+  matrix.<span class="hljs-built_in">setTextWrap</span>(<span class="hljs-literal">false</span>);
+  matrix.<span class="hljs-built_in">setBrightness</span>(<span class="hljs-number">40</span>);
+  matrix.<span class="hljs-built_in">setTextColor</span>(colors[<span class="hljs-number">0</span>]);
+}
+
+<span class="hljs-type">int</span> x    = matrix.<span class="hljs-built_in">width</span>();
+<span class="hljs-type">int</span> pass = <span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  matrix.<span class="hljs-built_in">fillScreen</span>(<span class="hljs-number">0</span>);
+  matrix.<span class="hljs-built_in">setCursor</span>(x, <span class="hljs-number">0</span>);
+  matrix.<span class="hljs-built_in">print</span>(<span class="hljs-built_in">F</span>(text));
+  <span class="hljs-keyword">if</span>(--x &lt; <span class="hljs-number">-36</span>) {
+    x = matrix.<span class="hljs-built_in">width</span>();
+    <span class="hljs-keyword">if</span>(++pass &gt;= <span class="hljs-number">3</span>) pass = <span class="hljs-number">0</span>;
+    matrix.<span class="hljs-built_in">setTextColor</span>(colors[pass]);
+  }
+  matrix.<span class="hljs-built_in">show</span>();
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">100</span>);
+}
+</code></pre>
+<h2 id="anschluss-an-esp32">Anschluss an ESP32</h2>
+<p>Die LED-Matrices können auch an +5V und GND an einen ESP32-Controller angeschlossen werden:</p>
+<p>Als Datenpin dient hier der GPIO23:</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_NeoPixel.h&gt;</span></span>
+
+<span class="hljs-comment">// Pin für die WS2812 LEDs: Pin6</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> DATA_PIN 23</span>
+
+<span class="hljs-comment">// Anzahl der LEDs (64 pro Matrix * 4 Matrizes)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> NUM_LEDS 64*4</span>
+<span class="hljs-comment">// Erstellen eines NeoPixel-Objekts</span>
+Adafruit_NeoPixel matrix = <span class="hljs-built_in">Adafruit_NeoPixel</span>(NUM_LEDS, DATA_PIN, NEO_GRB + NEO_KHZ800);
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  matrix.<span class="hljs-built_in">begin</span>();           <span class="hljs-comment">// Initialisieren der NeoPixel-Matrix</span>
+  matrix.<span class="hljs-built_in">show</span>();            <span class="hljs-comment">// Alle LEDs ausschalten</span>
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);      <span class="hljs-comment">// Serielle Kommunikation starten</span>
+  <span class="hljs-built_in">randomSeed</span>(<span class="hljs-built_in">analogRead</span>(<span class="hljs-number">0</span>)); <span class="hljs-comment">// Zufallsgenerator initialisieren</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; NUM_LEDS; i++) {
+    <span class="hljs-comment">// Zufällig RGB-Farbe erzeugen</span>
+    <span class="hljs-type">int</span> red = <span class="hljs-built_in">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">30</span>);    
+    <span class="hljs-type">int</span> green = <span class="hljs-built_in">random</span>(<span class="hljs-number">0</span>,<span class="hljs-number">30</span>);
+    <span class="hljs-type">int</span> blue = <span class="hljs-built_in">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">30</span>);
+    matrix.<span class="hljs-built_in">setPixelColor</span>(i, matrix.<span class="hljs-built_in">Color</span>(red, green, blue));  <span class="hljs-comment">// LED einschalten mit zufälliger Farbe</span>
+  }
+
+  matrix.<span class="hljs-built_in">show</span>();  <span class="hljs-comment">// Aktualisieren der LEDs</span>
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);    <span class="hljs-comment">// Kurze Pause</span>
+}
+</code></pre>
+<h3 id="scroll-text">Scroll-Text</h3>
+<pre><code class="language-C++"><span class="hljs-comment">// Adafruit_NeoMatrix example for single NeoPixel Shield.</span>
+<span class="hljs-comment">// Scrolls Text across the matrix in a portrait (vertical) orientation.</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_GFX.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_NeoMatrix.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_NeoPixel.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> PIN 23</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> text <span class="hljs-string">&quot;Hallo!&quot;</span></span>
+<span class="hljs-comment">// MATRIX DECLARATION:</span>
+<span class="hljs-comment">// Parameter 1 = width of NeoPixel matrix</span>
+<span class="hljs-comment">// Parameter 2 = height of matrix</span>
+<span class="hljs-comment">// Parameter 3 = pin number (most are valid)</span>
+<span class="hljs-comment">// Parameter 4 = matrix layout flags, add together as needed:</span>
+<span class="hljs-comment">//   NEO_MATRIX_TOP, NEO_MATRIX_BOTTOM, NEO_MATRIX_LEFT, NEO_MATRIX_RIGHT:</span>
+<span class="hljs-comment">//     Position of the FIRST LED in the matrix; pick two, e.g.</span>
+<span class="hljs-comment">//     NEO_MATRIX_TOP + NEO_MATRIX_LEFT for the top-left corner.</span>
+<span class="hljs-comment">//   NEO_MATRIX_ROWS, NEO_MATRIX_COLUMNS: LEDs are arranged in horizontal</span>
+<span class="hljs-comment">//     rows or in vertical columns, respectively; pick one or the other.</span>
+<span class="hljs-comment">//   NEO_MATRIX_PROGRESSIVE, NEO_MATRIX_ZIGZAG: all rows/columns proceed</span>
+<span class="hljs-comment">//     in the same order, or alternate lines reverse direction; pick one.</span>
+<span class="hljs-comment">//   See example below for these values in action.</span>
+<span class="hljs-comment">// Parameter 5 = pixel type flags, add together as needed:</span>
+<span class="hljs-comment">//   NEO_KHZ800  800 KHz bitstream (most NeoPixel products w/WS2812 LEDs)</span>
+<span class="hljs-comment">//   NEO_KHZ400  400 KHz (classic &#x27;v1&#x27; (not v2) FLORA pixels, WS2811 drivers)</span>
+<span class="hljs-comment">//   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)</span>
+<span class="hljs-comment">//   NEO_GRBW    Pixels are wired for GRBW bitstream (RGB+W NeoPixel products)</span>
+<span class="hljs-comment">//   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)</span>
+
+
+<span class="hljs-comment">// Example for NeoPixel Shield.  In this application we&#x27;d like to use it</span>
+<span class="hljs-comment">// as a 5x8 tall matrix, with the USB port positioned at the top of the</span>
+<span class="hljs-comment">// Arduino.  When held that way, the first pixel is at the top right, and</span>
+<span class="hljs-comment">// lines are arranged in columns, progressive order.  The shield uses</span>
+<span class="hljs-comment">// 800 KHz (v2) pixels that expect GRB color data.</span>
+Adafruit_NeoMatrix matrix = <span class="hljs-built_in">Adafruit_NeoMatrix</span>(<span class="hljs-number">8</span>*<span class="hljs-number">4</span>, <span class="hljs-number">8</span>, PIN,
+  NEO_MATRIX_TOP     + NEO_MATRIX_RIGHT +
+  NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
+  NEO_GRB            + NEO_KHZ800);
+
+<span class="hljs-type">const</span> <span class="hljs-type">uint16_t</span> colors[] = {
+  matrix.<span class="hljs-built_in">Color</span>(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), matrix.<span class="hljs-built_in">Color</span>(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>), matrix.<span class="hljs-built_in">Color</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>) };
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  matrix.<span class="hljs-built_in">begin</span>();
+  matrix.<span class="hljs-built_in">setTextWrap</span>(<span class="hljs-literal">false</span>);
+  matrix.<span class="hljs-built_in">setBrightness</span>(<span class="hljs-number">40</span>);
+  matrix.<span class="hljs-built_in">setTextColor</span>(colors[<span class="hljs-number">0</span>]);
+}
+
+<span class="hljs-type">int</span> x    = matrix.<span class="hljs-built_in">width</span>();
+<span class="hljs-type">int</span> pass = <span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  matrix.<span class="hljs-built_in">fillScreen</span>(<span class="hljs-number">0</span>);
+  matrix.<span class="hljs-built_in">setCursor</span>(x, <span class="hljs-number">0</span>);
+  matrix.<span class="hljs-built_in">print</span>(<span class="hljs-built_in">F</span>(text));
+  <span class="hljs-keyword">if</span>(--x &lt; <span class="hljs-number">-36</span>) {
+    x = matrix.<span class="hljs-built_in">width</span>();  
+    <span class="hljs-keyword">if</span>(++pass &gt;= <span class="hljs-number">3</span>) pass = <span class="hljs-number">0</span>;
+    matrix.<span class="hljs-built_in">setTextColor</span>(colors[pass]);
+  }
+  matrix.<span class="hljs-built_in">show</span>();
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">100</span>);
+}
+</code></pre>
+<p><a href="index.html">zurück</a></p>
+
+            
+            
+        </body>
+        </html>
