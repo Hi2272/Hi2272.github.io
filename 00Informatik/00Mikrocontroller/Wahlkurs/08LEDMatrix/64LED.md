@@ -116,7 +116,7 @@ void loop() {
 ## Anschluss an ESP32
 
 Die LED-Matrices können auch an +5V und GND an einen ESP32-Controller angeschlossen werden:
-
+![alt text](<IMG_20250719_200318 (1).jpg>)
 
 Als Datenpin dient hier der GPIO23:
 
