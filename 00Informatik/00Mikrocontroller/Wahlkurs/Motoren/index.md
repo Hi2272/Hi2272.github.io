@@ -1,18 +1,16 @@
 <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
 # Motoren am Arduino
-
+## [Ventilator direkt am Arduino](01Ventilator/index.html)  
+## [Motorsteuerung über H-Brücken](HBruecke/index.html)  
 ## [Servos](Servomotor/index.html)  
 ## [Schrittmotoren](Schrittmotor/index.html)  
-## [Motorsteuerung über H-Brücken](HBruecke/index.html)  
 
-[zurück](../index.html)  
+## [zurück](../index.html)  
 
 ---
 
 <footer >
-
-Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.
 
 <h5>Haftungsausschluss</h5>
   <h5>Inhalt des Onlineangebotes</h5>
