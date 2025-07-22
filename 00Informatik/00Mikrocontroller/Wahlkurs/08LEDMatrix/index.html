@@ -140,20 +140,25 @@
         <body class="vscode-body vscode-light">
             <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 <h1 id="led-matrix">LED Matrix</h1>
+<h2 id="matrix-shield">Matrix Shield</h2>
+<p>Im Kurs arbeiten wir mit einem LED-Matrix-Shield, das einfach auf den Arduino Uno aufgesteckt wird.<br>
+Die 40 LEDs sind intern an den Pin13 des Unos angeschlossen.</p>
+<h2 id="64-led-matrix">64 LED Matrix</h2>
+<p>Auf dieser Seite wird eine Matrix mit 64 LEDs programmiert. Hierbei können mehrere Matrizes aneinander gekettet werden:<br>
+<a href="64LED.html">64LED</a></p>
 <h2 id="allgemeines">Allgemeines</h2>
-<p>Die LED-Matrix besteht aus 64 RGB-LEDs, die alle einzeln über eine einzige Datenleitung programmiert werden können. Da die Matrix relativ viel Strom benötigt, schließen wir sie an eine externe Spannungsquelle an:</p>
-<ul>
-<li>Rotes Kabel : + Pol der externen Spannungsquelle (+5 V)</li>
-<li>Schwarzes Kabel: - Pol der externen Spannungsquelle (GND)</li>
-<li>Gelbes Kabel: Datenkabel: Port 6 am Arduino</li>
-</ul>
+<p>Die LED-Matrix besteht aus vielen RGB-LEDs, die alle einzeln über eine einzige Datenleitung programmiert werden können.</p>
 <h2 id="adafruit-bibliothek">Adafruit-Bibliothek</h2>
 <p>Für die Ansteuerung der Matrix benötigen wir die Adafruit_Neopixel Bibliothek, die wir wie üblich in der Arduino-IDE installieren.</p>
 <h2 id="programm-code">Programm-Code</h2>
 <p>Programmiere folgenden Code:</p>
 <pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_NeoPixel.h&gt;</span></span>
 
+<<<<<<< HEAD
+<span class="hljs-comment">// Pin für die WS2812 LEDs</span>
+=======
 <span class="hljs-comment">// Pin für die WS2812 LEDs: Pin13</span>
+>>>>>>> 9dd24f0a1d0366791d010a446897f44d20ef55bc
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> DATA_PIN 13</span>
 
 <span class="hljs-comment">// Anzahl der LEDs in der Matrix</span>

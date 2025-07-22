@@ -122,11 +122,12 @@ In folgendem Video könnt ihr die Funktion des Lichtes sehen:  [YouTube Video Pa
 
 Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.Seine Programmierung kann auch über die bekannte Arduino-IDE erfolgen.  
 
-1. [Vorbereitung der Arduino-IDE für den ESP32](05ESP32/01/index.html)
-2. [Schalten einer LED über einen Internetbrowser](05ESP32/02/index.html)  
-   ![Alt text](05ESP32/02/Sc02.png)
-3. [Senden und Empfangen von Daten über Bluetooth](05ESP32/03/index.html)
-4. [Speichern von Messdaten in einem Google Sheet](ESP32/DHT22/index.html)  
+1. [Vorbereitung der Arduino-IDE für den ESP32](05ESP32/01Install/index.html)
+2. [Schalten einer LED über einen Internetbrowser](05ESP32/02WLAN/index.html)  
+   ![Alt text](05ESP32/02WLAN/Sc02.png)
+3. [Senden und Empfangen von Daten über Bluetooth](05ESP32/03Bluetooth/index.html)
+4. [MIT AppInventor und Bluetooth](05ESP32/03bAppInventor/index.html)  
+5. [Speichern von Messdaten in einem Google Sheet](05ESP32/DHT22/index.html)  
 
 ### b) Ein Bluetooth-Gamepad für Pac Man
 
