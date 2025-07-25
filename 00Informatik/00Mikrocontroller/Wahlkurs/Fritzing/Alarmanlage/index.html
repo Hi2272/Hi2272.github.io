@@ -221,47 +221,6 @@ Wir benötigen später nur die beiden äußeren Pins.</li>
 <li>Importiere alle Gerber-Dateien, die du vorher exportiert hast.</li>
 <li>Klicke auf <strong>Get Instant PCB Quote</strong> um die Platinen zu bestellen.</li>
 </ol>
-<h3 id="lötunterlage-erstellen">Lötunterlage erstellen</h3>
-<p>Für Stiftsockelleisten kann eine Lötvorlage für den 3D-Drucker erstellt werden:</p>
-<ol>
-<li>Exportiere das Projekt als SVG-Dateien:<br>
-Datei.Exportieren.für die Produktion.Ätzbar(SVG)</li>
-<li>Öffne eine Datei mit den Borhungen in Inkscape</li>
-<li>Speichere die Datei im Autocad DXF12-Format (Datei.Speichern unter)</li>
-<li>Stelle im Speichermenü die Einheit auf mm und die Zeichencodierung auf UTF-8</li>
-<li>Starte Onshape und erzeuge eine neue Datei.</li>
-<li>Erzeuge eine neue Skizze auf der Top-Ebene</li>
-<li>Klicke auf DXF oder DWG einfügen (ggf. musst du das Werkzeug suchen lassen)</li>
-<li>Importiere die DXF-Datei, die du gerade herunter geladen hast.</li>
-<li>Extrudiere die Skizze 10 mm hoch.</li>
-<li>Auf der Lötunterlage können jetzt die Stiftsockelleisten beim Löten aufgesteckt werden.</li>
-</ol>
-<p>Um Buchsenleisten zu löten kann ebenfalls dieser Weg beschritten werden. Hier schließen sich weitere Schritte an:
-11. Erzeuge eine neue Skizze auf der Oberfläche der Löthilfe
-12. Für ungerade Bohrungszahlen:</p>
-<ul>
-<li>Erstelle einen Dreipunktkreis auf der mittleren Bohrung</li>
-<li>Erstelle ein Mittelpunktrechteck auf dem Mittelpunkt des Kreises mit folgenden Maßen:
-<ul>
-<li>n*2.54+1 mm Breite (n=Zahl der Bohrungen)</li>
-<li>3 mm Höhe</li>
-</ul>
-</li>
-</ul>
-<ol start="13">
-<li>Für gerade Borhungenszahlen:</li>
-</ol>
-<ul>
-<li>Erstelle zwei Dreipunktkreise auf den mittleren beiden Bohrungen</li>
-<li>Erstelle eine Linie zwischen den Mittelpunkten dieser beiden Kreis</li>
-<li>Erstelle das Mittelpunktrechteck auf dem Mittelpunkt dieser Linie.</li>
-</ul>
-<ol start="14">
-<li>Extrudiere die Skizze als neues Objekt 7 mm hoch.</li>
-<li>Erstelle auf der Oberfläche eine neue Skizze</li>
-<li>Erzeuge ein Eckenrechteck auf dem gesamten Objekt</li>
-<li>Extrudiere dieses Rechteck 3 mm weit.</li>
-</ol>
 <p><a href="../../index.html">zurück</a></p>
 <hr>
 <footer >
