@@ -1,30 +1,42 @@
 <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
-# Widerstandsmodul
-Da Widerstände nur sehr dünnen Drahtbeine haben, sind sie nicht besonders gut auf ein Steckbrett zu stecken.  
-Aus diesem Grund wollen wir einen 1K-Widerstand auf eine Lochrasterplatine auflöten und die Platte anschließend mit 2 Pins versehen.
+# LED- und Widerstandsmodule
 
-## 1. Biegen des Widerstands
+## Vorbereiten der Pinleisten
+1. Breche mit dem Abbrechwerkzeug eine 40-Pin-Leiste in mehrere Teilstücke:
+- 12 x 3 Pins für LEDs
+- 1 x 4 Pin (Rest) für 3-FarbLED
+2. Lege folgende Pinleisten zur Seite
+- 1 x 4-Pin-Stück
+- 1 x 3-Pin-Stück
+3. Drücke aus den 10 3-Pin-Stücken den mittleren Pin heraus.
 
-Biege den Widerstand über die Biegelehre.   
+## 2 Widerstände
 
+1. Stecke zwei 2-Pin-Leisten auf die Löthilfe
+2. Lege das Widerstandsmodul mit der Beschriftung nach oben auf die Pins.
+3. Löte die Pins an.
+     
+4.  Biegen des Widerstands  
+Biege zwei Widerstände über die Biegelehre.   
 Hier kannst du ein Modell für die Biegelehre herunterladen und mit einem 3D-Drucker ausdrucken:
 [Widerstandslehre.stl](Widerstandslehre.stl)  
+5. Stecke den Widerstand von der beschrifteten Seite auf das Widerstandmodul.
+6. Biege die Drähte auf der Rückseite leicht zur Seite, so dass der Widerstand stabil steckt.
+7. Stecke das Widerstandsmodul mit der Untereite nach oben auf die Löthilfe.
+8. Löte den Widerstand an.
+9. Schneide die überstehenden Drähte ab.
 
-## 2.  Befestigen des Widerstands  
-- Der Widerstand passt jetzt genau zwischen 4 Löcher auf der Platine.   
-- Stecke in vorsichtig auf die Seite auf, auf der die Löcher nicht verkupfert sind und drücke ihn fest.   
-- Befestige ihn anschließend mit einem Streifen Klebeband.
-## 3. Anlöten des Widerstands
-Löte den Widerstand auf der verkupferten Seite fest.
-## 4. Stecken der Pins
-- Stecke die Pins in zwei Löcher neben dem Widerstand.  
-Der Abstand soll wieder 4 Löcher betragen.
-- Befestige sie mit einem Klebeband.
-## 5. Verbinden der Pins mit dem Widerstand
-- Biege die Beine des Widerstands um, so dass sie die Anschlüsse der Pins berühren.
-- Löte die Beine des Widerstands und die Pins fest.
-## 6. Testen des Moduls
-Bestimme mit dem Multimeter, ob der Widerstand zwischen beiden Pins 1 kOhm beträgt.
+## 8 LEDs (2 grün, 2 rot, 2 blau, 2 gelb)
+1. Stecke 8 2-Pin-Leisten auf die LED-Löthilfe.
+2. Lege die LED-PCB mit der Beschriftung nach oben auf die Pin-Leisten.
+3. Löte die Pins an.
+4. Stecke in jedes Modul eine LED. (2x rot, 2x grün, 2x gelb, 2x blau). Achte hierbei auf die Polung: **Langer Draht am (+)-Pol!**
+5. Stecke die Module umgekehrt in die Löthilfe.
+6. Löte die LEDs an. **Arbeite hierbei schnell - LEDS gehen kaputt, wenn sie zu heiß werden.**
+7. Schneide die Drähte von den LEDs ab.
+   
+## 2-Farb-LED
+
 
 [zurück](index.html)   
