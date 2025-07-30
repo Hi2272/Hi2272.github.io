@@ -38,5 +38,40 @@ Hier kannst du ein Modell für die Biegelehre herunterladen und mit einem 3D-Dru
    
 ## 2-Farb-LED
 
+1. Löte einen Stecker mit 3 Pins an die PCB
+2. Stecke die 2-Farb-LED auf das Modul. Achte darauf, dass der lange Draht der Pluspol ist.
+3. Löte die LED an und schneide die Drähte ab.
+
+## 3-Farb-LED
+1. Löte einen Stecker mit 4 Pins an die PCB.
+2. Stecke die 3-Farb-LED auf das Modul. Achte darauf, dass der lange Draht der Pluspol ist.
+3. Löte die LED an und schneide die Drähte ab.
+ 
+# Ardushield
+## 1. Verbindung zum Arduino
+### Brechen der Stiftleisten
+40 Pinleiste:  
+- 2 x 8-Pin (16)  
+- 4 x 6-Pin (24)  
+
+40 Pinleiste:  
+- 5 x 6-Pin (30)  
+- 1 x 4-Pin (4)  
+- 1 x 2-Pin (2)  
+- Rest: 4-Pin
+
+### Anlöten 
+1. Stecke die Stifleisten mit den langen Pins auf den Arduino.
+2. Stecke das Ardushield so auf, dass die **Beschriftung oben** ist.
+3. Löte die Stiftleisten fest.  
+## 2. Steckerleisten
+### Brechen der Stiftleisten
+1. 7 x 6-Pin
+2. 1 x 4-Pin
+3. 1 x 2-Pin
+### Anlöten
+1. Stecke die Stiftleisten mit der langen Pins auf die Löthilfe.
+2. Stecke das Ardushield so auf, dass die **Beschriftung unten** ist.
+3. Löte die Stiftleisten an.
 
 [zurück](index.html)   
