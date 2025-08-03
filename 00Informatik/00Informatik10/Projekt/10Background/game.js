@@ -22,7 +22,7 @@ window.onload = function () {
   let balls = [];
   let paddle;
   let cursors;
-  let lives = 99;
+  let lives = 3;
   let livesText;
   let gameOverText;
   let gameEnded = false;
@@ -87,7 +87,16 @@ window.onload = function () {
       this.load.image('bg' + i,s);
       console.log(s+" geladen!");
     }
+    // Sounds laden
+    this.load.audio('paddleHit', 'assets/sounds/paddleHit.mp3');
+    this.load.audio('brickHit', 'assets/sounds/brickHit.mp3');
+    this.load.audio('wallHit', 'assets/sounds/wallHit.mp3');
+    this.load.audio('levelUp', 'assets/sounds/levelUp.mp3');
+    this.load.audio('gameOver', 'assets/sounds/gameOver.mp3');
+    this.load.audio('ballStart', 'assets/sounds/ballStart.mp3');
   }
+
+  let soundPaddleHit, soundBrickHit, soundWallHit, soundLevelUp, soundGameOver, soundBallStart;
 
   function create() {
     const width = this.sys.game.config.width;
@@ -110,12 +119,12 @@ window.onload = function () {
 
     livesText = this.add.text(10, 10, 'Leben: '+lives.toString(), {
       font: '20px Arial',
-      fill: '#ffffff',
+      fill: '#aaaaaa',
     });
 
     bricksText = this.add.text(10, 40, 'Verbleibende Steine: 0', {
       font: '20px Arial',
-      fill: '#ffffff',
+      fill: '#aaaaaa',
     });
 
     gameOverText = this.add.text(width / 2, height / 2, 'GAME OVER', {
@@ -213,6 +222,14 @@ window.onload = function () {
     this.physics.add.overlap(sizePowerUp, paddle, collectSizePowerUp, null, this);
 
     loadLevel.call(this, currentLevel);
+
+    // Sounds initialisieren
+    soundPaddleHit = this.sound.add('paddleHit');
+    soundBrickHit = this.sound.add('brickHit');
+    soundWallHit = this.sound.add('wallHit');
+    soundLevelUp = this.sound.add('levelUp');
+    soundGameOver = this.sound.add('gameOver');
+    soundBallStart = this.sound.add('ballStart');
   }
 
   //--- Registriere für einen Ball die Collider ---
@@ -303,13 +320,15 @@ window.onload = function () {
         loseLife();
       }
     }
-  }
+
+     }
 
   function launchMainBall() {
     if (!balls.length) return;
     balls[0].launched = true;
     ballLaunched = true;
     setBallVelocity(balls[0].sprite);
+    if (soundBallStart) soundBallStart.play();
   }
 
   function setBallVelocity(ball) {
@@ -361,6 +380,7 @@ window.onload = function () {
     clearSlowTimer();
     clearPaddleSizeTimer();
     resetPaddleSize();
+    if (soundGameOver) soundGameOver.play();
   }
 
   function loadLevel(levelNumber) {
@@ -462,6 +482,8 @@ window.onload = function () {
 
     ball.body.velocity.x = speed * Math.sin(bounceAngle);
     ball.body.velocity.y = -speed * Math.cos(bounceAngle);
+
+    if (soundPaddleHit) soundPaddleHit.play();
 }
 
   function onBallBrickCollision(ball, brick, scene) {
@@ -481,7 +503,8 @@ window.onload = function () {
     }
 
     const currentType = brickHealth.get(brick);
-
+     if (soundBrickHit) soundBrickHit.play();
+   
     switch (currentType) {
       case 1: // Standard brick, breaks on one hit
         brick.disableBody(true, true);
@@ -689,6 +712,7 @@ window.onload = function () {
     bricksRemaining--;
     bricksText.setText('Verbleibende Steine: ' + bricksRemaining);
     if (bricksRemaining <= 0) {
+      if (soundLevelUp) soundLevelUp.play();
       // Destroy all balls when level is cleared
       balls.forEach(obj => obj.sprite.destroy());
       balls = [];
