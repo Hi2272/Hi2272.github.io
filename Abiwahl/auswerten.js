@@ -1,10 +1,14 @@
 // Arrays mit den Fächerkürzeln
 const nw = ["B", "C", "Ph", "PhA"];
 const fs = ["E", "F", "L", "Sp"];
-const nwfs = ["B", "C", "Ph", "PhA", "Inf", "InfS", "E", "F", "L", "Sp", "SPS"];
+const nwInf = ["B", "C", "Ph", "PhA", "Inf"];
+const nwfs = ["B", "C", "Ph", "PhA", "Inf", "InfS", "E", "F", "L", "Sp", "SPS", "abgelegt"];
 const gpr = ["Geo", "WR", "PuG"];
 const kumu = ["Ku", "Mu"];
 const rel = ["K", "Ev", "Eth"];
+const echteNwFs=["B","C","Ph","E","F","L","Sp","PhA","PhB"];
+const nurMdl=["SPS","InfS","PhB","Glg"];
+const keinLF=["SPS","PhA","InfS","PhB","Glg"];
 
 // Fixe Pflichtfächer:
 const pflichtfaecher = ["D", "M", "G", "Spo"];
@@ -74,8 +78,11 @@ window.addEventListener('DOMContentLoaded', () => {
     createDropdownTable();
 });
 
+
 // Auswertung mit Doppelbelegungsprüfung
 function auswerten() {
+
+    // Variablen für die gewählten Fächer
     const chosen_nw = document.getElementById("naturwissenschaft").value;
     const chosen_fs = document.getElementById("fremdsprache").value;
     const chosen_nwfs = document.getElementById("zweitfach").value;
@@ -88,15 +95,304 @@ function auswerten() {
         alert("Fehler: Du darfst bei 'Naturwissenschaft' und '2. Natw. oder 2. FS.' nicht das gleiche Fach wählen!");
         return;
     }
-    if (chosen_fs=== chosen_nwfs) {
+    if (chosen_fs === chosen_nwfs) {
         alert("Fehler: Du darfst bei 'Fremdsprache' und '2. Natw. oder 2. FS.' nicht das gleiche Fach wählen!");
         return;
     }
-    // Weitere Auswertung hier...
-    console.log("Naturwissenschaft:", chosen_nw);
-    console.log("Fremdsprache:", chosen_fs);
-    console.log("2. Natw. oder 2. FS.:", chosen_nwfs);
-    console.log("GPR:", chosen_gpr);
-    console.log("Ku/Mu:", chosen_kumu);
-    console.log("Rel/Eth:", chosen_rel);
+   
+    document.getElementById("Seite1").style.display = "none";
+    document.getElementById("Seite2").innerHTML = "<h1>Wähle dein Leistungsfach</h1><div id='abiwahlflaeche'></div><button onclick='abiwahl()'>Weiter</button>";
+
+    // Erstelle die Optionsliste
+    const options = [
+        chosen_nw,
+        chosen_fs,
+        chosen_nwfs,
+        chosen_gpr,
+        chosen_kumu,
+        chosen_rel,
+        "G",
+        "Spo"
+    ];
+    // Fächer, die es nicht als Leistungsfach geben kann
+    if (
+        chosen_nwfs === "abgelegt" ||
+        isIn(chosen_nwfs,keinLF) 
+    ) {
+        remove(options, chosen_nwfs);
+    }
+    if (
+        isIn(chosen_nw,keinLF)
+    ) {
+        remove(options, chosen_nw);
+    }
+    
+
+    // Dropdown-Menü erzeugen
+    const abiwahlflaeche = document.getElementById("abiwahlflaeche");
+    abiwahlflaeche.innerHTML = ""; // Vorherigen Inhalt löschen
+
+    const label = document.createElement("label");
+    label.textContent = "Leistungsfach:";
+    label.setAttribute("for", "leistungsfach");
+
+    const select = document.createElement("select");
+    select.id = "leistungsfach";
+
+    options.forEach(fach => {
+        const option = document.createElement("option");
+        option.value = fach;
+        option.textContent = fach;
+        select.appendChild(option);
+    });
+
+    abiwahlflaeche.appendChild(label);
+    abiwahlflaeche.appendChild(select);
+}
+
+function isIn(value, array) {
+    return array.indexOf(value) !== -1;
+}
+
+function isDouble(value, array) {
+    return array.indexOf(value) !== array.lastIndexOf(value);
+}
+
+function containsDouble(array) {
+    let doppelt = false;
+    for (let i = 0; i < array.length; i++) {
+        if (isDouble(array[i], array)) {
+            doppelt = true;
+            break;
+        }
+    }
+    return doppelt;
+}
+
+function remove(array,item){
+    const index = array.indexOf(item);
+    if (index !== -1) {
+        array.splice(index, 1);
+    }   
+}
+    
+function isInArray(array1, array2){
+    for (let i=0;i<array1.length;i++){
+        if (isIn(array1[i],array2)){
+            return true;
+        }
+    }
+    return false;
+}
+
+function abiwahl() {
+    document.getElementById("Seite2").style.display = "none";
+
+    const lf = document.getElementById("leistungsfach").value;
+    const chosen_nw = document.getElementById("naturwissenschaft").value;
+    const chosen_fs = document.getElementById("fremdsprache").value;
+    const chosen_nwfs = document.getElementById("zweitfach").value;
+    const chosen_gpr = document.getElementById("gpr").value;
+    const chosen_kumu = document.getElementById("kum").value;
+    const chosen_rel = document.getElementById("releth").value;
+
+    let fach1 = new Array("D");
+    if (isIn(lf, fs) && isIn(chosen_nwfs, fs)) {
+        fach1.push(lf);
+    }
+    let fach2 = new Array("M");
+    if (isIn(lf, nwInf) && isIn(chosen_nwfs, nwInf)) {
+        fach2.push(lf);
+    }
+    let fach3 = new Array(chosen_gpr, chosen_rel, "G");
+    let fach4 = new Array(chosen_nw, chosen_fs, chosen_nwfs);
+    let fach5 = new Array(chosen_fs, chosen_nwfs, chosen_kumu, chosen_gpr, chosen_rel, "G");
+    if (lf == "Spo") {
+        fach5 = new Array("Spo");
+    }
+    if (chosen_nwfs == "abgelegt") {
+        remove(fach4, chosen_nwfs);
+        remove(fach5, chosen_nwfs);
+    }
+    let abi = new Array(5);
+    let uniqueCombinations = new Set();
+    let combinations = [];
+
+    for (let f1 = 0; f1 < fach1.length; f1++) {
+        for (let f2 = 0; f2 < fach2.length; f2++) {
+            for (let f3 = 0; f3 < fach3.length; f3++) {
+                for (let f4 = 0; f4 < fach4.length; f4++) {
+                    for (let f5 = 0; f5 < fach5.length; f5++) {
+                        abi[0] = fach1[f1];  // D,LF Fs
+                        abi[1] = fach2[f2];  // M, LF Nw,Inf
+                        abi[2] = fach3[f3];  // GPR,Rel,Eth
+                        abi[3] = fach4[f4];  // Nw,Fs,2.Nw,2.Fs
+                        abi[4] = fach5[f5];  // Fs,2.Nw,2.Fs,Ku/Mu,GPR,Rel,Eth
+
+                        if (!containsDouble(abi)) { // Keine Doppelbelegung
+                            if (isIn(lf, abi)) { // Leistungfach muss enthalten sein
+                                if (abi[1] != "M" && !isIn(abi[3], fs) && !isIn(abi[4], fs)) {
+                                    // Wenn Mathe substiuiert ist, muss eine Fremdsprache geprüft werden.
+                                } else {
+                                    if (abi[0] != "D" && !isIn(abi[3], fs) && !isIn(abi[4], fs)) {
+                                        // Wenn Deutsch substituiert ist, muss noch eine Fremdsprache geprüft werden.
+                                    } else {
+                                       if (isInArray(echteNwFs,abi)){
+                                        // Mindestens eine NW oder FS im Abi
+                                        const sortedAbi = [...abi].sort().join(","); // Sortiere die Fächer
+                                        if (!uniqueCombinations.has(sortedAbi)) { // Kombination ist neu
+                                            uniqueCombinations.add(sortedAbi);
+                                            combinations.push([...abi]);
+                                        }
+                                    }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    const listeDiv = document.getElementById("Liste");
+    listeDiv.innerHTML = ""; // Vorherigen Inhalt löschen
+
+    const label = document.createElement("label");
+    label.textContent = "Wähle deine Abiturfächer:";
+    listeDiv.appendChild(label);
+
+    const radioGroup = document.createElement("div");
+    radioGroup.id = "abiKombiGroup";
+
+    combinations.forEach((kombi, idx) => {
+        const optionLabel = document.createElement("label");
+        optionLabel.style.display = "block";
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "abiKombi";
+        radio.value = kombi.join(",");
+        if (idx === 0) radio.checked = true; // Erstes Element vorauswählen
+        optionLabel.appendChild(radio);
+        optionLabel.appendChild(document.createTextNode(" " + kombi.join(", ")));
+        radioGroup.appendChild(optionLabel);
+    });
+
+    listeDiv.appendChild(radioGroup);
+
+    // Weiter-Button
+    const weiterBtn = document.createElement("button");
+    weiterBtn.textContent = "Weiter";
+    weiterBtn.onclick = function () {
+        const selected = document.querySelector('input[name="abiKombi"]:checked');
+        if (selected) {
+            skWahl(selected.value);
+            // Hier kann die nächste Aktion erfolgen
+        } else {
+            alert("Bitte wähle eine Kombination aus.");
+        }
+    };
+    listeDiv.appendChild(weiterBtn);
+
+}
+
+function skWahl(selectedValue) {
+    const selectedCombination = selectedValue.split(",");
+    const listeDiv = document.getElementById("Liste");
+    listeDiv.innerHTML = ""; // Vorherigen Inhalt löschen
+
+    // Hilfsfunktion: Erzeuge alle Permutationen von S/K mit 3x S und 2x K
+    function getSKPermutations() {
+        const arr = ["S", "S", "S", "K", "K"];
+        const results = new Set();
+
+        function permute(a, l, r) {
+            if (l === r) {
+                results.add(a.join(","));
+            } else {
+                for (let i = l; i <= r; i++) {
+                    [a[l], a[i]] = [a[i], a[l]];
+                    permute(a, l + 1, r);
+                    [a[l], a[i]] = [a[i], a[l]];
+                }
+            }
+        }
+        permute(arr, 0, arr.length - 1);
+        return Array.from(results).map(str => str.split(","));
+    }
+
+    const skPerms = getSKPermutations();
+    const lf = document.getElementById("leistungsfach").value;
+
+    // Filtere gültige Kombinationen
+    const validCombinations = skPerms.filter(skArr => {
+        let sCount = 0;
+        // D, M und LF müssen mindestens 2x S haben
+        selectedCombination.forEach((fach, idx) => {
+            if ((fach === "D" || fach === "M" || fach === lf) && skArr[idx] === "S") {
+                sCount++;
+            }
+        });
+        return sCount >= 2;
+    });
+
+    // Ausgabe als Radiobuttons
+    const label = document.createElement("label");
+    label.textContent = "Wähle eine Kombination von 3 schriftlichen Prüfungen (S) und 2 Kolloquien (K):";
+    listeDiv.appendChild(label);
+
+    const radioGroup = document.createElement("div");
+    radioGroup.id = "skKombiGroup";
+
+
+
+
+    validCombinations.forEach((skArr, idx) => {
+        const optionLabel = document.createElement("label");
+        optionLabel.style.display = "block";
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "skKombi";
+        radio.value = skArr.join(",");
+        if (idx === 0) radio.checked = true;
+
+        // Zeige Fächer und S/K nebeneinander, Leistungsfach mit (LF)
+        const fachText = selectedCombination.map((fach, i) => {
+            let extra = (fach === lf) ? " LF" : "";
+            return `${fach}${extra} (${skArr[i]})`;
+        }).join(", ");
+        // Ku,Mu nur S wenn LF und nur K wenn nicht LF, SPS,InfS nur K
+        if ((fachText.indexOf("Ku (S)") != -1)
+            || (fachText.indexOf("Mu (S)") != -1)
+            || (fachText.indexOf("Ku LF (K)") != -1)
+            || (fachText.indexOf("Mu LF (K)") != -1)
+            || (fachText.indexOf("SPS (S)") != -1)
+            || (fachText.indexOf("InfS (S)") != -1)
+        ) {
+        }
+        else {
+            optionLabel.appendChild(radio);
+            optionLabel.appendChild(document.createTextNode(" " + fachText));
+            radioGroup.appendChild(optionLabel);
+        }
+    });
+
+    listeDiv.appendChild(radioGroup);
+
+    // Weiter-Button
+    const weiterBtn = document.createElement("button");
+    weiterBtn.textContent = "Weiter";
+    weiterBtn.onclick = function () {
+        const selected = document.querySelector('input[name="skKombi"]:checked');
+        if (selected) {
+            const skArr = selected.value.split(",");
+            const fachText = selectedCombination.map((fach, i) => `${fach} (${skArr[i]})`).join(", ");
+            listeDiv.innerHTML = "<h1>Gewählte Abitur-Kombination:</h1><h1>" + fachText + "</h1>";
+            listeDiv.innerHTML += "Übermittle diese Wahl bitte an den OSK.";
+
+        } else {
+            alert("Bitte wähle eine S/K-Kombination aus.");
+        }
+    };
+    listeDiv.appendChild(weiterBtn);
 }
