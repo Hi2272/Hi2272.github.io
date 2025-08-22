@@ -6,7 +6,7 @@ const nwfs = ["B", "C", "Ph", "PhA", "Inf", "InfS", "E", "F", "L", "Sp", "SPS", 
 const gpr = ["Geo", "WR", "PuG"];
 const kumu = ["Ku", "Mu"];
 const rel = ["K", "Ev", "Eth"];
-const echteNwFs=["B","C","Ph","E","F","L","Sp","PhA","PhB"];
+const echteNwFs=nw.concat(fs);
 const nurMdl=["SPS","InfS","PhB","Glg"];
 const keinLF=["SPS","PhA","InfS","PhB","Glg"];
 
@@ -101,6 +101,8 @@ function auswerten() {
     }
    
     document.getElementById("Seite1").style.display = "none";
+    document.getElementById("Seite2").style.display = "block";
+    
     document.getElementById("Seite2").innerHTML = "<h1>Wähle dein Leistungsfach</h1><div id='abiwahlflaeche'></div><button onclick='abiwahl()'>Weiter</button>";
 
     // Erstelle die Optionsliste
@@ -187,6 +189,7 @@ function isInArray(array1, array2){
 
 function abiwahl() {
     document.getElementById("Seite2").style.display = "none";
+    document.getElementById("Seite3").style.display = "block";
 
     const lf = document.getElementById("leistungsfach").value;
     const chosen_nw = document.getElementById("naturwissenschaft").value;
@@ -231,8 +234,8 @@ function abiwahl() {
 
                         if (!containsDouble(abi)) { // Keine Doppelbelegung
                             if (isIn(lf, abi)) { // Leistungfach muss enthalten sein
-                                if (abi[1] != "M" && !isIn(abi[3], fs) && !isIn(abi[4], fs)) {
-                                    // Wenn Mathe substiuiert ist, muss eine Fremdsprache geprüft werden.
+                                if (abi[1] != "M" &&  (!isInArray(abi, fs) || !(isIn(abi[3],nwInf)||isIn(abi[4],nwInf)))) {
+                                    // Wenn Mathe substiuiert ist, muss eine Fremdsprache und eine Nw geprüft werden.
                                 } else {
                                     if (abi[0] != "D" && !isIn(abi[3], fs) && !isIn(abi[4], fs)) {
                                         // Wenn Deutsch substituiert ist, muss noch eine Fremdsprache geprüft werden.
@@ -255,13 +258,9 @@ function abiwahl() {
         }
     }
 
-    const listeDiv = document.getElementById("Liste");
-    listeDiv.innerHTML = ""; // Vorherigen Inhalt löschen
-
-    const label = document.createElement("label");
-    label.textContent = "Wähle deine Abiturfächer:";
-    listeDiv.appendChild(label);
-
+    const listeDiv = document.getElementById("Seite3");
+    listeDiv.innerHTML = "<h1>Wähle deine Abiturfächer</h1>";
+    
     const radioGroup = document.createElement("div");
     radioGroup.id = "abiKombiGroup";
 
@@ -279,7 +278,8 @@ function abiwahl() {
     });
 
     listeDiv.appendChild(radioGroup);
-
+    listeDiv.innerHTML +='<iframe src="GSO48-1.html" width="100%"></iframe><br>';
+    
     // Weiter-Button
     const weiterBtn = document.createElement("button");
     weiterBtn.textContent = "Weiter";
@@ -298,8 +298,8 @@ function abiwahl() {
 
 function skWahl(selectedValue) {
     const selectedCombination = selectedValue.split(",");
-    const listeDiv = document.getElementById("Liste");
-    listeDiv.innerHTML = ""; // Vorherigen Inhalt löschen
+    const listeDiv = document.getElementById("Seite3");
+    listeDiv.innerHTML = "<h1>Schriftlich oder Kolloquium</h1>"; // Vorherigen Inhalt löschen
 
     // Hilfsfunktion: Erzeuge alle Permutationen von S/K mit 3x S und 2x K
     function getSKPermutations() {
@@ -340,14 +340,9 @@ function skWahl(selectedValue) {
     const label = document.createElement("label");
     label.textContent = "Wähle eine Kombination von 3 schriftlichen Prüfungen (S) und 2 Kolloquien (K):";
     listeDiv.appendChild(label);
-
     const radioGroup = document.createElement("div");
     radioGroup.id = "skKombiGroup";
-
-
-
-
-    validCombinations.forEach((skArr, idx) => {
+     validCombinations.forEach((skArr, idx) => {
         const optionLabel = document.createElement("label");
         optionLabel.style.display = "block";
         const radio = document.createElement("input");
@@ -378,7 +373,8 @@ function skWahl(selectedValue) {
     });
 
     listeDiv.appendChild(radioGroup);
-
+ listeDiv.innerHTML +='<iframe src="GSO48-2.html" width="100%"></iframe><br>';
+  
     // Weiter-Button
     const weiterBtn = document.createElement("button");
     weiterBtn.textContent = "Weiter";
@@ -395,4 +391,5 @@ function skWahl(selectedValue) {
         }
     };
     listeDiv.appendChild(weiterBtn);
+ 
 }
