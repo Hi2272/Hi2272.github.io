@@ -1,14 +1,17 @@
+
+
+
 // Arrays mit den Fächerkürzeln
-const nw = ["B", "C", "Ph", "PhA"];
-const fs = ["E", "F", "L", "Sp"];
-const nwInf = ["B", "C", "Ph", "PhA", "Inf"];
-const nwfs = ["B", "C", "Ph", "PhA", "Inf", "InfS", "E", "F", "L", "Sp", "SPS", "abgelegt"];
-const gpr = ["Geo", "WR", "PuG"];
+const nw = ["B", "C", "Ph", "PhA", "PhB"];
+const fs = ["E", "F", "L", "Sp", "It"];
+const nwInf = nw.concat(["Inf", "InfS", "WInf"]);
+const nwfs = nwInf.concat(fs).concat(["SPS", "ItS", "abgelegt"]);
+const gpr = ["Geo", "WR", "PuG", "Glg", "SAF"];
 const kumu = ["Ku", "Mu"];
 const rel = ["K", "Ev", "Eth"];
-const echteNwFs=nw.concat(fs);
-const nurMdl=["SPS","InfS","PhB","Glg"];
-const keinLF=["SPS","PhA","InfS","PhB","Glg"];
+const echteNwFs = nw.concat(fs);
+const nurMdl = ["SPS", "InfS", "PhB", "Glg", "WInf", "SAF"];
+const keinLF = ["SPS", "PhA", "InfS", "PhB", "Glg", "WInf", "SAF"];
 
 // Fixe Pflichtfächer:
 const pflichtfaecher = ["D", "M", "G", "Spo"];
@@ -22,6 +25,20 @@ const felder = [
     { id: "kum", label: "Ku/Mu:", options: kumu },
     { id: "releth", label: "Rel/Eth:", options: rel }
 ];
+const footerStart = '<div id="footer">';
+const datenSchutz = 'Alle Angaben dienen nur zur Orientierung und sind ohne Gewähr. <br></br>';
+const copyright = '2025 Rainer Hille, Gymnasium Waldkraiburg</div>';
+fachkuerzel = "<hr><b>Fachkürzel:</b><br>";
+fachkuerzel += "D: Deutsch, M: Mathematik,G: Geschichte, Spo: Sport,<br>";
+fachkuerzel += "B: Biologie, C: Chemie, Ph: Physik, PhA: Astrophysik, PhB: Biophysik, <br>";
+fachkuerzel += "Inf: Informatik, InfS: Informatik spätbeginnend, WInf: Wirtschaftsinformatik, <br>";
+fachkuerzel += "E: Englisch, F: Französisch, L: Latein, Sp: Spanisch, It: Italienisch, <br>";
+fachkuerzel += "SPS: Spanisch spätbeginnend, ItS Italienisch spätbeginnend <br>";
+fachkuerzel += "Geo: Geographie, WR: Wirtschaft und Recht, PuG: Politik und Gesellschaft, Glg: Geologie,SAF: Sozialwissenschaftliche Arbeitsfelder<br>";
+fachkuerzel += "Ku: Kunst, Mu: Musik, <br>";
+fachkuerzel += "K: Katholische Religionslehre, Ev: Evangelische Religionslehre, Eth: Ethik<br>";
+fachkuerzel += "<hr>";
+const footerEnde = "</div>";
 
 // Tabelle dynamisch erstellen, inkl. Pflichtfächer und Dropdowns
 function createDropdownTable() {
@@ -71,6 +88,7 @@ function createDropdownTable() {
 
     table.appendChild(tbody);
     container.appendChild(table);
+    container.innerHTML += footerStart + fachkuerzel + copyright + footerEnde;
 }
 
 // Nach dem Laden der Seite wird die Tabelle angezeigt
@@ -99,10 +117,10 @@ function auswerten() {
         alert("Fehler: Du darfst bei 'Fremdsprache' und '2. Natw. oder 2. FS.' nicht das gleiche Fach wählen!");
         return;
     }
-   
+
     document.getElementById("Seite1").style.display = "none";
     document.getElementById("Seite2").style.display = "block";
-    
+
     document.getElementById("Seite2").innerHTML = "<h1>Wähle dein Leistungsfach</h1><div id='abiwahlflaeche'></div><button onclick='abiwahl()'>Weiter</button>";
 
     // Erstelle die Optionsliste
@@ -116,19 +134,19 @@ function auswerten() {
         "G",
         "Spo"
     ];
-    // Fächer, die es nicht als Leistungsfach geben kann
+    // Fächer, die es nicht als Leistungsfach geben kann, werden entfernt
     if (
         chosen_nwfs === "abgelegt" ||
-        isIn(chosen_nwfs,keinLF) 
+        isIn(chosen_nwfs, keinLF)
     ) {
         remove(options, chosen_nwfs);
     }
     if (
-        isIn(chosen_nw,keinLF)
+        isIn(chosen_nw, keinLF)
     ) {
         remove(options, chosen_nw);
     }
-    
+
 
     // Dropdown-Menü erzeugen
     const abiwahlflaeche = document.getElementById("abiwahlflaeche");
@@ -150,6 +168,8 @@ function auswerten() {
 
     abiwahlflaeche.appendChild(label);
     abiwahlflaeche.appendChild(select);
+    abiwahlflaeche.innerHTML += footerStart + fachkuerzel + copyright + footerEnde;
+
 }
 
 function isIn(value, array) {
@@ -171,16 +191,16 @@ function containsDouble(array) {
     return doppelt;
 }
 
-function remove(array,item){
+function remove(array, item) {
     const index = array.indexOf(item);
     if (index !== -1) {
         array.splice(index, 1);
-    }   
+    }
 }
-    
-function isInArray(array1, array2){
-    for (let i=0;i<array1.length;i++){
-        if (isIn(array1[i],array2)){
+
+function isInArray(array1, array2) {
+    for (let i = 0; i < array1.length; i++) {
+        if (isIn(array1[i], array2)) {
             return true;
         }
     }
@@ -200,10 +220,12 @@ function abiwahl() {
     const chosen_rel = document.getElementById("releth").value;
 
     let fach1 = new Array("D");
+    // Option Leistungfach Fremdsprache, wenn Fs als LF und 2 FS belegt
     if (isIn(lf, fs) && isIn(chosen_nwfs, fs)) {
         fach1.push(lf);
     }
     let fach2 = new Array("M");
+    // Option Leistungfach Naturwissenschaft/Inf, wenn Nw/Inf als LF und 2.Nw/2.Fs belegt 
     if (isIn(lf, nwInf) && isIn(chosen_nwfs, nwInf)) {
         fach2.push(lf);
     }
@@ -234,20 +256,20 @@ function abiwahl() {
 
                         if (!containsDouble(abi)) { // Keine Doppelbelegung
                             if (isIn(lf, abi)) { // Leistungfach muss enthalten sein
-                                if (abi[1] != "M" &&  (!isInArray(abi, fs) || !(isIn(abi[3],nwInf)||isIn(abi[4],nwInf)))) {
+                                if (abi[1] != "M" && (!isInArray(abi, fs) || !(isIn(abi[3], nwInf) || isIn(abi[4], nwInf)))) {
                                     // Wenn Mathe substiuiert ist, muss eine Fremdsprache und eine Nw geprüft werden.
                                 } else {
                                     if (abi[0] != "D" && !isIn(abi[3], fs) && !isIn(abi[4], fs)) {
                                         // Wenn Deutsch substituiert ist, muss noch eine Fremdsprache geprüft werden.
                                     } else {
-                                       if (isInArray(echteNwFs,abi)){
-                                        // Mindestens eine NW oder FS im Abi
-                                        const sortedAbi = [...abi].sort().join(","); // Sortiere die Fächer
-                                        if (!uniqueCombinations.has(sortedAbi)) { // Kombination ist neu
-                                            uniqueCombinations.add(sortedAbi);
-                                            combinations.push([...abi]);
+                                        if (isInArray(echteNwFs, abi)) {
+                                            // Mindestens eine NW oder FS im Abi
+                                            const sortedAbi = [...abi].sort().join(","); // Sortiere die Fächer
+                                            if (!uniqueCombinations.has(sortedAbi)) { // Nur neue Kombination aufnehmen
+                                                uniqueCombinations.add(sortedAbi);
+                                                combinations.push([...abi]);
+                                            }
                                         }
-                                    }
                                     }
                                 }
                             }
@@ -260,7 +282,7 @@ function abiwahl() {
 
     const listeDiv = document.getElementById("Seite3");
     listeDiv.innerHTML = "<h1>Wähle deine Abiturfächer</h1>";
-    
+
     const radioGroup = document.createElement("div");
     radioGroup.id = "abiKombiGroup";
 
@@ -278,8 +300,10 @@ function abiwahl() {
     });
 
     listeDiv.appendChild(radioGroup);
-    listeDiv.innerHTML +='<iframe src="GSO48-1.html" width="100%"></iframe><br>';
-    
+    listeDiv.innerHTML += '<iframe src="GSO48-1.html" width="100%"></iframe><br>';
+
+
+
     // Weiter-Button
     const weiterBtn = document.createElement("button");
     weiterBtn.textContent = "Weiter";
@@ -292,8 +316,21 @@ function abiwahl() {
             alert("Bitte wähle eine Kombination aus.");
         }
     };
+    listeDiv.innerHTML += footerStart + datenSchutz + copyright + footerEnde;
+
     listeDiv.appendChild(weiterBtn);
 
+}
+
+function nurMdlFehler(txt) {
+    const faecher = txt.split(", ");
+    for (let i = 0; i < faecher.length; i++) {
+        fach=faecher[i].split(" (")[0];
+        abi=faecher[i].split(" (")[1];
+        if (isIn(fach, nurMdl)&&abi=="S)") {
+            return true;    
+        }  
+    }
 }
 
 function skWahl(selectedValue) {
@@ -342,7 +379,7 @@ function skWahl(selectedValue) {
     listeDiv.appendChild(label);
     const radioGroup = document.createElement("div");
     radioGroup.id = "skKombiGroup";
-     validCombinations.forEach((skArr, idx) => {
+    validCombinations.forEach((skArr, idx) => {
         const optionLabel = document.createElement("label");
         optionLabel.style.display = "block";
         const radio = document.createElement("input");
@@ -356,14 +393,16 @@ function skWahl(selectedValue) {
             let extra = (fach === lf) ? " LF" : "";
             return `${fach}${extra} (${skArr[i]})`;
         }).join(", ");
+        console.log(fachText);
         // Ku,Mu nur S wenn LF und nur K wenn nicht LF, SPS,InfS nur K
+      
         if ((fachText.indexOf("Ku (S)") != -1)
             || (fachText.indexOf("Mu (S)") != -1)
             || (fachText.indexOf("Ku LF (K)") != -1)
             || (fachText.indexOf("Mu LF (K)") != -1)
-            || (fachText.indexOf("SPS (S)") != -1)
-            || (fachText.indexOf("InfS (S)") != -1)
-        ) {
+        // Nur mündliche Prüfung bei SPS, InfS, PhB, Glg, WInf, SAF
+            || (nurMdlFehler(fachText))
+      ) {
         }
         else {
             optionLabel.appendChild(radio);
@@ -373,8 +412,9 @@ function skWahl(selectedValue) {
     });
 
     listeDiv.appendChild(radioGroup);
- listeDiv.innerHTML +='<iframe src="GSO48-2.html" width="100%"></iframe><br>';
-  
+    listeDiv.innerHTML += '<iframe src="GSO48-1.html" width="100%"></iframe><br>';
+    listeDiv.innerHTML += footerStart + datenSchutz + copyright + footerEnde;
+
     // Weiter-Button
     const weiterBtn = document.createElement("button");
     weiterBtn.textContent = "Weiter";
@@ -385,11 +425,12 @@ function skWahl(selectedValue) {
             const fachText = selectedCombination.map((fach, i) => `${fach} (${skArr[i]})`).join(", ");
             listeDiv.innerHTML = "<h1>Gewählte Abitur-Kombination:</h1><h1>" + fachText + "</h1>";
             listeDiv.innerHTML += "Übermittle diese Wahl bitte an den OSK.";
+            listeDiv.innerHTML += footerStart + datenSchutz + fachkuerzel + copyright + footerEnde;
 
         } else {
             alert("Bitte wähle eine S/K-Kombination aus.");
         }
     };
     listeDiv.appendChild(weiterBtn);
- 
+
 }
