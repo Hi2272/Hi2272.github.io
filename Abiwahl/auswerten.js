@@ -10,7 +10,8 @@ const echteNwFs = nw.concat(fs);
 const nurMdl = ["SPS", "InfS", "PhB", "Glg", "WInf", "SAF"];
 const keinLF = ["SPS", "PhA", "InfS", "PhB", "Glg", "WInf", "SAF"];
 
-const pflichtfaecher = ["D", "M", "G", "Spo"];
+//const pflichtfaecher = ["D", "M", "G", "Spo"];
+const pflichtfaecher = ["D, M, G, Spo"];
 
 /**
  * @const {Array<Object>} felder - Konfiguration für die Dropdown-Menüs auf der ersten Seite.
@@ -29,7 +30,7 @@ const felder = [
 ];
 
 // HTML-Snippets für den Footer und Hilfstexte
-const footerStart = '<div id="footer">';
+const footerStart = '<div class="footer">';
 const datenSchutz = 'Alle Angaben dienen nur zur Orientierung und sind ohne Gewähr. <br></br>';
 const copyright = '2025 Rainer Hille, Gymnasium Waldkraiburg</div>';
 let fachkuerzel = "<hr><b>Fachkürzel:</b><br>";
@@ -546,6 +547,7 @@ function skWahl(selectedValue) {
         if (selected) {
             const skArr = selected.value.split(","); // Gewählte S/K-Kombination
             // Finale Anzeige der gewählten Abiturfächer mit Prüfungsart
+            
             const finalFachText = selectedCombination.map((fach, i) => `${fach} (${skArr[i]})`).join(", ");
             listeDiv.innerHTML = "<h1>Gewählte Abitur-Kombination:</h1><h1>" + finalFachText + "</h1>";
             listeDiv.innerHTML += "<h1>Übermittle diese Wahl bitte an deinen OSK.</h1>";
