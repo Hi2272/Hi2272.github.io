@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Multiplexer</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="multiplexer">Multiplexer</h1>
+<h2 id="grundlagen">Grundlagen</h2>
+<p>Die Anzahl der Pins am Arduino ist begrenzt. Am Uno können 18 Pins verwendet werden: D2-D13 und A0-A5.<br>
+Um mehr Sensoren oder Aktoren anzuschließen, kann ein Multiplexer verwendet werden. Mit diesem Bauteil werden 4 Pins (S0-S3) auf 16 Pins (Y0-Y15) verschaltet. Die 16 Pins werden binär codiert:</p>
+<table>
+<thead>
+<tr>
+<th>S0</th>
+<th>S1</th>
+<th>S2</th>
+<th>S3</th>
+<th>Y-Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Y0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Y1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>Y2</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>Y3</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>Y4</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>Y5</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>Y6</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>Y7</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>Y8</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>Y9</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Y10</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Y11</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>Y12</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>Y13</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>Y14</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>Y15</td>
+</tr>
+</tbody>
+</table>
+<h2 id="beschreibung-der-pins">Beschreibung der Pins</h2>
+<ul>
+<li>S0 bis S3: Codierung der Ausgänge (s.o.).</li>
+<li>Y0 bis Y15: Ausgänge (s.o.)</li>
+<li>SIG oder Z, COM = Anschluss zur Ausgabe des Signals am gewählten Pin</li>
+<li>E: Enabled: Über diesen Pin kann der Multiplexer ein- oder ausgeschaltet werden.<br>
+LOW: Multiplexer ist aktiv: Signal vom Yx-Pin wird auf den SIG-Pin durchgeschaltet.<br>
+HIGH: Multiplexer ist nicht aktiv: Der Yx-Pin ist vom SIG-Pin getrennt.</li>
+<li>VCC: +5 V: Spannungsversorgung des Multiplexers</li>
+<li>GND oder VSS: GND</li>
+</ul>
+<h2 id="ansteuern-von-16-leds">Ansteuern von 16 LEDs</h2>
+<ul>
+<li>Die LEDs werden mit dem Pluspol an die Pins Y0 bis Y15 angeschlossen.  Die Minuspole werden über einen 1 KOhm-Widerstand mit GND verbunden.</li>
+<li>Die Pins S0 bis S3 werden mit D2 bis D5 verbunden.</li>
+<li>SIG wird mit +5V verbunden. Über diesen Pin erhalten die LEDs die Spannung.</li>
+<li>EN wird mit D6 verbunden</li>
+</ul>
+<p>Mit diesem Code leuchten die LEDs nacheinander auf:</p>
+<pre><code class="language-C++"><span class="hljs-comment">// Pins Definition</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinS0 = <span class="hljs-number">2</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinS1 = <span class="hljs-number">3</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinS2 = <span class="hljs-number">4</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinS3 = <span class="hljs-number">5</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinEN = <span class="hljs-number">6</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// Steuerpins als Output definieren</span>
+  <span class="hljs-built_in">pinMode</span>(pinS0, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(pinS1, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(pinS2, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(pinS3, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(pinEN, OUTPUT);
+
+  <span class="hljs-comment">// Multiplexer deaktiviert starten</span>
+  <span class="hljs-built_in">digitalWrite</span>(pinEN, HIGH);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> channel = <span class="hljs-number">0</span>; channel &lt; <span class="hljs-number">16</span>; channel++) {
+    <span class="hljs-built_in">setMuxChannel</span>(channel); <span class="hljs-comment">// Kanal wählen</span>
+    <span class="hljs-built_in">digitalWrite</span>(pinEN, LOW);  <span class="hljs-comment">// Multiplexer aktivieren → LED an</span>
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">300</span>);                <span class="hljs-comment">// 300 ms warten</span>
+
+    <span class="hljs-built_in">digitalWrite</span>(pinEN, HIGH); <span class="hljs-comment">// Multiplexer deaktivieren → LEDs aus</span>
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">300</span>);                <span class="hljs-comment">// 300 ms warten, LED aus</span>
+  }
+}
+
+<span class="hljs-comment">// Funktion zum Setzen des Kanals</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setMuxChannel</span><span class="hljs-params">(<span class="hljs-type">int</span> channel)</span> </span>{
+  <span class="hljs-built_in">digitalWrite</span>(pinS0, (channel &amp; <span class="hljs-number">0x01</span>) ? HIGH : LOW);
+  <span class="hljs-built_in">digitalWrite</span>(pinS1, (channel &amp; <span class="hljs-number">0x02</span>) ? HIGH : LOW);
+  <span class="hljs-built_in">digitalWrite</span>(pinS2, (channel &amp; <span class="hljs-number">0x04</span>) ? HIGH : LOW);
+  <span class="hljs-built_in">digitalWrite</span>(pinS3, (channel &amp; <span class="hljs-number">0x08</span>) ? HIGH : LOW);
+}
+</code></pre>
+<h3 id="erläuterungen-zum-code">Erläuterungen zum Code</h3>
+<h4 id="setmuxchannelint-channel">setMuxChannel(int channel)</h4>
+<p>Die Methode <strong>setMuxChannel(int channel)</strong> aktiviert den Kanal mit der Nummer <strong>channel</strong>.
+Hierzu schaltet sie die entsprechenden Pins S0 bis S3 HIGH, bzw. LOW.<br>
+Die Anweisung <strong>channel &amp; 0x01</strong> prüft, ob das Bit 0001 gesetzt ist. Wenn das der Fall ist, wird der Pins S0 HIGH geschaltet, sonst LOW. Analog wird das 2. Bit (2), das 3. Bit(4) und das vierte Bit(8) untersucht.</p>
+<h4 id="digitalwritepinen-low--high">digitalWrite(pinEN, LOW / HIGH)</h4>
+<p>Über den <strong>Enabled</strong>-Pin wird die Spannung vom Z-Pin auf die Ausgänge durchgeschaltet (LOW) oder gesperrt (HIGH). Die LED wird damit ein- oder ausgeschaltet.</p>
+<h2 id="einlesen-von-16-sensoren">Einlesen von 16 Sensoren</h2>
+<ul>
+<li>Die Sensoren werden an die Pins Y0 bis Y15 angeschlossen.</li>
+<li>Die Pins S0 bis S3 werden mit D2 bis D5 verbunden.</li>
+<li>EN wird mit D6 verbunden</li>
+<li>SIG wird mit A0 verbunden. Über diesen Pin kann über <strong>analogRead</strong> der analoge oder über<strong>digitalRead</strong> der digitale Messwert des gewählten Sensors eingelesen werden. Alternativ kann auch Pin D7 für digitale Werte verwendet werden.<br>
+Der folgende Sketch liest nacheinander 16 analoge Werte von den Sensoren ein.</li>
+</ul>
+<pre><code class="language-C++"><span class="hljs-comment">// Pin-Definitionen</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinS0 = <span class="hljs-number">2</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinS1 = <span class="hljs-number">3</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinS2 = <span class="hljs-number">4</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinS3 = <span class="hljs-number">5</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinEN = <span class="hljs-number">6</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinAnalog = A0;   <span class="hljs-comment">// Analogeingang für SIG / COM</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> pinDigital = <span class="hljs-number">7</span>;   <span class="hljs-comment">// Optional für digitale Werte, falls benötigt</span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
+  
+  <span class="hljs-comment">// Steuerpins als Ausgang definieren</span>
+  <span class="hljs-built_in">pinMode</span>(pinS0, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(pinS1, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(pinS2, OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(pinS3, OUTPUT);
+
+  <span class="hljs-built_in">pinMode</span>(pinEN, OUTPUT);
+  <span class="hljs-built_in">digitalWrite</span>(pinEN, LOW);      <span class="hljs-comment">// Multiplexer aktivieren</span>
+  
+  <span class="hljs-built_in">pinMode</span>(pinDigital, INPUT);    <span class="hljs-comment">// Optional digitaler Pin</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> channel = <span class="hljs-number">0</span>; channel &lt; <span class="hljs-number">16</span>; channel++) {
+    <span class="hljs-built_in">setMuxChannel</span>(channel);             <span class="hljs-comment">// Kanal setzen</span>
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">5</span>);                          <span class="hljs-comment">// Kurze Wartezeit für Signalstabilisierung</span>
+
+    <span class="hljs-type">int</span> analogValue = <span class="hljs-built_in">analogRead</span>(pinAnalog);             <span class="hljs-comment">// Analogwert lesen</span>
+    <span class="hljs-comment">// int digitalValue = digitalRead(pinDigital);       // Optional digital lesen</span>
+
+    <span class="hljs-comment">// Ausgabe über Serial</span>
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Kanal &quot;</span>);
+    Serial.<span class="hljs-built_in">print</span>(channel);
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;: Analog = &quot;</span>);
+    Serial.<span class="hljs-built_in">println</span>(analogValue);
+
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">200</span>); <span class="hljs-comment">// Zeit zwischen den Messungen, optional anpassen</span>
+  }
+}
+
+<span class="hljs-comment">// Funktion: setzt die 4 Steuerleitungen S0..S3 zum gewünschten Kanal</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setMuxChannel</span><span class="hljs-params">(<span class="hljs-type">int</span> channel)</span> </span>{
+  <span class="hljs-built_in">digitalWrite</span>(pinS0, (channel &amp; <span class="hljs-number">0x01</span>) ? HIGH : LOW);
+  <span class="hljs-built_in">digitalWrite</span>(pinS1, (channel &amp; <span class="hljs-number">0x02</span>) ? HIGH : LOW);
+  <span class="hljs-built_in">digitalWrite</span>(pinS2, (channel &amp; <span class="hljs-number">0x04</span>) ? HIGH : LOW);
+  <span class="hljs-built_in">digitalWrite</span>(pinS3, (channel &amp; <span class="hljs-number">0x08</span>) ? HIGH : LOW);
+}
+</code></pre>
+
+            
+            
+        </body>
+        </html>

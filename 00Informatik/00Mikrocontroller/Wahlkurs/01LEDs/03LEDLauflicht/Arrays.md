@@ -60,7 +60,7 @@ Hier wird eine Zählvariable i definiert und mit dem Startwert 0 belegt.
   Verkürze jetzt auch die **loop()**-Methode deines Programms mit einer Zählschleife. Du benötigst insgesamt nur noch 5 Zeilen Code.  
 
   [Lösung](loesung2.html)
-  [zurück](index.html)
+  [zurück](../index.html)
 
 
 

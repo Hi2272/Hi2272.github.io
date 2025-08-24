@@ -38,6 +38,9 @@ void loop(){
     delay(500);
 }
 ```
+## Experimentieraufgabe
+Die LED leuchtet nicht richtig weiß, da die einzelnen LEDs bei der gleichen Spannung unterschiedlich hell leuchten. Verändere die Helligkeitswerte von rot, grün und blau so, dass die LED rein weiß leuchtet.
+
 ## Vereinfachung des Codes
 Um den Code einfacher zu gestalten, definieren wir eine neue Methode **farbe**, mit der die LED in einer bestimmten Farbe leuchten soll.  
 1. Schreibe diesen Code zwischen die setup()- und die loop()-Methode

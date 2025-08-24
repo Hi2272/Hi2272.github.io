@@ -1,7 +1,7 @@
  <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
 # Anleitung Onshape
-##### [Einleitung](#1-einleitung) | [Schluesselanhänger](#2-anleitung-schluesselanhänger) | [Schraube](#3-alarmanlage) | [Video-Tutorials](#4-video-tutorials)
+##### [Einleitung](#1-einleitung) | [Schluesselanhänger](#2-anleitung-schluesselanhänger) | [Bilder einfügen](#3-einfügen-von-bildern) | [Schraube](#4-anleitung-schraube) | [Video-Tutorials](#5-video-tutorials)
 ## 1. Einleitung 
 ### a) Registrierung bei Onshape
 Zur Arbeit mit Onshape müsst ihr euch auf dieser Seite registrieren: [onshape.com/de/sign-up](https://www.onshape.com/de/sign-up). Die Verwendung der Software ist für private Zwecke kostenlos.
@@ -107,12 +107,47 @@ Um das Modell drucken zu können, müssen wir es noch als STL-Datei exportieren.
 2.  Wähle Exportieren.  
 ![alt text](2024-11-27_17-03.png)  
 Das Modell wird als STL-Datei im Download-Ordner gespeichert und kann jetzt in einem Slicer-Programm importiert werden.
+## 3. Einfügen von Bildern
+Bilder sind in der Regel in einem pixelbasierten Format (.jpg, .bmp, .png) gespeichert.  
+### 3.1 Umwandeln in Vektor-Datei im SVG-Format
+Zuerst wandeln wir diese in eine vektorbasierte SVG-Datei um. Hierzu verwenden wir das kostenlose Programm **Inkscape**:  
+1. Datei importieren (Strg I)
+2. Bild markieren
+3. Pfad.Objekt in Pfad umwandeln  
+4. Mit dem Knotenwerkzeug können wir das Ergebnis der Umwandlung noch verbessern:  
+   ![alt text](2025-01-29_18-18.png)
+5. Datei speichern 
+### 3.2 Umwandlen von SVG in DXF
+Anschließend müssen wir die SVG-Datei in eine DXF-Datei umwandeln. Hierzu können wir ein Online-Werkzeug verwenden: https://cloudconvert.com/svg-to-dxf
+### 3.3 Import in Onshape
+In Onshape beginnen wir eine neue Skizze auf einer beliebigen Ebene. 
+Im Skizzen-Menü gibt es ein Werkzeug zum Einfügen von DXF-Dateien:  
+![alt text](2025-01-29_18-23.png)
+### 3.4 Austragen zu einer neuen Form
+Unmittelbar nach dem Import tragen wir das DXF-Bild zu einer neuen Form aus:  
+![alt text](2025-01-29_18-29.png)  
 
-## 3. Anleitung Schraube
+### 3.5 Anpassen der neuen Form
+Wenn wir das neue Objekt markieren, können wir 
+1. Das Transformieren-Menü öffnen.
+2. Das Objekt verschieben
+3. Das Objekt drehen
+4. Das Objekt vergrößern oder verkleinern.  
+   
+![alt text](2025-01-29_18-33.png)
+
+### 3.6 Vereinigen mit der Oberfläche
+Um unser neues Zeichenobjekt mit der Oberfläche des alten Objektes zu verschmelzen, müssen wir
+1. Beide markieren (Strg-Taste beim Klicken gedrückt halten)
+2. Die beiden Objekte über das Menü **Boolesch** vereinigen:  
+![alt text](2025-01-29_19-02.png)
+
+
+## 4. Anleitung Schraube
 Unter dieser Adresse kannst du eine Anleitung herunterladen:
 [Onshape Tutorial](https://ap.physik.unibas.ch/PDF/Manuals/German/IIZ1.pdf)  
 Sehr viel einfacher geht das Erstellen von Schrauben und Muttern aber mit dem folgenden Video-Tutorial.
-## 4. Video-Tutorials
+## 5. Video-Tutorials
 #### a) Custom Features
 Custom Features sind Werkzeuge, die zu Onshape hinzugefügt werden können. In den Videos wird die Installation erklärt.
 

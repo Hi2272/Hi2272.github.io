@@ -6,7 +6,7 @@
 Übungsmaterialien Informatik: Hi2272.github.io
 ==============================================
 [6. Klasse](#informatik-6-klasse)
-| [Mikrocontroller](#mikrocontroller)
+| [Mikrocontroller](/00Informatik/00Mikrocontroller/Wahlkurs/index.html)
 | [Funktionale Modellierung](#funktionale-modellierung)
 | [Datenbanken](#datenbanken)
 | [Objektorientierung: 9.Klasse](#objektorientierte-programmierung)
@@ -30,6 +30,14 @@
 [Klassen Attribute Methoden](00Informatik6/KlasseAttribut/index.html)  
 [Punktnotation](00Informatik6/Punktnotation/index.html)  
 [Punktnotation 2](https://learningapps.org/view34317198)
+
+[Jahrgangsstufentest](00Informatik6/Jahrgangsstufentest/index.html)  
+
+### Textverarbeitung
+[Kopieren und Korrigieren von Text](00Informatik6/Textverarbeitung/01Einstieg/index.html)  
+[Klassen einer Textverarbeitung](00Informatik6/Textverarbeitung/02Klassen/index.html)  
+[Markieren von Text](00Informatik6/Textverarbeitung/03Markieren%20von%20Text/index.html)  
+
 
 ### Powerpoint
 [Animationen](00Informatik6/Powerpoint/Animation/index.html)
@@ -174,16 +182,37 @@
 
 [Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)   
 [Assoziation oder Aggregation?](https://learningapps.org/view38043424)  
-
   
+[Übersicht Felder in Java](00Informatik10/ÜbersichtFelder.html)    
+
+[Polymorphie](OIDE_Polymorphie/index.html)  
+
+
 [Anleitung Webshop automatisch](00Informatik10/WebshopAutomatisch.html)  
 [BlueJ-Dateien Webshop-Projekt](00Informatik10/BlueJDateien/index.html)  
-  
-[Länge von Feldern](00Informatik10/ArrayLaenge/index.html)  
-[getMinIndex()](00Informatik10/minIndex/getMinIndex.html)  
-[Sortieren](00Informatik10/Sortieren/Sortieren.html)     
- 
+
+[OnlineIDE: Sortieren von Feldern: Selektion-Sort](OIDE_WS_0_Sortieralgorithmus/index.html)  
+[OnlineIDE: Sortieren von Feldern: Bubble-Sort](OIDE_WS_6_Bubblesort/index.html)  
+[OnlineIDE: Löschen von Elementen](OIDE_Loeschen/index.html)  
+[OnlineIDE: Einfügen von Elementen](OIDE_Einfuegen/index.html)  
+[OnlineIDE: Tauschen von Namen](OIDE_WS_7_TauscheNamen/index.html)
+
+
+[OnlineIDE: Notenverwaltung](OIDE_Noten01Anz/index.html)  
+
+[OnlineIDE: Ampelsteuerung](OIDE_Ampel01/index.html)  
+
+[OnlineIDE: Minesweeper](OIDE_Minesweeper/index.html)  
+
 [Weihnachtsbaum](00Informatik10/Weihnachtsbaum/index.html)
+
+##  Projekt
+
+[Projekt-Definition](00Informatik10/Projekt/index.html)   
+[Grundstruktur](00Informatik10/Projekt/01Grundstruktur.html)  
+[Breakout-Tutorial](00Javascript/Phaser/Breakout/Tutorial/index.html)  
+[Endversion](00Informatik10/Projekt/10Background/index.html)  
+
 
 ## Datenschutz
 ***
@@ -197,7 +226,8 @@
 [9a](https://Hi2272.github.io/00Informatik/Planspiel/index.html)  
 
 ## Javascript
-[Lerneinheiten von TheCodingTrain](/00Informatik/00Javascript/index.html)
+[Lerneinheiten von TheCodingTrain](/00Informatik/00Javascript/index.html)  
+[Breakout Tutorial](/00Informatik/00Javascript/Phaser/Breakout/Tutorial/index.html)  
   
 ## CSS
 [CSS](HTMLundCSS/index.html)

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>L&ouml;tvorlage aus Fritzing-Dateien</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="lötvorlage-aus-fritzing-dateien">Lötvorlage aus Fritzing-Dateien</h1>
+<h3 id="lötunterlage-erstellen">Lötunterlage erstellen</h3>
+<p>Für Stiftsockelleisten kann eine Lötvorlage für den 3D-Drucker erstellt werden:</p>
+<ol>
+<li>Exportiere das Projekt als SVG-Dateien:<br>
+Datei.Exportieren.für die Produktion.Ätzbar(SVG)</li>
+<li>Öffne eine Datei mit den Borhungen in Inkscape</li>
+<li>Speichere die Datei im Autocad DXF12-Format (Datei.Speichern unter)</li>
+<li>Stelle im Speichermenü die Einheit auf mm und die Zeichencodierung auf UTF-8</li>
+<li>Starte Onshape und erzeuge eine neue Datei.</li>
+<li>Erzeuge eine neue Skizze auf der Top-Ebene</li>
+<li>Klicke auf DXF oder DWG einfügen (ggf. musst du das Werkzeug suchen lassen)</li>
+<li>Importiere die DXF-Datei, die du gerade herunter geladen hast.</li>
+<li>Extrudiere die Skizze 10 mm hoch.</li>
+<li>Auf der Lötunterlage können jetzt die Stiftsockelleisten beim Löten aufgesteckt werden.</li>
+</ol>
+<p>Um Buchsenleisten zu löten kann ebenfalls dieser Weg beschritten werden. Hier schließen sich weitere Schritte an:
+11. Erzeuge eine neue Skizze auf der Oberfläche der Löthilfe
+12. Für ungerade Bohrungszahlen:</p>
+<ul>
+<li>Erstelle einen Dreipunktkreis auf der mittleren Bohrung</li>
+<li>Erstelle ein Mittelpunktrechteck auf dem Mittelpunkt des Kreises mit folgenden Maßen:
+<ul>
+<li>n*2.54+5 mm Länge (n=Zahl der Bohrungen)</li>
+<li>3 mm Breite</li>
+</ul>
+</li>
+</ul>
+<ol start="13">
+<li>Für gerade Bohrungszahlen:</li>
+</ol>
+<ul>
+<li>Erstelle zwei Dreipunktkreise auf den mittleren beiden Bohrungen</li>
+<li>Erstelle eine Linie zwischen den Mittelpunkten dieser beiden Kreis</li>
+<li>Erstelle das Mittelpunktrechteck auf dem Mittelpunkt dieser Linie.</li>
+</ul>
+<ol start="14">
+<li>Extrudiere die Skizze als neues Objekt 7 mm hoch.</li>
+<li>Erstelle auf der Oberfläche eine neue Skizze</li>
+<li>Erzeuge ein Eckenrechteck auf dem gesamten Objekt</li>
+<li>Extrudiere dieses Rechteck 3 mm weit.</li>
+</ol>
+<p><a href="../index.html">zurück</a></p>
+
+            
+            
+        </body>
+        </html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Breakout-Game Tutorial mit Phaser&period;io</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+              <meta charset="utf-8" />
+  <title>Breakout</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="breakout-game-tutorial-mit-phaserio">Breakout-Game Tutorial mit <a href="http://Phaser.io">Phaser.io</a></h1>
+<h2 id="schritt-8-verschiedene-steintypen-mit-lebensenergie">Schritt 8: Verschiedene Steintypen mit Lebensenergie</h2>
+<p>In diesem Schritt erweitern wir unser Spiel um unterschiedliche Steintypen mit verschiedenem Verhalten bei Balltreffern:</p>
+<ul>
+<li><strong>Typ 1</strong> wird nach einem Treffer zerstört.</li>
+<li><strong>Typ 2</strong> verwandelt sich nach dem ersten Treffer in Typ 1.</li>
+<li><strong>Typ 3</strong> verwandelt sich nach dem ersten Treffer in Typ 2.</li>
+<li><strong>Typ 4</strong> ist unzerstörbar.</li>
+</ul>
+<hr>
+<h3 id="81-level-datei-anpassen-assetslevel2json">8.1 Level-Datei anpassen: <code>assets/level2.json</code></h3>
+<p>Erstelle eine neue Level-Datei <code>level2.json</code> im <code>assets</code>-Ordner mit der Angabe der Steintypen als Zahlen:</p>
+<pre><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;layout&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">[</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">0</span><span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h3 id="82-code-anpassungen-in-gamejs">8.2 Code-Anpassungen in <code>game.js</code></h3>
+<h3 id="821-neue-variablen">8.2.1 Neue Variablen</h3>
+<p>Die Variable <strong>bricks</strong> soll eine Referenz auf alle Bricks im Spielfeld halten.<br>
+Die Anzahl der Leben eines Bricks speichern wir in einer sogenannten <strong>Map</strong>. In diesem Datentyp kann ich Schlüsseln (hier: bricks) Werte (hier: Zahl der Leben des Bricks) zuordnen.</p>
+<pre><code class="language-js"><span class="hljs-keyword">let</span> bricks;
+<span class="hljs-keyword">let</span> brickHealth = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
+</code></pre>
+<h3 id="822-laden-der-bricks">8.2.2 Laden der Bricks</h3>
+<p>Im <code>preload()</code> laden wir alle vier Brick-Bilder mit Hilfe einer Zählschleife.</p>
+<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">preload</span>(<span class="hljs-params"></span>) {
+  ...
+  <span class="hljs-comment">// Neu: Mehrere Brick-Sprites laden</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">4</span>; i++) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;brick&#x27;</span> + i, <span class="hljs-string">&#x27;assets/brick&#x27;</span> + i + <span class="hljs-string">&#x27;.png&#x27;</span>);
+  }
+<span class="hljs-comment">// Neu: Neues Level laden</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">json</span>(<span class="hljs-string">&#x27;level2&#x27;</span>, <span class="hljs-string">&#x27;assets/level2.json&#x27;</span>);
+}
+</code></pre>
+<h3 id="823-erzeugen-der-bricks">8.2.3 Erzeugen der Bricks</h3>
+<p>Die Größe und Position der Bricks auf dem Spielfeld wird automatisch aus den Maßen des Spielfeldes berechnet.<br>
+Außerdem wird die Funktion <strong>ballPaddleCollision</strong> registriert, so dass sie bei eine Kollision von Ball und Brick aufgerufen wird.</p>
+<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
+  ...
+  <span class="hljs-comment">// Neu: Gruppe für Steine initialisieren</span>
+  bricks = <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">staticGroup</span>();
+
+  <span class="hljs-comment">// Neu: Level-Daten aus JSON laden</span>
+  <span class="hljs-keyword">const</span> levelData = <span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-property">json</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;level2&#x27;</span>).<span class="hljs-property">layout</span>;
+
+  <span class="hljs-comment">// Neu: Maße und Positionierung der Steine berechnen</span>
+  <span class="hljs-keyword">const</span> brickWidth = width * <span class="hljs-number">0.09</span>;
+  <span class="hljs-keyword">const</span> brickHeight = height * <span class="hljs-number">0.05</span>;
+  <span class="hljs-keyword">const</span> offsetTop = height * <span class="hljs-number">0.10</span>;
+  <span class="hljs-keyword">const</span> offsetLeft = (width - (brickWidth * levelData[<span class="hljs-number">0</span>].<span class="hljs-property">length</span>)) / <span class="hljs-number">2</span>;
+
+  <span class="hljs-comment">// Neu: Steine mit Typ aus Level laden</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> row = <span class="hljs-number">0</span>; row &lt; levelData.<span class="hljs-property">length</span>; row++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> col = <span class="hljs-number">0</span>; col &lt; levelData[row].<span class="hljs-property">length</span>; col++) {
+      <span class="hljs-keyword">const</span> brickType = levelData[row][col];
+      <span class="hljs-keyword">if</span> (brickType &gt;= <span class="hljs-number">1</span> &amp;&amp; brickType &lt;= <span class="hljs-number">4</span>) {
+        <span class="hljs-keyword">const</span> brickX = offsetLeft + col * brickWidth + brickWidth / <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">const</span> brickY = offsetTop + row * brickHeight + brickHeight / <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">const</span> brick = bricks.<span class="hljs-title function_">create</span>(brickX, brickY, <span class="hljs-string">&#x27;brick&#x27;</span> + brickType);
+
+        brick.<span class="hljs-title function_">setDisplaySize</span>(brickWidth * <span class="hljs-number">0.95</span>, brickHeight * <span class="hljs-number">0.9</span>);
+        brick.<span class="hljs-title function_">refreshBody</span>();
+
+        <span class="hljs-comment">// Neu: Typ in Map speichern</span>
+        brickHealth.<span class="hljs-title function_">set</span>(brick, brickType);
+      }
+    }
+  }
+
+  <span class="hljs-comment">// Neu: Collider für Ball und Steine hinzufügen</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">collider</span>(ball, bricks, ballBrickCollision, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">this</span>);
+
+  <span class="hljs-comment">// Unveränderter Collider für Ball und Paddle </span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">collider</span>(ball, paddle, ballPaddleCollision, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">this</span>);
+}
+</code></pre>
+<h3 id="824-funktion-zur-kollisionsverarbeitung">8.2.4 Funktion zur Kollisionsverarbeitung</h3>
+<p>In der Funktion wird der Typ des Bricks aus der Map ausgelesen. Abhängig von seinem Typ reagiert der Brick unterschiedlich auf die Kollision.<br>
+Wenn du weitere Bricktypen erzeugst, musst du ihr Verhalten an dieser Stelle einprogrammieren.</p>
+<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">ballBrickCollision</span>(<span class="hljs-params">ball, brick</span>) {
+  <span class="hljs-comment">// Neu: aktueller Typ aus Map</span>
+  <span class="hljs-keyword">const</span> currentType = brickHealth.<span class="hljs-title function_">get</span>(brick);
+
+  <span class="hljs-keyword">switch</span>(currentType) {
+    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+      <span class="hljs-comment">// Typ 1: Stein sofort zerstören</span>
+      brick.<span class="hljs-title function_">disableBody</span>(<span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>);
+      brickHealth.<span class="hljs-title function_">delete</span>(brick);
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+      <span class="hljs-comment">// Typ 2: wird zu Typ 1</span>
+      brickHealth.<span class="hljs-title function_">set</span>(brick, <span class="hljs-number">1</span>);
+      brick.<span class="hljs-title function_">setTexture</span>(<span class="hljs-string">&#x27;brick1&#x27;</span>);
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+      <span class="hljs-comment">// Typ 3: wird zu Typ 2</span>
+      brickHealth.<span class="hljs-title function_">set</span>(brick, <span class="hljs-number">2</span>);
+      brick.<span class="hljs-title function_">setTexture</span>(<span class="hljs-string">&#x27;brick2&#x27;</span>);
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+      <span class="hljs-comment">// Typ 4: unzerstörbar, keine Änderung</span>
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-attr">default</span>:
+      <span class="hljs-comment">// Fallback: Stein zerstören</span>
+      brick.<span class="hljs-title function_">disableBody</span>(<span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>);
+      brickHealth.<span class="hljs-title function_">delete</span>(brick);
+  }
+}
+</code></pre>
+<hr>
+<h3 id="83-live-test">8.3 Live-Test</h3>
+<iframe 
+  src="07BrickTypen/index.html" 
+  width="820" 
+  height="700" 
+  frameborder="0" 
+  sandbox="allow-scripts allow-same-origin">
+</iframe>
+---
+<h3 id="dateien">Dateien</h3>
+<p><a href="07Bricktypen.zip">Zip-Datei</a></p>
+<hr>
+<h3 id="weiter"><a href="08Level.html">weiter</a></h3>
+
+            
+            
+        </body>
+        </html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Bluetooth</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+               <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="bluetooth">Bluetooth</h1>
+<h2 id="1-allgemeines">1. Allgemeines</h2>
+<p>Der ESP32 verfügt über ein eingebautes Bluetooth-Modul.<br>
+Beim Arduino Uno kann ein Bluetooth-Modul eingebaut werden. Diese Module werden auf folgender Seite beschrieben: <a href="https://funduino.de/tutorial-hc-05-und-hc-06-bluetooth">Funduino HC05 und HC06</a></p>
+<p>Über Bluetooth kannst du Daten von deinem Mikrocontroller ans Handy senden oder den Mikrocontroller vom Handy aus steuern.<br>
+Über die Internet-Plattform <a href="https://appinventor.mit.edu">MIT App Inventor</a> kannst du relativ einfach Bluetooth-Apps für dein Handy entwickeln.  <a href="../03bAppInventor/index.html">Anleitung</a></p>
+<h2 id="2-senden-von-daten-über-bluetooth">2. Senden von Daten über Bluetooth</h2>
+<p>Mit dem folgenden Programm senden wir jede Sekunde eine Zahl an die Bluetooth-Schnittstelle.<br>
+Kopiere diesen Code in dein Programm:</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;BluetoothSerial.h&quot;</span></span>
+
+BluetoothSerial SerialBT;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  SerialBT.<span class="hljs-built_in">begin</span>(<span class="hljs-string">&quot;Name&quot;</span>,<span class="hljs-literal">true</span>); 
+  SerialBT.<span class="hljs-built_in">setPin</span>(<span class="hljs-number">123456</span>);
+}
+
+<span class="hljs-type">int</span> anz=<span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+    SerialBT.<span class="hljs-built_in">println</span>(anz);
+    anz=anz+<span class="hljs-number">1</span>;
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
+ }
+</code></pre>
+<h2 id="erläuterung-des-codes">Erläuterung des Codes</h2>
+<h3 id="include-bluetoothserialh">#include &quot;BluetoothSerial.h&quot;</h3>
+<p>Diese Zeile bindet eine Bibliothek ein, die Befehle zum Senden und Empfangen über Bluetooth bereit stellt.</p>
+<h3 id="bluetoothserial-serialbt">BluetoothSerial SerialBT;</h3>
+<p>Damit wir auf die Bluetooth-Schnittstelle zugreifen können, erzeugen wir ein Objekt <strong>SerialBT</strong> aus der Klasse <strong>BluetoothSerial</strong>.</p>
+<h3 id="serialbtbeginnametrue">SerialBT.begin(&quot;Name&quot;,true);</h3>
+<p>Mit diesem Befehl starten wir die Bluetooth-Schnittstelle. Die beiden Parameter haben folgende Bedeutung:</p>
+<ul>
+<li>&quot;Name&quot;: Unter dieser Bezeichnung ist der ESP32 im Kopplungsmodus für dein Handy sichtbar.<br>
+Verwendet bitte unterschiedliche Namen, damit klar ist, mit welchem Gerät euer Handy gekoppelt werden soll.</li>
+<li>true: Dieser Parameter gibt an, dass bei der Kopplung am Handy ein Pin abgefragt wird. Damit wird sicher gestellt, dass sich kein fremdes Gerät mit eurem ESP32 koppeln kann.<br>
+Der ESP32 bleibt so lange im Kopplungsmodus, bis er sich mit einem Handy verbunden hat.</li>
+</ul>
+<h3 id="serialbtsetpin123456">SerialBT.setPin(123456);</h3>
+<p>In dieser Zeile wird der Pin festgelegt, der zur Kopplung eingegeben werden muss. Bei eurem Programm solltet ihr etwas kreativer sein...</p>
+<h3 id="serialbtprintlnanz">SerialBT.println(anz);</h3>
+<p>SerialBT stellt vier verschiedene Befehle zum Senden von Daten über die Bluetooth-Schnittstelle zur Verfügung:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><!-- --></th>
+<th style="text-align:left"><!-- --></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SerialBT.print(anz);</td>
+<td style="text-align:left">Schreibt Text ohne Zeilenumbruch</td>
+</tr>
+<tr>
+<td style="text-align:left">SerialBT.println(anz);</td>
+<td style="text-align:left">Schreibt Text mit Zeilenumbruch</td>
+</tr>
+<tr>
+<td style="text-align:left">SerialBT.write(anz);</td>
+<td style="text-align:left">Schreibt Bytes ohne Zeilenumbruch</td>
+</tr>
+<tr>
+<td style="text-align:left">SerialBT.writeln(anz);</td>
+<td style="text-align:left">Schreibt Bytes mit Zeilenumbruch</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-empfangen-der-daten-mit-dem-handy">4. Empfangen der Daten mit dem Handy</h2>
+<h3 id="41-vorbereiten-des-handys">4.1 Vorbereiten des Handys</h3>
+<h4 id="411-installation-einer-bluetooth-app">4.1.1 Installation einer Bluetooth-App</h4>
+<p>Um die Bluetooth-Daten am Handy zu anzuzeigen, musst du eine App auf dem Handy installieren.</p>
+<p>Suche dazu im AppStore nach folgenden Begriffen <strong>Bluetooth Terminal</strong> oder <strong>Bluetooth Serial Monitor</strong> und installiere eine kostenfreie App.</p>
+<h4 id="412-kopplung-des-handys-mit-dem-esp">4.1.2 Kopplung des Handys mit dem ESP</h4>
+<ul>
+<li>Aktiviere Bluetooth bei deinem Handy</li>
+<li>Suche nach neuen Bluetooth-Geräten</li>
+<li>Koppele das Gerät mit dem passenden Namen mit deinem Handy.</li>
+</ul>
+<h3 id="42-darstellen-der-daten">4.2 Darstellen der Daten</h3>
+<ul>
+<li>Starte die App, die du vorher installiert hast.</li>
+<li>Verbinde dich mit dem ESP32.<br>
+In der App müsste jetzt jede Sekunde eine neue Zahl angezeigt werden.</li>
+</ul>
+<h3 id="weiter-zu-bluetooth-apps-im-dem-appinventor"><a href="../03bAppInventor/index.html">weiter zu Bluetooth Apps im dem AppInventor</a></h3>
+<h3 id="zurück"><a href="../../index.html">zurück</a></h3>
+<footer >
+<p>Die Schaltpläne sind mit <a href="https://www.tinkercad.com/dashboard">Tinkercad</a> erstellt.</p>
+<h5>Haftungsausschluss</h5>
+  <h5>Inhalt des Onlineangebotes</h5>
+  <p>Der Autor übernimmt keinerlei Gewähr für die Aktualität, Richtigkeit und Vollständigkeit der bereitgestellten Informationen auf unserer Website. Haftungsansprüche gegen den Autor, welche sich auf Schäden materieller oder ideeller Art beziehen, die durch die Nutzung oder Nichtnutzung der dargebotenen Informationen bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen verursacht wurden, sind grundsätzlich ausgeschlossen, sofern seitens des Autors kein nachweislich vorsätzliches oder grob fahrlässiges Verschulden vorliegt.<br>
+  Alle Angebote sind freibleibend und unverbindlich. Der Autor behält es sich ausdrücklich vor, Teile der Seiten oder das gesamte Angebot ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen.</p>
+  <h5>Verweise und Links</h5>
+  <p>Bei direkten oder indirekten Verweisen auf fremde Webseiten (“Hyperlinks”), die außerhalb des Verantwortungsbereiches des Autors liegen, würde eine Haftungsverpflichtung ausschließlich in dem Fall in Kraft treten, in dem der Autor von den Inhalten Kenntnis hat und es ihm technisch möglich und zumutbar wäre, die Nutzung im Falle rechtswidriger Inhalte zu verhindern.<br>
+  Der Autor erklärt hiermit ausdrücklich, dass zum Zeitpunkt der Linksetzung keine illegalen Inhalte auf den zu verlinkenden Seiten erkennbar waren. Auf die aktuelle und zukünftige Gestaltung, die Inhalte oder die Urheberschaft der verlinkten/verknüpften Seiten hat der Autor keinerlei Einfluss. Deshalb distanziert er sich hiermit ausdrücklich von allen Inhalten aller verlinkten /verknüpften Seiten, die nach der Linksetzung verändert wurden. Diese Feststellung gilt für alle innerhalb des eigenen Internetangebotes gesetzten Links und Verweise sowie für Fremdeinträge in vom Autor eingerichteten Gästebüchern, Diskussionsforen, Linkverzeichnissen, Mailinglisten und in allen anderen Formen von Datenbanken, auf deren Inhalt externe Schreibzugriffe möglich sind. Für illegale, fehlerhafte oder unvollständige Inhalte und insbesondere für Schäden, die aus der Nutzung oder Nichtnutzung solcherart dargebotener Informationen entstehen, haftet allein der Anbieter der Seite, auf welche verwiesen wurde, nicht derjenige, der über Links auf die jeweilige Veröffentlichung lediglich verweist.</p>
+  <h5>Urheber- und Kennzeichenrecht</h5>
+  <p>Der Autor ist bestrebt, in allen Publikationen die Urheberrechte der verwendeten Bilder, Grafiken, Tondokumente, Videosequenzen und Texte zu beachten, von ihm selbst erstellte Bilder, Grafiken, Tondokumente, Videosequenzen und Texte zu nutzen oder auf lizenzfreie Grafiken, Tondokumente, Videosequenzen und Texte zurückzugreifen.<br>
+  Alle innerhalb des Internetangebotes genannten und ggf. durch Dritte geschützten Marken- und Warenzeichen unterliegen uneingeschränkt den Bestimmungen des jeweils gültigen Kennzeichenrechts und den Besitzrechten der jeweiligen eingetragenen Eigentümer. Allein aufgrund der bloßen Nennung ist nicht der Schluss zu ziehen, dass Markenzeichen nicht durch Rechte Dritter geschützt sind!<br>
+  Das Copyright für veröffentlichte, vom Autor selbst erstellte Objekte bleibt allein beim Autor der Seiten. Eine Vervielfältigung oder Verwendung solcher Grafiken, Tondokumente, Videosequenzen und Texte in anderen elektronischen oder gedruckten Publikationen ist ohne ausdrückliche Zustimmung des Autors nicht gestattet.</p>
+<p>Quelle: <a href="http://www.haftungsausschluss-vorlage.de/">Haftungsausschluss Muster</a> von <a href="http://www.haftungsausschluss.org/">Haftungsausschluss.org</a> und das <a href="http://www.dsgvo-gesetz.de/">Datenschutzgesetz</a></p>
+</footer>
+
+            
+            
+        </body>
+        </html>

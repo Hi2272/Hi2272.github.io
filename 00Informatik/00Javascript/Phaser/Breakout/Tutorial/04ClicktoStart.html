@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Breakout-Game Tutorial mit Phaser&period;io</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+              <meta charset="utf-8" />
+  <title>Breakout</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="breakout-game-tutorial-mit-phaserio">Breakout-Game Tutorial mit <a href="http://Phaser.io">Phaser.io</a></h1>
+<h2 id="schritt-5-ball-per-tastendruckmaus-starten">Schritt 5: Ball per Tastendruck/Maus starten</h2>
+<p>Im bisherigen Spiel fliegt der Ball direkt beim Start los. Jetzt sorgen wir dafür, dass der Ball zunächst auf dem Paddle „liegt“ und erst nach einem Tastendruck (Leertaste) oder Mausklick losfliegt. Solange der Ball noch nicht gestartet ist, bewegt er sich synchron mit dem Paddle.</p>
+<h3 id="51-code-anpassungen-in-gamejs">5.1 Code-Anpassungen in <code>game.js</code></h3>
+<h3 id="511-variablen">5.1.1 Variablen</h3>
+<p>Wir erzeugen eine Variable um zu speichern, ob der Ball bereits gestartet ist:</p>
+<pre><code class="language-js">
+  <span class="hljs-keyword">let</span> ballLaunched = <span class="hljs-literal">false</span>;  <span class="hljs-comment">// Neuer Zustand: Ball ist gestartet oder nicht</span>
+</code></pre>
+<h3 id="512-create">5.1.2 Create</h3>
+<p>Der Ball wird zu Beginn in der Mitte auf dem Paddle positioniert und startet beim Drücken der Leertaste oder beim Klicken mit der Maus.</p>
+<pre><code class="language-js">  <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params"></span>) {
+    ...
+
+    <span class="hljs-comment">// Ball erstellen - Position zunächst auf dem Paddle</span>
+    ball = <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">image</span>(paddle.<span class="hljs-property">x</span>, paddle.<span class="hljs-property">y</span> - paddle.<span class="hljs-property">height</span> / <span class="hljs-number">2</span> - <span class="hljs-number">10</span>, <span class="hljs-string">&#x27;ball&#x27;</span>);
+    ball.<span class="hljs-title function_">setCollideWorldBounds</span>(<span class="hljs-literal">true</span>);
+    ball.<span class="hljs-title function_">setBounce</span>(<span class="hljs-number">1</span>);
+
+    <span class="hljs-comment">// Ball noch nicht starten -&gt; keine Geschwindigkeit</span>
+    ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+
+    cursors = <span class="hljs-variable language_">this</span>.<span class="hljs-property">input</span>.<span class="hljs-property">keyboard</span>.<span class="hljs-title function_">createCursorKeys</span>();
+
+    <span class="hljs-comment">// Event-Maus: Ball starten beim Klick, falls noch nicht gestartet</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">input</span>.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;pointerdown&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">if</span> (!ballLaunched) {
+        <span class="hljs-title function_">launchBall</span>();
+      }
+    });
+
+    <span class="hljs-comment">// Event-Tastatur: Leertaste zum Ball-Start</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">input</span>.<span class="hljs-property">keyboard</span>.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;keydown-SPACE&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">if</span> (!ballLaunched) {
+        <span class="hljs-title function_">launchBall</span>();
+      }
+    });
+
+    ...
+    }
+</code></pre>
+<h3 id="513-update">5.1.3 Update</h3>
+<p>Solange <code>ballLaunched == false</code> ist, wird die Ball-Position in jedem Frame auf das Paddle angepasst (X und Y), sodass er mitbewegt wird.</p>
+<p>Bei Klick auf die Maus (<code>pointerdown</code>) oder bei Drücken der Leertaste (<code>keydown-SPACE</code>) wird die Funktion <code>launchBall()</code> ausgeführt, die den Ball mit Startgeschwindigkeit losfliegen lässt.</p>
+<pre><code class="language-js">
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
+    ...
+    <span class="hljs-comment">// Solange der Ball nicht gestartet ist, wird er an das Paddle gekoppelt</span>
+    <span class="hljs-keyword">if</span> (!ballLaunched) {
+      ball.<span class="hljs-property">x</span> = paddle.<span class="hljs-property">x</span>;
+      ball.<span class="hljs-property">y</span> = paddle.<span class="hljs-property">y</span> - paddle.<span class="hljs-property">height</span> / <span class="hljs-number">2</span> - <span class="hljs-number">10</span>; <span class="hljs-comment">// leicht oberhalb vom Paddle positionieren</span>
+      ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    }
+  }
+</code></pre>
+<h1 id="514-funktion-launchball">5.1.4 Funktion launchBall</h1>
+<p>Der Ball bekommt eine feste Geschwindigkeit und Richtung beim Start. (hier: nach oben und leicht nach rechts). Diese kannst du anpassen.</p>
+<pre><code class="language-js">
+  <span class="hljs-comment">// Funktion um den Ball zu starten</span>
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">launchBall</span>(<span class="hljs-params"></span>) {
+    ballLaunched = <span class="hljs-literal">true</span>;    
+    <span class="hljs-comment">// Starte den Ball mit definierter Geschwindigkeit nach oben und leicht seitlich</span>
+    ball.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">150</span>, -<span class="hljs-number">300</span>);
+  }
+
+</code></pre>
+<hr>
+<h3 id="52-live-test">5.2 Live-Test</h3>
+<iframe 
+  src="04ClicktoStart/index.html" 
+  width="820" 
+  height="700" 
+  frameborder="0" 
+  sandbox="allow-scripts allow-same-origin">
+</iframe>
+<hr>
+<h3 id="dateien">Dateien</h3>
+<p><a href="04ClicktoStart.zip">Zip-Datei</a></p>
+<hr>
+<h3 id="weiter"><a href="05Leben.html">weiter</a></h3>
+
+            
+            
+        </body>
+        </html>
