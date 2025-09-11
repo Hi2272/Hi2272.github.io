@@ -146,6 +146,8 @@ Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) v
 ### Große OLED-Displays
 [SPI-Displays](<SPI Displays/index.html>)
 
+### Das Relais-Modul  
+[Relais](Relaismodul/index.html)  
      
 ### Der Schaukasten
 [Kugelbahn](Kugelbahn/index.html)  
