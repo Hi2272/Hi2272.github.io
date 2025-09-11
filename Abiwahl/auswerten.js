@@ -262,9 +262,25 @@ function isInArray(array1, array2) {
             return true;
         }
     }
+    console.log(anz);
     return false;
 }
+/**
+ * Prüft, wie oft die Elemente des Arrays1 im Array2 enthalten sind.
+ * 0: Array2 enthält kein Element aus Array1
+ * @returns Zahl der Übereinstimmungen
+ */
 
+function anzInArray(array1,array2){
+    let anz=0;
+    for (let i = 0; i < array1.length; i++) {
+        if (isIn(array1[i], array2)) {
+            anz++;
+        }
+    }
+    return anz;
+}
+    
 /**
  * Verarbeitet die Auswahl des Leistungsfachs, generiert mögliche Abiturfächerkombinationen
  * und zeigt diese zur Auswahl auf der dritten Seite an.
@@ -340,12 +356,12 @@ function abiwahl() {
                             // 2. Das Leistungsfach muss in der Kombination enthalten sein
                             if (isIn(lf, abi)) {
                                 // 3. Substitutionsregel für Mathematik: Wenn M nicht dabei ist, muss eine FS und eine NW/Inf dabei sein
-                                if (abi[1] !== "M" && (!isInArray(abi, fs) || !(isInArray(abi, nwInf)))) {
+                                if (abi[1] !== "M" && (!isInArray(abi, fs)|| (anzInArray(abi, nwInf)<2))) {
                                     // Diese Kombination ist ungültig, falls M nicht dabei ist und die Ersatzbedingungen nicht erfüllt sind.
                                     // Weiter zur nächsten Kombination (nichts tun, da der Fall unten geprüft wird)
                                 } else {
                                     // 4. Substitutionsregel für Deutsch: Wenn D nicht dabei ist, muss eine Fremdsprache dabei sein
-                                    if (abi[0] !== "D" && !isInArray(abi, fs)) {
+                                    if (abi[0] !== "D" && anzInArray(abi, fs)<2) {
                                         // Diese Kombination ist ungültig.
                                     } else {
                                         // 5. Mindestens eine "echte" Naturwissenschaft oder Fremdsprache muss im Abi enthalten sein
