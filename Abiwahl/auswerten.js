@@ -262,8 +262,14 @@ function isInArray(array1, array2) {
             return true;
         }
     }
+    console.log(anz);
     return false;
 }
+/**
+ * Prüft, wie oft die Elemente des Arrays1 im Array2 enthalten sind.
+ * 0: Array2 enthält kein Element aus Array1
+ * @returns Zahl der Übereinstimmungen
+ */
 
 function anzInArray(array1,array2){
     int anz=0;
@@ -356,7 +362,7 @@ function abiwahl() {
                                     // Weiter zur nächsten Kombination (nichts tun, da der Fall unten geprüft wird)
                                 } else {
                                     // 4. Substitutionsregel für Deutsch: Wenn D nicht dabei ist, muss eine Fremdsprache dabei sein
-                                    if (abi[0] !== "D" && !isInArray(abi, fs)) {
+                                    if (abi[0] !== "D" && anzInArray(abi, fs)<2) {
                                         // Diese Kombination ist ungültig.
                                     } else {
                                         // 5. Mindestens eine "echte" Naturwissenschaft oder Fremdsprache muss im Abi enthalten sein
