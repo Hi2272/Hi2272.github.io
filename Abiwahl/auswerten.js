@@ -1,18 +1,3 @@
-// Definitionen für Fächerkürzel und -gruppen
-const nw = ["B", "C", "Ph", "PhA", "PhB"];
-const fs = ["E", "F", "L", "Sp", "It"];
-const nwInf = nw.concat(["Inf", "InfS", "WInf"]);
-const nwfs = nwInf.concat(fs).concat(["SPS", "ItS", "abgelegt"]);
-const gpr = ["Geo", "WR", "PuG", "Glg", "SAF"];
-const kumu = ["Ku", "Mu"];
-const rel = ["K", "Ev", "Eth"];
-const echteNwFs = nw.concat(fs);
-const nurMdl = ["SPS", "InfS", "PhB", "Glg", "WInf", "SAF"];
-const keinLF = ["SPS", "PhA", "InfS", "PhB", "Glg", "WInf", "SAF"];
-
-//const pflichtfaecher = ["D", "M", "G", "Spo"];
-const pflichtfaecher = ["D, M, G, Spo"];
-
 /**
  * @const {Array<Object>} felder - Konfiguration für die Dropdown-Menüs auf der ersten Seite.
  * Jedes Objekt definiert:
@@ -262,7 +247,6 @@ function isInArray(array1, array2) {
             return true;
         }
     }
-    console.log(anz);
     return false;
 }
 /**
@@ -406,7 +390,7 @@ function abiwahl() {
 
     listeDiv.appendChild(radioGroup);
     // Zusätzlicher Inhalt (z.B. eine Regelübersicht) einbetten
-    listeDiv.innerHTML += '<iframe src="GSO48-1.html" width="100%"></iframe><br>';
+    listeDiv.innerHTML += '<iframe src="../GSO48-1.html" width="100%"></iframe><br>';
 
     // Weiter-Button erstellen
     const weiterBtn = document.createElement("button");
@@ -529,7 +513,7 @@ function skWahl(selectedValue) {
         const fachText = selectedCombination.map((fach, i) => {
             let extra = (fach === lf) ? " LF" : ""; // Markierung für das Leistungsfach
             return `${fach}${extra} (${skArr[i]})`;
-        }).join(", ");
+        }).join(", ");console.log
         // console.log(fachText); // Für Debugging
 
         // Zusätzliche Filterung für ungültige S/K-Zuweisungen (spezifische Regeln):
@@ -552,7 +536,7 @@ function skWahl(selectedValue) {
     });
 
     listeDiv.appendChild(radioGroup);
-    listeDiv.innerHTML += '<iframe src="GSO48-1.html" width="100%"></iframe><br>';
+    listeDiv.innerHTML += '<iframe src="../GSO48-1.html" width="100%"></iframe><br>';
     listeDiv.innerHTML += footerStart + datenSchutz + copyright + footerEnde;
 
     // Weiter-Button für die finale Auswahl
