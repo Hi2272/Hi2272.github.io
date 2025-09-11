@@ -265,6 +265,16 @@ function isInArray(array1, array2) {
     return false;
 }
 
+function anzInArray(array1,array2){
+    int anz=0;
+    for (let i = 0; i < array1.length; i++) {
+        if (isIn(array1[i], array2)) {
+            anz++;
+        }
+    }
+    return anz;
+}
+    
 /**
  * Verarbeitet die Auswahl des Leistungsfachs, generiert mögliche Abiturfächerkombinationen
  * und zeigt diese zur Auswahl auf der dritten Seite an.
@@ -340,7 +350,8 @@ function abiwahl() {
                             // 2. Das Leistungsfach muss in der Kombination enthalten sein
                             if (isIn(lf, abi)) {
                                 // 3. Substitutionsregel für Mathematik: Wenn M nicht dabei ist, muss eine FS und eine NW/Inf dabei sein
-                                if (abi[1] !== "M" && (!isInArray(abi, fs) || !(isInArray(abi, nwInf)))) {
+                                if (abi[1] !== "M" && 
+                                    (!isInArray(abi, fs)|| (anzInArray(abi, nwInf)<2))) {
                                     // Diese Kombination ist ungültig, falls M nicht dabei ist und die Ersatzbedingungen nicht erfüllt sind.
                                     // Weiter zur nächsten Kombination (nichts tun, da der Fall unten geprüft wird)
                                 } else {
