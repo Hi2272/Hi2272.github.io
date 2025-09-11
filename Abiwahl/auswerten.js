@@ -272,7 +272,7 @@ function isInArray(array1, array2) {
  */
 
 function anzInArray(array1,array2){
-    int anz=0;
+    let anz=0;
     for (let i = 0; i < array1.length; i++) {
         if (isIn(array1[i], array2)) {
             anz++;
@@ -356,8 +356,7 @@ function abiwahl() {
                             // 2. Das Leistungsfach muss in der Kombination enthalten sein
                             if (isIn(lf, abi)) {
                                 // 3. Substitutionsregel für Mathematik: Wenn M nicht dabei ist, muss eine FS und eine NW/Inf dabei sein
-                                if (abi[1] !== "M" && 
-                                    (!isInArray(abi, fs)|| (anzInArray(abi, nwInf)<2))) {
+                                if (abi[1] !== "M" && (!isInArray(abi, fs)|| (anzInArray(abi, nwInf)<2))) {
                                     // Diese Kombination ist ungültig, falls M nicht dabei ist und die Ersatzbedingungen nicht erfüllt sind.
                                     // Weiter zur nächsten Kombination (nichts tun, da der Fall unten geprüft wird)
                                 } else {
