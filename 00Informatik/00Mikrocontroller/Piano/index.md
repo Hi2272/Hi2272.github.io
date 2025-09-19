@@ -88,58 +88,62 @@ D2: CS3 = 1, CS2 = 0, CS1 = 0
 ## Programmierung
 ```C++
 
-int[] inPin={3,4,5,6,7,8,9,10};
-int[] binPin={A0,13,12}; 
-int[] steuerPin={11,A1};
+int inPin[] = { 3, 4, 5, 6, 7, 8, 9, 10 };
+int binPin[] = { A0, 13, 12 };
+int steuerPin[] = { 11, A1 };
+int wert[196];
+int anz;
 
-void setup(){
-    for (int i=0;i<8;i++){
-        pinMode(inPin[i],INPUT_PULLUP);
+void setup() {
+  Serial.begin(9600);
+  for (int i = 0; i < 8; i++) {
+    pinMode(inPin[i], INPUT_PULLUP);
+  }
+  for (int i = 0; i < 3; i++) {
+    pinMode(binPin[i], OUTPUT);
+  }
+  pinMode(steuerPin[0], OUTPUT);
+  pinMode(steuerPin[1], OUTPUT);
+  anz = 0;
+  Serial.println("Setup abgeschlossen!");
+}
+
+
+void auslesenDekoder(int c1, int c2) {
+  digitalWrite(steuerPin[0], c1);
+  digitalWrite(steuerPin[1], c2);
+  for (int i = 0; i < 8; i++) {
+    Serial.print(digitalRead(inPin[i]));
+    Serial.print(',');
+    if (digitalRead(inPin[i]) == LOW) {
+      wert[anz] = inPin[i];
+      anz++;
     }
-    for (int i=0;i<3;i++){
-        pinMode(binPin[i],OUTPUT);
-    }
-    pinMode(steuerPin[0],OUTPUT);
-    pinMode(steuerPin[1],OUTPUT);
-}
-
-
-void auslesen(int c1, int c2){
-    digitalWrite(steuerPin[0],c1);
-    digitalWrite(steuerPin[1],c2);
-    int anz=0;
-    for (int i=0;i<8;i++){
-        Serial.print(digitalRead(inPin[i]));
-        Serial.print(',');
-        if (digitalRead(inPin[i])==LOW){
-            anz++
-            wert[anz]=inPin[i];
-        }
-        Serial.println();
-    }
+    Serial.println();
+  }
 }
 
 
 
-void auslesen(int a1,int a2, int a3){
-    digitalWrite(bitPin[0],a1);
-    digitalWrite(bitPin[1],a2);
-    digitalWrite(bitPin[2],a3);
-    auslesen(0,0);  // Dekoder1
-    auslesen(1,0);  // Dekoder2
-    auslesen(0,1);  // Dekoder3
+void auslesen(int a1, int a2, int a3) {
+  digitalWrite(binPin[0], a1);
+  digitalWrite(binPin[1], a2);
+  digitalWrite(binPin[2], a3);
+  auslesenDekoder(0, 0);  // Dekoder1
+  auslesenDekoder(1, 0);  // Dekoder2
+  auslesenDekoder(0, 1);  // Dekoder3
 }
 
 
-void loop(){
-    auslesen(0,0,0);
-    auslesen(0,0,1);
-    auslesen(0,1,0);
-    auslesen(0,1,1);
-    auslesen(1,0,0);
-    auslesen(1,0,1);
-    auslesen(1,1,0);
-    auslesen(1,1,1);
+void loop() {
+  anz = 0;
+  auslesen(0, 0, 0);
+  auslesen(0, 0, 1);
+  auslesen(0, 1, 0);
+  auslesen(0, 1, 1);
+  auslesen(1, 0, 0);
+  auslesen(1, 0, 1);
+  auslesen(1, 1, 0);
+  auslesen(1, 1, 1);
 }
-
 ```
