@@ -88,11 +88,49 @@ D2: CS3 = 1, CS2 = 0, CS1 = 0
 ## Programmierung
 ```C++
 
+
 int inPin[] = { 3, 4, 5, 6, 7, 8, 9, 10 };
 int binPin[] = { A0, 13, 12 };
 int steuerPin[] = { 11, A1 };
 int wert[196];
 int anz;
+
+
+
+void auslesenDekoder(int column,int c1, int c2) {
+  digitalWrite(steuerPin[0], c1);
+  digitalWrite(steuerPin[1], c2);
+  int startNr=0;
+  if (c1==1 && c2==0){
+    startNr=64;
+  } else if (c1==0 && c2==1){
+    startNr=128;
+  }
+  for (int i = 0; i < 8; i++) {
+//    Serial.print(digitalRead(inPin[i]));
+//    Serial.print(',');
+    if (digitalRead(inPin[i]) == LOW) {
+      int nr=(startNr+column*(i+1)+i);
+      int ein=nr%2;
+      int taste=nr/2;
+      Serial.println("c1 "+String(c1)+" c2 "+String(c2)+" Start "+String(startNr)+"Columns "+String(column)+" Row "+String(i)+" Taste "+String(taste)+" ein "+String(ein));
+    }
+  }
+}
+
+
+
+void auslesen(int a1, int a2, int a3) {
+  digitalWrite(binPin[0], a1);
+  digitalWrite(binPin[1], a2);
+  digitalWrite(binPin[2], a3);
+  int column=a3*4+a2*2+a1;
+
+  auslesenDekoder(column,0, 0);  // Dekoder1
+  auslesenDekoder(column,1, 0);  // Dekoder2
+  auslesenDekoder(column,0, 1);  // Dekoder3
+
+}
 
 void setup() {
   Serial.begin(9600);
@@ -109,31 +147,6 @@ void setup() {
 }
 
 
-void auslesenDekoder(int c1, int c2) {
-  digitalWrite(steuerPin[0], c1);
-  digitalWrite(steuerPin[1], c2);
-  for (int i = 0; i < 8; i++) {
-    Serial.print(digitalRead(inPin[i]));
-    Serial.print(',');
-    if (digitalRead(inPin[i]) == LOW) {
-      wert[anz] = inPin[i];
-      anz++;
-    }
-    Serial.println();
-  }
-}
-
-
-
-void auslesen(int a1, int a2, int a3) {
-  digitalWrite(binPin[0], a1);
-  digitalWrite(binPin[1], a2);
-  digitalWrite(binPin[2], a3);
-  auslesenDekoder(0, 0);  // Dekoder1
-  auslesenDekoder(1, 0);  // Dekoder2
-  auslesenDekoder(0, 1);  // Dekoder3
-}
-
 
 void loop() {
   anz = 0;
@@ -145,5 +158,7 @@ void loop() {
   auslesen(1, 0, 1);
   auslesen(1, 1, 0);
   auslesen(1, 1, 1);
+//  Serial.println("--------------------");
 }
+
 ```

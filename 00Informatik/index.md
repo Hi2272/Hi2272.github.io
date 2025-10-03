@@ -12,8 +12,8 @@
 | [Objektorientierung: 9.Klasse](#objektorientierte-programmierung)
 / [10. Klasse](#java-in-der-10-klasse)
 | [Datenschutz](#datenschutz)
-| 
-
+| [11. Klasse](#informatik-11-klasse) |    
+  
 ## Informatik 6. Klasse
 ***
 ### Aufbau eines Computers
@@ -213,6 +213,8 @@
 [Breakout-Tutorial](00Javascript/Phaser/Breakout/Tutorial/index.html)  
 [Endversion](00Informatik10/Projekt/10Background/index.html)  
 
+## Informatik 11. Klasse
+[Graphen](00Informatik11/01GraphStart/index.html)  
 
 ## Datenschutz
 ***
