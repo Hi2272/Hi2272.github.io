@@ -6,6 +6,7 @@
 Übungsmaterialien Informatik: Hi2272.github.io
 ==============================================
 [6. Klasse](#informatik-6-klasse)
+| [7. Klasse](#informatik-7-klasse)
 | [Mikrocontroller](/00Informatik/00Mikrocontroller/Wahlkurs/index.html)
 | [Funktionale Modellierung](#funktionale-modellierung)
 | [Datenbanken](#datenbanken)
@@ -45,6 +46,11 @@
 
 ### Verfassungsviertelstunde
 [Snap Map](00Informatik6/Verfassungsviertelstunde/SnapMap/index.html)
+
+## Informatik 7. Klasse
+[Mein Netzwerk zu Hause](https://learningapps.org/view7741094)  
+[Die Abenteuer von Kommissar Smith](https://netzwerke.hauptquartier.eu/abenteuer-archiv)   
+
 
 ## Mikrocontroller
 ***
