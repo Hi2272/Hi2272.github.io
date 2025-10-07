@@ -67,17 +67,17 @@ Der Dekoder ist aktiv, wenn CS1 HIGH und CS2 und CS3 LOW sind.
 
 Über 11 und 15 wird jeweils nur ein Dekoder aktiviert:  
 
-11: 0 , 15:0  
+11: 0 , 15: 0  
 **D1: CS3 = 0, CS2 = 0, CS1 = 1**  
 D2: CS3 = 0, CS2 = 0, CS1 = 0  
 D3: CS3 = 0, CS2 = 0, CS1 = 0  
 
-11: 1, 15:0  
+11: 1, 15: 0  
 D1: CS3 = 0, CS2 = 1, CS1 = 1  
 **D2: CS3 = 0, CS2 = 0, CS1 = 1**  
 D3: CS3 = 1, CS2 = 0, CS1 = 0  
 
-11:0, 15:1  
+11:0, 15: 1  
 D1: CS3 = 1, CS2 = 0, CS1 = 1  
 D2: CS3 = 1, CS2 = 0, CS1 = 0  
 **D3: CS3 = 0, CS2 = 0, CS1 = 1**  
@@ -87,41 +87,78 @@ D2: CS3 = 1, CS2 = 0, CS1 = 0
 
 ## Programmierung
 ```C++
-void loop(){
-    auslesen(0,0,0);
-    auslesen(0,0,1);
-    auslesen(0,1,0);
-    auslesen(0,1,1);
-    auslesen(1,0,0);
-    auslesen(1,0,1);
-    auslesen(1,1,0);
-    auslesen(1,1,1);
-}
-
-void auslesen(int a1,int a2, int a3){
-    digitalWrite(14,a1);
-    digitalWrite(13,a2);
-    digitalWrite(12,a3);
-    auslesen(0,0);  // Dekoder1
-    auslesen(1,0);  // Dekoder2
-    auslesen(0,1);  // Dekoder3
-}
-
-int[] inputPins={3,4,5,6,7,8,9,10};
 
 
-void auslesen(int c1, int c2){
-    digitalWrite(11,c1);
-    digitalWrite(15,c2);
-    int anz=0;
-    for (int i=0;i<8;i++){
-        Serial.print(digitalRead(pin[i]));
-        Serial.print(',');
-        if (digitalRead(pin[i])==LOW){
-            anz++
-            wert[anz]=pin[i];
-        }
-        Serial.println();
+int inPin[] = { 3, 4, 5, 6, 7, 8, 9, 10 };
+int binPin[] = { A0, 13, 12 };
+int steuerPin[] = { 11, A1 };
+int wert[196];
+int anz;
+
+
+
+void auslesenDekoder(int column,int c1, int c2) {
+  digitalWrite(steuerPin[0], c1);
+  digitalWrite(steuerPin[1], c2);
+  int startNr=0;
+  if (c1==1 && c2==0){
+    startNr=64;
+  } else if (c1==0 && c2==1){
+    startNr=128;
+  }
+  for (int i = 0; i < 8; i++) {
+//    Serial.print(digitalRead(inPin[i]));
+//    Serial.print(',');
+    if (digitalRead(inPin[i]) == LOW) {
+      int nr=(startNr+column*(i+1)+i);
+      int ein=nr%2;
+      int taste=nr/2;
+      Serial.println("c1 "+String(c1)+" c2 "+String(c2)+" Start "+String(startNr)+"Columns "+String(column)+" Row "+String(i)+" Taste "+String(taste)+" ein "+String(ein));
     }
+  }
 }
+
+
+
+void auslesen(int a1, int a2, int a3) {
+  digitalWrite(binPin[0], a1);
+  digitalWrite(binPin[1], a2);
+  digitalWrite(binPin[2], a3);
+  int column=a3*4+a2*2+a1;
+
+  auslesenDekoder(column,0, 0);  // Dekoder1
+  auslesenDekoder(column,1, 0);  // Dekoder2
+  auslesenDekoder(column,0, 1);  // Dekoder3
+
+}
+
+void setup() {
+  Serial.begin(9600);
+  for (int i = 0; i < 8; i++) {
+    pinMode(inPin[i], INPUT_PULLUP);
+  }
+  for (int i = 0; i < 3; i++) {
+    pinMode(binPin[i], OUTPUT);
+  }
+  pinMode(steuerPin[0], OUTPUT);
+  pinMode(steuerPin[1], OUTPUT);
+  anz = 0;
+  Serial.println("Setup abgeschlossen!");
+}
+
+
+
+void loop() {
+  anz = 0;
+  auslesen(0, 0, 0);
+  auslesen(0, 0, 1);
+  auslesen(0, 1, 0);
+  auslesen(0, 1, 1);
+  auslesen(1, 0, 0);
+  auslesen(1, 0, 1);
+  auslesen(1, 1, 0);
+  auslesen(1, 1, 1);
+//  Serial.println("--------------------");
+}
+
 ```

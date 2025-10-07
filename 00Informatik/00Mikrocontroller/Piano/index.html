@@ -244,57 +244,94 @@ GND -&gt; 4 = CS2<br>
 15  -&gt; 6 = CS1</p>
 <p>Der Dekoder ist aktiv, wenn CS1 HIGH und CS2 und CS3 LOW sind.</p>
 <p>Über 11 und 15 wird jeweils nur ein Dekoder aktiviert:</p>
-<p>11: 0 , 15:0<br>
+<p>11: 0 , 15: 0<br>
 <strong>D1: CS3 = 0, CS2 = 0, CS1 = 1</strong><br>
 D2: CS3 = 0, CS2 = 0, CS1 = 0<br>
 D3: CS3 = 0, CS2 = 0, CS1 = 0</p>
-<p>11: 1, 15:0<br>
+<p>11: 1, 15: 0<br>
 D1: CS3 = 0, CS2 = 1, CS1 = 1<br>
 <strong>D2: CS3 = 0, CS2 = 0, CS1 = 1</strong><br>
 D3: CS3 = 1, CS2 = 0, CS1 = 0</p>
-<p>11:0, 15:1<br>
+<p>11:0, 15: 1<br>
 D1: CS3 = 1, CS2 = 0, CS1 = 1<br>
 D2: CS3 = 1, CS2 = 0, CS1 = 0<br>
 <strong>D3: CS3 = 0, CS2 = 0, CS1 = 1</strong></p>
 <p><img src="2025-09-14_20-24.png" alt="alt text"></p>
 <h2 id="programmierung">Programmierung</h2>
-<pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{
-    <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);
-    <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>);
-    <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>);
-    <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);
-    <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);
-    <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>);
-    <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>);
-    <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);
-}
+<pre><code class="language-C++">
 
-<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">auslesen</span><span class="hljs-params">(<span class="hljs-type">int</span> a1,<span class="hljs-type">int</span> a2, <span class="hljs-type">int</span> a3)</span></span>{
-    <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">14</span>,a1);
-    <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">13</span>,a2);
-    <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">12</span>,a3);
-    <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);  <span class="hljs-comment">// Dekoder1</span>
-    <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>);  <span class="hljs-comment">// Dekoder2</span>
-    <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>);  <span class="hljs-comment">// Dekoder3</span>
-}
-
-<span class="hljs-type">int</span>[] inputPins={<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>};
+<span class="hljs-type">int</span> inPin[] = { <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span> };
+<span class="hljs-type">int</span> binPin[] = { A0, <span class="hljs-number">13</span>, <span class="hljs-number">12</span> };
+<span class="hljs-type">int</span> steuerPin[] = { <span class="hljs-number">11</span>, A1 };
+<span class="hljs-type">int</span> wert[<span class="hljs-number">196</span>];
+<span class="hljs-type">int</span> anz;
 
 
-<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">auslesen</span><span class="hljs-params">(<span class="hljs-type">int</span> c1, <span class="hljs-type">int</span> c2)</span></span>{
-    <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">11</span>,c1);
-    <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">15</span>,c2);
-    <span class="hljs-type">int</span> anz=<span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">8</span>;i++){
-        Serial.<span class="hljs-built_in">print</span>(<span class="hljs-built_in">digitalRead</span>(pin[i]));
-        Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;,&#x27;</span>);
-        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">digitalRead</span>(pin[i])==LOW){
-            anz++
-            wert[anz]=pin[i];
-        }
-        Serial.<span class="hljs-built_in">println</span>();
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">auslesenDekoder</span><span class="hljs-params">(<span class="hljs-type">int</span> column,<span class="hljs-type">int</span> c1, <span class="hljs-type">int</span> c2)</span> </span>{
+  <span class="hljs-built_in">digitalWrite</span>(steuerPin[<span class="hljs-number">0</span>], c1);
+  <span class="hljs-built_in">digitalWrite</span>(steuerPin[<span class="hljs-number">1</span>], c2);
+  <span class="hljs-type">int</span> startNr=<span class="hljs-number">0</span>;
+  <span class="hljs-keyword">if</span> (c1==<span class="hljs-number">1</span> &amp;&amp; c2==<span class="hljs-number">0</span>){
+    startNr=<span class="hljs-number">64</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c1==<span class="hljs-number">0</span> &amp;&amp; c2==<span class="hljs-number">1</span>){
+    startNr=<span class="hljs-number">128</span>;
+  }
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">8</span>; i++) {
+<span class="hljs-comment">//    Serial.print(digitalRead(inPin[i]));</span>
+<span class="hljs-comment">//    Serial.print(&#x27;,&#x27;);</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">digitalRead</span>(inPin[i]) == LOW) {
+      <span class="hljs-type">int</span> nr=(startNr+column*(i+<span class="hljs-number">1</span>)+i);
+      <span class="hljs-type">int</span> ein=nr%<span class="hljs-number">2</span>;
+      <span class="hljs-type">int</span> taste=nr/<span class="hljs-number">2</span>;
+      Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;c1 &quot;</span>+<span class="hljs-built_in">String</span>(c1)+<span class="hljs-string">&quot; c2 &quot;</span>+<span class="hljs-built_in">String</span>(c2)+<span class="hljs-string">&quot; Start &quot;</span>+<span class="hljs-built_in">String</span>(startNr)+<span class="hljs-string">&quot;Columns &quot;</span>+<span class="hljs-built_in">String</span>(column)+<span class="hljs-string">&quot; Row &quot;</span>+<span class="hljs-built_in">String</span>(i)+<span class="hljs-string">&quot; Taste &quot;</span>+<span class="hljs-built_in">String</span>(taste)+<span class="hljs-string">&quot; ein &quot;</span>+<span class="hljs-built_in">String</span>(ein));
     }
+  }
 }
+
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">auslesen</span><span class="hljs-params">(<span class="hljs-type">int</span> a1, <span class="hljs-type">int</span> a2, <span class="hljs-type">int</span> a3)</span> </span>{
+  <span class="hljs-built_in">digitalWrite</span>(binPin[<span class="hljs-number">0</span>], a1);
+  <span class="hljs-built_in">digitalWrite</span>(binPin[<span class="hljs-number">1</span>], a2);
+  <span class="hljs-built_in">digitalWrite</span>(binPin[<span class="hljs-number">2</span>], a3);
+  <span class="hljs-type">int</span> column=a3*<span class="hljs-number">4</span>+a2*<span class="hljs-number">2</span>+a1;
+
+  <span class="hljs-built_in">auslesenDekoder</span>(column,<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);  <span class="hljs-comment">// Dekoder1</span>
+  <span class="hljs-built_in">auslesenDekoder</span>(column,<span class="hljs-number">1</span>, <span class="hljs-number">0</span>);  <span class="hljs-comment">// Dekoder2</span>
+  <span class="hljs-built_in">auslesenDekoder</span>(column,<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);  <span class="hljs-comment">// Dekoder3</span>
+
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">8</span>; i++) {
+    <span class="hljs-built_in">pinMode</span>(inPin[i], INPUT_PULLUP);
+  }
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) {
+    <span class="hljs-built_in">pinMode</span>(binPin[i], OUTPUT);
+  }
+  <span class="hljs-built_in">pinMode</span>(steuerPin[<span class="hljs-number">0</span>], OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(steuerPin[<span class="hljs-number">1</span>], OUTPUT);
+  anz = <span class="hljs-number">0</span>;
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Setup abgeschlossen!&quot;</span>);
+}
+
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  anz = <span class="hljs-number">0</span>;
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+<span class="hljs-comment">//  Serial.println(&quot;--------------------&quot;);</span>
+}
+
 </code></pre>
 
             
