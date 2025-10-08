@@ -220,7 +220,9 @@
 [Endversion](00Informatik10/Projekt/10Background/index.html)  
 
 ## Informatik 11. Klasse
-[Graphen](00Informatik11/01GraphStart/index.html)  
+[Graphen implementieren](00Informatik11/01Graph/01GraphStart/index.html)  
+[Graphen bearbeiten](00Informatik11/02GraphenAuslesen/01Algorithmen/index.html)  
+
 
 ## Datenschutz
 ***
