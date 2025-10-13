@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Flugverbindungen als Graphen</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+              <meta charset="utf-8" />
+  <title>Informatik</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="flugverbindungen-als-graphen">Flugverbindungen als Graphen</h1>
+<h2 id="lösungen-zu-den-aufgaben">Lösungen zu den Aufgaben</h2>
+<h3 id="1-graph">1. Graph</h3>
+<h2 id="2-typ-des-graphen">2. Typ des Graphen</h2>
+<p>Es handelt sich um einen gerichteten, ungewichteten Graphen.</p>
+<h3 id="3-adjezenzmatrix">3. Adjezenzmatrix</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>M</th>
+<th>F</th>
+<th>H</th>
+<th>P</th>
+<th>L</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>M</strong></td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>F</strong></td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>H</strong></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>P</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>L</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-zusammenhängender-graph">4. Zusammenhängender Graph?</h3>
+<p>Der Graph ist nicht stark zusammenhängend, da von London aus keine Kanten ausgehen - die Zeile in der Matrix enthält nur 0 als Eintragungen. Von London aus ist damit kein anderer Knoten erreichbar.
+Er ist schwach zusammenhängend, da in einem ungerichteten Graphen jeder Knoten von jedem anderen Knoten erreicht werden kann. In der Matrix gibt es in jeder Spalte mindestens eine 1, d.h. jeder Knoten kann von einem anderen erreicht werden.</p>
+<h3 id="5-kanten-die-von-m-ausgehen">5. Kanten, die von M ausgehen</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>M</th>
+<th>F</th>
+<th>H</th>
+<th>P</th>
+<th>L</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>M</strong></td>
+<td><strong>0</strong></td>
+<td><strong>1</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td><strong>F</strong></td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>H</strong></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>P</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>L</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Die Kanten zu den Zielen stehen in der Matrix in einer Zeile.</p>
+<h3 id="6-kanten-die-in-m-enden">6. Kanten, die in M enden</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>M</th>
+<th>F</th>
+<th>H</th>
+<th>P</th>
+<th>L</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>M</strong></td>
+<td><strong>0</strong></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>F</strong></td>
+<td><strong>1</strong></td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>H</strong></td>
+<td><strong>1</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>P</strong></td>
+<td><strong>0</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>L</strong></td>
+<td><strong>0</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Die Kanten von den Startorten stehen in der Matrix in einer Spalte.</p>
+<h3 id="7-das-feld-knoten">7. Das Feld knoten</h3>
+<pre><code class="language-C++"><span class="hljs-keyword">private</span> String[] knoten = {<span class="hljs-string">&quot;M&quot;</span>,<span class="hljs-string">&quot;F&quot;</span>,<span class="hljs-string">&quot;H&quot;</span>,<span class="hljs-string">&quot;P&quot;</span>,<span class="hljs-string">&quot;L&quot;</span>};
+</code></pre>
+<h3 id="8-das-feld-kanten">8. Das Feld kanten</h3>
+<pre><code class="language-C++"><span class="hljs-keyword">private</span> <span class="hljs-type">int</span>[][] kanten = {
+  {<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>},
+  {<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>},
+  {<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>},
+  {<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>},
+  {<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>}
+};
+</code></pre>
+<h3 id="9-alle-kanten-die-von-start-ausgehen">9. Alle kanten, die von start ausgehen</h3>
+<p>kanten[start][0]<br>
+kanten[start][1]<br>
+kanten[start][2]<br>
+kanten[start][3]<br>
+kanten[start][4]</p>
+<h3 id="10-alle-kanten-die-in-ziel-enden">10. Alle Kanten, die in ziel enden</h3>
+<p>kanten[0][ziel]
+kanten[1][ziel]
+kanten[2][ziel]
+kanten[3][ziel]
+kanten[4][ziel]</p>
+<div id="quelle" style="font-size: x-small; text-align: right;">
+    2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
+  </div>
+  <section>
+    <iframe
+    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+    width="100%" height="600" frameborder="0">
+    {'id': 'Java', 'speed': 2000, 
+    'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
+    'withFileList': true ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Graph.java" src="Graph.java"></script>
+    <script id="javaCode" type="plain/text" title="Knoten.java" src="Knoten.java"></script>
+    <script id="javaCode" type="plain/text" title="Main.java" src="Main.java"></script>
+  </script>
+   </iframe>
+</section>
+<h2 id="weiter"><a href="../03Kanten2/index.html">weiter</a></h2>
+<h2 id="index"><a href="../../../index.html">Index</a></h2>
+
+            
+            
+        </body>
+        </html>
