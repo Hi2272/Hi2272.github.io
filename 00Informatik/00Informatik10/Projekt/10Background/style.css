@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw; /* Volle Breite des Viewports */
+    height: 100vh; /* Volle Höhe des Viewports */
+    background-color: #222;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color:cornflowerblue;
+    font-size: 34px;
+}
+
+h3 {
+    font-size: 8px;
+    margin:0;
+    padding:0;
+    color: lightgray
+}
+
+input {
+    margin: 10px;
+}
+
+#game-container {
+    margin: 20px auto;
+    width: 800px;
+    height: 600px;
+    border: 2px solid white;
+}

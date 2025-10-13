@@ -5,15 +5,13 @@
 Auf der LED-Matrix sollen umso mehr LEDs leuchten, je lauter der Ton ist, der vom Mikrofon aufgezeichnet wird.  
 Überprüfe vor dem Start noch einmal die Verkabelung:  
 - LED-Matrix:
-  - Rotes Kabel : + Pol der externen Spannungsquelle (+5 V)
-  - Schwarzes Kabel: - Pol der externen Spannungsquelle (GND)
-  - Gelbes Kabel: Datenkabel: Port 6 am Arduino
+  Ist durch das Aufstecken automatisch mit dem Arduino verbunden. Der Datenpin ist Pin 13. Alle anderen Pins können an den gelben Buchsen verwendet werden.
 - Mikrofon
   - V : + Pol am Arduino oder an der externen Spannungsquelle (+5 V)
   - G : - Pol am Arduino oder an der externen Spannungsquelle (GND)
   - S : Signal- oder Datenkabel: Pin A0 am Arduino
 ## Programmcode
-
+[zurück](index.html)
 ```C++
 #include <Adafruit_NeoPixel.h>
 
@@ -21,10 +19,10 @@ Auf der LED-Matrix sollen umso mehr LEDs leuchten, je lauter der Ton ist, der vo
 const int MIC_PIN = A0;
 
 // Pin für die WS2812 LEDs
-#define DATA_PIN 6
+#define DATA_PIN 13
 
 // Anzahl der LEDs in der Matrix
-#define NUM_LEDS 64
+#define NUM_LEDS 40
 
 // Erstellen eines NeoPixel-Objekts
 Adafruit_NeoPixel matrix = Adafruit_NeoPixel(NUM_LEDS, DATA_PIN, NEO_GRB + NEO_KHZ800);

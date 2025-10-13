@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
 # Wahlunterricht Mikroelektronik und Technik am Gymnasium Waldkraiburg
-##### [LEDs](#leuchtdioden-leds) | [Taster](#taster) | [Alarmanlage](#2-alarmanlage) | [Messwerterfassung](#3-messwerterfassung) | [Diskoleuchte](#4-diskobeleuchtung) | [ESP32](#5-esp32) | [Gamepad](#b-ein-bluetooth-gamepad-für-pac-man) | [Interrupts](#8-blinken-ohne-pause---interrupts) | [3DDruck](#3d-druck-und-cad)
+##### [Stichwortliste](Keywords.html)  
+##### [LEDs](#leuchtdioden-leds) | [Taster](#taster) | [Alarmanlage](#alarmanlage) | [Messwerterfassung](#messwerterfassung) | [Diskoleuchte](#diskobeleuchtung) | [ESP32](#esp32) | [Gamepad](#b-ein-bluetooth-gamepad-für-pac-man) | [Interrupts](#blinken-ohne-pause---interrupts) | [3DDruck](#3d-druck-und-cad) | [Motoren](#selbstfahrender-roboter)
 
 ##### Diese Seite befindet sich im Aufbau. 
 ## Grundausstattung
@@ -10,18 +11,22 @@ Die Materialien für den Kurs wurden durch Spenden folgender Organisationen fina
 
 - [Förderverein des Gymnasium Waldkraiburgs](https://www.gymnasiumwaldkraiburg.de/schule/foerderverein/)
 - [Wilhelm-Stemmer-Stiftung](https://www.wilhelm-stemmer-stiftung.de)
+- [meine Volksbank Raiffeisenbank eG Waldkraiburg](https://www.vb-rb.de/ihre-bank/gs-ansprechpartner/uebersicht-geschaeftsstellen/waldkraiburg.html)  
   
-Wir danken den Spendern herzlich für Ihre Unterstützung.
+Wir danken den Spendern herzlich für ihre Unterstützung.
 
 [Materialliste](00Material/index.html)  
 [Bezugsquellen](00Material/bezugsquellen.html)  
+
+## Dupont-Kabel crimpen
+[Dupont-Kabel](DupontKabel/index.html)
 
 ## 3D-Druck und CAD
 [3D-Druck](003D-Druck/index.html)  
 
 ## Projekte mit dem Calliope mini
 
-[Calliope mini](00Calliope/index.html)
+[Calliope mini](00Calliope/index.html)  
 
 ## Projekte mit dem Arduino Uno und dem ESP32
 
@@ -31,28 +36,40 @@ Wir danken den Spendern herzlich für Ihre Unterstützung.
 
 [Blink - das erste Programm](00StartBlink/index.html)
 
+### Das Ampel-Modul
+- [Ampel Modul](01LEDs/05Ampel/index.html)  
+
+
 ### Leuchtdioden: LEDs
 - [Leuchtdioden](01LEDs/01LED/index.html)  
 - [Blinkende LEDs](01LEDs/02LEDBlink/index.html)  
 - [Lauflicht](01LEDs/03LEDLauflicht/index.html)  
-- [LED Modul](01LEDs/04LEDModul/index.html)
-
+- [LED Modul](01LEDs/04LEDModul/index.html)  
+  
 ### Taster
 - [Taster im Stromkreis](11Taster/index.html)  
 - [Digitaltaster](11Taster/Digitaltaster.html)  
 - [Projekt Reaktionszeit messen](11Taster/Reaktionszeit.html)
+- [Digitaltaster und 2-FarbLED](11Taster/DigitalTasterBlinkCode.html)  
 
 ### Alarmanlage
 
-Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung aktiviert werden kann:  
-![Alarmanlage.png](Alarmanlage.png)
+Wir bauen eine voll funktionsfähige Alarmanlage, die über eine Fernsteuerung aktiviert werden kann:     
+<video controls src="VID_20241115_164923.mp4" title="Title" width=300px></video>  
 
+![Alarmanlage.png](Alarmanlage.png)
 1. [Bewegungsmelder](02/index.html)
 2. [Passiver Buzzer](03/index.html)
 3. [Infrarot-Fernbedienung](04/index.html)
 4. [Rotations-Encoder](05/index.html)
+5. [Platinenentwurf mit Fritzing](Fritzing/Alarmanlage/index.html)  
+6. [Hinweise zum Löten](Löten/index.html)  
+   
 
 ### Messwerterfassung
+
+#### Pulsmessung
+[Pulssensor](12Puls/index.html)  
 
 #### Temperaturmessung
 
@@ -105,10 +122,12 @@ In folgendem Video könnt ihr die Funktion des Lichtes sehen:  [YouTube Video Pa
 
 Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.Seine Programmierung kann auch über die bekannte Arduino-IDE erfolgen.  
 
-1. [Vorbereitung der Arduino-IDE für den ESP32](05ESP32/01/index.html)
-2. [Schalten einer LED über einen Internetbrowser](05ESP32/02/index.html)  
-   ![Alt text](05ESP32/02/Sc02.png)
-3. [Senden und Empfangen von Daten über Bluetooth](05ESP32/03/index.html)
+1. [Vorbereitung der Arduino-IDE für den ESP32](05ESP32/01Install/index.html)
+2. [Schalten einer LED über einen Internetbrowser](05ESP32/02WLAN/index.html)  
+   ![Alt text](05ESP32/02WLAN/Sc02.png)
+3. [Senden und Empfangen von Daten über Bluetooth](05ESP32/03Bluetooth/index.html)
+4. [MIT AppInventor und Bluetooth](05ESP32/03bAppInventor/index.html)  
+5. [Speichern von Messdaten in einem Google Sheet](05ESP32/DHT22/index.html)  
 
 ### b) Ein Bluetooth-Gamepad für Pac Man
 
@@ -119,18 +138,26 @@ Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.Seine 
 
 Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) von rtheiss bauen wir einen Roboter, der Hindernisse erkennt und ihnen ausweichen kann.
 
-1. Motorsteuerung
-2. Ultraschall-Entfernungsmesser
-3. Servomotoren
+1. [Motoren](Motoren/index.html)  
+2. [Ultraschall-Entfernungsmesser](06Ultraschall/index.html)  
+3. [Servomotoren](Motoren/Servomotor/index.html)  
    
+   
+### Große OLED-Displays
+[SPI-Displays](<SPI Displays/index.html>)
 
+### Das Relais-Modul  
+[Relais](Relaismodul/index.html)  
      
-### Die Kugelbahn im Schaukasten
-[Kugelbahn](Kugelbahn/index.html)   
+### Der Schaukasten
+[Kugelbahn](Kugelbahn/index.html)  
+[Binäruhr](BinaerUhr/index.html) 
 
 ### Blinken ohne Pause - Interrupts  
 [Interrupts](10Interrupts/index.html)  
 
+### Multiplexer 
+[Multiplexer](Multiplexer/index.html)  
 
 
 ---

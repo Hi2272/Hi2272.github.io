@@ -1,7 +1,7 @@
  <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
 # Anleitung Onshape
-##### [Einleitung](#1-einleitung) | [Schluesselanhänger](#2-anleitung-schluesselanhänger) | [Schraube](#3-alarmanlage) | [Video-Tutorials](#4-video-tutorials)
+##### [Einleitung](#1-einleitung) | [Schluesselanhänger](#2-anleitung-schluesselanhänger) | [Bilder einfügen](#3-einfügen-von-bildern) | [Schraube](#4-anleitung-schraube) | [Video-Tutorials](#5-video-tutorials)
 ## 1. Einleitung 
 ### a) Registrierung bei Onshape
 Zur Arbeit mit Onshape müsst ihr euch auf dieser Seite registrieren: [onshape.com/de/sign-up](https://www.onshape.com/de/sign-up). Die Verwendung der Software ist für private Zwecke kostenlos.
@@ -41,9 +41,9 @@ Wir zeichnen in der sichtbaren Top-Ebene:
 
 ### c) Umwandeln des Rechtecks in einen Quader
 1. Klicke auf das Symbol "Linear austragen"
-2. Trage als Wert 2 (=2 mm Dicke) ein und drücke Return.
+2. Trage als Wert 2 (=2 mm Dicke) ein und drücke Return.  
    ![alt text](2024-06-27_12-18.png)  
-Unser Rechteck wird in einen Quader mit den exakten Maßen 60 mm x 20 mm x2 mm umgewandelt.
+Unser Rechteck wird in einen Quader mit den exakten Maßen 60 mm x 20 mm x 2 mm umgewandelt.
 ### d) Bohren eines Loches
 Um das Loch für den Schlüsselring zu bohren, zeichnen wir einen Kreis auf die obere Ebene des Quaders und senken diesen in das Werkstück ein.
 1. Klicke die obere Ebene des Quaders an, um sie zu markieren.
@@ -73,13 +73,81 @@ Zum Schluss senken wir den Kreis jetzt noch ein, um eine Bohrung zu erzeugen.
 3. Trage als Wert 4 ein und drücke Return.
 ![alt text](2024-06-27_12-40.png)  
 
-Dsa Plättchen hat jetzt eine Bohrung mit dem Radius 6 mm.
+Das Plättchen hat jetzt eine Bohrung mit dem Radius 6 mm.  
+![alt text](2024-11-27_16-37.png)  
 
-## 3. Anleitung Schraube
+Anschließend runden wir die Kanten des Anhängers ab.
+1. Klicke auf das Verrundungswerkzeug.
+2. Klicke die senkrechten Kanten des Quaders an.
+3. Stelle als Radius 8 mm ein.
+4. Klicke auf den grünen Haken, um die Verrundung durchzuführen.  
+
+![alt text](2024-11-27_16-39.png)  
+Jetzt beschriften wir den Schlüsselanhänger.  
+1. Klicke die Oberseite des Schlüsselanhängers an und markiere damit diese Fläche.
+2. Erstelle eine Skizze auf dieser Fläche.
+3. Wähle das Textwerkzeug,
+klicke auf die Oberfläche des Anhängers
+und trage einen Namen oder eine Abkürzung (max. 5 Buchstaben) ein.
+4. Wähle das Bemaßungswerkzeug und stelle die Abstände nach oben und unten so ein, dass der Text gut auf die Fläche passt. Stelle zum Loch einen Abstand von 2 mm ein.  
+![alt text](2024-11-27_16-54.png)   
+5. Wähle das Extrusionswerkzeug und ziehe den Text 1 mm weit aus.
+
+Zum Schluss verdicken wir den Rand des Anhängers.
+1. Klicke die Oberseite des Schlüsselanhängers an und markiere damit diese Fläche.
+2. Erstelle eine Skizze auf dieser Fläche.
+3. Wähle das Versatz-Werkzeug
+4. Markiere alle Streckenteile des Randes des Anhängers.
+5. Ziehe den Pfeil so, dass der Rand um 1 mm nach innen versetzt wird und drücke Return:  
+![alt text](2024-11-27_17-04.png)
+6. Wähle das Extrusionswerkzeug und ziehe den Rand 1 mm weit aus.
+
+Um das Modell drucken zu können, müssen wir es noch als STL-Datei exportieren.
+1.  Klicke mit rechts auf das Part1 um Partstudio.
+2.  Wähle Exportieren.  
+![alt text](2024-11-27_17-03.png)  
+Das Modell wird als STL-Datei im Download-Ordner gespeichert und kann jetzt in einem Slicer-Programm importiert werden.
+## 3. Einfügen von Bildern
+Bilder sind in der Regel in einem pixelbasierten Format (.jpg, .bmp, .png) gespeichert.  
+### 3.1 Umwandeln in Vektor-Datei im SVG-Format
+Zuerst wandeln wir diese in eine vektorbasierte SVG-Datei um. Hierzu verwenden wir das kostenlose Programm **Inkscape**:  
+1. Datei importieren (Strg I)
+2. Bild markieren
+3. Pfad.Objekt in Pfad umwandeln  
+4. Mit dem Knotenwerkzeug können wir das Ergebnis der Umwandlung noch verbessern:  
+   ![alt text](2025-01-29_18-18.png)
+5. Datei speichern 
+### 3.2 Umwandlen von SVG in DXF
+Anschließend müssen wir die SVG-Datei in eine DXF-Datei umwandeln. Hierzu können wir ein Online-Werkzeug verwenden: https://cloudconvert.com/svg-to-dxf
+### 3.3 Import in Onshape
+In Onshape beginnen wir eine neue Skizze auf einer beliebigen Ebene. 
+Im Skizzen-Menü gibt es ein Werkzeug zum Einfügen von DXF-Dateien:  
+![alt text](2025-01-29_18-23.png)
+### 3.4 Austragen zu einer neuen Form
+Unmittelbar nach dem Import tragen wir das DXF-Bild zu einer neuen Form aus:  
+![alt text](2025-01-29_18-29.png)  
+
+### 3.5 Anpassen der neuen Form
+Wenn wir das neue Objekt markieren, können wir 
+1. Das Transformieren-Menü öffnen.
+2. Das Objekt verschieben
+3. Das Objekt drehen
+4. Das Objekt vergrößern oder verkleinern.  
+   
+![alt text](2025-01-29_18-33.png)
+
+### 3.6 Vereinigen mit der Oberfläche
+Um unser neues Zeichenobjekt mit der Oberfläche des alten Objektes zu verschmelzen, müssen wir
+1. Beide markieren (Strg-Taste beim Klicken gedrückt halten)
+2. Die beiden Objekte über das Menü **Boolesch** vereinigen:  
+![alt text](2025-01-29_19-02.png)
+
+
+## 4. Anleitung Schraube
 Unter dieser Adresse kannst du eine Anleitung herunterladen:
 [Onshape Tutorial](https://ap.physik.unibas.ch/PDF/Manuals/German/IIZ1.pdf)  
 Sehr viel einfacher geht das Erstellen von Schrauben und Muttern aber mit dem folgenden Video-Tutorial.
-## 4. Video-Tutorials
+## 5. Video-Tutorials
 #### a) Custom Features
 Custom Features sind Werkzeuge, die zu Onshape hinzugefügt werden können. In den Videos wird die Installation erklärt.
 

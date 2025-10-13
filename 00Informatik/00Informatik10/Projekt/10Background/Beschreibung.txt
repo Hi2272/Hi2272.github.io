@@ -1,0 +1,20 @@
+Bricktyp 4:
+Hat keine Funktion. Wird nicht zerstört und bleibt unverändert.
+
+
+Bricktyp 5:
+Wird zerstört, wenn getroffen.
+Lässt ein Leben-PowerUp (Sphere1) erscheinen.
+
+Bricktyp 6:
+Wird zerstört, wenn getroffen.
+Lässt ein Fast-Ball-PowerUp (Sphere2) erscheinen.
+
+Bricktyp 7:
+Wird zerstört, wenn getroffen.
+Lässt ein Multi-Ball-PowerUp (Sphere3) erscheinen.
+Bricktyp 8:
+
+Wird zerstört, wenn getroffen.
+Lässt ein Paddle-Size-PowerUp (Sphere4) erscheinen.
+Alle Bricktypen außer B

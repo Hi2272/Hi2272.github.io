@@ -1,0 +1,115 @@
+{
+  "titel": "Felder",
+  "shuffle": false,
+  "angabe": [
+    {
+      "txt": "Deklaration eines Attributs punkte, das ein Feld für ganze Zahlen ist.",
+      "lsg": [
+        "private int[] punkte;"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Initalisierung des Attributs punkte, mit einer Länge von 20 ganzen Zahlen.",
+      "lsg": [
+        "punkte = new int[20];"
+       ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Deklaration eines Attributs namen, das ein Feld für Zeichenketten ist und initialisierung mit der Länge 10.",
+      "lsg": [
+        "private String[] namen = new String[10];"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Zuweisung des Wertes des Elements mit dem Index 5 aus dem Feld punkte zum Atribut pkt.",
+      "lsg": [
+        "pkt=ths.punkte[5];"
+       ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Zuweisung des Wertes des 3. Elements aus dem Feld punkte zum Atribut pkt.",
+      "lsg": [
+        "pkt=punkte[2];"
+       ],
+      "thisLoeschen": true
+    },
+    {
+      "txt": "Deklaration eines lokalen Feldes art, das Objekte vom Datentyp Artikel speichern kann.",
+      "lsg": [
+        "Artikel[] art;"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Deklaration und Initialisierung eines lokalen Feldes art, das 20 Objekte vom Datentyp Artikel speichern kann.",
+      "lsg": [
+        "Artikel[] art = new Artikel[20];"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Initialisierung des 5. Elements des lokalen Feldes art mit einem neuen Objekt der Klasse Artikel. Der Konstruktor benötigt keine Parameter-Werte.",
+      "lsg": [
+        "art[4]=new Artikel();"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Deklaration einer lokalen Variable anz, die ganzzahlige Werte speichern kann",
+      "lsg": [
+        "int anz",
+        "long anz",
+        "byte anz",
+        "short anz"
+       ],
+      "thisLoeschen": false
+    },
+    
+    {
+      "txt": "Zuweisung der Länge des lokalen Feldes art zur lokalen Variable anz",
+      "lsg": [
+        "anz=art.length"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer Zählschleife, in der die Variable i von 0 bis zur Länge des Feldes art -1 durchlaufen hochgezählt wird.",
+      "lsg": [
+        "for (int i=0;i<art.length;i++){",
+        "for (int i=0;i<=art.length-1;i++){",
+        "for (int i=0;i<art.length;i=i+1){",
+        "for (int i=0;i<=art.length-1;i=i+1){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer Methode getLast, die einen Parameter feld übernimmt, der auf ein Feld vom Typ int verweist, und den Index des letzten Elements in diesem Feld zurückgibt.",
+      "lsg": [
+        "public int getLast(int[] feld){"
+       ],
+      "thisLoeschen": false
+    },
+    {
+      "txt": "Kopf einer Schleife, die solange abläuft, wie der Wert des Elements mit dem Index i des Feldes art nicht leer ist.",
+      "lsg": [
+        "while (art[i]!=null){"
+       ],
+      "thisLoeschen": false
+    }
+    
+        
+    
+    
+    
+    
+
+    
+
+
+    
+ ]
+}

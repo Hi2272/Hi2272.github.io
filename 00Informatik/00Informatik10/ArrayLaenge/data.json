@@ -1,0 +1,15 @@
+{   
+  "snap":true,
+  "stapel":false,
+
+  "dateiname":"Screenshot.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"",
+  "angabe":"Ziehe die Wörter in die passende Lücke:",
+    "txt":[
+      {"x":0.128 ,"y":0.719,"width":0.13,"height":0.119,"pos":[0]},
+      {"x":0.274 ,"y":0.569,"width":0.126,"height":0.109,"pos":[1]},
+      {"x":0.587 ,"y":0.724,"width":0.11,"height":0.109,"pos":[2]},
+      {"x":0.356 ,"y":0.874,"width":0.037,"height":0.091,"pos":[3]}
+      ]
+    }

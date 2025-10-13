@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>ESPNow</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="espnow">ESPNow</h1>
+<h2 id="allgemeines">Allgemeines</h2>
+<p>ESP Now ermöglicht das Versenden von kurzen Nachrichten (max. 250 Bytes) zwischen ESP32-Boards. Hierzu ist kein externes WLan-Netz nötig - die Boards bauen selbst ein Netzwerk auf.</p>
+<h2 id="auslesen-der-mac-adressen">Auslesen der MAC-Adressen</h2>
+<p>Um zwei ESP32 zu verbinden benötigen wir die <strong>MAC-Adresse</strong> der beiden Controller. Jedes Gerät, das in einem Netzwerk eingebunden werden kann, hat eine eindeutige MAC-Adresse.<br>
+Diese Adresse können wir mit diesem Sketch auslesen:</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;WiFi.h&quot;</span>  <span class="hljs-comment">// Einbinden der WiFi-Bibliothek für ESP32</span></span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>{
+    Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);    <span class="hljs-comment">// Serielle Schnittstelle mit 115200 Baud starten</span>
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);             <span class="hljs-comment">// Kurze Wartezeit, damit der Serial Monitor Zeit zum Verbinden hat</span>
+
+    WiFi.<span class="hljs-built_in">mode</span>(WIFI_STA);     <span class="hljs-comment">// WLAN-Modus auf Station (Client) setzen (notwendig für ESP-NOW und MAC-Adresse)</span>
+
+    <span class="hljs-comment">// Warten bis WiFi Station (WLAN-Interface) gestartet ist</span>
+    <span class="hljs-keyword">while</span> (!(WiFi.STA.<span class="hljs-built_in">started</span>())) { 
+        <span class="hljs-built_in">delay</span>(<span class="hljs-number">10</span>);           <span class="hljs-comment">// 10 ms warten und nochmal prüfen</span>
+    }
+
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;MAC-Addresse: &quot;</span>);
+    String mac = WiFi.<span class="hljs-built_in">macAddress</span>();   <span class="hljs-comment">// MAC-Adresse als String einlesen (Format: &quot;XX:XX:XX:XX:XX:XX&quot;)</span>
+    Serial.<span class="hljs-built_in">println</span>(mac);              <span class="hljs-comment">// MAC-Adresse als String ausgeben</span>
+
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Formatiert: &quot;</span>);
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;{&quot;</span>);
+    
+    <span class="hljs-type">int</span> index = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// Schleife über 6 Teile (6 Bytes der MAC-Adresse)</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">6</span>; i++){
+        Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;0x&quot;</span>);                           <span class="hljs-comment">// Hex-Zahlenformat angeben</span>
+        Serial.<span class="hljs-built_in">print</span>(mac.<span class="hljs-built_in">substring</span>(index, index+<span class="hljs-number">2</span>)); <span class="hljs-comment">// MAC-Byte als Hex-Paar aus String extrahieren (z.B. &quot;24&quot;)</span>
+        <span class="hljs-keyword">if</span>(i&lt;<span class="hljs-number">5</span>){
+            Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;, &quot;</span>);                        <span class="hljs-comment">// Komma und Leerzeichen zwischen den Bytes (außer nach dem letzten)</span>
+        }
+        index += <span class="hljs-number">3</span>;   <span class="hljs-comment">// Jedes Byte hat Format &quot;XX:&quot; (2 Zeichen Hex + 1 Zeichen Doppelpunkt), also Index-Ziel um 3 erhöhen</span>
+    }
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;}&quot;</span>);  <span class="hljs-comment">// Ausgabe mit geschweifter Klammer abschließen</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>{}
+</code></pre>
+<p>Die MAC-Adressen bestehen aus sechs Bytes:<br>
+uint8_t receiverAddress[] = {0xC8, 0xF0, 0x9E, 0x74, 0x16, 0xC4};</p>
+<h2 id="senden-der-daten-von-einem-esp-zum-anderen">Senden der Daten von einem ESP zum anderen</h2>
+<p>Spiele auf den Sender diesen Sketch auf:</p>
+<pre><code class="language-c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;esp_now.h&gt;</span>  <span class="hljs-comment">// Einbinden der ESP-NOW-Bibliothek</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WiFi.h&gt;</span>     <span class="hljs-comment">// Einbinden der WiFi-Bibliothek</span></span>
+
+<span class="hljs-comment">// MAC-Adresse des Empfängers</span>
+<span class="hljs-type">uint8_t</span> empfaengerMAC[] = {<span class="hljs-number">0xC8</span>, <span class="hljs-number">0xF0</span>, <span class="hljs-number">0x9E</span>, <span class="hljs-number">0x74</span>, <span class="hljs-number">0x16</span>, <span class="hljs-number">0xC4</span>};
+
+<span class="hljs-type">int</span> nr=<span class="hljs-number">0</span>;  <span class="hljs-comment">// Zahl, die gesendet werden soll</span>
+
+<span class="hljs-type">esp_now_peer_info_t</span> peerInfo;  <span class="hljs-comment">// Struktur für Peer-Informationen</span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);  <span class="hljs-comment">// Start der seriellen Kommunikation mit 115200 Baud</span>
+
+  WiFi.<span class="hljs-built_in">mode</span>(WIFI_STA);  <span class="hljs-comment">// Setzen des WiFi-Modus auf Station, d.h. der ESP wirkt als Client im Netzwerk</span>
+
+  <span class="hljs-comment">// Initialisieren von ESP-NOW und Überprüfen auf Fehler</span>
+
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">esp_now_init</span>() != ESP_OK) {
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Fehler bei der Initialisierung von ESP-NOW&quot;</span>);
+    <span class="hljs-keyword">return</span>;  <span class="hljs-comment">// Hier bricht die Ausführung ab.</span>
+  }
+  
+  <span class="hljs-comment">// Kopieren der Empfänger-Adresse in die Variable peerInfo</span>
+  <span class="hljs-built_in">memcpy</span>(peerInfo.peer_addr, empfaengerMAC, <span class="hljs-number">6</span>);
+  peerInfo.channel = <span class="hljs-number">0</span>;  <span class="hljs-comment">// Standard-Kanal zum Senden</span>
+  peerInfo.encrypt = <span class="hljs-literal">false</span>;  <span class="hljs-comment">// Keine Verschlüsselung verwenden</span>
+  
+  <span class="hljs-comment">// Hinzufügen des Peers zur ESP-NOW-Liste und Überprüfen auf Fehler</span>
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">esp_now_add_peer</span>(&amp;peerInfo) != ESP_OK) {
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Fehler beim Hinzufügen des Peers&quot;</span>);
+    <span class="hljs-keyword">return</span>;
+  }
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  nr++;
+  <span class="hljs-comment">// Senden der Nachricht über ESP-NOW</span>
+  <span class="hljs-type">esp_err_t</span> ergebnis = <span class="hljs-built_in">esp_now_send</span>(empfaengerMAC, (<span class="hljs-type">uint8_t</span> *) &amp;nr, <span class="hljs-built_in">sizeof</span>(nr));
+   
+  <span class="hljs-comment">// Überprüfen, ob das Senden erfolgreich war und entsprechende Meldung ausgeben</span>
+  <span class="hljs-keyword">if</span> (ergebnis == ESP_OK) {
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-built_in">String</span>(nr)+<span class="hljs-string">&quot; gesendet!&quot;</span>);
+  }
+  <span class="hljs-keyword">else</span> {
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Fehler beim Senden von &quot;</span>+<span class="hljs-built_in">String</span>(nr));
+  }
+  
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">2000</span>);  <span class="hljs-comment">// Verzögerung von 2 Sekunden vor dem nächsten Senden</span>
+}
+
+</code></pre>
+<h3 id="erläuterungen-zum-sketch">Erläuterungen zum Sketch</h3>
+<h4 id="esp_now_peer_info_t-peerinfo">esp_now_peer_info_t peerInfo;</h4>
+<p>ESP-Now speichert alle wesentlichen Faktoren zur Datenübertragung in einer zusammengesetzen Variable vom Typ <strong>esp_now_peer_info_t</strong>. Sie hat folgende Felder:</p>
+<ul>
+<li>peer_addr[6]: Hier wird die MAC-Adresse des ESP-NOW-Partners (engl. peer) gespeichert. Die MAC-Adresse ist 6 Bytes lang und eindeutig.</li>
+<li>encrypt_enable: Ein boolescher Wert, der angibt, ob die Verschlüsselung für diesen Peer aktiviert ist.</li>
+<li>encrypt: Gibt an welche Verschlüsselung für die Verbindung mit diesem Peer verwendet wird (z.B. ESP_NOW_ENCRYPTION_NONE oder ESP_NOW_ENCRYPTION_AES128).</li>
+<li>lmk[16]: Der lokale Verschlüsselungsschlüssel (Local Master Key), wenn Verschlüsselung verwendet wird.</li>
+<li>ifidx: Die WLAN-Schnittstelle, über die kommuniziert wird, entweder Station (STA) oder Access Point (AP) Modus.</li>
+<li>channel: Der WiFi-Kanal, auf dem die Kommunikation mit diesem Peer stattfinden soll. Als Standard wird hierbei 0 verwendet.</li>
+</ul>
+<p>Einzelne Felder werden über die Punktnotation angesprochen:</p>
+<ul>
+<li>peerInfo.channel = 0;  // Standard-Kanal zum Senden</li>
+<li>peerInfo.encrypt = false;  // Keine Verschlüsselung verwenden</li>
+</ul>
+<h4 id="memcpypeerinfopeer_addr-empfaengermac-6">memcpy(peerInfo.peer_addr, empfaengerMAC, 6);</h4>
+<p>Mit <strong>memcpy</strong> wird die Empfängeradresse <strong>empfaengerMAC</strong> Byte-für-Byte in den Speicherbereich <strong>peerInfo.peer_addr</strong> kopiert. Hierbei müssen <strong>6</strong> Bytes kopiert werden.</p>
+<h4 id="if-esp_now_add_peerpeerinfo--esp_ok-">if (esp_now_add_peer(&amp;peerInfo) != ESP_OK) {</h4>
+<p>Vor dem Senden muss der Empfänger in eine Liste von Partnern (peers) aufgenommen werden. Wenn das funktioniert, gibt die Methode <strong>esp_now_add_peer(&amp;peerInfo)</strong> den Wert <strong>ESP_OK</strong> zurück.</p>
+<h4 id="esp_err_t-ergebnis--esp_now_sendempfaengermac-uint8_t--nr-sizeofnr">esp_err_t ergebnis = esp_now_send(empfaengerMAC, (uint8_t *) &amp;nr, sizeof(nr));</h4>
+<p>Die Methode <strong>esp_now_send</strong> sendet Daten über ESPNow. Sie hat 3 Parameter:</p>
+<ul>
+<li>empfaengerMAC: MAC-Adresse des Empfängers</li>
+<li>&amp;nr: Die Variable <strong>nr</strong> enthält die Daten, die gesendet werden sollen. Als Parameter wird aber nicht diese Variable, sondern ein Zeiger auf ihren Speicherort übergeben. Dies wird durch das vorgesetzte <strong>&amp;</strong>-Zeichen erreicht. Außerdem muss diese Variable in eine Folge von 8-Bit-Zahlen umgewandelt werden. Hierzu dient die (uint_8 *) Anweisung.</li>
+<li>sizeof(nr): Abschließend muss die Länge der gesendeten Daten angeben werden.</li>
+</ul>
+<h2 id="empfangen-von-daten">Empfangen von Daten</h2>
+<p>Beim Empfangen von Daten wird automatisch eine <strong>Callback-Funktion</strong> aufgerufen. Diese muss im <strong>setup</strong> registriert werden.</p>
+<p>Wir verwenden die Funktion <strong>datenEmpfangen</strong> und registrieren sie mit <strong>esp_now_register_recv_cb(esp_now_recv_cb_t(datenEmpfangen));</strong> als Callback-Funktion, die beim Empfangen (engl. <strong>rec</strong>ei<strong>v</strong>e) von Daten ausgelöst wird.</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;esp_now.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WiFi.h&gt;</span></span>
+
+<span class="hljs-type">int</span> empfangeneZahl;  <span class="hljs-comment">// Variable zum Speichern des empfangenen Ganzzahlwerts</span>
+  
+<span class="hljs-comment">// Callback-Funktion, die bei Empfang von Daten aufgerufen wird</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">datenEmpfangen</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">uint8_t</span> * mac, <span class="hljs-type">const</span> <span class="hljs-type">uint8_t</span> *eingehendeDaten, <span class="hljs-type">int</span> len)</span> </span>{
+  <span class="hljs-comment">// Überprüfen, ob die Länge der empfangenen Daten der Größe von empfangeneZahl entspricht</span>
+  <span class="hljs-keyword">if</span> (len == <span class="hljs-built_in">sizeof</span>(empfangeneZahl)) {  
+    <span class="hljs-built_in">memcpy</span>(&amp;empfangeneZahl, eingehendeDaten, <span class="hljs-built_in">sizeof</span>(empfangeneZahl));  <span class="hljs-comment">// Kopiere die empfangenen Daten in die Variable</span>
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Bytes empfangen: &quot;</span>);  <span class="hljs-comment">// Ausgabe der Anzahl empfangener Bytes</span>
+    Serial.<span class="hljs-built_in">println</span>(len);
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Empfangene Int-Zahl: &quot;</span>);  <span class="hljs-comment">// Ausgabe der empfangenen Ganzzahl</span>
+    Serial.<span class="hljs-built_in">println</span>(empfangeneZahl);
+  
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;MAC-Adresse des Senders: &quot;</span>);
+  Serial.<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%02x:%02x:%02x:%02x:%02x:%02x\n&quot;</span>,
+                  mac[<span class="hljs-number">0</span>], mac[<span class="hljs-number">1</span>], mac[<span class="hljs-number">2</span>],
+                  mac[<span class="hljs-number">3</span>], mac[<span class="hljs-number">4</span>], mac[<span class="hljs-number">5</span>]);
+  
+  
+  } <span class="hljs-keyword">else</span> {
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Fehler: Falsche Datenlänge empfangen&quot;</span>);  <span class="hljs-comment">// Fehlermeldung bei falscher Datenlänge</span>
+  }
+}
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);  <span class="hljs-comment">// Start der seriellen Kommunikation mit 115200 Baud</span>
+  WiFi.<span class="hljs-built_in">mode</span>(WIFI_STA);  <span class="hljs-comment">// Setzen des WiFi-Modus auf Station</span>
+
+  <span class="hljs-comment">// Initialisieren von ESP-NOW und Überprüfen auf Fehler</span>
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">esp_now_init</span>() != ESP_OK) {
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Fehler bei der Initialisierung von ESP-NOW&quot;</span>);
+    <span class="hljs-keyword">return</span>;
+  }
+  
+  <span class="hljs-comment">// Registrieren der Callback-Funktion für empfangene Daten</span>
+  <span class="hljs-built_in">esp_now_register_recv_cb</span>(<span class="hljs-built_in">esp_now_recv_cb_t</span>(datenEmpfangen));
+}
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// Hier ist kein Code nötig, da die Datenverarbeitung in der Callback-Funktion erfolgt. </span>
+}
+
+</code></pre>
+<p><a href="../index.html">zurück</a></p>
+
+            
+            
+        </body>
+        </html>

@@ -6,13 +6,15 @@
 Übungsmaterialien Informatik: Hi2272.github.io
 ==============================================
 [6. Klasse](#informatik-6-klasse)
-| [Mikrocontroller](#mikrocontroller)
+| [7. Klasse](#informatik-7-klasse)
+| [Mikrocontroller](/00Informatik/00Mikrocontroller/Wahlkurs/index.html)
 | [Funktionale Modellierung](#funktionale-modellierung)
 | [Datenbanken](#datenbanken)
-| [Objektorientierung](#objektorientierte-programmierung)
+| [Objektorientierung: 9.Klasse](#objektorientierte-programmierung)
+/ [10. Klasse](#java-in-der-10-klasse)
 | [Datenschutz](#datenschutz)
-| 
-
+| [11. Klasse](#informatik-11-klasse) |    
+  
 ## Informatik 6. Klasse
 ***
 ### Aufbau eines Computers
@@ -30,10 +32,25 @@
 [Punktnotation](00Informatik6/Punktnotation/index.html)  
 [Punktnotation 2](https://learningapps.org/view34317198)
 
+[Jahrgangsstufentest](00Informatik6/Jahrgangsstufentest/index.html)  
+
+### Textverarbeitung
+[Kopieren und Korrigieren von Text](00Informatik6/Textverarbeitung/01Einstieg/index.html)  
+[Klassen einer Textverarbeitung](00Informatik6/Textverarbeitung/02Klassen/index.html)  
+[Markieren von Text](00Informatik6/Textverarbeitung/03Markieren%20von%20Text/index.html)  
+
 
 ### Powerpoint
 [Animationen](00Informatik6/Powerpoint/Animation/index.html)
 [Powerpoint Schule](00Informatik6/PowerpointSchule/index.html)  
+
+### Verfassungsviertelstunde
+[Snap Map](00Informatik6/Verfassungsviertelstunde/SnapMap/index.html)
+
+## Informatik 7. Klasse
+[Mein Netzwerk zu Hause](https://learningapps.org/view7741094)  
+[Die Abenteuer von Kommissar Smith](https://netzwerke.hauptquartier.eu/abenteuer-archiv)   
+
 
 ## Mikrocontroller
 ***
@@ -161,6 +178,52 @@
 [Aufbau einer Java-Klasse: Code](/00Informatik/KlasseAufbau/index.html)  
 [Aufbau einer Java-Klasse: Bezeichnungen](/00Informatik/KlassenAufbau2/index.html)  
 [Wiederholung Java](/00Informatik/WiederholungJava/index.html)  
+
+## Java in der 10. Klasse
+[Wiederholung Schleifen](00Informatik10/01WiederholungJava/index.html)  
+
+[Assembler Simulator](https://exuanbo.xyz/assembler-simulator) 
+ 
+[Variablen in Java: Text](00Informatik10/JavaVariablen/mindmap.html)      
+
+[Variablen in Java: Mindmap](00Informatik10/JavaVariablen/mindmap2.html)   
+[Assoziation oder Aggregation?](https://learningapps.org/view38043424)  
+  
+[Übersicht Felder in Java](00Informatik10/ÜbersichtFelder.html)    
+
+[Polymorphie](OIDE_Polymorphie/index.html)  
+
+
+[Anleitung Webshop automatisch](00Informatik10/WebshopAutomatisch.html)  
+[BlueJ-Dateien Webshop-Projekt](00Informatik10/BlueJDateien/index.html)  
+
+[OnlineIDE: Sortieren von Feldern: Selektion-Sort](OIDE_WS_0_Sortieralgorithmus/index.html)  
+[OnlineIDE: Sortieren von Feldern: Bubble-Sort](OIDE_WS_6_Bubblesort/index.html)  
+[OnlineIDE: Löschen von Elementen](OIDE_Loeschen/index.html)  
+[OnlineIDE: Einfügen von Elementen](OIDE_Einfuegen/index.html)  
+[OnlineIDE: Tauschen von Namen](OIDE_WS_7_TauscheNamen/index.html)
+
+
+[OnlineIDE: Notenverwaltung](OIDE_Noten01Anz/index.html)  
+
+[OnlineIDE: Ampelsteuerung](OIDE_Ampel01/index.html)  
+
+[OnlineIDE: Minesweeper](OIDE_Minesweeper/index.html)  
+
+[Weihnachtsbaum](00Informatik10/Weihnachtsbaum/index.html)
+
+##  Projekt
+
+[Projekt-Definition](00Informatik10/Projekt/index.html)   
+[Grundstruktur](00Informatik10/Projekt/01Grundstruktur.html)  
+[Breakout-Tutorial](00Javascript/Phaser/Breakout/Tutorial/index.html)  
+[Endversion](00Informatik10/Projekt/10Background/index.html)  
+
+## Informatik 11. Klasse
+[Graphen implementieren](00Informatik11/01Graph/01GraphStart/index.html)  
+[Graphen bearbeiten](00Informatik11/02GraphenAuslesen/01Algorithmen/index.html)  
+
+
 ## Datenschutz
 ***
 
@@ -173,7 +236,8 @@
 [9a](https://Hi2272.github.io/00Informatik/Planspiel/index.html)  
 
 ## Javascript
-[Lerneinheiten von TheCodingTrain](/00Informatik/00Javascript/index.html)
+[Lerneinheiten von TheCodingTrain](/00Informatik/00Javascript/index.html)  
+[Breakout Tutorial](/00Informatik/00Javascript/Phaser/Breakout/Tutorial/index.html)  
   
 ## CSS
 [CSS](HTMLundCSS/index.html)

@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -172,10 +174,14 @@ loop wird immer wieder ausgeführt
 */</span>
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
   <span class="hljs-keyword">if</span> (<span class="hljs-built_in">digitalRead</span>(taster) == LOW) {       <span class="hljs-comment">// Wenn der Taster gedrückt ist,</span>
-    zeit = <span class="hljs-number">15000</span>;                         <span class="hljs-comment">// dann soll der Motor 15000 ms = 15 Sekunden laufen</span>
-    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">digitalRead</span>(taster) == LOW) {  <span class="hljs-comment">// Warte, bis der Taster losgelassen wurde</span>
+    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">digitalRead</span>(taster) == LOW) {  <span class="hljs-comment">// dann warte, bis der Taster losgelassen wurde</span>
       <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
     }
+    <span class="hljs-built_in">digitalWrite</span>(in1,LOW);                <span class="hljs-comment">// dann soll der Motor zunächst 100 ms rückwärts laufen,</span>
+    <span class="hljs-built_in">digitalWrite</span>(in2,HIGH);               <span class="hljs-comment">// damit evtl. verklemmte Kugeln sich lösen</span>
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">100</span>);
+    zeit = <span class="hljs-number">15000</span>;                         <span class="hljs-comment">// und anschließend 15000 ms = 15 Sekunden vorwärts laufen</span>
+   
   }
   <span class="hljs-keyword">if</span> (zeit &gt; <span class="hljs-number">0</span>) {             <span class="hljs-comment">// Wenn noch Laufzeit übrig ist,</span>
     <span class="hljs-built_in">digitalWrite</span>(in1, HIGH);  <span class="hljs-comment">// dann soll der Motor laufen</span>

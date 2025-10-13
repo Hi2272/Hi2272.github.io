@@ -1,0 +1,53 @@
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 1.5em;
+            background-color: antiquewhite;
+            text-align: center;
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        td {
+            text-align: left;
+        }
+
+        iframe {
+            margin: 3%;
+            width: 94%;
+            min-height: 20vh;
+            border-radius: 5px;
+            border: 2px solid lightblue;
+            background-color: white;
+        }
+
+        select {
+            margin: 10px;
+            margin-left: 20px;
+            border-radius: 5px;
+            background-color: lightblue;
+            color: darkblue;
+            font-size: 1.5em;
+         
+        }
+
+        button {
+            margin: 20px;
+            padding: 8px 16px;
+            font-size: 1.5em;
+         
+            border-radius: 5px;
+            color: darkblue;
+            background-color: lightblue;
+            font-weight: bold;
+        }
+
+        .footer {
+            font-size: 0.4em;
+        }
+
+        .select-group {
+            margin-bottom: 1em;
+        }

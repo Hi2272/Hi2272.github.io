@@ -137,9 +137,15 @@ class Shape {
             "setxy": "setxy",
 
             "dupliziere": "copypaste",
+            "duplizieren": "copypaste",
             "duplicate": "copypaste",
             "verdoppele": "copypaste",
             "copypaste": "copypaste",
+            "verdopple": "copypaste",
+            "verdoppeln": "copypaste",
+
+            
+            
 
             "setlinienfarbe": "setstroke",
             "setzelinienfarbe": "setstroke",

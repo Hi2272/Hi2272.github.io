@@ -1,5 +1,6 @@
  <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
+## Arduino-Code:
 
 ```C++
 int ledRot = 7;
@@ -25,6 +26,8 @@ void loop() {
   delay(10);
 }
 ```
-  
+***
+[weiter zum Piepser](../03/index.html)   
+***
 [zurück](../index.html)
 

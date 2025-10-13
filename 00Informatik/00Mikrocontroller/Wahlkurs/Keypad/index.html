@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Tastatur-Matrix</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="tastatur-matrix">Tastatur-Matrix</h1>
+<h2 id="zuordnen-der-tasten">Zuordnen der Tasten</h2>
+<p>Mit diesem Sketch können die Tasten eines beliebigen Keypads ausgelesen werden.<br>
+Anschließend kann die <strong>keymap</strong> aus dem seriellen Monitor herauskopiert und in den eigenen Sketch eingefügt werden.</p>
+<pre><code class="language-C++"><span class="hljs-comment">// Größe der Tastaturmatrix: 4 Zeilen und 4 Spalten (Konstanten bleiben unverändert)</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> ANZ_ROWS = <span class="hljs-number">4</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> ANZ_COLS = <span class="hljs-number">4</span>;
+
+<span class="hljs-comment">// Pins der Spalten und Zeilen - umgekehrte Reihenfolge für passende Matrix-Belegung zum 4x4 Keypad</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> colPins[ANZ_COLS] = { <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span> };
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> rowPins[ANZ_ROWS] = { <span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span> };
+
+<span class="hljs-comment">// Symbole auf den Tasten des 4x4 Keypads</span>
+<span class="hljs-type">const</span> <span class="hljs-type">char</span> symbols[ANZ_ROWS * ANZ_COLS] = { <span class="hljs-string">&#x27;0&#x27;</span>, <span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>, <span class="hljs-string">&#x27;4&#x27;</span>, <span class="hljs-string">&#x27;5&#x27;</span>, <span class="hljs-string">&#x27;6&#x27;</span>, <span class="hljs-string">&#x27;7&#x27;</span>, <span class="hljs-string">&#x27;8&#x27;</span>, <span class="hljs-string">&#x27;9&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;D&#x27;</span>, <span class="hljs-string">&#x27;#&#x27;</span>, <span class="hljs-string">&#x27;*&#x27;</span> };
+
+<span class="hljs-comment">// Matrix zur Speicherung der erfassten Symbole</span>
+<span class="hljs-type">char</span> keymap[ANZ_ROWS][ANZ_COLS];
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
+
+  <span class="hljs-comment">// Setze Zeilen als OUTPUT und initialisiere mit HIGH</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; ANZ_ROWS; i++) {
+    <span class="hljs-built_in">pinMode</span>(rowPins[i], OUTPUT);
+    <span class="hljs-built_in">digitalWrite</span>(rowPins[i], HIGH);
+  }
+  <span class="hljs-comment">// Setze Spalten als INPUT mit internem Pullup-Widerstand</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; ANZ_COLS; i++) {
+    <span class="hljs-built_in">pinMode</span>(colPins[i], INPUT_PULLUP);
+  }
+
+  <span class="hljs-comment">// Fülle keymap zunächst mit Leerzeichen</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> r = <span class="hljs-number">0</span>; r &lt; ANZ_ROWS; r++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> c = <span class="hljs-number">0</span>; c &lt; ANZ_COLS; c++) {
+      keymap[r][c] = <span class="hljs-string">&#x27; &#x27;</span>;
+    }
+  }
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Starte Tastatur-Matrix-Zuordnung:&quot;</span>);
+
+  <span class="hljs-comment">// Durchlaufe alle Symbole und fordere Tastendruck zur Zuordnung der Taste an</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; ANZ_ROWS * ANZ_COLS; i++) {
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Bitte Taste drücken für Symbol &#x27;&quot;</span>);
+    Serial.<span class="hljs-built_in">print</span>(symbols[i]);
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;&#x27;&quot;</span>);
+
+    <span class="hljs-type">int</span> pos = <span class="hljs-built_in">waitForAnyKey</span>();
+    <span class="hljs-keyword">if</span> (pos == <span class="hljs-number">-1</span>) {
+      Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Fehler beim Lesen der Taste, nochmal versuchen.&quot;</span>);
+      i--;  <span class="hljs-comment">// Wiederhole diesen symbolindex</span>
+      <span class="hljs-keyword">continue</span>;
+    }
+    <span class="hljs-type">int</span> row = pos / ANZ_COLS;  <span class="hljs-comment">// Berechne Zeile aus Position</span>
+    <span class="hljs-type">int</span> col = pos % ANZ_COLS;  <span class="hljs-comment">// Berechne Spalte aus Position</span>
+
+    <span class="hljs-comment">// Speichere das Symbol an der erkannten Position</span>
+    keymap[row][col] = symbols[i];
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Position (Spalte &quot;</span>);
+    Serial.<span class="hljs-built_in">print</span>(col);
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;, Zeile &quot;</span>);
+    Serial.<span class="hljs-built_in">print</span>(row);
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;) gespeichert.&quot;</span>);
+
+    <span class="hljs-built_in">printKeymap</span>();
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;--------------------&quot;</span>);
+  }
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Alle Symbole eingetragen.&quot;</span>);
+  <span class="hljs-built_in">printKeymap</span>();
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Teste jetzt die Matrix!&quot;</span>);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-type">int</span> pos = <span class="hljs-built_in">getKey</span>();
+  <span class="hljs-keyword">if</span> (pos != <span class="hljs-number">-1</span>){
+    <span class="hljs-type">int</span> row = pos / ANZ_COLS;  <span class="hljs-comment">// Zeile</span>
+    <span class="hljs-type">int</span> col = pos % ANZ_COLS;  <span class="hljs-comment">// Spalte</span>
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Spalte: &quot;</span>);
+    Serial.<span class="hljs-built_in">print</span>(col);
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;, Zeile: &quot;</span>);
+    Serial.<span class="hljs-built_in">print</span>(row);
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot; Symbol: &quot;</span>);
+    Serial.<span class="hljs-built_in">println</span>(keymap[row][col]);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">100</span>);
+  }
+}
+
+<span class="hljs-comment">/**
+ * Ermittelt, welche Taste aktuell gedrückt wurde.
+ * 
+ * @return Die Position der gedrückten Taste als Index (Zeile * ANZ_COLS + Spalte) oder -1 wenn keine Taste gedrückt.
+ */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getKey</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> row = <span class="hljs-number">0</span>; row &lt; ANZ_ROWS; row++) {
+    <span class="hljs-built_in">digitalWrite</span>(rowPins[row], LOW);  <span class="hljs-comment">// Aktiviere aktuelle Zeile</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> col = <span class="hljs-number">0</span>; col &lt; ANZ_COLS; col++) {
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">digitalRead</span>(colPins[col]) == LOW) {  <span class="hljs-comment">// Taste sichtbar gedrückt</span>
+        <span class="hljs-built_in">delay</span>(<span class="hljs-number">50</span>); <span class="hljs-comment">// Entprellzeit</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">digitalRead</span>(colPins[col]) == LOW) { <span class="hljs-comment">// Bestätige Tastendruck</span>
+          <span class="hljs-keyword">while</span> (<span class="hljs-built_in">digitalRead</span>(colPins[col]) == LOW) ; <span class="hljs-comment">// Warte bis Taste losgelassen</span>
+          <span class="hljs-built_in">digitalWrite</span>(rowPins[row], HIGH); <span class="hljs-comment">// Deaktiviere Zeile</span>
+          <span class="hljs-keyword">return</span> row * ANZ_COLS + col; <span class="hljs-comment">// Berechne Position und liefere zurück</span>
+        }
+      }
+    }
+    <span class="hljs-built_in">digitalWrite</span>(rowPins[row], HIGH); <span class="hljs-comment">// Deaktiviere Zeile vor nächster Iteration</span>
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>; <span class="hljs-comment">// Keine Taste gedrückt</span>
+}
+
+<span class="hljs-comment">/**
+ * Wartet auf einen Tastendruck und gibt die Position der gedrückten Taste zurück.
+ * 
+ * @return Die Position der gedrückten Taste als Index (Zeile * ANZ_COLS + Spalte).
+ */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">waitForAnyKey</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-type">int</span> i = <span class="hljs-number">-1</span>;
+  <span class="hljs-keyword">while</span> (i == <span class="hljs-number">-1</span>) {
+    i = <span class="hljs-built_in">getKey</span>();  <span class="hljs-comment">// Solange keine Taste, weiter warten</span>
+  }
+  <span class="hljs-keyword">return</span> i;
+}
+
+<span class="hljs-comment">/**
+ * Gibt die aktuelle Belegung der Tastaturmatrix mit Symbolen über die serielle Schnittstelle aus.
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printKeymap</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;char keymap[&quot;</span>);
+  Serial.<span class="hljs-built_in">print</span>(ANZ_COLS);
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;][&quot;</span>);
+  Serial.<span class="hljs-built_in">print</span>(ANZ_ROWS);
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;] = {&quot;</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> r = <span class="hljs-number">0</span>; r &lt; ANZ_ROWS; r++) {
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;  {&quot;</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> c = <span class="hljs-number">0</span>; c &lt; ANZ_COLS; c++) {
+      Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;\&#x27;&#x27;</span>);
+      Serial.<span class="hljs-built_in">print</span>(keymap[r][c]);
+      Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;\&#x27;&#x27;</span>);
+      <span class="hljs-keyword">if</span> (c &lt; ANZ_COLS - <span class="hljs-number">1</span>) Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;, &quot;</span>);
+    }
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;}&quot;</span>);
+    <span class="hljs-keyword">if</span> (r &lt; ANZ_ROWS - <span class="hljs-number">1</span>) Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;,&quot;</span>);
+    <span class="hljs-keyword">else</span> Serial.<span class="hljs-built_in">println</span>();
+  }
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;};&quot;</span>);
+}
+</code></pre>
+<h2 id="anwenden-der-matrix">Anwenden der Matrix</h2>
+<p>Dieser Sketch verwendet die oben erzeugte <strong>keymap</strong>:</p>
+<pre><code class="language-C++">
+<span class="hljs-comment">// Anzahl der Zeilen und Spalten der Tastaturmatrix (unveränderliche Konstanten)</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> ANZ_ROWS = <span class="hljs-number">4</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> ANZ_COLS = <span class="hljs-number">4</span>;
+
+<span class="hljs-comment">// Zuordnung der Pins zu den Spalten und Zeilen entsprechend der Tastaturmatrix</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> colPins[ANZ_COLS] = { <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span> };
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> rowPins[ANZ_ROWS] = { <span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span> };
+
+<span class="hljs-comment">// Tastatur-Layout zur Zuordnung der Tastenposition zu den Symbolen</span>
+<span class="hljs-type">char</span> keymap[<span class="hljs-number">4</span>][<span class="hljs-number">4</span>] = {
+  { <span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;3&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span> },
+  { <span class="hljs-string">&#x27;4&#x27;</span>, <span class="hljs-string">&#x27;5&#x27;</span>, <span class="hljs-string">&#x27;6&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span> },
+  { <span class="hljs-string">&#x27;7&#x27;</span>, <span class="hljs-string">&#x27;8&#x27;</span>, <span class="hljs-string">&#x27;9&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span> },
+  { <span class="hljs-string">&#x27;*&#x27;</span>, <span class="hljs-string">&#x27;0&#x27;</span>, <span class="hljs-string">&#x27;#&#x27;</span>, <span class="hljs-string">&#x27;D&#x27;</span> }
+};
+
+<span class="hljs-comment">/**
+ * Scannt die Tastaturmatrix auf eine gedrückte Taste.
+ * 
+ * Jede Zeile wird einzeln auf LOW gesetzt und die Spalten auf LOW geprüft.
+ * Wird eine Taste erkannt, wartet die Funktion auf das Loslassen der Taste,
+ * bevor sie die Position (als Integer codiert) zurückgibt.
+ * 
+ * @return Positionsindex der gedrückten Taste (Zeile * ANZ_COLS + Spalte),
+ *         oder -1 wenn keine Taste gedrückt ist.
+ */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getKey</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> row = <span class="hljs-number">0</span>; row &lt; ANZ_ROWS; row++) {
+    <span class="hljs-built_in">digitalWrite</span>(rowPins[row], LOW);
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> col = <span class="hljs-number">0</span>; col &lt; ANZ_COLS; col++) {
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">digitalRead</span>(colPins[col]) == LOW) {
+        <span class="hljs-comment">// Warten bis die Taste wieder losgelassen wird</span>
+        <span class="hljs-keyword">while</span> (<span class="hljs-built_in">digitalRead</span>(colPins[col]) == LOW);
+        <span class="hljs-built_in">digitalWrite</span>(rowPins[row], HIGH);
+        <span class="hljs-keyword">return</span> row * ANZ_COLS + col;
+      }
+    }
+    <span class="hljs-built_in">digitalWrite</span>(rowPins[row], HIGH);
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+}
+
+
+<span class="hljs-comment">/**
+ * Initialisiert die serielle Kommunikation und konfiguriert die Pins
+ * für die Zeilen als Ausgänge (initial HIGH) und Spalten als Eingänge
+ * mit Pullup-Widerständen.
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; ANZ_ROWS; i++) {
+    <span class="hljs-built_in">pinMode</span>(rowPins[i], OUTPUT);
+    <span class="hljs-built_in">digitalWrite</span>(rowPins[i], HIGH);
+  }
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; ANZ_COLS; i++) {
+    <span class="hljs-built_in">pinMode</span>(colPins[i], INPUT_PULLUP);
+  }
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Teste jetzt die Matrix!&quot;</span>);
+}
+
+<span class="hljs-comment">/**
+ * Hauptschleife: Prüft kontinuierlich, ob eine Taste gedrückt wurde.
+ * Bei Erkennung wird die Position ermittelt und das zugehörige Symbol
+ * über die serielle Schnittstelle ausgegeben.
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-type">int</span> pos = <span class="hljs-built_in">getKey</span>();
+  <span class="hljs-keyword">if</span> (pos != <span class="hljs-number">-1</span>) {
+    <span class="hljs-type">int</span> row = pos / ANZ_COLS;  <span class="hljs-comment">// Berechnet die Zeilennummer aus der Position</span>
+    <span class="hljs-type">int</span> col = pos % ANZ_COLS;  <span class="hljs-comment">// Berechnet die Spaltennummer aus der Position</span>
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;col: &quot;</span>);
+    Serial.<span class="hljs-built_in">print</span>(col);
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;, row: &quot;</span>);
+    Serial.<span class="hljs-built_in">print</span>(row);
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot; Symbol: &quot;</span>);
+    Serial.<span class="hljs-built_in">println</span>(keymap[row][col]);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">100</span>);
+  }
+}
+
+</code></pre>
+
+            
+            
+        </body>
+        </html>

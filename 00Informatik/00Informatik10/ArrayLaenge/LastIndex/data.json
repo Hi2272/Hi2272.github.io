@@ -1,0 +1,19 @@
+{   
+  "snap":true,
+  "stapel":false,
+
+  "dateiname":"Screenshot.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Methode getLastIndex",
+  "angabe":"Ziehe die Bausteine an die passende Stelle:",
+  "txt":[
+    {"x":0.13 ,"y":0.154,"width":0.135,"height":0.106,"pos":[0]},
+    {"x":0.248 ,"y":0.441,"width":0.094,"height":0.121,"pos":[1]},
+    {"x":0.129 ,"y":0.74,"width":0.156,"height":0.104,"pos":[2]},
+    {"x":0.131 ,"y":0.286,"width":0.351,"height":0.132,"pos":[3]},
+    {"x":0.009 ,"y":0.004,"width":0.113,"height":0.12,"pos":[4]},
+    {"x":0.126 ,"y":0.004,"width":0.05,"height":0.121,"pos":[5]},
+    {"x":0.179 ,"y":0.002,"width":0.251,"height":0.127,"pos":[6]},
+    {"x":0.116 ,"y":0.61,"width":0.054,"height":0.107,"pos":[7]}
+  ]
+    }

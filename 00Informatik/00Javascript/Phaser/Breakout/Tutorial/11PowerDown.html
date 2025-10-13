@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Breakout-Game Tutorial mit Phaser&period;io</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+              <meta charset="utf-8" />
+  <title>Breakout</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="breakout-game-tutorial-mit-phaserio">Breakout-Game Tutorial mit <a href="http://Phaser.io">Phaser.io</a></h1>
+<h2 id="schritt-12-neuer-steintyp-verringert-zahl-der-leben">Schritt 12: Neuer Steintyp: Verringert Zahl der Leben</h2>
+<h3 id="121-allgemeines">12.1 Allgemeines</h3>
+<p>Um den gewünschten neuen Steintyp zu ergänzen, gehen wir wie folgt vor:</p>
+<ul>
+<li>Wir definieren in der JSON-Level-Datei einen neuen Steintyp, z.B. Typ 6.</li>
+<li>Bei Kollision mit dem Ball auf einen Brick des Typs 6 soll dieser Brick zerstört werden.</li>
+<li>Danach soll eine neue Kugel (PowerDown) am Ort des Bricks erstellt werden, die nach unten fällt.</li>
+<li>Trifft diese Kugel auf das Paddle, reduziert sich die Anzahl der Leben um 1.</li>
+<li>Wie beim normalen Lebenverlust wird geprüft, ob das Spiel beendet wird.</li>
+</ul>
+<p>Im Code müssen wir also:</p>
+<ol>
+<li>Einen neuen Physik-Sprite <code>powerDown</code> deklarieren und laden (ähnlich wie <code>powerUp</code>).</li>
+<li>Die Kollision PowerDown - Paddle behandeln.</li>
+<li>Im <code>ballBrickCollision</code>-Handler für Typ 6 den Brick zerstören und <code>spawnPowerDown</code> aufrufen.</li>
+<li>Funktionen zum Spawnen, Zurücksetzen des PowerDown hinzufügen.</li>
+<li>Das Leben reduzieren, wenn PowerDown eingesammelt wird, ggf. Spiel beenden.</li>
+</ol>
+<hr>
+<h3 id="122-schritt-für-schritt-ergänzungen-im-code">12.2 Schritt-für-Schritt-Ergänzungen im Code</h3>
+<h3 id="1222-variablen">12.2.2 Variablen</h3>
+<pre><code class="language-js"><span class="hljs-keyword">let</span> powerDown;
+</code></pre>
+<h3 id="1222-preload">12.2.2 Preload</h3>
+<p>Lade eine neue Sprite für PowerDown, z.B. <code>sphere2.png</code>.</p>
+<pre><code class="language-js"><span class="hljs-variable language_">this</span>.<span class="hljs-property">load</span>.<span class="hljs-title function_">image</span>(<span class="hljs-string">&#x27;sphere2&#x27;</span>, <span class="hljs-string">&#x27;assets/sphere2.png&#x27;</span>);  <span class="hljs-comment">// PowerDown Kugel laden</span>
+</code></pre>
+<h3 id="1223-create">12.2.3 Create</h3>
+<pre><code class="language-js">powerDown = <span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">image</span>(-<span class="hljs-number">100</span>, -<span class="hljs-number">100</span>, <span class="hljs-string">&#x27;sphere2&#x27;</span>); <span class="hljs-comment">// erstmal ausblenden, außerhalb vom Bildschirm</span>
+powerDown.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+powerDown.<span class="hljs-title function_">setCollideWorldBounds</span>(<span class="hljs-literal">true</span>);
+powerDown.<span class="hljs-title function_">setBounce</span>(<span class="hljs-number">0.5</span>);
+powerDown.<span class="hljs-title function_">setVisible</span>(<span class="hljs-literal">false</span>);
+powerDown.<span class="hljs-property">body</span>.<span class="hljs-property">allowGravity</span> = <span class="hljs-literal">false</span>;
+
+<span class="hljs-comment">// Kollisionsprüfung PowerDown - Paddle</span>
+<span class="hljs-variable language_">this</span>.<span class="hljs-property">physics</span>.<span class="hljs-property">add</span>.<span class="hljs-title function_">overlap</span>(powerDown, paddle, collectPowerDown, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">this</span>);
+</code></pre>
+<h3 id="1224-update">12.2.4. update</h3>
+<pre><code class="language-js"><span class="hljs-keyword">if</span> (powerDown.<span class="hljs-property">visible</span>) {
+  powerDown.<span class="hljs-title function_">setVelocityY</span>(<span class="hljs-number">200</span>);
+
+  <span class="hljs-keyword">if</span> (powerDown.<span class="hljs-property">y</span> &gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">sys</span>.<span class="hljs-property">game</span>.<span class="hljs-property">config</span>.<span class="hljs-property">height</span> - powerDown.<span class="hljs-property">height</span>) {
+    <span class="hljs-title function_">resetPowerDown</span>();
+  }
+}
+</code></pre>
+<h3 id="1225-ballbrickcollision">12.2.5 BallBrickCollision</h3>
+<p>In ballBrickCollision für Typ 6 ergänzen:</p>
+<pre><code class="language-js"><span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:
+  <span class="hljs-comment">// Brick zerstören und PowerDown erzeugen</span>
+  brick.<span class="hljs-title function_">disableBody</span>(<span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>);
+  brickHealth.<span class="hljs-title function_">delete</span>(brick);
+  decrementBricksRemaining.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>);
+
+  spawnPowerDown.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, brick.<span class="hljs-property">x</span>, brick.<span class="hljs-property">y</span>);
+  <span class="hljs-keyword">break</span>;
+</code></pre>
+<h3 id="1226-powerdown-entstehen-lassen">12.2.6 PowerDown entstehen lassen</h3>
+<pre><code class="language-js"><span class="hljs-comment">// PowerDown erzeugen an Position x,y</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">spawnPowerDown</span>(<span class="hljs-params">x, y</span>) {
+  powerDown.<span class="hljs-title function_">setPosition</span>(x, y);
+  powerDown.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">200</span>);
+  powerDown.<span class="hljs-title function_">setVisible</span>(<span class="hljs-literal">true</span>);
+}
+</code></pre>
+<h3 id="1227-powerdown-einsammeln">12.2.7 PowerDown einsammeln</h3>
+<pre><code class="language-js"><span class="hljs-comment">// PowerDown auf Paddle trifft -&gt; Leben verlieren</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">collectPowerDown</span>(<span class="hljs-params">sphere, paddle</span>) {
+  <span class="hljs-title function_">resetPowerDown</span>();
+  
+  <span class="hljs-title function_">loseLife</span>(); <span class="hljs-comment">// Wie wenn Ball verloren wurde, ein Leben abziehen</span>
+}
+</code></pre>
+<h3 id="1228-powerdown-entfernen">12.2.8 PowerDown entfernen</h3>
+<pre><code class="language-js"><span class="hljs-comment">// PowerDown zurücksetzen wenn verloren oder eingesammelt</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">resetPowerDown</span>(<span class="hljs-params"></span>) {
+  powerDown.<span class="hljs-title function_">setVisible</span>(<span class="hljs-literal">false</span>);
+  powerDown.<span class="hljs-title function_">setVelocity</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  powerDown.<span class="hljs-property">x</span> = -<span class="hljs-number">100</span>;
+  powerDown.<span class="hljs-property">y</span> = -<span class="hljs-number">100</span>;
+}
+</code></pre>
+<hr>
+<h3 id="weiter"><a href="12PaddleBreiter.html">weiter</a></h3>
+
+            
+            
+        </body>
+        </html>

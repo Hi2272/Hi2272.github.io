@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Literatur</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="literatur">Literatur</h1>
+<p><a href="https://www.instructables.com/Adding-MIDI-to-Old-Home-Organs">Grundlagen zur Tastenerkennung</a></p>
+<p><a href="https://www.reddit.com/r/diyelectronics/comments/1mawsv1/using_original_digital_piano_speakers_with_pi">Reddit Diskussion</a></p>
+<p><img src="2025-09-14_20-23.png" alt="alt text"><br>
+Die Tasten werden über eine keypad-Matrix mit Shift-Registern angesprochen.<br>
+Pro Klaviertaste sind zwei Taster verbaut.</p>
+<p>16 Pin Flachbandkabel</p>
+<p>Pin 1: +5 V
+Pin 2: GND
+Pin 3,4,5,6,7,8,9,10: 8 rows
+Pin 11-15: columns über Shift-Register
+Pin 16: GND</p>
+<h2 id="shift-register">Shift-Register</h2>
+<p>HD74LS138P
+3 to 8 Decoder
+8*8 = 64 Taster = 32 Tasten
+pro Decoder</p>
+<p>Insgesamt sind 3 Decoder verbaut. Es könnten also 96 Tasten angesprochen werden.</p>
+<h3 id="verdrahtung">Verdrahtung</h3>
+<h4 id="pins-zum-binären-codieren-der-8-anschlüsse">Pins zum binären Codieren der 8 Anschlüsse</h4>
+<p>14 -&gt; 1 = A0 = A<br>
+13 -&gt; 2 = A1 = B<br>
+12 -&gt; 3 = A2 = C</p>
+<table>
+<thead>
+<tr>
+<th>12</th>
+<th>13</th>
+<th>14</th>
+<th>Pin LOW</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C</td>
+<td>B</td>
+<td>A</td>
+<td></td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>6</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>7</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>Alle anderen Pins sind immer HIGH.</p>
+<h4 id="pins-zum-aktivieren-der-dekoder">Pins zum Aktivieren der Dekoder</h4>
+<p>Die Enabled-Pins der 3 Dekoder sind unterschiedlich verdrahtet:</p>
+<p>Dekoder 1:<br>
+15 -&gt; 5 = CS3<br>
+11 -&gt; 4 = CS2<br>
++5V -&gt; 6 = CS1</p>
+<p>Dekoder 2:<br>
+GND -&gt; 4 = CS2<br>
+15 -&gt; 5 = CS3<br>
+11 -&gt; 6 = CS1</p>
+<p>Dekoder 3:<br>
+GND -&gt; 4 = CS2<br>
+11  -&gt; 5 = CS3<br>
+15  -&gt; 6 = CS1</p>
+<p>Der Dekoder ist aktiv, wenn CS1 HIGH und CS2 und CS3 LOW sind.</p>
+<p>Über 11 und 15 wird jeweils nur ein Dekoder aktiviert:</p>
+<p>11: 0 , 15: 0<br>
+<strong>D1: CS3 = 0, CS2 = 0, CS1 = 1</strong><br>
+D2: CS3 = 0, CS2 = 0, CS1 = 0<br>
+D3: CS3 = 0, CS2 = 0, CS1 = 0</p>
+<p>11: 1, 15: 0<br>
+D1: CS3 = 0, CS2 = 1, CS1 = 1<br>
+<strong>D2: CS3 = 0, CS2 = 0, CS1 = 1</strong><br>
+D3: CS3 = 1, CS2 = 0, CS1 = 0</p>
+<p>11:0, 15: 1<br>
+D1: CS3 = 1, CS2 = 0, CS1 = 1<br>
+D2: CS3 = 1, CS2 = 0, CS1 = 0<br>
+<strong>D3: CS3 = 0, CS2 = 0, CS1 = 1</strong></p>
+<p><img src="2025-09-14_20-24.png" alt="alt text"></p>
+<h2 id="programmierung">Programmierung</h2>
+<pre><code class="language-C++">
+
+<span class="hljs-type">int</span> inPin[] = { <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span> };
+<span class="hljs-type">int</span> binPin[] = { A0, <span class="hljs-number">13</span>, <span class="hljs-number">12</span> };
+<span class="hljs-type">int</span> steuerPin[] = { <span class="hljs-number">11</span>, A1 };
+<span class="hljs-type">int</span> wert[<span class="hljs-number">196</span>];
+<span class="hljs-type">int</span> anz;
+
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">auslesenDekoder</span><span class="hljs-params">(<span class="hljs-type">int</span> column,<span class="hljs-type">int</span> c1, <span class="hljs-type">int</span> c2)</span> </span>{
+  <span class="hljs-built_in">digitalWrite</span>(steuerPin[<span class="hljs-number">0</span>], c1);
+  <span class="hljs-built_in">digitalWrite</span>(steuerPin[<span class="hljs-number">1</span>], c2);
+  <span class="hljs-type">int</span> startNr=<span class="hljs-number">0</span>;
+  <span class="hljs-keyword">if</span> (c1==<span class="hljs-number">1</span> &amp;&amp; c2==<span class="hljs-number">0</span>){
+    startNr=<span class="hljs-number">64</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c1==<span class="hljs-number">0</span> &amp;&amp; c2==<span class="hljs-number">1</span>){
+    startNr=<span class="hljs-number">128</span>;
+  }
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">8</span>; i++) {
+<span class="hljs-comment">//    Serial.print(digitalRead(inPin[i]));</span>
+<span class="hljs-comment">//    Serial.print(&#x27;,&#x27;);</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">digitalRead</span>(inPin[i]) == LOW) {
+      <span class="hljs-type">int</span> nr=(startNr+column*(i+<span class="hljs-number">1</span>)+i);
+      <span class="hljs-type">int</span> ein=nr%<span class="hljs-number">2</span>;
+      <span class="hljs-type">int</span> taste=nr/<span class="hljs-number">2</span>;
+      Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;c1 &quot;</span>+<span class="hljs-built_in">String</span>(c1)+<span class="hljs-string">&quot; c2 &quot;</span>+<span class="hljs-built_in">String</span>(c2)+<span class="hljs-string">&quot; Start &quot;</span>+<span class="hljs-built_in">String</span>(startNr)+<span class="hljs-string">&quot;Columns &quot;</span>+<span class="hljs-built_in">String</span>(column)+<span class="hljs-string">&quot; Row &quot;</span>+<span class="hljs-built_in">String</span>(i)+<span class="hljs-string">&quot; Taste &quot;</span>+<span class="hljs-built_in">String</span>(taste)+<span class="hljs-string">&quot; ein &quot;</span>+<span class="hljs-built_in">String</span>(ein));
+    }
+  }
+}
+
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">auslesen</span><span class="hljs-params">(<span class="hljs-type">int</span> a1, <span class="hljs-type">int</span> a2, <span class="hljs-type">int</span> a3)</span> </span>{
+  <span class="hljs-built_in">digitalWrite</span>(binPin[<span class="hljs-number">0</span>], a1);
+  <span class="hljs-built_in">digitalWrite</span>(binPin[<span class="hljs-number">1</span>], a2);
+  <span class="hljs-built_in">digitalWrite</span>(binPin[<span class="hljs-number">2</span>], a3);
+  <span class="hljs-type">int</span> column=a3*<span class="hljs-number">4</span>+a2*<span class="hljs-number">2</span>+a1;
+
+  <span class="hljs-built_in">auslesenDekoder</span>(column,<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);  <span class="hljs-comment">// Dekoder1</span>
+  <span class="hljs-built_in">auslesenDekoder</span>(column,<span class="hljs-number">1</span>, <span class="hljs-number">0</span>);  <span class="hljs-comment">// Dekoder2</span>
+  <span class="hljs-built_in">auslesenDekoder</span>(column,<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);  <span class="hljs-comment">// Dekoder3</span>
+
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">8</span>; i++) {
+    <span class="hljs-built_in">pinMode</span>(inPin[i], INPUT_PULLUP);
+  }
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) {
+    <span class="hljs-built_in">pinMode</span>(binPin[i], OUTPUT);
+  }
+  <span class="hljs-built_in">pinMode</span>(steuerPin[<span class="hljs-number">0</span>], OUTPUT);
+  <span class="hljs-built_in">pinMode</span>(steuerPin[<span class="hljs-number">1</span>], OUTPUT);
+  anz = <span class="hljs-number">0</span>;
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Setup abgeschlossen!&quot;</span>);
+}
+
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  anz = <span class="hljs-number">0</span>;
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+  <span class="hljs-built_in">auslesen</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+<span class="hljs-comment">//  Serial.println(&quot;--------------------&quot;);</span>
+}
+
+</code></pre>
+
+            
+            
+        </body>
+        </html>

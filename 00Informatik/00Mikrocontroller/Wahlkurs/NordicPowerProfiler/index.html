@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Messen von Strom und Leistung mit dem Nordic Power Profiler II</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="messen-von-strom-und-leistung-mit-dem-nordic-power-profiler-ii">Messen von Strom und Leistung mit dem Nordic Power Profiler II</h1>
+<h2 id="vorbereitung">Vorbereitung</h2>
+<p>Auf dem Rechner muss die Software <a href="https://www.nordicsemi.com/Products/Development-tools/nRF-Connect-for-Desktop/Download#infotabs">nrFConnect</a> installiert sein.</p>
+<p>Bei Start der Software muss unter <strong>Apps</strong> das Programm <strong>PowerProfiler</strong> installiert und gestartet werden.</p>
+<h2 id="messen-des-stromverbrauchs-einer-led">Messen des Stromverbrauchs einer LED</h2>
+<h3 id="verkabelung">Verkabelung</h3>
+<p>Der PowerProfiler wird über USBDataPower an den Rechner angeschlossen.</p>
+<p>Die LED wird mit einem Schutzwiderstand an folgende Pole angeschlossen:</p>
+<ul>
+<li>LED + an VOUT</li>
+<li>LED - an Widerstand</li>
+<li>Widerstand an GND rechts von VOUT</li>
+</ul>
+<h3 id="software-einstellungen">Software-Einstellungen</h3>
+<p><img src="LEDMessen.png" alt="alt text"></p>
+<ol>
+<li>Source-Mode:<br>
+Der PP dient als Spannungsquelle. Über VOUT und GND können maximal 5V Spannung ausgegeben werden.</li>
+<li>Set Supply Voltage:<br>
+Mit dem Schieberegler kann die ausgegebene Spannung eingestellt werden.</li>
+<li>Enable Power Output:<br>
+Muss eingeschaltet sein, sonst gibt das System keine Spannung aus.</li>
+<li>Zeitskala<br>
+Um glatte Kurven zu erhalten, sollte hier 1 min eingestellt sein.</li>
+<li>Start<br>
+Startet die Messung.</li>
+</ol>
+<p>Mit diesem Versuch kann gezeigt werden, dass verschieden farbige LEDs unterschiedlich viel Strom benötigen.</p>
+<h2 id="messung-des-stromverbrauchs-eines-arduino-unos">Messung des Stromverbrauchs eines Arduino Unos</h2>
+<h3 id="verkabelung-1">Verkabelung</h3>
+<table>
+<thead>
+<tr>
+<th>PowerProfiler</th>
+<th>Arduino</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VOUT</td>
+<td>VIN</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+</tr>
+</tbody>
+</table>
+<p>Am Arduino können jetzt noch beliebige Verbraucher angeschlossen sein.</p>
+<h3 id="software-einstellung">Software Einstellung</h3>
+<p>s. o.</p>
+<h2 id="messung-des-stromverbrauchs-einer-an-den-arduino-angeschlossenen-led">Messung des Stromverbrauchs einer an den Arduino angeschlossenen LED</h2>
+<h3 id="verkabelung-2">Verkabelung</h3>
+<ul>
+<li>Arduino über USB an Rechner</li>
+<li>LED + an +5V am Arduino</li>
+<li>LED - an Schutzwiderstand</li>
+<li>Schutzwiderstand an VIN am PowerProfiler</li>
+<li>VOUT PowerProfiler an GND am Arduino</li>
+</ul>
+<h3 id="software-einstellung-1">Software Einstellung</h3>
+<p><img src="StromMessungLED.png" alt="alt text"></p>
+<ol>
+<li>Ampere-Meter<br>
+Wir messen Stromstärke.</li>
+<li>Enable Power Output<br>
+Auch in diesem Fall muss das System Spannung abgegeben - sonst leuchtet die LED nicht.</li>
+<li>Start</li>
+</ol>
+<p>Die gemessene Stromstärke ist in diesem Fall deutlich geringer als beim direkten Anschluss der LED an den Powerprofiler.</p>
+<h2 id="messen-des-stromverbrauchs-eine-mikrocontrollers-an-einem-akku">Messen des Stromverbrauchs eine Mikrocontrollers an einem Akku</h2>
+<h3 id="verkabelun">Verkabelun</h3>
+<ul>
+<li>Akku + auf VIN am PowerProfiler</li>
+<li>VOUT am Powerprofiler auf VIN am Mikrocontroller</li>
+<li>GND am Mikrocontroller auf - am Akku</li>
+</ul>
+<h3 id="software-einstellung-2">Software Einstellung</h3>
+<p>s.o.</p>
+
+            
+            
+        </body>
+        </html>
