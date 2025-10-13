@@ -5,7 +5,7 @@
 # Flugverbindungen als Graphen
 ## Lösungen zu den Aufgaben
 ### 1. Graph  
-
+![alt text](Graph.png)
 
 ## 2. Typ des Graphen
 Es handelt sich um einen gerichteten, ungewichteten Graphen.
@@ -46,11 +46,11 @@ Die Kanten zu den Zielen stehen in der Matrix in einer Zeile.
 Die Kanten von den Startorten stehen in der Matrix in einer Spalte.
 
 ### 7. Das Feld knoten
-```C++
+```Java
 private String[] knoten = {"M","F","H","P","L"};
 ```
 ### 8. Das Feld kanten
-```C++
+```Java
 private int[][] kanten = {
   {0,1,0,0,0},
   {1,0,1,1,0},
@@ -74,14 +74,25 @@ kanten[2][ziel]
 kanten[3][ziel]
 kanten[4][ziel]
 
+### 11. Methode printKantenZiel
+```Java
+public void printKantenZiel(int start){
+  for (int ziel=0;ziel<knoten.length;ziel++){
+    print(kanten[start][ziel]);
+  }
+  println();
+}
+```
 
-
-
-
-
-
-
-
+### 12. Methode printKantenStart
+```Java
+public void printKantenStart(int ziel){
+  for (int start=0;start<knoten.length;start++){
+    print(kanten[start][ziel]);
+  }
+  println();
+}
+```
 <div id="quelle" style="font-size: x-small; text-align: right;">
     2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
 
@@ -95,7 +106,6 @@ kanten[4][ziel]
     'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
     'withFileList': true ,'withErrorList': true}
     <script id="javaCode" type="plain/text" title="Graph.java" src="Graph.java"></script>
-    <script id="javaCode" type="plain/text" title="Knoten.java" src="Knoten.java"></script>
     <script id="javaCode" type="plain/text" title="Main.java" src="Main.java"></script>
   </script>
    </iframe>
