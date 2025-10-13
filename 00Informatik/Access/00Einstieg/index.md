@@ -57,9 +57,9 @@ Speichere die Tabelle unter dem Namen "Schueler". (Evtl. musst du die Tabelle1 m
  Ergänze deine Datenbank um die Tabellen **Wahlkurs** und **Kurswahl**:  
  ![alt text](08RelationsWahlkursWahlunterricht.png)  
  Trage in deine Tabellen in der richtigen Reihenfolge Daten ein, so dass Schüler Wahlkurse belegt haben.  
-
+## Weitere Aufgaben
+- Erstelle eine Tabelle Fächer()
  
-[zurück](../../index.html)  
-
+[zurück](../index.html)
 
 
