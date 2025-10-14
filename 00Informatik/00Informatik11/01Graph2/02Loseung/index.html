@@ -357,6 +357,34 @@ kanten[4][ziel]</p>
   println();
 }
 </code></pre>
+<h3 id="13-verbesserte-methode-printkantenziel">13. Verbesserte Methode printKantenZiel</h3>
+<pre><code class="language-Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">printKantenZiel</span><span class="hljs-params">(<span class="hljs-type">int</span> start)</span>{
+  print(<span class="hljs-string">&quot;Kanten gehen von &quot;</span>);
+  print(knoten[start]);
+  print(<span class="hljs-string">&quot; nach &quot;</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> ziel=<span class="hljs-number">0</span>;ziel&lt;knoten.length;ziel++){
+    <span class="hljs-keyword">if</span> (kanten[start][ziel]&gt;<span class="hljs-number">0</span>){
+       print(knoten[ziel]);
+       print(<span class="hljs-string">&quot;, &quot;</span>);
+    }
+  }
+  println();
+}
+</code></pre>
+<h3 id="14-verbesserte-methode-printkantenstart">14. Verbesserte Methode printKantenStart</h3>
+<pre><code class="language-Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">printKantenStart</span><span class="hljs-params">(<span class="hljs-type">int</span> ziel)</span>{
+  print(<span class="hljs-string">&quot;Kanten enden in &quot;</span>);
+  print(knoten[ziel]);
+  print(<span class="hljs-string">&quot; aus &quot;</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> start=<span class="hljs-number">0</span>;start&lt;knoten.length;start++){
+    <span class="hljs-keyword">if</span> (kanten[start][ziel]&gt;<span class="hljs-number">0</span>){
+       print(knoten[start]);
+       print(<span class="hljs-string">&quot;, &quot;</span>);
+    }
+  }
+  println();
+}
+</code></pre>
 <div id="quelle" style="font-size: x-small; text-align: right;">
     2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
   </div>

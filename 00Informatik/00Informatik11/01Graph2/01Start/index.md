@@ -21,6 +21,13 @@ Von München (M) geht ein Flug nach Frankfurt (F). Von dort kannst du nach Hambu
 Mögliche Ausgabe: 0 1 0 1 0
 12. Implementiere eine Methode **printKantenStart**, die den Index eines Zielknotens als Parameter übernimmt, und die Gewichte aller Kanten ausdruckt, die an diesem Knoten enden.
 Mögliche Ausgabe: 0 1 0 1 0  
+13. Ändere die Methode **printKantenZiel** so ab, dass die Ausgabe so aussieht:  
+*Kanten gehen von F nach M, H, P,*
+14. Ändere die Methode **printKantenStart** so ab, dass die Ausgabe so aussieht:  
+*Kanten enden in M aus F, H,*  
+
+
+
 ## [weiter](../02Loesung/index.html)    
 ## [Index](../../../index.html)
 

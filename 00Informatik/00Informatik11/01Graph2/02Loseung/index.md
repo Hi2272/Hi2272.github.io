@@ -93,6 +93,39 @@ public void printKantenStart(int ziel){
   println();
 }
 ```
+
+### 13. Verbesserte Methode printKantenZiel
+```Java
+public void printKantenZiel(int start){
+  print("Kanten gehen von ");
+  print(knoten[start]);
+  print(" nach ");
+  for (int ziel=0;ziel<knoten.length;ziel++){
+    if (kanten[start][ziel]>0){
+       print(knoten[ziel]);
+       print(", ");
+    }
+  }
+  println();
+}
+```
+### 14. Verbesserte Methode printKantenStart
+```Java
+public void printKantenStart(int ziel){
+  print("Kanten enden in ");
+  print(knoten[ziel]);
+  print(" aus ");
+  for (int start=0;start<knoten.length;start++){
+    if (kanten[start][ziel]>0){
+       print(knoten[start]);
+       print(", ");
+    }
+  }
+  println();
+}
+```
+
+
 <div id="quelle" style="font-size: x-small; text-align: right;">
     2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
 
