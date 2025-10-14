@@ -1,0 +1,43 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8">
+  <diagram name="Page-1" id="KU-b5VstJkrBwuWFIDw8">
+    <mxGraphModel dx="1877" dy="621" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bYEwsLvS274__9Q9NEfE-1" value="M" style="shape=ellipse;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="200" y="350" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bYEwsLvS274__9Q9NEfE-2" value="F" style="shape=ellipse;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="40" y="260" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bYEwsLvS274__9Q9NEfE-3" value="H" style="shape=ellipse;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="70" y="160" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bYEwsLvS274__9Q9NEfE-4" value="P" style="shape=ellipse;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="-120" y="260" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bYEwsLvS274__9Q9NEfE-5" value="L" style="shape=ellipse;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="-200" y="120" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bYEwsLvS274__9Q9NEfE-6" edge="1" parent="1" source="bYEwsLvS274__9Q9NEfE-1" target="bYEwsLvS274__9Q9NEfE-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bYEwsLvS274__9Q9NEfE-7" edge="1" parent="1" source="bYEwsLvS274__9Q9NEfE-2" target="bYEwsLvS274__9Q9NEfE-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bYEwsLvS274__9Q9NEfE-8" edge="1" parent="1" source="bYEwsLvS274__9Q9NEfE-2" target="bYEwsLvS274__9Q9NEfE-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bYEwsLvS274__9Q9NEfE-9" edge="1" parent="1" source="bYEwsLvS274__9Q9NEfE-2" target="bYEwsLvS274__9Q9NEfE-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bYEwsLvS274__9Q9NEfE-10" edge="1" parent="1" source="bYEwsLvS274__9Q9NEfE-3" target="bYEwsLvS274__9Q9NEfE-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bYEwsLvS274__9Q9NEfE-11" edge="1" parent="1" source="bYEwsLvS274__9Q9NEfE-4" target="bYEwsLvS274__9Q9NEfE-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
