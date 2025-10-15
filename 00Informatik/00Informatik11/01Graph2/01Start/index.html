@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>&Auml;ndern von Kanten</title>
+            <title>Flugverbindungen als Graphen</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -141,28 +141,32 @@
               <meta charset="utf-8" />
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
-<h1 id="ändern-von-kanten">Ändern von Kanten</h1>
-<p>Implementiere eine neue Methode
-<strong>changeKante()</strong>, die den Namen des Start- und des Zielknotens als Zeichenkette übernimmt.<br>
-Die Kante soll nur geändert werden, wenn beide Knoten gefunden worden sind.<br>
-Verwende hierzu die Methoden, die du bisher erstellt hast.</p>
-<div id="quelle" style="font-size: x-small; text-align: right;">
-    2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
-  </div>
-  <section>
-    <iframe
-    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
-    width="100%" height="600" frameborder="0">
-    {'id': 'Java', 'speed': 2000, 
-    'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
-    'withFileList': true ,'withErrorList': true}
-    <script id="javaCode" type="plain/text" title="Graph.java" src="Graph.java"></script>
-    <script id="javaCode" type="plain/text" title="Knoten.java" src="Knoten.java"></script>
-    <script id="javaCode" type="plain/text" title="Main.java" src="Main.java"></script>
-  </script>
-   </iframe>
-</section>
-<h2 id="weiter"><a href="../04Loesung/index.html">weiter</a></h2>
+<h1 id="flugverbindungen-als-graphen">Flugverbindungen als Graphen</h1>
+<h2 id="beschreibung-des-problems">Beschreibung des Problems</h2>
+<p>Am späten Abend gehen nur noch wenige Flüge von den Flugplätzen ab.<br>
+Von München (M) geht ein Flug nach Frankfurt (F). Von dort kannst du nach Hamburg (H), Paris (P) oder zurück nach München fliegen. Von Hamburg geht ein Flug nach München. Von Paris erreichst die London(L). Dort gibt es keine Anschlüsse mehr.</p>
+<h2 id="aufgabenstellung">Aufgabenstellung</h2>
+<ol>
+<li>Modelliere dieses Problem mit einem geeigneten Graphen.</li>
+<li>Beschreibe den Typen des Graphen.</li>
+<li>Zeiche eine Adjazenzmatrix des Graphen.</li>
+<li>Leite aus der Matrix ab, ob der Graph stark, schwach oder nicht zusammenhängend ist.</li>
+<li>Markiere in der Matrix alle Kanten, die von M ausgehen.</li>
+<li>Markiere in der Matrix alle Kanten, die in M enden.</li>
+<li>Implementiere die Knoten als eindimensionales Feld <strong>knoten</strong> von Zeichenketten.</li>
+<li>Implementiere die Matrix als zweidimensionales Feld <strong>kanten</strong>.</li>
+<li>Gib die Indexpaare (Bsp..: kanten[3][2]) aller Kanten an, die vom Knoten mit dem Index <strong>start</strong> ausgehen.</li>
+<li>Gib die Indexpaare aller Kanten an, die am Knoten mit dem Index <strong>ziel</strong> enden.</li>
+<li>Implementiere eine Methode <strong>printKantenZiel</strong>, die den Index eines Startknotens als Parameter übernimmt, und die Gewichte aller Kanten ausdruckt, die vom diesem Knoten ausgehen.
+Mögliche Ausgabe: 0 1 0 1 0</li>
+<li>Implementiere eine Methode <strong>printKantenStart</strong>, die den Index eines Zielknotens als Parameter übernimmt, und die Gewichte aller Kanten ausdruckt, die an diesem Knoten enden.
+Mögliche Ausgabe: 0 1 0 1 0</li>
+<li>Ändere die Methode <strong>printKantenZiel</strong> so ab, dass die Ausgabe so aussieht:<br>
+<em>Kanten gehen von F nach M, H, P,</em></li>
+<li>Ändere die Methode <strong>printKantenStart</strong> so ab, dass die Ausgabe so aussieht:<br>
+<em>Kanten enden in M aus F, H,</em></li>
+</ol>
+<h2 id="weiter"><a href="../02Loesung/index.html">weiter</a></h2>
 <h2 id="index"><a href="../../../index.html">Index</a></h2>
 
             

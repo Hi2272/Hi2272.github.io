@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -142,6 +144,7 @@
 <h1 id="flugverbindungen-als-graphen">Flugverbindungen als Graphen</h1>
 <h2 id="lösungen-zu-den-aufgaben">Lösungen zu den Aufgaben</h2>
 <h3 id="1-graph">1. Graph</h3>
+<p><img src="Graph.png" alt="alt text"></p>
 <h2 id="2-typ-des-graphen">2. Typ des Graphen</h2>
 <p>Es handelt sich um einen gerichteten, ungewichteten Graphen.</p>
 <h3 id="3-adjezenzmatrix">3. Adjezenzmatrix</h3>
@@ -315,10 +318,10 @@ Er ist schwach zusammenhängend, da in einem ungerichteten Graphen jeder Knoten 
 </table>
 <p>Die Kanten von den Startorten stehen in der Matrix in einer Spalte.</p>
 <h3 id="7-das-feld-knoten">7. Das Feld knoten</h3>
-<pre><code class="language-C++"><span class="hljs-keyword">private</span> String[] knoten = {<span class="hljs-string">&quot;M&quot;</span>,<span class="hljs-string">&quot;F&quot;</span>,<span class="hljs-string">&quot;H&quot;</span>,<span class="hljs-string">&quot;P&quot;</span>,<span class="hljs-string">&quot;L&quot;</span>};
+<pre><code class="language-Java"><span class="hljs-keyword">private</span> String[] knoten = {<span class="hljs-string">&quot;M&quot;</span>,<span class="hljs-string">&quot;F&quot;</span>,<span class="hljs-string">&quot;H&quot;</span>,<span class="hljs-string">&quot;P&quot;</span>,<span class="hljs-string">&quot;L&quot;</span>};
 </code></pre>
 <h3 id="8-das-feld-kanten">8. Das Feld kanten</h3>
-<pre><code class="language-C++"><span class="hljs-keyword">private</span> <span class="hljs-type">int</span>[][] kanten = {
+<pre><code class="language-Java"><span class="hljs-keyword">private</span> <span class="hljs-type">int</span>[][] kanten = {
   {<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>},
   {<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>},
   {<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>},
@@ -338,6 +341,50 @@ kanten[1][ziel]
 kanten[2][ziel]
 kanten[3][ziel]
 kanten[4][ziel]</p>
+<h3 id="11-methode-printkantenziel">11. Methode printKantenZiel</h3>
+<pre><code class="language-Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">printKantenZiel</span><span class="hljs-params">(<span class="hljs-type">int</span> start)</span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> ziel=<span class="hljs-number">0</span>;ziel&lt;knoten.length;ziel++){
+    print(kanten[start][ziel]);
+  }
+  println();
+}
+</code></pre>
+<h3 id="12-methode-printkantenstart">12. Methode printKantenStart</h3>
+<pre><code class="language-Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">printKantenStart</span><span class="hljs-params">(<span class="hljs-type">int</span> ziel)</span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> start=<span class="hljs-number">0</span>;start&lt;knoten.length;start++){
+    print(kanten[start][ziel]);
+  }
+  println();
+}
+</code></pre>
+<h3 id="13-verbesserte-methode-printkantenziel">13. Verbesserte Methode printKantenZiel</h3>
+<pre><code class="language-Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">printKantenZiel</span><span class="hljs-params">(<span class="hljs-type">int</span> start)</span>{
+  print(<span class="hljs-string">&quot;Kanten gehen von &quot;</span>);
+  print(knoten[start]);
+  print(<span class="hljs-string">&quot; nach &quot;</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> ziel=<span class="hljs-number">0</span>;ziel&lt;knoten.length;ziel++){
+    <span class="hljs-keyword">if</span> (kanten[start][ziel]&gt;<span class="hljs-number">0</span>){
+       print(knoten[ziel]);
+       print(<span class="hljs-string">&quot;, &quot;</span>);
+    }
+  }
+  println();
+}
+</code></pre>
+<h3 id="14-verbesserte-methode-printkantenstart">14. Verbesserte Methode printKantenStart</h3>
+<pre><code class="language-Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">printKantenStart</span><span class="hljs-params">(<span class="hljs-type">int</span> ziel)</span>{
+  print(<span class="hljs-string">&quot;Kanten enden in &quot;</span>);
+  print(knoten[ziel]);
+  print(<span class="hljs-string">&quot; aus &quot;</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> start=<span class="hljs-number">0</span>;start&lt;knoten.length;start++){
+    <span class="hljs-keyword">if</span> (kanten[start][ziel]&gt;<span class="hljs-number">0</span>){
+       print(knoten[start]);
+       print(<span class="hljs-string">&quot;, &quot;</span>);
+    }
+  }
+  println();
+}
+</code></pre>
 <div id="quelle" style="font-size: x-small; text-align: right;">
     2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
   </div>
@@ -349,7 +396,6 @@ kanten[4][ziel]</p>
     'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
     'withFileList': true ,'withErrorList': true}
     <script id="javaCode" type="plain/text" title="Graph.java" src="Graph.java"></script>
-    <script id="javaCode" type="plain/text" title="Knoten.java" src="Knoten.java"></script>
     <script id="javaCode" type="plain/text" title="Main.java" src="Main.java"></script>
   </script>
    </iframe>

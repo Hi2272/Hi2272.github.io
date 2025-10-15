@@ -10,7 +10,7 @@ Von München (M) geht ein Flug nach Frankfurt (F). Von dort kannst du nach Hambu
 1. Modelliere dieses Problem mit einem geeigneten Graphen.
 2. Beschreibe den Typen des Graphen.
 3. Zeiche eine Adjazenzmatrix des Graphen.
-4. Leite aus der Matrix ab, ob der Graph zusammenhängend ist.
+4. Leite aus der Matrix ab, ob der Graph stark, schwach oder nicht zusammenhängend ist.
 5. Markiere in der Matrix alle Kanten, die von M ausgehen.
 6. Markiere in der Matrix alle Kanten, die in M enden.
 7. Implementiere die Knoten als eindimensionales Feld **knoten** von Zeichenketten.
@@ -21,6 +21,13 @@ Von München (M) geht ein Flug nach Frankfurt (F). Von dort kannst du nach Hambu
 Mögliche Ausgabe: 0 1 0 1 0
 12. Implementiere eine Methode **printKantenStart**, die den Index eines Zielknotens als Parameter übernimmt, und die Gewichte aller Kanten ausdruckt, die an diesem Knoten enden.
 Mögliche Ausgabe: 0 1 0 1 0  
-## [weiter](../02Kanten/index.html)    
+13. Ändere die Methode **printKantenZiel** so ab, dass die Ausgabe so aussieht:  
+*Kanten gehen von F nach M, H, P,*
+14. Ändere die Methode **printKantenStart** so ab, dass die Ausgabe so aussieht:  
+*Kanten enden in M aus F, H,*  
+
+
+
+## [weiter](../02Loesung/index.html)    
 ## [Index](../../../index.html)
 

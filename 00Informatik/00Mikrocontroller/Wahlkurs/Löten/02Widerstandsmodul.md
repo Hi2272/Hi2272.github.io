@@ -50,28 +50,33 @@ Hier kannst du ein Modell für die Biegelehre herunterladen und mit einem 3D-Dru
 # Ardushield
 ## 1. Verbindung zum Arduino
 ### Brechen der Stiftleisten
-40 Pinleiste:  
+40er Pinleiste:  
 - 2 x 8-Pin (16)  
 - 4 x 6-Pin (24)  
 
-40 Pinleiste:  
+40er Pinleiste:  
 - 5 x 6-Pin (30)  
 - 1 x 4-Pin (4)  
 - 1 x 2-Pin (2)  
 - Rest: 4-Pin
 
-### Anlöten 
-1. Stecke die Stifleisten mit den langen Pins auf den Arduino.
-2. Stecke das Ardushield so auf, dass die **Beschriftung oben** ist.
+### Anlöten der Leisten für den Arduino
+1. Stecke die Stifleisten mit den langen Pins in die Außenleisten der Löthilfe:
+ ![alt text](<20250729 0272 080511 20250729.jpg>)  
+2. Stecke das Ardushield so auf, dass die **Beschriftung oben** ist.  
+![alt text](<20250729 0273 080622 20250729.jpg>)
 3. Löte die Stiftleisten fest.  
-## 2. Steckerleisten
+
+## Anlöten der Stiftleisten für die Verbindungen
 ### Brechen der Stiftleisten
 1. 7 x 6-Pin
 2. 1 x 4-Pin
 3. 1 x 2-Pin
 ### Anlöten
-1. Stecke die Stiftleisten mit der langen Pins auf die Löthilfe.
-2. Stecke das Ardushield so auf, dass die **Beschriftung unten** ist.
+1. Stecke die Stiftleisten mit der langen Pins auf die Löthilfe.   
+ ![alt text](<20250729 0058 080334 20250729.jpg>)   
+2. Stecke das Ardushield so auf, dass die **Beschriftung unten** ist.  
+![alt text](5.jpg)  
 3. Löte die Stiftleisten an.
 
 [zurück](index.html)   

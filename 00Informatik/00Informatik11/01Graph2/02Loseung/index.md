@@ -5,7 +5,7 @@
 # Flugverbindungen als Graphen
 ## Lösungen zu den Aufgaben
 ### 1. Graph  
-
+![alt text](Graph.png)
 
 ## 2. Typ des Graphen
 Es handelt sich um einen gerichteten, ungewichteten Graphen.
@@ -46,11 +46,11 @@ Die Kanten zu den Zielen stehen in der Matrix in einer Zeile.
 Die Kanten von den Startorten stehen in der Matrix in einer Spalte.
 
 ### 7. Das Feld knoten
-```C++
+```Java
 private String[] knoten = {"M","F","H","P","L"};
 ```
 ### 8. Das Feld kanten
-```C++
+```Java
 private int[][] kanten = {
   {0,1,0,0,0},
   {1,0,1,1,0},
@@ -74,12 +74,56 @@ kanten[2][ziel]
 kanten[3][ziel]
 kanten[4][ziel]
 
+### 11. Methode printKantenZiel
+```Java
+public void printKantenZiel(int start){
+  for (int ziel=0;ziel<knoten.length;ziel++){
+    print(kanten[start][ziel]);
+  }
+  println();
+}
+```
 
+### 12. Methode printKantenStart
+```Java
+public void printKantenStart(int ziel){
+  for (int start=0;start<knoten.length;start++){
+    print(kanten[start][ziel]);
+  }
+  println();
+}
+```
 
-
-
-
-
+### 13. Verbesserte Methode printKantenZiel
+```Java
+public void printKantenZiel(int start){
+  print("Kanten gehen von ");
+  print(knoten[start]);
+  print(" nach ");
+  for (int ziel=0;ziel<knoten.length;ziel++){
+    if (kanten[start][ziel]>0){
+       print(knoten[ziel]);
+       print(", ");
+    }
+  }
+  println();
+}
+```
+### 14. Verbesserte Methode printKantenStart
+```Java
+public void printKantenStart(int ziel){
+  print("Kanten enden in ");
+  print(knoten[ziel]);
+  print(" aus ");
+  for (int start=0;start<knoten.length;start++){
+    if (kanten[start][ziel]>0){
+       print(knoten[start]);
+       print(", ");
+    }
+  }
+  println();
+}
+```
 
 
 <div id="quelle" style="font-size: x-small; text-align: right;">
@@ -95,7 +139,6 @@ kanten[4][ziel]
     'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
     'withFileList': true ,'withErrorList': true}
     <script id="javaCode" type="plain/text" title="Graph.java" src="Graph.java"></script>
-    <script id="javaCode" type="plain/text" title="Knoten.java" src="Knoten.java"></script>
     <script id="javaCode" type="plain/text" title="Main.java" src="Main.java"></script>
   </script>
    </iframe>
