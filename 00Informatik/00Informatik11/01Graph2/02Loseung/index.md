@@ -124,6 +124,45 @@ public void printKantenStart(int ziel){
   println();
 }
 ```
+### 15. Knoten, von denen keine Kanten ausgehen.
+In der Matrix ist die entsprechende Zeile leer:  
+||M|F|H|P|L|
+|---|---|---|---|---|---|
+|**M**|0|1|0|0|0|
+|**F**|1|0|1|1|0|
+|**H**|1|0|0|0|0|
+|**P**|0|0|0|0|1|
+|**L**|**0**|**0**|**0**|**0**|**0**|  
+
+Wenn du Summe der Kantengewichte in der Zeile 0 ist,
+dann gehen von dem Knoten keine Kanten aus.  
+
+```Java
+public boolean hatNachfolger(int start){
+  int summe=0;
+  for (int ziel=0;ziel<knoten.length;i++){
+    summe=summe+kanten[start][ziel];
+  }
+  if (summe==0){
+    return false;
+  } else {
+    return true;
+  }
+}
+```
+
+Die Methode kann auch kürzer implementiert werden:
+```Java
+public boolean hatNachfolger(int start){
+  int summe=0;
+  for (int ziel=0;ziel<knoten.length;i++){
+    summe=summe+kanten[start][ziel];
+  }
+  return !(summe==0)
+}
+```
+
+
 
 
 <div id="quelle" style="font-size: x-small; text-align: right;">

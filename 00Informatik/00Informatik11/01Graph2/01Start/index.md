@@ -25,7 +25,11 @@ Mögliche Ausgabe: 0 1 0 1 0
 *Kanten gehen von F nach M, H, P,*
 14. Ändere die Methode **printKantenStart** so ab, dass die Ausgabe so aussieht:  
 *Kanten enden in M aus F, H,*  
-
+15. In diesem Graphen gibt es Knoten, von denen keine Kanten ausgehen. 
+- Erkläre, wie du diese Knoten in der Adjazenzmatrix erkennst.
+- Entwickele einen Algorithmus, mit dem für einen bestimmten Knoten ermittelt werden kann, ob von ihm keine Kante ausgeht.
+- Implementiere diesen Algorithmus in einer Methode **hatNachfolger** mit einem ganzzahligen Parameter.
+  
 
 
 ## [weiter](../02Loesung/index.html)    

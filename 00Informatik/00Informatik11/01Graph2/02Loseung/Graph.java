@@ -10,22 +10,38 @@ public class Graph {
       { 0, 0, 0, 0, 0 }
    };
 
-   
-   public void printKantenZiel(int start) {
+public void printKantenZiel(int start){
+  print("Kanten gehen von ");
+  print(knoten[start]);
+  print(" nach ");
+  for (int ziel=0;ziel<knoten.length;ziel++){
+    if (kanten[start][ziel]>0){
+       print(knoten[ziel]);
+       print(", ");
+    }
+  }
+  println();
+}
+
+public void printKantenStart(int ziel){
+  print("Kanten enden in ");
+  print(knoten[ziel]);
+  print(" aus ");
+  for (int start=0;start<knoten.length;start++){
+    if (kanten[start][ziel]>0){
+       print(knoten[start]);
+       print(", ");
+    }
+  }
+  println();
+}
+
+   public boolean hatNachfolger(int start) {
+      int summe = 0;
       for (int ziel = 0; ziel < knoten.length; ziel++) {
-         print(kanten[start][ziel]);
-         print(" ");
+         summe = summe + kanten[start][ziel];
       }
-      println();
-   }
-
-
-   public void printKantenStart(int ziel) {
-      for (int start = 0; start < knoten.length; start++) {
-         print(kanten[start][ziel]);
-         print(" ");
-      }
-      println();
+      return !(summe == 0);
    }
 }
 
