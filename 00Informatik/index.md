@@ -49,7 +49,9 @@
 
 ## Informatik 7. Klasse
 [Mein Netzwerk zu Hause](https://learningapps.org/view7741094)  
-[WebNetSim](00Informatik7/01WebNetSim/index.html)  
+[WebNetSim Einstieg](00Informatik7/01WebNetSim/index.html)  
+[WebNetSim Netzwerk](00Informatik7/02WebNetSim/index.html)  
+
 [Die Abenteuer von Kommissar Smith](https://netzwerke.hauptquartier.eu/abenteuer-archiv)   
 
 
