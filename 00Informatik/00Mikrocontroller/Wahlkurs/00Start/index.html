@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Einrichten der Programmierungumgebug</title>
+            <title>Einrichten der Programmierumgebug</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -137,7 +139,7 @@
         </head>
         <body class="vscode-body vscode-light">
              <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
-<h1 id="einrichten-der-programmierungumgebug">Einrichten der Programmierungumgebung</h1>
+<h1 id="einrichten-der-programmierumgebug">Einrichten der Programmierumgebug</h1>
 <h2 id="starten-von-linux-mint-auf-den-rechnern">Starten von Linux Mint auf den Rechnern</h2>
 <ol>
 <li>Stecke den USB-Stick in die Buchse auf der linken Seite des Rechners.</li>
@@ -166,6 +168,10 @@
 <li>Klicke auf <strong>OK</strong></li>
 </ol>
 <h2 id="hinweise-zur-verwendung-von-mikrocontrollern-unter-windows">Hinweise zur Verwendung von Mikrocontrollern unter Windows</h2>
+<h3 id="installation-der-software">Installation der Software</h3>
+<p>Zum Programmieren musst du das Programm <strong>Arduino IDE</strong> auf deinem Rechner installieren:<br>
+<a href="https://apps.microsoft.com/detail/xpddtbj80f8pc9?hl=de-DE&amp;gl=DE">Arduino IDE im Microsoft Store</a></p>
+<p>Anschließend musst du noch den passenden Treiber installieren:</p>
 <h3 id="ch340-treiber">CH340-Treiber:</h3>
 <p>Billige Arduino Nachbauten verwenden für den USB-Anschluss in der Regel ein CH-340-Modul.
 Auf Windows-Rechnern muss ein Treiber installiert werden, um dieses Modul anzusprechen:</p>
