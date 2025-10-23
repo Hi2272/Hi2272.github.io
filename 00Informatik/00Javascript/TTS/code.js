@@ -190,7 +190,7 @@ async function speak(text) {
         const solutionHTML=createSolutionText(para,true);
 
         // Lückentext anzeigen
-       textarea.innerHTML += gapHTML + "\t\t";
+        textarea.innerHTML = gapHTML + "<br>" + textarea.innerHTML;
         // Erstes Vorlesen
         const u = new SpeechSynthesisUtterance(gapText);
         u.lang = lang;
@@ -204,7 +204,8 @@ async function speak(text) {
         if (stopp) { return; }
 
         // Lösung anzeigen
-        textarea.innerHTML += solutionHTML +"<br>";
+        
+        textarea.innerHTML="\t\t"+textarea.innerHTML.replace(gapHTML,solutionHTML);
         // Lösung vorlesen
 
         const ul = new SpeechSynthesisUtterance(solutionText);

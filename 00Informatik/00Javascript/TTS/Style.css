@@ -10,6 +10,13 @@ html, body {
     display: flex;
     justify-content: center;
 }
+#text {
+    max-height: 60vh;    /* begrenzt die Höhe, damit bei großem Inhalt gescrollt werden kann */
+    overflow: auto;      /* Scrollbalken bei Überlauf */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+}
 button {
     padding: 8px 16px;
     margin-left:20px;
