@@ -109,8 +109,9 @@ async function loadText() {
  */
 function createGapText(sentence, asHTML) {
     if (!asHTML) {
-        return sentence.replace(/\*(.*?)\*/g, '?');
-    } else {
+        let s=sentence.replace(/\*(.*?)\*/g, '?');
+        return s.replaceAll("'", ""); // Apostroph entfernen
+    }   else { 
         return "<strong>"+sentence.replace(/\*(.*?)\*/g, '')+"</strong>";
     }
 }
@@ -143,6 +144,7 @@ function createSolutionText(sentence, asHTML) {
         s = String(sentence).replace(/\*/g, '<b>');
     } else {
         s = String(sentence).replace(/\*/g, '');
+        s=s.replaceAll("'","")
     }
     let out = '';
     let depth = 0;
