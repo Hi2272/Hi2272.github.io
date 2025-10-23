@@ -108,8 +108,12 @@ async function loadText() {
 /**
  * Erstellt den Lückentext, indem Wörter zwischen '*' durch '____' ersetzt werden.
  */
-function createGapText(sentence) {
-    return sentence.replace(/\*(.*?)\*/g, '?');
+function createGapText(sentence, asHTML) {
+    if (!asHTML){
+        return sentence.replace(/\*(.*?)\*/g, '?');
+    } else {
+        return sentence.replace(/\*(.*?)\*/g, '');
+    }
 }
 
 function replaceEverySecondBold(inputString) {
@@ -133,9 +137,14 @@ function replaceEverySecondBold(inputString) {
  * @param {string} sentence – Eingabestring, z. B. "Hallo ich (und du), willkommen"
  * @returns {string} – Bereinigter String, z. B. "Hallo ich, willkommen"
  */
-function createSolutionText(sentence) {
+function createSolutionText(sentence, asHTML) {
     if (sentence == null) return '';
-    const s = String(sentence).replace(/\*/g, '<b>');
+    let s="";
+    if (asHTML){
+        s = String(sentence).replace(/\*/g, '<b>');
+    } else {
+        s = String(sentence).replace(/\*/g, '');
+    }
     let out = '';
     let depth = 0;
 
@@ -175,11 +184,13 @@ async function speak(text) {
     for (let pIndex = 0; pIndex < paragraphs.length; pIndex++) {
         if (stopp) { return; }
         const para = paragraphs[pIndex];
-        const gapText = createGapText(para);
-        const solutionText = createSolutionText(para);
+        const gapText = createGapText(para,false);
+        const gapHTML=createGapText(para,true);
+        const solutionText = createSolutionText(para,false);
+        const solutionHTML=createSolutionText(para,true);
 
         // Lückentext anzeigen
-       textarea.innerHTML += gapText + "\t\t";
+       textarea.innerHTML += gapHTML + "\t\t";
         // Erstes Vorlesen
         const u = new SpeechSynthesisUtterance(gapText);
         u.lang = lang;
@@ -193,7 +204,7 @@ async function speak(text) {
         if (stopp) { return; }
 
         // Lösung anzeigen
-        textarea.innerHTML += solutionText +"<br>";
+        textarea.innerHTML += solutionHTML +"<br>";
         // Lösung vorlesen
 
         const ul = new SpeechSynthesisUtterance(solutionText);
