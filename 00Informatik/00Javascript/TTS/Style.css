@@ -4,6 +4,7 @@ html, body {
     height: 100%;
     margin: 0;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    font-size: 1.5rem;
     background: #fff;
     color: #111;
 }
@@ -14,20 +15,14 @@ html, body {
     gap: 8px;
     padding: 8px;
 }
-textarea#text {
-    width: 100%;
-    height: 80vh; /* nimmt 80% der Bildschirmhöhe ein */
-    padding: 12px;
-    font-size: 1rem;
-    line-height: 1.4;
-    resize: none;
-}
 .controls {
     display: flex;
     justify-content: center;
 }
 button {
     padding: 8px 16px;
+    margin:20px;
     font-size: 1rem;
     cursor: pointer;
 }
+b{  color: red;}

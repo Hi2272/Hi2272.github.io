@@ -1,8 +1,8 @@
-// ...existing code...
 const speakBtn = document.getElementById('speak');
+const stoppBtn=document.getElementById('stopp');
 const textarea = document.getElementById('text');
-
 let voices = [];
+let stopp=false;
 
 /**
  * Lädt verfügbare Stimmen und gibt das Array zurück.
@@ -46,7 +46,6 @@ function waitForVoices(timeout = 2000) {
 }
 
 function selectFrenchVoice() {
-    // Bevorzugt Stimmen mit fr- prefix, ansonsten Name-matching
     return voices.find(v => v.lang && v.lang.toLowerCase().startsWith('fr')) ||
            voices.find(v => v.name && /franc|french|français/i.test(v.name));
 }
@@ -73,15 +72,66 @@ function sleep(ms) {
 }
 
 /**
- * Neuer Ablauf:
- * - Zerlege den Text an Absatzmarken (eine oder mehrere Leerzeilen).
- * - Für jeden Absatz nacheinander:
- *   * Teile an '*' auf.
- *   * Sammle (alt)-Wörter, entferne sie aus dem Text.
- *   * Erstes Vorlesen: an Sternstellen jeweils ~1s Pause (Stern-Wort nicht gesprochen),
- *     am Absatzende die gesammelten (alt)-Wörter sprechen.
- *   * 3s Pause.
- *   * Zweites Vorlesen: kompletter Absatz mit den Stern-Wörtern (ohne Klammerinhalte).
+ * Lädt den Text aus der Datei und gibt ihn als Lückentext zurück.
+ */
+async function loadText() {
+    const response = await fetch('text.md');
+    const text = await response.text();
+    return text.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+}
+
+/**
+ * Erstellt den Lückentext, indem Wörter zwischen '*' durch '____' ersetzt werden.
+ */
+function createGapText(sentence) {
+    return sentence.replace(/\*(.*?)\*/g, '____');
+}
+
+function replaceEverySecondBold(inputString) {
+    // Zähle die <b> Tags
+    let count = 0;
+
+    // Ersetze jedes <b> Tag durch eine spezielle Markierung
+    const modifiedString = inputString.replace(/<b>/g, () => {
+        count++;
+        // Ersetze jedes zweite <b> durch </b>
+        return count % 2 === 0 ? '</b>' : '<b>';
+    });
+
+    return modifiedString;
+}
+
+/**
+ * Erstellt den Lösungstext, indem die Wörter zwischen '*' hervorgehoben werden.
+ */
+/**
+ * Entfernt alle Inhalte in runden Klammern (inkl. Klammern) 
+ * sowie alle Sternchen (*) aus dem übergebenen Satz.
+ *
+ * @param {string} sentence – Eingabestring, z. B. "Hallo ich (und du), willkommen"
+ * @returns {string} – Bereinigter String, z. B. "Hallo ich, willkommen"
+ */
+function createSolutionText(sentence) {
+    if (sentence == null) return '';
+    const s = String(sentence).replace(/\*/g, '<b>');
+    let out = '';
+    let depth = 0;
+  
+    for (const ch of s) {
+      if (ch === '(') { depth++; continue; }
+      if (ch === ')') { if (depth > 0) depth--; else out += ch; continue; }
+      if (depth === 0) out += ch;
+    }
+    out=replaceEverySecondBold(out);
+    
+    return out
+      .replace(/\s+([,.;:!?])/g, '$1')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
+  }
+  
+/**
+ * Hauptfunktion für das Sprechen und Anzeigen der Texte.
  */
 async function speak(text) {
     if (!text || !text.trim()) {
@@ -93,104 +143,64 @@ async function speak(text) {
     speechSynthesis.cancel();
     const voice = selectFrenchVoice();
 
-    // Absätze (mehrere Leerzeilen als Trenner) -> trim und leere entfernen
     const paragraphs = text.split(/\r?\n{1,}/).map(p => p.trim()).filter(p => p.length > 0);
+    for (let i = paragraphs.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        // Elemente vertauschen
+        [paragraphs[i], paragraphs[j]] = [paragraphs[j], paragraphs[i]];
+    }
 
     for (let pIndex = 0; pIndex < paragraphs.length; pIndex++) {
+        if (stopp){return;}
         const para = paragraphs[pIndex];
+        const gapText = createGapText(para);
+        const solutionText = createSolutionText(para);
 
-        // Split an '*' -> even indices: normal text; odd indices: zwischen Sternen (main)
-        const parts = para.split('*');
-
-        const secondParts = [];  // für zweites Vorlesen (Stern-Wörter)
-        const altList = [];      // gesammelte (alt)-Wörter
-
-        // Durchlauf um (alt) zu extrahieren und secondParts aufzubauen
-        for (let i = 0; i < parts.length; i++) {
-            const part = parts[i];
-            if (i % 2 === 0) {
-                // normaler Text
-                secondParts.push(part);
-                continue;
-            }
-            // Stern-Teil (main)
-            const main = part;
-            let alt = null;
-            if (i + 1 < parts.length) {
-                const next = parts[i + 1];
-                const m = next.match(/^\s*\(([^)]+)\)/);
-                if (m) {
-                    alt = m[1].trim();
-                    // entferne die (alt) aus dem nächsten Part
-                    parts[i + 1] = next.slice(next.indexOf(')') + 1);
-                }
-            }
-            if (alt !== null) altList.push(alt);
-            secondParts.push(main);
-        }
-
-        // --- Erstes Vorlesen: sukzessiv sprechen, an Stern-Stellen 1s Pause ---
-        let buffer = '';
-        for (let i = 0; i < parts.length; i++) {
-            if (i % 2 === 0) {
-                // normalen Text anhäufen
-                buffer += parts[i];
-            } else {
-                // Stern-Stelle: zuerst den gepufferten Text sprechen
-                if (buffer.trim()) {
-                    const u = new SpeechSynthesisUtterance(buffer);
-                    u.lang = 'fr-FR';
-                    if (voice) u.voice = voice;
-                    u.rate = 1;
-                    u.pitch = 1;
-                    await speakUtterance(u);
-                }
-                buffer = '';
-                // ca. 1s Pause anstelle des Stern-Wortes
-                await sleep(1000);
-            }
-        }
-        // letzten gepufferten Text sprechen
-        if (buffer.trim()) {
-            const u = new SpeechSynthesisUtterance(buffer);
-            u.lang = 'fr-FR';
-            if (voice) u.voice = voice;
-            u.rate = 1;
-            u.pitch = 1;
-            await speakUtterance(u);
-        }
-
-        // Am Absatzende die gesammelten (alt)-Wörter sprechen (falls vorhanden)
-        if (altList.length > 0) {
-            const altText = altList.join(', ');
-            const uAlt = new SpeechSynthesisUtterance(altText);
-            uAlt.lang = 'fr-FR';
-            if (voice) uAlt.voice = voice;
-            uAlt.rate = 1;
-            uAlt.pitch = 1;
-            await speakUtterance(uAlt);
-        }
-
-        // 3 Sekunden Pause vor zweitem Vorlesen dieses Absatzes
+        // Lückentext anzeigen
+        textarea.innerHTML += "<tr><td>"+gapText+"</td>";
+    
+        // Erstes Vorlesen
+        const u = new SpeechSynthesisUtterance(gapText);
+        u.lang = 'fr-FR';
+        if (stopp){return;}
+       
+        if (voice) u.voice = voice;
+        await speakUtterance(u);
+        if (stopp){return;}
+       
+        // Pause vor dem Anzeigen der Lösung
         await sleep(3000);
+        if (stopp){return;}
+       
+        // Lösung anzeigen
+        textarea.innerHTML += "<td> "+solutionText+"</td></tr>";
+        
+        // Lösung vorlesen
 
-        // --- Zweites Vorlesen: kompletter Absatz mit den Stern-Wörtern ---
-        const secondText = secondParts.join('');
-        if (secondText.trim()) {
-            const u2 = new SpeechSynthesisUtterance(secondText);
-            u2.lang = 'fr-FR';
-            if (voice) u2.voice = voice;
-            u2.rate = 1;
-            u2.pitch = 1;
-            await speakUtterance(u2);
-        }
-
-        // Optional: kurze Pause zwischen Absätzen
-        if (pIndex < paragraphs.length - 1) {
-            await sleep(600);
-        }
+        const ul = new SpeechSynthesisUtterance(solutionText);
+        ul.lang = 'fr-FR';
+        if (voice) ul.voice = voice;
+        if (stopp){return;}
+       
+        await speakUtterance(ul);
+        await sleep(500);
+     
     }
 }
 
-// Button aktivieren sobald DOM geladen ist (Script liegt am Ende, sollte bereits verfügbar sein)
-speakBtn.addEventListener('click', () => speak(textarea.value));
+// Event-Listener für den Speak-Button
+speakBtn.addEventListener('click', async () => {
+    stopp=false;
+    pause=false;
+    textarea.innerHTML="";
+    const text = await loadText();
+    await speak(text.join('\n'));
+});
+// Event-Listener für den Stopp-Button
+
+stoppBtn.addEventListener('click', () => {
+    stopp=true;
+    if ( speechSynthesis.speaking) {
+        speechSynthesis.cancel(); // Stoppt die Sprachausgabe
+    }
+});

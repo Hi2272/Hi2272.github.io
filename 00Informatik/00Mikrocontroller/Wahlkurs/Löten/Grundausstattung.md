@@ -4,7 +4,6 @@
 
 - Arduino Uno
 - Ardushield  
-- Alarmanlagenshield
 
 ### Kabel
 - 10 x Dupont w/w
@@ -23,6 +22,7 @@
 - 6 x Widerstand 1KOhm
 - Verbinder
 
-### Zubehör Alarmanlage
+### Zubehör Alarmanlage (später)
 - passiver Buzzer
-- Bewegungssensor
+- Bewegungssensor 
+- Alarmanlagenshield
