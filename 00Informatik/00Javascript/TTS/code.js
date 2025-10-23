@@ -1,9 +1,8 @@
 const speakBtn = document.getElementById('speak');
-const stoppBtn = document.getElementById('stopp');
 const textarea = document.getElementById('text');
 
 let voices = [];
-let stopp = false;
+let stopp = true;
 let lang = 'fr-FR'; // default, wird beim Laden von Steuerung.json überschrieben
 
 // sofort nach Laden Steuerung.json einlesen und UI / lang setzen
@@ -109,10 +108,10 @@ async function loadText() {
  * Erstellt den Lückentext, indem Wörter zwischen '*' durch '____' ersetzt werden.
  */
 function createGapText(sentence, asHTML) {
-    if (!asHTML){
+    if (!asHTML) {
         return sentence.replace(/\*(.*?)\*/g, '?');
     } else {
-        return sentence.replace(/\*(.*?)\*/g, '');
+        return "<strong>"+sentence.replace(/\*(.*?)\*/g, '')+"</strong>";
     }
 }
 
@@ -139,8 +138,8 @@ function replaceEverySecondBold(inputString) {
  */
 function createSolutionText(sentence, asHTML) {
     if (sentence == null) return '';
-    let s="";
-    if (asHTML){
+    let s = "";
+    if (asHTML) {
         s = String(sentence).replace(/\*/g, '<b>');
     } else {
         s = String(sentence).replace(/\*/g, '');
@@ -184,10 +183,10 @@ async function speak(text) {
     for (let pIndex = 0; pIndex < paragraphs.length; pIndex++) {
         if (stopp) { return; }
         const para = paragraphs[pIndex];
-        const gapText = createGapText(para,false);
-        const gapHTML=createGapText(para,true);
-        const solutionText = createSolutionText(para,false);
-        const solutionHTML=createSolutionText(para,true);
+        const gapText = createGapText(para, false);
+        const gapHTML = createGapText(para, true);
+        const solutionText = createSolutionText(para, false);
+        const solutionHTML = createSolutionText(para, true);
 
         // Lückentext anzeigen
         textarea.innerHTML = gapHTML + "<br>" + textarea.innerHTML;
@@ -204,8 +203,8 @@ async function speak(text) {
         if (stopp) { return; }
 
         // Lösung anzeigen
-        
-        textarea.innerHTML="\t\t"+textarea.innerHTML.replace(gapHTML,solutionHTML);
+
+        textarea.innerHTML =  textarea.innerHTML.replace(gapHTML, solutionHTML);
         // Lösung vorlesen
 
         const ul = new SpeechSynthesisUtterance(solutionText);
@@ -220,17 +219,14 @@ async function speak(text) {
 
 // Event-Listener für den Speak-Button
 speakBtn.addEventListener('click', async () => {
-    stopp = false;
-    textarea.innerHTML = "";
-    const text = await loadText();
-    await speak(text.join('\n'));
-});
-// Event-Listener für den Stopp-Button
-
-stoppBtn.addEventListener('click', () => {
-    stopp = true;
-    if (speechSynthesis.speaking) {
-        speechSynthesis.cancel(); // Stoppt die Sprachausgabe
+    stopp = !stopp;
+    if (!stopp) {
+        speakBtn.innerHTML = "Stopp";
+        textarea.innerHTML = "";
+        const text = await loadText();
+        await speak(text.join('\n'));
+    } else {
+        speakBtn.innerHTML = "Start";
     }
 });
 

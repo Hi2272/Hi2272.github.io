@@ -5,10 +5,7 @@ html, body {
     font-size: 1.5rem;
     background: #FFE;
     color:#333;
-}
-.controls {
-    display: flex;
-    justify-content: center;
+    text-align: center;
 }
 #text {
     max-height: 60vh;    /* begrenzt die Höhe, damit bei großem Inhalt gescrollt werden kann */
