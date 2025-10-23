@@ -26,3 +26,22 @@ button {
     cursor: pointer;
 }
 b{  color: red;}
+#title {
+    text-align: center;
+    font-size: 2rem;
+    margin: 0;
+}
+#subtitle {
+    text-align: center;
+    font-size: 0.8rem;
+    margin: 0;
+}
+#anleitung {
+    font-size: 0.5rem;
+    margin: 0;
+}
+pre{
+    font-size: 1.0rem;
+    line-height: 1.5rem;
+    white-space: pre-wrap;
+}

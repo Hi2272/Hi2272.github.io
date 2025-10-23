@@ -1,8 +1,33 @@
 const speakBtn = document.getElementById('speak');
-const stoppBtn=document.getElementById('stopp');
+const stoppBtn = document.getElementById('stopp');
 const textarea = document.getElementById('text');
+
 let voices = [];
-let stopp=false;
+let stopp = false;
+let lang = 'fr-FR'; // default, wird beim Laden von Steuerung.json überschrieben
+
+// sofort nach Laden Steuerung.json einlesen und UI / lang setzen
+(async function loadSteuerung() {
+    try {
+        const res = await fetch('Steuerung.json');
+        if (!res.ok) throw new Error('Steuerung.json nicht gefunden');
+        const cfg = await res.json();
+        if (cfg.titel) {
+            const el = document.getElementById('title');
+            if (el) el.innerHTML = cfg.titel;
+        }
+        if (cfg.untertitel || cfg.untertitel) {
+            const subKey = cfg.untertitel ? 'untertitel' : 'untertitel';
+            const elSub = document.getElementById('subtitle');
+            if (elSub) {
+                elSub.innerHTML = cfg[subKey];
+            }
+        }
+        if (cfg.sprache) lang = cfg.sprache;
+    } catch (e) {
+        console.warn('Fehler beim Laden von Steuerung.json:', e);
+    }
+})();
 
 /**
  * Lädt verfügbare Stimmen und gibt das Array zurück.
@@ -47,7 +72,7 @@ function waitForVoices(timeout = 2000) {
 
 function selectFrenchVoice() {
     return voices.find(v => v.lang && v.lang.toLowerCase().startsWith('fr')) ||
-           voices.find(v => v.name && /franc|french|français/i.test(v.name));
+        voices.find(v => v.name && /franc|french|français/i.test(v.name));
 }
 
 /**
@@ -84,7 +109,7 @@ async function loadText() {
  * Erstellt den Lückentext, indem Wörter zwischen '*' durch '____' ersetzt werden.
  */
 function createGapText(sentence) {
-    return sentence.replace(/\*(.*?)\*/g, '____');
+    return sentence.replace(/\*(.*?)\*/g, '?');
 }
 
 function replaceEverySecondBold(inputString) {
@@ -102,9 +127,6 @@ function replaceEverySecondBold(inputString) {
 }
 
 /**
- * Erstellt den Lösungstext, indem die Wörter zwischen '*' hervorgehoben werden.
- */
-/**
  * Entfernt alle Inhalte in runden Klammern (inkl. Klammern) 
  * sowie alle Sternchen (*) aus dem übergebenen Satz.
  *
@@ -116,20 +138,20 @@ function createSolutionText(sentence) {
     const s = String(sentence).replace(/\*/g, '<b>');
     let out = '';
     let depth = 0;
-  
+
     for (const ch of s) {
-      if (ch === '(') { depth++; continue; }
-      if (ch === ')') { if (depth > 0) depth--; else out += ch; continue; }
-      if (depth === 0) out += ch;
+        if (ch === '(') { depth++; continue; }
+        if (ch === ')') { if (depth > 0) depth--; else out += ch; continue; }
+        if (depth === 0) out += ch;
     }
-    out=replaceEverySecondBold(out);
-    
+    out = replaceEverySecondBold(out);
+
     return out
-      .replace(/\s+([,.;:!?])/g, '$1')
-      .replace(/\s{2,}/g, ' ')
-      .trim();
-  }
-  
+        .replace(/\s+([,.;:!?])/g, '$1')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+}
+
 /**
  * Hauptfunktion für das Sprechen und Anzeigen der Texte.
  */
@@ -151,56 +173,52 @@ async function speak(text) {
     }
 
     for (let pIndex = 0; pIndex < paragraphs.length; pIndex++) {
-        if (stopp){return;}
+        if (stopp) { return; }
         const para = paragraphs[pIndex];
         const gapText = createGapText(para);
         const solutionText = createSolutionText(para);
 
         // Lückentext anzeigen
-        textarea.innerHTML += "<tr><td>"+gapText+"</td>";
-    
+       textarea.innerHTML += gapText + "\t\t";
         // Erstes Vorlesen
         const u = new SpeechSynthesisUtterance(gapText);
-        u.lang = 'fr-FR';
-        if (stopp){return;}
-       
+        u.lang = lang;
+
+        if (stopp) { return; }
         if (voice) u.voice = voice;
         await speakUtterance(u);
-        if (stopp){return;}
-       
+        if (stopp) { return; }
         // Pause vor dem Anzeigen der Lösung
         await sleep(3000);
-        if (stopp){return;}
-       
+        if (stopp) { return; }
+
         // Lösung anzeigen
-        textarea.innerHTML += "<td> "+solutionText+"</td></tr>";
-        
+        textarea.innerHTML += solutionText +"<br>";
         // Lösung vorlesen
 
         const ul = new SpeechSynthesisUtterance(solutionText);
-        ul.lang = 'fr-FR';
+        ul.lang = lang;
         if (voice) ul.voice = voice;
-        if (stopp){return;}
-       
+        if (stopp) { return; }
         await speakUtterance(ul);
         await sleep(500);
-     
+
     }
 }
 
 // Event-Listener für den Speak-Button
 speakBtn.addEventListener('click', async () => {
-    stopp=false;
-    pause=false;
-    textarea.innerHTML="";
+    stopp = false;
+    textarea.innerHTML = "";
     const text = await loadText();
     await speak(text.join('\n'));
 });
 // Event-Listener für den Stopp-Button
 
 stoppBtn.addEventListener('click', () => {
-    stopp=true;
-    if ( speechSynthesis.speaking) {
+    stopp = true;
+    if (speechSynthesis.speaking) {
         speechSynthesis.cancel(); // Stoppt die Sprachausgabe
     }
 });
+
