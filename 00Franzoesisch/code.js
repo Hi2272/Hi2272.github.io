@@ -14,6 +14,9 @@ let lang = 'fr-FR'; // default, wird beim Laden von Steuerung.json überschriebe
         if (cfg.titel) {
             const el = document.getElementById('title');
             if (el) el.innerHTML = cfg.titel;
+            const seitentitel = document.getElementById('pagetitle');
+            if (seitentitel) seitentitel.innerHTML = cfg.titel;
+            
         }
         if (cfg.untertitel || cfg.untertitel) {
             const subKey = cfg.untertitel ? 'untertitel' : 'untertitel';
@@ -23,6 +26,7 @@ let lang = 'fr-FR'; // default, wird beim Laden von Steuerung.json überschriebe
             }
         }
         if (cfg.sprache) lang = cfg.sprache;
+        
     } catch (e) {
         console.warn('Fehler beim Laden von Steuerung.json:', e);
     }
@@ -110,7 +114,9 @@ async function loadText() {
 function createGapText(sentence, asHTML) {
     if (!asHTML) {
         let s=sentence.replace(/\*(.*?)\*/g, '?');
+        s=s.replaceAll("J'","Je");
         return s.replaceAll("'", ""); // Apostroph entfernen
+
     }   else { 
         return "<strong>"+sentence.replace(/\*(.*?)\*/g, '')+"</strong>";
     }
@@ -144,7 +150,8 @@ function createSolutionText(sentence, asHTML) {
         s = String(sentence).replace(/\*/g, '<b>');
     } else {
         s = String(sentence).replace(/\*/g, '');
-        s=s.replaceAll("'","")
+        s=s.replaceAll("J' ","J");
+        s=s.replaceAll("'","");
     }
     let out = '';
     let depth = 0;
@@ -217,6 +224,9 @@ async function speak(text) {
         await sleep(500);
 
     }
+    speakBtn.innerHTML = "Start";
+    speakBtn.style.backgroundColor="#FF8";
+    stopp=true;
 }
 
 // Event-Listener für den Speak-Button
@@ -225,10 +235,13 @@ speakBtn.addEventListener('click', async () => {
     if (!stopp) {
         speakBtn.innerHTML = "Stopp";
         textarea.innerHTML = "";
+        speakBtn.style.backgroundColor="#F55";
         const text = await loadText();
         await speak(text.join('\n'));
     } else {
         speakBtn.innerHTML = "Start";
+        speakBtn.style.backgroundColor="#FF8";
+        
     }
 });
 

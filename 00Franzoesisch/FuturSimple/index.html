@@ -1,23 +1,23 @@
 <!doctype html>
-<html lang="de">
+<html lang="fr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>TTS - Vorlesen</title>
+    <title id="pagetitle">TTS - Vorlesen</title>
     <!-- ...existing code... -->
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="../Style.css">
 </head>
 <body>
     <div class="container">
         <h1 id="title">Text to Speech</h1>
         <div id="subtitle"></div>
-        <pre id="anleitung">
-            Klicke auf Start und höre dir die Angaben an.       Sprich deine Antwort laut aus.      Höre dir anschließend die Lösung an.
-        </pre>
+        <table id="anleitung"><tr>
+          <td id="an1">1. Klicke auf Start und höre dir die Angabe an.</td><td>2. Sprich deine Antwort laut aus.</td><td>3. Höre dir anschließend die Lösung an.</td>
+        </tr></table>
         <div class="controls">
             <button id="speak">Start</button>
         </div>
             <pre id="text"></pre>
-      <script src="code.js"></script>
+      <script src="../code.js"></script>
 </body>
 </html>
