@@ -30,7 +30,7 @@ public void changeKante(String start, String ziel, int wert){
     {'id': 'Java', 'speed': 2000, 
     'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
     'withFileList': true ,'withErrorList': true}
-    <script id="javaCode" type="plain/text" title="Graph.java" src="Graph.java"></script>
+    <script id="javaCode" type="plain/text" title="GraphArray.java" src="GraphArray.java"></script>
     <script id="javaCode" type="plain/text" title="Knoten.java" src="Knoten.java"></script>
     <script id="javaCode" type="plain/text" title="Main.java" src="Main.java"></script>
   </script>
