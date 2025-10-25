@@ -1,30 +1,30 @@
-const speakBtn = document.getElementById('speak');
-const textarea = document.getElementById('text');
+const speakBtn = document.getElementById('speak'); // Button zum Starten/Stoppen der Sprachausgabe
+const textarea = document.getElementById('text'); // Textbereich zur Anzeige des Lückentexts
 
-let voices = [];
-let stopp = true;
-let lang = 'fr-FR'; // default, wird beim Laden von Steuerung.json überschrieben
+let voices = []; // Array zur Speicherung der verfügbaren Stimmen
+let stopp = true; // Flag zur Steuerung des Vorlesens
+let lang = 'fr-FR'; // Standard Sprache, wird beim Laden von Steuerung.json überschrieben
 
-// sofort nach Laden Steuerung.json einlesen und UI / lang setzen
+// Sofort nach Laden von Steuerung.json einlesen und UI / lang setzen
 (async function loadSteuerung() {
     try {
-        const res = await fetch('Steuerung.json');
-        if (!res.ok) throw new Error('Steuerung.json nicht gefunden');
-        const cfg = await res.json();
+        const res = await fetch('Steuerung.json'); // JSON-Datei abrufen
+        if (!res.ok) throw new Error('Steuerung.json nicht gefunden'); // Fehlerbehandlung
+        const cfg = await res.json(); // JSON-Inhalt parsen
         if (cfg.titel) {
-            const el = document.getElementById('title');
-            if (el) el.innerHTML = cfg.titel;
+            const el = document.getElementById('title'); // Element für den Titel
+            if (el) el.innerHTML = cfg.titel; // Titel setzen
         }
         if (cfg.untertitel || cfg.untertitel) {
-            const subKey = cfg.untertitel ? 'untertitel' : 'untertitel';
-            const elSub = document.getElementById('subtitle');
+            const subKey = cfg.untertitel ? 'untertitel' : 'untertitel'; // Untertitel-Schlüssel ermitteln
+            const elSub = document.getElementById('subtitle'); // Element für den Untertitel
             if (elSub) {
-                elSub.innerHTML = cfg[subKey];
+                elSub.innerHTML = cfg[subKey]; // Untertitel setzen
             }
         }
-        if (cfg.sprache) lang = cfg.sprache;
+        if (cfg.sprache) lang = cfg.sprache; // Sprache setzen, falls angegeben
     } catch (e) {
-        console.warn('Fehler beim Laden von Steuerung.json:', e);
+        console.warn('Fehler beim Laden von Steuerung.json:', e); // Fehlerprotokollierung
     }
 })();
 
@@ -32,9 +32,9 @@ let lang = 'fr-FR'; // default, wird beim Laden von Steuerung.json überschriebe
  * Lädt verfügbare Stimmen und gibt das Array zurück.
  */
 function loadVoices() {
-    voices = speechSynthesis.getVoices() || [];
-    console.log('Verfügbare Stimmen:', voices);
-    return voices;
+    voices = speechSynthesis.getVoices() || []; // Stimmen abrufen
+    console.log('Verfügbare Stimmen:', voices); // Verfügbare Stimmen protokollieren
+    return voices; // Stimmen zurückgeben
 }
 
 /**
@@ -42,36 +42,39 @@ function loadVoices() {
  */
 function waitForVoices(timeout = 2000) {
     return new Promise(resolve => {
-        const v = loadVoices();
+        const v = loadVoices(); // Stimmen laden
         if (v && v.length) {
-            resolve(v);
+            resolve(v); // Stimmen sofort zurückgeben, wenn verfügbar
             return;
         }
-        let resolved = false;
+        let resolved = false; // Flag zur Überwachung des Auflösungsstatus
         const timer = setTimeout(() => {
             if (!resolved) {
-                resolved = true;
-                resolve(loadVoices());
+                resolved = true; // Timer abgelaufen
+                resolve(loadVoices()); // Stimmen nach Timeout zurückgeben
             }
         }, timeout);
 
         if ('onvoiceschanged' in speechSynthesis) {
             const handler = () => {
                 if (!resolved) {
-                    resolved = true;
-                    clearTimeout(timer);
-                    speechSynthesis.onvoiceschanged = null;
-                    resolve(loadVoices());
+                    resolved = true; // Stimmen wurden geändert
+                    clearTimeout(timer); // Timer stoppen
+                    speechSynthesis.onvoiceschanged = null; // Handler entfernen
+                    resolve(loadVoices()); // Stimmen zurückgeben
                 }
             };
-            speechSynthesis.onvoiceschanged = handler;
+            speechSynthesis.onvoiceschanged = handler; // Event-Handler für Stimmenänderung setzen
         }
     });
 }
 
+/**
+ * Wählt die französische Stimme aus den verfügbaren Stimmen aus.
+ */
 function selectFrenchVoice() {
-    return voices.find(v => v.lang && v.lang.toLowerCase().startsWith('fr')) ||
-        voices.find(v => v.name && /franc|french|français/i.test(v.name));
+    return voices.find(v => v.lang && v.lang.toLowerCase().startsWith('fr')) || // Stimme mit französischer Sprache finden
+        voices.find(v => v.name && /franc|french|français/i.test(v.name)); // Stimme mit französischem Namen finden
 }
 
 /**
@@ -79,29 +82,32 @@ function selectFrenchVoice() {
  */
 function speakUtterance(utterance) {
     return new Promise((resolve) => {
-        const onEnd = () => { cleanup(); resolve(); };
-        const onError = () => { cleanup(); resolve(); };
+        const onEnd = () => { cleanup(); resolve(); }; // Callback für das Ende der Sprachausgabe
+        const onError = () => { cleanup(); resolve(); }; // Callback für Fehler bei der Sprachausgabe
         function cleanup() {
-            utterance.removeEventListener('end', onEnd);
-            utterance.removeEventListener('error', onError);
+            utterance.removeEventListener('end', onEnd); // Event-Listener entfernen
+            utterance.removeEventListener('error', onError); // Event-Listener entfernen
         }
-        utterance.addEventListener('end', onEnd);
-        utterance.addEventListener('error', onError);
-        speechSynthesis.speak(utterance);
+        utterance.addEventListener('end', onEnd); // Event-Listener für das Ende hinzufügen
+        utterance.addEventListener('error', onError); // Event-Listener für Fehler hinzufügen
+        speechSynthesis.speak(utterance); // Sprachausgabe starten
     });
 }
 
+/**
+ * Wartet für eine bestimmte Zeit in Millisekunden.
+ */
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms)); // Promise zur Verzögerung
 }
 
 /**
  * Lädt den Text aus der Datei und gibt ihn als Lückentext zurück.
  */
 async function loadText() {
-    const response = await fetch('text.md');
-    const text = await response.text();
-    return text.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+    const response = await fetch('text.md'); // Textdatei abrufen
+    const text = await response.text(); // Textinhalt parsen
+    return text.split('\n').map(line => line.trim()).filter(line => line.length > 0); // Zeilen in ein Array umwandeln
 }
 
 /**
@@ -109,25 +115,23 @@ async function loadText() {
  */
 function createGapText(sentence, asHTML) {
     if (!asHTML) {
-        let s=sentence.replace(/\*(.*?)\*/g, '?');
+        let s = sentence.replace(/\*(.*?)\*/g, '?'); // Wörter zwischen '*' ersetzen
         return s.replaceAll("'", ""); // Apostroph entfernen
-    }   else { 
-        return "<strong>"+sentence.replace(/\*(.*?)\*/g, '')+"</strong>";
+    } else { 
+        return "<strong>" + sentence.replace(/\*(.*?)\*/g, '') + "</strong>"; // HTML-Formatierung
     }
 }
 
+/**
+ * Ersetzt jedes zweite <b> Tag durch </b>.
+ */
 function replaceEverySecondBold(inputString) {
-    // Zähle die <b> Tags
-    let count = 0;
-
-    // Ersetze jedes <b> Tag durch eine spezielle Markierung
+    let count = 0; // Zähler für <b> Tags
     const modifiedString = inputString.replace(/<b>/g, () => {
-        count++;
-        // Ersetze jedes zweite <b> durch </b>
-        return count % 2 === 0 ? '</b>' : '<b>';
+        count++; // Zähler erhöhen
+        return count % 2 === 0 ? '</b>' : '<b>'; // Jedes zweite <b> Tag ersetzen
     });
-
-    return modifiedString;
+    return modifiedString; // Modifizierten String zurückgeben
 }
 
 /**
@@ -138,28 +142,28 @@ function replaceEverySecondBold(inputString) {
  * @returns {string} – Bereinigter String, z. B. "Hallo ich, willkommen"
  */
 function createSolutionText(sentence, asHTML) {
-    if (sentence == null) return '';
+    if (sentence == null) return ''; // Überprüfen, ob der Satz null ist
     let s = "";
     if (asHTML) {
-        s = String(sentence).replace(/\*/g, '<b>');
+        s = String(sentence).replace(/\*/g, '<b>'); // Sternchen in <b> Tags umwandeln
     } else {
-        s = String(sentence).replace(/\*/g, '');
-        s=s.replaceAll("'","")
+        s = String(sentence).replace(/\*/g, ''); // Sternchen entfernen
+        s = s.replaceAll("'", ""); // Apostroph entfernen
     }
-    let out = '';
-    let depth = 0;
+    let out = ''; // Ausgabestring
+    let depth = 0; // Tiefe der Klammernestung
 
     for (const ch of s) {
-        if (ch === '(') { depth++; continue; }
-        if (ch === ')') { if (depth > 0) depth--; else out += ch; continue; }
-        if (depth === 0) out += ch;
+        if (ch === '(') { depth++; continue; } // Klammeröffnung: Tiefe erhöhen
+        if (ch === ')') { if (depth > 0) depth--; else out += ch; continue; } // Klammerabschluss: Tiefe verringern
+        if (depth === 0) out += ch; // Zeichen hinzufügen, wenn nicht in Klammern
     }
-    out = replaceEverySecondBold(out);
+    out = replaceEverySecondBold(out); // Jedes zweite <b> Tag ersetzen
 
     return out
-        .replace(/\s+([,.;:!?])/g, '$1')
-        .replace(/\s{2,}/g, ' ')
-        .trim();
+        .replace(/\s+([,.;:!?])/g, '$1') // Überflüssige Leerzeichen vor Satzzeichen entfernen
+        .replace(/\s{2,}/g, ' ') // Mehrere Leerzeichen durch ein einzelnes ersetzen
+        .trim(); // Leerzeichen am Anfang und Ende entfernen
 }
 
 /**
@@ -167,68 +171,64 @@ function createSolutionText(sentence, asHTML) {
  */
 async function speak(text) {
     if (!text || !text.trim()) {
-        textarea.focus();
+        textarea.focus(); // Textbereich fokussieren, wenn kein Text vorhanden ist
         return;
     }
 
-    await waitForVoices();
-    speechSynthesis.cancel();
-    const voice = selectFrenchVoice();
+    await waitForVoices(); // Auf verfügbare Stimmen warten
+    speechSynthesis.cancel(); // Aktuelle Sprachausgabe abbrechen
+    const voice = selectFrenchVoice(); // Französische Stimme auswählen
 
-    const paragraphs = text.split(/\r?\n{1,}/).map(p => p.trim()).filter(p => p.length > 0);
+    const paragraphs = text.split(/\r?\n{1,}/).map(p => p.trim()).filter(p => p.length > 0); // Text in Absätze aufteilen
     for (let i = paragraphs.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
+        const j = Math.floor(Math.random() * (i + 1)); // Zufälligen Index für den Tausch ermitteln
         // Elemente vertauschen
-        [paragraphs[i], paragraphs[j]] = [paragraphs[j], paragraphs[i]];
+        [paragraphs[i], paragraphs[j]] = [paragraphs[j], paragraphs[i]]; // Absätze zufällig mischen
     }
 
     for (let pIndex = 0; pIndex < paragraphs.length; pIndex++) {
-        if (stopp) { return; }
-        const para = paragraphs[pIndex];
-        const gapText = createGapText(para, false);
-        const gapHTML = createGapText(para, true);
-        const solutionText = createSolutionText(para, false);
-        const solutionHTML = createSolutionText(para, true);
+        if (stopp) { return; } // Abbrechen, wenn Stopp-Flag gesetzt ist
+        const para = paragraphs[pIndex]; // Aktuellen Absatz speichern
+        const gapText = createGapText(para, false); // Lückentext erstellen
+        const gapHTML = createGapText(para, true); // HTML Lückentext erstellen
+        const solutionText = createSolutionText(para, false); // Lösungstext erstellen
+        const solutionHTML = createSolutionText(para, true); // HTML Lösungstext erstellen
 
         // Lückentext anzeigen
-        textarea.innerHTML = gapHTML + "<br>" + textarea.innerHTML;
+        textarea.innerHTML = gapHTML + "<br>" + textarea.innerHTML; // Lückentext im Textbereich anzeigen
         // Erstes Vorlesen
-        const u = new SpeechSynthesisUtterance(gapText);
-        u.lang = lang;
+        const u = new SpeechSynthesisUtterance(gapText); // Utterance für den Lückentext erstellen
+        u.lang = lang; // Sprache der Utterance setzen
 
-        if (stopp) { return; }
-        if (voice) u.voice = voice;
-        await speakUtterance(u);
-        if (stopp) { return; }
+        if (stopp) { return; } // Abbrechen, wenn Stopp-Flag gesetzt ist
+        if (voice) u.voice = voice; // Stimme setzen, falls vorhanden
+        await speakUtterance(u); // Lückentext vorlesen
+        if (stopp) { return; } // Abbrechen, wenn Stopp-Flag gesetzt ist
         // Pause vor dem Anzeigen der Lösung
-        await sleep(3000);
-        if (stopp) { return; }
+        await sleep(3000); // 3 Sekunden warten
+        if (stopp) { return; } // Abbrechen, wenn Stopp-Flag gesetzt ist
 
         // Lösung anzeigen
-
-        textarea.innerHTML =  textarea.innerHTML.replace(gapHTML, solutionHTML);
+        textarea.innerHTML = textarea.innerHTML.replace(gapHTML, solutionHTML); // Lückentext durch Lösung ersetzen
         // Lösung vorlesen
-
-        const ul = new SpeechSynthesisUtterance(solutionText);
-        ul.lang = lang;
-        if (voice) ul.voice = voice;
-        if (stopp) { return; }
-        await speakUtterance(ul);
-        await sleep(500);
-
+        const ul = new SpeechSynthesisUtterance(solutionText); // Utterance für den Lösungstext erstellen
+        ul.lang = lang; // Sprache der Utterance setzen
+        if (voice) ul.voice = voice; // Stimme setzen, falls vorhanden
+        if (stopp) { return; } // Abbrechen, wenn Stopp-Flag gesetzt ist
+        await speakUtterance(ul); // Lösung vorlesen
+        await sleep(500); // 0,5 Sekunden warten
     }
 }
 
 // Event-Listener für den Speak-Button
 speakBtn.addEventListener('click', async () => {
-    stopp = !stopp;
+    stopp = !stopp; // Stopp-Flag umschalten
     if (!stopp) {
-        speakBtn.innerHTML = "Stopp";
-        textarea.innerHTML = "";
-        const text = await loadText();
-        await speak(text.join('\n'));
+        speakBtn.innerHTML = "Stopp"; // Button-Text auf "Stopp" setzen
+        textarea.innerHTML = ""; // Textbereich leeren
+        const text = await loadText(); // Text laden
+        await speak(text.join('\n')); // Text vorlesen
     } else {
-        speakBtn.innerHTML = "Start";
+        speakBtn.innerHTML = "Start"; // Button-Text auf "Start" setzen
     }
 });
-
