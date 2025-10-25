@@ -49,6 +49,9 @@
 
 ## Informatik 7. Klasse
 [Mein Netzwerk zu Hause](https://learningapps.org/view7741094)  
+[WebNetSim Einstieg](00Informatik7/01WebNetSim/index.html)  
+[WebNetSim Netzwerk](00Informatik7/02WebNetSim/index.html)  
+
 [Die Abenteuer von Kommissar Smith](https://netzwerke.hauptquartier.eu/abenteuer-archiv)   
 
 
@@ -220,7 +223,8 @@
 [Endversion](00Informatik10/Projekt/10Background/index.html)  
 
 ## Informatik 11. Klasse
-[Graphen implementieren](00Informatik11/01Graph/01GraphStart/index.html)  
+[Graphen implementieren](00Informatik11/01Graph/01GraphStart/index.html)   
+[Graphen implementieren 2](00Informatik11/01Graph2/01Start/index.html)   
 [Graphen bearbeiten](00Informatik11/02GraphenAuslesen/01Algorithmen/index.html)  
 
 

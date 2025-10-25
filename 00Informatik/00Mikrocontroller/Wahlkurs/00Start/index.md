@@ -1,6 +1,6 @@
  <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
-# Einrichten der Programmierungumgebug
+# Einrichten der Programmierumgebug
 ## Starten von Linux Mint auf den Rechnern
 1. Stecke den USB-Stick in die Buchse auf der linken Seite des Rechners.
 2. Schalte den Rechner ein.
@@ -25,6 +25,12 @@ Schließe den Arduino mit dem blauen USB-Kabel an einer der beiden Buchsen auf d
 
 ## Hinweise zur Verwendung von Mikrocontrollern unter Windows
 
+### Installation der Software
+
+Zum Programmieren musst du das Programm **Arduino IDE** auf deinem Rechner installieren:  
+[Arduino IDE im Microsoft Store](https://apps.microsoft.com/detail/xpddtbj80f8pc9?hl=de-DE&gl=DE)   
+
+Anschließend musst du noch den passenden Treiber installieren:  
 ### CH340-Treiber:
 Billige Arduino Nachbauten verwenden für den USB-Anschluss in der Regel ein CH-340-Modul.
 Auf Windows-Rechnern muss ein Treiber installiert werden, um dieses Modul anzusprechen:  

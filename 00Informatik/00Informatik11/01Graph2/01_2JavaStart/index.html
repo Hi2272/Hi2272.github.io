@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Einrichten der Programmierumgebug</title>
+            <title>Flugverbindungen als Graphen</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -138,56 +138,30 @@
         
         </head>
         <body class="vscode-body vscode-light">
-             <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
-<h1 id="einrichten-der-programmierumgebug">Einrichten der Programmierumgebug</h1>
-<h2 id="starten-von-linux-mint-auf-den-rechnern">Starten von Linux Mint auf den Rechnern</h2>
-<ol>
-<li>Stecke den USB-Stick in die Buchse auf der linken Seite des Rechners.</li>
-<li>Schalte den Rechner ein.</li>
-<li>Warte, bis das Boot-Menü erscheint und drücke Return, um Linux Mint zu starten.</li>
-<li>Der Rechner fährt das Linux-Betriebssystem auf dem USB-Stick hoch.</li>
-<li>Es startet automatisch zwei Programme:
-<ol>
-<li>Programmierumgebung für Arduinos (Arduino IDE)</li>
-<li>Internetbrowser Firefox</li>
-</ol>
-</li>
-<li>Berühre während der Arbeit den Stick nicht mehr. Sobald der Rechner den Kontakt zum Linux-System verliert, stürzt er ab und muss neu gestartet werden.</li>
-</ol>
-<h2 id="anschluss-des-arduino-unos">Anschluss des Arduino Unos</h2>
-<p>Schließe den Arduino mit dem blauen USB-Kabel an einer der beiden Buchsen auf der rechten Seite des Rechners an.</p>
-<h2 id="einstellen-des-arduino-unos-in-der-software">Einstellen des Arduino Unos in der Software</h2>
-<ol>
-<li>Klicke auf die Pfeilspitze rechts von Select Board<br>
-<img src="Sc1.png" alt="Alt text"></li>
-<li>Wähle <strong>Unknown /dvttyUSB0</strong><br>
-<img src="sc2.png" alt="Alt text"></li>
-<li>Trage im Feld BOARDS <strong>uno</strong> ein.</li>
-<li>Klicke auf <strong>Arduino Uno</strong><br>
-<img src="sc3.png" alt="Alt text"></li>
-<li>Klicke auf <strong>OK</strong></li>
-</ol>
-<h2 id="hinweise-zur-verwendung-von-mikrocontrollern-unter-windows">Hinweise zur Verwendung von Mikrocontrollern unter Windows</h2>
-<h3 id="installation-der-software">Installation der Software</h3>
-<p>Zum Programmieren musst du das Programm <strong>Arduino IDE</strong> auf deinem Rechner installieren:<br>
-<a href="https://apps.microsoft.com/detail/xpddtbj80f8pc9?hl=de-DE&amp;gl=DE">Arduino IDE im Microsoft Store</a></p>
-<p>Anschließend musst du noch den passenden Treiber installieren:</p>
-<h3 id="ch340-treiber">CH340-Treiber:</h3>
-<p>Billige Arduino Nachbauten verwenden für den USB-Anschluss in der Regel ein CH-340-Modul.
-Auf Windows-Rechnern muss ein Treiber installiert werden, um dieses Modul anzusprechen:</p>
-<p><a href="https://sparks.gogo.co.nz/ch340.html">https://sparks.gogo.co.nz/ch340.html</a></p>
-<h3 id="cp210-treiber">CP210-Treiber:</h3>
-<p>ESP32-Boards verwenden für den USB-Anschluss CP210-Module.
-Auf Windows-Rechnern muss ein Treiber installiert werden, um dieses Modul anzusprechen:</p>
-<p><a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads">https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads</a></p>
-<ol>
-<li>Windows-Datei Herunterladen</li>
-<li>Datei entpacken</li>
-<li>Im entpackten Ordner mit Rechts auf silabser.inf klicken</li>
-<li>Weitere Optionen anzeigen anklicken</li>
-<li>Installieren anklicken</li>
-</ol>
-<p><a href="../index.html">zurück</a></p>
+              <meta charset="utf-8" />
+  <title>Informatik</title>
+  <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
+<h1 id="flugverbindungen-als-graphen">Flugverbindungen als Graphen</h1>
+<h2 id="beschreibung-des-problems">Beschreibung des Problems</h2>
+<p>Am späten Abend gehen nur noch wenige Flüge von den Flugplätzen ab.<br>
+Von München (M) geht ein Flug nach Frankfurt (F). Von dort kannst du nach Hamburg (H), Paris (P) oder zurück nach München fliegen. Von Hamburg geht ein Flug nach München. Von Paris erreichst die London(L). Dort gibt es keine Anschlüsse mehr.</p>
+<div id="quelle" style="font-size: x-small; text-align: right;">
+    2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.
+  </div>
+  <section>
+    <iframe
+    srcdoc="<script>window.jo_doc = window.frameElement.textContent;</script><script src='https://Hi2272.github.io/include/js/includeide/includeIDE.js'></script>"
+    width="100%" height="600" frameborder="0">
+    {'id': 'Java', 'speed': 2000, 
+    'withBottomPanel': true ,'withPCode': false ,'withConsole': true ,
+    'withFileList': true ,'withErrorList': true}
+    <script id="javaCode" type="plain/text" title="Graph.java" src="Graph.java"></script>
+    <script id="javaCode" type="plain/text" title="Main.java" src="Main.java"></script>
+  </script>
+   </iframe>
+</section>
+<h2 id="weiter"><a href="../02Loesung/index.html">weiter</a></h2>
+<h2 id="index"><a href="../../../index.html">Index</a></h2>
 
             
             

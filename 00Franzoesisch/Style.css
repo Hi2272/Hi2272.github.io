@@ -1,0 +1,53 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    font-size: large;
+    background: #FFE;
+    color:#333;
+    text-align: center;
+}
+#text {
+    max-height: 60vh;    /* begrenzt die Höhe, damit bei großem Inhalt gescrollt werden kann */
+    overflow-y: auto;      /* Scrollbalken bei Überlauf */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+}
+button {
+    padding: 8px 16px;
+    margin-left:20px;
+    margin-right:20px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #FF8;
+    font-size:large;
+}
+b{  color: red;}
+#title {
+    text-align: center;
+    font-size: xlarge;
+    margin: 0;
+}
+#subtitle {
+    text-align: center;
+    font-size: medium;
+    margin: 0;
+    padding-bottom:10px;
+}
+
+table {
+    padding: 5px;
+    margin: auto; /* Zentriert die Tabelle */
+    table-layout: fixed; /* Stellt sicher, dass alle Spalten gleich breit sind */
+    width:100%;
+}
+
+td {
+    padding-left: 25px;
+    padding-right:25px;
+    margin: auto;
+    text-align: center;
+    background-color:#FFD;
+    font-size:medium;
+}
