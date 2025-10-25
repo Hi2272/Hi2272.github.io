@@ -21,7 +21,8 @@ button {
     font-size: 1rem;
     cursor: pointer;
     border-radius: 5px;
-    background-color:darkseagreen;
+    background-color: #FF8;
+
 }
 b{  color: red;}
 #title {
@@ -31,17 +32,23 @@ b{  color: red;}
 }
 #subtitle {
     text-align: center;
+    font-size: 1.2rem;
+    margin: 0;
+    padding-bottom:10px;
+}
+
+table {
+    padding: 5px;
+    margin: auto; /* Zentriert die Tabelle */
+    table-layout: fixed; /* Stellt sicher, dass alle Spalten gleich breit sind */
+    width:100%;
+}
+
+td {
     font-size: 0.8rem;
-    margin: 0;
-}
-#anleitung {
-    font-size: 0.5rem;
-    margin: 0;
+    padding-left: 25px;
+    padding-right:25px;
+    margin: auto;
     text-align: center;
-   
-}
-pre{
-    font-size: 1.0rem;
-    line-height: 1.5rem;
-    white-space: pre-wrap;
+    background-color:#FFD;
 }

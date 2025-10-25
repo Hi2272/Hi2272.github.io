@@ -12,8 +12,16 @@ let lang = 'fr-FR'; // Standard Sprache, wird beim Laden von Steuerung.json übe
         if (!res.ok) throw new Error('Steuerung.json nicht gefunden'); // Fehlerbehandlung
         const cfg = await res.json(); // JSON-Inhalt parsen
         if (cfg.titel) {
+<<<<<<< HEAD:00Informatik/00Javascript/TTS/code.js
             const el = document.getElementById('title'); // Element für den Titel
             if (el) el.innerHTML = cfg.titel; // Titel setzen
+=======
+            const el = document.getElementById('title');
+            if (el) el.innerHTML = cfg.titel;
+            const seitentitel = document.getElementById('pagetitle');
+            if (seitentitel) seitentitel.innerHTML = cfg.titel;
+            
+>>>>>>> 22d60169b55dd7f969f6c88abdf7f79f87d2dbdc:00Franzoesisch/code.js
         }
         if (cfg.untertitel || cfg.untertitel) {
             const subKey = cfg.untertitel ? 'untertitel' : 'untertitel'; // Untertitel-Schlüssel ermitteln
@@ -22,7 +30,12 @@ let lang = 'fr-FR'; // Standard Sprache, wird beim Laden von Steuerung.json übe
                 elSub.innerHTML = cfg[subKey]; // Untertitel setzen
             }
         }
+<<<<<<< HEAD:00Informatik/00Javascript/TTS/code.js
         if (cfg.sprache) lang = cfg.sprache; // Sprache setzen, falls angegeben
+=======
+        if (cfg.sprache) lang = cfg.sprache;
+        
+>>>>>>> 22d60169b55dd7f969f6c88abdf7f79f87d2dbdc:00Franzoesisch/code.js
     } catch (e) {
         console.warn('Fehler beim Laden von Steuerung.json:', e); // Fehlerprotokollierung
     }
@@ -115,10 +128,19 @@ async function loadText() {
  */
 function createGapText(sentence, asHTML) {
     if (!asHTML) {
+<<<<<<< HEAD:00Informatik/00Javascript/TTS/code.js
         let s = sentence.replace(/\*(.*?)\*/g, '?'); // Wörter zwischen '*' ersetzen
         return s.replaceAll("'", ""); // Apostroph entfernen
     } else { 
         return "<strong>" + sentence.replace(/\*(.*?)\*/g, '') + "</strong>"; // HTML-Formatierung
+=======
+        let s=sentence.replace(/\*(.*?)\*/g, '?');
+        s=s.replaceAll("J'","Je");
+        return s.replaceAll("'", ""); // Apostroph entfernen
+
+    }   else { 
+        return "<strong>"+sentence.replace(/\*(.*?)\*/g, '')+"</strong>";
+>>>>>>> 22d60169b55dd7f969f6c88abdf7f79f87d2dbdc:00Franzoesisch/code.js
     }
 }
 
@@ -147,8 +169,14 @@ function createSolutionText(sentence, asHTML) {
     if (asHTML) {
         s = String(sentence).replace(/\*/g, '<b>'); // Sternchen in <b> Tags umwandeln
     } else {
+<<<<<<< HEAD:00Informatik/00Javascript/TTS/code.js
         s = String(sentence).replace(/\*/g, ''); // Sternchen entfernen
         s = s.replaceAll("'", ""); // Apostroph entfernen
+=======
+        s = String(sentence).replace(/\*/g, '');
+        s=s.replaceAll("J' ","J");
+        s=s.replaceAll("'","");
+>>>>>>> 22d60169b55dd7f969f6c88abdf7f79f87d2dbdc:00Franzoesisch/code.js
     }
     let out = ''; // Ausgabestring
     let depth = 0; // Tiefe der Klammernestung
@@ -218,17 +246,32 @@ async function speak(text) {
         await speakUtterance(ul); // Lösung vorlesen
         await sleep(500); // 0,5 Sekunden warten
     }
+    speakBtn.innerHTML = "Start";
+    speakBtn.style.backgroundColor="#FF8";
+    stopp=true;
 }
 
 // Event-Listener für den Speak-Button
 speakBtn.addEventListener('click', async () => {
     stopp = !stopp; // Stopp-Flag umschalten
     if (!stopp) {
+<<<<<<< HEAD:00Informatik/00Javascript/TTS/code.js
         speakBtn.innerHTML = "Stopp"; // Button-Text auf "Stopp" setzen
         textarea.innerHTML = ""; // Textbereich leeren
         const text = await loadText(); // Text laden
         await speak(text.join('\n')); // Text vorlesen
     } else {
         speakBtn.innerHTML = "Start"; // Button-Text auf "Start" setzen
+=======
+        speakBtn.innerHTML = "Stopp";
+        textarea.innerHTML = "";
+        speakBtn.style.backgroundColor="#F55";
+        const text = await loadText();
+        await speak(text.join('\n'));
+    } else {
+        speakBtn.innerHTML = "Start";
+        speakBtn.style.backgroundColor="#FF8";
+        
+>>>>>>> 22d60169b55dd7f969f6c88abdf7f79f87d2dbdc:00Franzoesisch/code.js
     }
 });
