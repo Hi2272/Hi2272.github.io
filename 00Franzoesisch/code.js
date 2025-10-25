@@ -5,6 +5,9 @@ let voices = []; // Array zur Speicherung der verfügbaren Stimmen
 let stopp = true; // Flag zur Steuerung des Vorlesens
 let lang = 'fr-FR'; // Standard Sprache, wird beim Laden von Steuerung.json überschrieben
 
+// iOS-Erkennung (inkl. iPad on macOS mit Touch)
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
 // Sofort nach Laden von Steuerung.json einlesen und UI / lang setzen
 (async function loadSteuerung() {
     try {
@@ -74,10 +77,25 @@ function waitForVoices(timeout = 2000) {
 
 /**
  * Wählt die französische Stimme aus den verfügbaren Stimmen aus.
+ * Auf iOS bevorzugt die Stimme "Amélie" (fr-CA).
  */
 function selectFrenchVoice() {
-    return voices.find(v => v.lang && v.lang.toLowerCase().startsWith('fr')) || // Stimme mit französischer Sprache finden
-        voices.find(v => v.name && /franc|french|français/i.test(v.name)); // Stimme mit französischem Namen finden
+    // auf iOS: versuche Amélie / fr-CA zuerst
+    if (isIOS) {
+        // Suche nach Name "Amélie" (auch ohne Akzent) oder explizit fr-CA
+        const byName = voices.find(v => v.name && /am[eé]lie/i.test(v.name));
+        if (byName) return byName;
+        const byLangCA = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('fr-ca'));
+        if (byLangCA) return byLangCA;
+        // Fallback auf generell französische Stimme
+        const byLangFR = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('fr'));
+        if (byLangFR) return byLangFR;
+        return voices.find(v => v.name && /franc|french|français/i.test(v.name));
+    }
+
+    // Nicht-iOS: bisheriges Verhalten (fr-FR bevorzugen)
+    return voices.find(v => v.lang && v.lang.toLowerCase().startsWith('fr')) ||
+        voices.find(v => v.name && /franc|french|français/i.test(v.name));
 }
 
 /**
