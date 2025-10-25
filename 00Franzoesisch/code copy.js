@@ -82,42 +82,18 @@ function selectFrenchVoice() {
 
 /**
  * Hilfsfunktion: spricht einen Utterance und wartet auf Ende/Fehler.
- * Fügt einen Timeout-Fallback hinzu, damit iOS nicht ewig hängt.
  */
-function speakUtterance(utterance, timeoutMs = 15000) {
+function speakUtterance(utterance) {
     return new Promise((resolve) => {
-        let finished = false;
-        const onEnd = () => { cleanup(); resolve(); };
-        const onError = () => { cleanup(); resolve(); };
-        const onBoundary = () => { /* optional: kann zur Debug/Progress genutzt werden */ };
-
-        const timer = setTimeout(() => {
-            if (!finished) {
-                finished = true;
-                cleanup();
-                try { speechSynthesis.cancel(); } catch (e) {}
-                resolve();
-            }
-        }, timeoutMs);
-
+        const onEnd = () => { cleanup(); resolve(); }; // Callback für das Ende der Sprachausgabe
+        const onError = () => { cleanup(); resolve(); }; // Callback für Fehler bei der Sprachausgabe
         function cleanup() {
-            finished = true;
-            utterance.removeEventListener('end', onEnd);
-            utterance.removeEventListener('error', onError);
-            utterance.removeEventListener('boundary', onBoundary);
-            clearTimeout(timer);
+            utterance.removeEventListener('end', onEnd); // Event-Listener entfernen
+            utterance.removeEventListener('error', onError); // Event-Listener entfernen
         }
-
-        utterance.addEventListener('end', onEnd);
-        utterance.addEventListener('error', onError);
-        utterance.addEventListener('boundary', onBoundary);
-        try {
-            speechSynthesis.speak(utterance);
-        } catch (e) {
-            // speak() kann auf iOS bei fehlender User-Geste oder anderen Einschränkungen werfen
-            cleanup();
-            resolve();
-        }
+        utterance.addEventListener('end', onEnd); // Event-Listener für das Ende hinzufügen
+        utterance.addEventListener('error', onError); // Event-Listener für Fehler hinzufügen
+        speechSynthesis.speak(utterance); // Sprachausgabe starten
     });
 }
 
@@ -205,10 +181,8 @@ async function speak(text) {
         return;
     }
 
-    await waitForVoices(); // Auf verfügbare Stimmen warten (kurzes Timeout intern)
-    // don't cancel here immediately on iOS — keep as-is but safe to call
-    try { speechSynthesis.cancel(); } catch (e) {}
-
+    await waitForVoices(); // Auf verfügbare Stimmen warten
+    speechSynthesis.cancel(); // Aktuelle Sprachausgabe abbrechen
     const voice = selectFrenchVoice(); // Französische Stimme auswählen
 
     const paragraphs = text.split(/\r?\n{1,}/).map(p => p.trim()).filter(p => p.length > 0); // Text in Absätze aufteilen
@@ -257,19 +231,6 @@ async function speak(text) {
 
 // Event-Listener für den Speak-Button
 speakBtn.addEventListener('click', async () => {
-    // unlock speech on iOS: synchronous speak+cancel inside user gesture
-    try {
-        if (window.speechSynthesis) {
-            const unlockUt = new SpeechSynthesisUtterance(' '); // single space to unlock
-            unlockUt.lang = lang;
-            // try to speak and cancel immediately to enable audio on iOS
-            speechSynthesis.speak(unlockUt);
-            speechSynthesis.cancel();
-        }
-    } catch (e) {
-        // ignore unlock failures
-    }
-
     stopp = !stopp; // Stopp-Flag umschalten
     if (!stopp) {
         speakBtn.innerHTML = "Stopp";
