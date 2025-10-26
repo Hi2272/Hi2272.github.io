@@ -52,6 +52,8 @@
 [WebNetSim Einstieg](00Informatik7/01WebNetSim/index.html)  
 [WebNetSim Netzwerk](00Informatik7/02WebNetSim/index.html)  
 
+[Quiz zum Internet](https://learningapps.org/watch?app=7741179)  
+[Internetknoten in Frankfurt](https://learningapps.org/7997886)  
 [Die Abenteuer von Kommissar Smith](https://netzwerke.hauptquartier.eu/abenteuer-archiv)   
 
 
