@@ -54,7 +54,10 @@
 
 [Quiz zum Internet](https://learningapps.org/watch?app=7741179)  
 [Internetknoten in Frankfurt](https://learningapps.org/7997886)  
+
 [Die Abenteuer von Kommissar Smith](https://netzwerke.hauptquartier.eu/abenteuer-archiv)   
+
+[Informatik-Biber](00Informatik7/Biber/index.html)  
 
 
 ## Mikrocontroller
