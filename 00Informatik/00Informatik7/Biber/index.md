@@ -7,6 +7,7 @@
  ## [Biber-Test](https://wettbewerb.informatik-biber.de/index.php?action=quiz&token=748b39b69b887d26)  
  ## [Graphen](https://wettbewerb.informatik-biber.de/quiz/3f19ba0ecef2c257)  
  ## [Sortieren](https://wettbewerb.informatik-biber.de/quiz/a9bbb91d149bcbff)
+ ## [Programmieren](https://wettbewerb.informatik-biber.de/quiz/9ee877e14b41fc0f)
  
  ## [weitere Aufgaben als pdf-Dateien](https://bwinf.de/informatik-biber/aufgaben/#c1090)  
  
