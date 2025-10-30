@@ -15,7 +15,7 @@
 | [Datenschutz](#datenschutz)
 | [11. Klasse](#informatik-11-klasse) |    
   
-## Informatik 6. Klasse
+# Informatik 6. Klasse
 ***
 ### Aufbau eines Computers
 [Festspeicher oder Arbeitsspeicher?](https://learningapps.org/watch?app=7732450)  
@@ -47,19 +47,27 @@
 ### Verfassungsviertelstunde
 [Snap Map](00Informatik6/Verfassungsviertelstunde/SnapMap/index.html)
 
-## Informatik 7. Klasse
+# Informatik 7. Klasse
 [Mein Netzwerk zu Hause](https://learningapps.org/view7741094)  
 [WebNetSim Einstieg](00Informatik7/01WebNetSim/index.html)  
 [WebNetSim Netzwerk](00Informatik7/02WebNetSim/index.html)  
 
 [Quiz zum Internet](https://learningapps.org/watch?app=7741179)  
 [Internetknoten in Frankfurt](https://learningapps.org/7997886)  
+
 [Die Abenteuer von Kommissar Smith](https://netzwerke.hauptquartier.eu/abenteuer-archiv)   
 
+[Informatik-Biber](00Informatik7/Biber/index.html)  
 
-## Mikrocontroller
+
+# Mikrocontroller
 ***
 [Wahlkurs](https://Hi2272.github.io/00Informatik/00Mikrocontroller/Wahlkurs/index.html)  
+
+ 
+# Informatik 9. Klasse
+## [Informatik-Biber](00Informatik9/Biber/index.html)  
+
 
 ## Funktionale Modellierung
 ***
@@ -95,8 +103,6 @@
 ### Datenbank-Design in Access
 [Wahlunterricht](Access/00Einstieg/index.html)  
 [Sportverein](Access/01Verein/index.html)  
- 
-
 
 ## Objektorientierte Programmierung
 ***
@@ -184,7 +190,7 @@
 [Aufbau einer Java-Klasse: Bezeichnungen](/00Informatik/KlassenAufbau2/index.html)  
 [Wiederholung Java](/00Informatik/WiederholungJava/index.html)  
 
-## Java in der 10. Klasse
+# Java in der 10. Klasse
 [Wiederholung Schleifen](00Informatik10/01WiederholungJava/index.html)  
 
 [Assembler Simulator](https://exuanbo.xyz/assembler-simulator) 
@@ -217,24 +223,26 @@
 
 [Weihnachtsbaum](00Informatik10/Weihnachtsbaum/index.html)
 
-##  Projekt
+#  Projekt
 
 [Projekt-Definition](00Informatik10/Projekt/index.html)   
 [Grundstruktur](00Informatik10/Projekt/01Grundstruktur.html)  
 [Breakout-Tutorial](00Javascript/Phaser/Breakout/Tutorial/index.html)  
 [Endversion](00Informatik10/Projekt/10Background/index.html)  
 
-## Informatik 11. Klasse
+# Informatik 11. Klasse
 [Graphen implementieren](00Informatik11/01Graph/01GraphStart/index.html)   
 [Graphen implementieren 2](00Informatik11/01Graph2/01Start/index.html)   
 [Graphen bearbeiten](00Informatik11/02GraphenAuslesen/01Algorithmen/index.html)  
 
 
-## Datenschutz
+# Datenschutz
 ***
 
 [Klassische Medien](https://Hi2272.github.io/00Informatik/KlassischeMedien/index.html)  
 [Soziale Medien](https://Hi2272.github.io/00Informatik/SozialeMedien/index.html)  
+
+# Sonstiges
 
 ## Planspiel
 ***
