@@ -57,8 +57,15 @@
 
 ## Hypertexte
 [Das Spukschloss - ein Hypertext](00Informatik7/Spukschloss/index.html)  
-[Zeilenumbrüche in HTML](00Informatik7/HTMLBreak/index.html)  
 [Schatzsuche - Hyperlinks in HTML](00Informatik7/Schatzinsel/index.html)  
+## HTML
+[Zeilenumbrüche in HTML](00Informatik7/HTMLBreak/index.html)  
+[Zeichenformat in HTML](00Informatik7/HTMLFormat/index.html)  
+[Überschriften in HTML](00Informatik7/HTMLHeading/index.html)  
+[Spiegelstriche in HTML](00Informatik7/HTMLLists/index.html)  
+[Nummerierte Listen in HTML](00Informatik7/HTMLOrderedList/index.html)  
+[Bilder in HTML](00Informatik7/HTMLImg/index.html)  
+
 
 
 [Die Abenteuer von Kommissar Smith](https://netzwerke.hauptquartier.eu/abenteuer-archiv)   
