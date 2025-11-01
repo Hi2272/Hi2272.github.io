@@ -57,15 +57,16 @@ ol{
     max-width: 1200px;
     margin: 0 auto 1rem auto;
 }
-
-img{
-    width: 30%;
-    height: auto;
+img {
+	max-width: 100%;
+	height: auto;
+	max-height: 50vh; /* limit images to at most 50% of viewport height */
+	display: block;
+	margin: 0 auto;
     border-radius: 10px;
-    border: 1px solid #000;   
-    max-width: 1200px;
-    display: block;
-    margin: 0 auto 1rem auto;
+    border-style:solid;
+    border-color:black;
+    padding:10px;
 }
 
 table{
