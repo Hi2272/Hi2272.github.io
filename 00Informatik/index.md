@@ -55,6 +55,12 @@
 [Quiz zum Internet](https://learningapps.org/watch?app=7741179)  
 [Internetknoten in Frankfurt](https://learningapps.org/7997886)  
 
+## Hypertexte
+[Das Spukschloss - ein Hypertext](00Informatik7/Spukschloss/index.html)  
+[Zeilenumbrüche in HTML](00Informatik7/HTMLBreak/index.html)  
+[Schatzsuche - Hyperlinks in HTML](00Informatik7/Schatzinsel/index.html)  
+
+
 [Die Abenteuer von Kommissar Smith](https://netzwerke.hauptquartier.eu/abenteuer-archiv)   
 
 [Informatik-Biber](00Informatik7/Biber/index.html)  
