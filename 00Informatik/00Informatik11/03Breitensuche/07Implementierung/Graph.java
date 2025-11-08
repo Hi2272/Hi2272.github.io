@@ -1,8 +1,14 @@
 public class Graph { 
    private Knoten[] knoten;
    private int anzahlKnoten;
-   private LinkedList<Knoten> warteschlange;
-   int[][] kanten = 
+   
+   // erzeuge ein Attribut warteschlange
+   // vom Datentyp LinkedList
+   // Die Elemente der Liste sollen 
+   // vom Typ Knoten sein.
+
+   
+   private int[][] kanten = 
       {
       { 0, 80, 0, 60, 40, 150, 52 },
       { 80, 0, 10, 0, 50, 0, 0 },
@@ -16,21 +22,13 @@ public class Graph {
    public Graph(int maxKnoten) {
       knoten = new Knoten[maxKnoten];
       anzahlKnoten = 0;
-      warteschlange = new LinkedList<Knoten>();
+  
+      // Initialisiere das Attribut warteschlange
+     
+     
+     
    }
 
-   public void changeKante(int start, int ziel, int neuerWert) {
-      kanten[start][ziel] = neuerWert;
-   }
-
-   public void changeKante(String start, String ziel, int wert){
-      int iStart = getIndex(start);
-      int iZiel = getIndex(ziel);
-      if(iStart != -1 && iZiel != -1){
-         changeKante(iStart, iZiel, wert);
-      }
-   }
-   
    public int getIndex(String name){
       for(int i=0; i<anzahlKnoten; i++){
          if(knoten[i].getName().equals(name)){
@@ -40,26 +38,56 @@ public class Graph {
       return -1;
    }
 
-   public void breitenSuche(String start){
-      
-      if(anzahlKnoten == 0) return;
-      
-      
-      for(int i=0; i<anzahlKnoten; i++){
-         knoten[i].setVisited(false);
-      }
+   // Methode breitenSuche
+   // mit zwei Parametern vom Typ String
+   // start 
+   // ziel
+
+   public void breitenSuche(String start, String ziel){
+
+      // Setze das Attribut visited
+      // für alle Knoten auf false
+
+      // Warteschlange leeren
       warteschlange.clear();
+
+      // Index des Startknotens ermitteln
       int index= getIndex(start);
       
-      knoten[index].setVisited(true);
-      warteschlange.addLast(knoten[index]);
+      // Index des Zielknotens ermitteln
+      int indexZiel=getIndex(ziel);
+
+      // Startknoten am Ende der Warteschlange einfügen
+      
+      // Startknoten als besucht markieren
+      
+      // Solange die Warteschlange nicht leer ist
       while(!warteschlange.isEmpty()){
-         Knoten current = warteschlange.removeFirst();
-         print(current.getName() + " ");
+         
+         Knoten current;
+         // Entferne des ersten Knoten aus der 
+         // Warteschlange und speichere in ihn current
+         current = warteschlange.removeFirst();
+         
+         // Index des aktuellen Knotens ermitteln
          int index = getIndex(current.getName());
+         // Wenn der Index gleich dem Zielindex ist  
+         // Gibt "Ziel gefunden aus"
+         // Breche die Methode durch return ab 
+         if (index==indexZiel){
+            print("Ziel gefunden!");
+            return
+         }
+
+
+         // Alle Nachfolger des aktuellen Knotens durchlaufen
          for(int i=0; i<kanten[index].length; i++){
+            // Wenn der Knoten ein Nachfolger ist
+            // und er noch nicht besucht wurde
             if(kanten[index][i] > 0 && !knoten[i].isVisited()){
+               // markiere diesen Knoten als besucht
                knoten[i].setVisited(true);
+               // Füge ihn am Ende der Warteschlange hinzu
                warteschlange.addLast(knoten[i]);
             }
          }

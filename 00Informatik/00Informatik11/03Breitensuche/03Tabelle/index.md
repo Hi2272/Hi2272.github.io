@@ -4,22 +4,29 @@
  
 
 # Breitensuche
-## Problemstellung
-Du hast an einem Bahnhof dein Handy verloren. Um es wiederzufinden, schickst du mehrere Freunde los, die ausgehend von deinem Startbahnhof in Waldkraiburg (Wkb) an allen Bahnhöfen suchen sollen. Jeder Bahnhof muss einmal, aber kein Bahnhof darf mehrfach besucht werden. 
-
-## Baum der Besuche:
 
 ## Algorithmus mit Stift und Papier
 
 ![alt text](../01Start/Graph.png)  
-Zeichne den Graphen ab und erstelle rechts daneben eine Tabelle nach folgendem Muster:
-| Schritt | aktueller Knoten | Warteschlange | besucht |
+| Schritt | aktueller Knoten | Warteschlange (Queue)| besucht |
 |---------|------------------|---------------|---------|
 | 0       |                  | Wkb           |         |
-| 1       | Wkb              | ...        |  ...       |
-| ...       |               |         |         |
+| 1       | Wkb              | MÜ,W       |  Wkb      |
+| 2       | MÜ              | W,M,LA       |  MÜ      |
+| 3       | W              | M,LA,RO       |  W      |
+| 4       | M              | LA,RO,N       |  M      |
+| 5       | LA              | RO,N       |  LA      |
+| 6       | RO              | N       |  RO      |
+| 7       | N              |        |  N      |
+
+## Fragestellungen zum Algorithmus
+1. Welcher Knoten wird im Schritt 0 in die Warteschlange  eingefügt.
+2. Welcher Knoten wird jeweils aus der Warteschlange entfernt.
+3. An welcher Position werden neue Knoten in die Warteschlange eingefügt?
+4. Welche Knoten werden jeweils in die Warteschlange eingefügt?
+5. Warum endet die Breitensuche nach Schritt 7?  
+6. Wann würde die Breitensuche früher enden?  
 
 
-
+## [weiter](../04LoesungTabelle/index.html)  
 ## [Index](../../../index.html)
-

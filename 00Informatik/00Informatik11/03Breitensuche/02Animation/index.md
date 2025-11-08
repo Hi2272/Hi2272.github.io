@@ -27,6 +27,6 @@ Zeichne den Graphen ab und erstelle rechts daneben eine Tabelle nach folgendem M
 | ...       |               |         |         |
 
 
-
+## [weiter](../03Tabelle/index.html)  
 ## [Index](../../../index.html)
 

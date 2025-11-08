@@ -142,14 +142,41 @@
   <title>Informatik</title>
   <link rel="stylesheet" href="https://Hi2272.github.io/StyleMD.css">
 <h1 id="breitensuche">Breitensuche</h1>
-<h2 id="problemstellung">Problemstellung</h2>
-<p>Du hast an einem Bahnhof dein Handy verloren. Um es wiederzufinden, schickst du mehrere Freunde los, die ausgehend von deinem Startbahnhof in Waldkraiburg (Wkb) an allen Bahnhöfen suchen sollen. Jeder Bahnhof muss einmal, kein Bahnhof darf aber mehrfach besucht werden.</p>
-<p>Plane dein Vorgehend an diesem Graphen:
-<img src="Graph.png" alt="alt text"></p>
+<h2 id="fragestellungen-zum-algorithmus">Fragestellungen zum Algorithmus</h2>
 <ol>
-<li>Zeichne einen Baum, der die Reihenfolge wiedergibt, in der deine Freunde die Bahnhöfe ausgehend von Wkb besuchen.</li>
+<li>Welcher Knoten wird im Schritt 0 in die Warteschlange  eingefügt?<br>
+<em>Der Startknoten</em></li>
+<li>Welcher Knoten wird jeweils aus der Warteschlange entfernt?<br>
+<em>Der erste</em></li>
+<li>An welcher Position werden neue Knoten in die Warteschlange eingefügt?<br>
+<em>Am Ende</em></li>
+<li>Welche Knoten werden jeweils in die Warteschlange eingefügt?<br>
+<em>Die Nachbarknoten des aktuellen Knotens, die noch nicht besucht worden sind.</em></li>
+<li>Warum endet die Breitesuche nach Schritt 7?<br>
+<em>Die Warteschlange ist leer</em></li>
+<li>Wann würde die Breitensuche früher enden?<br>
+<em>Wenn der gesuchte Knoten gefunden wurde.</em></li>
 </ol>
-<h2 id="weiter"><a href="../02Animation/index.html">weiter</a></h2>
+<h2 id="formuliere-den-algorithmus-in-eigenen-worten">Formuliere den Algorithmus in eigenen Worten</h2>
+<ol>
+<li>Füge den Startknoten in die Warteliste ein.</li>
+<li>Solange die Warteliste nicht leer ist
+<ol>
+<li>Entferne den ersten Knoten aus der Warteliste.</li>
+<li>Wenn dieser Knoten dem Zielknoten entspricht,
+<ol>
+<li>beende die Suche</li>
+</ol>
+</li>
+<li>Sonst:
+<ol>
+<li>Markiere diesen Knoten als besucht.</li>
+<li>Füge alle Nachbarknoten dieses Knotens, die noch nicht besucht worden sind, am Ende der Warteliste ein.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
 <h2 id="index"><a href="../../../index.html">Index</a></h2>
 
             
