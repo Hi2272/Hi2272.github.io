@@ -65,7 +65,7 @@
 [Spiegelstriche in HTML](00Informatik7/HTMLLists/index.html)  
 [Nummerierte Listen in HTML](00Informatik7/HTMLOrderedList/index.html)  
 [Bilder in HTML](00Informatik7/HTMLImg/index.html)  
-
+[HTML Abschlusstest](00Informatik7/HTMLTest/index.html)  
 
 
 [Die Abenteuer von Kommissar Smith](https://netzwerke.hauptquartier.eu/abenteuer-archiv)   
