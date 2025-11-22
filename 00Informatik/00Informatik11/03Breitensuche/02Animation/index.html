@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -142,12 +144,13 @@
 <h1 id="breitensuche">Breitensuche</h1>
 <h2 id="problemstellung">Problemstellung</h2>
 <p>Du hast an einem Bahnhof dein Handy verloren. Um es wiederzufinden, schickst du mehrere Freunde los, die ausgehend von deinem Startbahnhof in Waldkraiburg (Wkb) an allen Bahnhöfen suchen sollen. Jeder Bahnhof muss einmal, aber kein Bahnhof darf mehrfach besucht werden.</p>
-<h2 id="baum-der-besuche">Baum der Besuche:</h2>
+<h2 id="besuchsreihenfolge">Besuchsreihenfolge</h2>
 <p><img src="Baum.png" alt="alt text"></p>
 <h2 id="animation-des-algorithmus">Animation des Algorithmus</h2>
 <p>Wähle im Menü (1) Algorithmen (2) <strong>Breadth-first search</strong> und klicke dann auf den Knoten Wkb (3) um den Algorithmus von diesem Knoten aus zu starten.</p>
 <p><img src="OnlineGraph.png" alt="alt text"></p>
 <h2 id="link-zur-animation"><a href="http://graphonline.top/de/?graph=SfFgJEbYivkqVUxM" target=_blank>Link zur Animation</a></h2>
+<p><a href="index.html">text</a></p>
 <h2 id="algorithmus-mit-stift-und-papier">Algorithmus mit Stift und Papier</h2>
 <p>Zeichne den Graphen ab und erstelle rechts daneben eine Tabelle nach folgendem Muster:</p>
 <table>
@@ -180,6 +183,7 @@
 </tr>
 </tbody>
 </table>
+<h2 id="weiter"><a href="../03Tabelle/index.html">weiter</a></h2>
 <h2 id="index"><a href="../../../index.html">Index</a></h2>
 
             

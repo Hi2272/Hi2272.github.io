@@ -1,0 +1,3 @@
+Zeilenumbrüche in HTML
+Im Editor besteht dieser Code aus 3 Absätzen.
+Klicke auf "Code zu Text" und untersuche, wie er unteren Fenster aussieht.
