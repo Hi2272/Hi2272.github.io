@@ -66,7 +66,7 @@
 [Spiegelstriche in HTML](00Informatik7/HTMLLists/index.html)  
 [Nummerierte Listen in HTML](00Informatik7/HTMLOrderedList/index.html)  
 [Bilder in HTML](00Informatik7/HTMLImg/index.html)  
-
+[HTML Abschlusstest](00Informatik7/HTMLTest/index.html)  
 
 
 [Die Abenteuer von Kommissar Smith](https://netzwerke.hauptquartier.eu/abenteuer-archiv)   
@@ -248,6 +248,10 @@
 [Graphen implementieren](00Informatik11/01Graph/01GraphStart/index.html)   
 [Graphen implementieren 2](00Informatik11/01Graph2/01Start/index.html)   
 [Graphen bearbeiten](00Informatik11/02GraphenAuslesen/01Algorithmen/index.html)  
+[Breitensuche Stift und Papier](00Informatik11/03Breitensuche/01Start/index.html)  
+[Breitensuche Algorithmus](00Informatik11/03Breitensuche/05Algorithmus/index.html)  
+[Die Klasse Warteschlange](00Informatik11/03Breitensuche/06Warteschlange/index.html)  
+[Breitensuche Implementierung](00Informatik11/03Breitensuche/07Implementierung/index.html)  
 
 
 # Datenschutz

@@ -43,38 +43,57 @@ public class Graph {
    // start 
    // ziel
 
+   public void breitenSuche(String start, String ziel){
+
       // Setze das Attribut visited
       // für alle Knoten auf false
 
       // Warteschlange leeren
+      warteschlange.clear();
 
       // Index des Startknotens ermitteln
+      int index= getIndex(start);
       
       // Index des Zielknotens ermitteln
+      int indexZiel=getIndex(ziel);
 
       // Startknoten am Ende der Warteschlange einfügen
       
       // Startknoten als besucht markieren
       
       // Solange die Warteschlange nicht leer ist
-
+      while(!warteschlange.isEmpty()){
+         
+         Knoten current;
          // Entferne des ersten Knoten aus der 
          // Warteschlange und speichere in ihn current
+         current = warteschlange.removeFirst();
          
          // Index des aktuellen Knotens ermitteln
-
+         int index = getIndex(current.getName());
          // Wenn der Index gleich dem Zielindex ist  
          // Gibt "Ziel gefunden aus"
          // Breche die Methode durch return ab 
+         if (index==indexZiel){
+            print("Ziel gefunden!");
+            return
+         }
 
 
          // Alle Nachfolger des aktuellen Knotens durchlaufen
-
+         for(int i=0; i<kanten[index].length; i++){
             // Wenn der Knoten ein Nachfolger ist
             // und er noch nicht besucht wurde
+            if(kanten[index][i] > 0 && !knoten[i].isVisited()){
                // markiere diesen Knoten als besucht
+               knoten[i].setVisited(true);
                // Füge ihn am Ende der Warteschlange hinzu
-
+               warteschlange.addLast(knoten[i]);
+            }
+         }
+      }
+      println();
+   }
    
    public void printNachbarn(String name){
       int index = getIndex(name);
