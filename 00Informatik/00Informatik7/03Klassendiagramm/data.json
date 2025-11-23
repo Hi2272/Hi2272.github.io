@@ -1,0 +1,17 @@
+{   
+  "snap":true,
+  "stapel":false,
+
+  "dateiname":"Klassendiagramm.png",
+    "copyright":"eigene Zeichnung",
+    "titel":"Klassendiagramm eines Hypertextes",
+    "angabe":"Ziehe die Textbausteine an die passenden Pfeile.",
+    
+"txt":[
+{"x":0.387 ,"y":0.276,"width":0.186,"height":0.074,"pos":[0]},
+{"x":0.623 ,"y":0.82,"width":0.125,"height":0.057,"pos":[1,3]},
+{"x":0.184 ,"y":0.587,"width":0.116,"height":0.067,"pos":[2,4]},
+{"x":0.236 ,"y":0.675,"width":0.129,"height":0.072,"pos":[1,3]},
+{"x":0.636 ,"y":0.612,"width":0.102,"height":0.063,"pos":[2,4]}
+]
+}
