@@ -9,6 +9,6 @@ g.addKnoten(new Knoten("Wkb", 290, 500));
 g.addKnoten(new Knoten("RO", 110, 730));
 g.addKnoten(new Knoten("LA", 300, 200));
 g.addKnoten(new Knoten("N", 70, 70));
-g.addKnoten(new Knoten("W",200,600));
+g.addKnoten(new Knoten("W", 200, 600));
 
-g.breitenSuche("Wkb","N");
+println(g.breitenSuche(g.getKnoten("Wkb"), g.getKnoten("N")));
