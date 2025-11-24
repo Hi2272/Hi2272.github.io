@@ -6,6 +6,7 @@
 # Breitensuche
 ## Implementierung in Java
 
+Schreibe in den Klassen **Knoten** und **Graph** an den markierten Stellen den Code für die Breitensuche ein.
 
 <div id="quelle" style="font-size: x-small; text-align: right;">
     2025 Rainer Hille  Unter Verwendung der  <a href='https://www.online-ide.de/'>Online-IDE von Martin Pabst</a><br>Hinweis: Der Code-Editor muss erst geladen werden. Klicke ggf. auf <b>Code Reset</b> um den Programmcode neu zu laden.

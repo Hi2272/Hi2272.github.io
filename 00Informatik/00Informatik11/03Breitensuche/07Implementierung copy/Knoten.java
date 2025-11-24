@@ -12,7 +12,7 @@ public class Knoten extends Circle {
       setBorderColor(Color.darkblue);
       txt = new Text(x - laenge * 10, y - 25, 30, name);
       txt.setFillColor(Color.black);
-     }
+   }
 
    public boolean isVisited() {
       return visited;
@@ -24,5 +24,5 @@ public class Knoten extends Circle {
    public String getName() {
       return name;
    }
-  
 }
+
