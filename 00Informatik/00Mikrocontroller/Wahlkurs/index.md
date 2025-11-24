@@ -128,7 +128,8 @@ Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.Seine 
 3. [Senden und Empfangen von Daten über Bluetooth](05ESP32/03Bluetooth/index.html)
 4. [MIT AppInventor und Bluetooth](05ESP32/03bAppInventor/index.html)  
 5. [Speichern von Messdaten in einem Google Sheet](05ESP32/DHT22/index.html)  
-
+6. [ESP32 als Accesspoint mit Anmeldeseite](Diskoleuchte_AP/index.html)  
+   
 ### b) Ein Bluetooth-Gamepad für Pac Man
 
 1. [Joystick-Modul](05ESP32/04GameController/index.html)

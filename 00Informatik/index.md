@@ -55,9 +55,11 @@
 [Quiz zum Internet](https://learningapps.org/watch?app=7741179)  
 [Internetknoten in Frankfurt](https://learningapps.org/7997886)  
 
+
 ## Hypertexte
 [Das Spukschloss - ein Hypertext](00Informatik7/Spukschloss/index.html)  
 [Schatzsuche - Hyperlinks in HTML](00Informatik7/Schatzinsel/index.html)  
+[Klassendiagramm Hypertext](00Informatik7/03Klassendiagramm/index.html)  
 ## HTML
 [Zeilenumbrüche in HTML](00Informatik7/HTMLBreak/index.html)  
 [Zeichenformat in HTML](00Informatik7/HTMLFormat/index.html)  
