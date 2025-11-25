@@ -17,7 +17,7 @@ Wähle im Menü (1) Algorithmen (2) **Breadth-first search** und klicke dann auf
 ![alt text](OnlineGraph.png)  
 
 ## <a href="http://graphonline.top/de/?graph=SfFgJEbYivkqVUxM" target=_blank>Link zur Animation</a>  
-[text](index.md)
+
 ## Algorithmus mit Stift und Papier
 Zeichne den Graphen ab und erstelle rechts daneben eine Tabelle nach folgendem Muster:
 | Schritt | aktueller Knoten | Warteschlange | besucht |

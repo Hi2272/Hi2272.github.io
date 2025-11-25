@@ -1,14 +1,14 @@
 public class Graph { 
    private Knoten[] knoten;
    private int anzahlKnoten;
-   
-   // erzeuge ein Attribut warteschlange
-   // vom Datentyp LinkedList
-   // Die Elemente der Liste sollen 
-   // vom Typ Knoten sein.
 
-   
-   private int[][] kanten = 
+   // Deklariere eine Attribut queue
+   // vom Typ LinkedList
+   // Die Elemente der Liste sollen
+   // Objekte vom Typ Knoten sein
+
+
+   int[][] kanten = 
       {
       { 0, 80, 0, 60, 40, 150, 52 },
       { 80, 0, 10, 0, 50, 0, 0 },
@@ -22,104 +22,91 @@ public class Graph {
    public Graph(int maxKnoten) {
       knoten = new Knoten[maxKnoten];
       anzahlKnoten = 0;
-  
-      // Initialisiere das Attribut warteschlange
-     
-     
-     
+      queue = new LinkedList<Knoten>();
    }
 
-   public int getIndex(String name){
-      for(int i=0; i<anzahlKnoten; i++){
-         if(knoten[i].getName().equals(name)){
+   public void addKnoten(Knoten k) {
+      knoten[anzahlKnoten] = k;
+      anzahlKnoten++;
+   }
+   
+   public Knoten getKnoten(int i) {
+      return knoten[i];
+   }
+
+   public Knoten getKnoten(String name) {
+      if(getIndex(name) != -1) {
+         return knoten[getIndex(name)];
+      } else {
+         println("Knoten " + name + " nicht gefunden!");
+         return null;
+      }
+   }
+
+   public int getIndex(String name) {
+      for (int i = 0; i < anzahlKnoten; i++) {
+         if(knoten[i].getName().equals(name)) {
+            return i;
+         }
+      }
+      return -1;
+   }
+   
+   public int getIndex(Knoten k) {
+      for (int i = 0; i < anzahlKnoten; i++) {
+         if(knoten[i] == k) {
             return i;
          }
       }
       return -1;
    }
 
-   // Methode breitenSuche
-   // mit zwei Parametern vom Typ String
-   // start 
-   // ziel
-
-      // Setze das Attribut visited
-      // für alle Knoten auf false
-
-      // Warteschlange leeren
-
-      // Index des Startknotens ermitteln
-      
-      // Index des Zielknotens ermitteln
-
-      // Startknoten am Ende der Warteschlange einfügen
-      
-      // Startknoten als besucht markieren
-      
-      // Solange die Warteschlange nicht leer ist
-
-         // Entferne des ersten Knoten aus der 
-         // Warteschlange und speichere in ihn current
-         
-         // Index des aktuellen Knotens ermitteln
-
-         // Wenn der Index gleich dem Zielindex ist  
-         // Gibt "Ziel gefunden aus"
-         // Breche die Methode durch return ab 
-
-
-         // Alle Nachfolger des aktuellen Knotens durchlaufen
-
-            // Wenn der Knoten ein Nachfolger ist
-            // und er noch nicht besucht wurde
-               // markiere diesen Knoten als besucht
-               // Füge ihn am Ende der Warteschlange hinzu
+   // Schreibe die Methode breitenSuche
+   // mit den Parametern start und ziel vom Typ Knoten
 
    
-   public void printNachbarn(String name){
-      int index = getIndex(name);
-      if(index != -1){
-         print("Nachbarn von " + name + ": ");
-         for(int i=0; i<kanten[index].length; i++){
-            if(kanten[index][i] > 0){
-               print(knoten[i].getName() + " ");
-            }
-         }
-         println();
-      } else {
-         println("Knoten " + name + " nicht gefunden.");
-      }
-   }
-   
-   public void printAlleNachbarn(){
-      for(int i=0; i<anzahlKnoten; i++){
-         printNachbarn(knoten[i].getName());
-      }
-   }
-   
-   public void addKnoten(Knoten k) {
-      if(anzahlKnoten < knoten.length) {
-         knoten[anzahlKnoten] = k;
-         anzahlKnoten++;
-      }
-   }
-   
-   public void drawKante(int start, int ziel) {
-      if(kanten[start][ziel] > 0) { 
+      // Setze bei allen knoten 
+      // das Attribut visited auf false
 
-         Line l = new Line(knoten[start].getCenterX(), knoten[start].getCenterY(), knoten[ziel].getCenterX(), knoten[ziel].getCenterY());
-         l.setBorderColor(Color.darkblue);
-         l.setBorderWidth(1);
-         String gew = kanten[start][ziel];
-         Text txt = new Text(l.getCenterX(), l.getCenterY(), 25, gew);
-      }
-   }
-   
-   public void drawKanten() {
-      for (int i = 0; i < kanten[0].length; i++) {
-         for (int j = 0; j < kanten[0].length; j++) {
-            drawKante(i, j);
-         }
-      }
-   }
+
+      // Leere die warteschlange 
+      // mit der Methode clear()
+
+      // Setze beim Startknoten das 
+      // Attribut visited auf true
+
+      // Füge den Startknoten am Ende
+      // der Warteschlange hinzu
+
+      // Solange die Warteschlang nicht leer ist
+
+         // Entferne den ersten Knoten 
+         // aus der Warteschlange 
+         // und speichere ihn in einer lokalen
+         // Variable aktuell
+
+         // Drucke den Namen des aktuellen Knotens aus
+
+         // Wenn der aktuelle Knoten gleich dem Ziel ist,
+         // dann drucke "Ziel gefunden" aus
+         // und gib den Wert true zurück
+
+
+         // Speichere den Index des 
+         // aktuellen Knotens in der Variablen index
+
+         // Durchlaufe alle Nachbarknoten des aktuellen Knotens
+         // wenn sie eine Kante zum aktuellen Knoten haben
+         // und noch nicht besucht wurden,
+         // damm markiere sie als besucht
+         // füge sie am Ende der Warteschlange hinzu
+
+
+      // Drucke einen Zeilenumbruch
+
+      // gib false zurück
+
+
+ 
+
 }
