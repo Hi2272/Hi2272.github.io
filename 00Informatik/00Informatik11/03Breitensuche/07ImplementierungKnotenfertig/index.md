@@ -28,6 +28,6 @@
 
 
 
-## [Knoten fertig](../07ImplementierungKnotenfertig/index.html)  
+
 ## [Index](../../../index.html)
 
