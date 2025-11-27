@@ -29,6 +29,6 @@ Schreibe in den Klassen **Knoten** und **Graph** an den markierten Stellen den C
 
 
 
-## [Knoten fertig](../07ImplementierungKnotenfertig/index.html)  
+## [Lösung](../07-3ImplementierungFertig/index.html)  
 ## [Index](../../../index.html)
 
