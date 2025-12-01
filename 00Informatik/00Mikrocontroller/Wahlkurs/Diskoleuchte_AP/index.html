@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>WLan Startseite</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+             <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="wlan-startseite">WLan Startseite</h1>
+<h2 id="grundfunktionen">Grundfunktionen</h2>
+<p>Der ESP32 soll ein eigenes WLan aufbauen, das keine Verbindung zum Internet hat. Beim Anmelden in diesem WLan soll der Nutzer automatisch auf eine HTML-Seite geleitet werden, die der ESP32 bereitstellt. Von dieser Seite aus soll der ESP32 über Textfelder oder Buttons gesteuert werden können.</p>
+<h2 id="funktionsprinzip">Funktionsprinzip</h2>
+<p>Der ESP32 funktioniert als Access Point (Zugriffspunkt) für sein eigenes WLan. Der Name (SSID) und das Passwort für dieses WLan wird im Programmcode festgelegt.<br>
+Außerdem läuft auf dem ESP32 ein Webserver, der eine HTML-Seite bereit stellt. Auch der HTML-Code dieser Seite wird im Programmcode festgelegt. Die Buttons werden über Javascript-Funktionen im Code abgefragt.<br>
+Als drittes muss auf dem ESP32 ein DNS-Server laufen. Ein DNS-Server wandelt eine eingegebene Internetadresse (<a href="http://google.de">google.de</a>) in die passende IP-Adresse (172.217.30.9) um. In unserem Fall müssen <strong>alle eingegebene Internetadressen</strong> auf die Startadresse des ESP32 (<strong>192.168.4.1</strong>) umgewandelt werden. Damit wird beim Öffnen eines Webbrowsers immer und ausschließlich die Startseite unseres Systems aufgerufen. Diese Technik heißt <strong>Captive Portal</strong>-Technik. Sie wird häufig bei öffentlichen WLan-Netzen wie unserem Schulnetz verwendet, um den Nutzer auf eine Anmeldeseite umzuleiten.</p>
+<h2 id="code">Code</h2>
+<pre><code class="language-C++"><span class="hljs-comment">// Wifi-Bibliotheken</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WiFi.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WebServer.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;DNSServer.h&gt;</span></span>
+
+
+<span class="hljs-comment">// WiFi Access Point Konfiguration</span>
+<span class="hljs-type">const</span> <span class="hljs-type">char</span> *ssid = <span class="hljs-string">&quot;Diskoleuchte&quot;</span>;      <span class="hljs-comment">// Name des Access Points</span>
+<span class="hljs-type">const</span> <span class="hljs-type">char</span> *password = <span class="hljs-string">&quot;12345678&quot;</span>;    <span class="hljs-comment">// Passwort des Access Points</span>
+
+<span class="hljs-comment">// Webserver und DNS-Einrichtungen</span>
+<span class="hljs-function">WebServer <span class="hljs-title">server</span><span class="hljs-params">(<span class="hljs-number">80</span>)</span></span>;
+<span class="hljs-comment">// DNS Server für Captive Portal Funktionalität</span>
+DNSServer dnsServer;
+<span class="hljs-type">const</span> byte DNS_PORT = <span class="hljs-number">53</span>;
+
+<span class="hljs-comment">// Helligkeitswert, der über Buttons verändert werden kann</span>
+<span class="hljs-type">int</span> brightness=<span class="hljs-number">100</span>;
+
+<span class="hljs-comment">// --- HTTP Handler Funktionen ---</span>
+
+<span class="hljs-comment">/**
+ * @brief Generiert und sendet die Haupt-HTML-Seite (Webinterface) an den Client.
+ * \n fügt einen Zeilenumbruch (new Line) in den Code ein
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">handleRoot</span><span class="hljs-params">()</span>
+</span>{
+    String html = <span class="hljs-string">&quot;&quot;</span>;
+    html += <span class="hljs-string">&quot;&lt;!DOCTYPE html&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;&lt;html&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;&lt;head&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;  &lt;meta charset=\&quot;utf-8\&quot;&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;  &lt;meta name=\&quot;viewport\&quot; content=\&quot;width=device-width, initial-scale=1\&quot;&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;  &lt;title&gt;Diskoleuchte&lt;/title&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;  &lt;style&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    body { font-family: Arial, Helvetica, sans-serif; text-align: center; padding: 2rem; background: #111; color: #0ff; margin: 0; }\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    h1 { font-size: 3rem; color: #ff0; margin: 1rem 0; text-shadow: 0 0 8px #f0f; }\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    p { color: #afa; }\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    .box { padding: 1rem; border-radius: 8px; display: inline-block; background: rgba(255,255,255,0.03); }\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    input { font-size: 1rem; padding: .5rem; border-radius: 4px; border: 1px solid #444; }\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    button { font-size: 1rem; padding: .5rem 1rem; border-radius: 4px; margin-left: .5rem; }\n&quot;</span>;
+    html += <span class="hljs-string">&quot;  &lt;/style&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;&lt;/head&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;&lt;body&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;  &lt;div class=\&quot;box\&quot;&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    &lt;h1&gt;Diskoleuchte&lt;/h1&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    &lt;p&gt;ESP32 Accesspoint&lt;/p&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;  &lt;/div&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;  &lt;div style=\&quot;margin-top:1rem;\&quot;&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    &lt;input type=\&quot;text\&quot; id=\&quot;userText\&quot; placeholder=\&quot;Text eingeben\&quot; style=\&quot;width:60%;\&quot;&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    &lt;button onclick=\&quot;sendText()\&quot;&gt;Sende Text&lt;/button&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    &lt;hr&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    &lt;button onclick=\&quot;sendHeller()\&quot;&gt;Heller&lt;/button&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    &lt;button onclick=\&quot;sendDunkler()\&quot;&gt;Dunkler&lt;/button&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;  &lt;/div&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;  &lt;script&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    function sendText(){\n&quot;</span>;
+    html += <span class="hljs-string">&quot;      var v = document.getElementById(&#x27;userText&#x27;).value;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;      fetch(&#x27;/send?text=&#x27;+encodeURIComponent(v))\n&quot;</span>;
+    html += <span class="hljs-string">&quot;        .then(function(resp){ return resp.text(); })\n&quot;</span>;
+    html += <span class="hljs-string">&quot;        .then(function(txt){ alert(txt); })\n&quot;</span>;
+    html += <span class="hljs-string">&quot;        .catch(function(err){ alert(&#x27;Fehler beim Senden&#x27;); });\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    }\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    function sendHeller(){\n&quot;</span>;
+    html += <span class="hljs-string">&quot;      fetch(&#x27;/cmd?name=heller&#x27;)\n&quot;</span>;
+    html += <span class="hljs-string">&quot;        .then(function(resp){ return resp.text(); })\n&quot;</span>;
+    html += <span class="hljs-string">&quot;        .then(function(txt){ alert(txt); })\n&quot;</span>;
+    html += <span class="hljs-string">&quot;        .catch(function(err){ alert(&#x27;Fehler beim Senden&#x27;); });\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    }\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    function sendDunkler(){\n&quot;</span>;
+    html += <span class="hljs-string">&quot;      fetch(&#x27;/cmd?name=dunkler&#x27;)\n&quot;</span>;
+    html += <span class="hljs-string">&quot;        .then(function(resp){ return resp.text(); })\n&quot;</span>;
+    html += <span class="hljs-string">&quot;        .then(function(txt){ alert(txt); })\n&quot;</span>;
+    html += <span class="hljs-string">&quot;        .catch(function(err){ alert(&#x27;Fehler beim Senden&#x27;); });\n&quot;</span>;
+    html += <span class="hljs-string">&quot;    }\n&quot;</span>;
+    html += <span class="hljs-string">&quot;  &lt;/script&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;&lt;/body&gt;\n&quot;</span>;
+    html += <span class="hljs-string">&quot;&lt;/html&gt;\n&quot;</span>;
+
+    server.<span class="hljs-built_in">send</span>(<span class="hljs-number">200</span>, <span class="hljs-string">&quot;text/html&quot;</span>, html);
+}
+
+<span class="hljs-comment">/**
+ * @brief Handler für den &quot;/send&quot; Endpunkt.
+ *
+ * Empfängt Text über den &#x27;text&#x27;-Parameter 
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">handleSend</span><span class="hljs-params">()</span>
+</span>{
+    String text = server.<span class="hljs-built_in">arg</span>(<span class="hljs-string">&quot;text&quot;</span>);
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Empfangen: &quot;</span>);
+    Serial.<span class="hljs-built_in">println</span>(text);
+    server.<span class="hljs-built_in">send</span>(<span class="hljs-number">200</span>, <span class="hljs-string">&quot;text/plain&quot;</span>, <span class="hljs-string">&quot;Empfangen: &quot;</span> + text);
+
+    <span class="hljs-comment">// Hier soll der Text weiter bearbeitet werden</span>
+}
+
+<span class="hljs-comment">/**
+ * @brief Handler für den &quot;/cmd&quot; Endpunkt.
+ *
+ * Empfängt Steuerbefehle (z.B. &quot;heller&quot;, &quot;dunkler&quot;) über den &#x27;name&#x27;-Parameter
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">handleCmd</span><span class="hljs-params">()</span>
+</span>{
+    String cmd = server.<span class="hljs-built_in">arg</span>(<span class="hljs-string">&quot;name&quot;</span>);
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;CMD empfangen: &quot;</span>);
+    Serial.<span class="hljs-built_in">println</span>(cmd);
+
+    <span class="hljs-keyword">if</span> (cmd == <span class="hljs-string">&quot;heller&quot;</span>) {
+        <span class="hljs-keyword">if</span> (brightness &lt; <span class="hljs-number">255</span>) brightness++;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cmd == <span class="hljs-string">&quot;dunkler&quot;</span>) {
+        <span class="hljs-keyword">if</span> (brightness &gt; <span class="hljs-number">0</span>) brightness--;
+    }
+
+     server.<span class="hljs-built_in">send</span>(<span class="hljs-number">200</span>, <span class="hljs-string">&quot;text/plain&quot;</span>, <span class="hljs-string">&quot;Empfangen: &quot;</span> + cmd + <span class="hljs-string">&quot; brightness=&quot;</span> + <span class="hljs-built_in">String</span>(brightness));
+
+     <span class="hljs-comment">// Hier muss die Helligkeit weiter verarbeitet werden.</span>
+}
+
+<span class="hljs-comment">/**
+ * @brief Initialisierung des Systems.
+ *
+ * Startet die serielle Kommunikation, initialisiert die LED-Matrix, konfiguriert
+ * den WiFi Access Point und startet den Webserver sowie den DNS-Dienst.
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span>
+</span>{
+    Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+    Serial.<span class="hljs-built_in">println</span>();
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Starte Diskoleuchte AP...&quot;</span>);
+
+    
+    <span class="hljs-comment">// Startet den WiFi Access Point</span>
+    <span class="hljs-type">bool</span> ok = WiFi.<span class="hljs-built_in">softAP</span>(ssid, password);
+    <span class="hljs-keyword">if</span> (!ok)
+    {
+        Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Fehler beim Starten des softAP mit Passwort.&quot;</span>);
+    }
+    <span class="hljs-keyword">else</span>
+    {
+        Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;softAP mit WPA2 Passwort gestartet.&quot;</span>);
+    }
+
+    IPAddress IP = WiFi.<span class="hljs-built_in">softAPIP</span>();
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;AP IP Adresse: &quot;</span>);
+    Serial.<span class="hljs-built_in">println</span>(IP);
+
+    <span class="hljs-comment">// Startet den DNS-Server, um alle Hostnamen abzufangen und auf die AP IP umzuleiten (Captive Portal)</span>
+    dnsServer.<span class="hljs-built_in">start</span>(DNS_PORT, <span class="hljs-string">&quot;*&quot;</span>, IP);
+
+    <span class="hljs-comment">// Registriert die Handler für die Webserver-Endpunkte</span>
+    server.<span class="hljs-built_in">on</span>(<span class="hljs-string">&quot;/&quot;</span>, HTTP_GET, handleRoot);
+    server.<span class="hljs-built_in">on</span>(<span class="hljs-string">&quot;/send&quot;</span>, HTTP_GET, handleSend);
+    server.<span class="hljs-built_in">on</span>(<span class="hljs-string">&quot;/cmd&quot;</span>, HTTP_GET, handleCmd);
+    <span class="hljs-comment">// Leitet jede unbekannte Anfrage zur Root-Seite um (hilft beim Auto-Öffnen/Captive Portal)</span>
+    server.<span class="hljs-built_in">onNotFound</span>([]() {
+        String redirect = <span class="hljs-built_in">String</span>(<span class="hljs-string">&quot;http://&quot;</span>) + WiFi.<span class="hljs-built_in">softAPIP</span>().<span class="hljs-built_in">toString</span>();
+        server.<span class="hljs-built_in">sendHeader</span>(<span class="hljs-string">&quot;Location&quot;</span>, redirect, <span class="hljs-literal">true</span>);
+        server.<span class="hljs-built_in">send</span>(<span class="hljs-number">302</span>, <span class="hljs-string">&quot;text/plain&quot;</span>, <span class="hljs-string">&quot;&quot;</span>);
+    });
+    server.<span class="hljs-built_in">begin</span>();
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;HTTP Server gestartet, hört auf Port 80&quot;</span>);
+}
+
+<span class="hljs-comment">/**
+ * @brief Hauptprogrammschleife.
+ *
+ * Verarbeitet kontinuierlich Webserver- und DNS-Anfragen.
+ * Führt den Visualizer-Schritt aus, wenn gerade kein Text gescrollt wird.
+ */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-comment">// Verarbeitet DNS-Anfragen des Captive Portals</span>
+    dnsServer.<span class="hljs-built_in">processNextRequest</span>();
+    <span class="hljs-comment">// Verarbeitet HTTP-Anfragen</span>
+    server.<span class="hljs-built_in">handleClient</span>();
+    <span class="hljs-comment">// Kurze Pause, um das System nicht komplett auszulasten</span>
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
+}
+</code></pre>
+<p>Der ESP32 baut eine HTML-Seite mit diesem Code auf:</p>
+<pre><code class="language-HTML"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Diskoleuchte<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+    <span class="hljs-selector-tag">body</span> { <span class="hljs-attribute">font-family</span>: Arial, Helvetica, sans-serif; <span class="hljs-attribute">text-align</span>: center; <span class="hljs-attribute">padding</span>: <span class="hljs-number">2rem</span>; <span class="hljs-attribute">background</span>: <span class="hljs-number">#111</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#0ff</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>; }
+    <span class="hljs-selector-tag">h1</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">3rem</span>; <span class="hljs-attribute">color</span>: <span class="hljs-number">#ff0</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">1rem</span> <span class="hljs-number">0</span>; <span class="hljs-attribute">text-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">8px</span> <span class="hljs-number">#f0f</span>; }
+    <span class="hljs-selector-tag">p</span> { <span class="hljs-attribute">color</span>: <span class="hljs-number">#afa</span>; }
+    <span class="hljs-selector-class">.box</span> { <span class="hljs-attribute">padding</span>: <span class="hljs-number">1rem</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>; <span class="hljs-attribute">display</span>: inline-block; <span class="hljs-attribute">background</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,<span class="hljs-number">0.03</span>); }
+    <span class="hljs-selector-tag">input</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1rem</span>; <span class="hljs-attribute">padding</span>: .<span class="hljs-number">5rem</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">4px</span>; <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#444</span>; }
+    <span class="hljs-selector-tag">button</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1rem</span>; <span class="hljs-attribute">padding</span>: .<span class="hljs-number">5rem</span> <span class="hljs-number">1rem</span>; <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">4px</span>; <span class="hljs-attribute">margin-left</span>: .<span class="hljs-number">5rem</span>; }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Diskoleuchte<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>ESP32 Accesspoint<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;margin-top:1rem;&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;userText&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Text eingeben&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:60%;&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;sendText()&quot;</span>&gt;</span>Sende Text<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;sendHeller()&quot;</span>&gt;</span>Heller<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;sendDunkler()&quot;</span>&gt;</span>Dunkler<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+    <span class="hljs-keyword">function</span> <span class="hljs-title function_">sendText</span>(<span class="hljs-params"></span>){
+      <span class="hljs-keyword">var</span> v = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;userText&#x27;</span>).<span class="hljs-property">value</span>;
+      <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;/send?text=&#x27;</span>+<span class="hljs-built_in">encodeURIComponent</span>(v))
+        .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">resp</span>){ <span class="hljs-keyword">return</span> resp.<span class="hljs-title function_">text</span>(); })
+        .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">txt</span>){ <span class="hljs-title function_">alert</span>(txt); })
+        .<span class="hljs-title function_">catch</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>){ <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;Fehler beim Senden&#x27;</span>); });
+    }
+    <span class="hljs-keyword">function</span> <span class="hljs-title function_">sendHeller</span>(<span class="hljs-params"></span>){
+      <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;/cmd?name=heller&#x27;</span>)
+        .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">resp</span>){ <span class="hljs-keyword">return</span> resp.<span class="hljs-title function_">text</span>(); })
+        .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">txt</span>){ <span class="hljs-title function_">alert</span>(txt); })
+        .<span class="hljs-title function_">catch</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>){ <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;Fehler beim Senden&#x27;</span>); });
+    }
+    <span class="hljs-keyword">function</span> <span class="hljs-title function_">sendDunkler</span>(<span class="hljs-params"></span>){
+      <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;/cmd?name=dunkler&#x27;</span>)
+        .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">resp</span>){ <span class="hljs-keyword">return</span> resp.<span class="hljs-title function_">text</span>(); })
+        .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">txt</span>){ <span class="hljs-title function_">alert</span>(txt); })
+        .<span class="hljs-title function_">catch</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>){ <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;Fehler beim Senden&#x27;</span>); });
+    }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p><a href="../index.html">zurück</a></p>
+
+            
+            
+        </body>
+        </html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+    <link rel="stylesheet" href="/styleHTMLEditor.css">
+</head>
+
+<body>
+    <h2>Formatiere einen Text</h2>
+    <p>
+        Formatiere den Text im Editor so, dass er dieser Vorlage entspricht:
+    </p>
+  <h2>Vorlage</h2>
+  
+    <div id="Vorlage" style="padding: 20px; border-color: black; border-style: solid;border-radius: 20px;">
+        <h1>Die Schatzinsel</h1>
+        <h2>Drei Bilder</h2>
+        <ul><i>
+                <li>
+                    Die Schatzkarte:<br>
+                    <img src="Schatzkarte.jpg" width=150px height=100px>
+                </li>
+                <li>
+                    Die Hütte:<br>
+                    <img src="Huette.jpg" width=150px height=100px>
+                </li>
+                <li>
+                    Die Kajüte:<br>
+                    <img src="Kajuete.jpg" width=150px height=100px>
+                </li>
+        </ul>
+        </i>
+        <h2>Das Spiel</h2>
+        Du bist auf einer <u>einsamen Insel</u> gelandet und sollst einen <b>Schatz</b> finden. Hierzu musst du die
+        einzelnen Dateien durch <b>Hyperlinks</b> verbinden und so einen <u>vernetzten Text</u>, einen <b>Hypertext</b>
+        erzeugen.
+
+    </div>
+  
+    <h2>Editor</h2>
+    <textarea id="Code">
+    </textarea>
+    <div id="btnDiv">
+        <button id="btn">Code zu Text</button>
+        <button id="btn2">Text zu Code</button>
+        <button id="btn3">Löschen</button>
+        <button id="btn4">Code laden</button>
+    </div>
+    <h2>Formatierter Text</h2>
+    <div id="HTML">
+    </div>
+    <div id="Hinweis">
+        <h2>Hinweis</h2>
+        Verwende folgende HTML-Tags:
+        <ul>
+            <li>Überschrift 1 und 2</li>
+            <li>Zeilenumbruch</li>
+            <li>Kursiv, Fett, Unterstrichen</li>
+            <li>Bilder</li>
+            <li>Spiegelstriche</li>
+        </ul>   
+    
+    </div>
+
+    <a href="../../index.html">Zurück zur Übersicht</a>
+
+    <script src="/scriptHTMLEditor.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+Die Schatzinsel
+Drei Bilder
+Die Schatzkarte:
+Schatzkarte.jpg
+Die Hütte:
+Huette.jpg
+Die Kajüte:
+Kajuete.jpg
+Das Spiel
+Du bist auf einer einsamen Insel gelandet und sollst einen Schatz finden. Hierzu musst du die einzelnen Dateien durch Hyperlinks verbinden und so einen vernetzten Text, einen Hypertext erzeugen.    

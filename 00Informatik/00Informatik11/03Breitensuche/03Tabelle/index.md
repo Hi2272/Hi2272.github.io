@@ -27,6 +27,5 @@
 5. Warum endet die Breitensuche nach Schritt 7?  
 6. Wann würde die Breitensuche früher enden?  
 
-
 ## [weiter](../04LoesungTabelle/index.html)  
 ## [Index](../../../index.html)
