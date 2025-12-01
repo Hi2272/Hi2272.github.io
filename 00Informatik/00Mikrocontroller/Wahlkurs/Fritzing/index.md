@@ -98,6 +98,16 @@ Unter https://drive.google.com/drive/folders/1sCBYOjP_K2XKYgDagDPQqvY4xDjRxZQf k
 
 ## Universal GCode Sender
 ### Z-Achse nivellieren
+- Spindel mit Krokoklemme mit A5 verbinden.
+- Cu-Platte mit Krokoklemme mit GND verbiden
+- Unter Tools.Plugins.Installed prüfen, ob Probe Manager aktiviert ist.
+- Machine.Probe.Probe and Zero Z
+  - Prüfen, ob Touch plate Thickness auf 0 eingestellt ist.
+  - Probe durchführen lassen
+### X- und Y-Achse nivellieren
+- Spindel in die linke vordere Ecke der Platine fahren (-X, -Y)
+- Zero X und Zero Y anklicken
+
 ### Dateien laden und drucken
 
 
