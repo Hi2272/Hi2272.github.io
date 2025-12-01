@@ -162,6 +162,134 @@
 <li>Wiederhole dies für alle Schraubverbinder.<br>
 (Mit gedrückter Strg-Taste kannst du auch mehrere gleichzeitg markieren.)</li>
 </ol>
+<h2 id="leiterplatte-in-cnc-system-selbst-erstellen">Leiterplatte in CNC-System selbst erstellen</h2>
+<h3 id="software">Software</h3>
+<p>Neben Fritzing sind noch zwei Programme nötig:</p>
+<ol>
+<li>
+<p>Flatcam: Wandelt die Gerber-Dateien aus Fritzing in GCode-Dateien um, mit denen die Fräse gesteuert werden kann.<br>
+Die Software ist leider schon sehr alt und die Installation scheitert an veralteten Python-Bibliotheken, die nicht mehr geladen werden können.<br>
+Unter <a href="https://drive.google.com/drive/folders/1sCBYOjP_K2XKYgDagDPQqvY4xDjRxZQf">https://drive.google.com/drive/folders/1sCBYOjP_K2XKYgDagDPQqvY4xDjRxZQf</a> kann eine Installationsdatei für Windows heruntergeladen werden.</p>
+</li>
+<li>
+<p>Universal Gode Sender: Schickt die GCOde-Dateien an die Fräse und steuert sie.<br>
+(<a href="https://github.com/winder/Universal-G-Code-Sender?tab=readme-ov-file">https://github.com/winder/Universal-G-Code-Sender?tab=readme-ov-file</a>)</p>
+</li>
+</ol>
+<h3 id="fritzing">Fritzing</h3>
+<p>Datei.Export für Produktion: Gerber files</p>
+<h3 id="flatcam">FlatCam</h3>
+<h4 id="dateien-laden">Dateien laden</h4>
+<ol>
+<li>File.Open.Gerber Files
+<ol>
+<li>...copperTop.gtl</li>
+<li>...contour.gml</li>
+</ol>
+</li>
+<li>File.Open.Excellon
+<ol>
+<li>...drill.txt</li>
+</ol>
+</li>
+</ol>
+<h4 id="gcode-erzeugen">GCode erzeugen</h4>
+<ol>
+<li>
+<p>Doppelklick auf ...copperTop.gtl</p>
+<ol>
+<li>
+<p>Durchmesser des Fräswerkzeuges einstellen:<br>
+Tool dia: 0,4<br>
+Bei einem zu großen Durchmesser fährt die Fräse nicht mehr alle Kreisbögen aus.</p>
+</li>
+<li>
+<p>Isolierungsgeometrie erzeugen:<br>
+Klick auf &quot;Generate Isolationgeometrie&quot;</p>
+</li>
+<li>
+<p>Einstellungen prüfen:</p>
+<ol>
+<li>CutZ: -0.4<br>
+Frästiefe: 0.4 mm</li>
+<li>Spindle Speed: 35000<br>
+Drehzahl der Spindel</li>
+</ol>
+</li>
+<li>
+<p>GCode erzeugen</p>
+<ol>
+<li>Generate CNCJob Object</li>
+<li>Save CNCCode<br>
+Dateityp: GCode</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>Doppelklick auf ...contour.gml</p>
+<ol>
+<li>Durchmesser des Fräswerkzeuges einstellen:<br>
+Tool dia: 0,4</li>
+<li>Bounding Box erzeugen:
+<ol>
+<li>
+<p>Boundary Margin: 1,5<br>
+Abstand vom Rand</p>
+</li>
+<li>
+<p>Boxgeometrie erzeugen:<br>
+Klick auf &quot;Generate Geo&quot;</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>Einstellungen prüfen:</p>
+<ol>
+<li>CutZ: -1,6<br>
+Frästiefe: 1,6 mm</li>
+<li>Spindle Speed: 35000<br>
+Drehzahl der Spindel</li>
+</ol>
+</li>
+<li>
+<p>GCode erzeugen</p>
+<ol>
+<li>Generate CNCJob Object</li>
+<li>Save CNCCode</li>
+</ol>
+<p>Dateityp: GCode</p>
+</li>
+<li>
+<p>Doppelklick auf ...drill.txt</p>
+<ol>
+<li>Einstellungen überprüfen
+<ol>
+<li>CutZ: -1,6<br>
+Frästiefe: 1,6 mm</li>
+<li>Spindle Speed: 35000<br>
+Drehzahl der Spindel</li>
+<li>Drill tool dia: 0,8<br>
+Durchmesser des Bohrers</li>
+<li>Z-Feed: 50<br>
+Geschwindigkeit in der Z-Achse</li>
+</ol>
+</li>
+<li>GCode erzeugen
+<ol>
+<li>Klicke auf Create Drills GCode</li>
+<li>Save CNCCode<br>
+Dateityp: GCode</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="universal-gcode-sender">Universal GCode Sender</h2>
+<h3 id="z-achse-nivellieren">Z-Achse nivellieren</h3>
+<h3 id="dateien-laden-und-drucken">Dateien laden und drucken</h3>
 
             
             
