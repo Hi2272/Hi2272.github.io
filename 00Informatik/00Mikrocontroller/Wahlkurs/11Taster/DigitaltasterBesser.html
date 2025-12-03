@@ -145,9 +145,9 @@
 <p>Der Code kann an zwei Stellen verbessert werden.</p>
 <pre><code class="language-C++"><span class="hljs-type">bool</span> zustand=LOW;
 <span class="hljs-type">int</span> taster=<span class="hljs-number">2</span>;
-<span class="hljs-type">int</span> ledPin=<span class="hljs-number">6</span>
+<span class="hljs-type">int</span> ledPin=<span class="hljs-number">8</span>;
 
-<span class="hljs-type">void</span> <span class="hljs-built_in">setup</span>() {
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
   <span class="hljs-built_in">pinMode</span>(ledPin, OUTPUT);
   <span class="hljs-built_in">digitalWrite</span>(ledPin,LOW);  <span class="hljs-comment">// aus</span>
   
@@ -157,7 +157,7 @@
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
   <span class="hljs-keyword">if</span> (<span class="hljs-built_in">digitalRead</span>(taster)==HIGH){
    zustand=!zustand; 
-   <span class="hljs-built_in">digitalWrite</span>(<span class="hljs-number">6</span>, zustand); 
+   <span class="hljs-built_in">digitalWrite</span>(ledPin, zustand); 
    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">digitalRead</span>(taster)==HIGH){
     <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
    }

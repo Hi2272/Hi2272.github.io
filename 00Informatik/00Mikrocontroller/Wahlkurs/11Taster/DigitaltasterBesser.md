@@ -9,7 +9,7 @@ Der Code kann an zwei Stellen verbessert werden.
 ```C++
 bool zustand=LOW;
 int taster=2;
-int ledPin=6
+int ledPin=8;
 
 void setup() {
   pinMode(ledPin, OUTPUT);
@@ -21,7 +21,7 @@ void setup() {
 void loop() {
   if (digitalRead(taster)==HIGH){
    zustand=!zustand; 
-   digitalWrite(6, zustand); 
+   digitalWrite(ledPin, zustand); 
    while (digitalRead(taster)==HIGH){
     delay(1);
    }
