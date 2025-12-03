@@ -24,8 +24,8 @@
 // -------------------------------------
 
 // WiFi Access Point Konfiguration
-const char *ssid = "Diskoleuchte";  // Name des Access Points
-const char *password = "12345678";  // Passwort des Access Points
+const char *ssid = "Partyleuchte";    // Name des Access Points
+const char *password = "01.12.1965";  // Passwort des Access Points
 
 // Webserver und DNS-Einrichtungen
 WebServer server(80);
@@ -76,7 +76,7 @@ volatile bool stopScrollRequested = false;
 
 // Mikrofon-Pin + Mikrokontrolle-Flag
 #define MIC_PIN 6
-volatile bool micControlEnabled = false;  // wird durch /mic GET gesetzt
+volatile bool micControlEnabled = true;  // wird durch /mic GET gesetzt
 
 // Zufallspixel-Modus: wenn aktiv, werden regelmäßig zufällige Pixel gemäß Mic-Pegel gezeichnet
 volatile bool randomPixelsActive = false;
@@ -194,11 +194,11 @@ void handleRoot() {
   // Farbsteuerung: Prozent-Eingaben 0..100
   html += "    <div style='margin-top:8px;'>\n";
   html += "      <div><strong>Farbe1 (Prozent):</strong> R <input id='r1' type='number' min='0' max='100' value='100' style='width:60px;'> ";
-  html += "G <input id='g1' type='number' min='0' max='100' value='0' style='width:60px;'> ";
+  html += "G <input id='g1' type='number' min='0' max='100' value='50' style='width:60px;'> ";
   html += "B <input id='b1' type='number' min='0' max='100' value='0' style='width:60px;'></div>\n";
-  html += "      <div style='margin-top:6px;'><strong>Farbe2 (Prozent):</strong> R <input id='r2' type='number' min='0' max='100' value='0' style='width:60px;'> ";
-  html += "G <input id='g2' type='number' min='0' max='100' value='0' style='width:60px;'> ";
-  html += "B <input id='b2' type='number' min='0' max='100' value='100' style='width:60px;'></div>\n";
+  html += "      <div style='margin-top:6px;'><strong>Farbe2 (Prozent):</strong> R <input id='r2' type='number' min='0' max='100' value='100' style='width:60px;'> ";
+  html += "G <input id='g2' type='number' min='0' max='100' value='50' style='width:60px;'> ";
+  html += "B <input id='b2' type='number' min='0' max='100' value='0' style='width:60px;'></div>\n";
   html += "      <div style='margin-top:8px;'><button onclick='sendColor()'>Farbwechsel</button></div>\n";
   html += "    </div>\n";
 
@@ -213,7 +213,7 @@ void handleRoot() {
 
   html += "    <hr>\n";
 
-  html += "    <label style='margin-right:8px;color:#afa;'><input id='micControl' type='checkbox' onchange='sendMicToggle(this.checked)'> Lautstärkeregulierung</label>\n";
+  html += "    <label style='margin-right:8px;color:#afa;'><input id='micControl' type='checkbox' checked='true' onchange='sendMicToggle(this.checked)'> Lautstärkeregulierung</label>\n";
   html += "    <hr>\n";
 
   html += "    <button onclick=\"sendRainbow()\">Regenbogen</button>\n";
@@ -273,7 +273,7 @@ void handleSend() {
   // Aktuellen Modus merken, dann für das Scrollen pausieren
   bool prevRainbow = rainbowActive;
   bool prevColor = colorModeActive;
-  bool prevPixel=randomPixelsActive;
+  bool prevPixel = randomPixelsActive;
   int prevRainbowPos = rainbowPos;
 
 
@@ -284,7 +284,7 @@ void handleSend() {
 
   // Ensure stop flag cleared before starting
   stopScrollRequested = false;
-  
+
   // Scrollt den Text 'repeat' -mal über die Matrix (blockierend; server/DNS werden währenddessen bedient)
   for (int i = 0; i < repeat; i++) {
     // If another command requested stop before starting next repetition, break
@@ -313,10 +313,9 @@ void handleSend() {
     rainbowPos = prevRainbowPos;  // ggf. weitermachen an gleicher Position
     rainbowActive = true;
   }
-   if (prevPixel) {
+  if (prevPixel) {
     randomPixelsActive = true;
   }
-
 }
 
 /**
@@ -438,11 +437,11 @@ void setup() {
 
   // Starte direkt im Farbwechselmodus (Standard: Rot -> Blau)
   color1_r = 255;
-  color1_g = 0;
+  color1_g = 128;
   color1_b = 0;  // Rot
-  color2_r = 0;
-  color2_g = 0;
-  color2_b = 255;  // Blau
+  color2_r = 255;
+  color2_g = 128;
+  color2_b = 0;  // Blau
   colorModeStart = millis();
   lastColorUpdate = 0;
   colorModeActive = true;
@@ -479,7 +478,7 @@ void setup() {
   });
   server.begin();
   Serial.println("HTTP Server gestartet, hört auf Port 80");
-  scrollTextOnce(normalizeUmlauts("Monsterparty!"));
+  scrollTextOnce(normalizeUmlauts("Helge's Party!"));
 }
 
 /**
@@ -597,23 +596,32 @@ String normalizeUmlauts(const String &s) {
   return t;
 }
 
-int volume = 0;
 // --- Neu: Lese Mikrofon-Pegel und mappe auf 0..255 ---
 int readMicLevel(int max) {
-  const int samples = 64;
-  long sum = 0;
-  volume = (volume + 10) % 4096;
-  for (int i = 0; i < samples; i++) {
-    // int v = analogRead(MIC_PIN);  // ESP32 ADC: 0..4095
-    int v = volume;
 
-    sum += abs(v - 2048);
-    delayMicroseconds(200);
+  unsigned long startMillis = millis();
+  unsigned int peakToPeak = 0;
+  unsigned int signalMax = 0;
+  unsigned int signalMin = 1024;
+  while (millis() - startMillis < 50) {
+    int sample = analogRead(MIC_PIN);
+    if (sample < 1024) {
+      if (sample > signalMax) {
+        signalMax = sample;
+      } else if (sample < signalMin) {
+        signalMin = sample;
+      }
+    }
   }
-  int avg = sum / samples;
+
+  peakToPeak = signalMax - signalMin;
+  double sig = (peakToPeak * 5.0) / 1024;
+  Serial.println(sig);
+  
   const int maxInput = 2000;
-  int mapped = map(constrain(avg, 0, maxInput), 0, maxInput, 0, max);
-  return constrain(mapped, 0, max);
+  const int schwelle = 50;
+  int mapped = map(constrain(sig, schwelle, maxInput)-schwelle, 0, maxInput, 0, max);
+  return mapped;
 }
 
 // Neuer Handler: Zufallspixel (misst Mikrofon, mappt 0..255 -> Anzahl zufälliger Pixel)
