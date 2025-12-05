@@ -15,7 +15,7 @@
 #include <Adafruit_NeoPixel.h>
 
 // --- Hardware Konfiguration (Muss an die Verdrahtung angepasst werden) ---
-#define MATRIX_PIN 4     // GPIO Pin, an dem die Matrix angeschlossen ist
+#define MATRIX_PIN 5     // GPIO Pin, an dem die Matrix angeschlossen ist
 #define MATRIX_WIDTH 32  // Breite der Matrix in Pixel
 #define MATRIX_HEIGHT 8  // Höhe der Matrix in Pixel
 // Flags: Ursprung oben links, Spalten-Layout, Zick-Zack-Muster (typische Verdrahtung für viele Panels)
@@ -75,7 +75,7 @@ volatile bool isScrolling = false;
 volatile bool stopScrollRequested = false;
 
 // Mikrofon-Pin + Mikrokontrolle-Flag
-#define MIC_PIN 6
+#define MIC_PIN 4
 volatile bool micControlEnabled = true;  // wird durch /mic GET gesetzt
 
 // Zufallspixel-Modus: wenn aktiv, werden regelmäßig zufällige Pixel gemäß Mic-Pegel gezeichnet
@@ -602,10 +602,11 @@ int readMicLevel(int max) {
   unsigned long startMillis = millis();
   unsigned int peakToPeak = 0;
   unsigned int signalMax = 0;
-  unsigned int signalMin = 1024;
+  unsigned int signalMin = 4096;
+  //Serial.println(analogRead(MIC_PIN));
   while (millis() - startMillis < 50) {
     int sample = analogRead(MIC_PIN);
-    if (sample < 1024) {
+    if (sample < 4096) {
       if (sample > signalMax) {
         signalMax = sample;
       } else if (sample < signalMin) {
@@ -614,13 +615,19 @@ int readMicLevel(int max) {
     }
   }
 
-  peakToPeak = signalMax - signalMin;
-  double sig = (peakToPeak * 5.0) / 1024;
-  Serial.println(sig);
   
-  const int maxInput = 2000;
-  const int schwelle = 50;
-  int mapped = map(constrain(sig, schwelle, maxInput)-schwelle, 0, maxInput, 0, max);
+  peakToPeak = signalMax - signalMin;
+ // Serial.print(peakToPeak);
+ // Serial.print(" ");
+  const int maxInput = 2500;
+  const int schwelle = 400;
+  peakToPeak=constrain(peakToPeak,schwelle,maxInput)-schwelle;
+ // Serial.print(peakToPeak);
+ // Serial.print(" ");
+
+
+  int mapped = map(peakToPeak, 0, maxInput-schwelle, 0, max);
+ // Serial.println(mapped);
   return mapped;
 }
 
