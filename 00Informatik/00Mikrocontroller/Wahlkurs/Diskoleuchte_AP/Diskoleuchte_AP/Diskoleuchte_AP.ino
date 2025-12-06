@@ -96,7 +96,7 @@ const unsigned long randomPixelsInterval = 100;  // ms Aktualisierungsintervall
  */
 void scrollTextOnce(const String &text, uint16_t color = 0, uint16_t delayMs = 40) {
   if (text.length() == 0) return;
-
+  matrix.setBrightness(brightness);
   isScrolling = true;           // Blockiert den Farbmodus/Regenbogen
   stopScrollRequested = false;  // Reset any previous stop request
   matrix.setTextWrap(false);
@@ -478,7 +478,7 @@ void setup() {
   });
   server.begin();
   Serial.println("HTTP Server gestartet, hört auf Port 80");
-  scrollTextOnce(normalizeUmlauts("Helge's Party!"));
+  scrollTextOnce(normalizeUmlauts("Helges Party!"));
 }
 
 /**
