@@ -1,7 +1,12 @@
 public class Graph { 
    private Knoten[] knoten;
    private int anzahlKnoten;
-   private LinkedList<Knoten> queue;
+
+   // Deklariere eine Attribut queue
+   // vom Typ LinkedList
+   // Die Elemente der Liste sollen
+   // Objekte vom Typ Knoten sein
+   
 
    int[][] kanten = 
       {
@@ -17,14 +22,34 @@ public class Graph {
    public Graph(int maxKnoten) {
       knoten = new Knoten[maxKnoten];
       anzahlKnoten = 0;
-      queue = new LinkedList<Knoten>();
+      // Initialisiere die Warteschlange queue
+      
    }
 
    public void addKnoten(Knoten k) {
       knoten[anzahlKnoten] = k;
       anzahlKnoten++;
    }
+
+  public void drawKante(int start, int ziel) {
+      if(kanten[start][ziel] > 0) { 
+
+         Line l = new Line(knoten[start].getCenterX(), knoten[start].getCenterY(), knoten[ziel].getCenterX(), knoten[ziel].getCenterY());
+         l.setBorderColor(Color.darkblue);
+         l.setBorderWidth(1);
+         String gew = kanten[start][ziel];
+         Text txt = new Text(l.getCenterX(), l.getCenterY(), 25, gew);
+      }
+   }
    
+   public void drawKanten() {
+      for (int i = 0; i < kanten[0].length; i++) {
+         for (int j = 0; j < kanten[0].length; j++) {
+            drawKante(i, j);
+         }
+      }
+   }
+
    public Knoten getKnoten(int i) {
       return knoten[i];
    }
@@ -56,57 +81,50 @@ public class Graph {
       return -1;
    }
 
-   public boolean breitenSuche(Knoten start, Knoten ziel) {
+   // Schreibe die Methode breitenSuche
+   // mit den Parametern start und ziel vom Typ Knoten
+   // Sie soll wahr zurückgeben, wenn das Ziel gefunden wurde
+   
+   
       // Setze bei allen knoten 
       // das Attribut visited auf false
-      for (int i = 0; i < anzahlKnoten; i++) {
-         knoten[i].setVisited(false);
-      }
+
+
       // Leere die warteschlange 
       // mit der Methode clear()
-      queue.clear();
+
       // Setze beim Startknoten das 
       // Attribut visited auf true
-      start.setVisited(true);
+
       // Füge den Startknoten am Ende
       // der Warteschlange hinzu
-      queue.addLast(start);
+
       // Solange die Warteschlang nicht leer ist
-      while (!queue.isEmpty()) {
+
          // Entferne den ersten Knoten 
          // aus der Warteschlange 
          // und speichere ihn in einer lokalen
          // Variable aktuell
-         Knoten aktuell = queue.removeFirst();
+
          // Drucke den Namen des aktuellen Knotens aus
-         print(aktuell.getName() + " ");
+
          // Wenn der aktuelle Knoten gleich dem Ziel ist,
          // dann drucke "Ziel gefunden" aus
          // und gib den Wert true zurück
-         if(aktuell == ziel) {
-            print("Ziel gefunden!");
-            return true;
-         }
+
+
          // Speichere den Index des 
          // aktuellen Knotens in der Variablen index
-         int index = getIndex(aktuell);
+
          // Durchlaufe alle Nachbarknoten des aktuellen Knotens
          // wenn sie eine Kante zum aktuellen Knoten haben
          // und noch nicht besucht wurden,
          // damm markiere sie als besucht
          // füge sie am Ende der Warteschlange hinzu
-         for (int i = 0; i < 7; i++) {
-            if(kanten[index][i] > 0 && !knoten[i].isVisited()) {
-               knoten[i].setVisited(true);
-               queue.addLast(knoten[i]);
-            }
-         }
-      }
+
+
       // Drucke einen Zeilenumbruch
-      println();
+
       // gib false zurück
-      return false;
-   }
- 
 
 }

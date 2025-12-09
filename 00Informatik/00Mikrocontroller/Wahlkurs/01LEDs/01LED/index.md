@@ -5,7 +5,10 @@
 1. Baue folgende Schaltung auf:  
    ![SchaltungLED](Screenshot_4.png)  
    Jede LED muss immer mit einem Vorwiderstand geschützt werden. Sonst besteht die Gefahr, dass sie durchbrennt.
-2. Programmiere in der Arduino IDE folgenden Code:
+2. Programmiere auf https://sensebox.github.io/blockly/  folgenden Code:  
+![alt text](Blockly.png)  
+3. Kopiere den Arduino-Code in die Arduino IDE.
+
 ```C++
 void setup() {
   pinMode(8, OUTPUT);
@@ -17,7 +20,7 @@ void setup() {
 void loop() {
 }
 ```
-## 3. Erklärung
+## 2. Experimente
 1. Verändere die Werte für Pin8 und Pin9 in Zeile 4 und 5, bis die LED leuchtet:
    |Pin8|Pin9|LED|
    |----|----|----|
