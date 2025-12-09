@@ -6,6 +6,11 @@ body {
 
 }
 
+#copyright {
+    font-size: 0.8em;
+    color: #666;
+    text-align: right;
+}
 
 /* Canvas wird zentriert und bekommt einen Rahmen */
 #myCanvas {
