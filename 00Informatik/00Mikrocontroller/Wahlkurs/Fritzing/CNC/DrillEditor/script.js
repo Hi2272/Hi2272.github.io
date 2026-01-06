@@ -212,12 +212,23 @@ canvas.addEventListener('mouseup', () => {
 /* ---------- Button‑Handler ---------- */
 openBtn.addEventListener('click', () => fileInput.click());
 
+/* ---- Speichern‑Button: Durchmesser abfragen und Dateinamen bauen ---- */
 saveBtn.addEventListener('click', () => {
+    // 1️⃣ Nutzer nach dem Bohrerdurchmesser fragen
+    const diameter = prompt('Bitte geben Sie den Bohrerdurchmesser ein (z. B. 8mm):');
+
+    // Wenn der Nutzer abbrechen oder nichts eingeben -> Standard‑Dateiname verwenden
+    const safeDiameter = (diameter && diameter.trim().length > 0) ? diameter.trim() : 'unknown';
+
+    // 2️⃣ Dateinamen zusammensetzen: drill + Durchmesser + .gcode
+    const fileName = `drill${safeDiameter}.gcode`;
+
+    // 3️⃣ Datei erzeugen und herunterladen
     const blob = new Blob([textarea.value], { type: 'text/plain' });
     const url  = URL.createObjectURL(blob);
     const a    = document.createElement('a');
     a.href    = url;
-    a.download = 'export.gcode';
+    a.download = fileName;
     a.click();
     URL.revokeObjectURL(url);
 });
@@ -227,7 +238,7 @@ helpBtn.addEventListener('click', () => {
     window.open('help.html', '_blank');
 });
 
-/* Datei öffnen – **kompletten Inhalt anzeigen** */
+/* Datei öffnen – kompletter Inhalt wird angezeigt */
 fileInput.addEventListener('change', e => {
     const file = e.target.files[0];
     if (!file) return;
@@ -236,16 +247,14 @@ fileInput.addEventListener('change', e => {
     reader.onload = ev => {
         const content = ev.target.result;
 
-        // 1️⃣ Textarea vollständig befüllen
+        // Textarea vollständig befüllen und nach oben scrollen
         textarea.value = content;
-
-        // 2️⃣ Scroll‑Position zurück nach oben (falls vorher gescrollt)
         textarea.scrollTop = 0;
 
-        // 3️⃣ Canvas neu zeichnen (alle Punkte, inkl. neuer Skalierung)
+        // Canvas neu zeichnen (alle Punkte)
         drawGcode(content);
 
-        // 4️⃣ Reset des <input>, damit dieselbe Datei erneut gewählt werden kann
+        // Reset des <input>, damit dieselbe Datei erneut gewählt werden kann
         fileInput.value = '';
     };
     reader.readAsText(file);
