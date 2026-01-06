@@ -160,6 +160,10 @@ Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) v
 ### Multiplexer 
 [Multiplexer](Multiplexer/index.html)  
 
+### Platinen bauen
+
+[CNC](Fritzing/CNC/index.html)  
+[DrillEditor](Fritzing/CNC/index.html)  
 
 ---
 
