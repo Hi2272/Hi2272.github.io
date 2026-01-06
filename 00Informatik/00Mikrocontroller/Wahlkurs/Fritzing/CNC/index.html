@@ -180,14 +180,36 @@ Unter <a href="https://drive.google.com/drive/folders/1sCBYOjP_K2XKYgDagDPQqvY4x
 </ol>
 <h2 id="entwurf-und-erstellen-der-pcbs">Entwurf und Erstellen der PCBs</h2>
 <h3 id="fritzing">Fritzing</h3>
+<p>Beim Entwurf der Platine sind folgende Punkte zu beachten:</p>
+<ol>
+<li>Die Leiterbahnen dürfen sich nicht kreuzen. Wenn es nicht anders geht, müssen zwei Endpins gesetzt werden, zwischen die später ein isoliertes Kabel gelötet wird.</li>
+<li>Alle Leiterbahnen müssen auf der Unterseite liegen, da wir später die Unterseite fräsen:
+<ol>
+<li>Routing.AlleLeiterbahnenAuswählen</li>
+<li>Routing.AufAnderePlatinenseiteVerschieben</li>
+</ol>
+</li>
+<li>Alle Leiterbahnen müssen extradick sein:
+<ol>
+<li>Routing.AlleLeiterbahnenAuswählen</li>
+<li>Im Inspektorfenster Extradick (48 mil) einstellen.</li>
+</ol>
+</li>
+<li>Die Abstände zwischen den Leiterbahnen sollten möglichst genauso groß sein, wie ihre Dicke</li>
+<li>Die Löcher von Schraubsockeln müssen groß sein. Im Inspektorfenster unter Lochgröße:
+<ol>
+<li>Lochdurchmesser: 2 mm</li>
+<li>Ringdicke: 1 mm</li>
+</ol>
+</li>
+</ol>
 <p>Datei.Export für Produktion: Gerber files</p>
 <h3 id="flatcam">FlatCam</h3>
 <h4 id="dateien-laden">Dateien laden</h4>
 <ol>
 <li>File.Open.Gerber Files
 <ol>
-<li>...copperTop.gtl</li>
-<li>...contour.gml</li>
+<li>...copperBottom.gtl</li>
 </ol>
 </li>
 <li>File.Open.Excellon
@@ -199,12 +221,16 @@ Unter <a href="https://drive.google.com/drive/folders/1sCBYOjP_K2XKYgDagDPQqvY4x
 <h4 id="gcode-erzeugen">GCode erzeugen</h4>
 <ol>
 <li>
-<p>Doppelklick auf ...copperTop.gtl</p>
+<p>Doppelklick auf ...copperBottom.gtl</p>
 <ol>
 <li>
-<p>Durchmesser des Fräswerkzeuges einstellen:<br>
-Tool dia: 0,4<br>
-Bei einem zu großen Durchmesser fährt die Fräse nicht mehr alle Kreisbögen aus.</p>
+<p>Durchmesser des Fräswerkzeuges einstellen:</p>
+<ol>
+<li>Tool dia: 0,1</li>
+<li>Passes: 4</li>
+<li>Pass overlay: 10%<br>
+Bei einem zu großen Durchmesser fährt die Fräse nicht mehr alle Kreisbögen aus. Durch die vier Durchgänge wird das gesamte Kupfer zwischen benachbarten Kontakten entfernt.</li>
+</ol>
 </li>
 <li>
 <p>Isolierungsgeometrie erzeugen:<br>
@@ -213,8 +239,8 @@ Klick auf &quot;Generate Isolationgeometrie&quot;</p>
 <li>
 <p>Einstellungen prüfen:</p>
 <ol>
-<li>CutZ: -0.4<br>
-Frästiefe: 0.4 mm</li>
+<li>CutZ: -0,1<br>
+Frästiefe: 0,1 mm</li>
 <li>Spindle Speed: 35000<br>
 Drehzahl der Spindel</li>
 </ol>
@@ -230,48 +256,12 @@ Dateityp: GCode</li>
 </ol>
 </li>
 <li>
-<p>Doppelklick auf ...contour.gml</p>
-<ol>
-<li>Durchmesser des Fräswerkzeuges einstellen:<br>
-Tool dia: 0,4</li>
-<li>Bounding Box erzeugen:
-<ol>
-<li>
-<p>Boundary Margin: 1,5<br>
-Abstand vom Rand</p>
-</li>
-<li>
-<p>Boxgeometrie erzeugen:<br>
-Klick auf &quot;Generate Geo&quot;</p>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>
-<p>Einstellungen prüfen:</p>
-<ol>
-<li>CutZ: -1,6<br>
-Frästiefe: 1,6 mm</li>
-<li>Spindle Speed: 35000<br>
-Drehzahl der Spindel</li>
-</ol>
-</li>
-<li>
-<p>GCode erzeugen</p>
-<ol>
-<li>Generate CNCJob Object</li>
-<li>Save CNCCode</li>
-</ol>
-<p>Dateityp: GCode</p>
-</li>
-<li>
 <p>Doppelklick auf ...drill.txt</p>
 <ol>
 <li>Einstellungen überprüfen
 <ol>
-<li>CutZ: -1,6<br>
-Frästiefe: 1,6 mm</li>
+<li>CutZ: -2<br>
+Frästiefe: 2 mm</li>
 <li>Spindle Speed: 35000<br>
 Drehzahl der Spindel</li>
 <li>Drill tool dia: 0,8<br>
@@ -285,6 +275,25 @@ Geschwindigkeit in der Z-Achse</li>
 <li>Klicke auf Create Drills GCode</li>
 <li>Save CNCCode<br>
 Dateityp: GCode</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>Ausscheidepfad erzeugen</p>
+<ol>
+<li>Doppelklick auf ...copperBottom.gtl</li>
+<li>Klick auf <strong>Cutout tool</strong>
+<ol>
+<li>Fräsetiefe überprüfen</li>
+<li>Generate Rectangular Geometrie</li>
+</ol>
+</li>
+<li>Doppelklick auf Geometrie...cutout
+<ol>
+<li>Frästiefe -2</li>
+<li>Spindelgeschwindigkeit 35000</li>
+<li>Generate CNCJob object</li>
 </ol>
 </li>
 </ol>

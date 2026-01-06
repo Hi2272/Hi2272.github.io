@@ -1,0 +1,102 @@
+/* -------------------------------------------------
+   Grundlayout – Gesamten Seiteninhalt zentrieren
+   ------------------------------------------------- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;                     /* kein äußerer Abstand, Flex‑Zentrierung übernimmt das */
+    min-height: 100vh;             /* mindestens die volle Höhe des Viewports */
+    display: flex;                 /* Flex‑Container für die Seite */
+    flex-direction: column;        /* von oben nach unten */
+    align-items: center;           /* horizontal zentrieren */
+    justify-content: flex-start;   /* Inhalt oben beginnen lassen */
+    background: #f8f9fa;
+    color: #333;
+}
+
+/* Überschrift – ebenfalls zentriert */
+h3 {
+    margin: 20px 0 10px 0;
+    text-align: center;
+}
+
+/* -------------------------------------------------
+   Steuerungsleiste – Buttons zentrieren & stylen
+   ------------------------------------------------- */
+.controls {
+    display: flex;
+    justify-content: center;       /* Buttons horizontal zentrieren */
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+/* Basis‑Stil für alle Buttons */
+.controls button {
+    padding: 6px 14px;
+    border: 2px solid transparent;   /* wird in den einzelnen IDs überschrieben */
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Öffnen‑Button – hellgelb Hintergrund, dunkler gelber Rahmen */
+#openBtn {
+    background-color: #fff9c4;
+    color: #333;
+    border-color: #b8860b;
+}
+#openBtn:hover { background-color: #ffef99; }
+
+/* Speichern‑Button – hellblau Hintergrund, dunkler blauer Rahmen */
+#saveBtn {
+    background-color: #add8e6;
+    color: #333;
+    border-color: #27408b;
+}
+#saveBtn:hover { background-color: #9ac4d4; }
+
+/* Anleitung‑Button – grüner Hintergrund, dunkler grüner Rahmen */
+#helpBtn {
+    background-color: #c8e6c9;
+    color: #333;
+    border-color: #2e7d32;
+}
+#helpBtn:hover { background-color: #a5d6a7; }
+
+/* -------------------------------------------------
+   Hauptbereich – Canvas über Textarea (zentriert)
+   ------------------------------------------------- */
+.main {
+    display: flex;
+    flex-direction: column;        /* Canvas zuerst, dann Textarea */
+    gap: 15px;
+    align-items: stretch;          /* Elemente füllen die verfügbare Breite */
+    width: 100%;                   /* damit .main die volle Breite des Flex‑Containers einnimmt */
+    max-width: 620px;              /* begrenzt die Gesamtlänge, damit alles zentriert bleibt */
+}
+
+/* Canvas */
+#gcodeCanvas {
+    border: 1px solid #aaa;
+    background: #fff;
+    width: 100%;                   /* volle Breite von .main */
+    max-width: 600px;              /* gleiche Max‑Breite wie vorher */
+    height: 400px;
+    cursor: crosshair;
+}
+
+/* Textarea */
+#gcodeText {
+    flex: 1;
+    min-height: 300px;             /* mindestens 300 px hoch */
+    width: 100%;                   /* volle Breite von .main */
+    max-width: 600px;              /* gleiche Max‑Breite wie das Canvas */
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    resize: vertical;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+    background: #fff;
+}
