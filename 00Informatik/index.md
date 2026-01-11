@@ -67,6 +67,7 @@
 [Spiegelstriche in HTML](00Informatik7/HTMLLists/index.html)  
 [Nummerierte Listen in HTML](00Informatik7/HTMLOrderedList/index.html)  
 [Bilder in HTML](00Informatik7/HTMLImg/index.html)  
+[Deine eigene Homepage](00Informatik7/HTMLInfoSeite/index.html)  
 [HTML Abschlusstest](00Informatik7/HTMLTest/index.html)  
 
 
