@@ -162,7 +162,7 @@ Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) v
 
 ### Platinen bauen
 
-[CNC](Fritzing/CNC/index.html)  
+00[CNC](Fritzing/CNC/index.html)  
 [DrillEditor](Fritzing/CNC/index.html)  
 
 ---

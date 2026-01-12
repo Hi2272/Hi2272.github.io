@@ -255,6 +255,11 @@
 [Breitensuche Implementierung](00Informatik11/03Breitensuche/07Implementierung/index.html)  
 
 
+## Verschlüsselung
+[Krypto-Castle](https://view.genially.com/647f2a04bc62140019e744a0/interactive-content-the-mystery-of-cryptocastle)  
+[Cäsar-Verschlüsselung](00Informatik11/Krypto/index.html)  
+
+
 # Datenschutz
 ***
 
