@@ -14,6 +14,8 @@ In der HTML-Datei siehst du nichts von diesen Formatierungen:
 
 ![alt text](Bild2.png)  
 
+
+
 Sie werden in einer CSS (Cascading Style Sheet)-Datei eingefügt und gelten für alle Überschriften h1 und alle Bilder img:  
 ![alt text](Bild3.png)
 
