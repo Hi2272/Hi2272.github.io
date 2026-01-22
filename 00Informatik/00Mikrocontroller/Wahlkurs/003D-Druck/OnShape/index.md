@@ -5,6 +5,9 @@
 ## 1. Einleitung 
 ### a) Registrierung bei Onshape
 Zur Arbeit mit Onshape müsst ihr euch auf dieser Seite registrieren: [onshape.com/de/sign-up](https://www.onshape.com/de/sign-up). Die Verwendung der Software ist für private Zwecke kostenlos.
+
+Es kann sein, dass bei eurer Version **Englisch** als Sprache eingestellt ist und **inch** als Maßeinheit.  
+Hier ist eine Anleitung zum Ändern dieser Einstellungen: [Grundeinstellungen](Grundeinstellungen/index.html)
 ### b) Anleitungsvideos zum Start
 [Onshape Grundkurs 2023/1](https://youtu.be/gloEpUt8_RM?list=PLw48L7HmCgMLBuNFmJOGZYsJtjEEr83jm)  
 [Übungsaufgabe](https://youtu.be/qpmfzolbTYY)  
