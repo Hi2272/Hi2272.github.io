@@ -72,12 +72,14 @@
 [CSS - ein Stil für alle](00Informatik7/CSS/index.html)  
 
 ## Gefahren im Internet
-[Vorsicht Deep Fakes](00Informatik7/DeepFakes/index.html)  
+[Veröffentlichen von Bildern](00Informatik7/BilderImInternet/index.html)  
 
+[Deep Fakes](00Informatik7/DeepFakes/index.html)  
 
 [Die Abenteuer von Kommissar Smith](https://netzwerke.hauptquartier.eu/abenteuer-archiv)   
 
-## Wettbewerbe
+## wettbewerbe
+
 [Informatik-Biber](00Informatik7/Biber/index.html)  
 
 
