@@ -71,7 +71,14 @@
 [HTML Abschlusstest](00Informatik7/HTMLTest/index.html)    
 [CSS - ein Stil für alle](00Informatik7/CSS/index.html)  
 
+## Gefahren im Internet
+[Veröffentlichen von Bildern](00Informatik7/BilderImInternet/index.html)  
+
+[Deep Fakes](00Informatik7/DeepFakes/index.html)  
+
 [Die Abenteuer von Kommissar Smith](https://netzwerke.hauptquartier.eu/abenteuer-archiv)   
+
+## wettbewerbe
 
 [Informatik-Biber](00Informatik7/Biber/index.html)  
 
