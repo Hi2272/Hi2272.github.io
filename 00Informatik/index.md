@@ -73,6 +73,9 @@
 
 ## Gefahren im Internet
 [Veröffentlichen von Bildern](00Informatik7/BilderImInternet/index.html)  
+[Altersgrenzen im Internet](https://learningapps.org/view46887268)  
+[Sicher im Netz](https://learningapps.org/view1419252)  
+
 
 [Deep Fakes](00Informatik7/DeepFakes/index.html)  
 
