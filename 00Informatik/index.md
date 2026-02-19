@@ -67,10 +67,21 @@
 [Spiegelstriche in HTML](00Informatik7/HTMLLists/index.html)  
 [Nummerierte Listen in HTML](00Informatik7/HTMLOrderedList/index.html)  
 [Bilder in HTML](00Informatik7/HTMLImg/index.html)  
-[HTML Abschlusstest](00Informatik7/HTMLTest/index.html)  
+[Deine eigene Homepage](00Informatik7/HTMLInfoSeite/index.html)  
+[HTML Abschlusstest](00Informatik7/HTMLTest/index.html)    
+[CSS - ein Stil für alle](00Informatik7/CSS/index.html)  
 
+## Gefahren im Internet
+[Veröffentlichen von Bildern](00Informatik7/BilderImInternet/index.html)  
+[Altersgrenzen im Internet](https://learningapps.org/view46887268)  
+[Sicher im Netz](https://learningapps.org/view1419252)  
+
+
+[Deep Fakes](00Informatik7/DeepFakes/index.html)  
 
 [Die Abenteuer von Kommissar Smith](https://netzwerke.hauptquartier.eu/abenteuer-archiv)   
+
+## wettbewerbe
 
 [Informatik-Biber](00Informatik7/Biber/index.html)  
 
@@ -253,6 +264,11 @@
 [Breitensuche Algorithmus](00Informatik11/03Breitensuche/05Algorithmus/index.html)  
 [Die Klasse Warteschlange](00Informatik11/03Breitensuche/06Warteschlange/index.html)  
 [Breitensuche Implementierung](00Informatik11/03Breitensuche/07Implementierung/index.html)  
+
+
+## Verschlüsselung
+[Krypto-Castle](https://view.genially.com/647f2a04bc62140019e744a0/interactive-content-the-mystery-of-cryptocastle)  
+[Cäsar-Verschlüsselung](00Informatik11/Krypto/index.html)  
 
 
 # Datenschutz

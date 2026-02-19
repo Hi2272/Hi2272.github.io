@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Drill-Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h3>Drill-Editor</h3>
+
+
+    <!-- Steuerungsleiste – jetzt mit „Anleitung“-Button -->
+    <div class="controls">
+        <button id="openBtn">Datei öffnen</button>
+        <button id="saveBtn">Datei speichern</button>
+        <button id="helpBtn">Anleitung</button>
+        <input type="file" id="fileInput" accept=".gcode,.nc,.txt" style="display:none">
+    </div>
+
+    <!-- Hauptbereich – Canvas über Textarea -->
+    <div class="main">
+        <canvas id="gcodeCanvas" width="600" height="400"></canvas>
+        <textarea id="gcodeText"
+                  placeholder="G‑Code wird hier angezeigt..."
+                  spellcheck="false"></textarea>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

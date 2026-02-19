@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.input-container {
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin: 8px 0 4px;
+    font-size: 1rem;
+}
+
+label {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.9rem;
+}
+
+input {
+    width: 100%;
+    padding: 4px;
+    margin-top: 2px;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+}
+
+button {
+    margin-top: 12px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* optional: etwas Abstand zwischen den beiden Buttons */
+#copyButton {
+    margin-left: 10px;
+}
+
+canvas {
+    border: 1px solid #000;
+    display: block;
+    margin-top: 20px;
+}

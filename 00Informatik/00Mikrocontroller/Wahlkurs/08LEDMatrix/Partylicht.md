@@ -34,8 +34,44 @@ void setup() {
   randomSeed(analogRead(0)); // Zufallsgenerator initialisieren
 }
 
+// Verbesserte Funktion zum Auslesen des Mikrofon-Levels
+
+int readMicLevel(int max) {
+ 
+  unsigned long startMillis = millis();
+  unsigned int peakToPeak = 0;
+  unsigned int signalMax = 0;
+  unsigned int signalMin = 4096;
+  // 50 ms lang messen
+  while (millis() - startMillis < 50) {
+    int sample = analogRead(MIC_PIN);
+    if (sample < 4096) {
+      if (sample > signalMax) {
+        signalMax = sample;
+      } else if (sample < signalMin) {
+        signalMin = sample;
+      }
+    }
+  }
+ 
+ 
+  peakToPeak = signalMax - signalMin;
+ // Serial.print(peakToPeak);
+ // Serial.print(" ");
+  const int maxInput = 2500;
+  const int schwelle = 400;
+  peakToPeak=constrain(peakToPeak,schwelle,maxInput)-schwelle;
+ // Serial.print(peakToPeak);
+ // Serial.print(" ");
+ 
+ 
+  int mapped = map(peakToPeak, 0, maxInput-schwelle, 0, max);
+ // Serial.println(mapped);
+  return mapped;
+}
+
 void loop() {
-  int micValue = analogRead(MIC_PIN); 
+  int micValue = readMicLevel(1023); 
   Serial.print(micValue);
   Serial.print(": ");
   
@@ -60,8 +96,7 @@ void loop() {
 ```
 ### Erläuterung des Codes
 ####   int ledCount = map(micValue, 0, 1023, 0, NUM_LEDS); 
-Mit dem **map**-Befehl werden die Messwerte des Mikrofons (0-1023) in Werte für die LED-Matrix (0-63) umgeschrieben.  
-Alternativ hätten wir auch einfach jeden Wert durch 4 teilen können. Der map-Befehl ist aber leichter zu programmieren.   
+Mit dem **map**-Befehl werden die Messwerte des Mikrofons (0-1023) in Werte für die LED-Matrix (0-39) umgeschrieben.  
 
 Teste das Programm durch Klatschen.
 

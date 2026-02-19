@@ -41,59 +41,54 @@ Unter https://drive.google.com/drive/folders/1sCBYOjP_K2XKYgDagDPQqvY4xDjRxZQf k
 
 ## Entwurf und Erstellen der PCBs
 ### Fritzing
- Datei.Export für Produktion: Gerber files
+Beim Entwurf der Platine sind folgende Punkte zu beachten:  
+1. Die Leiterbahnen dürfen sich nicht kreuzen. Wenn es nicht anders geht, müssen zwei Endpins gesetzt werden, zwischen die später ein isoliertes Kabel gelötet wird.
+2. Alle Leiterbahnen müssen auf der Oberseite liegen
+3. Alle Leiterbahnen müssen extradick sein:  
+   1. Routing.AlleLeiterbahnenAuswählen
+   2. Im Inspektorfenster Extradick (48 mil) einstellen.
+4. Die Abstände zwischen den Leiterbahnen sollten möglichst genauso groß sein, wie ihre Dicke
+5. Die Löcher von Schraubsockeln müssen groß sein. Im Inspektorfenster unter Lochgröße:  
+   1. Lochdurchmesser: 2 mm
+   2. Ringdicke: 1 mm
+   
+Datei.Export für Produktion: Gerber files
 ### FlatCam
 #### Dateien laden
 1. File.Open.Gerber Files
    1.   ...copperTop.gtl
-   2.   ...contour.gml
 2. File.Open.Excellon
    1. ...drill.txt
-
+#### Inhalte spiegeln
+1. ... copperTop und ...drill markieren.
+2. Y drücken zum Spiegeln
 #### GCode erzeugen
 1. Doppelklick auf ...copperTop.gtl  
    1. Durchmesser des Fräswerkzeuges einstellen:  
-   Tool dia: 0,4  
-   Bei einem zu großen Durchmesser fährt die Fräse nicht mehr alle Kreisbögen aus.  
+      1. Tool dia: 0,1
+      2. Passes: 2
+      3. Pass overlay: 10%  
+   Bei einem zu großen Durchmesser fährt die Fräse nicht mehr alle Kreisbögen aus. Durch die vier Durchgänge wird das gesamte Kupfer zwischen benachbarten Kontakten entfernt.  
+
    2. Isolierungsgeometrie erzeugen:  
    Klick auf "Generate Isolationgeometrie"
 
    3. Einstellungen prüfen: 
-      1. CutZ: -0.4   
-      Frästiefe: 0.4 mm
-      2. Spindle Speed: 35000  
+      1. CutZ: -0,2   
+      Frästiefe: 0,2 mm
+      2. Spindle Speed: 2000  
       Drehzahl der Spindel 
 
    4. GCode erzeugen
       1. Generate CNCJob Object
       2. Save CNCCode  
       Dateityp: GCode
-2. Doppelklick auf ...contour.gml
-   1. Durchmesser des Fräswerkzeuges einstellen:  
-   Tool dia: 0,4
-   2. Bounding Box erzeugen:  
-      1. Boundary Margin: 1,5  
-      Abstand vom Rand
 
-      2. Boxgeometrie erzeugen:  
-        Klick auf "Generate Geo"
- 3. Einstellungen prüfen: 
-      1. CutZ: -1,6   
-      Frästiefe: 1,6 mm
-      2. Spindle Speed: 35000  
-      Drehzahl der Spindel 
-
-   1. GCode erzeugen
-      1. Generate CNCJob Object
-      2. Save CNCCode  
-
-      Dateityp: GCode
-
-3. Doppelklick auf ...drill.txt
+2. Doppelklick auf ...drill.txt
    1. Einstellungen überprüfen
-      1. CutZ: -1,6   
-      Frästiefe: 1,6 mm
-      2. Spindle Speed: 35000  
+      1. CutZ: -2   
+      Frästiefe: 2 mm
+      2. Spindle Speed: 2000  
       Drehzahl der Spindel 
       3. Drill tool dia: 0,8  
       Durchmesser des Bohrers
@@ -103,6 +98,30 @@ Unter https://drive.google.com/drive/folders/1sCBYOjP_K2XKYgDagDPQqvY4xDjRxZQf k
       1. Klicke auf Create Drills GCode
       2. Save CNCCode  
       Dateityp: GCode
+
+3. Drilldateien anpassen  
+   Mit dem [Drilleditor](DrillEditor/index.html) kann die GCODE-Datei mit den Bohrungen in mehrere Dateien aufgeteilt werden.  
+   Damit können Bohrungen mit verschieden dicken Bohrern erzeugt werden:
+   - 0,8 mm für weibliche Buchsenleisten
+   - 1,0 mm für männliche Steckerleisten
+   - 1,4 mm für Schraubsockel 
+4. Ausschneidepfad erzeugen
+   1. Doppelklick auf ...copperTop.gtl  
+   2. Klick auf **Cutout tool**
+      1. Fräsetiefe überprüfen
+      2. Generate Rectangular Geometrie
+   3. Doppelklick auf Geometrie...cutout
+      1. CutZ -2
+      2. Spindelgeschwindigkeit 2000
+      3. Tool Diameter 1,4
+      4. Margin 1,0
+      5. Gap Size: 1,0
+      6. Create Rectangular Geometry
+   4. Generate CNCJob object
+      1. Doppelklick auf ..._cutout
+      2. Generate CNC-Object
+      3. Save CNC Code
+ 
 
 ## Universal GCode Sender
 ### Z-Achse nivellieren
@@ -117,5 +136,5 @@ Unter https://drive.google.com/drive/folders/1sCBYOjP_K2XKYgDagDPQqvY4xDjRxZQf k
 - Zero X und Zero Y anklicken
 
 ### Dateien laden und drucken
-
+ 
 
