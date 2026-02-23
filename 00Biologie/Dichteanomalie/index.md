@@ -15,9 +15,7 @@ Die Tabelle gibt die Dichte des Wasser in g/ml bei verschiedenen Temperaturen an
 
 2\. Die dargestellte Dichteanomalie des Wassers hat große Auswirkungen auf den Stoffaustausch zwischen den Wasserschichten und das Auftauen eines Gewässers im Frühjahr.
 
-a) Öffnen Sie unter folgender Internetadresse eine Simulation:
-
-[https://scratch.mit.edu/projects/472821199/fullscreen](https://scratch.mit.edu/projects/472821199/fullscreen)
+a) Öffnen Sie unter folgender Internetadresse eine <a href="https://scratch.mit.edu/projects/472821199/fullscreen" target="_blank">Simulation</a> und klicken Sie zum Start auf die grüne Flagge.
 
 b) Klicken Sie auf die Buttons „Winter“ und „Sommer“, um die Zustände der Winter- und Sommerstagnation anzeigen zu lassen.
 
