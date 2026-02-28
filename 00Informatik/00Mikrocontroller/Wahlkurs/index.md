@@ -18,15 +18,10 @@ Wir danken den Spendern herzlich für ihre Unterstützung.
 [Materialliste](00Material/index.html)  
 [Bezugsquellen](00Material/bezugsquellen.html)  
 
-## Dupont-Kabel crimpen
-[Dupont-Kabel](DupontKabel/index.html)
+## Anleitungen und Projekte auf anderen Seiten
 
-## 3D-Druck und CAD
-[3D-Druck](003D-Druck/index.html)  
-
-## Projekte mit dem Calliope mini
-
-[Calliope mini](00Calliope/index.html)  
+- [Calliope mini](00Calliope/index.html)  
+- [Arduino und Calliope](https://mint-unt.de)  
 
 ## Projekte mit dem Arduino Uno und dem ESP32
 
@@ -106,6 +101,10 @@ Wir bauen Lichtschranken, mit denen die Geschwindigkeit von Fahrzeugen gemessen 
 1. Reflexlichtschranke
 2. Laserlichtschranke
 
+#### Waage
+1. [Wägesensoren](15Waage/index.html)
+2. [Druckvorlage](https://www.thingiverse.com/thing:5448276)
+
 ### Diskobeleuchtung
 
 Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.  
@@ -162,8 +161,16 @@ Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) v
 
 ### Platinen bauen
 
-00[CNC](Fritzing/CNC/index.html)  
+[CNC](Fritzing/CNC/index.html)  
 [DrillEditor](Fritzing/CNC/index.html)  
+
+## Dupont-Kabel crimpen
+[Dupont-Kabel](DupontKabel/index.html)
+
+## 3D-Druck und CAD
+[3D-Druck](003D-Druck/index.html)  
+
+
 
 ---
 
