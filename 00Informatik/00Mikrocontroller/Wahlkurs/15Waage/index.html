@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>W&auml;gesensor</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="wägesensor">Wägesensor</h1>
+<h2 id="quellen">Quellen</h2>
+<p>Die Theorie zum Wägesensor ist auf folgenden Internetseiten von Wolfgang Ewald erklärt:<br>
+<a href="https://wolles-elektronikkiste.de/dehnungsmessstreifen">Dehnungsmessstreifen</a><br>
+<a href="https://wolles-elektronikkiste.de/hx711-basierte-waage">HX711 basierte Waage</a></p>
+<p>Eine Druckvorlage für eine einfache Waage findest du hier:<br>
+<a href="https://www.thingiverse.com/thing:5448276">Load cell housing</a></p>
+<h2 id="messprinzip">Messprinzip</h2>
+<p>Der Sensor wird an einem Ende fest mit der Bodenplatte verschraubt. Das andere Ende schwebt frei in der Luft. Wird auf dieses Ende ein Gewicht aufgelegt, dann verbiegt sich der Sensor leicht. Die Dehnungsmessstreifen verändern ihren Abstand. Diese Änderung bewirkt eine geringe Änderung des elektrischen Widerstands des Systems.</p>
+<h2 id="sketch">Sketch</h2>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;HX711_ADC.h&gt;</span></span>
+
+<span class="hljs-comment">/*--------------------------------------------------------------
+  Pin‑Belegung für den HX711
+--------------------------------------------------------------*/</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> HX711_dout = <span class="hljs-number">4</span>;  <span class="hljs-comment">// Datenleitung (DOUT) des HX711, verbunden mit Pin 4 des MCU</span>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> HX711_sck = <span class="hljs-number">5</span>;   <span class="hljs-comment">// Taktleitung (SCK) des HX711, verbunden mit Pin 5 des MCU</span>
+
+<span class="hljs-comment">/*--------------------------------------------------------------
+  Objektinstanz des HX711‑ADC
+--------------------------------------------------------------*/</span>
+<span class="hljs-function">HX711_ADC <span class="hljs-title">sensor</span><span class="hljs-params">(HX711_dout, HX711_sck)</span></span>;
+
+<span class="hljs-comment">/**
+ * @brief Initialisiert die serielle Schnittstelle und den HX711,
+ *        führt die Start‑Sequenz inkl. Tara‑Durchführung aus
+ */</span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">9600</span>);  <span class="hljs-comment">// Serielle Kommunikation mit 9600 baud starten</span>
+
+  sensor.<span class="hljs-built_in">begin</span>();  <span class="hljs-comment">// HX711‑Modul initialisieren</span>
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+  <span class="hljs-comment">/*
+  Sensor wird eingeschaltet und tariert, d.h. auf 0 gesetzt
+  2000 = Pause zum Stabilisieren
+  true = Tarierung soll durchgeführt werden.
+*/</span>
+  sensor.<span class="hljs-built_in">start</span>(<span class="hljs-number">2000</span>, <span class="hljs-literal">true</span>);
+
+  <span class="hljs-comment">// Prüfen, ob beim Start ein Timeout aufgetreten ist</span>
+  <span class="hljs-keyword">if</span> (sensor.<span class="hljs-built_in">getTareTimeoutFlag</span>() || sensor.<span class="hljs-built_in">getSignalTimeoutFlag</span>()) {
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Sensor antwortet nicht, prüfe die Verkabelung und die Pins&quot;</span>);
+    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)
+      ;  <span class="hljs-comment">// Endlosschleife bei Fehlfunktion</span>
+  } <span class="hljs-keyword">else</span> {
+    sensor.<span class="hljs-built_in">setCalFactor</span>(<span class="hljs-number">1.0</span>);  <span class="hljs-comment">// Anfangs‑Kalibrierungsfaktor (kann später überschrieben werden)</span>
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Kalbrierungsfaktor auf 1.0 gesetzt&quot;</span>);
+  }
+}
+
+<span class="hljs-comment">/**
+ * @brief Hauptschleife: Liest Messwerte aus, gibt sie seriell aus
+ */</span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// Prüfen, ob neue Messdaten verfügbar sind</span>
+  <span class="hljs-keyword">if</span> (sensor.<span class="hljs-built_in">update</span>()) {
+    <span class="hljs-type">float</span> i = sensor.<span class="hljs-built_in">getData</span>();  <span class="hljs-comment">// Messwert lesen</span>
+    Serial.<span class="hljs-built_in">println</span>(i);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
+  }
+}
+</code></pre>
+<h2 id="experimente">Experimente</h2>
+<ol>
+<li>Notiere den Wert, den der Sensor ohne Belastung liefert.</li>
+<li>Lege anschließend bekannte Gewichte auf den Sensor und notiere ihre Messwerte.<br>
+<strong>ACHTUNG: Der Sensor darf höchstens mit 1kg belastet werden!</strong></li>
+<li>Erstelle ein Diagramm aus Gewicht- und Sensorwerten und leite ab, wie sie zusammenhängen.</li>
+</ol>
+
+            
+            
+        </body>
+        </html>
