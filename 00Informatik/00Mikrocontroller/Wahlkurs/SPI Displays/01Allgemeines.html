@@ -140,10 +140,83 @@
         <body class="vscode-body vscode-light">
             <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 <h1 id="spi-displays">SPI Displays</h1>
-<h2 id="allgemeines"><a href="01Allgemeines.html">Allgemeines</a></h2>
-<h2 id="17-und-18-zoll-display-am-arduino"><a href="02Arduino.html">1,7 und 1,8 Zoll Display am Arduino</a></h2>
-<h2 id="18-zoll-display-am-esp32-nodemcu"><a href="../SPIDisplayESP/index.html">1,8 Zoll Display am ESP32 NodeMCU</a></h2>
-<p><a href="../index.html">zurück</a></p>
+<h2 id="allgemeines">Allgemeines</h2>
+<p><strong>SPI</strong> steht für <strong>Serial Peripheral Interface</strong>. Mit diesem Standard ist es möglich, Geräte wie Displays oder Sensoren über einen seriellen Anschluss mit dem Arduino zu verbinden.<br>
+Leider ist die Bezeichnung der Pins bei SPI-Geräten nicht einheitlich geregelt. Die folgende Tabelle kann als Hilfestellung verwendet werden:</p>
+<table>
+<thead>
+<tr>
+<th>Pin-Name</th>
+<th>Alternative</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCK</td>
+<td>SCLK, CLK</td>
+<td>Serial Clock</td>
+</tr>
+<tr>
+<td>CS</td>
+<td>SS</td>
+<td>Chip Select</td>
+</tr>
+<tr>
+<td>MISO</td>
+<td>SDO, DO, CIPO, RS</td>
+<td>Master in Slave Out</td>
+</tr>
+<tr>
+<td>MOSI</td>
+<td>SDI, DI, COPI</td>
+<td>Master out Slave In</td>
+</tr>
+</tbody>
+</table>
+<p>Beim SPI-Protokoll kommuniziert <strong>ein Master- oder Controller-Gerät</strong> (z.B. ein Arduino) mit <strong>einem oder mehreren Slave- oder Peripheral-Geräten</strong> (z.B. ein Sensor und ein Display).</p>
+<h2 id="bedeutung-der-pins">Bedeutung der Pins</h2>
+<h3 id="sck">SCK</h3>
+<p>Die Serial-Clock-Pin dient als Taktgeber für die Datenübertragung. Er legt also fest, mit welcher Geschwindigkeit die einzelnen Datenbits übertragen werden. Bei der Datenübertragung erzeugt der <strong>Master</strong> die CLK-Impulse und legt damit die Datenrate fest.</p>
+<h3 id="cs">CS</h3>
+<p>Der Chip-Select-Pin dient dazu festzulegen, welches Slave-Gerät vom Master-Gerät angesprochen wird.</p>
+<h3 id="miso-sdo-cipo">MISO, SDO, CIPO</h3>
+<p>Der Master-In-Slave-Out-Pin (Controller-In-Peripheral-Out) dient zur Datenübertragung vom Slave- zum Master-Gerät. Sobald das Slave-Gerät ein CLK-Signal empfängt, muss es ein Signal über den MISO-Pin schicken.</p>
+<h3 id="mosi-sdi-copi">MOSI, SDI, COPI</h3>
+<p>Der Master-Out-Slave-In-Pin (Controller-Out-Peripheral-In) dient zur Datenübertragung vom Master- zum Slave-Gerät.<br>
+Da im SPI-Protokoll also für jede Richtung ein eigener Kanal vorliegt, könnnen Daten gleichzeitig in beide Rictungen übertragen werden.</p>
+<h2 id="spi-pins-am-arduino-uno">SPI-Pins am Arduino Uno</h2>
+<p>Am Arduino sind folgende SPI-Pins als Standard festgelegt:</p>
+<table>
+<thead>
+<tr>
+<th>Pin-Nr.</th>
+<th>SPI-Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>CS, SS</td>
+</tr>
+<tr>
+<td>11</td>
+<td>MOSI, SDI, DI, COPI</td>
+</tr>
+<tr>
+<td>12</td>
+<td>MISO, SDO, DO, CIPO, RS</td>
+</tr>
+<tr>
+<td>13</td>
+<td>SCK, CLK</td>
+</tr>
+</tbody>
+</table>
+<p>Für die Verwendung muss die SPI.h Bibliothek in den Sketch eingebunden werden:</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;SPI.h&gt;</span></span>
+</code></pre>
+<p><a href="index.html">zurück</a></p>
 
             
             
