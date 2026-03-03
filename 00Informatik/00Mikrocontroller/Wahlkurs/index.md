@@ -1,10 +1,13 @@
 <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
-# Wahlunterricht Mikroelektronik und Technik am Gymnasium Waldkraiburg
+# Wahlunterricht Mikroelektronik und Technik<br> am Gymnasium Waldkraiburg
 ##### [Stichwortliste](Keywords.html)  
 ##### [LEDs](#leuchtdioden-leds) | [Taster](#taster) | [Alarmanlage](#alarmanlage) | [Messwerterfassung](#messwerterfassung) | [Diskoleuchte](#diskobeleuchtung) | [ESP32](#esp32) | [Gamepad](#b-ein-bluetooth-gamepad-für-pac-man) | [Interrupts](#blinken-ohne-pause---interrupts) | [3DDruck](#3d-druck-und-cad) | [Motoren](#selbstfahrender-roboter)
 
-##### Diese Seite befindet sich im Aufbau. 
+## Kursübersicht
+Der Wahlkurs findet im ersten Halbjahr immer mittwochs von 13.45 bis 15.15 Uhr statt.  
+Folgende Inhalte werden vertieft behandelt:  
+[Lernpfad](Lernpfad.html)
 ## Grundausstattung
 
 Die Materialien für den Kurs wurden durch Spenden folgender Organisationen finanziert:  
