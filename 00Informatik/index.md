@@ -275,6 +275,9 @@
 [Krypto-Castle](https://view.genially.com/647f2a04bc62140019e744a0/interactive-content-the-mystery-of-cryptocastle)  
 [Cäsar-Verschlüsselung](00Informatik11/Krypto/index.html)  
 
+## Künstliche Intelligenz
+[Überwachtes Lernen](00Informatik11/00KI/02Training/index.html)  
+
 
 # Datenschutz
 ***
