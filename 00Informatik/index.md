@@ -276,7 +276,9 @@
 [Cäsar-Verschlüsselung](00Informatik11/Krypto/index.html)  
 
 ## Künstliche Intelligenz
-[Überwachtes Lernen](00Informatik11/00KI/02Training/index.html)  
+[Überwachtes Lernen](00Informatik11/00KI/01Training/index.html)  
+[Objekterkennung](00Informatik11/00KI/02Objekterkennung/index.html)  
+
 
 
 # Datenschutz

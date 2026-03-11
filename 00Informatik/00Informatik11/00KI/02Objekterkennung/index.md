@@ -1,3 +1,5 @@
+# Objekterkennung mit der Webcam
+
 Quelle: The Coding Train: https://youtu.be/pbjR20eTLVs
 
 https://docs.ml5js.org/#/reference/image-classifier
@@ -14,10 +16,18 @@ Modell: MobileNet:
 
 [ImageNet](https://www.image-net.org/): Datenbank von Bildern, auf der MobileNet trainiert wurde.
 
-## Programmierung
-https://docs.ml5js.org/#/?id=set-up-ml5js
+## Fingerpositionserkennung
+https://editor.p5js.org/codingtrain/sketches/o5wnL6esQ
+
+## Objekterkennung
+https://editor.p5js.org/codingtrain/sketches/VIYRpcME3
+
+## Training eigener Systeme mit Teachable Machines
+https://teachablemachine.withgoogle.com/train/image
 
 
+## KI-Verzerrungen (engl. Bias)
+https://mebis.bycs.de/beitrag/ki-verzerrungen
 
 
 
