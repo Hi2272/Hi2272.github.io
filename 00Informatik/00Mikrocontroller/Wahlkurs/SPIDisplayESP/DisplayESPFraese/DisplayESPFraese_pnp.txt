@@ -1,0 +1,36 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=DisplayESPFraese
+*Date=18:09:16
+*CreatedBy=Fritzing 0.9.6b..
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;;12.4805;-14.8373;0;Bottom;TXT1
+2;;THT;37.6364;-27.6509;90;Bottom;J6
+3;;THT;40.2245;-7.01678;0;Bottom;J7
+4;;THT;37.6364;-2.25092;90;Bottom;J5
+5;;;13.5207;-17.1023;0;Bottom;TXT1
+6;;THT;45.1359;-14.9919;0;Bottom;J9
+7;;;13.5659;-12.0286;0;Bottom;TXT1
+8;;;13.3051;-7.0201;0;Bottom;TXT1
+9;;;13.5207;-9.4918;0;Bottom;TXT1
+10;;;40.1089;-5.57343;90;Bottom;TXT1
+11;;;42.6515;-5.57343;90;Bottom;TXT1
+12;;THT;5.65168;-16.2787;180;Bottom;J3
+13;;;44.9626;-5.51563;90;Bottom;TXT1
+14;;;52.6159;-24.8487;90;Bottom;TXT1
+15;;;13.295;-24.8939;0;Bottom;TXT1
+16;;;12.8429;-19.8656;0;Bottom;TXT1
+17;;THT;45.2911;-6.80503;0;Bottom;J10
+18;;THT;40.34;-17.4765;0;Bottom;J8
+19;;;50.1628;-5.68897;90;Bottom;TXT1
+20;;;13.2044;-22.3118;0;Bottom;TXT1
+21;;;57.9708;-15.3926;0;Bottom;TXT1
