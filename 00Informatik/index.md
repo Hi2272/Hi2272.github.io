@@ -277,7 +277,9 @@
 
 ## Künstliche Intelligenz
 [Überwachtes Lernen](00Informatik11/00KI/01Training/index.html)  
-[Objekterkennung](00Informatik11/00KI/02Objekterkennung/index.html)  
+[Objekterkennung](00Informatik11/00KI/02Objekterkennung/index.html)   
+[K-nächste Nachbarn](00Informatik11/00KI/03KNN/index.html)  
+
 
 
 
