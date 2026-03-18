@@ -6,7 +6,10 @@
 Baue diese Schaltung auf:  
 ![alt text](../01LED/Screenshot_4.png)
 ## 2. Programmierung
-Programmiere folgenden Code:
+Programmiere folgenden Code:  
+
+![alt text](Blockly.png)  
+
 ```C++
 void setup() {
   pinMode(8, OUTPUT);

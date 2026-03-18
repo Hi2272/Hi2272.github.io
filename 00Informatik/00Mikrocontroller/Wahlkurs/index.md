@@ -1,10 +1,13 @@
 <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
 
-# Wahlunterricht Mikroelektronik und Technik am Gymnasium Waldkraiburg
+# Wahlunterricht Mikroelektronik und Technik<br> am Gymnasium Waldkraiburg
 ##### [Stichwortliste](Keywords.html)  
 ##### [LEDs](#leuchtdioden-leds) | [Taster](#taster) | [Alarmanlage](#alarmanlage) | [Messwerterfassung](#messwerterfassung) | [Diskoleuchte](#diskobeleuchtung) | [ESP32](#esp32) | [Gamepad](#b-ein-bluetooth-gamepad-für-pac-man) | [Interrupts](#blinken-ohne-pause---interrupts) | [3DDruck](#3d-druck-und-cad) | [Motoren](#selbstfahrender-roboter)
 
-##### Diese Seite befindet sich im Aufbau. 
+## Kursübersicht
+Der Wahlkurs findet im ersten Halbjahr immer mittwochs von 13.45 bis 15.15 Uhr statt.  
+Folgende Inhalte werden vertieft behandelt:  
+[Lernpfad](Lernpfad.html)
 ## Grundausstattung
 
 Die Materialien für den Kurs wurden durch Spenden folgender Organisationen finanziert:  
@@ -18,15 +21,10 @@ Wir danken den Spendern herzlich für ihre Unterstützung.
 [Materialliste](00Material/index.html)  
 [Bezugsquellen](00Material/bezugsquellen.html)  
 
-## Dupont-Kabel crimpen
-[Dupont-Kabel](DupontKabel/index.html)
+## Anleitungen und Projekte auf anderen Seiten
 
-## 3D-Druck und CAD
-[3D-Druck](003D-Druck/index.html)  
-
-## Projekte mit dem Calliope mini
-
-[Calliope mini](00Calliope/index.html)  
+- [Calliope mini](00Calliope/index.html)  
+- [Arduino und Calliope](https://mint-unt.de)  
 
 ## Projekte mit dem Arduino Uno und dem ESP32
 
@@ -106,6 +104,10 @@ Wir bauen Lichtschranken, mit denen die Geschwindigkeit von Fahrzeugen gemessen 
 1. Reflexlichtschranke
 2. Laserlichtschranke
 
+#### Waage
+1. [Wägesensoren](15Waage/index.html)
+2. [Druckvorlage](https://www.thingiverse.com/thing:5448276)
+
 ### Diskobeleuchtung
 
 Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.  
@@ -128,7 +130,8 @@ Der ESP32-Chip kann über ein drahtloses Netzwerk (WLAN) gesteuert werden.Seine 
 3. [Senden und Empfangen von Daten über Bluetooth](05ESP32/03Bluetooth/index.html)
 4. [MIT AppInventor und Bluetooth](05ESP32/03bAppInventor/index.html)  
 5. [Speichern von Messdaten in einem Google Sheet](05ESP32/DHT22/index.html)  
-
+6. [ESP32 als Accesspoint mit Anmeldeseite](Diskoleuchte_AP/index.html)  
+   
 ### b) Ein Bluetooth-Gamepad für Pac Man
 
 1. [Joystick-Modul](05ESP32/04GameController/index.html)
@@ -158,6 +161,18 @@ Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) v
 
 ### Multiplexer 
 [Multiplexer](Multiplexer/index.html)  
+
+### Platinen bauen
+
+[CNC](Fritzing/CNC/index.html)  
+[DrillEditor](Fritzing/CNC/index.html)  
+
+## Dupont-Kabel crimpen
+[Dupont-Kabel](DupontKabel/index.html)
+
+## 3D-Druck und CAD
+[3D-Druck](003D-Druck/index.html)  
+
 
 
 ---

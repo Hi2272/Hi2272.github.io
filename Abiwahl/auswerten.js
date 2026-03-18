@@ -128,10 +128,10 @@ function auswerten() {
     document.getElementById("Seite2").style.display = "block";
 
     document.getElementById("Seite2").innerHTML = "<h1>Wähle dein Leistungsfach</h1>";
-    document.getElementById("Seite2").innerHTML+="<div id='abiwahlflaeche'></div>";
-    document.getElementById("Seite2").innerHTML+="<button onclick='zurueckZuSeite1()'>Zurück</button>";
-document.getElementById("Seite2").innerHTML+="<button onclick='abiwahl()'>Weiter</button>";
-    
+    document.getElementById("Seite2").innerHTML += "<div id='abiwahlflaeche'></div>";
+    document.getElementById("Seite2").innerHTML += "<button onclick='zurueckZuSeite1()'>Zurück</button>";
+    document.getElementById("Seite2").innerHTML += "<button onclick='abiwahl()'>Weiter</button>";
+
     // Erstelle eine Liste der möglichen Leistungsfächer aus den gewählten Fächern und Pflichtfächern
     const options = [
         chosen_nw,
@@ -255,8 +255,8 @@ function isInArray(array1, array2) {
  * @returns Zahl der Übereinstimmungen
  */
 
-function anzInArray(array1,array2){
-    let anz=0;
+function anzInArray(array1, array2) {
+    let anz = 0;
     for (let i = 0; i < array1.length; i++) {
         if (isIn(array1[i], array2)) {
             anz++;
@@ -264,7 +264,7 @@ function anzInArray(array1,array2){
     }
     return anz;
 }
-    
+
 /**
  * Verarbeitet die Auswahl des Leistungsfachs, generiert mögliche Abiturfächerkombinationen
  * und zeigt diese zur Auswahl auf der dritten Seite an.
@@ -307,6 +307,10 @@ function abiwahl() {
     // Sonderfall: Wenn Sport als Leistungsfach gewählt wurde, ist es das fünfte Fach
     if (lf === "Spo") {
         fach5 = ["Spo"];
+        // SportLF und Inf können nicht kombiniert werden (41 Einbringungen)
+        if (isIn(fach4, "Inf")) {
+            remove(fach4, "Inf"); // Informatik entfernen, wenn es in Fach 4 ist
+        }
     }
     // Wenn "abgelegt" gewählt wurde, muss es aus den Fachlisten entfernt werden
     if (chosen_nwfs === "abgelegt") {
@@ -340,12 +344,12 @@ function abiwahl() {
                             // 2. Das Leistungsfach muss in der Kombination enthalten sein
                             if (isIn(lf, abi)) {
                                 // 3. Substitutionsregel für Mathematik: Wenn M nicht dabei ist, muss eine FS und eine NW/Inf dabei sein
-                                if (abi[1] !== "M" && (!isInArray(abi, fs)|| (anzInArray(abi, nwInf)<2))) {
+                                if (abi[1] !== "M" && (!isInArray(abi, fs) || (anzInArray(abi, nwInf) < 2))) {
                                     // Diese Kombination ist ungültig, falls M nicht dabei ist und die Ersatzbedingungen nicht erfüllt sind.
                                     // Weiter zur nächsten Kombination (nichts tun, da der Fall unten geprüft wird)
                                 } else {
                                     // 4. Substitutionsregel für Deutsch: Wenn D nicht dabei ist, muss eine Fremdsprache dabei sein
-                                    if (abi[0] !== "D" && anzInArray(abi, fs)<2) {
+                                    if (abi[0] !== "D" && anzInArray(abi, fs) < 2) {
                                         // Diese Kombination ist ungültig.
                                     } else {
                                         // 5. Mindestens eine "echte" Naturwissenschaft oder Fremdsprache muss im Abi enthalten sein
@@ -382,7 +386,7 @@ function abiwahl() {
         radio.type = "radio";
         radio.name = "abiKombi"; // Gleicher Name für alle Radio-Buttons, damit nur einer gewählt werden kann
         radio.value = kombi.join(","); // Wert ist die Komma-separierte Liste der Fächer
-     
+
         optionLabel.appendChild(radio);
         optionLabel.appendChild(document.createTextNode(" " + kombi.join(", "))); // Angezeigter Text
         radioGroup.appendChild(optionLabel);
@@ -403,7 +407,7 @@ function abiwahl() {
             alert("Bitte wähle eine Kombination aus."); // Warnung, falls nichts ausgewählt wurde
         }
     };
-   
+
     const zurueckBtn = document.createElement("button");
     zurueckBtn.textContent = "Zurück";
     zurueckBtn.onclick = function () {
@@ -411,7 +415,7 @@ function abiwahl() {
         document.getElementById("Seite2").style.display = "block";
     };
     listeDiv.appendChild(zurueckBtn);
- listeDiv.appendChild(weiterBtn);
+    listeDiv.appendChild(weiterBtn);
 
 }
 
@@ -508,12 +512,12 @@ function skWahl(selectedValue) {
         radio.type = "radio";
         radio.name = "skKombi"; // Gleicher Name für alle, um nur eine Auswahl zu erlauben
         radio.value = skArr.join(",");
-       
+
         // Text für die Anzeige der Kombination (Fachname + (S/K))
         const fachText = selectedCombination.map((fach, i) => {
             let extra = (fach === lf) ? " LF" : ""; // Markierung für das Leistungsfach
             return `${fach}${extra} (${skArr[i]})`;
-        }).join(", ");console.log
+        }).join(", "); console.log
         // console.log(fachText); // Für Debugging
 
         // Zusätzliche Filterung für ungültige S/K-Zuweisungen (spezifische Regeln):
@@ -547,8 +551,18 @@ function skWahl(selectedValue) {
         if (selected) {
             const skArr = selected.value.split(","); // Gewählte S/K-Kombination
             // Finale Anzeige der gewählten Abiturfächer mit Prüfungsart
-            
-            const finalFachText = selectedCombination.map((fach, i) => `${fach} (${skArr[i]})`).join(", ");
+            const lf = document.getElementById("leistungsfach").value;
+
+            const rawEntries = selectedCombination.map((fach, i) => {
+                const extra = fach === lf ? " LF" : "";
+                return `${fach}${extra} (${skArr[i]})`;
+            });
+
+            const sortedEntries = sortFinalEntries(rawEntries, lf + " LF");
+            const finalFachText = sortedEntries.join(", ");
+
+
+            //            const finalFachText = selectedCombination.map((fach, i) => `${fach} (${skArr[i]})`).join(", ");
             listeDiv.innerHTML = "<h1>Gewählte Abitur-Kombination:</h1><h1>" + finalFachText + "</h1>";
             listeDiv.innerHTML += "<h1>Übermittle diese Wahl bitte an deinen OSK.</h1>";
             // Finaler Footer mit allen Informationen
@@ -558,7 +572,7 @@ function skWahl(selectedValue) {
             alert("Bitte wähle eine S/K-Kombination aus."); // Warnung, falls nichts ausgewählt wurde
         }
     };
-  
+
     const zurueckBtn2 = document.createElement("button");
     zurueckBtn2.textContent = "Zurück";
     zurueckBtn2.onclick = function () {
@@ -574,4 +588,58 @@ function skWahl(selectedValue) {
 function zurueckZuSeite1() {
     document.getElementById("Seite2").style.display = "none";
     document.getElementById("Seite1").style.display = "block";
+}
+
+
+/**
+ * Sortiert ein Array von Einträgen "<Fach> (S|K)" nach den Vorgaben:
+ *   1\. Alle "S" (schriftlich) zuerst,
+ *   2\. Danach alle "K" (Kolloquium).
+ *   3\. Das Leistungsfach (lf) bekommt die Position 0 bei "S"
+ *      bzw. die erste Position im "K"-Block bei "K".
+ *
+ * @param {string[]} entries   – Array wie ["D (S)", "M (K)", …]
+ * @param {string}   lf       – Kürzel des Leistungsfachs
+ * @returns {string[]}         – Neu geordnetes Array
+ */
+function sortFinalEntries(entries, lf) {
+    // Trenne in zwei Listen
+    const schriftlich = [];
+    const kolloquium = [];
+
+    entries.forEach(e => {
+        const isLF = e.startsWith(lf + " ");
+        if (e.includes("(S)")) {
+            schriftlich.push({ txt: e, isLF });
+        } else {
+            kolloquium.push({ txt: e, isLF });
+        }
+    });
+
+    // Leistungsfach an die gewünschte Position bringen
+    const moveLFToFront = (arr) => {
+        const idx = arr.findIndex(o => o.isLF);
+        if (idx > 0) {
+            const [lfObj] = arr.splice(idx, 1);
+            arr.unshift(lfObj);
+        }
+    };
+    const moveLFToFrontKol = (arr) => {
+        const idx = arr.findIndex(o => o.isLF);
+        if (idx > 0) {
+            const [lfObj] = arr.splice(idx, 1);
+            arr.unshift(lfObj);
+        }
+    };
+
+    // Wenn das LF schriftlich ist → an Anfang der schriftlich‑Liste,
+    // sonst → an Anfang der kolloquium‑Liste.
+    if (schriftlich.some(o => o.isLF)) {
+        moveLFToFront(schriftlich);
+    } else {
+        moveLFToFrontKol(kolloquium);
+    }
+
+    // Nur die Text‑Komponente zurückgeben
+    return [...schriftlich, ...kolloquium].map(o => o.txt);
 }

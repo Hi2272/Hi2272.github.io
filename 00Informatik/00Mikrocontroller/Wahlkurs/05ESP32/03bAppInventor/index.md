@@ -3,12 +3,15 @@
 # MIT AppInventor
 ## 1. Allgemeines 
 
-Über die Internet-Plattform [MIT App Inventor](https://appinventor.mit.edu) kannst du relativ einfach Bluetooth-Apps für dein Handy entwickeln. Auf dieser Seite musst du dich unter Angabe einer E-Mail-Adresse und eines Passworts registrieren.   
-Mit der Handy-App **MIT AI Companion** [Android](https://play.google.com/store/apps/details?id=edu.mit.appinventor.aicompanion3&amp%3Bhl=de) [IOS](https://apps.apple.com/de/app/mit-app-inventor/id1422709355?ign-itscg=30200&ign-itsct=apps_box) können die Apps auf dem Handy installiert werden.  
-Die genaue Beschreibung findest du hier:  https://appinventor.mit.edu/explore/ai2/setup-device-wifi
+- Über die Internet-Plattform [MIT App Inventor](https://appinventor.mit.edu) kannst du relativ einfach Bluetooth-Apps für dein Handy entwickeln. 
+- Auf dieser Seite musst du dich unter Angabe einer E-Mail-Adresse und eines Passworts registrieren.   
+- Mit der Handy-App **MIT AI Companion** [Android](https://play.google.com/store/apps/details?id=edu.mit.appinventor.aicompanion3&amp%3Bhl=de) [IOS](https://apps.apple.com/de/app/mit-app-inventor/id1422709355?ign-itscg=30200&ign-itsct=apps_box) können die Apps auf dem Handy installiert werden.  
+- Die genaue Beschreibung findest du hier:  https://appinventor.mit.edu/explore/ai2/setup-device-wifi
 
 ## 2. Online-Tutorials
-Unter https://appinventor.mit.edu/explore/ai2/beginner-videos findest du eine Menge Tutorials, die dich schrittweise mit der AppInventor vertraut machen.
+- Unter https://appinventor.mit.edu/explore/ai2/beginner-videos findest du eine Menge Tutorials, die dich schrittweise mit der AppInventor vertraut machen.  
+- Auf dieser Seite steht ein umfangreiches Tutorial in einer pdf-Datei zur Verfügung:  
+https://www.juforum.de/fileadmin/downloads/oeffentlich/2014/App_Inventor_Tutorial_2.pdf
 
 ## 3. Bluetooth-Client als Empfänger von Daten
 Um Bluetooth-Daten vom ESP32 auf dem Handy zu empfangen, benötigst du ein unsichtbares Element **Bluetooth-Client** aus dem Bereich **Connectivity**. Ziehe das Element auf den Handybildschirm in der Mitte.  

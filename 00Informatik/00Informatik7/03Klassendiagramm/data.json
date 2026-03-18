@@ -1,0 +1,16 @@
+{   
+  "snap":true,
+  "stapel":false,
+
+  "dateiname":"Klassendiagramm.png",
+    "copyright":"eigene Zeichnung",
+    "titel":"Klassendiagramm eines Hypertextes",
+    "angabe":"Ziehe die Klassennamen in die passenden Kästchen.",
+    
+"txt":[
+{"x":0.708 ,"y":0.698,"width":0.279,"height":0.273,"pos":[0]},
+{"x":0.009 ,"y":0.016,"width":0.283,"height":0.276,"pos":[1]},
+{"x":0.008 ,"y":0.685,"width":0.286,"height":0.286,"pos":[2]},
+{"x":0.711 ,"y":0.018,"width":0.281,"height":0.28,"pos":[3]}
+]
+}

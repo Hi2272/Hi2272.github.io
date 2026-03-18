@@ -1,0 +1,23 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=Ampel
+*Date=08:35:21
+*CreatedBy=Fritzing 0.9.10b.2022-07-01.CD-2134-0-40d23c29
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;;1.27128;-23.0977;90;Bottom;TXT1
+2;;;7.66628;-5.32733;0;Bottom;TXT1
+3;0.030;5 mm [THT];7.25249;-15.329;90;Bottom;LED3
+4;0.030;5 mm [THT];7.25249;-22.949;90;Bottom;LED2
+5;0.030;5 mm [THT];7.25249;-30.569;90;Bottom;LED1
+6;;THT;7.87127;-2.62904;90;Bottom;J1
+7;;;13.6992;-22.2916;90;Bottom;TXT1
+8;220;THT;7.65337;-8.76114;180;Bottom;R1

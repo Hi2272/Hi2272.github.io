@@ -1,0 +1,36 @@
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 20px;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	max-height: 50vh; /* limit images to at most 50% of viewport height */
+	display: block;
+	margin: 0 auto;
+    border-radius: 10px;
+    border-style:solid;
+    border-color:black;
+    padding:10px;
+}
+
+p {
+	text-align: center;
+	margin: 20px;
+	font-size: 16px;
+}
+
+button{
+    margin:20 px;
+	font-size: 20px;
+    border-radius: 10px;
+    padding:10px;
+    background-color:#aaFFaa;
+    
+}

@@ -1,0 +1,5 @@
+<b>Eine Einkaufsliste:</b><br>
+Zucker
+Mehl
+Eier
+Milch

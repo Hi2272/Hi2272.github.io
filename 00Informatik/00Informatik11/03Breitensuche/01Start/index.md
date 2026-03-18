@@ -13,6 +13,6 @@ Plane dein Vorgehend an diesem Graphen:
 
 1. Zeichne einen Baum, der die Reihenfolge wiedergibt, in der deine Freunde die Bahnhöfe ausgehend von Wkb besuchen.
 
-
+## [weiter](../02Animation/index.html)  
 ## [Index](../../../index.html)
 

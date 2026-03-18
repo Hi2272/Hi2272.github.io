@@ -1,0 +1,40 @@
+public class Knoten extends Circle {
+   private String name;
+   private Text txt;
+   private int index;
+
+// Deklariere eine Variable visited 
+// und initialisiere sie mit dem Wert false
+private boolean visited = false;
+   
+   public Knoten(int index,String name, int x, int y) {
+      super(x, y, 50);
+      this.index = index;
+      this.name = name;
+      int laenge = name.length();
+      setFillColor(Color.bisque);
+      setBorderColor(Color.darkblue);
+      txt = new Text(x - laenge * 10, y - 25, 30, name);
+      txt.setFillColor(Color.black);
+   }
+
+   
+   // Schreibe eine get-Methode isVisited
+   public boolean isVisited() {
+      return visited;
+   }
+
+   // Schreibe eine set-Methode setVisited
+   public void setVisited(boolean visited) {
+      this.visited = visited;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public int getIndex() {
+      return index;
+   }  
+}
+

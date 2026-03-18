@@ -21,3 +21,9 @@ Wir entwickeln eine einfache Leiterplatte, mit der zwei Batteriekästen hinterei
 5. Wiederhole dies für alle Schraubverbinder.  
  (Mit gedrückter Strg-Taste kannst du auch mehrere gleichzeitg markieren.) 
 
+# Herstellen der PCB-Platinen
+## [PCBs auf CNC fräsen](CNC/index.html)  
+## [PCBs bestellen](PCBBestellen/index.html)
+
+
+

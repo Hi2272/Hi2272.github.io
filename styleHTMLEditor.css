@@ -1,0 +1,67 @@
+textarea {
+    width:100%;
+    height:100px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    background-color: aliceblue;
+
+    }
+
+#HTML{
+    border-radius: 10px;
+    border-style:solid;
+    border-color: black;
+    margin:10px;
+    padding:10px;
+    background-color:aliceblue;
+}
+
+h2{
+    text-align:center;
+}
+
+
+#btnDiv {
+    display: flex;              /* Verwende Flexbox für die Anordnung */
+    justify-content: center;    /* Zentriert die Buttons horizontal */
+    align-items: center;        /* Zentriert die Buttons vertikal */
+    gap: 10px;                  /* Abstand zwischen den Buttons */
+}
+
+  #btnDiv button {
+            flex: 1; /* Alle Buttons nehmen den gleichen Platz ein */
+            margin: 0 5px; /* Abstand zwischen den Buttons */
+            padding: 10px; /* Innenabstand für die Buttons */
+            font-size: 16px; /* Schriftgröße der Buttons */
+    border-radius:10px;
+        }
+
+#btn{
+background-color: #aaFFAA;
+    
+}
+
+#btn2{
+background-color: #aaaaff;
+}
+
+#btn3{
+background-color: #ffaaaa;
+}
+
+#btn4{
+background-color: #ffff55;
+}
+
+body{
+    background-color: #ffffee;
+}
+
+#Hinweis{
+    text-align: center;
+}
+
+ul,ol{
+    text-align: left;
+}

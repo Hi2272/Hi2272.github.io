@@ -1,0 +1,55 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.8 Chrome/140.0.7339.240 Electron/38.4.0 Safari/537.36" version="28.2.8">
+  <diagram name="Seite-1" id="rCUCdeMShvtaLIGarmDE">
+    <mxGraphModel dx="692" dy="1646" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-1" value="Stopp" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="410" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-2" value="Spukschloss" style="rounded=1;whiteSpace=wrap;html=1;flipV=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="410" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-3" value="Eingangshalle" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="300" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-11" value="Galerie" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="176" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-13" value="Besenkammer" style="rounded=1;whiteSpace=wrap;html=1;flipV=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="332" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-16" value="Schlafgemach" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="98" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-17" value="Balkon" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="20" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-24" value="Billardzimmer" style="rounded=1;whiteSpace=wrap;html=1;flipV=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="176" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-26" value="Büro" style="rounded=1;whiteSpace=wrap;html=1;flipV=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="98" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-28" value="Telefon" style="rounded=1;whiteSpace=wrap;html=1;flipV=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="20" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-31" value="Bibliothek" style="rounded=1;whiteSpace=wrap;html=1;flipV=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="254" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-34" value="Speisesaal" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="176" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-35" value="Küche" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="98" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-36" value="Hinterhof" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="20" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1HN0y84yD9l30c5aWkQJ-44" value="Die Räume im Spukschloss" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="275" y="-30" width="290" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
