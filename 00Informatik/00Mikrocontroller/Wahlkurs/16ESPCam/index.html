@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>ESPCam</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="espcam">ESPCam</h1>
+<h2 id="allgemeines">Allgemeines</h2>
+<p>Das ESPCam-Modul besteht aus einer winzigen Kamera (Vorderseite) und einem ESP32 (Rückseite).<br>
+Dem Modul fehlt der USB-Anschluss. Daher kann er nicht direkt an den Computer zum Programmieren angeschlossen werden.</p>
+<h2 id="anschluss-an-den-rechner">Anschluss an den Rechner</h2>
+<h3 id="esp32cam-mb">ESP32Cam-MB</h3>
+<p>Das Modul kann auf dieses Modul aufgesteckt und direkt an den Rechner angeschlossen werden: <a href="https://www.berrybase.de/en/esp32-cam-mb-usb-to-serial-interface-for-esp32-cam?srsltid=AfmBOoo2_zXrAcEurUu3ynlBjHiJlrHmuEOPiQ8vfa4VtswALVWoFEel">ESP32 Cam-MB</a></p>
+<h3 id="ft232-modul">FT232-Modul</h3>
+<p>Alternativ kann das Modul über ein FT232-Modul programmiert werden. <a href="https://www.jf-elektronik.de/esp32-cam-einrichten/">FT232-Modul</a></p>
+<h2 id="vorbereiten-der-arduino-ide">Vorbereiten der Arduino-IDE</h2>
+<h3 id="esp32-einbinden">ESP32 einbinden</h3>
+<p><a href="../05ESP32/01Install/index.html">ESP32 einbinden</a></p>
+<h3 id="esp32cam-als-board-auswählen">ESP32Cam als Board auswählen</h3>
+<ol>
+<li>Schließe den ESP32 über USB an den Rechner an und versetze ihn in den Boot-Modus (s.o.).</li>
+<li>Wähle im BoardManager das Board <strong>AI Thinker ESP32-CAM</strong></li>
+</ol>
+<h2 id="programmieren-der-kamera">Programmieren der Kamera</h2>
+<h3 id="blink-sketch">Blink-Sketch</h3>
+<p>Die Blitzlicht-LED ist an Pin4 angeschlossen. Mit diesem Sketch können wir das Board testen:</p>
+<pre><code class="language-C++"><span class="hljs-type">const</span> <span class="hljs-type">int</span> ledPin = <span class="hljs-number">4</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">pinMode</span>(ledPin, OUTPUT);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">digitalWrite</span>(ledPin, HIGH);
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
+  <span class="hljs-built_in">digitalWrite</span>(ledPin, LOW);
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
+}
+</code></pre>
+<h3 id="beispiel-sketch">Beispiel-Sketch</h3>
+<p>Unter Examples.ESP32.Camera.CameraWebServer kannst du ein Programm öffnen, mit dem die ESP32Cam zu einem Webserver wird. das Kamerabild kann über einen Webbrowser aufgerufen werden.<br>
+Der Sketch muss an folgenden Stellen noch angepasst werden:</p>
+<h4 id="camerawebserverino">CameraWebServer.ino</h4>
+<p>In Zeile 12 und 13 müssen die Daten deines Wlans eingetragen werden. Achte darauf, dass du diese Daten niemals an andere Personen weitergibst.</p>
+<h4 id="board_configh">board_config.h</h4>
+<p>Im Bereich <strong>Select Camera model</strong> müssen alle Zeilen  außer <strong>#define CAMERA_MODEL_AI_THINKER // Has PSRAM</strong> auskommentiert werden.</p>
+<ul>
+<li>Nach dem Hochladen des Sketches musst du den <strong>SerialMonitor</strong> öffnen und den Reset-Button des Moduls drücken.</li>
+<li>Wenn hier unlesbare Zeichen erscheinen, musst du die <strong>Baudrate</strong> auf <strong>115200</strong> einstellen.</li>
+<li>Der Fehler <strong>E (40) camera: Detected camera not supported.</strong> tritt auf, wenn du in <strong>board_config.h</strong> das falsche Kamera-Modell eingestellt hast (s.o.).</li>
+<li>Wenn alles funktioniert, verbindet sich die ESP32-Cam mit deinem Wlan und gibt eine IP-Adresse aus: <strong>-&gt; Camera Ready! Use '<a href="http://xxx.xxx.xxx.xxx">http://xxx.xxx.xxx.xxx</a>' to connect</strong>.<br>
+Starte einen Webbrowser am Computer und kopiere diese IP-Adresse in die Adress-Zeile.<br>
+Mit <strong>Start Stream</strong> kannst du das Video-Bild im Browser anzeigen lassen.</li>
+</ul>
+<h3 id="bibliothek-avishaespcam">Bibliothek AViShaESPCam</h3>
+<ol>
+<li>Suche im Bibliotheksmanager die <strong>AViShaESPCam</strong>-Bibliothek und installiere diese.</li>
+<li>Öffne in Files.Examples.AviShaESPCam die Datei Simple_Video_Web_Streaming</li>
+<li>Trage in den Code deine WLan-Zugangsdaten ein.</li>
+<li>Lade den Sketch auf das Modul hoch.</li>
+<li>Kopiere die IP-Adresse des Moduls aus dem Seriellen Monitor und füge sie in die Adresszeile des Browsers ein.</li>
+</ol>
+<p>Der Code ist deutlich kürzer als der Beispiel-Sketch von oben:</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WiFi.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WebServer.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;AViShaESPCam.h&gt;</span></span>
+
+<span class="hljs-type">const</span> <span class="hljs-type">char</span>* ssid = <span class="hljs-string">&quot;YOUSSID&quot;</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">char</span>* password = <span class="hljs-string">&quot;YourPassword&quot;</span>;
+
+<span class="hljs-function">WebServer <span class="hljs-title">server</span><span class="hljs-params">(<span class="hljs-number">80</span>)</span></span>;
+AViShaESPCam cam;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);
+
+  <span class="hljs-comment">// Initialize camera</span>
+  cam.<span class="hljs-built_in">enableLogging</span>(<span class="hljs-literal">true</span>);
+  cam.<span class="hljs-built_in">init</span>(<span class="hljs-built_in">AI_THINKER</span>(), QVGA);
+
+  <span class="hljs-comment">// Connect to WiFi</span>
+  WiFi.<span class="hljs-built_in">begin</span>(ssid, password);
+  <span class="hljs-keyword">while</span> (WiFi.<span class="hljs-built_in">status</span>() != WL_CONNECTED) <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Camera Stream IP: &quot;</span>);
+  Serial.<span class="hljs-built_in">println</span>(WiFi.<span class="hljs-built_in">localIP</span>());
+
+  server.<span class="hljs-built_in">on</span>(<span class="hljs-string">&quot;/&quot;</span>, HTTP_GET, []() {
+    WiFiClient client = server.<span class="hljs-built_in">client</span>();
+    String response = <span class="hljs-string">&quot;HTTP/1.1 200 OK\r\n&quot;</span>;
+    response += <span class="hljs-string">&quot;Content-Type: multipart/x-mixed-replace; boundary=frame\r\n\r\n&quot;</span>;
+    client.<span class="hljs-built_in">print</span>(response);
+    <span class="hljs-keyword">while</span> (client.<span class="hljs-built_in">connected</span>()) {
+      FrameBuffer* frame = cam.<span class="hljs-built_in">capture</span>();
+      <span class="hljs-keyword">if</span> (frame) {
+        client.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;--frame\r\n&quot;</span>);
+        client.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Content-Type: image/jpeg\r\n\r\n&quot;</span>);
+        client.<span class="hljs-built_in">write</span>(frame-&gt;buf, frame-&gt;len);
+        client.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\r\n&quot;</span>);
+        cam.<span class="hljs-built_in">returnFrame</span>(frame);
+      }
+      <span class="hljs-built_in">delay</span>(<span class="hljs-number">1</span>);
+    }
+  });
+
+  server.<span class="hljs-built_in">begin</span>();
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  server.<span class="hljs-built_in">handleClient</span>();
+}
+</code></pre>
+
+            
+            
+        </body>
+        </html>
