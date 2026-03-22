@@ -1,5 +1,8 @@
 # ESPCam
 
+[Anschließen eines Servos](02Servo.html)
+[Objekterkennung mit EdgeImpulse](03EdgeImpulse.html)
+
 ## Allgemeines
 Das ESPCam-Modul besteht aus einer winzigen Kamera (Vorderseite) und einem ESP32 (Rückseite).  
 Dem Modul fehlt der USB-Anschluss. Daher kann er nicht direkt an den Computer zum Programmieren angeschlossen werden.  

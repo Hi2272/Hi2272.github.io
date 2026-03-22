@@ -1,0 +1,66 @@
+# Objekterkennung mit EdgeImpulse
+
+Quelle: https://circuitdigest.com/microcontroller-projects/object-recognition-using-esp32-cam-and-edge-impulse
+
+## Sammeln von Bildern mit der ESP32Cam
+1. Installiere die Bibliothek EloquentEsp32Cam von Simone Salerno
+2. Öffne die Beispielsdatei Examples -> EloquentEsp32cam -> Collect_Images_for_EdgeImpulse,
+3. Setze in **Zeile 15 und 16** die Daten deines WLans ein.
+4. Ändere in **Zeile 36** die camera.pinout-Variable auf **camera.pinout.aithinker()**
+5. Lade den Sketch hoch, kopiere aus dem Seriellen Monitor die IP-Adresse der ESPCam und rufe die Adresse im Browser auf.
+6. Klicke auf 
+   1. StartCollecting, um Bilder aufzuzeichnen
+   2. Download, um die Bilder als Zip-Datei herunterzuladen
+   3. Clear, um neue Bilder aufzeichnen zu können
+7. Entpacke die Dateien im Download Ordner.
+   
+## Trainieren der Objekterkennung in EdgeImpulse
+1. Melde dich bei Edge Impulse an: https://studio.edgeimpulse.com/login
+2. Klicke auf +CreateNewProject und trage einen sinnvollen Namen ein.
+3. Hochladen der gesammelten Bilder
+   1. Klicke links auf **Data Acquisition**
+   2. Klicke auf AddData
+   3. Klicke auf UploadData
+   4. Klicke auf Select a Folder
+   5. Wähle den Ordner und klicke auf Upload Data
+4. Labeln der Daten
+   1. Klicke auf LabelingQueue
+   2. Ziehe einen Rahmen um das Objekt und trage das erste Label ein.
+   3. Klicke auf SaveLabel
+   4. Verschiebe den Rahmen so, dass immer nur das Objekt umfasst wird.
+5. Einen Impuls erzeugen
+   Ein Impuls bezeichnet in Edge Impulse folgenden Prozess:
+   -  Erstellen eines Modells zur Objekterkennung
+   -  Testen des Modells
+   -  Bereitstellen des Modells für ein Endgerät
+    1.  Klicke links auf **Impuls erzeugen**
+    2.  Die Einstellung im Fenster ImageData können übernommen werden:
+        1. Image Width: 96
+        2. Image Height: 96
+        3. Resize Mode: Fit shortest axis
+     3. Klicke auf **Add processing block** und wähle **Image**
+     4. Klicke auf **Add learning block** und wähle **Object detection**
+     5. Klicke auf **Save Impulse**
+6. Einstellungen zur Bildbearbeitung
+   1. Klicke Links auf **Image**
+   2. Stelle die ColorDepth auf **GrayScale**
+   3. Klicke auf **SaveParameters**
+   4. Klicke im nächsten Fenster auf **Generate features**
+7. Training des Netzwerkes
+   1. Klicke links auf **Object detection**
+   2. Klicke auf **Start training**
+   3. Nach dem Training wird die Qualität der Erkennung angezeigt. Wenn der F1 Score über 90% liegt, ist das Modell gut trainiert.  
+   Wenn nicht, kann das Modell einem neuem Wert für die LearningRate wiederholt werden. 
+8. Erstellen und Herunterladen des Modells
+   1. Klicke links auf **Deployment** (ggf. nach unten scrollen)
+   2. Wähle rechts oben **ESP-Eye** als Target
+   3. Wähle im Fenster **Arduino Library** als Target
+   4. Wähle darunter **Eon Compiler** als Inference engine
+   5. Klicke auf **Build**
+9. Einbinden des Modells
+   1.  Starte die Arduino IDE
+   2.  Importiere die Heruntergeladene Bibliothek über **Sketch > Include Library > Add .ZIP Library...**
+   3.  Öffne das Beispiel File.Examples.Name deiner Bibliothek.esp32.esp32 camera
+   4.  Kommentiere die Zeile 35 aus: //#define CAMERA_MODEL_ESP_EYE // Has PSRAM
+   5.  Entferne die Kommentarstriche vor Zeile 36: #define CAMERA_MODEL_AI_THINKER // Has PSRAM
+   6.  Lade den Sketch hoch (Kompilieren dauert sehr lang) und teste ihn mit dem Seriellen Monitor 
