@@ -26,10 +26,20 @@
 ## 3. Analyse der Daten
 Analysiere die Daten nach folgenden Aspekten:
 1. Welcher Parameter (Alter, Monatseinkommen) eignet sich besser zur Klassifizierung der Daten?
-2. Gib es Ausreißer, d.h. besonders hohe oder besonders niedrige Daten?
+2. Gibt es Ausreißer, d.h. besonders hohe oder besonders niedrige Daten?
 3. Wie stören diese Daten die Auswertung.
 
-## 4. Festlegen von K
+## 4. Berechnen der Abstände zu einem neuen Punkt
+1. Trage in die Tabelle einen neuen Datenpunkt mit Alter und Monatseinkommen ein.
+2. Normiere diese Einträge mit der passenden Formel.
+3. Erzeuge zwei neue Spalten:
+   1. Berechnung des Abstands des neuen Datenpunkts von jedem gelabelten Datenpunkt mit der Formel dAlter² + dMonatseinkommen²
+   2. Label des gelabelten Datenpunkts.
+## 5. Markieren der 3 nächsten Nachbarn
+1. Markiere die Spalte mit den Abstände und wähle über das Menü **Bedingte Formatiereung** die Regel, mit der die untersten 3 Abstände farbig markiert werden sollen. 
+2. Der neue Punkt bekommt das Label, das bei den meisten markierten Abständen steht. 
+
+## Exkurs: Festlegen von K
 
 Um K automatisch festzulegen wird für alle gelabelten Daten untersucht, wie gut sie mit Hilfe ihrer k-nächsten Nachbarn bestimmt werden.  
 Es wird der k-Wert verwendet, bei dem die wenigsten Fehler auftreten.  
