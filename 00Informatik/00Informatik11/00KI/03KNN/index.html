@@ -184,10 +184,26 @@ Verwende hierbei teilweise absolute Bezüge (Bsp.: C$5: relativ für Spalte C, a
 <p>Analysiere die Daten nach folgenden Aspekten:</p>
 <ol>
 <li>Welcher Parameter (Alter, Monatseinkommen) eignet sich besser zur Klassifizierung der Daten?</li>
-<li>Gib es Ausreißer, d.h. besonders hohe oder besonders niedrige Daten?</li>
+<li>Gibt es Ausreißer, d.h. besonders hohe oder besonders niedrige Daten?</li>
 <li>Wie stören diese Daten die Auswertung.</li>
 </ol>
-<h2 id="4-festlegen-von-k">4. Festlegen von K</h2>
+<h2 id="4-berechnen-der-abstände-zu-einem-neuen-punkt">4. Berechnen der Abstände zu einem neuen Punkt</h2>
+<ol>
+<li>Trage in die Tabelle einen neuen Datenpunkt mit Alter und Monatseinkommen ein.</li>
+<li>Normiere diese Einträge mit der passenden Formel.</li>
+<li>Erzeuge zwei neue Spalten:
+<ol>
+<li>Berechnung des Abstands des neuen Datenpunkts von jedem gelabelten Datenpunkt mit der Formel dAlter² + dMonatseinkommen²</li>
+<li>Label des gelabelten Datenpunkts.</li>
+</ol>
+</li>
+</ol>
+<h2 id="5-markieren-der-3-nächsten-nachbarn">5. Markieren der 3 nächsten Nachbarn</h2>
+<ol>
+<li>Markiere die Spalte mit den Abstände und wähle über das Menü <strong>Bedingte Formatiereung</strong> die Regel, mit der die untersten 3 Abstände farbig markiert werden sollen.</li>
+<li>Der neue Punkt bekommt das Label, das bei den meisten markierten Abständen steht.</li>
+</ol>
+<h2 id="exkurs-festlegen-von-k">Exkurs: Festlegen von K</h2>
 <p>Um K automatisch festzulegen wird für alle gelabelten Daten untersucht, wie gut sie mit Hilfe ihrer k-nächsten Nachbarn bestimmt werden.<br>
 Es wird der k-Wert verwendet, bei dem die wenigsten Fehler auftreten.<br>
 K muss hierbei deutlich kleiner als die Gesamtzahl der Datenpunkte sein.</p>
