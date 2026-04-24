@@ -1,105 +1,175 @@
-document.getElementById('fileInput').addEventListener('change', async (e) => {
-    const files = Array.from(e.target.files);
+/* -------------------------------------------------------------
+Bild‑Splitter mit Kontrast‑, optionaler Graustufen‑ und
+Vorschau‑Logik
+------------------------------------------------------------- */
+let selectedFiles = [];          // Alle ausgewählten Dateien
+let contrastValue = 0;           // Aktueller Slider‑Wert (-100 … 100)
+const fileInput      = document.getElementById('fileInput');
+const previewCanvas  = document.getElementById('previewCanvas');
+const tempCanvas     = document.getElementById('tempCanvas');
+const contrastSlider = document.getElementById('contrastSlider');
+const contrastLabel  = document.getElementById('contrastValue');
+const startBtn       = document.getElementById('startBtn');
+const grayscaleChk   = document.getElementById('grayscaleCheckbox');
 
+/* ---------- Hilfsfunktionen --------------------------------- */
+// Laden einer File‑Instanz in ein HTMLImageElement
+function loadImage(file) {
+return new Promise((resolve, reject) => {
+const reader = new FileReader();
+reader.onload = ev => {
+const img = new Image();
+img.onload = () => resolve(img);
+img.onerror = reject;
+img.src = ev.target.result;
+};
+reader.onerror = reject;
+reader.readAsDataURL(file);
+});
+}
+// Bild (ggf. Rotation) auf ein Canvas zeichnen und Kontrast‑Filter anwenden
+function drawWithContrast(img, ctx, applyContrast) {
+const needRotate = img.height > img.width;
+ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset Transform
+if (needRotate) {
+ctx.canvas.width  = img.height;
+ctx.canvas.height = img.width;
+ctx.translate(ctx.canvas.width, 0);
+ctx.rotate(Math.PI / 2);
+} else {
+ctx.canvas.width  = img.width;
+ctx.canvas.height = img.height;
+}
+// Kontrast‑Filter (0 % … 200 %)
+const percent = 100 + contrastValue; // -100 → 0 %, 0 → 100 %, 100 → 200 %
+ctx.filter = applyContrast ? `contrast(${percent}%)` : 'none';
+ctx.drawImage(img, 0, 0);
 
+}
 
-    for (const file of files) {
-
-
-
-        const img = await loadImage(file);
-
-
-
-        const canvas = document.createElement('canvas');
-
-
-
-        const ctx = canvas.getContext('2d');
-        // Prüfen, ob Höhe > Breite → 90° nach rechts drehen
-        let rotated = false;
-        if (img.height > img.width) {
-            rotated = true;
-            canvas.width = img.height;
-            canvas.height = img.width;
-            ctx.translate(canvas.width, 0);
-            ctx.rotate(Math.PI / 2);
-            ctx.drawImage(img, 0, 0);
-        } else {
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0);
-        }
-
-        // Bild in der Mitte teilen (vertikal)
-        const halfWidth = canvas.width / 2;
-
-        // Linke Hälfte
-        const leftCanvas = document.createElement('canvas');
-        leftCanvas.width = halfWidth;
-        leftCanvas.height = canvas.height;
-        leftCanvas.getContext('2d').drawImage(
-            canvas,
-            0, 0, halfWidth, canvas.height,
-            0, 0, halfWidth, canvas.height
-        );
-
-        // Rechte Hälfte
-        const rightCanvas = document.createElement('canvas');
-        rightCanvas.width = halfWidth;
-        rightCanvas.height = canvas.height;
-        rightCanvas.getContext('2d').drawImage(
-            canvas,
-            halfWidth, 0, halfWidth, canvas.height,
-            0, 0, halfWidth, canvas.height
-        );
-
-        // Blob erzeugen und zum Download anbieten
-        const baseName = file.name.replace(/\.[^/.]+$/, ''); // ohne Extension
-        const ext = file.type.split('/')[1] || 'png';
-
-        // Hilfsfunktion zum Download
-        const downloadBlob = (blob, name) => {
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = name;
-            a.click();
-            URL.revokeObjectURL(url);
-        };
-
-        // Links Bild speichern
-        leftCanvas.toBlob((blob) => {
-            const newName = `0_${baseName}_l.${ext}`;
-            downloadBlob(blob, newName);
-        }, file.type);
-
-        // Rechts Bild speichern
-        rightCanvas.toBlob((blob) => {
-            const newName = `0_${baseName}_r.${ext}`;
-            downloadBlob(blob, newName);
-        }, file.type);
+// -------------------------------------------------
+// Event‑Listener für die Checkbox hinzufügen
+// -------------------------------------------------
+grayscaleChk.addEventListener('change', () => {
+    // Canvas‑Vorschau neu rendern, wenn bereits Dateien geladen sind
+    if (selectedFiles.length > 0) {
+        renderPreview(selectedFiles[0]);
     }
-
 });
 
+// Graustufen‑Filter (nur wenn Checkbox aktiv)
+function applyGrayscale(canvas) {
+if (!grayscaleChk.checked) return; // nichts tun, wenn deaktiviert
+const ctx = canvas.getContext('2d');
+const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+const data = imgData.data;
+for (let i = 0; i < data.length; i += 4) {
+const r = data[i];
+const g = data[i + 1];
+const b = data[i + 2];
+const gray = 0.299 * r + 0.587 * g + 0.114 * b; // Luminanz‑Formel
+data[i] = data[i + 1] = data[i + 2] = gray;
+}
+ctx.putImageData(imgData, 0, 0);
+}
+// Vertikales Teilen eines Canvas in zwei Hälften
+function splitCanvas(sourceCanvas) {
+const halfW = sourceCanvas.width / 2;
+const h = sourceCanvas.height;
+const left = document.createElement('canvas');
+left.width = halfW;
+left.height = h;
+left.getContext('2d').drawImage(
+    sourceCanvas,
+    0, 0, halfW, h,
+    0, 0, halfW, h
+);
 
-/**
+const right = document.createElement('canvas');
+right.width = halfW;
+right.height = h;
+right.getContext('2d').drawImage(
+    sourceCanvas,
+    halfW, 0, halfW, h,
+    0, 0, halfW, h
+);
 
-Lädt eine File‑Objekt‑Instanz in ein HTMLImageElement.
-@param {File} file
-@returns {Promise<HTMLImageElement>}
-*/
-function loadImage(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-            const img = new Image();
-            img.onload = () => resolve(img);
-            img.onerror = reject;
-            img.src = ev.target.result;
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-    });
+return { left, right };
+
+}
+// Blob‑Download (Trigger für den Browser)
+function downloadBlob(blob, name) {
+const url = URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url;
+a.download = name;
+a.click();
+URL.revokeObjectURL(url);
+}
+/* ---------- UI‑Interaktionen -------------------------------- */
+contrastSlider.addEventListener('input', () => {
+contrastValue = parseInt(contrastSlider.value, 10);
+contrastLabel.textContent = contrastValue;
+if (selectedFiles.length > 0) {
+renderPreview(selectedFiles[0]); // Vorschau aktualisieren
+}
+});
+fileInput.addEventListener('change', e => {
+selectedFiles = Array.from(e.target.files);
+if (selectedFiles.length > 0) {
+renderPreview(selectedFiles[0]); // erstes Bild in Vorschau zeigen
+}
+});
+startBtn.addEventListener('click', async () => {
+if (selectedFiles.length === 0) {
+alert('Bitte zuerst Bilddateien auswählen.');
+return;
+}
+for (const file of selectedFiles) {
+await processShowAndSave(file);
+}
+alert('Alle Bilder wurden verarbeitet und gespeichert.');
+});
+/* ---------- Kern‑Logik -------------------------------------- */
+// Vorschau des ersten Bildes (Kontrast, optional Graustufen)
+async function renderPreview(file) {
+const img = await loadImage(file);
+const ctx = previewCanvas.getContext('2d');
+drawWithContrast(img, ctx, true);
+applyGrayscale(previewCanvas); // spiegelt aktuelle Checkbox‑Zustand
+}
+// Verarbeitung eines Bildes: Anzeige → (optional) Graustufen → Split → Download
+async function processShowAndSave(file) {
+const img = await loadImage(file);
+const ctx = tempCanvas.getContext('2d');
+// Bild (inkl. Rotation) auf temporäres Canvas zeichnen und Kontrast anwenden
+drawWithContrast(img, ctx, true);
+
+// Optional Graustufen‑Umwandlung
+applyGrayscale(tempCanvas);
+
+// Kurz anzeigen (z. B. 800 ms)
+tempCanvas.style.display = 'block';
+await new Promise(r => setTimeout(r, 800));
+tempCanvas.style.display = 'none';
+
+// Bild teilen
+const { left, right } = splitCanvas(tempCanvas);
+
+// Dateinamen ermitteln
+const baseName = file.name.replace(/\.[^/.]+$/, '');
+const ext = file.type.split('/')[1] || 'png';
+
+// Links‑Bild speichern
+left.toBlob(blob => {
+    const name = `0_${baseName}_l.${ext}`;
+    downloadBlob(blob, name);
+}, file.type);
+
+// Rechts‑Bild speichern
+right.toBlob(blob => {
+    const name = `0_${baseName}_r.${ext}`;
+    downloadBlob(blob, name);
+}, file.type);
+
 }
