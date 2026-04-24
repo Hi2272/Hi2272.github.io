@@ -109,13 +109,17 @@ document.getElementById('drawButton').addEventListener('click', () => {
         ctx.lineTo(px, yZeroPos + 5);
         ctx.stroke();
         // Zahlen
-        if (x!=0){ctx.fillText(x, px, yZeroPos + 8);}
-    }
+    if (x !== 0) {
+    ctx.fillText(x.toFixed(xDecimals), px, yZeroPos + 8);
+}
+}
 
     /* ---- Beschriftungen Y‑Achse (rechtsbündig, nah am Tick) */
     ctx.textAlign = 'right';
     ctx.textBaseline = 'middle';
+    let i=0;
     for (let y = yMin; y <= yMax; y += yStep) {
+        i=i+1;
         const py = mapY(y);
         // Tick
         ctx.beginPath();
@@ -123,7 +127,9 @@ document.getElementById('drawButton').addEventListener('click', () => {
         ctx.lineTo(xZeroPos + 5, py);
         ctx.stroke();
         // Zahlen (5 px Abstand zum Tick)
-        if (y!=0){ctx.fillText(y, xZeroPos - 7, py);}
+if (y !== 0) {
+    ctx.fillText(y.toFixed(yDecimals), xZeroPos - 10, py);
+}
     }
 
     /* ---- Titel X‑Achse --------------------------------------- */
