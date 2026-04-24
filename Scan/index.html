@@ -23,14 +23,17 @@
     <!-- Dateiauswahl -->
     <input type="file" id="fileInput" multiple accept="image/*">
 
-    <!-- Checkbox für Graustufen -->
-    <div class="controls">
-        <input type="checkbox" id="grayscaleCheckbox" checked>
-        <label for="grayscaleCheckbox">In Graustufen konvertieren</label>
-        <label for="contrastSlider">Kontrast: <span id="contrastValue">0</span></label>
-        <input type="range" id="contrastSlider" min="-100" max="100" value="0">
-        <button id="startBtn">Start</button>
-    </div>
+        <div class="controls">
+            <input type="checkbox" id="grayscaleCheckbox" checked>
+            <label for="grayscaleCheckbox">In Graustufen konvertieren</label>
+
+            <label for="brightnessSlider">Helligkeit: <span id="brightnessValue">0</span></label>
+            <input type="range" id="brightnessSlider" min="-100" max="100" value="0">
+
+            <label for="contrastSlider">Kontrast: <span id="contrastValue">0</span></label>
+            <input type="range" id="contrastSlider" min="-100" max="100" value="0">
+            <button id="startBtn">Start</button>
+        </div>
 
     <!-- Vorschau des ersten Bildes (zur Kontrolle) -->
     <canvas id="previewCanvas"></canvas>

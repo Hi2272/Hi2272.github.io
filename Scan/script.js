@@ -11,6 +11,10 @@ const contrastSlider = document.getElementById('contrastSlider');
 const contrastLabel  = document.getElementById('contrastValue');
 const startBtn       = document.getElementById('startBtn');
 const grayscaleChk   = document.getElementById('grayscaleCheckbox');
+// neue Variable für den Helligkeits‑Slider
+const brightnessSlider = document.getElementById('brightnessSlider');
+const brightnessLabel = document.getElementById('brightnessValue');
+let brightnessValue = 0;   // -100 … 100, Standard 0
 
 /* ---------- Hilfsfunktionen --------------------------------- */
 // Laden einer File‑Instanz in ein HTMLImageElement
@@ -28,23 +32,31 @@ reader.readAsDataURL(file);
 });
 }
 // Bild (ggf. Rotation) auf ein Canvas zeichnen und Kontrast‑Filter anwenden
-function drawWithContrast(img, ctx, applyContrast) {
-const needRotate = img.height > img.width;
-ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset Transform
-if (needRotate) {
-ctx.canvas.width  = img.height;
-ctx.canvas.height = img.width;
-ctx.translate(ctx.canvas.width, 0);
-ctx.rotate(Math.PI / 2);
-} else {
-ctx.canvas.width  = img.width;
-ctx.canvas.height = img.height;
-}
-// Kontrast‑Filter (0 % … 200 %)
-const percent = 100 + contrastValue; // -100 → 0 %, 0 → 100 %, 100 → 200 %
-ctx.filter = applyContrast ? `contrast(${percent}%)` : 'none';
-ctx.drawImage(img, 0, 0);
 
+// Anpassung der Filter‑logik (Kontrast + Helligkeit)
+function drawWithContrast(img, ctx, applyFilters) {
+    const needRotate = img.height > img.width;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset Transform
+    if (needRotate) {
+        ctx.canvas.width  = img.height;
+        ctx.canvas.height = img.width;
+        ctx.translate(ctx.canvas.width, 0);
+        ctx.rotate(Math.PI / 2);
+    } else {
+        ctx.canvas.width  = img.width;
+        ctx.canvas.height = img.height;
+    }
+
+    if (applyFilters) {
+        // Kontrast‑Filter (0 % … 200 %)
+        const contrastPercent = 100 + contrastValue;   // -100 → 0 %, 0 → 100 %, 100 → 200 %
+        // Helligkeit‑Filter (-100 … 100 → -100 % … 100 %)
+        const brightnessPercent = 100 + brightnessValue; // -100 → 0 %, 0 → 100 %, 100 → 200 %
+        ctx.filter = `contrast(${contrastPercent}%) brightness(${brightnessPercent}%)`;
+    } else {
+        ctx.filter = 'none';
+    }
+    ctx.drawImage(img, 0, 0);
 }
 
 // -------------------------------------------------
@@ -56,6 +68,15 @@ grayscaleChk.addEventListener('change', () => {
         renderPreview(selectedFiles[0]);
     }
 });
+// Event‑Listener für Helligkeit
+brightnessSlider.addEventListener('input', () => {
+    brightnessValue = parseInt(brightnessSlider.value, 10);
+    brightnessLabel.textContent = brightnessValue;
+    if (selectedFiles.length > 0) {
+        renderPreview(selectedFiles[0]);   // Vorschau aktualisieren
+    }
+});
+
 
 // Graustufen‑Filter (nur wenn Checkbox aktiv)
 function applyGrayscale(canvas) {
@@ -128,7 +149,6 @@ return;
 for (const file of selectedFiles) {
 await processShowAndSave(file);
 }
-alert('Alle Bilder wurden verarbeitet und gespeichert.');
 });
 /* ---------- Kern‑Logik -------------------------------------- */
 // Vorschau des ersten Bildes (Kontrast, optional Graustufen)
