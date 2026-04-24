@@ -34,3 +34,5 @@ Bei der One-Wire-Technologie werden nur 3 Kabel verwendet:
 - SDA: Datenleitung
 Die SDA-Leitung ist mit einem Pullup-Widerstand mit VCC verbunden. Im Ruhezustand ist das SDA-Potential daher HIGH.  
 Im Vergleich zu I²C und den meisten anderen Seriellen Leitungen fehlt die Clock-Leitung (SCL).
+
+
