@@ -108,6 +108,9 @@ Wir bauen Lichtschranken, mit denen die Geschwindigkeit von Fahrzeugen gemessen 
 1. [Wägesensoren](15Waage/index.html)
 2. [Druckvorlage](https://www.thingiverse.com/thing:5448276)
 
+#### Leitfähigkeit
+[Leitfähigkeitssensor](Leitfaehigkeit/index.html)  
+
 ### Diskobeleuchtung
 
 Wir bauen aus einem Mikrofon, einem Arduino UNO und einer LED-Matrix eine Partylicht,das dem Rhythmus der Musik folgt.  
@@ -161,6 +164,10 @@ Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) v
 
 ### Multiplexer 
 [Multiplexer](Multiplexer/index.html)  
+
+### ESP32Cam-Modul
+[Kamera mit ESP32](16ESPCam/index.html)  
+
 
 ### Platinen bauen
 

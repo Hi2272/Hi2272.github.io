@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Objekterkennung mit EdgeImpulse</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="objekterkennung-mit-edgeimpulse">Objekterkennung mit EdgeImpulse</h1>
+<p>Quelle: <a href="https://circuitdigest.com/microcontroller-projects/object-recognition-using-esp32-cam-and-edge-impulse">https://circuitdigest.com/microcontroller-projects/object-recognition-using-esp32-cam-and-edge-impulse</a></p>
+<h2 id="sammeln-von-bildern-mit-der-esp32cam">Sammeln von Bildern mit der ESP32Cam</h2>
+<ol>
+<li>Installiere die Bibliothek EloquentEsp32Cam von Simone Salerno</li>
+<li>Öffne die Beispielsdatei Examples -&gt; EloquentEsp32cam -&gt; Collect_Images_for_EdgeImpulse,</li>
+<li>Setze in <strong>Zeile 15 und 16</strong> die Daten deines WLans ein.</li>
+<li>Ändere in <strong>Zeile 36</strong> die camera.pinout-Variable auf <strong>camera.pinout.aithinker()</strong></li>
+<li>Lade den Sketch hoch, kopiere aus dem Seriellen Monitor die IP-Adresse der ESPCam und rufe die Adresse im Browser auf.</li>
+<li>Klicke auf
+<ol>
+<li>StartCollecting, um Bilder aufzuzeichnen</li>
+<li>Download, um die Bilder als Zip-Datei herunterzuladen</li>
+<li>Clear, um neue Bilder aufzeichnen zu können</li>
+</ol>
+</li>
+<li>Entpacke die Dateien im Download Ordner.</li>
+</ol>
+<h2 id="trainieren-der-objekterkennung-in-edgeimpulse">Trainieren der Objekterkennung in EdgeImpulse</h2>
+<ol>
+<li>Melde dich bei Edge Impulse an: <a href="https://studio.edgeimpulse.com/login">https://studio.edgeimpulse.com/login</a></li>
+<li>Klicke auf +CreateNewProject und trage einen sinnvollen Namen ein.</li>
+<li>Hochladen der gesammelten Bilder
+<ol>
+<li>Klicke links auf <strong>Data Acquisition</strong></li>
+<li>Klicke auf AddData</li>
+<li>Klicke auf UploadData</li>
+<li>Klicke auf Select a Folder</li>
+<li>Wähle den Ordner und klicke auf Upload Data</li>
+</ol>
+</li>
+<li>Labeln der Daten
+<ol>
+<li>Klicke auf LabelingQueue</li>
+<li>Ziehe einen Rahmen um das Objekt und trage das erste Label ein.</li>
+<li>Klicke auf SaveLabel</li>
+<li>Verschiebe den Rahmen so, dass immer nur das Objekt umfasst wird.</li>
+</ol>
+</li>
+<li>Einen Impuls erzeugen
+Ein Impuls bezeichnet in Edge Impulse folgenden Prozess:
+<ul>
+<li>Erstellen eines Modells zur Objekterkennung</li>
+<li>Testen des Modells</li>
+<li>Bereitstellen des Modells für ein Endgerät</li>
+</ul>
+<ol>
+<li>Klicke links auf <strong>Impuls erzeugen</strong></li>
+<li>Die Einstellung im Fenster ImageData können übernommen werden:
+<ol>
+<li>Image Width: 96</li>
+<li>Image Height: 96</li>
+<li>Resize Mode: Fit shortest axis</li>
+</ol>
+</li>
+<li>Klicke auf <strong>Add processing block</strong> und wähle <strong>Image</strong></li>
+<li>Klicke auf <strong>Add learning block</strong> und wähle <strong>Object detection</strong></li>
+<li>Klicke auf <strong>Save Impulse</strong></li>
+</ol>
+</li>
+<li>Einstellungen zur Bildbearbeitung
+<ol>
+<li>Klicke Links auf <strong>Image</strong></li>
+<li>Stelle die ColorDepth auf <strong>GrayScale</strong></li>
+<li>Klicke auf <strong>SaveParameters</strong></li>
+<li>Klicke im nächsten Fenster auf <strong>Generate features</strong></li>
+</ol>
+</li>
+<li>Training des Netzwerkes
+<ol>
+<li>Klicke links auf <strong>Object detection</strong></li>
+<li>Klicke auf <strong>Start training</strong></li>
+<li>Nach dem Training wird die Qualität der Erkennung angezeigt. Wenn der F1 Score über 90% liegt, ist das Modell gut trainiert.<br>
+Wenn nicht, kann das Modell einem neuem Wert für die LearningRate wiederholt werden.</li>
+</ol>
+</li>
+<li>Erstellen und Herunterladen des Modells
+<ol>
+<li>Klicke links auf <strong>Deployment</strong> (ggf. nach unten scrollen)</li>
+<li>Wähle rechts oben <strong>ESP-Eye</strong> als Target</li>
+<li>Wähle im Fenster <strong>Arduino Library</strong> als Target</li>
+<li>Wähle darunter <strong>Eon Compiler</strong> als Inference engine</li>
+<li>Klicke auf <strong>Build</strong></li>
+</ol>
+</li>
+<li>Einbinden des Modells
+<ol>
+<li>Starte die Arduino IDE</li>
+<li>Importiere die Heruntergeladene Bibliothek über <strong>Sketch &gt; Include Library &gt; Add .ZIP Library...</strong></li>
+<li>Öffne das Beispiel <a href="http://File.Examples.Name">File.Examples.Name</a> deiner Bibliothek.esp32.esp32 camera</li>
+<li>Kommentiere die Zeile 35 aus: //#define CAMERA_MODEL_ESP_EYE // Has PSRAM</li>
+<li>Entferne die Kommentarstriche vor Zeile 36: #define CAMERA_MODEL_AI_THINKER // Has PSRAM</li>
+<li>Lade den Sketch hoch (Kompilieren dauert sehr lang) und teste ihn mit dem Seriellen Monitor</li>
+</ol>
+</li>
+</ol>
+
+            
+            
+        </body>
+        </html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Anschluss eines Servo-Motors</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h2 id="anschluss-eines-servo-motors">Anschluss eines Servo-Motors</h2>
+<p>Auf dieser Internetseite ist der Anschluss von 2 Servo-Motoren an die ESP32-Cam beschrieben:<br>
+<a href="https://randomnerdtutorials.com/esp32-cam-pan-and-tilt-2-axis/">https://randomnerdtutorials.com/esp32-cam-pan-and-tilt-2-axis/</a></p>
+<p>Die Kabel können von oben direkt an die Pins der Kamera angelötet werden.<br>
+Der Sketch von der Internetseite ermöglicht die Steuerung über eine Interneseite:</p>
+<pre><code class="language-C++"><span class="hljs-comment">/*********
+  Rui Santos &amp; Sara Santos - Random Nerd Tutorials
+  Complete instructions at https://RandomNerdTutorials.com/esp32-cam-projects-ebook/
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files.
+  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+*********/</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;esp_camera.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;WiFi.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;esp_timer.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;img_converters.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;Arduino.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;fb_gfx.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;soc/soc.h&quot;</span>             <span class="hljs-comment">// disable brownout problems</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;soc/rtc_cntl_reg.h&quot;</span>    <span class="hljs-comment">// disable brownout problems</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;esp_http_server.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;ESP32Servo.h&gt;</span></span>
+
+<span class="hljs-comment">// Replace with your network credentials</span>
+<span class="hljs-type">const</span> <span class="hljs-type">char</span>* ssid = <span class="hljs-string">&quot;SSID&quot;</span>;           <span class="hljs-comment">// Eigene Daten eintragen</span>
+<span class="hljs-type">const</span> <span class="hljs-type">char</span>* password = <span class="hljs-string">&quot;passwort&quot;</span>;   <span class="hljs-comment">// Eigene Daten eintragen</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> PART_BOUNDARY <span class="hljs-string">&quot;123456789000000000000987654321&quot;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> CAMERA_MODEL_AI_THINKER</span>
+
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> PWDN_GPIO_NUM     32</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> RESET_GPIO_NUM    -1</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> XCLK_GPIO_NUM      0</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> SIOD_GPIO_NUM     26</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> SIOC_GPIO_NUM     27</span>
+  
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> Y9_GPIO_NUM       35</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> Y8_GPIO_NUM       34</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> Y7_GPIO_NUM       39</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> Y6_GPIO_NUM       36</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> Y5_GPIO_NUM       21</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> Y4_GPIO_NUM       19</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> Y3_GPIO_NUM       18</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> Y2_GPIO_NUM        5</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> VSYNC_GPIO_NUM    25</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> HREF_GPIO_NUM     23</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">define</span> PCLK_GPIO_NUM     22</span>
+
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> SERVO_1      14</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> SERVO_2      15</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> SERVO_STEP   5</span>
+
+Servo servo1;
+Servo servo2;
+
+<span class="hljs-type">int</span> servo1Pos = <span class="hljs-number">0</span>;
+<span class="hljs-type">int</span> servo2Pos = <span class="hljs-number">0</span>;
+
+<span class="hljs-type">static</span> <span class="hljs-type">const</span> <span class="hljs-type">char</span>* _STREAM_CONTENT_TYPE = <span class="hljs-string">&quot;multipart/x-mixed-replace;boundary=&quot;</span> PART_BOUNDARY;
+<span class="hljs-type">static</span> <span class="hljs-type">const</span> <span class="hljs-type">char</span>* _STREAM_BOUNDARY = <span class="hljs-string">&quot;\r\n--&quot;</span> PART_BOUNDARY <span class="hljs-string">&quot;\r\n&quot;</span>;
+<span class="hljs-type">static</span> <span class="hljs-type">const</span> <span class="hljs-type">char</span>* _STREAM_PART = <span class="hljs-string">&quot;Content-Type: image/jpeg\r\nContent-Length: %u\r\n\r\n&quot;</span>;
+
+<span class="hljs-type">httpd_handle_t</span> camera_httpd = <span class="hljs-literal">NULL</span>;
+<span class="hljs-type">httpd_handle_t</span> stream_httpd = <span class="hljs-literal">NULL</span>;
+
+<span class="hljs-type">static</span> <span class="hljs-type">const</span> <span class="hljs-type">char</span> PROGMEM INDEX_HTML[] = <span class="hljs-string">R&quot;rawliteral(
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;ESP32-CAM Robot&lt;/title&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;style&gt;
+      body { font-family: Arial; text-align: center; margin:0px auto; padding-top: 30px;}
+      table { margin-left: auto; margin-right: auto; }
+      td { padding: 8 px; }
+      .button {
+        background-color: #2f4468;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        margin: 6px 3px;
+        cursor: pointer;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+      }
+      img {  width: auto ;
+        max-width: 100% ;
+        height: auto ; 
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;ESP32-CAM Pan and Tilt&lt;/h1&gt;
+    &lt;img src=&quot;&quot; id=&quot;photo&quot; &gt;
+    &lt;table&gt;
+      &lt;tr&gt;&lt;td colspan=&quot;3&quot; align=&quot;center&quot;&gt;&lt;button class=&quot;button&quot; onmousedown=&quot;toggleCheckbox(&#x27;up&#x27;);&quot; ontouchstart=&quot;toggleCheckbox(&#x27;up&#x27;);&quot;&gt;Up&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td align=&quot;center&quot;&gt;&lt;button class=&quot;button&quot; onmousedown=&quot;toggleCheckbox(&#x27;left&#x27;);&quot; ontouchstart=&quot;toggleCheckbox(&#x27;left&#x27;);&quot;&gt;Left&lt;/button&gt;&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;&lt;button class=&quot;button&quot; onmousedown=&quot;toggleCheckbox(&#x27;right&#x27;);&quot; ontouchstart=&quot;toggleCheckbox(&#x27;right&#x27;);&quot;&gt;Right&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td colspan=&quot;3&quot; align=&quot;center&quot;&gt;&lt;button class=&quot;button&quot; onmousedown=&quot;toggleCheckbox(&#x27;down&#x27;);&quot; ontouchstart=&quot;toggleCheckbox(&#x27;down&#x27;);&quot;&gt;Down&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;                   
+    &lt;/table&gt;
+   &lt;script&gt;
+   function toggleCheckbox(x) {
+     var xhr = new XMLHttpRequest();
+     xhr.open(&quot;GET&quot;, &quot;/action?go=&quot; + x, true);
+     xhr.send();
+   }
+   window.onload = document.getElementById(&quot;photo&quot;).src = window.location.href.slice(0, -1) + &quot;:81/stream&quot;;
+  &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+)rawliteral&quot;</span>;
+
+<span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">esp_err_t</span> <span class="hljs-title">index_handler</span><span class="hljs-params">(<span class="hljs-type">httpd_req_t</span> *req)</span></span>{
+  <span class="hljs-built_in">httpd_resp_set_type</span>(req, <span class="hljs-string">&quot;text/html&quot;</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">httpd_resp_send</span>(req, (<span class="hljs-type">const</span> <span class="hljs-type">char</span> *)INDEX_HTML, <span class="hljs-built_in">strlen</span>(INDEX_HTML));
+}
+
+<span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">esp_err_t</span> <span class="hljs-title">stream_handler</span><span class="hljs-params">(<span class="hljs-type">httpd_req_t</span> *req)</span></span>{
+  <span class="hljs-type">camera_fb_t</span> * fb = <span class="hljs-literal">NULL</span>;
+  <span class="hljs-type">esp_err_t</span> res = ESP_OK;
+  <span class="hljs-type">size_t</span> _jpg_buf_len = <span class="hljs-number">0</span>;
+  <span class="hljs-type">uint8_t</span> * _jpg_buf = <span class="hljs-literal">NULL</span>;
+  <span class="hljs-type">char</span> * part_buf[<span class="hljs-number">64</span>];
+
+  res = <span class="hljs-built_in">httpd_resp_set_type</span>(req, _STREAM_CONTENT_TYPE);
+  <span class="hljs-keyword">if</span>(res != ESP_OK){
+    <span class="hljs-keyword">return</span> res;
+  }
+
+  <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>){
+    fb = <span class="hljs-built_in">esp_camera_fb_get</span>();
+    <span class="hljs-keyword">if</span> (!fb) {
+      Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Camera capture failed&quot;</span>);
+      res = ESP_FAIL;
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">if</span>(fb-&gt;width &gt; <span class="hljs-number">400</span>){
+        <span class="hljs-keyword">if</span>(fb-&gt;format != PIXFORMAT_JPEG){
+          <span class="hljs-type">bool</span> jpeg_converted = <span class="hljs-built_in">frame2jpg</span>(fb, <span class="hljs-number">80</span>, &amp;_jpg_buf, &amp;_jpg_buf_len);
+          <span class="hljs-built_in">esp_camera_fb_return</span>(fb);
+          fb = <span class="hljs-literal">NULL</span>;
+          <span class="hljs-keyword">if</span>(!jpeg_converted){
+            Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;JPEG compression failed&quot;</span>);
+            res = ESP_FAIL;
+          }
+        } <span class="hljs-keyword">else</span> {
+          _jpg_buf_len = fb-&gt;len;
+          _jpg_buf = fb-&gt;buf;
+        }
+      }
+    }
+    <span class="hljs-keyword">if</span>(res == ESP_OK){
+      <span class="hljs-type">size_t</span> hlen = <span class="hljs-built_in">snprintf</span>((<span class="hljs-type">char</span> *)part_buf, <span class="hljs-number">64</span>, _STREAM_PART, _jpg_buf_len);
+      res = <span class="hljs-built_in">httpd_resp_send_chunk</span>(req, (<span class="hljs-type">const</span> <span class="hljs-type">char</span> *)part_buf, hlen);
+    }
+    <span class="hljs-keyword">if</span>(res == ESP_OK){
+      res = <span class="hljs-built_in">httpd_resp_send_chunk</span>(req, (<span class="hljs-type">const</span> <span class="hljs-type">char</span> *)_jpg_buf, _jpg_buf_len);
+    }
+    <span class="hljs-keyword">if</span>(res == ESP_OK){
+      res = <span class="hljs-built_in">httpd_resp_send_chunk</span>(req, _STREAM_BOUNDARY, <span class="hljs-built_in">strlen</span>(_STREAM_BOUNDARY));
+    }
+    <span class="hljs-keyword">if</span>(fb){
+      <span class="hljs-built_in">esp_camera_fb_return</span>(fb);
+      fb = <span class="hljs-literal">NULL</span>;
+      _jpg_buf = <span class="hljs-literal">NULL</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(_jpg_buf){
+      <span class="hljs-built_in">free</span>(_jpg_buf);
+      _jpg_buf = <span class="hljs-literal">NULL</span>;
+    }
+    <span class="hljs-keyword">if</span>(res != ESP_OK){
+      <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-comment">//Serial.printf(&quot;MJPG: %uB\n&quot;,(uint32_t)(_jpg_buf_len));</span>
+  }
+  <span class="hljs-keyword">return</span> res;
+}
+
+<span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">esp_err_t</span> <span class="hljs-title">cmd_handler</span><span class="hljs-params">(<span class="hljs-type">httpd_req_t</span> *req)</span></span>{
+  <span class="hljs-type">char</span>*  buf;
+  <span class="hljs-type">size_t</span> buf_len;
+  <span class="hljs-type">char</span> variable[<span class="hljs-number">32</span>] = {<span class="hljs-number">0</span>,};
+  
+  buf_len = <span class="hljs-built_in">httpd_req_get_url_query_len</span>(req) + <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">if</span> (buf_len &gt; <span class="hljs-number">1</span>) {
+    buf = (<span class="hljs-type">char</span>*)<span class="hljs-built_in">malloc</span>(buf_len);
+    <span class="hljs-keyword">if</span>(!buf){
+      <span class="hljs-built_in">httpd_resp_send_500</span>(req);
+      <span class="hljs-keyword">return</span> ESP_FAIL;
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">httpd_req_get_url_query_str</span>(req, buf, buf_len) == ESP_OK) {
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">httpd_query_key_value</span>(buf, <span class="hljs-string">&quot;go&quot;</span>, variable, <span class="hljs-built_in">sizeof</span>(variable)) == ESP_OK) {
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">free</span>(buf);
+        <span class="hljs-built_in">httpd_resp_send_404</span>(req);
+        <span class="hljs-keyword">return</span> ESP_FAIL;
+      }
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-built_in">free</span>(buf);
+      <span class="hljs-built_in">httpd_resp_send_404</span>(req);
+      <span class="hljs-keyword">return</span> ESP_FAIL;
+    }
+    <span class="hljs-built_in">free</span>(buf);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">httpd_resp_send_404</span>(req);
+    <span class="hljs-keyword">return</span> ESP_FAIL;
+  }
+
+  <span class="hljs-type">sensor_t</span> * s = <span class="hljs-built_in">esp_camera_sensor_get</span>();
+  <span class="hljs-comment">//flip the camera vertically</span>
+  <span class="hljs-comment">//s-&gt;set_vflip(s, 1);          // 0 = disable , 1 = enable</span>
+  <span class="hljs-comment">// mirror effect</span>
+  <span class="hljs-comment">//s-&gt;set_hmirror(s, 1);          // 0 = disable , 1 = enable</span>
+
+  <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>;
+  
+  <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(variable, <span class="hljs-string">&quot;up&quot;</span>)) {
+    <span class="hljs-keyword">if</span>(servo1Pos &lt;= <span class="hljs-number">170</span>) {
+      servo1Pos += <span class="hljs-number">10</span>;
+      servo1.<span class="hljs-built_in">write</span>(servo1Pos);
+    }
+    Serial.<span class="hljs-built_in">println</span>(servo1Pos);
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Up&quot;</span>);
+  }
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(variable, <span class="hljs-string">&quot;left&quot;</span>)) {
+    <span class="hljs-keyword">if</span>(servo2Pos &lt;= <span class="hljs-number">170</span>) {
+      servo2Pos += <span class="hljs-number">10</span>;
+      servo2.<span class="hljs-built_in">write</span>(servo2Pos);
+    }
+    Serial.<span class="hljs-built_in">println</span>(servo2Pos);
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Left&quot;</span>);
+  }
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(variable, <span class="hljs-string">&quot;right&quot;</span>)) {
+    <span class="hljs-keyword">if</span>(servo2Pos &gt;= <span class="hljs-number">10</span>) {
+      servo2Pos -= <span class="hljs-number">10</span>;
+      servo2.<span class="hljs-built_in">write</span>(servo2Pos);
+    }
+    Serial.<span class="hljs-built_in">println</span>(servo2Pos);
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Right&quot;</span>);
+  }
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">strcmp</span>(variable, <span class="hljs-string">&quot;down&quot;</span>)) {
+    <span class="hljs-keyword">if</span>(servo1Pos &gt;= <span class="hljs-number">10</span>) {
+      servo1Pos -= <span class="hljs-number">10</span>;
+      servo1.<span class="hljs-built_in">write</span>(servo1Pos);
+    }
+    Serial.<span class="hljs-built_in">println</span>(servo1Pos);
+    Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;Down&quot;</span>);
+  }
+  <span class="hljs-keyword">else</span> {
+    res = <span class="hljs-number">-1</span>;
+  }
+
+  <span class="hljs-keyword">if</span>(res){
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">httpd_resp_send_500</span>(req);
+  }
+
+  <span class="hljs-built_in">httpd_resp_set_hdr</span>(req, <span class="hljs-string">&quot;Access-Control-Allow-Origin&quot;</span>, <span class="hljs-string">&quot;*&quot;</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">httpd_resp_send</span>(req, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">startCameraServer</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-type">httpd_config_t</span> config = <span class="hljs-built_in">HTTPD_DEFAULT_CONFIG</span>();
+  config.server_port = <span class="hljs-number">80</span>;
+  <span class="hljs-type">httpd_uri_t</span> index_uri = {
+    .uri       = <span class="hljs-string">&quot;/&quot;</span>,
+    .method    = HTTP_GET,
+    .handler   = index_handler,
+    .user_ctx  = <span class="hljs-literal">NULL</span>
+  };
+
+  <span class="hljs-type">httpd_uri_t</span> cmd_uri = {
+    .uri       = <span class="hljs-string">&quot;/action&quot;</span>,
+    .method    = HTTP_GET,
+    .handler   = cmd_handler,
+    .user_ctx  = <span class="hljs-literal">NULL</span>
+  };
+  <span class="hljs-type">httpd_uri_t</span> stream_uri = {
+    .uri       = <span class="hljs-string">&quot;/stream&quot;</span>,
+    .method    = HTTP_GET,
+    .handler   = stream_handler,
+    .user_ctx  = <span class="hljs-literal">NULL</span>
+  };
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">httpd_start</span>(&amp;camera_httpd, &amp;config) == ESP_OK) {
+    <span class="hljs-built_in">httpd_register_uri_handler</span>(camera_httpd, &amp;index_uri);
+    <span class="hljs-built_in">httpd_register_uri_handler</span>(camera_httpd, &amp;cmd_uri);
+  }
+  config.server_port += <span class="hljs-number">1</span>;
+  config.ctrl_port += <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">httpd_start</span>(&amp;stream_httpd, &amp;config) == ESP_OK) {
+    <span class="hljs-built_in">httpd_register_uri_handler</span>(stream_httpd, &amp;stream_uri);
+  }
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">WRITE_PERI_REG</span>(RTC_CNTL_BROWN_OUT_REG, <span class="hljs-number">0</span>); <span class="hljs-comment">//disable brownout detector</span>
+  servo1.<span class="hljs-built_in">setPeriodHertz</span>(<span class="hljs-number">50</span>);    <span class="hljs-comment">// standard 50 hz servo</span>
+  servo2.<span class="hljs-built_in">setPeriodHertz</span>(<span class="hljs-number">50</span>);    <span class="hljs-comment">// standard 50 hz servo</span>
+  
+  servo1.<span class="hljs-built_in">attach</span>(SERVO_1, <span class="hljs-number">1000</span>, <span class="hljs-number">2000</span>);
+  servo2.<span class="hljs-built_in">attach</span>(SERVO_2, <span class="hljs-number">1000</span>, <span class="hljs-number">2000</span>);
+  
+  servo1.<span class="hljs-built_in">write</span>(servo1Pos);
+  servo2.<span class="hljs-built_in">write</span>(servo2Pos);
+  
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);
+  Serial.<span class="hljs-built_in">setDebugOutput</span>(<span class="hljs-literal">false</span>);
+  
+  <span class="hljs-type">camera_config_t</span> config;
+  config.ledc_channel = LEDC_CHANNEL_0;
+  config.ledc_timer = LEDC_TIMER_0;
+  config.pin_d0 = Y2_GPIO_NUM;
+  config.pin_d1 = Y3_GPIO_NUM;
+  config.pin_d2 = Y4_GPIO_NUM;
+  config.pin_d3 = Y5_GPIO_NUM;
+  config.pin_d4 = Y6_GPIO_NUM;
+  config.pin_d5 = Y7_GPIO_NUM;
+  config.pin_d6 = Y8_GPIO_NUM;
+  config.pin_d7 = Y9_GPIO_NUM;
+  config.pin_xclk = XCLK_GPIO_NUM;
+  config.pin_pclk = PCLK_GPIO_NUM;
+  config.pin_vsync = VSYNC_GPIO_NUM;
+  config.pin_href = HREF_GPIO_NUM;
+  config.pin_sccb_sda = SIOD_GPIO_NUM;
+  config.pin_sccb_scl = SIOC_GPIO_NUM;
+  config.pin_pwdn = PWDN_GPIO_NUM;
+  config.pin_reset = RESET_GPIO_NUM;
+  config.xclk_freq_hz = <span class="hljs-number">20000000</span>;
+  config.pixel_format = PIXFORMAT_JPEG; 
+  
+  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">psramFound</span>()){
+    config.frame_size = FRAMESIZE_VGA;
+    config.jpeg_quality = <span class="hljs-number">10</span>;
+    config.fb_count = <span class="hljs-number">2</span>;
+  } <span class="hljs-keyword">else</span> {
+    config.frame_size = FRAMESIZE_SVGA;
+    config.jpeg_quality = <span class="hljs-number">12</span>;
+    config.fb_count = <span class="hljs-number">1</span>;
+  }
+  
+  <span class="hljs-comment">// Camera init</span>
+  <span class="hljs-type">esp_err_t</span> err = <span class="hljs-built_in">esp_camera_init</span>(&amp;config);
+  <span class="hljs-keyword">if</span> (err != ESP_OK) {
+    Serial.<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Camera init failed with error 0x%x&quot;</span>, err);
+    <span class="hljs-keyword">return</span>;
+  }
+  <span class="hljs-comment">// Wi-Fi connection</span>
+  WiFi.<span class="hljs-built_in">begin</span>(ssid, password);
+  <span class="hljs-keyword">while</span> (WiFi.<span class="hljs-built_in">status</span>() != WL_CONNECTED) {
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+    Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;.&quot;</span>);
+  }
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;&quot;</span>);
+  Serial.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;WiFi connected&quot;</span>);
+  
+  Serial.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Camera Stream Ready! Go to: http://&quot;</span>);
+  Serial.<span class="hljs-built_in">println</span>(WiFi.<span class="hljs-built_in">localIP</span>());
+  
+  <span class="hljs-comment">// Start streaming web server</span>
+  <span class="hljs-built_in">startCameraServer</span>();
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  
+}
+</code></pre>
+
+            
+            
+        </body>
+        </html>
