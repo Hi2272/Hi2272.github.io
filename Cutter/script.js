@@ -176,62 +176,140 @@ drawState  = null;
 previewLine = null;
 draw();
 });
-/* ---------- Bild zerschneiden (ohne Hilfslinien) ---------- */
-convertBtn.addEventListener('click', () => {
-// 1. Linien sortieren + Randlinien hinzufügen (Canvas‑Koordinaten)
-const hLines = lines.filter(l => l.type === 'h').map(l => l.pos).sort((a,b)=>a-b);
-const vLines = lines.filter(l => l.type === 'v').map(l => l.pos).sort((a,b)=>a-b);
-hLines.unshift(0);
-hLines.push(canvas.height);
-vLines.unshift(0);
-vLines.push(canvas.width);
-// 2. Original‑Bild in ein Hilfs‑Canvas (volle Auflösung) laden
-const origCanvas = document.createElement('canvas');
-origCanvas.width  = img.width;
-origCanvas.height = img.height;
-const octx = origCanvas.getContext('2d');
-octx.drawImage(img, 0, 0);
 
-// 3. Für jede Zelle ein Stück ausschneiden
-for (let row = 0; row < hLines.length - 1; row++) {
-    const y0Canvas = hLines[row];
-    const y1Canvas = hLines[row + 1];
-    const hCanvas  = y1Canvas - y0Canvas;
+convertBtn.addEventListener('click', async () => {
+    // ---- 1. Linien vorbereiten (wie bisher) ----
+    const hLines = [...new Set(
+        lines.filter(l => l.type === 'h')
+             .map(l => l.pos)
+             .sort((a, b) => a - b)
+    )];
+    const vLines = [...new Set(
+        lines.filter(l => l.type === 'v')
+             .map(l => l.pos)
+             .sort((a, b) => a - b)
+    )];
+    hLines.unshift(0); hLines.push(canvas.height);
+    vLines.unshift(0); vLines.push(canvas.width);
 
-    const y0Orig = Math.round(y0Canvas / scale);
-    const hOrig  = Math.round(hCanvas  / scale);
+    // ---- 2. Original‑Canvas (volle Auflösung) ----
+    const origCanvas = document.createElement('canvas');
+    origCanvas.width  = img.width;
+    origCanvas.height = img.height;
+    const octx = origCanvas.getContext('2d');
+    octx.drawImage(img, 0, 0);
 
-    for (let col = 0; col < vLines.length - 1; col++) {
-        const x0Canvas = vLines[col];
-        const x1Canvas = vLines[col + 1];
-        const wCanvas  = x1Canvas - x0Canvas;
+    // ---- 3. ZIP‑Container vorbereiten ----
+    const zip = new JSZip();
 
-        const x0Orig = Math.round(x0Canvas / scale);
-        const wOrig  = Math.round(wCanvas  / scale);
+    // Hilfsfunktion: Blob → ZIP‑Eintrag
+    const addBlobToZip = (blob, name) => {
+        return new Promise(resolve => {
+            const reader = new FileReader();
+            reader.onload = () => {
+                // reader.result ist ein ArrayBuffer → in ZIP einfügen
+                zip.file(name, reader.result);
+                resolve();
+            };
+            reader.readAsArrayBuffer(blob);
+        });
+    };
 
-        // Neues Canvas für das Teilstück (Originalgröße)
-        const piece = document.createElement('canvas');
-        piece.width  = wOrig;
-        piece.height = hOrig;
-        const pctx = piece.getContext('2d');
+    // ---- 4. Alle Stücke erzeugen und zum ZIP hinzufügen ----
+    const promises = []; // sammelt alle async‑Aufgaben
 
-        // Bildausschnitt aus dem Original‑Canvas kopieren
-        pctx.drawImage(
-            origCanvas,
-            x0Orig, y0Orig, wOrig, hOrig,   // Quelle
-            0, 0, wOrig, hOrig               // Ziel
-        );
+    for (let row = 0; row < hLines.length - 1; row++) {
+        const y0Canvas = hLines[row];
+        const y1Canvas = hLines[row + 1];
+        const hCanvas  = y1Canvas - y0Canvas;
 
-        // Download auslösen (PNG)
-        piece.toBlob(blob => {
-            const a = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            a.href = url;
-            a.download = `${imgName}_${row + 1}_${col + 1}.png`;
-            a.click();
-            URL.revokeObjectURL(url);
-        }, 'image/png');
+        const y0Orig = Math.floor(y0Canvas / scale);
+        const hOrig  = Math.ceil(hCanvas / scale);
+        if (hOrig === 0) continue;
+
+        for (let col = 0; col < vLines.length - 1; col++) {
+            const x0Canvas = vLines[col];
+            const x1Canvas = vLines[col + 1];
+            const wCanvas  = x1Canvas - x0Canvas;
+
+            const x0Orig = Math.floor(x0Canvas / scale);
+            const wOrig  = Math.ceil(wCanvas / scale);
+            if (wOrig === 0) continue;
+
+            // Canvas für das Teilstück
+            const piece = document.createElement('canvas');
+            piece.width  = wOrig;
+            piece.height = hOrig;
+            const pctx = piece.getContext('2d');
+            pctx.drawImage(
+                origCanvas,
+                x0Orig, y0Orig, wOrig, hOrig,
+                0, 0, wOrig, hOrig
+            );
+
+            // Blob erzeugen → ZIP‑Eintrag
+            const fileName = `${imgName}_${row + 1}_${col + 1}.png`;
+            const p = new Promise(res => {
+                piece.toBlob(blob => {
+                    if (blob) addBlobToZip(blob, fileName).then(res);
+                    else res(); // falls Blob fehlschlägt, einfach weiter
+                }, 'image/png');
+            });
+            promises.push(p);
+        }
     }
-}
 
+    // ---- 5. Warten, bis alle Stücke im ZIP sind ----
+    await Promise.all(promises);
+
+    // ---- 6. ZIP erzeugen und herunterladen ----
+    zip.generateAsync({ type: 'blob' }).then(zipBlob => {
+        const zipUrl = URL.createObjectURL(zipBlob);
+        const a = document.createElement('a');
+        a.href = zipUrl;
+        a.download = `${imgName}_tiles.zip`;
+        a.click();
+        // Aufräumen
+        setTimeout(() => URL.revokeObjectURL(zipUrl), 1000);
+    });
 });
+
+// Beim Laden der Seite (nach dem DOM‑Content) Listener registrieren
+document.addEventListener('DOMContentLoaded', () => {
+    const rowsSelect = document.getElementById('rowsSelect');
+    const colsSelect = document.getElementById('colsSelect');
+
+    rowsSelect.addEventListener('change', updateGridFromSelects);
+    colsSelect.addEventListener('change', updateGridFromSelects);
+});
+
+
+/**
+ * Erzeugt ein symmetrisches Raster aus Zeilen‑ und Spalten‑Werten.
+ * Überschreibt das globale `lines`‑Array und ruft `draw()` auf.
+ */
+function updateGridFromSelects() {
+    const rows = parseInt(document.getElementById('rowsSelect').value, 10);
+    const cols = parseInt(document.getElementById('colsSelect').value, 10);
+
+    // Leeres Linien‑Array, dann neue Linien hinzufügen
+    lines = [];
+
+    // Horizontale Linien (Zeilen‑Trennung)
+    if (rows > 1) {
+        const stepY = canvas.height / rows;
+        for (let i = 1; i < rows; i++) {
+            lines.push({ type: 'h', pos: Math.round(i * stepY) });
+        }
+    }
+
+    // Vertikale Linien (Spalten‑Trennung)
+    if (cols > 1) {
+        const stepX = canvas.width / cols;
+        for (let i = 1; i < cols; i++) {
+            lines.push({ type: 'v', pos: Math.round(i * stepX) });
+        }
+    }
+
+    draw(); // Bild + neue Linien neu rendern
+}
