@@ -32,4 +32,74 @@ openthread:
 ```
 Dieser Wert kann in Home Assistant unter **Einstellungen.Geräte.Thread Border Router** ausgelesen werden.
 
+### YAML-Datei für BME280
+
+https://esphome.io/components/sensor/bme280/
+
+```YAML
+esphome:
+  name: bme280
+  friendly_name: BME280
+  min_version: 2024.6.0
+
+esp32:
+  board: esp32-c6-devkitc-1
+  variant: esp32c6
+  framework:
+    type: esp-idf
+    version: recommended
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "..." # Geheimer Code, der beim Einbinden des Sensors in Home Assistant benötigt wird
+
+# Example OpenThread component configuration
+network:
+  enable_ipv6: true
+  
+# Matter over Thread
+openthread:
+  tlv: 
+  # Wert aus Thread Border Router kopieren
+
+# I2C-Bus für BME280
+i2c:
+  sda: GPIO5  # Pins, an die der Sensor angeschlossen ist
+  scl: GPIO4
+  scan: true
+  id: bus_a
+
+# BME280-Sensoren
+sensor:
+  - platform: bme280_i2c
+    i2c_id: bus_a
+    address: 0x76
+    temperature:
+      name: "Temperatur"
+      # Matter-Mapping: TemperatureMeasurement Cluster
+      device_class: temperature
+      state_class: measurement
+      accuracy_decimals: 1
+    pressure:
+      name: "Luftdruck"
+      # Matter-Mapping: PressureMeasurement Cluster (als Sensor)
+      device_class: atmospheric_pressure
+      state_class: measurement
+      accuracy_decimals: 1
+    humidity:
+      name: "Feuchtigkeit"
+      # Matter-Mapping: RelativeHumidityMeasurement Cluster
+      device_class: humidity
+      state_class: measurement
+      accuracy_decimals: 1
+    update_interval: 60s
+
+# Logging (seriell/USB)
+logger:
+
+```
+
+### H-Brücke für Ventilator
+https://esphome.io/components/fan/hbridge/
 
