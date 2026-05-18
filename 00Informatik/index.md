@@ -85,7 +85,6 @@
 
 [Robot Karol](00Informatik7/Karol/index.html)  
 
-
 ## Wettbewerbe
 
 [Informatik-Biber](00Informatik7/Biber/index.html)  
