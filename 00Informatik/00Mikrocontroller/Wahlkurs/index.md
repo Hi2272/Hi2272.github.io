@@ -174,6 +174,11 @@ Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) v
 [CNC](Fritzing/CNC/index.html)  
 [DrillEditor](Fritzing/CNC/index.html)  
 
+### Plotter
+[UniversalGCodeSender](https://winder.github.io/ugs_website/)   
+[SVGtoGCode](https://sameer.github.io/svg2gcode/)  
+[GCodePlotterKonverter](hi2272.github.io/Plotter/index.html)  
+
 ## Dupont-Kabel crimpen
 [Dupont-Kabel](DupontKabel/index.html)
 

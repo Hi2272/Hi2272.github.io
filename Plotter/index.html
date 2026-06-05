@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Plotter-GCode</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page">
+        <!-- ==================== Bereich 1 (Kopfzeile) ==================== -->
+        <div class="top-bar">
+            <div class="group">
+                <label for="penUpInput">PenUp</label>
+                <input type="text" id="penUpInput" value="M3 S0">
+            </div>
+
+            <div class="group">
+                <label for="penDownInput">PenDown</label>
+                <input type="text" id="penDownInput" value="M3 S20">
+            </div>
+
+            <button id="pasteBtn" class="btn paste">Einfügen</button>
+            <button id="convertBtn" class="btn convert">Konvertieren</button>
+            <button id="copyBtn" class="btn copy">Kopieren</button>
+        </div>
+
+        <!-- ==================== Bereich 2 (Textarea) ==================== -->
+        <textarea id="myTextarea" placeholder="Hier Text eingeben..."></textarea>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
