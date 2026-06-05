@@ -85,7 +85,6 @@
 
 [Robot Karol](00Informatik7/Karol/index.html)  
 
-
 ## Wettbewerbe
 
 [Informatik-Biber](00Informatik7/Biber/index.html)  
@@ -278,8 +277,9 @@
 ## Künstliche Intelligenz
 [Überwachtes Lernen](00Informatik11/00KI/01Training/index.html)  
 [Objekterkennung](00Informatik11/00KI/02Objekterkennung/index.html)   
-[K-nächste Nachbarn](00Informatik11/00KI/03KNN/index.html)  
-
+[K-nächste Nachbarn](00Informatik11/00KI/03KNN/index.html)    
+[Entscheidungsbaum](00Informatik11/00KI/04ENTER/index.html)  
+[Schwellenwertbasierte Entscheidungsbäume](00Informatik11/00KI/Nahrungsmittel/index.html)  
 
 
 

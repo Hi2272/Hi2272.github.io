@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Programmieren mit Robot Karol</title>
+            <title>Automatisches Erstellen von Entscheidungsb&auml;umen mit ENTER</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -138,58 +138,35 @@
         
         </head>
         <body class="vscode-body vscode-light">
-            <h1 id="programmieren-mit-robot-karol">Programmieren mit Robot Karol</h1>
-<h2 id="1-einstieg">1. <a href="01Start/index.html">Einstieg</a></h2>
-<h2 id="2-schleifen">2. <a href="02Schleifen/index.html">Schleifen</a></h2>
-<h2 id="3-karol-räumt-auf">3. <a href="https://karol.arrrg.de/#Z5TZ">Karol räumt auf</a></h2>
-<p>Lösung:</p>
-<pre><code class="language-C++">anweisung nachNorden
-  wiederhole solange NichtIstNorden
-    LinksDrehen
-  endewiederhole
-endeAnweisung
-
-Anweisung ziegelweg
-  wiederhole solange IstZiegel
-    Aufheben
-  endewiederhole
-  Schritt
-endeAnweisung
-
-anweisung zurwand
-  wiederhole solange NichtIstWand
-    ziegelweg
-  endewiederhole
-endeAnweisung
-
-anweisung indieEcke
-  nachNorden
-  zurwand
-  linksDrehen
-  zurwand
-  linksDrehen
-endeAnweisung
-
-indieEcke
-zurwand
-linksdrehen
-
-wiederhole solange nichtistwand
-  wenn NichtIstWand dann
-    ziegelweg
-    LinksDrehen
-    zurwand
-    RechtsDrehen
-    wenn NichtIstWand dann
-      ziegelweg
-      RechtsDrehen
-      zurwand
-      linksdrehen
-  endewenn
-endewenn
-endewiederhole
-</code></pre>
-<h2 id="5-karol-lernt-schreiben">5. <a href="https://karol.arrrg.de/#PCKB">Karol lernt schreiben</a></h2>
+            <h1 id="automatisches-erstellen-von-entscheidungsbäumen-mit-enter">Automatisches Erstellen von Entscheidungsbäumen mit ENTER</h1>
+<ol>
+<li>
+<p>Lade die Datensätze herunter:
+<a href="https://kex.fim.uni-passau.de/ENTER_Online/html/BeschreibungFunktionen.html">https://kex.fim.uni-passau.de/ENTER_Online/html/BeschreibungFunktionen.html</a></p>
+</li>
+<li>
+<p>Erstelle auf dieser Seite den Entscheidungsbaum
+<a href="https://kex.fim.uni-passau.de/ENTER_Online/html/ENTER_Online.html">https://kex.fim.uni-passau.de/ENTER_Online/html/ENTER_Online.html</a><br>
+Verwende hierzu die Datei <a href="Trainingsdaten_Fische.csv">Trainingsdaten_Fische.csv</a></p>
+</li>
+<li>
+<p>Teste den Baum
+Verwende hierzu die Datei <a href="Testdaten_Fische.csv">Testdaten_Fische.csv</a></p>
+</li>
+<li>
+<p>Analysiere die Testergebnisse in der Konfusionsmatrix
+Berechne die</p>
+</li>
+</ol>
+<ul>
+<li>Genauigkeit G = (TP+TN)/(TP+TN+FP+FN)</li>
+<li>Sensitivität S = TP/(TP+FN)</li>
+<li>Präzision: P = TP/(TP+FP)</li>
+</ul>
+<ol start="5">
+<li>Erstelle einen weiteren Baum mit dem   <a href="Gro%C3%9Fer_Datensatz_Fische.csv">Großen_Datensatz</a></li>
+<li>Analysiere diesen Baum</li>
+</ol>
 
             
             

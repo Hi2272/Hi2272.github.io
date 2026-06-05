@@ -1,0 +1,46 @@
+/* Grundlayout */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f0f4f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Titel */
+h1 {
+  margin: 1rem 0;
+  color: #333;
+}
+
+/* Der „Canvas“ */
+.stage {
+  position: relative;
+  width: 90vw;
+  height: 70vh;
+  max-width: 800px;
+  max-height: 600px;
+  border: 2px dashed #bbb;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* Einzelne Sprites */
+.sprite {
+  position: absolute;
+  touch-action: none;          /* verhindert native Scroll‑/Zoom‑Gesten */
+  cursor: grab;
+  user-select: none;
+  transition: transform 0.1s;
+}
+.sprite:active { cursor: grabbing; }
+
+.sprite img {
+  display: block;
+  max-width: 150px;            /* Grundgröße, kann per CSS angepasst werden */
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
