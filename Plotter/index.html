@@ -2,12 +2,12 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Plotter-GCode</title>
+    <title>G‑Code‑Editor & Visualisierung</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="page">
-        <!-- ==================== Bereich 1 (Kopfzeile) ==================== -->
+        <!-- ==================== Kopfzeile (Steuerleiste) ==================== -->
         <div class="top-bar">
             <div class="group">
                 <label for="penUpInput">PenUp</label>
@@ -19,13 +19,31 @@
                 <input type="text" id="penDownInput" value="M3 S20">
             </div>
 
-            <button id="pasteBtn" class="btn paste">Einfügen</button>
-            <button id="convertBtn" class="btn convert">Konvertieren</button>
-            <button id="copyBtn" class="btn copy">Kopieren</button>
+            <!-- Konvertieren & Kopieren – zunächst hidden -->
+            <button id="convertBtn" class="btn convert hidden">Konvertieren</button>
+            <button id="copyBtn"    class="btn copy    hidden">Kopieren</button>
         </div>
 
-        <!-- ==================== Bereich 2 (Textarea) ==================== -->
-        <textarea id="myTextarea" placeholder="Hier Text eingeben..."></textarea>
+        <!-- ==================== Hauptbereich (zweispaltig) ==================== -->
+        <div class="main">
+            <!-- Textarea – linke Hälfte -->
+      <textarea id="myTextarea" placeholder="Fügen Sie einen GCode aus der Zwischenablage ein"></textarea>
+
+            <!-- Rechte Hälfte – Info‑Panel -->
+            <div class="info-panel">
+                <div class="info-row">
+                    <label for="widthInput">Breite (mm)</label>
+                    <input type="number" id="widthInput" step="0.001" placeholder="–">
+                </div>
+                <div class="info-row">
+                    <label for="heightInput">Höhe (mm)</label>
+                    <input type="number" id="heightInput" step="0.001" placeholder="–">
+                </div>
+
+                <!-- Canvas (50 % der Höhe des rechten Panels) -->
+                <canvas id="gcodeCanvas"></canvas>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
