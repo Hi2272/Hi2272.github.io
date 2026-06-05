@@ -1,10 +1,9 @@
 /* ------------------------------------------------------------
    Globale Zustände
    ------------------------------------------------------------ */
-let originalGcode = "";          // unveränderte (nicht‑skalierte) Version
-let origMaxX = 0;
-let origMaxY = 0;
-let syncing = false;            // verhindert rekursive change‑Events
+let originalGcode = "";   // unveränderte (nicht‑skalierte) Version
+let origMinX = null, origMinY = null, origMaxX = null, origMaxY = null;
+let syncing = false;      // verhindert rekursive change‑Events
 
 /* ------------------------------------------------------------
    Hilfsfunktion: Einfügen von M‑Befehlen (wie vorher)
@@ -38,17 +37,17 @@ function insertConversionLines(text) {
         }
     });
 
-    result.push(penUp);
+    result.push(penUp);               // abschließendes PenUp
     return result.join('\n');
 }
 
 /* ------------------------------------------------------------
-   Max‑X / Max‑Y aus einem G‑Code‑String ermitteln
+   Max‑/Min‑X/Y aus einem G‑Code‑String ermitteln
    ------------------------------------------------------------ */
-function getCurrentMaxXY(text) {
-    let maxX = null, maxY = null;
+function getCurrentExtremes(text) {
     const lines = text.split('\n');
     const coordRegex = /[XY]([-+]?\d*\.?\d+)/g;
+    let minX = null, minY = null, maxX = null, maxY = null;
 
     lines.forEach(line => {
         const trimmed = line.trim();
@@ -59,84 +58,128 @@ function getCurrentMaxXY(text) {
             const axis = match[0][0];
             const val  = parseFloat(match[1]);
             if (isNaN(val)) continue;
-            if (axis === 'X') { if (maxX === null || val > maxX) maxX = val; }
-            else if (axis === 'Y') { if (maxY === null || val > maxY) maxY = val; }
+            if (axis === 'X') {
+                if (minX === null || val < minX) minX = val;
+                if (maxX === null || val > maxX) maxX = val;
+            } else {
+                if (minY === null || val < minY) minY = val;
+                if (maxY === null || val > maxY) maxY = val;
+            }
         }
     });
-    return { maxX: maxX ?? 0, maxY: maxY ?? 0 };
+    return { minX, minY, maxX, maxY };
 }
 
 /* ------------------------------------------------------------
-   Original‑Metriken ermitteln und Eingabefelder füllen
+   Aktualisiert alle Eingabefelder (Min/Width/Height)
    ------------------------------------------------------------ */
 function refreshOriginalMetrics() {
-    const { maxX, maxY } = getCurrentMaxXY(originalGcode);
-    origMaxX = maxX;
-    origMaxY = maxY;
+    const { minX, minY, maxX, maxY } = getCurrentExtremes(originalGcode);
+    origMinX = minX; origMinY = minY; origMaxX = maxX; origMaxY = maxY;
 
-    // Felder nur füllen, wenn sie noch leer sind (damit nicht überschrieben wird,
-    // wenn der Nutzer bereits eigene Werte eingegeben hat)
-    if (!document.getElementById('widthInput').value)  document.getElementById('widthInput').value  = maxX ? maxX.toFixed(3) : '';
-    if (!document.getElementById('heightInput').value) document.getElementById('heightInput').value = maxY ? maxY.toFixed(3) : '';
+    const setIfEmpty = (id, value) => {
+        const el = document.getElementById(id);
+        el.value = value.toFixed(3);
+    };
+
+    setIfEmpty('minXInput', minX);
+    setIfEmpty('minYInput', minY);
+    setIfEmpty('widthInput',  (maxX !== null && minX !== null) ? maxX - minX : null);
+    setIfEmpty('heightInput', (maxY !== null && minY !== null) ? maxY - minY : null);
 }
 
 /* ------------------------------------------------------------
-   Skalierung des G‑Codes anhand gewünschter Breite/Höhe
+   Generische Transformation von X‑/Y‑Werten
    ------------------------------------------------------------ */
-function scaleGcode() {
-    const widthTarget  = parseFloat(document.getElementById('widthInput').value);
-    const heightTarget = parseFloat(document.getElementById('heightInput').value);
-    if (isNaN(widthTarget) || isNaN(heightTarget) || origMaxX === 0 || origMaxY === 0) return;
-
-    const factorX = widthTarget  / origMaxX;
-    const factorY = heightTarget / origMaxY;
-
+function transformGcode(transformX, transformY) {
+    const lines = originalGcode.split('\n');
     const coordRegex = /([XY])([-+]?\d*\.?\d+)/g;
-    const scaledLines = originalGcode.split('\n').map(line => {
+
+    const newLines = lines.map(line => {
         const trimmed = line.trim();
-        if (!/^G[01]\s/.test(trimmed)) return line;
+        if (!/^G[01]\s/.test(trimmed)) return line; // keine Koordinaten → unverändert
 
         return line.replace(coordRegex, (full, axis, num) => {
-            const value = parseFloat(num);
-            if (isNaN(value)) return full;
-            const scaled = axis === 'X' ? value * factorX : value * factorY;
-            return `${axis}${scaled.toFixed(3)}`;
+            const val = parseFloat(num);
+            if (isNaN(val)) return full;
+            const newVal = axis === 'X' ? transformX(val) : transformY(val);
+            return `${axis}${newVal.toFixed(3)}`;
         });
     });
 
-    document.getElementById('myTextarea').value = scaledLines.join('\n');
+    const newText = newLines.join('\n');
+    document.getElementById('myTextarea').value = newText;
+    originalGcode = newText;               // neuer Ausgangs‑G‑Code
+    refreshOriginalMetrics();              // aktualisiert alle Felder
+    visualizeGcode();                      // sofortige Neuzeichnung
 }
 
 /* ------------------------------------------------------------
-   Kopplung Breite ↔ Höhe (automatisches Update des Gegenwertes)
+   Handler für Min‑X / Min‑Y (Verschiebung)
+   ------------------------------------------------------------ */
+function onMinXChange() {
+    const newMinX = parseFloat(document.getElementById('minXInput').value);
+    if (isNaN(newMinX) || origMinX === null) return;
+    const deltaX = newMinX - origMinX;
+    transformGcode(v => v + deltaX, v => v);
+}
+function onMinYChange() {
+    const newMinY = parseFloat(document.getElementById('minYInput').value);
+    if (isNaN(newMinY) || origMinY === null) return;
+    const deltaY = newMinY - origMinY;
+    transformGcode(v => v, v => v + deltaY);
+}
+
+/* ------------------------------------------------------------
+   Handler für Breite / Höhe (Skalierung relativ zu Min‑X/Min‑Y)
    ------------------------------------------------------------ */
 function onWidthChange() {
-    if (syncing) return;
     const newWidth = parseFloat(document.getElementById('widthInput').value);
-    if (isNaN(newWidth) || origMaxX === 0) return;
+    if (isNaN(newWidth) || origMinX === null || origMaxX === null) return;
 
-    const newHeight = (newWidth / origMaxX) * origMaxY;
-    syncing = true;
-    document.getElementById('heightInput').value = newHeight.toFixed(3);
-    syncing = false;
+    const currentWidth = origMaxX - origMinX;
+    const factorX = newWidth / currentWidth;
 
-    scaleGcode();
+    const keepRatio = document.getElementById('keepAspectRatio').checked;
+    if (keepRatio && origMinY !== null && origMaxY !== null) {
+        const currentHeight = origMaxY - origMinY;
+        const newHeight = currentHeight * factorX;               // gleiche Skalierung wie X
+        const factorY = newHeight / currentHeight;
+        transformGcode(
+            v => (v - origMinX) * factorX + origMinX,
+            v => (v - origMinY) * factorY + origMinY
+        );
+        // UI‑Konsistenz
+        document.getElementById('heightInput').value = (origMinY + newHeight).toFixed(3);
+    } else {
+        transformGcode(v => (v - origMinX) * factorX + origMinX, v => v);
+    }
 }
 function onHeightChange() {
-    if (syncing) return;
     const newHeight = parseFloat(document.getElementById('heightInput').value);
-    if (isNaN(newHeight) || origMaxY === 0) return;
+    if (isNaN(newHeight) || origMinY === null || origMaxY === null) return;
 
-    const newWidth = (newHeight / origMaxY) * origMaxX;
-    syncing = true;
-    document.getElementById('widthInput').value = newWidth.toFixed(3);
-    syncing = false;
+    const currentHeight = origMaxY - origMinY;
+    const factorY = newHeight / currentHeight;
 
-    scaleGcode();
+    const keepRatio = document.getElementById('keepAspectRatio').checked;
+    if (keepRatio && origMinX !== null && origMaxX !== null) {
+        const currentWidth = origMaxX - origMinX;
+        const newWidth = currentWidth * factorY;                 // gleiche Skalierung wie Y
+        const factorX = newWidth / currentWidth;
+        transformGcode(
+            v => (v - origMinX) * factorX + origMinX,
+            v => (v - origMinY) * factorY + origMinY
+        );
+        // UI‑Konsistenz
+        document.getElementById('widthInput').value = (origMinX + newWidth).toFixed(3);
+    } else {
+        transformGcode(v => v, v => (v - origMinY) * factorY + origMinY);
+    }
 }
 
 /* ------------------------------------------------------------
-   Canvas‑Visualisierung (wie vorher)
+   Canvas‑Visualisierung
    ------------------------------------------------------------ */
 function visualizeGcode() {
     const canvas = document.getElementById('gcodeCanvas');
@@ -151,14 +194,16 @@ function visualizeGcode() {
     const text = document.getElementById('myTextarea').value;
     const lines = text.split('\n');
 
-    const { maxX, maxY } = getCurrentMaxXY(text);
+    const { minX, minY, maxX, maxY } = getCurrentExtremes(text);
     const padding = 20;
-    const scaleX = (canvas.width  - 2 * padding) / (maxX || 1);
-    const scaleY = (canvas.height - 2 * padding) / (maxY || 1);
+    const scaleX = (canvas.width  - 2 * padding) / ((maxX - minX) || 1);
+    const scaleY = (canvas.height - 2 * padding) / ((maxY - minY) || 1);
     const scale  = Math.min(scaleX, scaleY);
 
-    let curX = padding;
-    let curY = canvas.height - padding;
+    // Startpunkt (erstes Koordinaten‑Paar) – roter Kreis
+    let curX = padding + (minX !== null ? (minX - minX) * scale : 0);
+    let curY = canvas.height - padding - (minY !== null ? (minY - minY) * scale : 0);
+    let isFirstSegment = true;
     const coordRegex = /[XY]([-+]?\d*\.?\d+)/g;
 
     lines.forEach(line => {
@@ -170,8 +215,17 @@ function visualizeGcode() {
         while ((match = coordRegex.exec(trimmed)) !== null) {
             const axis = match[0][0];
             const val  = parseFloat(match[1]);
-            if (axis === 'X') newX = padding + val * scale;
-            if (axis === 'Y') newY = canvas.height - padding - val * scale;
+            if (axis === 'X') newX = padding + (val - minX) * scale;
+            if (axis === 'Y') newY = canvas.height - padding - (val - minY) * scale;
+        }
+
+        // Markiere den Startpunkt des allerersten Segments
+        if (isFirstSegment) {
+            ctx.beginPath();
+            ctx.arc(curX, curY, 5, 0, 2 * Math.PI);
+            ctx.fillStyle = '#ff0000';
+            ctx.fill();
+            isFirstSegment = false;
         }
 
         if (trimmed.startsWith('G0 ')) {
@@ -206,8 +260,7 @@ document.getElementById('convertBtn').addEventListener('click', () => {
     textarea.value   = converted;
     originalGcode = converted;   // neuer Ausgangs‑G‑Code
     refreshOriginalMetrics();
-    // Nach Konvertierung sofort visualisieren
-    visualizeGcode();
+    visualizeGcode();            // sofort visualisieren
 });
 
 document.getElementById('copyBtn').addEventListener('click', async () => {
@@ -221,10 +274,15 @@ document.getElementById('copyBtn').addEventListener('click', async () => {
 });
 
 /* ------------------------------------------------------------
-   Eingabefelder Breite / Höhe – gekoppelte Aktualisierung
+   Eingabefelder – gekoppelte Aktualisierung
    ------------------------------------------------------------ */
 document.getElementById('widthInput').addEventListener('change', onWidthChange);
 document.getElementById('heightInput').addEventListener('change', onHeightChange);
+document.getElementById('minXInput').addEventListener('change', onMinXChange);
+document.getElementById('minYInput').addEventListener('change', onMinYChange);
+document.getElementById('keepAspectRatio').addEventListener('change', () => {
+    // Der aktuelle Zustand wird bei der nächsten Breite‑/Höhe‑Änderung berücksichtigt.
+});
 
 /* ------------------------------------------------------------
    Textarea – Sichtbarkeit der Buttons & automatische Visualisierung
@@ -232,7 +290,6 @@ document.getElementById('heightInput').addEventListener('change', onHeightChange
 function handleTextareaInput() {
     const txt = document.getElementById('myTextarea').value.trim();
 
-    // Wenn Text vorhanden → Buttons einblenden, sonst ausblenden
     const convertBtn = document.getElementById('convertBtn');
     const copyBtn    = document.getElementById('copyBtn');
 
@@ -240,8 +297,8 @@ function handleTextareaInput() {
         convertBtn.classList.remove('hidden');
         copyBtn.classList.remove('hidden');
 
-        // Nur beim ersten Einfügen (oder wenn sich der Inhalt ändert) das Original‑Backup setzen
-        originalGcode = document.getElementById('myTextarea').value;
+        // Setze das aktuelle G‑Code‑Backup und aktualisiere Metriken
+        originalGcode = txt;
         refreshOriginalMetrics();
 
         // Automatisch visualisieren
@@ -249,7 +306,8 @@ function handleTextareaInput() {
     } else {
         convertBtn.classList.add('hidden');
         copyBtn.classList.add('hidden');
-        // Canvas leeren, weil kein G‑Code mehr da ist
+
+        // Canvas leeren
         const canvas = document.getElementById('gcodeCanvas');
         const ctx    = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -261,7 +319,6 @@ document.getElementById('myTextarea').addEventListener('input', handleTextareaIn
    Initiales Laden (falls bereits Text vorhanden)
    ------------------------------------------------------------ */
 window.addEventListener('load', () => {
-    // Der Hinweis‑Text ist bereits im HTML‑Markup als Anfangs‑Inhalt gesetzt.
-    // Wir prüfen, ob die Textarea *nur* diesen Hinweis enthält – dann bleiben die Buttons hidden.
+    // Beim Start ist die Textarea leer → Buttons bleiben hidden
     handleTextareaInput();
 });

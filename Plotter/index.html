@@ -16,7 +16,7 @@
 
             <div class="group">
                 <label for="penDownInput">PenDown</label>
-                <input type="text" id="penDownInput" value="M3 S80">
+                <input type="text" id="penDownInput" value="M3 S20">
             </div>
 
             <!-- Konvertieren & Kopieren – zunächst hidden -->
@@ -27,10 +27,22 @@
         <!-- ==================== Hauptbereich (zweispaltig) ==================== -->
         <div class="main">
             <!-- Textarea – linke Hälfte -->
-      <textarea id="myTextarea" placeholder="Fügen Sie einen GCode aus der Zwischenablage ein"></textarea>
+            <textarea id="myTextarea"
+                      placeholder="Fügen Sie einen GCode aus der Zwischenablage ein"></textarea>
 
             <!-- Rechte Hälfte – Info‑Panel -->
             <div class="info-panel">
+                <!-- Minimal‑Werte -->
+                <div class="info-row">
+                    <label for="minXInput">min‑X (mm)</label>
+                    <input type="number" id="minXInput" step="0.001" placeholder="–">
+                </div>
+                <div class="info-row">
+                    <label for="minYInput">min‑Y (mm)</label>
+                    <input type="number" id="minYInput" step="0.001" placeholder="–">
+                </div>
+
+                <!-- Breite / Höhe (Differenz) -->
                 <div class="info-row">
                     <label for="widthInput">Breite (mm)</label>
                     <input type="number" id="widthInput" step="0.001" placeholder="–">
@@ -38,6 +50,13 @@
                 <div class="info-row">
                     <label for="heightInput">Höhe (mm)</label>
                     <input type="number" id="heightInput" step="0.001" placeholder="–">
+                </div>
+
+                <!-- Checkbox: Seitenverhältnis behalten (standardmäßig aktiviert) -->
+                <div class="info-row">
+                    <label for="keepAspectRatio">Seitenverhältnis behalten</label>
+          
+                    <input type="checkbox" id="keepAspectRatio" checked>
                 </div>
 
                 <!-- Canvas (50 % der Höhe des rechten Panels) -->
