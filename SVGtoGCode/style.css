@@ -1,0 +1,82 @@
+/* Gesamtes Layout – Höhe des Viewports nutzen */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body als vertikaler Flex‑Container */
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+/* Toolbar – Buttons nebeneinander, Gruppe füllt die gesamte Breite */
+.toolbar {
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    display: flex;               /* Zeile statt Spalte */
+    flex-direction: row;
+    gap: 8px;                    /* Abstand zwischen den Buttons */
+    width: 100%;                 /* gesamte Breite des Viewports */
+    justify-content: center;     /* Buttons zentrieren */
+}
+
+/* Grundstil für alle Buttons – gleich breit, gleiche Höhe */
+.toolbar button {
+    flex: 1;                     /* jeder Button nimmt gleichen Anteil ein */
+    padding: 10px 0;             /* vertikaler Innenabstand */
+    font-size: 14px;
+    cursor: pointer;
+    border: 2px solid #777777;   /* dunklerer Rand */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Individuelle Pastell‑Farben */
+#convertBtn      { background-color: #fff9c4; }   /* Pastellgelb */
+#copyBtn         { background-color: #bbdefb; }   /* Pastellblau */
+#saveSeparateBtn { background-color: #c8e6c9; }   /* Pastellgrün */
+
+/* Hover‑Effekte (leicht dunkler) */
+.toolbar button:hover {
+    opacity: 0.9;
+}
+
+/* Container für die drei Spalten */
+.panes {
+    flex: 1;                     /* Restliche Höhe einnehmen */
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+    overflow: hidden;
+}
+
+/* Gemeinsame Pane‑Stile */
+.pane {
+    flex: 1;                     /* gleiche Breite für alle drei Spalten */
+    width: 100%;
+    height: 100%;
+    resize: vertical;
+    font-family: Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    overflow: auto;
+}
+
+/* Rechtses Textarea – leichte Abhebung */
+.right {
+    background-color: #f0f8ff;
+}
+
+/* Canvas – Hintergrund und Skalierung */
+.canvas {
+    background-color: #fff;
+    display: block;
+}

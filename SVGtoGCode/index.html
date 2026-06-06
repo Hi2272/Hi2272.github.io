@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerber → G‑Code Konverter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="toolbar">
+        <!-- 1️⃣  Der „Zeichnen“-Button wurde entfernt -->
+        <button id="convertBtn">Konvertieren</button>
+        <button id="copyBtn">Kopieren</button>
+
+        <!-- 2️⃣  Neuer Button zum getrennten Speichern -->
+        <button id="saveSeparateBtn">Getrennt Speichern</button>
+    </div>
+
+    <div class="panes">
+        <!-- linke Spalte – Drill‑TXT -->
+        <textarea id="drillTxt" class="pane left">
+; NON-PLATED HOLES START AT T1
+; THROUGH (PLATED) HOLES START AT T100
+M48
+INCH
+T100C0.040000
+T101C0.038000
+%
+T100
+X023606Y004201
+X007606Y004201
+X017606Y016201
+X007606Y002201
+X013606Y016201
+X023606Y006201
+X007606Y012201
+X015606Y016201
+X007606Y014201
+X023606Y008201
+X023606Y010201
+X023606Y012201
+X023606Y002201
+T101
+X018606Y003201
+X019606Y005201
+X019608Y012201
+X016606Y005201
+X019606Y003201
+X018606Y005201
+X017606Y003201
+X015606Y005201
+X014606Y012201
+X020606Y003201
+X013606Y012201
+X017606Y005201
+X012606Y012201
+X018606Y012201
+X014606Y005201
+X012606Y005201
+X015606Y012201
+X017606Y012201
+X016606Y012201
+X013606Y005201
+T00
+M30
+        </textarea>
+
+        <!-- mittlere Spalte – G‑Code (nur lesbar) -->
+        <textarea id="gcodeTxt" class="pane right"></textarea>
+
+        <!-- rechte Spalte – Canvas für die Bohrungsdarstellung -->
+        <canvas id="holeCanvas" class="pane canvas"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
