@@ -15,7 +15,7 @@ body {
 
 /* Toolbar – Buttons nebeneinander, Gruppe füllt die gesamte Breite */
 .toolbar {
-    padding: 20px;
+    padding: 10px;
     background-color: #fff;
     border-bottom: 1px solid #ddd;
     display: flex;               /* Zeile statt Spalte */
@@ -28,11 +28,11 @@ body {
 /* Grundstil für alle Buttons – gleich breit, gleiche Höhe */
 .toolbar button {
     flex: 1;                     /* jeder Button nimmt gleichen Anteil ein */
-    padding: 10px 0;             /* vertikaler Innenabstand */
-    font-size: 14px;
+    padding: 5px 0;             /* vertikaler Innenabstand */
+    font-size: 20px;
     cursor: pointer;
     border: 2px solid #777777;   /* dunklerer Rand */
-    border-radius: 4px;
+    border-radius: 10px;
     box-sizing: border-box;
 }
 
