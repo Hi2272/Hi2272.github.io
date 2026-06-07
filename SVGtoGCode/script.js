@@ -190,7 +190,6 @@ function generateFinalGCodeFromIntermediate(text) {
         const toolMatch = line.match(/^T(\d+)\s+D=([\d.]+)\s*mm/i);
         if (toolMatch) {
             currentTool = toolMatch[1];
-            result.push(`T${currentTool} M6`);
             return;
         }
 
@@ -199,11 +198,10 @@ function generateFinalGCodeFromIntermediate(text) {
         if (coordMatch && currentTool) {
             const x = parseFloat(coordMatch[1]).toFixed(3);
             const y = parseFloat(coordMatch[2]).toFixed(3);
-            result.push(`G00 X${x} Y${y}`);
-            result.push('G01 Z-2');
-            result.push('G01 Z0');
-            result.push('G01 Z2');
-        }
+            result.push(`G00 X${x} Y${y} F300`);
+            result.push('G01 Z-2 F100');
+            result.push('G01 Z0 F100');
+            result.push('G01 Z2 F300'); }
     });
 
     result.push(footer);
