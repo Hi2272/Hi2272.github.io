@@ -271,12 +271,7 @@ function drawHolesOnCanvas(holes) {
         ctx.strokeStyle = col;
         ctx.setLineDash([]);
 
-        // Kreis
-        const radiusPx = 0.508 * scaleUpper;
-        ctx.beginPath();
-        ctx.arc(cx, cy, radiusPx, 0, 2 * Math.PI);
-        ctx.stroke();
-
+    
         // Nummer (farbig)
         ctx.font = '12px Arial';
         ctx.fillStyle = col;
@@ -398,6 +393,13 @@ document.getElementById('convertBtn').addEventListener('click', () => {
 
     // Merken für späteres „Getrennt Speichern“
     lastBlocks = blocks;
+    
+    // Zeichnen
+    const listText = document.getElementById('gcodeTxt').value;
+    const holes = extractHolesFromIntermediate(listText);
+    drawHolesOnCanvas(holes);
+
+
 });
 
 /* ---------------------------------------------------------------
@@ -484,14 +486,13 @@ document.getElementById('saveSeparateBtn').addEventListener('click', () => {
         'G21 ; set units to millimetres',
         'G90 ; absolute positioning',
         'G94 ; feed per minute',
-        'F300 ; feed rate 300 mm/min',
         'M03 S2000 ; start spindle at 2000 rpm'
     ].join('\n');
 
     const footer = [
-        'G00 X0 Y0',
-        'G01 Z7',
         'M05 ; stop spindle',
+        'G00 X0 Y0 F300',
+        'G01 Z7 F100',
         'M30 ; program end'
     ].join('\n');
 
@@ -504,10 +505,10 @@ document.getElementById('saveSeparateBtn').addEventListener('click', () => {
         block.coords.forEach(p => {
             const x = p.x.toFixed(3);
             const y = p.y.toFixed(3);
-            out.push(`G00 X${x} Y${y}`);
-            out.push('G01 Z-2');
-            out.push('G01 Z0');
-            out.push('G01 Z2');
+            out.push(`G00 X${x} Y${y} F300`);
+            out.push('G01 Z-2 F100');
+            out.push('G01 Z0 F100');
+            out.push('G01 Z2 F100');
         });
         out.push(footer);
         const content = out.join('\n');
