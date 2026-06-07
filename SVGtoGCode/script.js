@@ -79,16 +79,31 @@ function sortBlocks(blocks) {
 }
 
 /* ---------------------------------------------------------------
-   Erzeugt den **Zwischentext**, der in die mittlere Textarea
-   (gcodeTxt) geschrieben wird. Format:
+   Spiegelt die Y‑Koordinate (für das Bohren von unten nach oben).
+   Die Spiegelung erfolgt **nach** dem Sortieren, weil die Sortierung
+   nach dem Spiegeln sinnvoller ist (negative Werte würden das
+   Ergebnis verfälschen). Die Funktion ändert die übergebenen Objekte
+   in‑Place.
+   --------------------------------------------------------------- */
+function mirrorY(blocks) {
+    Object.values(blocks).forEach(arr => {
+        arr.forEach(p => {
+            p.y = -p.y;               // Spiegelung an der X‑Achse
+            p.y = 70 + p.y;
+        });
+    });
+}
+
+/* ---------------------------------------------------------------
+   Erzeugt den Zwischentext, der in die mittlere Textarea geschrieben
+   wird. Format:
 
    T10 D=0.508 mm
-   x: 12.345 mm, y: 6.789 mm
-   x: 13.111 mm, y: 7.222 mm
+   x: 12.345 mm, y: -6.789 mm
    ...
 
-   Die Reihenfolge der Zeilen entspricht exakt der späteren
-   Nummerierung im Canvas.
+   Die Reihenfolge entspricht exakt der späteren Nummerierung im
+   Canvas.
    --------------------------------------------------------------- */
 function generateIntermediateText(blocks, toolMap) {
     let txt = '';
@@ -184,10 +199,10 @@ function generateFinalGCodeFromIntermediate(text) {
         if (coordMatch && currentTool) {
             const x = parseFloat(coordMatch[1]).toFixed(3);
             const y = parseFloat(coordMatch[2]).toFixed(3);
-            result.push(`G00 X${x} Y${y} F300`);
-            result.push('G01 Z-2 F100');
-            result.push('G01 Z0 F100');
-            result.push('G01 Z2 F300');
+            result.push(`G00 X${x} Y${y}`);
+            result.push('G01 Z-2');
+            result.push('G01 Z0');
+            result.push('G01 Z2');
         }
     });
 
@@ -225,8 +240,10 @@ function drawHolesOnCanvas(holes) {
     const upperHeight = canvas.height / 2;
     const marginUpper = 20;
 
+    // Für die Skalierung benötigen wir den maximalen Betrag von Y,
+    // weil Y nach dem Spiegeln negativ sein kann.
     const maxX = Math.max(...holes.map(h => h.x));
-    const maxY = Math.max(...holes.map(h => h.y));
+    const maxY = Math.max(...holes.map(h => Math.abs(h.y)));
 
     const scaleXUpper = (canvas.width - 2 * marginUpper) / maxX;
     const scaleYUpper = (upperHeight - 2 * marginUpper) / maxY;
@@ -239,13 +256,14 @@ function drawHolesOnCanvas(holes) {
     let prevUpper = { x: 0, y: 0 };
     holes.forEach((h, idx) => {
         const cx = marginUpper + h.x * scaleUpper;
-        const cy = upperHeight - (marginUpper + h.y * scaleUpper);
+        // Y‑Achse im Canvas wächst nach unten → wir invertieren das
+        const cy = upperHeight - (marginUpper + Math.abs(h.y) * scaleUpper);
 
         // Weglinie
         ctx.beginPath();
         ctx.moveTo(
             marginUpper + prevUpper.x * scaleUpper,
-            upperHeight - (marginUpper + prevUpper.y * scaleUpper)
+            upperHeight - (marginUpper + Math.abs(prevUpper.y) * scaleUpper)
         );
         ctx.lineTo(cx, cy);
         ctx.stroke();
@@ -301,13 +319,13 @@ function drawHolesOnCanvas(holes) {
     let prevLower = { x: 0, y: 0 };
     holes.forEach((h, idx) => {
         const cx = marginLower + h.x * scaleLower;
-        const cy = lowerY0 + marginLower + euroHeightMM * scaleLower - h.y * scaleLower;
+        const cy = lowerY0 + marginLower + euroHeightMM * scaleLower - Math.abs(h.y) * scaleLower;
 
         // Weglinie
         ctx.beginPath();
         ctx.moveTo(
             marginLower + prevLower.x * scaleLower,
-            lowerY0 + marginLower + euroHeightMM * scaleLower - prevLower.y * scaleLower
+            lowerY0 + marginLower + euroHeightMM * scaleLower - Math.abs(prevLower.y) * scaleLower
         );
         ctx.lineTo(cx, cy);
         ctx.strokeStyle = '#ffcc00';
@@ -356,27 +374,32 @@ let lastToolMap = {};   // tool → Durchmesser (mm)
 let lastBlocks   = {};  // Bohrungen gruppiert nach Werkzeug (nach Sortierung)
 
 /* ---------------------------------------------------------------
-   1️⃣  „Konvertieren“ – erzeugt den Zwischentext (Liste) und füllt
-        die mittlere Textarea. Die eigentliche Visualisierung erfolgt
-        erst, wenn die mittlere Textarea (oder „Neu Zeichnen“) benutzt
-        wird.
+   1️⃣  „Umwandeln“ (Konvertieren) – erzeugt den Zwischentext,
+        spiegelt die Y‑Koordinate, füllt die mittlere Textarea und
+        **zeichnet nicht** sofort (Zeichnen erfolgt über
+        „Neu Zeichnen“ oder über das automatische Listener‑Verhalten).
    --------------------------------------------------------------- */
 document.getElementById('convertBtn').addEventListener('click', () => {
     const drillTxt = document.getElementById('drillTxt').value;
 
-    // Mapping tool → Durchmesser
+    // 1. Mapping tool → Durchmesser
     lastToolMap = parseToolDefinitions(drillTxt);
 
-    // Bohrungen nach Werkzeug gruppieren
+    // 2. Bohrungen nach Werkzeug gruppieren
     const blocks = extractHolesByTool(drillTxt);
 
-    // Sortieren (nach x, dann y) innerhalb jedes Werkzeugs
+    // 3. Sortieren (nach x, dann y) innerhalb jedes Werkzeugs
     sortBlocks(blocks);
-    lastBlocks = blocks;   // für den späteren „Getrennt Speichern“-Schritt
 
-    // Zwischentext erzeugen und in die mittlere Textarea schreiben
+    // 4. **Spiegeln** – Y‑Koordinate invertieren (Bohren von unten nach oben)
+    mirrorY(blocks);
+
+    // 5. Zwischentext erzeugen und in die mittlere Textarea schreiben
     const intermediate = generateIntermediateText(blocks, lastToolMap);
     document.getElementById('gcodeTxt').value = intermediate;
+
+    // Merken für späteres „Getrennt Speichern“
+    lastBlocks = blocks;
 });
 
 /* ---------------------------------------------------------------
@@ -419,7 +442,7 @@ document.getElementById('gcodeTxt').addEventListener('input', () => {
 /* ---------------------------------------------------------------
    4️⃣  „Getrennt Speichern“ – erzeugt **eine eigene G‑Code‑Datei pro
         Durchmesser‑Block**. Der Dateiname erhält den Durchmesser als
-        Zusatz (z. B. `Export_D0.508.gcode`). Die Reihenfolge der Blöcke
+        Zusatz (z. B. `Export_D0_508.gcode`). Die Reihenfolge der Blöcke
         entspricht ihrer Position im Zwischentext (also der Reihenfolge
         in der mittleren Textarea).
    --------------------------------------------------------------- */
@@ -456,7 +479,7 @@ document.getElementById('saveSeparateBtn').addEventListener('click', () => {
             });
         }
     });
-    if (currentBlock) blocks.push(currentBlock); // letzter Block hinzufügen
+    if (currentBlock) blocks.push(currentBlock); // letzten Block hinzufügen
 
     // Header & Footer (identisch für alle Dateien)
     const header = [
@@ -479,20 +502,19 @@ document.getElementById('saveSeparateBtn').addEventListener('click', () => {
 
     // Für jedes Block‑File erzeugen
     blocks.forEach(block => {
-        const linesOut = [header];
-        linesOut.push(`T${block.tool} M6`);
+        const out = [header];
         block.coords.forEach(p => {
             const x = p.x.toFixed(3);
             const y = p.y.toFixed(3);
-            linesOut.push(`G00 X${x} Y${y}`);
-            linesOut.push('G01 Z-2');
-            linesOut.push('G01 Z0');
-            linesOut.push('G01 Z2');
+            out.push(`G00 X${x} Y${y}`);
+            out.push('G01 Z-2');
+            out.push('G01 Z0');
+            out.push('G01 Z2');
         });
-        linesOut.push(footer);
-        const content = linesOut.join('\n');
+        out.push(footer);
+        const content = out.join('\n');
 
-        // Dateinamen mit Durchmesser‑Zusatz (Komma durch Unterstrich ersetzen)
+        // Dateinamen mit Durchmesser‑Zusatz (Komma → Unterstrich)
         const diaStr = block.dia.toString().replace('.', '_');
         const filename = `${baseName}_D${diaStr}.gcode`;
         triggerDownload(filename, content);
@@ -510,9 +532,10 @@ window.addEventListener('load', () => {
     lastToolMap = parseToolDefinitions(drillTxt);
     const blocks = extractHolesByTool(drillTxt);
     sortBlocks(blocks);
+    mirrorY(blocks);                     // initial ebenfalls spiegeln
     lastBlocks = blocks;
 
-    // Zwischentext erzeugen und visualisieren (falls gewünscht)
+    // Zwischentext erzeugen und visualisieren
     const intermediate = generateIntermediateText(blocks, lastToolMap);
     document.getElementById('gcodeTxt').value = intermediate;
     const holes = extractHolesFromIntermediate(intermediate);
