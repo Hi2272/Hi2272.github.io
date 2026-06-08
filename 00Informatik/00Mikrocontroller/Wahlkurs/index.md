@@ -172,7 +172,13 @@ Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) v
 ### Platinen bauen
 
 [CNC](Fritzing/CNC/index.html)  
-[DrillEditor](Fritzing/CNC/index.html)  
+[DrillEditor](Fritzing/CNC/DrillEditor/index.html)
+
+### Plotter
+[UniversalGCodeSender](https://winder.github.io/ugs_website/)   
+[SVGtoGCode](https://sameer.github.io/svg2gcode/)  
+[GCodePlotterKonverter](https://hi2272.github.io/Plotter/index.html)    
+[Drill.txt zu GCode](https://hi2272.github.io/SVGtoGCode/index.html)
 
 ## Dupont-Kabel crimpen
 [Dupont-Kabel](DupontKabel/index.html)

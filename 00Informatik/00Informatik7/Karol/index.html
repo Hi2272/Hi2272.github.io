@@ -141,6 +141,55 @@
             <h1 id="programmieren-mit-robot-karol">Programmieren mit Robot Karol</h1>
 <h2 id="1-einstieg">1. <a href="01Start/index.html">Einstieg</a></h2>
 <h2 id="2-schleifen">2. <a href="02Schleifen/index.html">Schleifen</a></h2>
+<h2 id="3-karol-räumt-auf">3. <a href="https://karol.arrrg.de/#Z5TZ">Karol räumt auf</a></h2>
+<p>Lösung:</p>
+<pre><code class="language-C++">anweisung nachNorden
+  wiederhole solange NichtIstNorden
+    LinksDrehen
+  endewiederhole
+endeAnweisung
+
+Anweisung ziegelweg
+  wiederhole solange IstZiegel
+    Aufheben
+  endewiederhole
+  Schritt
+endeAnweisung
+
+anweisung zurwand
+  wiederhole solange NichtIstWand
+    ziegelweg
+  endewiederhole
+endeAnweisung
+
+anweisung indieEcke
+  nachNorden
+  zurwand
+  linksDrehen
+  zurwand
+  linksDrehen
+endeAnweisung
+
+indieEcke
+zurwand
+linksdrehen
+
+wiederhole solange nichtistwand
+  wenn NichtIstWand dann
+    ziegelweg
+    LinksDrehen
+    zurwand
+    RechtsDrehen
+    wenn NichtIstWand dann
+      ziegelweg
+      RechtsDrehen
+      zurwand
+      linksdrehen
+  endewenn
+endewenn
+endewiederhole
+</code></pre>
+<h2 id="5-karol-lernt-schreiben">5. <a href="https://karol.arrrg.de/#PCKB">Karol lernt schreiben</a></h2>
 
             
             

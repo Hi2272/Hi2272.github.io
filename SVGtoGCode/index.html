@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerber → G‑Code Konverter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="toolbar">
+        <button id="convertBtn">Konvertieren</button>
+        <button id="copyBtn">Neu zeichnen</button>
+        <button id="saveSeparateBtn">Getrennt speichern</button>
+    </div>
+
+    <div class="panes">
+        <textarea id="drillTxt" class="pane left" placeholder="Hier die Drill‑TXT einfügen,..."></textarea>
+        <textarea id="gcodeTxt" class="pane right" placeholder="dann Konvertieren klicken, Koordinaten ggf. hier ändern und exportieren..."></textarea>
+        <canvas id="holeCanvas" class="pane canvas"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
