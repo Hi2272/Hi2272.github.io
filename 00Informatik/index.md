@@ -83,8 +83,8 @@
 
 ## Programmieren
 
-[Robot Karol](00Informatik7/Karol/index.html)  
-
+[Robot Karol](00Informatik7/Karol/index.html)    
+[Scratch](00Informatik7/Scratch/index.html)  
 ## Wettbewerbe
 
 [Informatik-Biber](00Informatik7/Biber/index.html)  
