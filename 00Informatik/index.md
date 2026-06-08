@@ -281,6 +281,7 @@
 [K-nächste Nachbarn](00Informatik11/00KI/03KNN/index.html)    
 [Entscheidungsbaum](00Informatik11/00KI/04ENTER/index.html)  
 [Schwellenwertbasierte Entscheidungsbäume](00Informatik11/00KI/Nahrungsmittel/index.html)  
+[Perzeptron](00Informatik11/00KI/Perzeptron/index.html)  
 
 
 
