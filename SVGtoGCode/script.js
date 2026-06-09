@@ -9,25 +9,51 @@ function parseGerberCoordToMM(coord) {
     return inches * 25.4;               // 1 inch = 25.4 mm
 }
 
-/* ---------------------------------------------------------------
-   Liest die Tool‑Definitionen (TxxxCyyy) und liefert ein Mapping:
-   tool‑Nummer → Durchmesser in Millimeter.
-   --------------------------------------------------------------- */
+/**
+ * Liest die Tool‑Definitionen aus dem Drill‑Text, sortiert die gefundenen
+ * Durchmesser und weist ihnen feste Werte zu:
+ *   1\. kleinster Durchmesser   → 0.8 mm
+ *   2\. zweiter Durchmesser    → 1.0 mm
+ *   3\. dritter Durchmesser    → 1.2 mm
+ *   4\. vierter und alle weiteren → 3.0 mm
+ *
+ * Der Rückgabewert ist ein **Array**, dessen Index exakt dem neuen
+ * Werkzeug‑Index (T0, T1, T2, …) entspricht. Damit kann in
+ * `generateIntermediateText` jederzeit ein Durchmesser über
+ * `diameters[idx]` abgefragt werden – es gibt nie einen „???“-Wert.
+ *
+ * @param {string} drillText – Rohtext aus der Drill‑Textbox.
+ * @returns {number[]} Array mit den zugewiesenen Durchmessern in der Reihenfolge
+ *                     T0, T1, T2, …
+ */
 function parseToolDefinitions(drillText) {
-    const map = {};
+    // 1. Alle Tool‑Einträge (z. B. "T10C0.020000") extrahieren
+    const entries = [];
     const lines = drillText.split('\n');
 
     lines.forEach(line => {
-        line = line.trim();
-        const m = line.match(/^T(\d+)C([\d.]+)/);   // z. B. T10C0.020000
+        const m = line.trim().match(/^T(\d+)C([\d.]+)/); // TxxCyy
         if (m) {
-            const tool = m[1];
-            const inchDia = parseFloat(m[2]);       // in inches
-            const mmDia = inchDia * 25.4;
-            map[tool] = parseFloat(mmDia.toFixed(3));
+            const rawDia = parseFloat(m[2]); // roher Durchmesser (inches oder mm)
+            entries.push({ rawDia });
         }
     });
-    return map;
+
+    // 2. Nach dem rohen Durchmesser aufsteigend sortieren
+    entries.sort((a, b) => a.rawDia - b.rawDia);
+
+    // 3. Festgelegte Durchmesser zuweisen
+    const fixedValues = [0.8, 1.0, 1.2]; // für die ersten drei Werkzeuge
+    const diameters = [];
+
+    entries.forEach((entry, idx) => {
+        const assignedDia = idx < fixedValues.length ? fixedValues[idx] : 3.0;
+        diameters.push(assignedDia);
+    });
+
+    // 4. Falls keine Werkzeuge gefunden wurden, geben wir ein leeres Array zurück
+    //    (die nachfolgenden Funktionen behandeln das ebenfalls korrekt).
+    return diameters;
 }
 
 /* ---------------------------------------------------------------
@@ -94,31 +120,30 @@ function mirrorY(blocks) {
     });
 }
 
-/* ---------------------------------------------------------------
-   Erzeugt den Zwischentext, der in die mittlere Textarea geschrieben
-   wird. Format:
+function generateIntermediateText(blocks, diameters) {
+    // `blocks`  : Objekt { toolKey: [{x, y}, …], … }
+    // `diameters`: Array mit den Durchmessern in mm, z. B. [0.8, 1.0, 1.2, 1.5, 3.0]
 
-   T10 D=0.508 mm
-   x: 12.345 mm, y: -6.789 mm
-   ...
-
-   Die Reihenfolge entspricht exakt der späteren Nummerierung im
-   Canvas.
-   --------------------------------------------------------------- */
-function generateIntermediateText(blocks, toolMap) {
     let txt = '';
     const sortedTools = Object.keys(blocks).sort((a, b) => a - b); // numerisch
 
-    sortedTools.forEach(tool => {
-        const dia = toolMap[tool] ? toolMap[tool].toFixed(3) : '???';
-        txt += `T${tool} D=${dia} mm\n`;
-        blocks[tool].forEach(p => {
+    sortedTools.forEach((_, idx) => {
+        const toolNumber = idx;                     // T0, T1, T2, …
+        const dia = diameters[idx] !== undefined ? diameters[idx].toFixed(3) : '???';
+
+        // Zeile mit Werkzeug‑ und Durchmesser‑Information
+        txt += `T${toolNumber} D=${dia} mm\n`;
+
+        // Koordinaten‑Zeilen für dieses Werkzeug
+        blocks[sortedTools[idx]].forEach(p => {
             txt += `x: ${p.x.toFixed(3)} mm, y: ${p.y.toFixed(3)} mm\n`;
         });
         txt += '\n';
     });
+
     return txt.trim();
 }
+
 
 /* ---------------------------------------------------------------
    Extrahiert Bohrungen aus dem Zwischentext (oder aus beliebigem
@@ -289,8 +314,8 @@ function drawHolesOnCanvas(holes) {
     const lowerHeight = canvas.height - upperHeight;
     const marginLower = 20;
 
-    const euroWidthMM  = 160;
-    const euroHeightMM = 100;
+    const euroWidthMM  = 100;
+    const euroHeightMM = 70;
 
     const scaleXLower = (canvas.width - 2 * marginLower) / euroWidthMM;
     const scaleYLower = (lowerHeight - 2 * marginLower) / euroHeightMM;
@@ -402,19 +427,76 @@ document.getElementById('convertBtn').addEventListener('click', () => {
 
 });
 
-/* ---------------------------------------------------------------
-   2️⃣  „Neu Zeichnen“ (ehemals Kopieren) – liest die aktuelle Liste
-        aus der mittleren Textarea, extrahiert die Koordinaten (inkl.
-        Durchmesser) und zeichnet das Bild neu. Die Nummerierung entspricht
-        exakt den Zeilennummern in der Textarea.
-   --------------------------------------------------------------- */
-const copyBtn = document.getElementById('copyBtn');
-copyBtn.textContent = 'Neu Zeichnen';
-copyBtn.addEventListener('click', () => {
-    const listText = document.getElementById('gcodeTxt').value;
-    const holes = extractHolesFromIntermediate(listText);
-    drawHolesOnCanvas(holes);
+
+// ---------------------------------------------------------------
+//  Kopieren‑Button – kopiert den aktuellen Inhalt von gcodeTxt
+//  in die Zwischenablage.
+// ---------------------------------------------------------------
+document.getElementById('copyBtn').addEventListener('click', () => {
+    const textarea = document.getElementById('gcodeTxt');
+    textarea.select();
+    document.execCommand('copy');
+    // Optional: kurze Rückmeldung für den Nutzer
+    alert('Inhalt von gcodeTxt wurde in die Zwischenablage kopiert.');
 });
+
+document.getElementById('shiftX').addEventListener('change', () => {
+    // Wert aus dem Eingabefeld holen (falls leer → 0)
+    const shift = parseInt(document.getElementById('shiftX').value, 10) || 0;
+
+    // Aktuellen Inhalt der gcodeTxt‑Textarea einlesen
+    const txt = document.getElementById('gcodeTxt').value;
+
+    // Jede Zeile prüfen und nur den X‑Wert anpassen (negative Werte erlaubt)
+    const newLines = txt.split('\n').map(line => {
+        // Muster:  x: <Zahl> mm, y: <Zahl> mm   – Vorzeichen optional
+        const coordMatch = line.match(/(x:\s*)(-?[\d.]+)(\s*mm,\s*y:\s*[-\d.]+\s*mm)/i);
+        if (coordMatch) {
+            const originalX = parseFloat(coordMatch[2]);   // aktueller X‑Wert
+            const newX = (originalX + shift).toFixed(3);   // verschoben, 3 Nachkommastellen
+            return `${coordMatch[1]}${newX}${coordMatch[3]}`; // Zeile mit neuem X‑Wert
+        }
+        return line; // Zeilen ohne Koordinaten bleiben unverändert
+    });
+
+    // Ergebnis zurück in die Textarea schreiben
+    const newIntermediate = newLines.join('\n');
+    document.getElementById('gcodeTxt').value = newIntermediate;
+
+    // Canvas mit den aktualisierten Koordinaten neu zeichnen
+    const holes = extractHolesFromIntermediate(newIntermediate);
+    drawHolesOnCanvas(holes);
+    // ShiftX leeren
+    document.getElementById('shiftX').value = '';
+});
+
+
+document.getElementById('shiftY').addEventListener('change', () => {
+    const shift = parseInt(document.getElementById('shiftY').value, 10) || 0;
+    const txt = document.getElementById('gcodeTxt').value;
+
+    const newLines = txt.split('\n').map(line => {
+        // Erhalte den gesamten X‑Teil und ersetze nur den Y‑Wert
+        const coordMatch = line.match(/(x:\s*[-\d.]+\s*mm,\s*y:\s*)(-?[\d.]+)(\s*mm)/i);
+        if (coordMatch) {
+            const originalY = parseFloat(coordMatch[2]);
+            const newY = (originalY + shift).toFixed(3);
+            return `${coordMatch[1]}${newY}${coordMatch[3]}`;
+        }
+        return line; // Zeilen ohne Koordinaten bleiben unverändert
+    });
+
+    const newIntermediate = newLines.join('\n');
+    document.getElementById('gcodeTxt').value = newIntermediate;
+
+    const holes = extractHolesFromIntermediate(newIntermediate);
+    drawHolesOnCanvas(holes);
+    // ShiftY leeren
+    document.getElementById('shiftY').value = '';
+});
+
+
+
 
 /* ---------------------------------------------------------------
    3️⃣  Änderungen in der mittleren Textarea (direktes Editieren)
