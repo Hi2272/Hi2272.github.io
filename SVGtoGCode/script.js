@@ -9,25 +9,40 @@ function parseGerberCoordToMM(coord) {
     return inches * 25.4;               // 1 inch = 25.4 mm
 }
 
-/* ---------------------------------------------------------------
-   Liest die Tool‑Definitionen (TxxxCyyy) und liefert ein Mapping:
-   tool‑Nummer → Durchmesser in Millimeter.
-   --------------------------------------------------------------- */
+/**
+ * Liest die Tool‑Definitionen aus dem Drill‑Text und erzeugt ein
+ * **Array** mit den zugewiesenen Durchmessern. Die Reihenfolge des
+ * Arrays entspricht exakt der Reihenfolge, in der die Werkzeuge
+ * im Zwischentext (T0, T1, …) auftauchen.
+ *
+ *   1\. kleinster Durchmesser   → 0.8 mm
+ *   2\. zweiter Durchmesser    → 1.0 mm
+ *   3\. dritter Durchmesser    → 1.2 mm
+ *   4\. vierter und alle weiteren → 3.0 mm
+ *
+ * @param {string} drillText – Rohtext aus der Drill‑Textbox.
+ * @returns {number[]} Array mit den Durchmessern für T0, T1, T2, …
+ */
 function parseToolDefinitions(drillText) {
-    const map = {};
+    // 1. Alle eindeutigen Werkzeug‑IDs ermitteln (z. B. "10", "20")
+    const toolSet = new Set();
     const lines = drillText.split('\n');
 
     lines.forEach(line => {
-        line = line.trim();
-        const m = line.match(/^T(\d+)C([\d.]+)/);   // z. B. T10C0.020000
-        if (m) {
-            const tool = m[1];
-            const inchDia = parseFloat(m[2]);       // in inches
-            const mmDia = inchDia * 25.4;
-            map[tool] = parseFloat(mmDia.toFixed(3));
-        }
+        const m = line.trim().match(/^T(\d+)/);   // nur die Tool‑Nummer
+        if (m) toolSet.add(m[1]);
     });
-    return map;
+
+    // 2. Werkzeuge in der Reihenfolge ihres ersten Auftretens sortieren
+    const sortedTools = Array.from(toolSet);
+
+    // 3. Festgelegte Durchmesser zuweisen
+    const fixedValues = [0.8, 1.0, 1.2]; // für die ersten drei Werkzeuge
+    const diameters = sortedTools.map((_, idx) =>
+        idx < fixedValues.length ? fixedValues[idx] : 3.0
+    );
+
+    return diameters; // Index = T‑Nummer
 }
 
 /* ---------------------------------------------------------------
@@ -71,10 +86,7 @@ function extractHolesByTool(drillText) {
    --------------------------------------------------------------- */
 function sortBlocks(blocks) {
     Object.values(blocks).forEach(arr => {
-        arr.sort((a, b) => {
-            if (a.x !== b.x) return a.x - b.x;
-            return a.y - b.y;
-        });
+        arr.sort((a, b) => (a.x !== b.x) ? a.x - b.x : a.y - b.y);
     });
 }
 
@@ -94,135 +106,79 @@ function mirrorY(blocks) {
     });
 }
 
-/* ---------------------------------------------------------------
-   Erzeugt den Zwischentext, der in die mittlere Textarea geschrieben
-   wird. Format:
-
-   T10 D=0.508 mm
-   x: 12.345 mm, y: -6.789 mm
-   ...
-
-   Die Reihenfolge entspricht exakt der späteren Nummerierung im
-   Canvas.
-   --------------------------------------------------------------- */
-function generateIntermediateText(blocks, toolMap) {
+/**
+ * Erzeugt den Zwischentext, der in die mittlere Textarea geschrieben
+ * wird. Werkzeuge ohne Koordinaten werden **nicht** ausgegeben.
+ *
+ * @param {Object} blocks    – { toolKey: [{x,y}, …], … }
+ * @param {number[]} diameters – Durchmesser‑Array, Index = T‑Nummer
+ * @returns {string} Der formatierte Zwischentext.
+ */
+function generateIntermediateText(blocks, diameters) {
     let txt = '';
-    const sortedTools = Object.keys(blocks).sort((a, b) => a - b); // numerisch
+    const sortedToolKeys = Object.keys(blocks).sort((a, b) => a - b); // numerisch
 
-    sortedTools.forEach(tool => {
-        const dia = toolMap[tool] ? toolMap[tool].toFixed(3) : '???';
-        txt += `T${tool} D=${dia} mm\n`;
-        blocks[tool].forEach(p => {
+    sortedToolKeys.forEach((origKey, idx) => {
+        const points = blocks[origKey];
+        if (!points || points.length === 0) return; // kein Werkzeug‑Eintrag ohne Punkte
+
+        const toolNumber = idx;                     // T0, T1, T2, …
+        const dia = (diameters[idx] !== undefined) ? diameters[idx].toFixed(3) : '3.000';
+
+        txt += `T${toolNumber} D=${dia} mm\n`;
+        points.forEach(p => {
             txt += `x: ${p.x.toFixed(3)} mm, y: ${p.y.toFixed(3)} mm\n`;
         });
         txt += '\n';
     });
+
     return txt.trim();
 }
 
 /* ---------------------------------------------------------------
    Extrahiert Bohrungen aus dem Zwischentext (oder aus beliebigem
    Text, das das Muster „x: … mm, y: … mm“ enthält). Zusätzlich wird
-   der aktuelle Durchmesser (aus der vorherigen T‑Zeile) gespeichert,
-   damit wir die Farbe und die Nummerierung später nutzen können.
+   die aktuelle Werkzeug‑Nummer (T‑Index) gespeichert, damit Farbe
+   und Nummerierung später verwendet werden können.
    --------------------------------------------------------------- */
 function extractHolesFromIntermediate(text) {
     const holes = [];
     const lines = text.split('\n');
-    let currentDia = null;   // Durchmesser des zuletzt gelesenen Werkzeugs
+    let currentTool = null;   // T‑Index (0,1,2,…)
 
     lines.forEach(line => {
-        // Werkzeug‑Zeile (z. B. "T10 D=0.508 mm")
+        // Werkzeug‑Zeile (z. B. "T0 D=0.800 mm")
         const toolMatch = line.match(/^T(\d+)\s+D=([\d.]+)\s*mm/i);
         if (toolMatch) {
-            currentDia = parseFloat(toolMatch[2]);   // Durchmesser in mm
+            currentTool = parseInt(toolMatch[1], 10);
             return;
         }
 
         // Koordinaten‑Zeile
         const coordMatch = line.match(/x:\s*([\d.]+)\s*mm,\s*y:\s*([\d.]+)\s*mm/i);
-        if (coordMatch) {
-            const x = parseFloat(coordMatch[1]);
-            const y = parseFloat(coordMatch[2]);
-            holes.push({ x, y, dia: currentDia });
+        if (coordMatch && currentTool !== null) {
+            holes.push({
+                x: parseFloat(coordMatch[1]),
+                y: parseFloat(coordMatch[2]),
+                tool: currentTool               // wichtig für Farbe
+            });
         }
     });
     return holes;
 }
 
 /* ---------------------------------------------------------------
-   Erzeugt **echten** G‑Code aus dem Zwischentext. Für jedes Werkzeug
-   wird ein Block erzeugt:
-
-   T10 M6
-   G00 X… Y…
-   G01 Z-2
-   G01 Z0
-   G01 Z2
-   ...
-
-   Am Ende wird der Footer angehängt.
+   Hilfsfunktion: liefert eine feste Farbe für einen Werkzeug‑Index.
    --------------------------------------------------------------- */
-function generateFinalGCodeFromIntermediate(text) {
-    const lines = text.split('\n');
-    const header = [
-        'G21 ; set units to millimetres',
-        'G90 ; absolute positioning',
-        'G94 ; feed per minute',
-        'F300 ; feed rate 300 mm/min',
-        'M03 S2000 ; start spindle at 2000 rpm'
-    ].join('\n');
-
-    const footer = [
-        'G00 X0 Y0',
-        'G01 Z7',
-        'M05 ; stop spindle',
-        'M30 ; program end'
-    ].join('\n');
-
-    const result = [header];
-    let currentTool = null;
-
-    lines.forEach(raw => {
-        const line = raw.trim();
-
-        // Werkzeug‑Zeile
-        const toolMatch = line.match(/^T(\d+)\s+D=([\d.]+)\s*mm/i);
-        if (toolMatch) {
-            currentTool = toolMatch[1];
-            return;
-        }
-
-        // Koordinaten‑Zeile
-        const coordMatch = line.match(/x:\s*([\d.]+)\s*mm,\s*y:\s*([\d.]+)\s*mm/i);
-        if (coordMatch && currentTool) {
-            const x = parseFloat(coordMatch[1]).toFixed(3);
-            const y = parseFloat(coordMatch[2]).toFixed(3);
-            result.push(`G00 X${x} Y${y} F300`);
-            result.push('G01 Z-2 F100');
-            result.push('G01 Z0 F100');
-            result.push('G01 Z2 F300'); }
-    });
-
-    result.push(footer);
-    return result.join('\n');
-}
-
-/* ---------------------------------------------------------------
-   Hilfsfunktion: liefert eine feste Farbe für einen Durchmesser.
-   --------------------------------------------------------------- */
-function getColorForDiameter(dia) {
+function getColorForTool(tool) {
     const palette = ['#0066cc', '#ff6600', '#009900', '#cc00cc', '#ff0000', '#00cccc'];
-    const idx = Math.abs(Math.round(dia * 10)) % palette.length;
+    const idx = Math.abs(parseInt(tool, 10)) % palette.length;
     return palette[idx];
 }
 
 /* ---------------------------------------------------------------
-   Zeichnet die Bohrungen auf das Canvas. Die Reihenfolge des
-   übergebenen `holes`‑Arrays bestimmt die angezeigten Nummern,
-   sodass sie exakt den Zeilennummern in der mittleren Textarea
-   entsprechen. Die Zahlen und die Kreise erhalten die Farbe,
-   die dem jeweiligen Bohrungsdurchmesser zugeordnet ist.
+   Zeichnet die Bohrungen auf das Canvas. Die Farbe wird anhand der
+   Werkzeug‑Nummer (T‑Index) bestimmt.
    --------------------------------------------------------------- */
 function drawHolesOnCanvas(holes) {
     const canvas = document.getElementById('holeCanvas');
@@ -238,8 +194,6 @@ function drawHolesOnCanvas(holes) {
     const upperHeight = canvas.height / 2;
     const marginUpper = 20;
 
-    // Für die Skalierung benötigen wir den maximalen Betrag von Y,
-    // weil Y nach dem Spiegeln negativ sein kann.
     const maxX = Math.max(...holes.map(h => h.x));
     const maxY = Math.max(...holes.map(h => Math.abs(h.y)));
 
@@ -254,7 +208,6 @@ function drawHolesOnCanvas(holes) {
     let prevUpper = { x: 0, y: 0 };
     holes.forEach((h, idx) => {
         const cx = marginUpper + h.x * scaleUpper;
-        // Y‑Achse im Canvas wächst nach unten → wir invertieren das
         const cy = upperHeight - (marginUpper + Math.abs(h.y) * scaleUpper);
 
         // Weglinie
@@ -266,12 +219,10 @@ function drawHolesOnCanvas(holes) {
         ctx.lineTo(cx, cy);
         ctx.stroke();
 
-        // Farbe nach Durchmesser (falls vorhanden)
-        const col = h.dia ? getColorForDiameter(h.dia) : '#0066cc';
+        // Farbe nach Werkzeug‑Nummer
+        const col = (typeof h.tool !== 'undefined') ? getColorForTool(h.tool) : '#0066cc';
         ctx.strokeStyle = col;
-        ctx.setLineDash([]);
 
-    
         // Nummer (farbig)
         ctx.font = '12px Arial';
         ctx.fillStyle = col;
@@ -289,14 +240,14 @@ function drawHolesOnCanvas(holes) {
     const lowerHeight = canvas.height - upperHeight;
     const marginLower = 20;
 
-    const euroWidthMM  = 160;
-    const euroHeightMM = 100;
+    const euroWidthMM  = 100;
+    const euroHeightMM = 70;
 
     const scaleXLower = (canvas.width - 2 * marginLower) / euroWidthMM;
     const scaleYLower = (lowerHeight - 2 * marginLower) / euroHeightMM;
     const scaleLower = Math.min(scaleXLower, scaleYLower);
 
-    // Rechteck
+    // Rechteck (Euro‑Platine)
     ctx.save();
     ctx.strokeStyle = '#777777';
     ctx.lineWidth   = 1;
@@ -308,7 +259,7 @@ function drawHolesOnCanvas(holes) {
     ctx.strokeRect(rectX, rectY, rectW, rectH);
     ctx.restore();
 
-    // Bohrungen verkleinert
+    // Bohrungen (kleiner dargestellt)
     let prevLower = { x: 0, y: 0 };
     holes.forEach((h, idx) => {
         const cx = marginLower + h.x * scaleLower;
@@ -326,12 +277,12 @@ function drawHolesOnCanvas(holes) {
         ctx.lineWidth = 1;
         ctx.stroke();
 
-        // Kreis (Farbe nach Durchmesser)
-        const col = h.dia ? getColorForDiameter(h.dia) : '#0066cc';
+        // Kreis (Farbe nach Werkzeug‑Nummer)
+        const col = (typeof h.tool !== 'undefined') ? getColorForTool(h.tool) : '#0066cc';
         ctx.strokeStyle = col;
         ctx.setLineDash([]);
 
-        const radiusPx = 0.508 * scaleLower;
+        const radiusPx = 0.508 * scaleLower; // 0.508 mm = 0.020 inch (Standard‑Bohrung)
         ctx.beginPath();
         ctx.arc(cx, cy, radiusPx, 0, 2 * Math.PI);
         ctx.stroke();
@@ -363,19 +314,17 @@ function triggerDownload(filename, content) {
 /* ---------------------------------------------------------------
    Globale Variablen – werden zwischen den Event‑Handlern ausgetauscht.
    --------------------------------------------------------------- */
-let lastToolMap = {};   // tool → Durchmesser (mm)
-let lastBlocks   = {};  // Bohrungen gruppiert nach Werkzeug (nach Sortierung)
+let lastToolMap = [];   // Array mit Durchmessern für T0, T1, …
+let lastBlocks   = {};  // Bohrungen gruppiert nach ursprünglichem Werkzeug
 
 /* ---------------------------------------------------------------
-   1️⃣  „Umwandeln“ (Konvertieren) – erzeugt den Zwischentext,
-        spiegelt die Y‑Koordinate, füllt die mittlere Textarea und
-        **zeichnet nicht** sofort (Zeichnen erfolgt über
-        „Neu Zeichnen“ oder über das automatische Listener‑Verhalten).
+   1️⃣  „Umwandeln“ – erzeugt den Zwischentext, spiegelt Y,
+        füllt die mittlere Textarea und zeichnet.
    --------------------------------------------------------------- */
 document.getElementById('convertBtn').addEventListener('click', () => {
     const drillTxt = document.getElementById('drillTxt').value;
 
-    // 1. Mapping tool → Durchmesser
+    // 1. Durchmesser‑Array erzeugen (T0, T1, …)
     lastToolMap = parseToolDefinitions(drillTxt);
 
     // 2. Bohrungen nach Werkzeug gruppieren
@@ -384,7 +333,7 @@ document.getElementById('convertBtn').addEventListener('click', () => {
     // 3. Sortieren (nach x, dann y) innerhalb jedes Werkzeugs
     sortBlocks(blocks);
 
-    // 4. **Spiegeln** – Y‑Koordinate invertieren (Bohren von unten nach oben)
+    // 4. Spiegeln – Y‑Koordinate invertieren (Bohren von unten nach oben)
     mirrorY(blocks);
 
     // 5. Zwischentext erzeugen und in die mittlere Textarea schreiben
@@ -393,64 +342,84 @@ document.getElementById('convertBtn').addEventListener('click', () => {
 
     // Merken für späteres „Getrennt Speichern“
     lastBlocks = blocks;
-    
+
     // Zeichnen
-    const listText = document.getElementById('gcodeTxt').value;
-    const holes = extractHolesFromIntermediate(listText);
+    const holes = extractHolesFromIntermediate(intermediate);
     drawHolesOnCanvas(holes);
-
-
 });
 
 /* ---------------------------------------------------------------
-   2️⃣  „Neu Zeichnen“ (ehemals Kopieren) – liest die aktuelle Liste
-        aus der mittleren Textarea, extrahiert die Koordinaten (inkl.
-        Durchmesser) und zeichnet das Bild neu. Die Nummerierung entspricht
-        exakt den Zeilennummern in der Textarea.
+   Kopieren‑Button – kopiert den aktuellen Inhalt von gcodeTxt
+   in die Zwischenablage.
    --------------------------------------------------------------- */
-const copyBtn = document.getElementById('copyBtn');
-copyBtn.textContent = 'Neu Zeichnen';
-copyBtn.addEventListener('click', () => {
-    const listText = document.getElementById('gcodeTxt').value;
-    const holes = extractHolesFromIntermediate(listText);
-    drawHolesOnCanvas(holes);
+document.getElementById('copyBtn').addEventListener('click', () => {
+    const textarea = document.getElementById('gcodeTxt');
+    textarea.select();
+    document.execCommand('copy');
+    alert('Inhalt von gcodeTxt wurde in die Zwischenablage kopiert.');
 });
 
 /* ---------------------------------------------------------------
-   3️⃣  Änderungen in der mittleren Textarea (direktes Editieren)
-        sollen sofort neu zeichnen. Wir unterstützen beide Formate:
-        – das neue „x: … mm, y: … mm“-Format
-        – das alte „G00 X… Y…“-Format (Fallback).
+   Shift‑X / Shift‑Y – verschieben die Koordinaten in der
+   gcodeTxt‑Textarea und aktualisieren das Canvas.
+   --------------------------------------------------------------- */
+document.getElementById('shiftX').addEventListener('change', () => {
+    const shift = parseInt(document.getElementById('shiftX').value, 10) || 0;
+    const txt = document.getElementById('gcodeTxt').value;
+
+    const newLines = txt.split('\n').map(line => {
+        const coordMatch = line.match(/(x:\s*)(-?[\d.]+)(\s*mm,\s*y:\s*[-\d.]+\s*mm)/i);
+        if (coordMatch) {
+            const newX = (parseFloat(coordMatch[2]) + shift).toFixed(3);
+            return `${coordMatch[1]}${newX}${coordMatch[3]}`;
+        }
+        return line;
+    });
+
+    const newIntermediate = newLines.join('\n');
+    document.getElementById('gcodeTxt').value = newIntermediate;
+    drawHolesOnCanvas(extractHolesFromIntermediate(newIntermediate));
+    document.getElementById('shiftX').value = '';
+});
+
+document.getElementById('shiftY').addEventListener('change', () => {
+    const shift = parseInt(document.getElementById('shiftY').value, 10) || 0;
+    const txt = document.getElementById('gcodeTxt').value;
+
+    const newLines = txt.split('\n').map(line => {
+        const coordMatch = line.match(/(x:\s*[-\d.]+\s*mm,\s*y:\s*)(-?[\d.]+)(\s*mm)/i);
+        if (coordMatch) {
+            const newY = (parseFloat(coordMatch[2]) + shift).toFixed(3);
+            return `${coordMatch[1]}${newY}${coordMatch[3]}`;
+        }
+        return line;
+    });
+
+    const newIntermediate = newLines.join('\n');
+    document.getElementById('gcodeTxt').value = newIntermediate;
+    drawHolesOnCanvas(extractHolesFromIntermediate(newIntermediate));
+    document.getElementById('shiftY').value = '';
+});
+
+/* ---------------------------------------------------------------
+   Direkte Änderungen in der mittleren Textarea sollen sofort
+   neu zeichnen.
    --------------------------------------------------------------- */
 document.getElementById('gcodeTxt').addEventListener('input', () => {
     const txt = document.getElementById('gcodeTxt').value;
-
-    let holes = [];
-    if (/x:\s*[\d.]+\s*mm,\s*y:\s*[\d.]+\s*mm/i.test(txt)) {
-        holes = extractHolesFromIntermediate(txt);
-    } else if (/G00\s+X/i.test(txt)) {
-        // Fallback: alte G‑Code‑Zeilen
-        const lines = txt.split('\n');
-        lines.forEach(line => {
-            const m = line.match(/G00\s+X([\d.]+)\s+Y([\d.]+)/i);
-            if (m) holes.push({ x: parseFloat(m[1]), y: parseFloat(m[2]), dia: null });
-        });
-    }
+    const holes = extractHolesFromIntermediate(txt);
     drawHolesOnCanvas(holes);
 });
 
 /* ---------------------------------------------------------------
-   4️⃣  „Getrennt Speichern“ – erzeugt **eine eigene G‑Code‑Datei pro
-        Durchmesser‑Block**. Der Dateiname erhält den Durchmesser als
-        Zusatz (z. B. `Export_D0_508.gcode`). Die Reihenfolge der Blöcke
-        entspricht ihrer Position im Zwischentext (also der Reihenfolge
-        in der mittleren Textarea).
+   4️⃣  „Getrennt Speichern“ – erzeugt eine eigene G‑Code‑Datei pro
+        Durchmesser‑Block.
    --------------------------------------------------------------- */
 document.getElementById('saveSeparateBtn').addEventListener('click', () => {
     const txt = document.getElementById('gcodeTxt').value;
     if (!txt.trim()) return;
 
-    // Parse Zwischentext in einzelne Blöcke (Werkzeug‑Zeile + Koordinaten)
+    // Zwischentext in einzelne Blöcke parsen
     const lines = txt.split('\n');
     const blocks = [];               // [{tool, dia, coords: [{x,y}]}]
     let currentBlock = null;
@@ -479,9 +448,8 @@ document.getElementById('saveSeparateBtn').addEventListener('click', () => {
             });
         }
     });
-    if (currentBlock) blocks.push(currentBlock); // letzten Block hinzufügen
+    if (currentBlock) blocks.push(currentBlock);
 
-    // Header & Footer (identisch für alle Dateien)
     const header = [
         'G21 ; set units to millimetres',
         'G90 ; absolute positioning',
@@ -499,7 +467,6 @@ document.getElementById('saveSeparateBtn').addEventListener('click', () => {
     const baseName = prompt('Dateinamen (ohne Endung) für die Export‑Dateien:', 'Export');
     if (!baseName) return;
 
-    // Für jedes Block‑File erzeugen
     blocks.forEach(block => {
         const out = [header];
         block.coords.forEach(p => {
@@ -511,12 +478,9 @@ document.getElementById('saveSeparateBtn').addEventListener('click', () => {
             out.push('G01 Z2 F100');
         });
         out.push(footer);
-        const content = out.join('\n');
-
-        // Dateinamen mit Durchmesser‑Zusatz (Komma → Unterstrich)
         const diaStr = block.dia.toString().replace('.', '_');
         const filename = `${baseName}_D${diaStr}.gcode`;
-        triggerDownload(filename, content);
+        triggerDownload(filename, out.join('\n'));
     });
 });
 
@@ -527,16 +491,13 @@ window.addEventListener('load', () => {
     const drillTxt = document.getElementById('drillTxt').value;
     if (!drillTxt) return;
 
-    // Vorbereitung – Mapping und Bohrungen gruppieren
     lastToolMap = parseToolDefinitions(drillTxt);
     const blocks = extractHolesByTool(drillTxt);
     sortBlocks(blocks);
-    mirrorY(blocks);                     // initial ebenfalls spiegeln
+    mirrorY(blocks);
     lastBlocks = blocks;
 
-    // Zwischentext erzeugen und visualisieren
     const intermediate = generateIntermediateText(blocks, lastToolMap);
     document.getElementById('gcodeTxt').value = intermediate;
-    const holes = extractHolesFromIntermediate(intermediate);
-    drawHolesOnCanvas(holes);
+    drawHolesOnCanvas(extractHolesFromIntermediate(intermediate));
 });
