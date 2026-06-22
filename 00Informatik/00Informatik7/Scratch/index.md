@@ -52,6 +52,7 @@ https://scratch.mit.edu/projects/173183056/
      - stoppt alles
    
 3. Die Steine
+   [Startpunkt Ball, Schläger, GameOver programmiert](https://scratch.mit.edu/projects/1334332963)  
    1. Abprallen des Balles vom Stein
    2. Zerstören des Steins
    3. Kopieren des Steins zum Aufbau eines Spielfeldes
