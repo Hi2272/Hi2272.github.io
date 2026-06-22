@@ -155,21 +155,75 @@ Für den Unterricht ist dies nicht nötig.<br>
 <a href="https://scratch.mit.edu/projects/173183056/">https://scratch.mit.edu/projects/173183056/</a></p>
 <h2 id="programmieren-von-breakout">Programmieren von Breakout</h2>
 <ol>
-<li>Der Ball
-<ol>
-<li>Bewegung des Balles</li>
-<li>Abprallen von den Wänden</li>
-</ol>
-</li>
-<li>Der Schläger
+<li>
+<p>Der Schläger</p>
 <ol>
 <li>Bewegen mit den Pfeiltasten</li>
 <li>Bewegen mit der Maus</li>
-<li>Abprallen des Balles vom Schläger</li>
-<li>Ball geht ins Aus</li>
 </ol>
 </li>
-<li>Die Steine
+<li>
+<p>Der Ball
+<a href="https://scratch.mit.edu/projects/1332984043">Startpunkt: Schläger programmiert</a></p>
+<ol>
+<li>Bewegung des Balles
+Wenn die grüne Fahne angeklickt wurde, soll
+<ul>
+<li>der Ball zu x=0 und y=0 gehen.</li>
+<li>die Bewegungsrichtung auf 45° gesetzt werden.</li>
+<li>fortlaufend wiederholt werden:
+<ul>
+<li>der Ball geht einen 10er-Schritt</li>
+<li>der Ball prallt vom Rand ab</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Abprallen des Balles vom Schläger
+<ul>
+<li>Der Ball prüft fortlaufend:
+<ul>
+<li>Falls wird Schläger berührt (Fühlen)</li>
+<li>drehe dich um 180°</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Ball geht ins Aus
+<ul>
+<li>Der Ball prüft fortlaufend:
+<ul>
+<li>Falls y-Position &lt; -155</li>
+<li>stoppe alles</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Ein &quot;Game Over&quot; Objekt soll am Spielende aufgeblendet werden.<br>
+Zeichne ein neues Objekt: Ein großes Rechteck (Schild) mit dem Text &quot;Game over&quot;.<br>
+Programmiere folgenden Code:</li>
+</ol>
+<ul>
+<li>Wenn die grüne Fahne geklickt wird
+<ul>
+<li>wird das Schild unsichtbar (Verstecke dich).</li>
+</ul>
+</li>
+<li>Wenn der Ball ins aus geht,
+<ul>
+<li>sendet er die Botschaft &quot;GameOver&quot; an alle (Stoppe alles wird hier entfernt!)</li>
+</ul>
+</li>
+<li>Wenn das Schild die Botschaft &quot;GameOver&quot; erhält,
+<ul>
+<li>wird es sichtbar (zeige dich)</li>
+<li>stoppt alles</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Die Steine</p>
 <ol>
 <li>Abprallen des Balles vom Stein</li>
 <li>Zerstören des Steins</li>
