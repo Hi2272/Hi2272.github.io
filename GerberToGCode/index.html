@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Gerber → G‑Code Konverter</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="button-bar">
+<button id="convertBtn">Konvertieren</button>
+<button id="copyBtn">Kopieren</button>
+<button id="saveBtn">Speichern</button>
+</header>
+
+          
+<main class="content">
+    <section class="panel">
+        <h3>Gerber‑Txt</h3>
+        <textarea id="gerberTxt" placeholder="Gerber‑Daten hier einfügen"></textarea>
+    </section>
+
+    <section class="panel">
+        <h3>G‑Code</h3>
+        <textarea id="gcodeOutput" readonly placeholder="G‑Code wird hier angezeigt"></textarea>
+    </section>
+
+    <section class="panel">
+        <h3>Canvas View</h3>
+        <canvas id="boardCanvas" width="700" height="1000"></canvas>
+    </section>
+</main>
+
+<script src="script.js"></script>
+
+        
+
+</body>
+</html> 

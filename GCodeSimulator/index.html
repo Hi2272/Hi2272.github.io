@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>G‑Code Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="controls">
+        <!-- Breite / Höhe (Standard = 100 mm × 70 mm) -->
+        <label for="canvasW">
+            Breite (mm):
+            <input type="number" id="canvasW" min="1" value="100" style="width:70px;">
+        </label>
+
+        <label for="canvasH">
+            Höhe (mm):
+            <input type="number" id="canvasH" min="1" value="70" style="width:70px;">
+        </label>
+
+        <button id="runBtn">Simulieren</button>
+
+        <!-- Geschwindigkeit (Standard = 1) -->
+        <label for="speed">Geschwindigkeit:
+            <input type="range" id="speed" min="1" max="100" value="1">
+            <span id="speedVal">1</span>
+        </label>
+    </header>
+
+    <main class="workspace">
+        <section class="left">
+            <!-- Vorgabe‑G‑Code mit Kommentaren -->
+            <textarea id="gcode" placeholder="G‑Code hier einfügen …">
+; Maßeinheit mm
+G21
+; absolute Einheiten
+G90
+; Start der Spindel mit 2000 U/Min
+M3 S2000
+</textarea>
+        </section>
+        <section class="right">
+            <canvas id="canvas" width="800" height="600"></canvas>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
