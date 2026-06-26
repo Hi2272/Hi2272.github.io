@@ -154,17 +154,13 @@ Für den Unterricht ist dies nicht nötig.<br>
 <p>Untersuche dies an folgendem Spiel:<br>
 <a href="https://scratch.mit.edu/projects/173183056/">https://scratch.mit.edu/projects/173183056/</a></p>
 <h2 id="programmieren-von-breakout">Programmieren von Breakout</h2>
-<ol>
-<li>
-<p>Der Schläger</p>
+<h3 id="1-der-schläger">1. Der Schläger</h3>
 <ol>
 <li>Bewegen mit den Pfeiltasten</li>
 <li>Bewegen mit der Maus</li>
 </ol>
-</li>
-<li>
-<p>Der Ball
-<a href="https://scratch.mit.edu/projects/1332984043">Startpunkt: Schläger programmiert</a></p>
+<h3 id="2-der-ball">2. Der Ball</h3>
+<p><a href="https://scratch.mit.edu/projects/1332984043">Startpunkt: Schläger programmiert</a></p>
 <ol>
 <li>Bewegung des Balles
 Wenn die grüne Fahne angeklickt wurde, soll
@@ -184,7 +180,7 @@ Wenn die grüne Fahne angeklickt wurde, soll
 <li>Der Ball prüft fortlaufend:
 <ul>
 <li>Falls wird Schläger berührt (Fühlen)</li>
-<li>drehe dich um 180°</li>
+<li>drehe dich um 90°</li>
 </ul>
 </li>
 </ul>
@@ -221,16 +217,52 @@ Programmiere folgenden Code:</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>
-<p>Die Steine
-<a href="https://scratch.mit.edu/projects/1334332963">Startpunkt Ball, Schläger, GameOver programmiert</a></p>
+<h3 id="3-die-steine">3. Die Steine</h3>
+<p><a href="https://scratch.mit.edu/projects/1334332963">Startpunkt Ball, Schläger, GameOver programmiert</a></p>
 <ol>
-<li>Abprallen des Balles vom Stein</li>
-<li>Zerstören des Steins</li>
-<li>Kopieren des Steins zum Aufbau eines Spielfeldes</li>
-</ol>
+<li>Abprallen des Balles vom Stein<br>
+Wenn der Ball den Stein berührt, soll er sich um 90° drehen.</li>
+<li>Viele Kopien (Klone) des Steins erzeugen
+<ul>
+<li><strong>Eine Zeile von Steinen:</strong><br>
+Programmiere für den Stein folgendes Skript:
+<ul>
+<li>Wenn die grüne Fahne angeklickt wird,</li>
+<li>geht der Stein auf die Position x=-200, y=130 (links oben)</li>
+<li>Wiederhole 8 mal:
+<ul>
+<li>Erzeuge einen Klon von mir selbst (Steuerung)</li>
+<li>Ändere x um 50</li>
+</ul>
 </li>
+</ul>
+</li>
+<li><strong>Vier Zeilen von Steinen</strong></li>
+<li>Wiederhole 4 mal:
+<ul>
+<li>Setze x auf -200</li>
+<li>Ändere y um -20</li>
+<li>Wiederhole 8 mal Schleife von oben zum Erzeugen einer Stein-Reihe.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Steine verschwinden, wenn sie getroffen werden.
+Programmiere für den Stein folgendes Skript:
+<ul>
+<li>Wenn ich als Klon entstehe</li>
+<li>Wiederhole fortlaufend:
+<ul>
+<li>Falls ich vom Ball berührt werden,
+<ul>
+<li>lösche diesen Klon</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Suche Fehler im Spiel und bessere sie aus.</li>
 </ol>
 
             
