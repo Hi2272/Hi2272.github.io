@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>CNC-Fr&auml;sen</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="cnc-fräsen">CNC-Fräsen</h1>
+<h2 id="allgemeines">Allgemeines</h2>
+<p>Eine CNC-Tischfräse ist vereinfacht gesagt eine Bohrmaschine, die über den Computer gesteuert werden kann. Der Computer kann:</p>
+<ul>
+<li>den Bohrer ein- und ausschalten</li>
+<li>den Bohrer nach links und rechts bewegen (x-Achse).</li>
+<li>den Bohrer nach oben und unten bewegen (z-Achse).</li>
+<li>den Tisch mit dem Werkstück vor- und zurückbewegen (y-Achse).</li>
+</ul>
+<p>Damit können Löcher an exakt festgelegte Stellen gebohrt werden oder Werkstücke ausgefräst werden.</p>
+<p>Der Steuer-Code wird hierbei mit GCode-Befehlen übermittelt:</p>
+<table>
+<thead>
+<tr>
+<th>GCode-Befehl</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M03 S2000</td>
+<td>Startet die Bohrspindel mit 2000 U/min</td>
+</tr>
+<tr>
+<td>G21</td>
+<td>Setzt die Maßeinheit auf Millimeter</td>
+</tr>
+<tr>
+<td>G90</td>
+<td>Absolute Maßeinheiten. Die Einheiten beziehen sich auf einen festgelegten Startpunkt (x=0,y=0, z=0) in der vorderen linken Ecke des Werkstücks.</td>
+</tr>
+<tr>
+<td>G91</td>
+<td>Relative Maßeinheiten. Die Einheiten beziehen sich auf den aktuellen Standort der Spindel.</td>
+</tr>
+<tr>
+<td>G0 X10</td>
+<td>Schnelle Fahrt zu x=10 mm. Im absoluten Modus (G90) fährt die Spindel so lange, bis die x-Koordinate 10 mm erreicht ist. Im relativen Modus (G91) fährt die Spindel 10 mm nach rechts.</td>
+</tr>
+<tr>
+<td>G1 Z-2 F100</td>
+<td>Langsame Fahrt zu z=-2 mm. Über F100 wird die Geschwindigkeit (Feedrate) mit 100 mm pro Minute eingestellt. Mit diesem Befehl bohrt die Fräse langsam ein 2mm tiefes Loch ins Werkstück, wenn absolute Maßeinheiten eingestellt sind.</td>
+</tr>
+<tr>
+<td>M05</td>
+<td>Stoppt die Spindel</td>
+</tr>
+<tr>
+<td>M30</td>
+<td>Ende des Programms</td>
+</tr>
+</tbody>
+</table>
+<h2 id="arbeitsgang-zum-fräsen-und-ätzen-von-platinen">Arbeitsgang zum Fräsen und Ätzen von Platinen</h2>
+<ol>
+<li>Konstruktion der Platine in Fritzing.</li>
+<li>Export zur Produktion als Gerber.</li>
+<li>Öffnen der Datei mit den Bohrungen (...drill.txt) mit einem Editor.</li>
+<li>Kopieren des Code und einfügen auf der Internetseite <a href="https://hi2272.github.io/SVGtoGCode/">DrillKonverter</a>.</li>
+<li>Konvertieren, sortieren und als GCOde-Dateien speichern.</li>
+<li>Starten von UniversalGCodeSender (<a href="https://universalgcodesender.com/">https://universalgcodesender.com/</a>).</li>
+<li>Laden der Dateien und Bohren der Platine.</li>
+<li>Zeichnen der Leiterbahnen mit einem Edding auf der Kupferseite.</li>
+<li>Ätzen der Platine mit Natriumperoxodisulfat.</li>
+</ol>
+
+            
+            
+        </body>
+        </html>

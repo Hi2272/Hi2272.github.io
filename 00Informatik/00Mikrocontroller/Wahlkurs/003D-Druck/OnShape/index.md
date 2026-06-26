@@ -165,13 +165,7 @@ Custom Feature Zahnrad:
 https://cad.onshape.com/documents/5742c8cde4b06c68b362d748/v/1db29081376c095cf10e2a3d/e/01a666571e625f8b819fd75b
 
 #### b) Nachbearbeiten von STL-Dateien
-
-STL-Dateien werden in Onshape als sogenannte Mesh-Objekte eingefügt. Ihre Oberfläche wird als Sammlung von Punkten (Vertices), Kanten und Flächen dargestellt. Diese Objekte können wir in Onshape nicht direkt verändern. Wir können aber auf dem Mesh-Objekt neue Ebenen und Formen anlegen, mit denen wir dann wie gewohnt arbeiten können. Die folgenden Videos zeigen das Vorgehen:  
-- [Bohrung verschließen oder vergrößern](https://youtu.be/WLT_AozSL_E)  
-- [Bohrung verkleinern](https://youtu.be/HNV7gATUfGo)  
-- [Komplexe Operationen (englisch)](https://youtu.be/Lm_uuB9_2yg)  
-
-
+[STL Konvertieren](STLKonvertieren/index.html)  
 
 [zurück](../index.html)
 
