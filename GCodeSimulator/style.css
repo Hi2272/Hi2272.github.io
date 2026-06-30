@@ -1,0 +1,133 @@
+/* ---------------------------------------------------------------
+   Grundlayout
+   --------------------------------------------------------------- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* ---------------------------------------------------------------
+   Steuerleiste
+   --------------------------------------------------------------- */
+.controls {
+    background: #f0f0f0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Button‑Stil (abgerundete Ecken, hellgrün, rote Schrift) */
+.controls button {
+    background-color: #ccffcc;   /* hellgrün */
+    color: #ff0000;              /* rote Schrift */
+    border: none;
+    border-radius: 8px;          /* abgerundete Ecken */
+    padding: 8px 16px;
+    cursor: pointer;
+}
+.controls button:hover {
+    background-color: #b2e6b2;
+}
+
+/* Button‑Stil (abgerundete Ecken, hellgrün, rote Schrift) */
+/* Simulieren‑Button: hellgrün mit roter Schrift (wie zuvor definiert) */
+#runBtn {
+    background-color: #ccffcc;   /* hellgrün */
+    color: #ff0000;              /* rote Schrift */
+    border: solid 1px #00aa00;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+/* Stopp‑Button: roter Hintergrund, grüne Schrift */
+#stopBtn {
+    background-color: #ff6666;   /* rot */
+    color: #00aa00;              /* grün */
+    border: solid 1px #aa0000;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+#commandText {
+    font-size: x-large;
+    color: #00ff00;
+    font-weight: bold;
+}
+/* ---------------------------------------------------------------
+   Arbeitsbereich
+   --------------------------------------------------------------- */
+.workspace {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* ---------------------------------------------------------------
+   Linke Seite – Textarea + Hilfetext untereinander
+   --------------------------------------------------------------- */
+.left {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;          /* vertikale Anordnung */
+    gap: 12px;                       /* Abstand zwischen Elementen */
+}
+
+/* Überschriften über den Bereichen */
+.left h3,
+.right h3 {
+    margin: 0 0 4px 0;
+    font-size: 1.1rem;
+}
+
+/* Textarea – nimmt konstant 70 % der Höhe der linken Spalte ein */
+#gcode {
+    flex: 0 0 70%;                   /* feste Höhe = 70 % des Eltern‑Containers */
+    width: 100%;
+    box-sizing: border-box;
+    font-family: monospace;
+    resize: none;
+    padding: 8px;
+}
+
+/* Hilfetext unter dem Textarea – nutzt die restlichen 30 % */
+.gcode-help {
+    flex: 1;                         /* füllt den verbleibenden Raum */
+    background: #fafafa;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 4px;
+    overflow-y: auto;
+}
+
+/* ---------------------------------------------------------------
+   Rechte Seite – Canvas
+   --------------------------------------------------------------- */
+.right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: #222;
+    padding: 10px;
+}
+#canvas {
+    background: #fff;
+    border: 1px solid #999;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Stil für das aktuelle Befehls‑Label */
+.current-command {
+    font-size: 0.9rem;
+    text-align: center;
+}

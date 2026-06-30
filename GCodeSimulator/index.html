@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>G‑Code Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="controls">
+        <!-- Breite / Höhe (Standard = 100 mm × 70 mm) -->
+        <label for="canvasW">
+            Breite (mm):
+            <input type="number" id="canvasW" min="1" value="100" style="width:70px;">
+        </label>
+
+        <label for="canvasH">
+            Höhe (mm):
+            <input type="number" id="canvasH" min="1" value="70" style="width:70px;">
+        </label>
+
+<button id="runBtn">Simulation starten</button>
+<button id="stopBtn" style="display:none;">Simulation stoppen</button>
+        <!-- Geschwindigkeit (Standard = 1) -->
+        <label for="speed">Geschwindigkeit:
+            <input type="range" id="speed" min="1" max="100" value="1">
+            <span id="speedVal">1</span>
+        </label>
+    </header>
+
+    <main class="workspace">
+        <section class="left">
+            <!-- Titel über dem Textfeld -->
+            <div id="gcodeTitle">Bitte GCode ergänzen oder einfügen und auf "Simulation starten" klicken.:</div>
+            <textarea id="gcode" placeholder="G‑Code hier einfügen …">
+
+G21
+G90
+M3 S2000
+G0 X0 Y0 Z5
+
+</textarea>
+            <div class="gcode-help" style="margin-top: 12px; font-size: 0.9rem; line-height: 1.4;">
+                <b>Wichtige G‑Code‑Befehle:</b><br>
+                <ul style="padding-left: 1.2rem; margin: 0;">
+                    <li><strong>G21</strong> – Maßeinheit auf Millimeter setzen.</li>
+                    <li><strong>G90</strong> – Absolute Positionierung aktivieren.</li>
+                    <li><strong>G0 Xxx Yyy Zzz</strong> – Schnellfahrt ohne zu fräsen).</li>
+                    <li><strong>G1 Xxx Yyy Zzz Fff</strong> – Langsamfahrt zum Fräsen mit Geschwindigkeitsangabe.</li>
+                    <li><strong>Fff</strong> – Vorschubgeschwindigkeit (mm/min) festlegen.</li>
+                    <li><strong>M3 Sss</strong> – Spindel einschalten, Drehzahl in U/min angeben.</li>
+                    <li><strong>M5</strong> – Spindel ausschalten.</li>
+                    <li><strong>M30</strong> – Programmende.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="right">
+            <canvas id="canvas" width="800" height="600"></canvas>
+
+            <!-- Neues Element, das den aktuell ausgeführten G‑Code‑Befehl anzeigt -->
+            <div id="currentCommand" class="current-command" style="margin-top:8px; color:#fff;">
+                Befehl: <span id="commandText">‑</span>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
