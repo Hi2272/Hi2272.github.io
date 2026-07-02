@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Programmieren mit Scratch</title>
+            <title>Programmieren von Breakout</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -138,23 +138,117 @@
         
         </head>
         <body class="vscode-body vscode-light">
-            <h1 id="programmieren-mit-scratch">Programmieren mit Scratch</h1>
-<h2 id="allgemeines">Allgemeines</h2>
-<p><a href="https://scratch.mit.edu/projects/editor/">https://scratch.mit.edu/projects/editor/</a></p>
-<p>Zum Speichern deiner eigenen Scratch-Programme musst du dich bei Scratch registrieren.<br>
-Für den Unterricht ist dies nicht nötig.<br>
-<a href="https://scratch.mit.edu/join">https://scratch.mit.edu/join</a></p>
-<p>Ein Scratch-Programm besteht immer aus Objekten von zwei verschiedenen Klassen:</p>
+            <h2 id="programmieren-von-breakout">Programmieren von Breakout</h2>
+<h3 id="1-der-schläger">1. Der Schläger</h3>
+<ol>
+<li>Bewegen mit den Pfeiltasten</li>
+<li>Bewegen mit der Maus</li>
+</ol>
+<h3 id="2-der-ball">2. Der Ball</h3>
+<p><a href="https://scratch.mit.edu/projects/1332984043">Startpunkt: Schläger programmiert</a></p>
+<ol>
+<li>Bewegung des Balles
+Wenn die grüne Fahne angeklickt wurde, soll
 <ul>
-<li>Klasse Sprite: Bewegliche Spielfigur</li>
-<li>Klasse Bühne: Hintergrund, auf der sich die Sprites bewegen.</li>
+<li>der Ball zu x=0 und y=0 gehen.</li>
+<li>die Bewegungsrichtung auf 45° gesetzt werden.</li>
+<li>fortlaufend wiederholt werden:
+<ul>
+<li>der Ball geht einen 10er-Schritt</li>
+<li>der Ball prallt vom Rand ab</li>
 </ul>
-<p>Die Sprites können innerhalb eines Spieles wieder verschiedenen Klassen zugeordnet werden.</p>
-<p>Untersuche dies an folgendem Spiel:<br>
-<a href="https://scratch.mit.edu/projects/173183056/">https://scratch.mit.edu/projects/173183056/</a></p>
-<h2 id="programmieraufgaben">Programmieraufgaben</h2>
-<h3 id="breakout"><a href="01Breakout/index.html">Breakout</a></h3>
-<h3 id="glücksspiel"><a href="02Gluecksspiel/index.html">Glücksspiel</a></h3>
+</li>
+</ul>
+</li>
+<li>Abprallen des Balles vom Schläger
+<ul>
+<li>Der Ball prüft fortlaufend:
+<ul>
+<li>Falls wird Schläger berührt (Fühlen)</li>
+<li>drehe dich um 90°</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Ball geht ins Aus
+<ul>
+<li>Der Ball prüft fortlaufend:
+<ul>
+<li>Falls y-Position &lt; -155</li>
+<li>stoppe alles</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Ein &quot;Game Over&quot; Objekt soll am Spielende aufgeblendet werden.<br>
+Zeichne ein neues Objekt: Ein großes Rechteck (Schild) mit dem Text &quot;Game over&quot;.<br>
+Programmiere folgenden Code:</li>
+</ol>
+<ul>
+<li>Wenn die grüne Fahne geklickt wird
+<ul>
+<li>wird das Schild unsichtbar (Verstecke dich).</li>
+</ul>
+</li>
+<li>Wenn der Ball ins aus geht,
+<ul>
+<li>sendet er die Botschaft &quot;GameOver&quot; an alle (Stoppe alles wird hier entfernt!)</li>
+</ul>
+</li>
+<li>Wenn das Schild die Botschaft &quot;GameOver&quot; erhält,
+<ul>
+<li>wird es sichtbar (zeige dich)</li>
+<li>stoppt alles</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-die-steine">3. Die Steine</h3>
+<p><a href="https://scratch.mit.edu/projects/1334332963">Startpunkt Ball, Schläger, GameOver programmiert</a></p>
+<ol>
+<li>Abprallen des Balles vom Stein<br>
+Wenn der Ball den Stein berührt, soll er sich um 90° drehen.</li>
+<li>Viele Kopien (Klone) des Steins erzeugen
+<ul>
+<li><strong>Eine Zeile von Steinen:</strong><br>
+Programmiere für den Stein folgendes Skript:
+<ul>
+<li>Wenn die grüne Fahne angeklickt wird,</li>
+<li>geht der Stein auf die Position x=-200, y=130 (links oben)</li>
+<li>Wiederhole 8 mal:
+<ul>
+<li>Erzeuge einen Klon von mir selbst (Steuerung)</li>
+<li>Ändere x um 50</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Vier Zeilen von Steinen</strong></li>
+<li>Wiederhole 4 mal:
+<ul>
+<li>Setze x auf -200</li>
+<li>Ändere y um -20</li>
+<li>Wiederhole 8 mal Schleife von oben zum Erzeugen einer Stein-Reihe.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Steine verschwinden, wenn sie getroffen werden.
+Programmiere für den Stein folgendes Skript:
+<ul>
+<li>Wenn ich als Klon entstehe</li>
+<li>Wiederhole fortlaufend:
+<ul>
+<li>Falls ich vom Ball berührt werden,
+<ul>
+<li>lösche diesen Klon</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Suche Fehler im Spiel und bessere sie aus.</li>
+</ol>
 
             
             
