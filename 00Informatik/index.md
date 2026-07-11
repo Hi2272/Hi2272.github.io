@@ -284,7 +284,8 @@
 
 ## Kommunikation in Netzwerken
 [Netzwerke](00Informatik11/Netzwerk/index.html)  
-
+[ALOA-Protokoll](00Informatik11/Netzwerk/Aloa/index.html)  
+[Slotted-ALOA](00Informatik11/Netzwerk/SlottedAloa/index.html)  
 
 # Datenschutz
 ***

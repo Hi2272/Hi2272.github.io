@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ALOA‑Protokoll</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>ALOA‑Protokoll</h1>
+
+    <!-- Anfangszustand -->
+    <div id="initial">
+        <p>
+            Das ALOA‑Protokoll wurde 1970 entwickelt,
+            um Stationen auf verschiedenen Inseln Hawaiis über ein einfaches Funknetzwerk miteinander zu verbinden.<br>
+            Da alle Stationen auf der gleichen Frequenz sendeten, traten Kollisionen auf, sobald zwei Stationen
+            gleichzeitig aktiv waren.<br>
+            Im ALOA-Protokoll wurde dieses Problem wie folgt gelöst:<br>
+        <ul>
+            <li>Alle Stationen dürfen zu beliebigen Zeitpunkten senden.</li>
+            <li>Bei einer Kollision:<br>
+                <ul>
+                    <li>brechen beide Stationen das Senden ab,</li>
+                    <li>warten eine zufällig gewählte Zeit lang,</li>
+                    <li>und senden die Daten anschließend erneut.</li>
+                </ul>
+            </li>
+        </ul>
+        Das ALOA-Protokoll bildet den Grundstein für die heutige Ethernet‑ und WLAN‑Technologie.</p>
+        <h3>Aufgabenstellung:</h3>
+
+        <p>Du leitest eine Wetterstation auf der Insel Hawaiis und sollst deine Messdaten an die Zentrale schicken.<br>
+            Damit dort klar ist, von welcher Station die Daten stammen, muss jeder Sendung ein <b>Header</b>
+            vorangestellt werden:<br>
+            <strong>Station Nr an Zentrale:</strong><br>
+            Deine Stationsnummmer bekommst du von deiner Lehrkraft.<br>
+            Anschließend gibst du Temperatur, Luftfeuchtigkeit und Luftdruck weiter.<br>
+        </p>
+        <button id="startBtn">Start</button>
+    </div>
+
+    <!-- Situation nach „Start“ -->
+    <div id="situation" class="hidden">
+        <ol>
+            <li>
+                <b>Senden:</b><br>
+                <ul>
+                    <li>Klicke auf <b>Senden</b></li>
+                    <li>Sobald der Timer abgelaufen ist, lies folgende Nachricht vor:<br>
+                        <b><p id="sendText" class="hidden"></p></b>
+                    </li>
+                </ul>
+            </li><li>
+                <b>Kollisionsbehandlung:</b><br>
+            Wenn bereits eine andere Person spricht oder zu sprechen beginnt, dann müssen beide Personen die Sendung abbrechen und auf <b>Kollision</b> klicken.
+            </li>
+        </li>
+        </ol>
+       <button id="sendBtn">Senden</button>
+    </div>
+
+    <!-- Timer‑Anzeige -->
+    <div id="timerSection" class="hidden">
+        <p id="timer">Timer: <span id="countdown"></span> s</p>
+    </div>
+
+    <!-- Abschluss -->
+    <div id="collision" class="hidden">
+        <button id="collisionBtn">Kollision</button>
+        <button id="optimierungBtn">Optimieren</button>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
