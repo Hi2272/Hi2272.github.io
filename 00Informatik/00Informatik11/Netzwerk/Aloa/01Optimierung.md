@@ -4,8 +4,8 @@ Erläutere, weshalb das ALOA-Protokoll in unserem Fall nicht gut funktioniert ha
 
 ## Optimierung der Protokolls
 1. Entfernen irrelevanter Teile  
-Bisher werden mit jeder Nachricht Teile verschickt, die keine relevante Information enthalten. Du erkennst sie daran, dass sie bei allen Nachrichten gleich sind.  
-Dadurch wird Sendezeit verschwendet und die Gefahr eines Abbruchs durch Kollissionen steigt.  
+Bisher werden mit jeder Nachricht Teile verschickt, die keine relevanten Informationen enthalten. Du erkennst sie daran, dass sie bei allen Nachrichten gleich sind.  
+Dadurch wird Sendezeit verschwendet und die Gefahr eines Abbruchs durch Kollisionen steigt.  
 **Suche in der folgenden Nachricht irrelevante Teile:**  
 Station 12 an Zentrale:
 Temperatur 25 °C,
