@@ -43,14 +43,18 @@ background-color: #e5a9aa;
 }
 
 #timer {
-font-size: 3rem; 
+font-size: 2rem; 
 color: #222;
 text-align: center;
 }
 
 #sendText {
-font-size: 3rem; 
+font-size: 2rem; 
 color: #430000; 
 text-align: center;
 margin-top: 1rem;
+}
+
+h1{
+    font-size: 3rem;
 }
