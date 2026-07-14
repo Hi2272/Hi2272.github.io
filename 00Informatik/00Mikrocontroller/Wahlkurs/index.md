@@ -2,7 +2,7 @@
 
 # Wahlunterricht Mikroelektronik und Technik<br> am Gymnasium Waldkraiburg
 ##### [Stichwortliste](Keywords.html)  
-##### [LEDs](#leuchtdioden-leds) | [Taster](#taster) | [Alarmanlage](#alarmanlage) | [Messwerterfassung](#messwerterfassung) | [Diskoleuchte](#diskobeleuchtung) | [ESP32](#esp32) | [Gamepad](#b-ein-bluetooth-gamepad-für-pac-man) | [Interrupts](#blinken-ohne-pause---interrupts) | [3DDruck](#3d-druck-und-cad) | [Motoren](#selbstfahrender-roboter)
+##### [LEDs](#leuchtdioden-leds) | [Taster](#taster) | [Alarmanlage](#alarmanlage) | [Messwerterfassung](#messwerterfassung) | [Diskoleuchte](#diskobeleuchtung) | [ESP32](#esp32) | [Gamepad](#b-ein-bluetooth-gamepad-für-pac-man) | [Interrupts](#blinken-ohne-pause---interrupts) | [3DDruck](#3d-druck-und-cad) | [CNC Fräsen](#cnc-fräsen) | [Motoren](#selbstfahrender-roboter)
 
 ## Kursübersicht
 Der Wahlkurs findet im ersten Halbjahr immer mittwochs von 13.45 bis 15.15 Uhr statt.  
@@ -170,8 +170,7 @@ Auf Grundlage des [Scru-Fe-Roboters](https://www.thingiverse.com/thing:780050) v
 
 
 ### CNC-Fräsen
-
-[Platinen bohren und ätzen](CNC/index.html)  
+[CNC](CNC/index.html)  
 
 ### Plotter
 [UniversalGCodeSender](https://winder.github.io/ugs_website/)   
