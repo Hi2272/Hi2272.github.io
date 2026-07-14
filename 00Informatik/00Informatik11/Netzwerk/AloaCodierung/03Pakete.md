@@ -23,5 +23,6 @@ Mit folgendem Protokoll wird das Problem weiter verringert:
 Schreibe eine Norm für das verwendete Protokoll.
 
 
+## [Slotted Aloa](../SlottedAloa/index.html)
 
 
