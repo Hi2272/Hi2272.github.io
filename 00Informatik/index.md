@@ -284,7 +284,7 @@
 
 ## Kommunikation in Netzwerken
 [Netzwerke](00Informatik11/Netzwerk/index.html)  
-
+[Schichtenmodell der Kommunikation](00Informatik11/Netzwerk/Schichtenmodell/index.html)  
 
 # Datenschutz
 ***
