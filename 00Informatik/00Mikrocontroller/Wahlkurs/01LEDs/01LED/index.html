@@ -19,15 +19,7 @@
 
 </style>
             
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
-<style>
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
-                font-size: 14px;
-                line-height: 1.6;
-            }
-        </style>
+        
         <style>
 .task-list-item {
     list-style-type: none;
@@ -144,7 +136,9 @@
 <li>Baue folgende Schaltung auf:<br>
 <img src="Screenshot_4.png" alt="SchaltungLED"><br>
 Jede LED muss immer mit einem Vorwiderstand geschützt werden. Sonst besteht die Gefahr, dass sie durchbrennt.</li>
-<li>Programmiere in der Arduino IDE folgenden Code:</li>
+<li>Programmiere auf <a href="https://sensebox.github.io/blockly/">https://sensebox.github.io/blockly/</a>  folgenden Code:<br>
+<img src="Blockly.png" alt="alt text"></li>
+<li>Kopiere den Arduino-Code in die Arduino IDE.</li>
 </ol>
 <pre><code class="language-C++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
   <span class="hljs-built_in">pinMode</span>(<span class="hljs-number">8</span>, OUTPUT);
@@ -156,7 +150,7 @@ Jede LED muss immer mit einem Vorwiderstand geschützt werden. Sonst besteht die
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
 }
 </code></pre>
-<h2 id="3-erklärung">3. Erklärung</h2>
+<h2 id="2-experimente">2. Experimente</h2>
 <ol>
 <li>
 <p>Verändere die Werte für Pin8 und Pin9 in Zeile 4 und 5, bis die LED leuchtet:</p>

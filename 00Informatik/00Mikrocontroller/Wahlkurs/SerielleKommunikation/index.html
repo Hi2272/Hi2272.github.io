@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Serielle Kommunikation</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="serielle-kommunikation">Serielle Kommunikation</h1>
+<h2 id="ic">I²C</h2>
+<h3 id="quellen">Quellen</h3>
+<p><a href="https://fmh-studios.de/theorie/informationstechnik/i2c-bus/">https://fmh-studios.de/theorie/informationstechnik/i2c-bus/</a></p>
+<h3 id="grundprinzip">Grundprinzip</h3>
+<p>I²C ist ein Protokoll zum seriellen Übertragen von Daten.<br>
+Hierzu werden nur 2 Kabel benötigt:</p>
+<ul>
+<li>SDA: Serial Data<br>
+Kabel auf dem die Daten übertragen werden.</li>
+<li>SCL/CLK: Serial Clock<br>
+Kabel auf dem die Impulse des Taktes gesendet werden.
+Dieser Takt wird von allen Teilnehmern verwendet. Man spricht von einem synchronen Bus.</li>
+</ul>
+<h3 id="aufbau">Aufbau</h3>
+<p>I²C benötigt einen <strong>Master</strong>, der die Datenübertragung steuert. Dies ist in der Regel der Mikrocontroller.<br>
+Die Sensoren oder Aktoren sind <strong>Slaves</strong>. Im System können bis zu 127 Slaves mit einem Master verbunden werden.<br>
+Nur der Master kann die Kommunikation starten. Das heißt er kann Daten an die Slaves schicken und Daten von den Slaves anfordern.</p>
+<h2 id="kodierung-einer-nachricht">Kodierung einer Nachricht</h2>
+<p>SDA und SCL sind über Pullup-Widerstände mit HIGH verbunden. Damit sind die Potentiale beider Leitungen in in Ruhe HIGH.<br>
+Jede Nachricht startet mit einem Start-Signal. Hierzu schaltet der Master den SDA-Pin auf LOW und lässt den SCL-Pin HIGH. Durch das Start-Signal werden alle Slaves aktiv und warten auf die weitere Nachricht.<br>
+Nach dem Start-Signal wird der SCL-Pin in der festgelegten Datenrate regelmäßig LOW und HIGH geschaltet. Ein Takt besteht immer aus einer LOW- und einer anschließenden HIGH-Phase der SCL-Leitung. Damit kann auch ein dauernder HIGH- oder LOW-Pegel der SDA-Leitung in einzelne 1 oder 0 Bits aufgeteilt werden.</p>
+<p>Nach dem Start-Signal wird mit 7 Bits die Adresse des Slaves übermittelt. Durch diese 7 Bits können maximal 127 Slaves angesprochen werden (Adressen 1-127).<br>
+Mit dem 8. Bit wird codiert, ob die Nachricht vom Master zum Slave (HIGH = write) oder vom Slave zum Master (LOW = read) gesendet wird. Bei HIGH liest der passende Slave die Daten von der SDA-Leitung ein. Bei LOW schickt der Slave die Daten in die SDA-Leitung. Die Nachricht endet mit einem End-Signal: Hierzu beendet die SCL-Leitung ihre Pulsierung und bleibt dauerhaft HIGH. Anschließend wird die SDA-Leitung auf HIGH gezogen.</p>
+<h2 id="one-wire">One-Wire</h2>
+<h3 id="grundaufbau">Grundaufbau</h3>
+<p>Bei der One-Wire-Technologie werden nur 3 Kabel verwendet:</p>
+<ul>
+<li>VCC</li>
+<li>GND</li>
+<li>SDA: Datenleitung
+Die SDA-Leitung ist mit einem Pullup-Widerstand mit VCC verbunden. Im Ruhezustand ist das SDA-Potential daher HIGH.<br>
+Im Vergleich zu I²C und den meisten anderen Seriellen Leitungen fehlt die Clock-Leitung (SCL).</li>
+</ul>
+
+            
+            
+        </body>
+        </html>

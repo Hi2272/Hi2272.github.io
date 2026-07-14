@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Bild‑Splitter</title>
+    <style>
+        #previewCanvas, #tempCanvas {
+            border: 1px solid #ccc;
+            max-width: 100%;
+            margin-top: 10px;
+        }
+        .controls {
+            margin-top: 15px;
+        }
+        .controls label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Bild‑Splitter</h3>
+
+    <!-- Dateiauswahl -->
+    <input type="file" id="fileInput" multiple accept="image/*">
+
+        <div class="controls">
+            <input type="checkbox" id="grayscaleCheckbox" checked>
+            <label for="grayscaleCheckbox">In Graustufen konvertieren</label>
+
+            <label for="brightnessSlider">Helligkeit: <span id="brightnessValue">0</span></label>
+            <input type="range" id="brightnessSlider" min="-100" max="100" value="0">
+
+            <label for="contrastSlider">Kontrast: <span id="contrastValue">0</span></label>
+            <input type="range" id="contrastSlider" min="-100" max="100" value="0">
+            <button id="startBtn">Start</button>
+        </div>
+
+    <!-- Vorschau des ersten Bildes (zur Kontrolle) -->
+    <canvas id="previewCanvas"></canvas>
+
+    <!-- Temporäres Canvas, das die einzelnen Bilder kurz anzeigt -->
+    <canvas id="tempCanvas" style="display:none;"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

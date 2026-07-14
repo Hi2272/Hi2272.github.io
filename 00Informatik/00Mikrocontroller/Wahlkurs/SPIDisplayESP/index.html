@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>1&comma;8 Zoll Display am ESP32</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <link rel="stylesheet" href="https://hi2272.github.io/StyleMD.css">
+<h1 id="18-zoll-display-am-esp32">1,8 Zoll Display am ESP32</h1>
+<h2 id="anschluss">Anschluss</h2>
+<p>Das Display kann direkt auf unser Shield aufgesteckt werden:</p>
+<p><img src="03-01.png" alt="alt text"></p>
+<p>Du kannst die Pins aber auch direkt mit Dupont-Kabeln verbinden.</p>
+<p><a href="DisplayPCB.fzz">Fritzing Datei Shield</a></p>
+<h2 id="sketch">Sketch</h2>
+<p>Der Beispielsketch zählt die Zahlen von 0 bis 255 hoch:</p>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;SPI.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_GFX.h&gt;</span>     <span class="hljs-comment">// Core graphics library</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Adafruit_ST7735.h&gt;</span>  <span class="hljs-comment">// Hardware-specific library for ST7735</span></span>
+
+<span class="hljs-comment">// Das sind die Pins für den HSPI Kanal. Der TFT_RST kann beliebig gewählt werden.</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> TFT_CS 15</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> TFT_MOSI 13  <span class="hljs-comment">//Der Pin ist auf dem Board mit SDA beschriftet</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> TFT_MISO 12  <span class="hljs-comment">//Der Pin ist auf dem Board mit A0 beschriftet</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> TFT_RST 27   <span class="hljs-comment">//Der Pin ist auf dem Board mit RESET beschriftet</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> TFT_CLK 14   <span class="hljs-comment">//Der Pin ist auf dem Board mit SCK beschriftet</span></span>
+
+Adafruit_ST7735 tft = <span class="hljs-built_in">Adafruit_ST7735</span>(TFT_CS, TFT_MISO, TFT_MOSI, TFT_CLK, TFT_RST);
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);
+  tft.<span class="hljs-built_in">initR</span>(INITR_BLACKTAB);     <span class="hljs-comment">// den ST7735S Chip initialisieen, schwarz</span>
+  tft.<span class="hljs-built_in">fillScreen</span>(ST77XX_BLACK);  <span class="hljs-comment">// und den Schirm mit Schwarz füllen</span>
+  tft.<span class="hljs-built_in">setTextWrap</span>(<span class="hljs-literal">false</span>);        <span class="hljs-comment">// automatischen Zeilenumbruch ausschalten</span>
+  tft.<span class="hljs-built_in">setTextSize</span>(<span class="hljs-number">2</span>);            <span class="hljs-comment">// Zeichengröße auf 2</span>
+  tft.<span class="hljs-built_in">setRotation</span>(<span class="hljs-number">1</span>);
+  tft.<span class="hljs-built_in">setTextColor</span>(ST77XX_GREEN, ST77XX_BLACK);  <span class="hljs-comment">// Grüne schrift auf schwarzem Hintergrund</span>
+
+  tft.<span class="hljs-built_in">fillScreen</span>(ST77XX_BLACK);
+  tft.<span class="hljs-built_in">setTextSize</span>(<span class="hljs-number">8</span>);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> zahl = <span class="hljs-number">0</span>; zahl &lt; <span class="hljs-number">255</span>; zahl++) {
+    tft.<span class="hljs-built_in">setCursor</span>(<span class="hljs-number">12</span>, <span class="hljs-number">35</span>);
+    <span class="hljs-keyword">if</span> (zahl &lt; <span class="hljs-number">10</span>) tft.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot; &quot;</span>);
+    <span class="hljs-keyword">if</span> (zahl &lt; <span class="hljs-number">100</span>) tft.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot; &quot;</span>);
+    tft.<span class="hljs-built_in">print</span>(zahl);
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
+  }
+}
+</code></pre>
+<p><a href="../SPI%20Displays/index.html">zurück</a></p>
+
+            
+            
+        </body>
+        </html>

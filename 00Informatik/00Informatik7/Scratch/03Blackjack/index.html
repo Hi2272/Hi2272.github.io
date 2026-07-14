@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Blackjack oder &quot;17 und 4&quot;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="blackjack-oder-17-und-4">Blackjack oder &quot;17 und 4&quot;</h1>
+<h2 id="grundprinzip">Grundprinzip</h2>
+<p>Beim Blackjack zieht man Karten von einem Stapel.<br>
+Es gewinnt der Spieler, der am meisten Punkte gezogen hat.<br>
+Zieht man aber mehr als 21 (17+4) Punkte, verliert man automatisch</p>
+<h2 id="startpunkt">Startpunkt</h2>
+<p><a href="https://scratch.mit.edu/projects/408494284">https://scratch.mit.edu/projects/408494284</a></p>
+<h2 id="1durch-einen-klick-auf-karten-ziehen-sollen-zufällige-karten-angezeigt-werden">1.	Durch einen Klick auf „Karten ziehen“ sollen zufällige Karten angezeigt werden.</h2>
+<ol>
+<li>
+<p>Definiere eine neue Variable kartenNummer für alle Objekte</p>
+</li>
+<li>
+<p>Wenn das Objekt „Karten ziehen“ angeklickt wird, soll die kartenNummer eine Zufallszahl zwischen 1 und 52 zugewiesen werden und die Nachricht „SpielerKarte“ an alle gesendet werden.</p>
+</li>
+<li>
+<p>Wenn das Objekt „Karten“ die Nachricht „SpielerKarte“ empfängt, soll das Objekt sichtbar werden und zum Kostüm mit der Variable „kartenNummer“wechseln.</p>
+</li>
+<li>
+<p>Anschließend soll die Karte einen Abdruck hinterlassen (Dunkelgrüner Bereich), 50 Schritte weit gehen und sich verstecken.</p>
+</li>
+<li>
+<p>Wenn die grüne Fahne angeklickt wird, sollen alle Malspuren weggewischt werden (Dunkelgrüner Bereich), das Objekt „Karten“ auf die Position x=-170, y=0 gehen, seine Größe auf 50% einstellen und sich verstecken.</p>
+<p>Das Programm zeigt beim mehrfachen Klicken zufällige Karten an, aber es simuliert nicht das Ziehen von Karten aus einem Kartenspiel. Welcher Fehler kann auftreten, wenn viele Karten gezogen werden?</p>
+</li>
+</ol>
+<h2 id="2buchführen-über-bereits-gezogene-karten">2.	Buchführen über bereits gezogene Karten</h2>
+<ol>
+<li>Erzeuge beim Objekt „Karten ziehen“ eine neue Liste mit dem Namen „gezogeneKarten“.</li>
+<li>Wenn die grüne Startfahne angeklickt wird, soll alles aus dieser Liste gelöscht werden.</li>
+<li>Die Zuweisung einer Zufallszahl zur Variable „kartenNummmer“ soll solange wiederholt werden, bis die Variable „kartenNummer“ nicht in der Liste „gezogeneKarten“ enthalten ist. (Nicht-Operator im hellgrünen Bereich)</li>
+<li>Am Ende muss die Variable „kartenNummer“ der Liste „gezogeneKarten“ zugefügt werden.</li>
+</ol>
+<p>Das Programm hat immer noch einen Fehler, der für unser Spiel aber keine Rolle spielt. Was geschieht, wenn eine 53. Karte gezogen werden soll, obwohl nur 52 Karten existieren?</p>
+<h2 id="3kartenwerte-speichern">3.	Kartenwerte speichern</h2>
+<p>Beim BlackJack gelten folgende Kartenwerte:
+2-10:	2-10 Punkte; 	Bube, Dame, König: 10 Punkte;	As: 11 Punkte</p>
+<ol>
+<li>Erstelle eine neue Liste „kartenWerte“ für diese Werte.</li>
+<li>Klicke im grauen Bereich jeweils auf das „+“-Symbol, um mit Hand folgende Werte einzutragen: 2,3,…,9,10,10,10,10,11 (13 Werte)</li>
+<li>Einer Karte ihren Wert zuweisen
+Jede Karte im Spiel ist durch ihre kartenNummer eindeutig gekennzeichnet. So hat die Kreuz-Zwei die Nummer 1, die Pik-Zwei die Nummer 14, die Herz-Zwei die Nummer 27 und die Karo-Zwei die Nummer 40. Die Nummer steigt jeweils um 13, da 13 Karten von jeder Farbe im Spiel sind.</li>
+</ol>
+<p>Die Nummern 1, 14, 27 und 40 stehen alle für Karten mit dem gleichen Wert: 2
+Mit einer einfachen Rechnung können wir sie alle gleich machen:
+1 : 13 = 0 Rest 1; 	14: 13 = 1 Rest 1; 	27:13 = 2 Rest 1; 	40:13 = 3 Rest 1
+In der Mathematik bezeichnet man den Rest einer Division als Modulo. Der entsprechende Operator in Scratch lautet mod (hellgrüner Bereich).</p>
+<ol>
+<li>Erzeuge eine neue Variable „kartenWert“.</li>
+<li>Setze den Wert dieser Variable auf kartenNummer mod 13.</li>
+<li>Setze den Werte dieser Variable auf das Element kartenWert der Liste kartenWerte.</li>
+<li>Teste dein Programm – welcher Kartenwert wird falsch berechnet?</li>
+<li>Warum tritt dieser Fehler auf? Berechne den Rest der Division durch 13.</li>
+<li>Behebe den Fehler durch einen falls-dann-Baustein. Falls „kartenWert“ den problematischen Wert hat, soll der richtige Wert zugewiesen werden.</li>
+</ol>
+<h2 id="5die-summe-der-kartenwert-bilden-und-mit-21-vergleichen">5.	Die Summe der Kartenwert bilden und mit 21 vergleichen</h2>
+<ol>
+<li>Erstelle eine neue Variable punkteSpieler.</li>
+<li>Wenn die grüne Fahne angeklickt wird, soll diese Variable auf 0 gesetzt werden.</li>
+<li>Wenn „Karte ziehen“ angeklickt wird, soll die Variable um den Wert der gezogenen Karte erhöht werden.</li>
+<li>Wenn der Wert der gezogenen Karten gleich 21 ist, soll die Nachricht „Gewonnen“ an alle geschickt werden, wenn der Wert größer als 21 ist, die Nachricht „Verloren“.</li>
+<li>Programmiere die Objekte „gewonnen“ und „verloren“ so, dass sie beim Klicken auf die grüne Fahne unsichtbar werden und beim Empfang der passenden Nachricht sichtbar.</li>
+<li>Programmiere das Objekt „Neue Karte“ so, dass es beim Klicken auf die grüne Fahne sichtbar und beim Empfang der Nachrichten „Gewonnen“ und „Verloren“ unsichtbar wird.</li>
+</ol>
+<h2 id="zusatzaufgabe">Zusatzaufgabe</h2>
+<ol>
+<li>Erstelle ein neues Schaltflächen-Objekt, mit dem ein neues Spiel gestartet werden kann.</li>
+<li>Wenn es angeklickt wird, soll die Nachricht „Start“ an alle gesandt werden.</li>
+<li>Programmiere alle Objekte so um, dass sie anstelle auf die grüne Fahne auf die Nachricht Start reagieren.</li>
+<li>Bei einem Objekt muss beim Klicken auf die grüne Fahne die Nachricht Start an alle gesendet werden.</li>
+</ol>
+
+            
+            
+        </body>
+        </html>
