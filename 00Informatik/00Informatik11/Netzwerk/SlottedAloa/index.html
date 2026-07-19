@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ALOA‑Protokoll</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Slotted-ALOA‑Protokoll</h1>
+
+    <!-- Anfangszustand -->
+    <div id="initial">
+        <p>
+            Das Slotted-ALOA‑Protokoll war eine Weiterentwicklung des ALOA-Protokolls,
+            mit dem die Zahl der Kollisionen deutlich verringert werden konnten.  
+
+            <ul>
+            <li>Die Zeit wird in Zeit-Slots mit konstante Länge eingeteilt.</li>
+            <li>Die Slots sind so lang, dass die gesamte Nachricht in dieser Zeit übermittelt werden kann.</li>
+            <li>Die Stationen dürfen nur zu Beginn eines Zeit-Slots mit dem Senden beginnen.</li>
+            <li>Bei Kollisionen warten die Stationen eine zufällige Anzahl von Zeit-Slots vor dem erneuten Senden.</li>    
+            </ul>
+          <h3>Aufgabenstellung:</h3>
+          <ul>
+            <li>Wir verwenden Zeit-Slots von 5 Sekunden Länge.<br> 
+          </li><li>Die Stationen senden nur die kodierte Temperatur an die Zentrale.<br>  
+          </li><li>Klicke auf Start: 
+        </li></ul>
+        </p>
+        <button id="startBtn">Start</button>
+    </div>
+
+    <!-- Situation nach „Start“ -->
+    <div id="situation" class="hidden">
+        <ol>
+            <li>
+                <b>Senden:</b><br>
+                <ul>
+                    <li>Klicke auf <b>Senden</b></li>
+                    <li>Sobald der Timer abgelaufen ist, lies folgende Nachricht vor:<br>
+                        <b><p id="sendText" class="hidden"></p></b>
+                    </li>
+                </ul>
+            </li><li>
+                <b>Kollisionsbehandlung:</b><br>
+            Wenn gleichzeitig eine andere Person zu sprechen beginnt, dann müssen beide Personen die Sendung abbrechen und auf <b>Kollision</b> klicken.
+            </li>
+        </li>
+        </ol>
+       <button id="sendBtn">Senden</button>
+    </div>
+
+    <!-- Timer‑Anzeige -->
+    <div id="timerSection" class="hidden">
+        <p id="timer">Timer: <span id="countdown"></span> s</p>
+    </div>
+
+    <!-- Abschluss -->
+    <div id="collision" class="hidden">
+        <button id="collisionBtn">Kollision</button>
+    </div>
+    
+     <div id="fehler" class="hidden">
+         <p>Begründe, weshalb das System nach einer Kollision nicht mehr einwandfrei funktioniert.</p>
+         <button id="loesungBtn">Lösung</button>
+      </div>  
+    <script src="script.js"></script>
+
+</body>
+
+</html>

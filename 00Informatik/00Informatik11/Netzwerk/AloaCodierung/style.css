@@ -1,0 +1,60 @@
+body {
+font-family: Arial, sans-serif;
+margin: 2rem;
+background-color: #f5f7fa;   /* sehr helles Blau‑Grau */
+color: #333;
+}
+
+h1{
+    text-align: center;
+}
+
+/* Allgemeine Hilfsklasse zum Ausblenden */
+.hidden {
+display: none;
+}
+
+button {
+padding: 0.5rem 1rem;
+font-size: 2rem;
+cursor: pointer;
+
+border-radius: 8px;          
+    display: block;
+    margin: 1rem auto;   
+}
+#startBtn {
+background-color: #a8d5e2;        
+}
+#startBtn:hover {
+background-color: #90c5d6;
+}
+#sendBtn {
+background-color: #c3e6cb;        /* helles Grün */
+}
+#sendBtn:hover {
+background-color: #a8d9b5;
+}
+#collisionBtn {
+background-color: #f7c6c7;        /* helles Rosa */
+}
+#collisionBtn:hover {
+background-color: #e5a9aa;
+}
+
+#timer {
+font-size: 2rem; 
+color: #222;
+text-align: center;
+}
+
+#sendText {
+font-size: 2rem; 
+color: #430000; 
+text-align: center;
+margin-top: 1rem;
+}
+
+h1{
+    font-size: 3rem;
+}

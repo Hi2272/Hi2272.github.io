@@ -1,12 +1,19 @@
 # CNC-Fräsen
+
 ## Allgemeines
+Die CNC-Fräse an unserer Schule wurde von der [Wilhelm Stemmer Stiftung](https://www.wilhelm-stemmer-stiftung.de/) finanziert.   
+
+
+**Da sie ein sehr leistungsfähiges und damit gefährliches Gerät. darf die CNC-Fräse nur in Anwesenheit einer Lehrkraft verwendet werden.**  
+
 Eine CNC-Tischfräse ist vereinfacht gesagt eine Bohrmaschine, die über den Computer gesteuert werden kann. Der Computer kann:
 - den Bohrer ein- und ausschalten
 - den Bohrer nach links und rechts bewegen (x-Achse).
 - den Bohrer nach oben und unten bewegen (z-Achse).
 - den Tisch mit dem Werkstück vor- und zurückbewegen (y-Achse).
 
-Damit können Löcher an exakt festgelegte Stellen gebohrt werden oder Werkstücke ausgefräst werden.
+Der Bohrer kann durch einen Fräser ersetzt werden, der Material aus einem Werkstück entfernen kann.  
+Damit können Löcher an exakt festgelegte Stellen gebohrt werden oder Werkstücke aus größeren Platten ausgefräst werden.
 
 Der Steuer-Code wird hierbei mit GCode-Befehlen übermittelt:
 
@@ -21,14 +28,26 @@ Der Steuer-Code wird hierbei mit GCode-Befehlen übermittelt:
 |M05|Stoppt die Spindel|
 |M30|Ende des Programms|
 
+## Hilfsprogramme
+### [GCode Simulator](../../../../GCodeSimulator/index.html)  
+Simuliert einfache GCode-Befehle auf dem Computer. Ideal zum Lernen von GCode.
+
+### [GCode Plotter Konverter](../../../../Plotter/index.html)
+Wandelt GCode-Befehle so um, dass sie einen Stiftplotter ansteuern können. 
+### [Gerber GCode Konverter](../../../../GerberToGCode/index.html)
+Wandelt Gerber-Dateien direkt in GCode um. Damit können zum Beispiel Schaltungen automatisch gezeichnet werden.
+### [Drill Konverter](../../../../SVGtoGCode/index.html)  
+Wandelt die drill.txt aus einem Gerber-Paket in GCodes zum Ansteuern der CNC-Fräse um.
+
 ## Arbeitsgang zum Fräsen und Ätzen von Platinen
 
 1. [Konstruktion der Platine in Fritzing](Fritzing/CNC/index.html)
 2. Export zur Produktion als Gerber.
 3. Öffnen der Datei mit den Bohrungen (...drill.txt) mit einem Editor.
-4. Kopieren des Code und einfügen auf der Internetseite [DrillKonverter](https://hi2272.github.io/SVGtoGCode/).
+4. Kopieren des Code und einfügen auf der Internetseite [Drill Konverter](https://hi2272.github.io/SVGtoGCode/).
 5. Konvertieren, sortieren und als GCOde-Dateien speichern.
 6. Starten von UniversalGCodeSender (https://universalgcodesender.com/).
 7. Laden der Dateien und Bohren der Platine.
 8. Zeichnen der Leiterbahnen mit einem Edding auf der Kupferseite.
 9. Ätzen der Platine mit Natriumperoxodisulfat.
+

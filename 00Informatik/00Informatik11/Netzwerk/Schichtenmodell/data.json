@@ -1,0 +1,19 @@
+{   
+  "snap":true,
+
+  "dateiname":"Screenshot.png",
+  "copyright":"eigene Zeichnung",
+  "titel":"Schichtenmodell",
+  "angabe":"Ziehe die Kärtchen an die passenden Plätze",
+  "txt":[
+{"x":0.373 ,"y":0.805,"width":0.262,"height":0.152,"pos":[0]},
+{"x":0.063 ,"y":0.617,"width":0.261,"height":0.155,"pos":[1,4]},
+{"x":0.679 ,"y":0.225,"width":0.258,"height":0.16,"pos":[2,3]},
+{"x":0.061 ,"y":0.227,"width":0.265,"height":0.157,"pos":[2,3]},
+{"x":0.682 ,"y":0.607,"width":0.247,"height":0.155,"pos":[4,1]},
+{"x":0.678 ,"y":0.414,"width":0.256,"height":0.164,"pos":[5]},
+{"x":0.055 ,"y":0.8,"width":0.264,"height":0.162,"pos":[6]},
+{"x":0.063 ,"y":0.421,"width":0.259,"height":0.152,"pos":[7]},
+{"x":0.68 ,"y":0.796,"width":0.255,"height":0.16,"pos":[8]}
+]
+}

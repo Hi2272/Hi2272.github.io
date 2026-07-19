@@ -140,6 +140,8 @@
         <body class="vscode-body vscode-light">
             <h1 id="cnc-fräsen">CNC-Fräsen</h1>
 <h2 id="allgemeines">Allgemeines</h2>
+<p>Die CNC-Fräse an unserer Schule wurde von der <a href="https://www.wilhelm-stemmer-stiftung.de/">Wilhelm Stemmer Stiftung</a> finanziert.</p>
+<p><strong>Da sie ein sehr leistungsfähiges und damit gefährliches Gerät. darf die CNC-Fräse nur in Anwesenheit einer Lehrkraft verwendet werden.</strong></p>
 <p>Eine CNC-Tischfräse ist vereinfacht gesagt eine Bohrmaschine, die über den Computer gesteuert werden kann. Der Computer kann:</p>
 <ul>
 <li>den Bohrer ein- und ausschalten</li>
@@ -147,7 +149,8 @@
 <li>den Bohrer nach oben und unten bewegen (z-Achse).</li>
 <li>den Tisch mit dem Werkstück vor- und zurückbewegen (y-Achse).</li>
 </ul>
-<p>Damit können Löcher an exakt festgelegte Stellen gebohrt werden oder Werkstücke ausgefräst werden.</p>
+<p>Der Bohrer kann durch einen Fräser ersetzt werden, der Material aus einem Werkstück entfernen kann.<br>
+Damit können Löcher an exakt festgelegte Stellen gebohrt werden oder Werkstücke aus größeren Platten ausgefräst werden.</p>
 <p>Der Steuer-Code wird hierbei mit GCode-Befehlen übermittelt:</p>
 <table>
 <thead>
@@ -191,12 +194,21 @@
 </tr>
 </tbody>
 </table>
+<h2 id="hilfsprogramme">Hilfsprogramme</h2>
+<h3 id="gcode-simulator"><a href="../../../../GCodeSimulator/index.html">GCode Simulator</a></h3>
+<p>Simuliert einfache GCode-Befehle auf dem Computer. Ideal zum Lernen von GCode.</p>
+<h3 id="gcode-plotter-konverter"><a href="../../../../Plotter/index.html">GCode Plotter Konverter</a></h3>
+<p>Wandelt GCode-Befehle so um, dass sie einen Stiftplotter ansteuern können.</p>
+<h3 id="gerber-gcode-konverter"><a href="../../../../GerberToGCode/index.html">Gerber GCode Konverter</a></h3>
+<p>Wandelt Gerber-Dateien direkt in GCode um. Damit können zum Beispiel Schaltungen automatisch gezeichnet werden.</p>
+<h3 id="drill-konverter"><a href="../../../../SVGtoGCode/index.html">Drill Konverter</a></h3>
+<p>Wandelt die drill.txt aus einem Gerber-Paket in GCodes zum Ansteuern der CNC-Fräse um.</p>
 <h2 id="arbeitsgang-zum-fräsen-und-ätzen-von-platinen">Arbeitsgang zum Fräsen und Ätzen von Platinen</h2>
 <ol>
-<li>Konstruktion der Platine in Fritzing.</li>
+<li><a href="Fritzing/CNC/index.html">Konstruktion der Platine in Fritzing</a></li>
 <li>Export zur Produktion als Gerber.</li>
 <li>Öffnen der Datei mit den Bohrungen (...drill.txt) mit einem Editor.</li>
-<li>Kopieren des Code und einfügen auf der Internetseite <a href="https://hi2272.github.io/SVGtoGCode/">DrillKonverter</a>.</li>
+<li>Kopieren des Code und einfügen auf der Internetseite <a href="https://hi2272.github.io/SVGtoGCode/">Drill Konverter</a>.</li>
 <li>Konvertieren, sortieren und als GCOde-Dateien speichern.</li>
 <li>Starten von UniversalGCodeSender (<a href="https://universalgcodesender.com/">https://universalgcodesender.com/</a>).</li>
 <li>Laden der Dateien und Bohren der Platine.</li>

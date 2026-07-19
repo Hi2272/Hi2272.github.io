@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ALOA‑Protokoll</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>ALOA‑Protokoll mit Codierung</h1>
+
+    <!-- Anfangszustand -->
+    <div id="initial">
+        <ul>
+            <li>Alle Stationen dürfen zu beliebigen Zeitpunkten senden.</li>
+            <li>Bei einer Kollision:<br>
+                <ul>
+                    <li>brechen beide Stationen das Senden ab,</li>
+                    <li>warten eine zufällig gewählte Zeit lang,</li>
+                    <li>und senden die Daten anschließend erneut.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <p>
+            In dieser Version sollen codierte Nachrichten verschickt werden:<br>
+        <table>
+            <b>
+                <tr>
+                    <td>Ziffer</td>
+                    <td>Inhalt</td>
+                </tr>
+            </b>
+            <tr>
+                <td>1-2</td>
+                <td>Sendernummer (01-99)</td>
+            </tr>
+            <tr>
+                <td>3-4</td>
+                <td>Empfängernummer (01-99)</td>
+            </tr>
+            <tr>
+                <td>5-6</td>
+                <td>Temperatur (°C)</td>
+            </tr>
+            <tr>
+                <td>7-10</td>
+                <td>Luftdruck (hPa)</td>
+            </tr>
+            <tr>
+                <td>11-12</td>
+                <td>Luftfeuchtigkeit (%)</td>
+            </tr>
+        </table>
+        </p>
+        <button id="startBtn">Start</button>
+    </div>
+
+    <!-- Situation nach „Start“ -->
+    <div id="situation" class="hidden">
+        <ol>
+            <li>
+                <b>Senden:</b><br>
+                <ul>
+                    <li>Klicke auf <b>Senden</b></li>
+                    <li>Sobald der Timer abgelaufen ist, lies folgende Nachricht vor:<br>
+                        <b>
+                            <p id="sendText" class="hidden"></p>
+                        </b>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <b>Kollisionsbehandlung:</b><br>
+                Wenn bereits eine andere Person spricht oder zu sprechen beginnt, dann müssen beide Personen die Sendung
+                abbrechen und auf <b>Kollision</b> klicken.
+            </li>
+            </li>
+        </ol>
+        <button id="sendBtn">Senden</button>
+    </div>
+
+    <!-- Timer‑Anzeige -->
+    <div id="timerSection" class="hidden">
+        <p id="timer">Timer: <span id="countdown"></span> s</p>
+    </div>
+
+    <!-- Abschluss -->
+    <div id="collision" class="hidden">
+        <button id="collisionBtn">Kollision</button><br>
+        <button id="optimierungBtn">Weitere Optimierung</button>
+    </div>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
