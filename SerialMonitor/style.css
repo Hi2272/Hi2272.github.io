@@ -1,0 +1,29 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.controls {
+  padding: 5px;
+  background: #f0f0f0;
+  display: flex;
+  gap: 5px;
+}
+
+.panels {
+  flex: 1;
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+}
+
+.panels textarea {
+  flex: 1;
+  resize: none;
+  font-family: monospace;
+  font-size: 0.9rem;
+  overflow-y: auto;
+}
