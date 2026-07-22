@@ -84,6 +84,7 @@
 ## Programmieren
 
 [Robot Karol](00Informatik7/Karol/index.html)    
+[Blockly](00Informatik7/Blockly/index.html)  
 [Scratch](00Informatik7/Scratch/index.html)  
 ## Wettbewerbe
 
