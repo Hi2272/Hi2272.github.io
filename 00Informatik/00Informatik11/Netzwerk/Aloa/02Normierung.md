@@ -21,7 +21,7 @@ Im Protokoll müssen folgende Punkte festgelegt werden:
 ## Aufgabenstellung
 Schreibe eine Norm für das verwendete Protokoll.
 
-[Weitere Optimierung](03Pakete.html)
+## [Aloa mit codierten Nachrichten](../AloaCodierung/index.html)  
 
 
 

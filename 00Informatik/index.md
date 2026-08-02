@@ -83,8 +83,11 @@
 
 ## Programmieren
 
-[Robot Karol](00Informatik7/Karol/index.html)    
-[Scratch](00Informatik7/Scratch/index.html)  
+#### [Robot Karol](00Informatik7/Karol/index.html)    
+#### [Blockly](00Informatik7/Blockly/index.html)  
+#### [Scratch](00Informatik7/Scratch/index.html)  
+#### [MakeCode Arcade](https://arcade.makecode.com/)  
+
 ## Wettbewerbe
 
 [Informatik-Biber](00Informatik7/Biber/index.html)  
@@ -286,6 +289,7 @@
 [Netzwerke](00Informatik11/Netzwerk/index.html)  
 [ALOA-Protokoll](00Informatik11/Netzwerk/Aloa/index.html)  
 [Slotted-ALOA](00Informatik11/Netzwerk/SlottedAloa/index.html)  
+[Schichtenmodell der Kommunikation](00Informatik11/Netzwerk/Schichtenmodell/index.html)  
 
 # Datenschutz
 ***
