@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>I3 Mega-Heizplatte</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <h1>I3 Mega-Heizplatte</h1>
+    <div id="status" class="status">Nicht verbunden</div>
+<div class="controls">
+    
+      <button id="connectBtn">Verbinden</button>
+
+      <div class="spacer"></div>
+
+      <button id="heatBtn" disabled>Heizen (Bett 60°C)</button>
+     <button id="shakeBtn" disabled>Schütteln starten</button>
+    </div>
+
+    <div class="temp-display">
+      <label for="bedTemp">Heizbett Temperatur:</label>
+      <input id="bedTemp" type="text" readonly value="—" />
+      <span id="bedTempStatus" class="temp-status">keine Daten</span>
+    </div>
+
+    <section class="log">
+      <h2>Log</h2>
+      <pre id="logArea" readonly></pre>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
