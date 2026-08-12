@@ -130,16 +130,27 @@ if (textOben !== "" || textUnten !== "") {
     document.getElementById("o41").value = ceFull;
 
     // MathJax-Ausgabe zurücksetzen und neu rendern
-    const mathDiv = document.getElementById("mathjax");
-    mathDiv.innerHTML = "\\[" + ceFull + "\\]";
+const mathDiv = document.getElementById("mathjax");
+
+if (mathDiv) {
+    // Bereits gerenderte MathJax-Inhalte vollständig entfernen
+    if (window.MathJax && MathJax.typesetClear) {
+        MathJax.typesetClear([mathDiv]);
+    }
+
+    // Alten Inhalt entfernen, damit nichts doppelt gerendert wird
+    mathDiv.replaceChildren();
+
+    // MathJax-Code nur einmal einsetzen
+    mathDiv.textContent = "\\[" + ceFull + "\\]";
 
     if (window.MathJax && MathJax.typesetPromise) {
-        MathJax.typesetClear([mathDiv]);
-
-        MathJax.typesetPromise([mathDiv]).catch(function (error) {
+        MathJax.typesetPromise([mathDiv]).catch(function(error) {
             console.error("MathJax-Fehler:", error);
         });
     }
+}
+
 }
 
 function copyMathJax() {
@@ -148,4 +159,105 @@ function copyMathJax() {
     navigator.clipboard.writeText(output.value).catch(function (error) {
         console.error("Kopieren fehlgeschlagen:", error);
     });
+            anzeige("Hinweis","Die MathJax-Formel wurde kopiert.",3000,"success");
+
 }
+
+// Ersetze copyMathJaxAsImage() vollständig durch diese Funktion:
+async function copyMathJaxAsImage() {
+    const original = document.getElementById("mathjax");
+
+    if (!original || !original.querySelector("mjx-container")) {
+        anzeige("Hinweis","Es ist keine gerenderte MathJax-Formel vorhanden.",3000,"error");
+        return;
+    }
+
+    try {
+        const clone = original.cloneNode(true);
+
+        // Unsichtbare MathJax-Zusatzinhalte entfernen,
+        // damit Text und Pfeil nicht doppelt erfasst werden.
+        clone.querySelectorAll(
+            ".MJX_Assistive_MathML, mjx-assistive-mml, .mjx-assistive-mml"
+        ).forEach(function(element) {
+            element.remove();
+        });
+
+        const wrapper = document.createElement("div");
+
+        wrapper.style.position = "fixed";
+        wrapper.style.left = "0";
+        wrapper.style.top = "0";
+        wrapper.style.margin = "0";
+        wrapper.style.padding = "0";
+        wrapper.style.background = "white";
+        wrapper.style.display = "inline-block";
+        wrapper.style.width = "max-content";
+        wrapper.style.height = "max-content";
+        wrapper.style.lineHeight = "normal";
+        wrapper.style.transform = "none";
+        wrapper.style.boxSizing = "border-box";
+
+        clone.style.margin = "0";
+        clone.style.padding = "0";
+        clone.style.transform = "none";
+        clone.style.position = "static";
+
+        wrapper.appendChild(clone);
+        document.body.appendChild(wrapper);
+
+        // Browser-Layout vor dem Erfassen aktualisieren
+        await new Promise(function(resolve) {
+            requestAnimationFrame(function() {
+                requestAnimationFrame(resolve);
+            });
+        });
+
+        const rect = clone.getBoundingClientRect();
+
+        const canvas = await html2canvas(wrapper, {
+            backgroundColor: "white",
+            scale: 2,
+            x: 0,
+            y: 0,
+            width: Math.ceil(rect.width),
+            height: Math.ceil(rect.height),
+            scrollX: 0,
+            scrollY: 0,
+            logging: false,
+            useCORS: true
+        });
+
+        wrapper.remove();
+
+        const blob = await new Promise(function(resolve) {
+            canvas.toBlob(resolve, "image/png");
+        });
+
+        if (!blob) {
+            throw new Error("Das Bild konnte nicht erzeugt werden.");
+        }
+
+        await navigator.clipboard.write([
+            new ClipboardItem({
+                "image/png": blob
+            })
+        ]);
+
+        anzeige("Hinweis","Die MathJax-Formel wurde als Bild kopiert.",3000,"success");
+
+    } catch (error) {
+        console.error("Fehler beim Kopieren als Bild:", error);
+        anzeige("Hinweis","Das Bild konnte nicht in die Zwischenablage kopiert werden.",3000,"error");
+    }
+}
+
+function anzeige(title, msg, dauer, type) {
+    VanillaToasts.create({
+        title: title,
+        text: msg,
+        timeout: dauer,
+        type: type,
+    });
+}
+

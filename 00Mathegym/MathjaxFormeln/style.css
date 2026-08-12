@@ -10,3 +10,41 @@ table input {
 #mathjax {
   font-size: 2em;
 }
+
+/* Ergänzung in style.css */
+#mathjax {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+#mathjax mjx-container {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+button {
+  background-color: #2f80ed;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: #1c64c8;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button:focus-visible {
+  outline: 3px solid #90caf9;
+  outline-offset: 2px;
+}
+

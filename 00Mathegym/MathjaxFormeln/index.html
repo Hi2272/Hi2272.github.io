@@ -5,7 +5,11 @@
   <meta charset="utf-8">
   <title>Chemie-Editor – MathJax</title>
 <link rel="stylesheet" href="style.css">
-  <script>
+  <script src="https://Hi2272.github.io/vanillatoasts.js"></script>
+  <link href="https://Hi2272.github.io/vanillatoasts.css" rel="stylesheet">
+
+
+<script>
     window.MathJax = {
       loader: {
         load: ["[tex]/mhchem"]
@@ -114,8 +118,15 @@
     <input id="o41" type="text" size="100" readonly>
     <button type="button" onclick="copyMathJax()">Kopieren</button>
   </p>
+<div id="mathjax"></div>
 
-  <div id="mathjax"></div>
+<button type="button" onclick="copyMathJaxAsImage()">
+  Formel als Bild kopieren
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+
 </body>
 
 </html>
