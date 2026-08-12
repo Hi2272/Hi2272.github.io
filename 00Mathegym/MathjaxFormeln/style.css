@@ -1,0 +1,12 @@
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table input {
+  text-align: center;
+}
+
+#mathjax {
+  font-size: 2em;
+}
