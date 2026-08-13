@@ -304,84 +304,92 @@ function korrigiereAggregatzustand(s) {
         return s;
     }
 
-    return s.replace(
-        /\\mathrm\{((?:[^{}]|\{[^{}]*\})*)\}/g,
-        function (gesamterAusdruck, inhalt) {
-            let zustand = "";
+    /*
+     * Erkennt beispielsweise:
+     *
+     * \mathrm{[Ag(NH_{3})_{2}]^{+}(aq)}
+     * \mathrm{[Ag(NH_{3})_{2(aq)}]^{+}}
+     *
+     * und erzeugt:
+     *
+     * \mathrm{[Ag(NH_{3})_{2}]_{(aq)}^{+}}
+     */
 
-            /*
-             * Aggregatzustand aus einem fehlerhaften Index entfernen:
-             *
-             * O_{2(g)}     -> O_{2}
-             * H_{3(aq)}O  -> H_{3}O
-             */
-            inhalt = inhalt.replace(
-                /_\{([^{}]*?)\((aq|s|l|g)\)\}/gi,
-                function (_, indexInhalt, gefundenerZustand) {
-                    zustand = "(" + gefundenerZustand.toLowerCase() + ")";
+    const zustandsMatch = s.match(/\((aq|s|l|g)\)/i);
 
-                    return indexInhalt
-                        ? "_{" + indexInhalt + "}"
-                        : "";
-                }
-            );
+    if (!zustandsMatch) {
+        return s;
+    }
 
-            // Kein fehlerhafter Aggregatzustand gefunden
-            if (!zustand) {
-                return gesamterAusdruck;
-            }
+    const zustand = "(" + zustandsMatch[1].toLowerCase() + ")";
 
-            /*
-             * Letztes Atomsymbol mit optionalem Index und optionaler Ladung:
-             *
-             * O
-             * O_{2}
-             * O^{+}
-             * O_{2}^{2-}
-             */
-            const letztesAtomMuster =
-                /([A-Z][a-z]?)(?:_\{([^{}]*)\})?(?:\^\{([^{}]*)\})?$/;
+    // Alle bisherigen Zustandsangaben entfernen
+    let formel = s.replace(/\((aq|s|l|g)\)/gi, "");
 
-            const treffer = inhalt.match(letztesAtomMuster);
+    /*
+     * Komplexe in eckigen Klammern erkennen:
+     *
+     * [Ag(NH_{3})_{2}]
+     *
+     * Der Aggregatzustand wird als Index hinter der
+     * eckigen Klammer und vor der Ladung eingefügt.
+     */
+    const komplexMuster =
+        /(\\mathrm\{)(\[[\s\S]*?\])(\^\{[^{}]*\})?(\})$/;
 
-            if (!treffer) {
-                return gesamterAusdruck;
-            }
+    const komplexTreffer = formel.match(komplexMuster);
 
-            const atomsymbol = treffer[1];
-            const vorhandenerIndex = treffer[2] || "";
-            const ladung = treffer[3]
-                ? "^{" + treffer[3] + "}"
-                : "";
+    if (komplexTreffer) {
+        const einleitung = komplexTreffer[1];
+        const komplex = komplexTreffer[2];
+        const ladung = komplexTreffer[3] || "";
+        const abschluss = komplexTreffer[4];
 
-            /*
-             * Falls bereits ein Index vorhanden ist, wird der
-             * Aggregatzustand in diesen Index integriert:
-             *
-             * O_{2} -> O_{2(g)}
-             *
-             * Ohne vorhandenen Index:
-             *
-             * O^{+} -> O_{(aq)}^{+}
-             */
-            const neuerIndex = vorhandenerIndex
-                ? vorhandenerIndex + zustand
-                : zustand;
+        return (
+            einleitung +
+            komplex +
+            "_{" +
+            zustand +
+            "}" +
+            ladung +
+            abschluss
+        );
+    }
 
-            const korrigiertesAtom =
-                atomsymbol +
-                "_{" +
-                neuerIndex +
-                "}" +
-                ladung;
+    /*
+     * Allgemeiner Fall:
+     *
+     * O_{2(g)}       -> O_{2(g)}
+     * H_{3(aq)}O^{+} -> H_{3}O_{(aq)}^{+}
+     */
 
-            return (
-                "\\mathrm{" +
-                inhalt.slice(0, -treffer[0].length) +
-                korrigiertesAtom +
-                "}"
-            );
-        }
+    const letztesAtomMuster =
+        /([A-Z][a-z]?)(?:_\{([^{}]*)\})?(?:\^\{([^{}]*)\})?(\})$/;
+
+    const atomTreffer = formel.match(letztesAtomMuster);
+
+    if (!atomTreffer) {
+        return s;
+    }
+
+    const atomsymbol = atomTreffer[1];
+    const vorhandenerIndex = atomTreffer[2] || "";
+    const ladung = atomTreffer[3]
+        ? "^{" + atomTreffer[3] + "}"
+        : "";
+
+    const neuerIndex = vorhandenerIndex
+        ? vorhandenerIndex + zustand
+        : zustand;
+
+    return (
+        formel.slice(0, -atomTreffer[0].length) +
+        atomsymbol +
+        "_{" +
+        neuerIndex +
+        "}" +
+        ladung +
+        "}"
     );
 }
 
