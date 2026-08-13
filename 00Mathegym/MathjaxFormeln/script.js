@@ -304,45 +304,81 @@ function korrigiereAggregatzustand(s) {
         return s;
     }
 
-    /*
-     * Erkennt Strukturen wie:
-     *
-     * \mathrm{H_{3(aq)}O^{+}}
-     * \mathrm{Na_{2(s)}Cl}
-     * \mathrm{C_{6(g)}H_{6}}
-     *
-     * Der Aggregatzustand wird vom ersten Index entfernt
-     * und dem unmittelbar folgenden, nicht tiefgestellten
-     * Atomsymbol zugeordnet.
-     */
-
-    const muster =
-        /\\mathrm\{([^{}]*?)_\{([^{}]*?)\((aq|s|l|g)\)\}([A-Z][a-z]?)(\^\{[^{}]*\})?\}/gi;
-
     return s.replace(
-        muster,
-        function (
-            gesamterAusdruck,
-            teilVorIndex,
-            tiefgestellterTeil,
-            aggregatzustand,
-            atomsymbol,
-            ladung = ""
-        ) {
-            return (
-                "\\mathrm{" +
-                teilVorIndex +
-                "_{" +
-                tiefgestellterTeil +
-                "}}" +
-                "\\mathrm{" +
+        /\\mathrm\{((?:[^{}]|\{[^{}]*\})*)\}/g,
+        function (gesamterAusdruck, inhalt) {
+            let zustand = "";
+
+            /*
+             * Aggregatzustand aus einem fehlerhaften Index entfernen:
+             *
+             * O_{2(g)}     -> O_{2}
+             * H_{3(aq)}O  -> H_{3}O
+             */
+            inhalt = inhalt.replace(
+                /_\{([^{}]*?)\((aq|s|l|g)\)\}/gi,
+                function (_, indexInhalt, gefundenerZustand) {
+                    zustand = "(" + gefundenerZustand.toLowerCase() + ")";
+
+                    return indexInhalt
+                        ? "_{" + indexInhalt + "}"
+                        : "";
+                }
+            );
+
+            // Kein fehlerhafter Aggregatzustand gefunden
+            if (!zustand) {
+                return gesamterAusdruck;
+            }
+
+            /*
+             * Letztes Atomsymbol mit optionalem Index und optionaler Ladung:
+             *
+             * O
+             * O_{2}
+             * O^{+}
+             * O_{2}^{2-}
+             */
+            const letztesAtomMuster =
+                /([A-Z][a-z]?)(?:_\{([^{}]*)\})?(?:\^\{([^{}]*)\})?$/;
+
+            const treffer = inhalt.match(letztesAtomMuster);
+
+            if (!treffer) {
+                return gesamterAusdruck;
+            }
+
+            const atomsymbol = treffer[1];
+            const vorhandenerIndex = treffer[2] || "";
+            const ladung = treffer[3]
+                ? "^{" + treffer[3] + "}"
+                : "";
+
+            /*
+             * Falls bereits ein Index vorhanden ist, wird der
+             * Aggregatzustand in diesen Index integriert:
+             *
+             * O_{2} -> O_{2(g)}
+             *
+             * Ohne vorhandenen Index:
+             *
+             * O^{+} -> O_{(aq)}^{+}
+             */
+            const neuerIndex = vorhandenerIndex
+                ? vorhandenerIndex + zustand
+                : zustand;
+
+            const korrigiertesAtom =
                 atomsymbol +
                 "_{" +
-                "(" +
-                aggregatzustand.toLowerCase() +
-                ")" +
+                neuerIndex +
                 "}" +
-                ladung +
+                ladung;
+
+            return (
+                "\\mathrm{" +
+                inhalt.slice(0, -treffer[0].length) +
+                korrigiertesAtom +
                 "}"
             );
         }
