@@ -8,15 +8,11 @@ table input {
 }
 
 #mathjax {
-  font-size: 2em;
-}
-
-/* Ergänzung in style.css */
-#mathjax {
   position: relative;
   margin: 0;
   padding: 0;
   line-height: 1;
+
 }
 
 #mathjax mjx-container {
@@ -48,3 +44,34 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.kopierzeile {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+}
+
+.kopierzeile input {
+    flex: 1;
+}
+
+.mathjax-kf {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+
+footer{
+  text-align: right;
+  font-size: xx-small;
+}
+#Hilfe{
+  text-align: left;
+  font-size: small;
+}

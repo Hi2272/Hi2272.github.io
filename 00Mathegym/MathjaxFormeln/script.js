@@ -1,7 +1,8 @@
 function convertMathJax(s1) {
     if (!s1) return "";
 
-    let s = s1.trim();
+   let s =s1.trim();
+
 
     // ASCII-Minus in typografisches Minus umwandeln
     s = s.replace(/-/g, "−");
@@ -51,8 +52,10 @@ function convertMathJax(s1) {
             s += "_{" + state + "}";
         }
     }
-
-    return "\\mathrm{" + s + charge + "}";
+    s="\\mathrm{" + s + charge + "}";
+   // s= s=="\\mathrm{H_{3(aq)}O^{+}}"  ? "\\mathrm{H_{3}}\\mathrm{O_{(aq)}^{+}}" : s;
+   s = korrigiereAggregatzustand(s);
+    return s;
 }
 
 function formelMitKoeffizient(koeffizient, formel) {
@@ -117,10 +120,45 @@ if (textOben !== "" || textUnten !== "") {
     if (teil4) rechts.push(teil4);
 
     // Einzelne MathJax-Ausdrücke für die vier Textfelder
-    document.getElementById("kf1").value = teil1 ? "\\ce{" + teil1 + "}" : "";
-    document.getElementById("kf2").value = teil2 ? "\\ce{" + teil2 + "}" : "";
-    document.getElementById("kf3").value = teil3 ? "\\ce{" + teil3 + "}" : "";
-    document.getElementById("kf4").value = teil4 ? "\\ce{" + teil4 + "}" : "";
+document.getElementById("kf1").value = formelMitGroesse(teil1);
+document.getElementById("kf2").value = formelMitGroesse(teil2);
+document.getElementById("kf3").value = formelMitGroesse(teil3);
+document.getElementById("kf4").value = formelMitGroesse(teil4);
+
+
+    const mathKf1 = document.getElementById("mathKf1");
+const mathKf2 = document.getElementById("mathKf2");
+const mathKf3 = document.getElementById("mathKf3");
+const mathKf4 = document.getElementById("mathKf4");
+
+mathKf1.textContent = teil1
+    ? "\\(" + mathJaxFormelMitGroesse(teil1) + "\\)"
+    : "";
+
+mathKf2.textContent = teil2
+    ? "\\(" + mathJaxFormelMitGroesse(teil2) + "\\)"
+    : "";
+
+mathKf3.textContent = teil3
+    ? "\\(" + mathJaxFormelMitGroesse(teil3) + "\\)"
+    : "";
+
+mathKf4.textContent = teil4
+    ? "\\(" + mathJaxFormelMitGroesse(teil4) + "\\)"
+    : "";
+
+
+if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise([
+        mathKf1,
+        mathKf2,
+        mathKf3,
+        mathKf4
+    ]).catch(function(error) {
+        console.error("MathJax-Fehler bei den Einzel-Formeln:", error);
+    });
+}
+
 
     const linkeSeite = links.join(" + ");
     const rechteSeite = rechts.join(" + ");
@@ -261,3 +299,253 @@ function anzeige(title, msg, dauer, type) {
     });
 }
 
+function korrigiereAggregatzustand(s) {
+    if (!s || typeof s !== "string") {
+        return s;
+    }
+
+    /*
+     * Erkennt Strukturen wie:
+     *
+     * \mathrm{H_{3(aq)}O^{+}}
+     * \mathrm{Na_{2(s)}Cl}
+     * \mathrm{C_{6(g)}H_{6}}
+     *
+     * Der Aggregatzustand wird vom ersten Index entfernt
+     * und dem unmittelbar folgenden, nicht tiefgestellten
+     * Atomsymbol zugeordnet.
+     */
+
+    const muster =
+        /\\mathrm\{([^{}]*?)_\{([^{}]*?)\((aq|s|l|g)\)\}([A-Z][a-z]?)(\^\{[^{}]*\})?\}/gi;
+
+    return s.replace(
+        muster,
+        function (
+            gesamterAusdruck,
+            teilVorIndex,
+            tiefgestellterTeil,
+            aggregatzustand,
+            atomsymbol,
+            ladung = ""
+        ) {
+            return (
+                "\\mathrm{" +
+                teilVorIndex +
+                "_{" +
+                tiefgestellterTeil +
+                "}}" +
+                "\\mathrm{" +
+                atomsymbol +
+                "_{" +
+                "(" +
+                aggregatzustand.toLowerCase() +
+                ")" +
+                "}" +
+                ladung +
+                "}"
+            );
+        }
+    );
+}
+
+async function kopiereKfTextbox(button) {
+    const zielId = button.dataset.target;
+    const textbox = document.getElementById(zielId);
+
+    if (!textbox) {
+        console.error("Textbox nicht gefunden:", zielId);
+        return;
+    }
+
+    try {
+        await navigator.clipboard.writeText(textbox.value);
+
+        anzeige(
+            "Hinweis",
+            "Der Inhalt wurde in die Zwischenablage kopiert.",
+            3000,
+            "success"
+        );
+    } catch (error) {
+        console.error("Kopieren fehlgeschlagen:", error);
+
+        // Fallback für Umgebungen ohne Clipboard API
+        textbox.focus();
+        textbox.select();
+
+        try {
+            document.execCommand("copy");
+
+            anzeige(
+                "Hinweis",
+                "Der Inhalt wurde in die Zwischenablage kopiert.",
+                3000,
+                "success"
+            );
+        } catch (fallbackError) {
+            console.error("Fallback-Kopieren fehlgeschlagen:", fallbackError);
+
+            anzeige(
+                "Fehler",
+                "Der Inhalt konnte nicht kopiert werden.",
+                3000,
+                "error"
+            );
+        }
+
+        textbox.blur();
+    }
+}
+document.querySelectorAll(".copy-kf-btn").forEach(function(button) {
+    button.addEventListener("click", function() {
+        kopiereKfTextbox(button);
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".copy-kf-image-btn").forEach(function(button) {
+        button.addEventListener("click", function() {
+            kopiereMathJaxAlsBild(button.dataset.target);
+        });
+    });
+});
+
+
+async function kopiereMathJaxAlsBild(elementId) {
+    const original = document.getElementById(elementId);
+
+    if (!original || !original.querySelector("mjx-container")) {
+        anzeige(
+            "Hinweis",
+            "Es ist keine gerenderte Formel vorhanden.",
+            3000,
+            "error"
+        );
+        return;
+    }
+
+    let wrapper = null;
+
+    try {
+        const clone = original.cloneNode(true);
+
+        clone.querySelectorAll(
+            ".MJX_Assistive_MathML, mjx-assistive-mml, .mjx-assistive-mml"
+        ).forEach(function(element) {
+            element.remove();
+        });
+
+        wrapper = document.createElement("div");
+
+        wrapper.style.position = "fixed";
+        wrapper.style.left = "0";
+        wrapper.style.top = "0";
+        wrapper.style.margin = "0";
+        wrapper.style.padding = "0";
+        wrapper.style.background = "white";
+        wrapper.style.display = "inline-block";
+        wrapper.style.width = "max-content";
+        wrapper.style.height = "max-content";
+        wrapper.style.lineHeight = "normal";
+        wrapper.style.boxSizing = "border-box";
+
+        clone.style.margin = "0";
+        clone.style.padding = "0";
+        clone.style.transform = "none";
+
+        wrapper.appendChild(clone);
+        document.body.appendChild(wrapper);
+
+        await new Promise(function(resolve) {
+            requestAnimationFrame(function() {
+                requestAnimationFrame(resolve);
+            });
+        });
+
+        const rect = clone.getBoundingClientRect();
+
+        const canvas = await html2canvas(wrapper, {
+            backgroundColor: "white",
+            scale: 2,
+            x: 0,
+            y: 0,
+            width: Math.ceil(rect.width),
+            height: Math.ceil(rect.height),
+            scrollX: 0,
+            scrollY: 0,
+            logging: false,
+            useCORS: true
+        });
+
+        const blob = await new Promise(function(resolve) {
+            canvas.toBlob(resolve, "image/png");
+        });
+
+        if (!blob) {
+            throw new Error("Das Bild konnte nicht erzeugt werden.");
+        }
+
+        await navigator.clipboard.write([
+            new ClipboardItem({
+                "image/png": blob
+            })
+        ]);
+
+        anzeige(
+            "Hinweis",
+            "Die Formel wurde als Bild kopiert.",
+            3000,
+            "success"
+        );
+    } catch (error) {
+        console.error("Fehler beim Kopieren der Formel:", error);
+
+        anzeige(
+            "Fehler",
+            "Die Formel konnte nicht als Bild kopiert werden.",
+            3000,
+            "error"
+        );
+    } finally {
+        if (wrapper) {
+            wrapper.remove();
+        }
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const erstesTextfeld = document.getElementById("k1");
+
+    if (erstesTextfeld) {
+        erstesTextfeld.focus();
+    }
+});
+
+
+function formelMitGroesse(formel) {
+const groesse = document.getElementById("Groesse").value.trim();
+
+    if (!formel) {
+        return "";
+    }
+
+    const mathJaxFormel = "\\ce{" + formel + "}";
+
+    return groesse
+        ? "\\text{" + groesse + "}(" + mathJaxFormel + ")"
+        : mathJaxFormel;
+}
+
+function mathJaxFormelMitGroesse(formel) {
+const groesse = document.getElementById("Groesse").value.trim();
+
+    if (!formel) {
+        return "";
+    }
+
+    return groesse
+        ? "\\text{" + groesse + "}(" + formel + ")"
+        : formel;
+}

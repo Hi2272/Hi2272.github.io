@@ -3,13 +3,13 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Chemie-Editor – MathJax</title>
-<link rel="stylesheet" href="style.css">
+  <title>MathJax Formeln</title>
+  <link rel="stylesheet" href="style.css">
   <script src="https://Hi2272.github.io/vanillatoasts.js"></script>
   <link href="https://Hi2272.github.io/vanillatoasts.css" rel="stylesheet">
 
 
-<script>
+  <script>
     window.MathJax = {
       loader: {
         load: ["[tex]/mhchem"]
@@ -26,108 +26,159 @@
 </head>
 
 <body style="text-align: center;">
-  <h1>Chemie-Editor für MathJax</h1>
+  <h2>MathJax Formeln</h2>
 
   <table>
-  <tr>
-    <td>n</td>
-    <td>Edukt 1</td>
-    <td>n</td>
-    <td>Edukt 2</td>
-    <td></td>
-    <td>n</td>
-    <td>Produkt 1</td>
-    <td>n</td>
-    <td>Produkt 2</td>
-  </tr>
-  <tr>
-    <td><input id="k1" type="text" size="3"></td>
-    <td><input id="f1" type="text" size="15"> +</td>
+    <tr>
+      <td><input id="k1" type="text" placeholder="n" size="3"></td>
+      <td><input id="f1" type="text" placeholder="Edukt 1" size="10"></td>
+      <td>+</td>
+      <td><input id="k2" type="text" placeholder="n" size="3"></td>
+      <td><input id="f2" type="text" placeholder="Edukt 2" size="10"></td>
 
-    <td><input id="k2" type="text" size="3"></td>
-    <td><input id="f2" type="text" size="15"></td>
+      <td>→</td>
 
-    <td>→</td>
-
-    <td><input id="k3" type="text" size="3"></td>
-    <td><input id="f3" type="text" size="15"> +</td>
-
-    <td><input id="k4" type="text" size="3"></td>
-    <td><input id="f4" type="text" size="15"></td>
-  </tr>
-</table>
-<hr>
+      <td><input id="k3" type="text" placeholder="n" size="3"></td>
+      <td><input id="f3" type="text" placeholder="Produkt 1" size="10"></td>
+      <td>+</td>
+      <td><input id="k4" type="text" placeholder="n" size="3"></td>
+      <td><input id="f4" type="text" placeholder="Produkt 2" size="10"></td>
+    </tr>
+  </table>
+  <hr>
 
   <div id="pfeilauswahl">
-  <h2>Pfeilart:</h2>
+    <b>Pfeilart:</b>
 
-  <label>
-    <input type="radio" name="pfeilart" value="rechts" checked>
-    rechts
-  </label>
+    <label>
+      <input type="radio" name="pfeilart" value="rechts" checked>
+      rechts
+    </label>
 
-  <label>
-    <input type="radio" name="pfeilart" value="links">
-    links
-  </label>
+    <label>
+      <input type="radio" name="pfeilart" value="links">
+      links
+    </label>
 
-  <label>
-    <input type="radio" name="pfeilart" value="gleichgewicht">
-    Gleichgewicht
-  </label>
+    <label>
+      <input type="radio" name="pfeilart" value="gleichgewicht">
+      Gleichgewicht
+    </label>
 
-  <label>
-    <input type="radio" name="pfeilart" value="gleichgewicht-links">
-    Gleichgewicht links
-  </label>
+    <label>
+      <input type="radio" name="pfeilart" value="gleichgewicht-links">
+      Gleichgewicht links
+    </label>
 
-  <label>
-    <input type="radio" name="pfeilart" value="gleichgewicht-rechts">
-    Gleichgewicht rechts
-  </label>
-</div>
-<hr>
-
-
-<input id="pfeilOben" type="text" placeholder="Text über dem Pfeil" size="80">
-<br>
-<br>
-
-<input id="pfeilUnten" type="text" placeholder="Text unter dem Pfeil" size="80">
-
-<br>
-<hr>
-
-  <p>
-    <button type="button" onclick="umwandeln()">MathJax-Formel erzeugen</button>
-  </p>
+    <label>
+      <input type="radio" name="pfeilart" value="gleichgewicht-rechts">
+      Gleichgewicht rechts
+    </label>
+  </div>
+  <hr>
 
 <table>
-    <tr>
-      <td colspan="2"><input id="kf1" type="text" size="30" readonly></td>
-      <td colspan="2"><input id="kf2" type="text" size="30" readonly></td>
-      <td></td>
-      <td colspan="2"><input id="kf3" type="text" size="30" readonly></td>
-      <td colspan="2"><input id="kf4" type="text" size="30" readonly></td>
+  <tr><td>
+        <input id="pfeilOben" type="text" placeholder="Text über dem Pfeil" size="80">
+      </td>
+      <td>
+        <input id="pfeilUnten" type="text" placeholder="Text unter dem Pfeil" size="80">
+      </td>
     </tr>
+  </table>
+  <hr>
+
+    <button type="button" onclick="umwandeln()">Formeln erzeugen</button>
+    <hr>
+  
+  <table>
+    <tr>
+      <td><input id="Groesse" type="text"size="10" placeholder="n/m/M/c/V"></td>
+      <td>
+        <input id="kf1" type="text" size="30" readonly>
+        <button type="button" class="copy-kf-btn" data-target="kf1">C</button>
+      </td>
+
+      <td>
+        <input id="kf2" type="text" size="30" readonly>
+        <button type="button" class="copy-kf-btn" data-target="kf2">C</button>
+      </td>
+
+      <td>
+        <input id="kf3" type="text" size="30" readonly>
+        <button type="button" class="copy-kf-btn" data-target="kf3">C</button>
+      </td>
+
+      <td>
+        <input id="kf4" type="text" size="30" readonly>
+        <button type="button" class="copy-kf-btn" data-target="kf4">C</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td  class="mathjax-kf">
+        <span id="mathKf1"></span>
+        <button type="button" class="copy-kf-image-btn" data-target="mathKf1">
+          C
+        </button>
+      </td>
+
+      <td  class="mathjax-kf">
+        <span id="mathKf2"></span>
+        <button type="button" class="copy-kf-image-btn" data-target="mathKf2">
+          C
+        </button>
+      </td>
+
+
+      <td  class="mathjax-kf">
+        <span id="mathKf3"></span>
+        <button type="button" class="copy-kf-image-btn" data-target="mathKf3">
+          C
+        </button>
+      </td>
+
+      <td  class="mathjax-kf">
+        <span id="mathKf4"></span>
+        <button type="button" class="copy-kf-image-btn" data-target="mathKf4">
+          C
+        </button>
+      </td>
+    </tr>
+
+
   </table>
 
 
   <p>
     <label for="o41">Lösung MathJax:</label>
     <input id="o41" type="text" size="100" readonly>
-    <button type="button" onclick="copyMathJax()">Kopieren</button>
+    <button type="button" onclick="copyMathJax()">C</button>
   </p>
-<div id="mathjax"></div>
-
-<button type="button" onclick="copyMathJaxAsImage()">
-  Formel als Bild kopieren
-</button>
-
+  <table><tr><td>
+  <div id="mathjax"></div>
+</td>
+<td>
+  <button type="button" onclick="copyMathJaxAsImage()">
+    C
+  </button>
+</td></tr></table>
+  
+<hr>
+  <div id="Hilfe">
+    <ul>
+    <li>Zahlen werden automatisch tiefgestellt: <b>H2O</b></li>
+    <li>Ladungen müssen immer mit einem ^ hochgestellt werden: <b>H3O^+, SO4^2-</b></li>
+    <li>Zustandsangaben werden automatisch tiefgestellt: <b>H3O^+(aq), SO4^2-(aq)</b></li>
+    <li>Durch Klicken auf die <b>C</b>-Buttons wird der Inhalt in die Zwischenablage kopiert.</li>
+    </ul>
+  </div>
+<footer>
+    2026 Rainer Hille
+  </footer>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-
 
 </body>
 
 </html>
-
