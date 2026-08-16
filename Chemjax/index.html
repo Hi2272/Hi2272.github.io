@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <title>ChemJax</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://Hi2272.github.io/vanillatoasts.js"></script>
+  <link href="https://Hi2272.github.io/vanillatoasts.css" rel="stylesheet">
+
+
+  <script>
+    window.MathJax = {
+      loader: {
+        load: ["[tex]/mhchem"]
+      },
+      tex: {
+        packages: {
+          "[+]": ["mhchem"]
+        }
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="script.js"></script>
+</head>
+
+<body style="text-align: center;">
+  <h2>ChemJax</h2>
+
+  <table>
+  <tr>
+    <td>
+      <input
+        id="edukte"
+        type="text"
+        placeholder="Edukte: z. B. 2 Na^+(aq) + SO4^2-(aq)"
+        size="80"
+      >
+    </td>
+
+    <td>→</td>
+
+    <td>
+      <input
+        id="produkte"
+        type="text"
+        placeholder="Produkte: z. B. Na2SO4(s)"
+        size="80"
+      >
+    </td>
+  </tr>
+</table>
+
+  <hr>
+
+  <div id="pfeilauswahl">
+  <b>Pfeilart:</b>
+
+  <label>
+    <input type="radio" name="pfeilart" value="rechts" checked>
+    rechts
+  </label>
+
+  <label>
+    <input type="radio" name="pfeilart" value="links">
+    links
+  </label>
+
+  <label>
+    <input type="radio" name="pfeilart" value="gleichgewicht">
+    Gleichgewicht
+  </label>
+
+  <label>
+    <input type="radio" name="pfeilart" value="gleichgewicht-links">
+    Gleichgewicht links
+  </label>
+
+  <label>
+    <input type="radio" name="pfeilart" value="gleichgewicht-rechts">
+    Gleichgewicht rechts
+  </label>
+
+  <label>
+    <input type="radio" name="pfeilart" value="kein-pfeil">
+    kein Pfeil
+  </label>
+</div>
+
+  <hr>
+
+<table>
+  <tr><td>
+        <input id="pfeilOben" type="text" placeholder="Text über dem Pfeil" size="80">
+      </td>
+      <td>
+        <input id="pfeilUnten" type="text" placeholder="Text unter dem Pfeil" size="80">
+      </td>
+    </tr>
+  </table>
+  <hr>
+
+    <button id="convert" type="button" onclick="umwandeln()">Formeln erzeugen</button>
+    <hr>
+  
+  <p>
+    <label for="o41">Lösung MathJax:</label>
+    <input id="o41" type="text" size="100" readonly>
+    <button type="button" onclick="copyMathJax()">C</button>
+  </p>
+  <table><tr><td>
+  <div id="mathjax"></div>
+</td>
+<td>
+  <button type="button" onclick="copyMathJaxAsImage()">
+    C
+  </button>
+</td></tr></table>
+
+<hr>
+  <div id="Hilfe">
+    <ul>
+    <li>Koeffizenten, Formeln und "+"-Zeichen müssen durch Leerzeichen getrennt werden.</li>
+    <li>In Formeln werden Zahlen automatisch tiefgestellt: <b>H2O</b></li>
+    <li>Ladungen müssen immer mit einem ^ hochgestellt werden: <b>H3O^+, SO4^2-</b></li>
+    <li>Zustandsangaben werden automatisch tiefgestellt: <b>H3O^+(aq), SO4^2-(aq)</b></li>
+    <li>Durch Auswählen von <b>kein Pfeil</b> können einzelne Formeln erzeugt werden.</li>
+    <li>Durch Klicken auf einen der <b>C</b>-Buttons wird der Inhalt in die Zwischenablage kopiert.</li>
+    
+    </ul>
+  </div>
+<footer>
+    2026 Rainer Hille
+  </footer>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+</body>
+
+</html>
