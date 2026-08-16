@@ -1,0 +1,90 @@
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+input{
+ border-radius: 3px;
+  margin: 3px;
+  padding: 3px;
+  background-color:#f5f5ff;
+  text-align: center;
+
+}
+
+table input {
+  background-color:#f5fff5;
+}
+#mathjax {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+
+}
+
+#mathjax mjx-container {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+button {
+  background-color: #2f80ed;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: #1c64c8;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button:focus-visible {
+  outline: 3px solid #90caf9;
+  outline-offset: 2px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.kopierzeile {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+}
+
+.kopierzeile input {
+    flex: 1;
+}
+
+.mathjax-kf {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+
+footer{
+  text-align: right;
+  font-size: xx-small;
+}
+#Hilfe{
+  text-align: left;
+  font-size: small;
+}
+#convert{
+   background-color: #008800;
+  color: white;
+}
