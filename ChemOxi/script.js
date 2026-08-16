@@ -663,26 +663,61 @@ function formelInElementeAufteilen(eingabe) {
          * Klammern und weitere Satzzeichen als Text
          * ausgeben.
          */
-        if (
-            zeichen === "(" ||
-            zeichen === ")" ||
-            zeichen === "[" ||
-            zeichen === "]" ||
-            zeichen === "|" ||
-            zeichen === "," ||
-            zeichen === "." ||
-            zeichen === ":" ||
-            zeichen === ";"
-        ) {
-            elementHinzufuegen(
-                "\\text{" + zeichen + "}",
-                "",
-                false
-            );
+        /*
+ * Schließende runde Klammer mit anschließendem
+ * Gruppenindex erkennen.
+ *
+ * Beispiele:
+ *
+ * (H2O)6
+ * [Cu(H2O)6]
+ */
+if (zeichen === ")") {
+    i++;
 
-            i++;
-            continue;
-        }
+    let gruppenIndex = "";
+
+    while (
+        i < eingabe.length &&
+        /\d/.test(eingabe[i])
+    ) {
+        gruppenIndex += eingabe[i];
+        i++;
+    }
+
+    elementHinzufuegen(
+        "\\text{)}",
+        gruppenIndex,
+        true
+    );
+
+    continue;
+}
+
+/*
+ * Öffnende Klammern und sonstige Zeichen
+ * als Text ausgeben.
+ */
+if (
+    zeichen === "(" ||
+    zeichen === "[" ||
+    zeichen === "]" ||
+    zeichen === "|" ||
+    zeichen === "," ||
+    zeichen === "." ||
+    zeichen === ":" ||
+    zeichen === ";"
+) {
+    elementHinzufuegen(
+        "\\text{" + zeichen + "}",
+        "",
+        false
+    );
+
+    i++;
+    continue;
+}
+
 
         /*
          * Pfeilzeichen erkennen, falls die Funktion
