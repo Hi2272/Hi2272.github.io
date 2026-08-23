@@ -3,6 +3,9 @@ table {
   margin-right: auto;
 }
 
+body{
+  width: 100%;
+}
 
 input{
  border-radius: 3px;
