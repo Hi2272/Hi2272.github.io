@@ -6,5 +6,5 @@
 ##	<a href="https://learningapps.org/view7755021">Stufe 4</a>
 ##	<a href="https://learningapps.org/view7755362">Stufe 5</a>
 ##	<a href="https://learningapps.org/view7753576">Stufe 6</a>
-<hr>
+
 [zurück](../../index.html)
