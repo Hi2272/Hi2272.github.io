@@ -48,6 +48,8 @@
 [Snap Map](00Informatik6/Verfassungsviertelstunde/SnapMap/index.html)
 
 # Informatik 7. Klasse
+[Grundbegriffe aus der 6. Klasse](00Informatik7/00Grundwissenswiederholung/index.html)  
+
 [Mein Netzwerk zu Hause](https://learningapps.org/view7741094)  
 [WebNetSim Einstieg](00Informatik7/01WebNetSim/index.html)  
 [WebNetSim Netzwerk](00Informatik7/02WebNetSim/index.html)  
