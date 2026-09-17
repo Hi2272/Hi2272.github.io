@@ -125,19 +125,10 @@
 
 
 #### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
-[Start](https://sql.hauptquartier.eu/start-abenteuer)  
-
-### Abfragen über mehrere Tabellen
-[Schwimmbäder in Bayern (www.dbiu.de)](SQLJoin/index.html)   
-[Zoos und Wanderwege (www.dbiu.de)](SQLJoin2/index.html)  
-[Nachbargemeinden (www.dbiu.de)](SQLJoin3/index.html)  
-
-#### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
-[Anfragen über mehrere Tabellen](https://sql.hauptquartier.eu/2-tabellen-abfragen/primaerschluessel-fremdschluessel)    
-
-### Datenbank-Design in Access
-[Wahlunterricht](Access/00Einstieg/index.html)  
-[Sportverein](Access/01Verein/index.html)  
+[Start](https://sql.hauptquartier.eu/start-abenteuer)    
+[Bedingungen](https://sql.hauptquartier.eu/select-abfragen/select-vertikale-einschraenkungen)    
+[Bedingungen mit logischen Funktionen verknüpfen](https://sql.hauptquartier.eu/select-abfragen/verknuepfte-bedingungen)  
+[Sortieren der Ergebnisse](https://sql.hauptquartier.eu/select-abfragen/sql-sortieren)  
 
 ## Objektorientierte Programmierung
 ***
@@ -225,7 +216,22 @@
 [Aufbau einer Java-Klasse: Bezeichnungen](/00Informatik/KlassenAufbau2/index.html)  
 [Wiederholung Java](/00Informatik/WiederholungJava/index.html)  
 
-# Java in der 10. Klasse
+# Informatik 10. Klasse
+## Datenbanken
+
+### Abfragen über mehrere Tabellen
+[Schwimmbäder in Bayern (www.dbiu.de)](SQLJoin/index.html)   
+[Zoos und Wanderwege (www.dbiu.de)](SQLJoin2/index.html)  
+[Nachbargemeinden (www.dbiu.de)](SQLJoin3/index.html)  
+
+#### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
+[Anfragen über mehrere Tabellen](https://sql.hauptquartier.eu/2-tabellen-abfragen/primaerschluessel-fremdschluessel)    
+
+### Datenbank-Design in Access
+[Wahlunterricht](Access/00Einstieg/index.html)  
+[Sportverein](Access/01Verein/index.html)  
+
+## Java in der 10. Klasse
 [Wiederholung Schleifen](00Informatik10/01WiederholungJava/index.html)  
 
 [Assembler Simulator](https://exuanbo.xyz/assembler-simulator) 
@@ -258,7 +264,7 @@
 
 [Weihnachtsbaum](00Informatik10/Weihnachtsbaum/index.html)
 
-#  Projekt
+##  Projekt
 
 [Projekt-Definition](00Informatik10/Projekt/index.html)   
 [Grundstruktur](00Informatik10/Projekt/01Grundstruktur.html)  
