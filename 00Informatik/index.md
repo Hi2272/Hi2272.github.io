@@ -227,6 +227,9 @@
 #### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
 [Anfragen über mehrere Tabellen](https://sql.hauptquartier.eu/2-tabellen-abfragen/primaerschluessel-fremdschluessel)    
 
+### Entity-Relation-Modell
+[Zerlgen von Datentabellen](00Informatik10/ER-Modell/index.html)  
+
 ### Datenbank-Design in Access
 [Wahlunterricht](Access/00Einstieg/index.html)  
 [Sportverein](Access/01Verein/index.html)  
@@ -279,7 +282,6 @@
 [Breitensuche Algorithmus](00Informatik11/03Breitensuche/05Algorithmus/index.html)  
 [Die Klasse Warteschlange](00Informatik11/03Breitensuche/06Warteschlange/index.html)  
 [Breitensuche Implementierung](00Informatik11/03Breitensuche/07Implementierung/index.html)  
-
 
 ## Verschlüsselung
 [Krypto-Castle](https://view.genially.com/647f2a04bc62140019e744a0/interactive-content-the-mystery-of-cryptocastle)  
