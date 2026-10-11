@@ -76,7 +76,7 @@ Wandelt die ...drill.txt und die ..._contour.gb1-Datei aus einem Gerber-Paket in
 
 11. Starten von UniversalGCodeSender (https://universalgcodesender.com/).
 12. Laden der GCode-Dateien und Bohren bzw. Fräsen der Platine.  
-**WICHTIG: Die Platine wird mit Kupferseite nach unten gebohrt und gefräst.**
+**WICHTIG: Die Platine wird mit Kupferseite nach oben gebohrt und gefräst.**
 
 ### 5. Belichten der Platine
 

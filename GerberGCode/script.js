@@ -91,12 +91,40 @@ function offsetClosedPath(path, offset) {
 
 
 function convertTextareas() {
-    state.holes = parseDrill($("drillText").value);
+    const parsedHoles = parseDrill($("drillText").value);
     const parsedPaths = parseGerber($("contourText").value);
-    const radius = Math.max(0, numberValue("cutterDiameter", 3)) / 2;
 
-    state.paths = parsedPaths.map(path => offsetClosedPath(path, radius));
-    state.cutPaths = state.paths.flatMap(path => splitForTabs(path, 20, 2));
+    const contourPoints = parsedPaths.flat();
+    const minX = Math.min(...contourPoints.map(point => point.x));
+    const maxX = Math.max(...contourPoints.map(point => point.x));
+    const minY = Math.min(...contourPoints.map(point => point.y));
+    const boardWidth = maxX - minX;
+
+    const maxY = Math.max(...contourPoints.map(point => point.y));
+    const boardHeight = maxY - minY;
+
+    state.holes = parsedHoles.map(hole => ({
+        ...hole,
+        x: hole.x - minX,
+        y: boardHeight - (hole.y - minY)
+    }));
+
+    // Kontur auf denselben Ursprung normieren.
+    const normalizedPaths = parsedPaths.map(path =>
+        path.map(point => ({
+            x: point.x - minX,
+            y: point.y - minY
+        }))
+    );
+
+    // Erst nach der Normierung nach außen versetzen.
+    const cutterRadius = Math.max(0, numberValue("cutterDiameter", 3)) / 2;
+    state.paths = normalizedPaths.map(path =>
+        offsetClosedPath(path, cutterRadius)
+    );
+    state.cutPaths = state.paths.flatMap(path =>
+        splitForTabs(path, 20, 2)
+    );
 
     if (!state.holes.length || !state.paths.length) {
         $("status").textContent =
@@ -296,37 +324,37 @@ function regenerate() {
         groups.get(hole.tool).push(hole);
     }
 
-    
+
     const outputs = [];
-    
-        const toolIds = [...new Set(state.holes.map(hole => hole.tool))];
 
-for (const [tool, holes] of groups) {
-  const diameter = holes[0].diameter.toFixed(3);
-  const lines = header(
-    `Bohren, Werkzeug T${tool}, Durchmesser ${diameter} mm`,
-    safeZ,
-    spindle
-  );
+    const toolIds = [...new Set(state.holes.map(hole => hole.tool))];
 
-  lines.push(`(Anzahl Bohrungen: ${holes.length})`, `F${feed}`);
+    for (const [tool, holes] of groups) {
+        const diameter = holes[0].diameter.toFixed(3);
+        const lines = header(
+            `Bohren, Werkzeug T${tool}, Durchmesser ${diameter} mm`,
+            safeZ,
+            spindle
+        );
 
-  for (const hole of optimizeDrillRoute(holes)) {
-    lines.push(
-      `G0 X${fmt(hole.x)} Y${fmt(hole.y)}`,
-      `G1 Z${fmt(drillDepth)} F${fmt(feed)}`,
-      `G0 Z${fmt(safeZ)}`
-    );
-  }
+        lines.push(`(Anzahl Bohrungen: ${holes.length})`, `F${feed}`);
 
-  lines.push("M5", "G0 Z10", "G0 X0 Y0", "M30");
+        for (const hole of optimizeDrillRoute(holes)) {
+            lines.push(
+                `G0 X${fmt(hole.x)} Y${fmt(hole.y)}`,
+                `G1 Z${fmt(drillDepth)} F${fmt(feed)}`,
+                `G0 Z${fmt(safeZ)}`
+            );
+        }
 
-  outputs.push({
-    name: `${state.baseName}_bohren_T${cleanName(tool)}.gcode`,
-    text: lines.join("\n"),
-    color: palette[toolIds.indexOf(tool) % palette.length]
-  });
-}
+        lines.push("M5", "G0 Z10", "G0 X0 Y0", "M30");
+
+        outputs.push({
+            name: `${state.baseName}_bohren_T${cleanName(tool)}.gcode`,
+            text: lines.join("\n"),
+            color: palette[toolIds.indexOf(tool) % palette.length]
+        });
+    }
 
 
     const millLines = header("Platinenkontur fräsen – 2-mm-Unterbrechung im Abstand 20 mm", safeZ, spindle);
@@ -385,28 +413,28 @@ function downloadOutput(index) {
 }
 
 async function downloadAll() {
-  if (!state.outputs.length) return;
+    if (!state.outputs.length) return;
 
-  if (typeof JSZip === "undefined") {
-    $("status").textContent = "ZIP-Bibliothek konnte nicht geladen werden. Prüfe die Internetverbindung.";
-    return;
-  }
+    if (typeof JSZip === "undefined") {
+        $("status").textContent = "ZIP-Bibliothek konnte nicht geladen werden. Prüfe die Internetverbindung.";
+        return;
+    }
 
-  const zip = new JSZip();
+    const zip = new JSZip();
 
-  for (const output of state.outputs) {
-    zip.file(output.name, output.text);
-  }
+    for (const output of state.outputs) {
+        zip.file(output.name, output.text);
+    }
 
-  const blob = await zip.generateAsync({ type: "blob" });
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement("a");
+    const blob = await zip.generateAsync({ type: "blob" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
 
-  anchor.href = url;
-  anchor.download = `${state.baseName}_gcode.zip`;
-  anchor.click();
+    anchor.href = url;
+    anchor.download = `${state.baseName}_gcode.zip`;
+    anchor.click();
 
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 
@@ -498,51 +526,70 @@ function drawCanvas() {
     ctx.lineWidth = 2;
     for (const path of state.cutPaths) drawPath(ctx, path, screen);
 
-    const toolIds = [...new Set(state.holes.map(h => h.tool))];
-    state.holes.forEach(hole => {
-        const p = screen(hole);
-        const radius = Math.max(2, (hole.diameter / 2) * scale);
+    const toolIds = [...new Set(state.holes.map(hole => hole.tool))];
+
+    ctx.save();
+
+state.holes.forEach(hole => {
+  const point = screen(hole);
+  const color = palette[toolIds.indexOf(hole.tool) % palette.length];
+  const diameter = Number(hole.diameter) || 0;
+  const edge = screen({ x: hole.x + diameter / 2, y: hole.y });
+  const radius = Math.max(2, Math.abs(edge.x - point.x));
+
+  ctx.beginPath();
+  ctx.arc(point.x, point.y, radius, 0, Math.PI * 2);
+  ctx.fillStyle = color;
+  ctx.fill();
+});
+
+    ctx.restore();
+
+    $("legend").innerHTML = toolIds.map((tool, index) => {
+        const color = palette[index % palette.length];
+        const filename =
+            `${state.baseName}_bohren_T${cleanName(tool)}.gcode`;
+
+        return `
+    <span class="legend-item">
+      <i class="tool-key" style="background-color: ${color}"></i>
+      T${tool} 
+    </span>
+  `;
+    }).join("");
+}
+
+    function drawPath(ctx, path, screen) {
+        if (path.length < 2) return;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = palette[toolIds.indexOf(hole.tool) % palette.length];
-        ctx.fill();
-        ctx.strokeStyle = "#fff";
-        ctx.lineWidth = 1;
+        const first = screen(path[0]);
+        ctx.moveTo(first.x, first.y);
+        for (const point of path.slice(1)) {
+            const p = screen(point);
+            ctx.lineTo(p.x, p.y);
+        }
         ctx.stroke();
-    });
-}
-
-function drawPath(ctx, path, screen) {
-    if (path.length < 2) return;
-    ctx.beginPath();
-    const first = screen(path[0]);
-    ctx.moveTo(first.x, first.y);
-    for (const point of path.slice(1)) {
-        const p = screen(point);
-        ctx.lineTo(p.x, p.y);
     }
-    ctx.stroke();
-}
 
-function distance(a, b) { return Math.hypot(b.x - a.x, b.y - a.y); }
-function convertUnits(value, units) { return value * (units === "INCH" ? 25.4 : 1); }
-function fmt(value) { return Number(value).toFixed(3); }
-function numberValue(id, fallback) {
-    const value = Number($(id).value);
-    return Number.isFinite(value) ? value : fallback;
-}
-function cleanName(value) {
-    return String(value).replace(/[^a-z0-9_-]+/gi, "_").replace(/^_+|_+$/g, "");
-}
+    function distance(a, b) { return Math.hypot(b.x - a.x, b.y - a.y); }
+    function convertUnits(value, units) { return value * (units === "INCH" ? 25.4 : 1); }
+    function fmt(value) { return Number(value).toFixed(3); }
+    function numberValue(id, fallback) {
+        const value = Number($(id).value);
+        return Number.isFinite(value) ? value : fallback;
+    }
+    function cleanName(value) {
+        return String(value).replace(/[^a-z0-9_-]+/gi, "_").replace(/^_+|_+$/g, "");
+    }
 
-function chooseGridStep(rangeMm) {
-    const target = Math.max(rangeMm / 8, 1);
-    const magnitude = 10 ** Math.floor(Math.log10(target));
-    const normalized = target / magnitude;
-    const factor = normalized <= 1 ? 1 : normalized <= 2 ? 2 : normalized <= 5 ? 5 : 10;
-    return factor * magnitude;
-}
+    function chooseGridStep(rangeMm) {
+        const target = Math.max(rangeMm / 8, 1);
+        const magnitude = 10 ** Math.floor(Math.log10(target));
+        const normalized = target / magnitude;
+        const factor = normalized <= 1 ? 1 : normalized <= 2 ? 2 : normalized <= 5 ? 5 : 10;
+        return factor * magnitude;
+    }
 
-function formatCm(valueMm) {
-    return (valueMm / 10).toFixed(2).replace(/\.?0+$/, "");
-}
+    function formatCm(valueMm) {
+        return (valueMm / 10).toFixed(2).replace(/\.?0+$/, "");
+    }
