@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas-Bild-Editor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="editor">
+    <nav class="toolbar" aria-label="Werkzeugleiste">
+      <button id="loadBtn" type="button">
+        Laden
+      </button>
+
+      <button id="saveBtn" type="button">
+        Speichern
+      </button>
+
+      <button
+        id="cvBtn"
+        type="button"
+        aria-pressed="false"
+      >
+        CV
+      </button>
+
+      <button
+        id="ivBtn"
+        type="button"
+        aria-pressed="false"
+      >
+        IV
+      </button>
+
+<button
+  id="mBtn"
+  type="button"
+  aria-pressed="false"
+>
+  M
+</button>
+<button
+  id="tBtn"
+  type="button"
+  aria-pressed="false"
+>
+  T
+</button>
+
+
+      <input
+        id="fileInput"
+        type="file"
+        accept="image/*"
+        hidden
+      >
+    </nav>
+
+    <section class="canvas-wrap">
+      <canvas
+        id="canvas"
+        width="800"
+        height="600"
+      >
+        Dein Browser unterstützt kein HTML-Canvas.
+      </canvas>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
