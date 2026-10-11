@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gerber zu G-Code</title>
+    <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" defer></script>
+<script src="script.js" defer></script>
+
+
+</head>
+
+<body>
+    <main class="app">
+        <header>
+            <h1>Gerber zu G-Code</h1>
+            <p>Bohrdaten und Platinenkontur laden, prüfen und als G-Code herunterladen.</p>
+        </header>
+
+        <section class="panel controls">
+            <div class="actions">
+            </div>
+<p id="status" role="status" aria-live="polite">
+ Füge die Daten in die Textfelder ein.
+</p>
+
+<div class="text-inputs">
+  <div class="text-field">
+    <label for="drillText">drill.txt</label>
+    <textarea id="drillText" rows="12" placeholder="Bohrdaten hier einfügen …"></textarea>
+  </div>
+
+  <div class="text-field">
+    <label for="contourText">contour.gm1 oder *_contour.gb1</label>
+    <textarea id="contourText" rows="12" placeholder="Konturdaten hier einfügen …"></textarea>
+  </div>
+
+  <button id="convertButton" type="button">Aus Textfeldern konvertieren</button>
+</div>
+
+            <details>
+                <summary>G-Code-Einstellungen</summary>
+                <div class="settings">
+                    <label>Fräserdurchmesser (mm)
+                        <input id="cutterDiameter" type="number" value="3" min="0.1" step="0.1">
+                    </label>
+                    <label>Sicherheits-Z (mm)
+                        <input id="safeZ" type="number" value="3" step="0.1">
+                    </label>
+                    <label>Bohrtiefe (mm)
+                        <input id="drillDepth" type="number" value="1.8" step="0.1">
+                    </label>
+                    <label>Frästiefe (mm)
+                        <input id="millDepth" type="number" value="1.6" step="0.1">
+                    </label>
+                    <label>Vorschub (mm/min)
+                        <input id="feedRate" type="number" value="100" min="1" step="10">
+                    </label>
+                    <label>Spindeldrehzahl (U/min)
+                        <input id="spindleSpeed" type="number" value="10000" min="0" step="500">
+                    </label>
+                </div>
+                <p class="muted">Vor dem Fräsen prüfen, ob Tiefe, Vorschub, Spindel und Nullpunkt zu deiner Maschine
+                    passen.</p>
+            </details>
+        </section>
+
+        <section class="layout">
+            <section class="panel preview">
+                <h2>Vorschau</h2>
+                <canvas id="boardCanvas" aria-label="Vorschau der Platinenbohrungen und Fräsbahnen"></canvas>
+                <div class="legend">
+                    <span><i class="hole-key"></i> Bohrungen</span>
+                    <span><i class="path-key"></i> Fräsbahn</span>
+                    <span><i class="gap-key"></i> 2-mm-Unterbrechungen</span>
+                </div>
+            </section>
+
+            <section class="panel output">
+                <h2>Erzeugte Dateien</h2>
+                <ul id="fileList">
+                    <li class="muted">Noch keine Dateien erzeugt.</li>
+                </ul>
+                <button id="downloadAllButton" type="button" disabled>
+  Alle G-Code-Dateien herunterladen
+</button>
+            </section>
+        </section>
+
+        <p class="footnote">
+            Drill-Koordinaten ohne Dezimalpunkt werden standardmäßig als Excellon 2:4 interpretiert.
+            Falls deine Maschine andere Werte benötigt, prüfe die erzeugten Dateien vor dem Einsatz.
+        </p>
+    </main>
+</body>
+
+</html>

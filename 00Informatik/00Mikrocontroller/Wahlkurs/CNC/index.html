@@ -138,7 +138,8 @@
         
         </head>
         <body class="vscode-body vscode-light">
-            <h1 id="cnc-fräsen">CNC-Fräsen</h1>
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:true,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="cnc-fräsen">CNC-Fräsen</h1>
 <h2 id="allgemeines">Allgemeines</h2>
 <p>Die CNC-Fräse an unserer Schule wurde von der <a href="https://www.wilhelm-stemmer-stiftung.de/">Wilhelm Stemmer Stiftung</a> finanziert.</p>
 <p><strong>Da sie ein sehr leistungsfähiges und damit gefährliches Gerät. darf die CNC-Fräse nur in Anwesenheit einer Lehrkraft verwendet werden.</strong></p>
@@ -202,18 +203,76 @@ Damit können Löcher an exakt festgelegte Stellen gebohrt werden oder Werkstüc
 <h3 id="gerber-gcode-konverter"><a href="../../../../GerberToGCode/index.html">Gerber GCode Konverter</a></h3>
 <p>Wandelt Gerber-Dateien direkt in GCode um. Damit können zum Beispiel Schaltungen automatisch gezeichnet werden.</p>
 <h3 id="drill-konverter"><a href="../../../../SVGtoGCode/index.html">Drill Konverter</a></h3>
-<p>Wandelt die drill.txt aus einem Gerber-Paket in GCodes zum Ansteuern der CNC-Fräse um.</p>
+<p>Wandelt die ...drill.txt aus einem Gerber-Paket in GCodes zum Ansteuern der CNC-Fräse um.</p>
+<h3 id="kontur-konverter"><a href="../../../../GerberKontur/index.html">Kontur Konverter</a></h3>
+<p>Wandelt die ..._contour.gb1-Datei aus einem Geber-Paket in GCodes zum Ansteuern der CNC-Fräse um.</p>
+<h3 id="gerber-zu-gcode"><a href="../../../../GerberGCode/index.html">Gerber zu GCode</a></h3>
+<p>Wandelt die ...drill.txt und die ..._contour.gb1-Datei aus einem Gerber-Paket in GCode-Dateien um.</p>
 <h2 id="arbeitsgang-zum-fräsen-und-ätzen-von-platinen">Arbeitsgang zum Fräsen und Ätzen von Platinen</h2>
+<h3 id="konstruktion-der-platine">Konstruktion der Platine</h3>
 <ol>
 <li><a href="Fritzing/CNC/index.html">Konstruktion der Platine in Fritzing</a></li>
+</ol>
+<h3 id="1-export-der-relevanten-dateien">1. Export der relevanten Dateien</h3>
+<ol>
 <li>Export zur Produktion als Gerber.</li>
-<li>Öffnen der Datei mit den Bohrungen (...drill.txt) mit einem Editor.</li>
-<li>Kopieren des Code und einfügen auf der Internetseite <a href="https://hi2272.github.io/SVGtoGCode/">Drill Konverter</a>.</li>
-<li>Konvertieren, sortieren und als GCOde-Dateien speichern.</li>
+<li>Export zur Produktion als Ätzbar(SVG)</li>
+</ol>
+<h3 id="2-gcode-für-bohrungen">2. GCode für Bohrungen</h3>
+<ol>
+<li>Öffnen der Datei mit den Bohrungen (<strong>...drill.txt</strong>) mit einem Editor.</li>
+<li>Kopieren des Code und einfügen auf der Internetseite <a href="https://hi2272.github.io/GeberGCode/index.html">Gerber zu GCode</a>.</li>
+<li>Öffnen der Datei mit der Kontur: (<strong>..._contour.bm1</strong>) mit einem Editor.</li>
+<li>Kopieren des Code und einfügen auf der Internetseite.</li>
+<li>Konvertieren und als GCOde-Dateien speichern.</li>
+</ol>
+<h3 id="3-svg-für-belichtung">3. SVG für Belichtung</h3>
+<ol>
+<li>Öffnen der Datei <strong>..._etch_copperTop_mirror.svg</strong> mit Inkscape</li>
+<li>Alles markieren und Füllung auf schwarz stellen</li>
+<li>Gruppierung aufheben (Strg U)</li>
+<li>Hintergrund markieren und Füllung auf weiß stellen</li>
+<li>Ggf. weitere Bereiche mit Rechtecken maskieren.</li>
+<li>Alles markieren und gruppieren (Strg A, Strg G)</li>
+<li>Alles markieren und kopierne (Strg A, Strg C)</li>
+<li>Neue Datei erstellen (DIN A4) (Strg N)</li>
+<li>Einfügen (Strg V) und sinnvoll auf der Seite positionieren.</li>
+<li>Auf OHP-Folie ausdrucken</li>
+</ol>
+<h3 id="4-bohren-und-fräsen">4. Bohren und Fräsen</h3>
+<ol start="11">
 <li>Starten von UniversalGCodeSender (<a href="https://universalgcodesender.com/">https://universalgcodesender.com/</a>).</li>
-<li>Laden der Dateien und Bohren der Platine.</li>
-<li>Zeichnen der Leiterbahnen mit einem Edding auf der Kupferseite.</li>
-<li>Ätzen der Platine mit Natriumperoxodisulfat.</li>
+<li>Laden der GCode-Dateien und Bohren bzw. Fräsen der Platine.<br>
+<strong>WICHTIG: Die Platine wird mit Kupferseite nach unten gebohrt und gefräst.</strong></li>
+</ol>
+<h3 id="5-belichten-der-platine">5. Belichten der Platine</h3>
+<ol>
+<li>OHP-Folie passend ausschneiden</li>
+<li>Rückseite mit weißer Kerze einreiben (Wachs verhindert das Anhaften des Kunststoffes)</li>
+<li>Platine dünn mit UV-härtendem Harz bestreichen (3D-Drucker Resin)
+<ol>
+<li>Arbeit unter LED-Licht, kein Sonnenlicht wegen UV-Strahlung.</li>
+<li><strong>Vorsicht, giftig - Handschuhe und Schutzbrille und Atemschutz tragen</strong></li>
+</ol>
+</li>
+<li>Folie auflegen , an Bohrungen ausrichten</li>
+<li>10 Sekunden lang mit UV-Taschenlampe belichten.
+<ol>
+<li><strong>Vorsicht, gefährlich, Augen schützen</strong></li>
+</ol>
+</li>
+<li>Nicht gehärtetes Harz abwaschen.
+<ol>
+<li><strong>Vorsicht, giftig - Handschuhe und Schutzbrille und Atemschutz tragen</strong></li>
+</ol>
+</li>
+</ol>
+<h3 id="alternativ-zeichnen-der-leiterbahnen-mit-einem-edding-auf-der-kupferseite">Alternativ: Zeichnen der Leiterbahnen mit einem Edding auf der Kupferseite.</h3>
+<h3 id="6-ätzen-der-platine-mit-natriumperoxodisulfat">6. Ätzen der Platine mit Natriumperoxodisulfat.</h3>
+<ol>
+<li>Temp. 50°C</li>
+<li>vorsichtig schütteln</li>
+<li><strong>Vorsicht, ätzend - Handschuhe und Schutzbrille und Atemschutz tragen</strong></li>
 </ol>
 
             
