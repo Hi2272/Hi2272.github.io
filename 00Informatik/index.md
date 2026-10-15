@@ -48,6 +48,8 @@
 [Snap Map](00Informatik6/Verfassungsviertelstunde/SnapMap/index.html)
 
 # Informatik 7. Klasse
+[Grundbegriffe aus der 6. Klasse](00Informatik7/00Grundwissenswiederholung/index.html)  
+
 [Mein Netzwerk zu Hause](https://learningapps.org/view7741094)  
 [WebNetSim Einstieg](00Informatik7/01WebNetSim/index.html)  
 [WebNetSim Netzwerk](00Informatik7/02WebNetSim/index.html)  
@@ -123,19 +125,10 @@
 
 
 #### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
-[Start](https://sql.hauptquartier.eu/start-abenteuer)  
-
-### Abfragen über mehrere Tabellen
-[Schwimmbäder in Bayern (www.dbiu.de)](SQLJoin/index.html)   
-[Zoos und Wanderwege (www.dbiu.de)](SQLJoin2/index.html)  
-[Nachbargemeinden (www.dbiu.de)](SQLJoin3/index.html)  
-
-#### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
-[Anfragen über mehrere Tabellen](https://sql.hauptquartier.eu/2-tabellen-abfragen/primaerschluessel-fremdschluessel)    
-
-### Datenbank-Design in Access
-[Wahlunterricht](Access/00Einstieg/index.html)  
-[Sportverein](Access/01Verein/index.html)  
+[Start](https://sql.hauptquartier.eu/start-abenteuer)    
+[Bedingungen](https://sql.hauptquartier.eu/select-abfragen/select-vertikale-einschraenkungen)    
+[Bedingungen mit logischen Funktionen verknüpfen](https://sql.hauptquartier.eu/select-abfragen/verknuepfte-bedingungen)  
+[Sortieren der Ergebnisse](https://sql.hauptquartier.eu/select-abfragen/sql-sortieren)  
 
 ## Objektorientierte Programmierung
 ***
@@ -223,7 +216,25 @@
 [Aufbau einer Java-Klasse: Bezeichnungen](/00Informatik/KlassenAufbau2/index.html)  
 [Wiederholung Java](/00Informatik/WiederholungJava/index.html)  
 
-# Java in der 10. Klasse
+# Informatik 10. Klasse
+## Datenbanken
+
+### Abfragen über mehrere Tabellen
+[Schwimmbäder in Bayern (www.dbiu.de)](SQLJoin/index.html)   
+[Zoos und Wanderwege (www.dbiu.de)](SQLJoin2/index.html)  
+[Nachbargemeinden (www.dbiu.de)](SQLJoin3/index.html)  
+
+#### Kommissar Smiths Abenteuer pt. 2: Maulwurfsstadt 2023
+[Anfragen über mehrere Tabellen](https://sql.hauptquartier.eu/2-tabellen-abfragen/primaerschluessel-fremdschluessel)    
+
+### Entity-Relation-Modell
+[Zerlgen von Datentabellen](00Informatik10/ER-Modell/index.html)  
+
+### Datenbank-Design in Access
+[Wahlunterricht](Access/00Einstieg/index.html)  
+[Sportverein](Access/01Verein/index.html)  
+
+## Java in der 10. Klasse
 [Wiederholung Schleifen](00Informatik10/01WiederholungJava/index.html)  
 
 [Assembler Simulator](https://exuanbo.xyz/assembler-simulator) 
@@ -256,7 +267,7 @@
 
 [Weihnachtsbaum](00Informatik10/Weihnachtsbaum/index.html)
 
-#  Projekt
+##  Projekt
 
 [Projekt-Definition](00Informatik10/Projekt/index.html)   
 [Grundstruktur](00Informatik10/Projekt/01Grundstruktur.html)  
@@ -271,7 +282,6 @@
 [Breitensuche Algorithmus](00Informatik11/03Breitensuche/05Algorithmus/index.html)  
 [Die Klasse Warteschlange](00Informatik11/03Breitensuche/06Warteschlange/index.html)  
 [Breitensuche Implementierung](00Informatik11/03Breitensuche/07Implementierung/index.html)  
-
 
 ## Verschlüsselung
 [Krypto-Castle](https://view.genially.com/647f2a04bc62140019e744a0/interactive-content-the-mystery-of-cryptocastle)  

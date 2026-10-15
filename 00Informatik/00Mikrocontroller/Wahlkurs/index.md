@@ -5,7 +5,7 @@
 ##### [LEDs](#leuchtdioden-leds) | [Taster](#taster) | [Alarmanlage](#alarmanlage) | [Messwerterfassung](#messwerterfassung) | [Diskoleuchte](#diskobeleuchtung) | [ESP32](#esp32) | [Gamepad](#b-ein-bluetooth-gamepad-für-pac-man) | [Interrupts](#blinken-ohne-pause---interrupts) | [3DDruck](#3d-druck-und-cad) | [CNC Fräsen](#cnc-fräsen) | [Motoren](#selbstfahrender-roboter)
 
 ## Kursübersicht
-Der Wahlkurs findet im ersten Halbjahr immer mittwochs von 13.45 bis 15.15 Uhr statt.  
+Der Wahlkurs findet im ersten Halbjahr einmal pro Woche statt.  
 Folgende Inhalte werden vertieft behandelt:  
 [Lernpfad](Lernpfad.html)
 ## Grundausstattung
