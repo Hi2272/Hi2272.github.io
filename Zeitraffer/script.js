@@ -248,7 +248,8 @@ async function createTimelapse() {
       image.close();
 
       if (timestampInput.checked) {
-        const text = formatTimestamp(frame.elapsedMs);
+        const text = formatTimestamp(Math.max(0, frame.elapsedMs - frames[0].elapsedMs)
+);
         const fontSize = Math.max(18, Math.round(canvas.width * 0.025));
         const padding = Math.round(fontSize * 0.55);
 
@@ -342,4 +343,39 @@ if (navigator.mediaDevices?.addEventListener) {
     navigator.mediaDevices.addEventListener("devicechange", refreshCameras);
 }
 
-refreshCameras();
+async function initializeCameraPreview() {
+  try {
+    if (!navigator.mediaDevices?.getUserMedia) {
+      throw new Error("Dieser Browser unterstützt keinen Kamerazugriff.");
+    }
+
+    cameraStream = await navigator.mediaDevices.getUserMedia({
+      video: true,
+      audio: false
+    });
+
+    preview.srcObject = cameraStream;
+    await preview.play();
+    previewMessage.hidden = true;
+
+    const activeDeviceId =
+      cameraStream.getVideoTracks()[0]?.getSettings().deviceId;
+
+    await refreshCameras();
+
+    if (
+      activeDeviceId &&
+      [...cameraSelect.options].some((option) => option.value === activeDeviceId)
+    ) {
+      cameraSelect.value = activeDeviceId;
+    }
+
+    statusText.textContent = "Kameravorschau bereit. Du kannst die Aufnahme starten.";
+  } catch (error) {
+    previewMessage.hidden = false;
+    statusText.textContent =
+      `Kameravorschau konnte nicht gestartet werden: ${error.message}`;
+  }
+}
+
+initializeCameraPreview();

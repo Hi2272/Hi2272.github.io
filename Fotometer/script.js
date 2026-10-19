@@ -51,54 +51,101 @@ function drawRectangle() {
 }
 
 function updateRgbTable() {
-    if (video.readyState < 2 || !video.videoWidth || !video.videoHeight) return;
+  const average = getAverageRgb();
+  if (!average) return;
 
-    const { x, y, b, h } = getRectangle();
-    const left = Math.max(0, x);
-    const top = Math.max(0, y);
-    const right = Math.min(video.videoWidth, x + b);
-    const bottom = Math.min(video.videoHeight, y + h);
+  const timestamp = Math.round(video.currentTime * 1000);
+  const row = document.createElement("tr");
 
-    if (right <= left || bottom <= top) return;
-
-    const width = right - left;
-    const height = bottom - top;
-
-    sampleCanvas.width = width;
-    sampleCanvas.height = height;
-    sampleContext.drawImage(video, left, top, width, height, 0, 0, width, height);
-
-    const pixels = sampleContext.getImageData(0, 0, width, height).data;
-    let red = 0;
-    let green = 0;
-    let blue = 0;
-    const pixelCount = width * height;
-
-    for (let i = 0; i < pixels.length; i += 4) {
-        red += pixels[i];
-        green += pixels[i + 1];
-        blue += pixels[i + 2];
-    }
-
-    const timestamp = Math.round(video.currentTime * 1000);
-    const row = document.createElement("tr");
-
-    row.innerHTML = `
+  row.innerHTML = `
     <td>${timestamp}</td>
-    <td>${Math.round(red / pixelCount)}</td>
-    <td>${Math.round(green / pixelCount)}</td>
-    <td>${Math.round(blue / pixelCount)}</td>
+   <td>${average.red.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+<td>${average.green.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+<td>${average.blue.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
   `;
 
-    const placeholder = rgbRows.querySelector("td[colspan]");
-    if (placeholder) rgbRows.innerHTML = "";
+  const placeholder = rgbRows.querySelector("td[colspan]");
+  if (placeholder) rgbRows.innerHTML = "";
 
-    rgbRows.appendChild(row);
+  rgbRows.appendChild(row);
 }
+
+function stepFrames(count) {
+  if (!video.src || !video.videoWidth) return;
+
+  video.pause();
+
+  const duration = Number.isFinite(video.duration)
+    ? video.duration
+    : video.currentTime + frameDuration;
+
+  video.currentTime = Math.max(
+    0,
+    Math.min(duration, video.currentTime + count * frameDuration)
+  );
+}
+
+document.getElementById("goToStart").addEventListener("click", () => {
+  if (!video.src) return;
+  video.pause();
+  video.currentTime = 0;
+});
+
+document.getElementById("backTenFrames").addEventListener("click", () => {
+  stepFrames(-10);
+});
+
+document.getElementById("previousFrame").addEventListener("click", () => {
+  stepFrames(-1);
+});
+
+document.getElementById("nextFrame").addEventListener("click", () => {
+  stepFrames(1);
+});
+
+document.getElementById("forwardTenFrames").addEventListener("click", () => {
+  stepFrames(10);
+});
+
+document.getElementById("goToEnd").addEventListener("click", () => {
+  if (!video.src || !Number.isFinite(video.duration)) return;
+  video.pause();
+  video.currentTime = Math.max(0, video.duration - frameDuration);
+});
+
+video.addEventListener("seeked", () => {
+  drawRectangle();
+  updateCurrentFrameDisplay();
+});
+
+video.addEventListener("timeupdate", updateCurrentFrameDisplay);
+
+if ("requestVideoFrameCallback" in video) {
+  function observeVideoFrames(now, metadata) {
+    if (previousMediaTime !== null) {
+      const difference = metadata.mediaTime - previousMediaTime;
+      if (difference > 0 && difference < 0.2) {
+        frameDuration = difference;
+      }
+    }
+
+    previousMediaTime = metadata.mediaTime;
+
+    if (!video.paused && !video.ended) {
+      video.requestVideoFrameCallback(observeVideoFrames);
+    }
+  }
+
+  video.addEventListener("play", () => {
+    previousMediaTime = null;
+    video.requestVideoFrameCallback(observeVideoFrames);
+  });
+}
+
 
 function renderFrame(timestamp) {
     drawRectangle();
-
+    updateCurrentFrameDisplay();
     if (timestamp - lastTableUpdate >= getSampleInterval()) {
 
         try {
@@ -136,6 +183,7 @@ video.addEventListener("loadedmetadata", () => {
     sampleCanvas.width = video.videoWidth;
     sampleCanvas.height = video.videoHeight;
     drawRectangle();
+    updateCurrentFrameDisplay();
 });
 
 startButton.addEventListener("click", async () => {
@@ -157,7 +205,10 @@ startButton.addEventListener("click", async () => {
 });
 
 ["coordX", "coordY", "coordW", "coordH"].forEach((id) => {
-    document.getElementById(id).addEventListener("input", drawRectangle);
+  document.getElementById(id).addEventListener("input", () => {
+    drawRectangle();
+    updateCurrentFrameDisplay();
+  });
 });
 
 video.addEventListener("ended", () => {
@@ -246,6 +297,7 @@ function setRectangle(rect) {
     document.getElementById("coordW").value = Math.round(rect.b);
     document.getElementById("coordH").value = Math.round(rect.h);
     drawRectangle();
+    updateCurrentFrameDisplay();
 }
 
 function getSampleInterval() {
@@ -318,3 +370,60 @@ function showToast(message) {
     toast.classList.remove("show");
   }, 2200);
 }
+
+
+let frameDuration = 1 / 30;
+let previousMediaTime = null;
+
+function getAverageRgb() {
+  if (video.readyState < 2 || !video.videoWidth || !video.videoHeight) return null;
+
+  const { x, y, b, h } = getRectangle();
+  const left = Math.max(0, x);
+  const top = Math.max(0, y);
+  const right = Math.min(video.videoWidth, x + b);
+  const bottom = Math.min(video.videoHeight, y + h);
+
+  if (right <= left || bottom <= top) return null;
+
+  const width = right - left;
+  const height = bottom - top;
+
+  sampleCanvas.width = width;
+  sampleCanvas.height = height;
+  sampleContext.drawImage(video, left, top, width, height, 0, 0, width, height);
+
+  const pixels = sampleContext.getImageData(0, 0, width, height).data;
+  let red = 0;
+  let green = 0;
+  let blue = 0;
+  const pixelCount = width * height;
+
+  for (let i = 0; i < pixels.length; i += 4) {
+    red += pixels[i];
+    green += pixels[i + 1];
+    blue += pixels[i + 2];
+  }
+
+  return {
+    red: red / pixelCount,
+    green: green / pixelCount,
+    blue: blue / pixelCount
+  };
+}
+
+function updateCurrentFrameDisplay() {
+  const average = getAverageRgb();
+  if (!average) return;
+
+  document.getElementById("currentR").textContent = average.red.toFixed(2);
+  document.getElementById("currentG").textContent = average.green.toFixed(2);
+  document.getElementById("currentB").textContent = average.blue.toFixed(2);
+  document.getElementById("currentTime").textContent =
+    Math.round(video.currentTime * 1000);
+}
+
+video.addEventListener("loadeddata", () => {
+  updateCurrentFrameDisplay();
+  
+});

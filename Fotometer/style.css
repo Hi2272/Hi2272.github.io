@@ -169,3 +169,23 @@ td:nth-child(2) {
   visibility: visible;
   transform: translate(-50%, 0);
 }
+
+.frame-readout,
+.frame-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.frame-readout {
+  padding: 10px 12px;
+  background: #eaf0f8;
+  border-radius: 6px;
+}
+
+.frame-controls button {
+  min-height: 36px;
+}
+

@@ -17,6 +17,15 @@
             <label class="file-button" for="videoFile">Video laden</label>
             <input id="videoFile" type="file" accept="video/*">
 
+        </section>
+
+        <p id="status" role="status">Bitte zuerst eine Videodatei laden.</p>
+
+        <div class="video-stage">
+            <video id="video" playsinline></video>
+            <canvas id="overlay" aria-hidden="true"></canvas>
+        </div>
+       <div class="controls">
             <div class="coordinate">
                 <label for="coordX">x</label>
                 <input id="coordX" type="number" value="100" min="0">
@@ -37,17 +46,25 @@
                 <label for="sampleInterval">Intervall (ms)</label>
                 <input id="sampleInterval" type="number" value="500" min="1" step="1">
             </div>
-
-
             <button id="startButton" type="button">Start</button>
-        </section>
-
-        <p id="status" role="status">Bitte zuerst eine Videodatei laden.</p>
-
-        <div class="video-stage">
-            <video id="video" playsinline></video>
-            <canvas id="overlay" aria-hidden="true"></canvas>
         </div>
+
+        <div class="frame-readout" aria-live="polite">
+  <span>R: <strong id="currentR">–</strong></span>
+  <span>G: <strong id="currentG">–</strong></span>
+  <span>B: <strong id="currentB">–</strong></span>
+  <span>Time: <strong id="currentTime">–</strong> ms</span>
+</div>
+
+<div class="frame-controls">
+  <button id="goToStart" type="button">Anfang</button>
+  <button id="backTenFrames" type="button">◀ 10 Frames</button>
+  <button id="previousFrame" type="button">◀ Frame</button>
+  <button id="nextFrame" type="button">Frame ▶</button>
+  <button id="forwardTenFrames" type="button">10 Frames ▶</button>
+  <button id="goToEnd" type="button">Ende</button>
+</div>
+ 
 
         <section class="results">
             <h2>RGB-Werte innerhalb des Rechtecks</h2>
