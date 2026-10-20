@@ -286,7 +286,7 @@ function parseGerber(text, apertures, includeTraces) {
     if (!coordinate) continue;
 
     const point = [
-      Number(coordinate[1]) / 1000 * 25.4,
+      -Number(coordinate[1]) / 1000 * 25.4,
       Number(coordinate[2]) / 1000 * 25.4
     ];
     const operation = coordinate[3] ? Number(coordinate[3]) : null;
@@ -348,7 +348,7 @@ function parseDrill(text) {
       // Die vorliegenden Drill-Koordinaten sind 2:4, anders als die Gerber-Koordinaten.
       const scale = unitScale / 10000;
       holes.push({
-        center: [Number(coord[1]) * scale, Number(coord[2]) * scale],
+        center: [-Number(coord[1]) * scale, Number(coord[2]) * scale],
         diameter: tools.get(currentTool)
       });
     }
