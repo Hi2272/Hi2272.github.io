@@ -172,7 +172,7 @@ if (!allPoints.length) {
   );
 
   const steps = Math.max(1, Math.ceil(distance / (resolution / 2)));
- const traceWidth = 1.0; // gewünschte Freistellungsbreite in mm
+ const traceWidth = 2.0; // gewünschte Freistellungsbreite in mm
 const radius = traceWidth / 2;
 
 
