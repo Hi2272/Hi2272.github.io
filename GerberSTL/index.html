@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gerber zu STL</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main>
+    <h3>Gerber zu STL – 1-mm-Schablone</h3>
+
+    <p>
+      Füge den Inhalt der Kupfer-Gerber-Datei und der zugehörigen Bohrdatei ein.
+      Leiterbahnen sind standardmäßig ausgeschlossen.
+    </p>
+
+    <label for="gerberInput">Kupfer-Gerber-Datei, zum Beispiel coppertop.gtl</label>
+    <textarea id="gerberInput" spellcheck="false" placeholder="Gerber-Inhalt hier einfügen"></textarea>
+
+    <label for="drillInput">Bohrdatei, zum Beispiel drill.txt</label>
+    <textarea id="drillInput" spellcheck="false" placeholder="Bohrdaten hier einfügen"></textarea>
+
+  
+    <div class="controls">
+      <button id="convertBtn" type="button">Konvertieren</button>
+      <button id="downloadBtn" type="button" disabled>STL herunterladen</button>
+    </div>
+
+    <p id="status" role="status"></p>
+    <label for="stlOutput">Status / Ergebnis</label>
+    <textarea id="stlOutput" readonly placeholder="Hier erscheint der Konvertierungsstatus"></textarea>
+
+   
+  </main>
+</body>
+</html>

@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  color: #172033;
+  background: #f3f6fa;
+  font-family: system-ui, sans-serif;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+  background: white;
+  border: 1px solid #dce3ed;
+  border-radius: 12px;
+  box-shadow: 0 8px 28px #1d355710;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+p {
+  line-height: 1.5;
+}
+
+label {
+  display: block;
+  margin: 16px 0 6px;
+  font-weight: 600;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 190px;
+  padding: 12px;
+  resize: vertical;
+  border: 1px solid #b9c5d5;
+  border-radius: 7px;
+  background: #fbfcfe;
+  font: 13px/1.4 ui-monospace, monospace;
+}
+
+#stlOutput {
+  min-height: 240px;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+button {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 7px;
+  color: white;
+  background: #145ec8;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#status {
+  min-height: 1.5em;
+  margin: 12px 0 0;
+  color: #334155;
+}
+
+#status.error {
+  color: #a11b1b;
+}
