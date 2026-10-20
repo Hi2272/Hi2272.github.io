@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotometer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <h1>Video-Fotometer</h1>
+
+        <section class="controls" aria-label="Video und Rechteck einstellen">
+            <label class="file-button" for="videoFile">Video laden</label>
+            <input id="videoFile" type="file" accept="video/*">
+
+        </section>
+
+        <p id="status" role="status">Bitte zuerst eine Videodatei laden.</p>
+
+        <div class="video-stage">
+            <video id="video" playsinline></video>
+            <canvas id="overlay" aria-hidden="true"></canvas>
+        </div>
+       <div class="controls">
+            <div class="coordinate">
+                <label for="coordX">x</label>
+                <input id="coordX" type="number" value="100" min="0">
+            </div>
+            <div class="coordinate">
+                <label for="coordY">y</label>
+                <input id="coordY" type="number" value="100" min="0">
+            </div>
+            <div class="coordinate">
+                <label for="coordW">b</label>
+                <input id="coordW" type="number" value="50" min="1">
+            </div>
+            <div class="coordinate">
+                <label for="coordH">h</label>
+                <input id="coordH" type="number" value="50" min="1">
+            </div>
+            <div class="coordinate">
+                <label for="sampleInterval">Intervall (ms)</label>
+                <input id="sampleInterval" type="number" value="500" min="1" step="1">
+            </div>
+            <button id="startButton" type="button">Start</button>
+        </div>
+
+        <div class="frame-readout" aria-live="polite">
+  <span>R: <strong id="currentR">–</strong></span>
+  <span>G: <strong id="currentG">–</strong></span>
+  <span>B: <strong id="currentB">–</strong></span>
+  <span>Time: <strong id="currentTime">–</strong> ms</span>
+</div>
+
+<div class="frame-controls">
+  <button id="goToStart" type="button">Anfang</button>
+  <button id="backTenFrames" type="button">◀ 10 Frames</button>
+  <button id="previousFrame" type="button">◀ Frame</button>
+  <button id="nextFrame" type="button">Frame ▶</button>
+  <button id="forwardTenFrames" type="button">10 Frames ▶</button>
+  <button id="goToEnd" type="button">Ende</button>
+</div>
+ 
+
+        <section class="results">
+            <h2>RGB-Werte innerhalb des Rechtecks</h2>
+            <div class="table-actions">
+                <button id="copyButton" type="button">Kopieren</button>
+                <button id="cutButton" type="button">Ausschneiden</button>
+                <button id="clearButton" type="button">Löschen</button>
+            </div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Zeit (ms)</th>
+                            <th>Rot (R)</th>
+                            <th>Grün (G)</th>
+                            <th>Blau (B)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rgbRows">
+                        <tr>
+                            <td colspan="4">Noch keine Werte vorhanden.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

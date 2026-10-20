@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zeitrafferkamera</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <h1>Zeitrafferkamera</h1>
+    <p class="intro">Wähle die Einstellungen und erstelle ein Zeitraffervideo.</p>
+
+
+    <section class="controls" aria-label="Aufnahmeeinstellungen">
+      <label for="cameraSelect">Kamera</label>
+      <select id="cameraSelect">
+        <option value="">Kameras werden gesucht …</option>
+      </select>
+
+<label for="fpsInput">Bilder pro Sekunde (0.00001 - 30)</label>
+<input id="fpsInput" type="number" min="0.00001" max="30" step="any" value="1">
+
+      <label for="durationInput">Länge der Aufnahme (Sekunden)</label>
+      <input id="durationInput" type="number" min="1" max="3600" value="30">
+
+      <label class="checkbox-row" for="timestampInput">
+        <input id="timestampInput" type="checkbox" checked>
+        <span>Zeit einblenden</span>
+      </label>
+
+
+    <section class="preview-area" aria-label="Kameravorschau">
+      <video id="preview" autoplay muted playsinline></video>
+      <p id="previewMessage" class="preview-message">Die Kameravorschau erscheint hier.</p>
+    </section>
+
+
+      <progress id="progress" value="0" max="100" hidden></progress>
+
+            <button id="recordButton" type="button">Start</button>
+
+      <p id="status" class="status" role="status" aria-live="polite">
+        Wähle eine Kamera und starte die Aufnahme.
+      </p>
+
+      <a id="downloadLink" class="download-link" hidden>Video herunterladen</a>
+    </section>
+  </main>
+</body>
+</html>
