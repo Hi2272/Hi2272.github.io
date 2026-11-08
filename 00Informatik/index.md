@@ -56,7 +56,8 @@
 
 [Quiz zum Internet](https://learningapps.org/watch?app=7741179)  
 [Internetknoten in Frankfurt](https://learningapps.org/7997886)  
-
+[Der Weg durchs Internet](https://inf-schule.de/kids/datennetze/aufbau-internet/dasNetz)  
+[Der Weg einer Nachricht](https://inf-schule.de/kids/datennetze/aufbau-internet/nachricht)  
 
 ## Hypertexte
 [Das Spukschloss - ein Hypertext](00Informatik7/Spukschloss/index.html)  
