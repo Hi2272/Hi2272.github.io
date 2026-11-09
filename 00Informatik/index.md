@@ -10,8 +10,8 @@
 | [Mikrocontroller](/00Informatik/00Mikrocontroller/Wahlkurs/index.html)
 | [Funktionale Modellierung](#funktionale-modellierung)
 | [Datenbanken](#datenbanken)
-| [Objektorientierung: 9.Klasse](#objektorientierte-programmierung)
-/ [10. Klasse](#java-in-der-10-klasse)
+| [9.Klasse](#informatik-9-klasse)
+| [10. Klasse](#java-in-der-10-klasse)
 | [Datenschutz](#datenschutz)
 | [11. Klasse](#informatik-11-klasse) |    
   
@@ -113,7 +113,7 @@
 [UND oder ODER](https://Hi2272.github.io/00Informatik/UNDoderODERneu/index.html)  
 [NICHT](https://Hi2272.github.io/00Informatik/NICHT/index.html)  
 [Wenn-Funktion](https://Hi2272.github.io/00Informatik/WennFunktion/index.html)  
-
+[Notenverwaltung](00Informatik9/Notenliste/index.html)  
 ## Datenbanken
 ### Einfache Abfragen
 ***
