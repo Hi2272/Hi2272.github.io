@@ -8,10 +8,10 @@ Verwende hierzu in folgenden Zellen spezielle Funktionen:
 |---|---|
 |P2|Mittelwert der Zellen B2 bis E2|
 |Q2|Mittelwert der Zellen F2 bis O2|
-|S2|Produkt von B2 und R2 geteilt durch die (R1+1)|
+|S2|(P2*R2+Q2) geteilt durch die (R2+1)|
 |T2|Abrunden(S2;0)|
 |U2|Nachkomma-Teil wird aus S2 und T2 berechnet|
-|V2|Wenn U2<0,5 ist, dann T2 sonst T2+1|
+|V2|Wenn U2<=0,5 ist, dann T2 sonst T2+1|
 
 Kopiere die Funktionen in die Zeilen 3-15
 

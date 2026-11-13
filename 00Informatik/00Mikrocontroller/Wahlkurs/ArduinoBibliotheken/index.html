@@ -140,101 +140,196 @@
         <body class="vscode-body vscode-light">
             <h1 id="eigene-bibliotheken-für-arduino-entwickeln">Eigene Bibliotheken für Arduino entwickeln</h1>
 <h2 id="grundlagen">Grundlagen</h2>
-<p>Wolfgang Ewald beschreibt auf seiner Internetseite die Grundlagen zur Objektorientierten Programmierung und zu Bibliotheken für Arduino:<br>
+<p>Wolfgang Ewald beschreibt auf seiner Internetseite die Grundlagen der objektorientierten Programmierung und das Erstellen von Bibliotheken für Arduino:<br>
 <a href="https://wolles-elektronikkiste.de/bibliotheken-und-klassen-erstellen-teil-i">https://wolles-elektronikkiste.de/bibliotheken-und-klassen-erstellen-teil-i</a></p>
-<h2 id="ordnerstruktur">Ordnerstruktur</h2>
-<h3 id="gezippter-ordner">Gezippter Ordner</h3>
-<p>Eine Arduino-Bibliothek kann als gezippter Ordner gespeichert, heruntergeladen und installiert werden:</p>
-<ul>
-<li>SimpleLED_RH.zip</li>
-</ul>
-<p>Der Name muss eindeutig sein, deshalb hängen wir das Kürzel <strong>_RH</strong> an.</p>
-<p>In diesem Ordner müssen mindestens zwei Dateien enthalten sein:</p>
-<h3 id="header-datei-simpleledh">Header-Datei: SimpleLED.h</h3>
-<p>Die Header-Datei enthält die Köpfe aller Klassen, Methoden und Attribute innerhalb der Bibliothek.<br>
+<h2 id="header-datei-simpleledh">Header-Datei: SimpleLED.h</h2>
+<p>Die Header-Datei enthält die Deklarationen aller Klassen, Methoden und Attribute innerhalb der Bibliothek.<br>
 Mit dieser Datei bekommt der Programmierer einen schnellen Überblick über die Eigenschaften und Fähigkeiten der in der Bibliothek definierten Klassen.<br>
 Außerdem können hier erläuternde Kommentare hinterlegt werden.</p>
-<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> SIMPLE_LED</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> SIMPLE_LED</span>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> SIMPLE_LED_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> SIMPLE_LED_H</span>
+
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Arduino.h&gt;</span></span>
 
-<span class="hljs-comment">/*
-Klasse zum Ansteuern einer LED, die mit dem Pluspol an einen Pin angeschlossen ist.
-*/</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleLED</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">SimpleLED</span>(<span class="hljs-type">int</span> pinNumber);
 
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleLed</span>{
-    <span class="hljs-keyword">public</span>:
-        <span class="hljs-built_in">SimpleLed</span>(<span class="hljs-type">int</span> pin);  <span class="hljs-comment">// Konstruktur</span>
-        
-        <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">an</span><span class="hljs-params">()</span></span>;
-        <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">aus</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">an</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">aus</span><span class="hljs-params">()</span></span>;
 
-    <span class="hljs-keyword">protected</span>:
-        <span class="hljs-type">int</span> pin;
-}
+<span class="hljs-keyword">protected</span>:
+    <span class="hljs-type">int</span> pin;
+};
+
 <span class="hljs-meta">#<span class="hljs-keyword">endif</span></span>
-
 </code></pre>
 <p><strong>Erläuterungen zum Code</strong></p>
-<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> SIMPLE_LED</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> SIMPLE_LED</span>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> SIMPLE_LED_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> SIMPLE_LED_H</span>
 ...
 <span class="hljs-meta">#<span class="hljs-keyword">endif</span></span>
 </code></pre>
-<p>Die Klasse SimpleLed darf im Code nur einmal definiert werden.<br>
-Mit der Bedingung <strong>#ifndef SIMPLE_LED</strong>  wird sichergestellt, dass sie nur definiert wird wenn sie noch nicht definiert ist.</p>
-<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Arduino.h&gt;</span></span>
+<p>Die Klasse <code>SimpleLED</code> soll im Code nur einmal definiert werden.<br>
+Mit der Bedingung <strong><code>#ifndef SIMPLE_LED_H</code></strong> wird sichergestellt, dass der Inhalt der Header-Datei nur einmal eingebunden wird.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Arduino.h&gt;</span></span>
 </code></pre>
-<p>Bei der Programmierung einer Bibliothek muss die Grundbibliothek mit den Arduino-Befehle von Hand eingebunden werden. Bei normalen Arduino-Programmen macht das System diesen Schritt automatisch.</p>
-<pre><code class="language-C++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleLed</span>{
+<p>Bei der Programmierung einer Bibliothek muss die Grundbibliothek mit den Arduino-Befehlen von Hand eingebunden werden. Bei normalen Arduino-Programmen erledigt das System diesen Schritt automatisch.</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleLED</span> {
 ...
-}
+};
 </code></pre>
 <p>Um in unserem Programm eine LED ansteuern zu können, müssen wir ein Objekt der Klasse <strong>SimpleLED</strong> erzeugen.<br>
-Die Attibute (EIgenschaften) und Methode (Fähigkeiten) der Objekte dieser Klasse werden in der Bibliothek definiert.</p>
-<pre><code class="language-C++"><span class="hljs-keyword">public</span>:
+Die Attribute (Eigenschaften) und Methoden (Fähigkeiten) der Objekte dieser Klasse werden in der Bibliothek definiert.</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">public</span>:
    ...
 <span class="hljs-keyword">protected</span>:
    ...
 </code></pre>
-<p>Attribute und Methoden, die <strong>public</strong> definiert sind, sind öffentlich sichtbar. Damit können sie im Programm außerhalb der Klasse  aufgerufen und verändert werden. In der Regel definiert man nur die Methoden public, um die Werte der Attribute vor unkontrollierten Änderungen zu schützen.</p>
-<p>Mit <strong>protected</strong> definierte Attribute und Methoden sind vor einem Zugriff von außen geschützt. Sie können nur innerhalb der Klasse verwendet werden.</p>
-<pre><code class="language-C++">    <span class="hljs-built_in">SimpleLed</span>(<span class="hljs-type">int</span> pin);  <span class="hljs-comment">// Konstruktur</span>
+<p>Attribute und Methoden, die mit <strong><code>public</code></strong> definiert sind, sind öffentlich sichtbar. Damit können sie im Programm außerhalb der Klasse aufgerufen und verändert werden. In der Regel definiert man nur die Methoden als <code>public</code>, um die Werte der Attribute vor unkontrollierten Änderungen zu schützen.</p>
+<p>Mit <strong><code>protected</code></strong> definierte Attribute und Methoden sind vor einem direkten Zugriff von außen geschützt. Sie können innerhalb der Klasse und ihrer abgeleiteten Klassen verwendet werden.</p>
+<pre><code class="language-cpp">    <span class="hljs-built_in">SimpleLED</span>(<span class="hljs-type">int</span> pinNumber);  <span class="hljs-comment">// Konstruktor</span>
 </code></pre>
-<p>Der Konstruktor der Klasse wird aufgerufen, sobald ein neues Objekt der Klasse erzeugt wird. In unserem Fall hat er als Parameter die Nummer des Pins, an dem die Led angeschlossen ist.</p>
-<h2 id="quell-datei-meineneuebibcpp">Quell-Datei: MeineNeueBib.cpp</h2>
-<p>In der Quell-Datei steht der eigentliche Quellcode, d.h. die in der Header-Datei definierten Klassen und Methoden müssen hier programmiert werden.</p>
-<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;SimpleLED.h&gt;</span></span>
+<p>Der Konstruktor der Klasse wird aufgerufen, sobald ein neues Objekt der Klasse erzeugt wird. In unserem Fall hat er als Parameter die Nummer des Pins, an den die LED angeschlossen ist.</p>
+<h2 id="quelldatei-simpleledcpp">Quelldatei: SimpleLED.cpp</h2>
+<p>In der Quelldatei steht der eigentliche Quellcode. Die in der Header-Datei deklarierten Methoden werden hier programmiert.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;SimpleLED.h&quot;</span></span>
 
-<span class="hljs-comment">/* 
-Konstruktor
-*/</span>
-
-SimpleLED::<span class="hljs-built_in">SimpleLED</span>(<span class="hljs-type">int</span> pin){
-  <span class="hljs-keyword">this</span>.pin=pin;
-  <span class="hljs-built_in">pinMode</span>(pin,OUTPUT);
+SimpleLED::<span class="hljs-built_in">SimpleLED</span>(<span class="hljs-type">int</span> pinNumber) {
+   pin = pinNumber;
+   <span class="hljs-built_in">pinMode</span>(pin, OUTPUT);
 }
 
-<span class="hljs-comment">/*
-öffentliche Methoden
-*/</span>
-<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">an</span><span class="hljs-params">()</span></span>{
-    <span class="hljs-built_in">digitalWrite</span>(pin,HIGH);
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">SimpleLED::an</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">digitalWrite</span>(pin, HIGH);
 }
 
-<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">aus</span><span class="hljs-params">()</span></span>{
-    <span class="hljs-built_in">digitalWrite</span>(pin,LOW);
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">SimpleLED::aus</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">digitalWrite</span>(pin, LOW);
 }
 </code></pre>
 <h3 id="erläuterungen-zum-code">Erläuterungen zum Code</h3>
-<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;SimpleLED.h&gt;</span></span>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;SimpleLED.h&quot;</span></span>
 </code></pre>
-<p>Die Header-Datei muss in der ersten Zeile eingebunden werden. Damit weiß das System, welche Klassen, Methoden und Attribute definiert werden müssen.</p>
-<pre><code class="language-C++">SimpleLED::<span class="hljs-built_in">SimpleLED</span>(<span class="hljs-type">int</span> pin){
+<p>Die Header-Datei muss eingebunden werden. Damit weiß das System, welche Klassen, Methoden und Attribute deklariert sind.</p>
+<pre><code class="language-cpp">SimpleLED::<span class="hljs-built_in">SimpleLED</span>(<span class="hljs-type">int</span> pinNumber) {
     ...
 }
 </code></pre>
-<p>In diesem Block wird der Konstruktor der Klasse definiert. Die <strong>::</strong>-Zeichen legt die Zuordnung fest: Der Konstruktor und alle folgenden Methoden werden der Klasse SimpleLED zugeordnet.</p>
+<p>In diesem Block wird der Konstruktor der Klasse definiert. Die Zeichen <strong><code>::</code></strong> legen die Zuordnung fest: Der Konstruktor und alle folgenden Methoden werden der Klasse <code>SimpleLED</code> zugeordnet.</p>
+<h2 id="installation-der-bibliothek">Installation der Bibliothek</h2>
+<p>Für die Verwendung in mehreren Arduino-Programmen sollte die Bibliothek dauerhaft installiert werden.</p>
+<h3 id="vorbereitung-der-bibliothek">Vorbereitung der Bibliothek</h3>
+<p>Die Header- und Quelldateien müssen in einen Ordner kopiert werden. Der Name des Ordners sollte durch einige zusätzliche Zeichen möglichst eindeutig sein. Wir fügen einfach einen Unterstrich und zwei Buchstaben hinzu:</p>
+<ul>
+<li><code>SimpleLED_RH</code>
+<ul>
+<li><code>SimpleLED.h</code></li>
+<li><code>SimpleLED.cpp</code></li>
+</ul>
+</li>
+</ul>
+<p>Dieser Ordner muss anschließend in eine ZIP-Datei komprimiert werden:</p>
+<ul>
+<li><code>SimpleLED_RH.zip</code>
+<ul>
+<li><code>SimpleLED_RH</code>
+<ul>
+<li><code>SimpleLED.h</code></li>
+<li><code>SimpleLED.cpp</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Auf der obersten Ebene des ZIP-Archivs dürfen keine Dateien, sondern nur der Ordner <strong><code>SimpleLED_RH</code></strong> liegen.</p>
+<h3 id="installation-der-bibliothek-1">Installation der Bibliothek</h3>
+<p>Die ZIP-Datei muss über die Arduino IDE installiert werden.</p>
+<p><img src="ArduinoBibliothek/2026-11-13_10-18.png" alt="alt text"></p>
+<p>Dabei wird die Datei entpackt und im Sketchbook-Ordner von Arduino gespeichert. Den Speicherort dieses Ordners kannst du in den Voreinstellungen einsehen. In der Regel lautet er <strong>Dokumente/Arduino</strong>.<br>
+Wenn die Bibliothek erneut installiert werden soll, muss ihr Ordner zuerst aus diesem Verzeichnis gelöscht werden.</p>
+<h2 id="verwenden-der-bibliothek">Verwenden der Bibliothek</h2>
+<h3 id="arduino-sketch">Arduino-Sketch</h3>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;SimpleLED.h&gt;</span></span>
+
+SimpleLED led = <span class="hljs-built_in">SimpleLED</span>(<span class="hljs-number">2</span>);
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span> </span>{}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+    led.<span class="hljs-built_in">an</span>();
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+    led.<span class="hljs-built_in">aus</span>();
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+}
+</code></pre>
+<h3 id="erläuterungen-zum-code-1">Erläuterungen zum Code</h3>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;SimpleLED.h&gt;</span></span>
+</code></pre>
+<p>Im Sketch muss die Bibliothek eingebunden werden. Zu Testzwecken reicht es, wenn die Header- und Quelldateien im selben Ordner wie der Arduino-Sketch stehen. Die Arduino IDE findet sie dort und kompiliert sie automatisch mit.<br>
+Wenn die Bibliothek in mehreren Arduino-Programmen verwendet werden soll, ist es sinnvoll, sie dauerhaft zu installieren.</p>
+<pre><code class="language-cpp">SimpleLED led = <span class="hljs-built_in">SimpleLED</span>(<span class="hljs-number">2</span>);
+</code></pre>
+<p>In dieser Codezeile wird ein Objekt der Klasse <code>SimpleLED</code> erzeugt, indem der Konstruktor der Klasse aufgerufen wird. Der Name des Objekts lautet <strong><code>led</code></strong>. Mit dem Parameterwert <code>2</code> wird festgelegt, dass die LED an Pin 2 angeschlossen ist. Da alle anderen Festlegungen im Konstruktor getroffen werden, kann die Methode <strong><code>setup</code></strong> leer bleiben.</p>
+<pre><code class="language-cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span> </span>{
+    led.<span class="hljs-built_in">an</span>();
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+    led.<span class="hljs-built_in">aus</span>();
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+}
+</code></pre>
+<p>Die Methoden <code>an</code> und <code>aus</code> können jetzt im <strong><code>loop</code></strong>-Teil einfach über die Punktnotation aufgerufen werden. Durch die Verwendung der externen Bibliothek ist unser Code viel kürzer und besser lesbar geworden.</p>
+<h2 id="erweitern-der-bibliothek-überladen-von-konstruktoren">Erweitern der Bibliothek: Überladen von Konstruktoren</h2>
+<p>Bisher setzt unsere Bibliothek voraus, dass die LED mit dem Pluspol an einem Pin und mit dem Minuspol an GND angeschlossen ist. Wenn der Pin <code>HIGH</code> ist, leuchtet sie; wenn er <code>LOW</code> ist, leuchtet sie nicht.<br>
+Im Folgenden erweitern wir die Bibliothek so, dass die LED auch mit dem Pluspol dauerhaft an <code>+5 V</code> und mit dem Minuspol am Pin angeschlossen werden kann. Das Schaltverhalten kehrt sich dann um: <code>LOW</code> bedeutet „an“, <code>HIGH</code> bedeutet „aus“.</p>
+<p>Hierzu erweitern wir die Header-Datei um einen neuen Konstruktor und ein neues Attribut:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> SIMPLE_LED_H</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> SIMPLE_LED_H</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Arduino.h&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleLED</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">SimpleLED</span>(<span class="hljs-type">int</span> pinNumber);
+    <span class="hljs-built_in">SimpleLED</span>(<span class="hljs-type">int</span> pinNumber, <span class="hljs-type">int</span> onLevel);
+
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">an</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">aus</span><span class="hljs-params">()</span></span>;
+
+<span class="hljs-keyword">protected</span>:
+    <span class="hljs-type">int</span> pin;
+    <span class="hljs-type">int</span> onLevel;
+};
+
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span>
+</code></pre>
+<p>Es werden also zwei verschiedene Konstruktoren angeboten: einer mit einem und einer mit zwei Parametern. Man spricht in diesem Fall von <strong>überladenen Konstruktoren</strong>. Abhängig von der Anzahl der Parameter wählt das System den passenden Konstruktor aus.</p>
+<p>Die Quelldatei muss ebenfalls überarbeitet werden:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;SimpleLED.h&quot;</span></span>
+
+SimpleLED::<span class="hljs-built_in">SimpleLED</span>(<span class="hljs-type">int</span> pinNumber) {
+    pin = pinNumber;
+    <span class="hljs-built_in">pinMode</span>(pin, OUTPUT);
+    onLevel = HIGH;
+}
+
+SimpleLED::<span class="hljs-built_in">SimpleLED</span>(<span class="hljs-type">int</span> pinNumber, <span class="hljs-type">int</span> onLevelWert) {
+    pin = pinNumber;
+    <span class="hljs-built_in">pinMode</span>(pin, OUTPUT);
+    onLevel = onLevelWert;
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">SimpleLED::an</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">digitalWrite</span>(pin, onLevel);
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">SimpleLED::aus</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">digitalWrite</span>(pin, !onLevel);
+}
+</code></pre>
+<p>Das Attribut <strong><code>onLevel</code></strong> muss in beiden Konstruktoren initialisiert werden. Im ersten Fall wird es auf <code>HIGH</code> gesetzt, da der Pluspol der LED an den Pin angeschlossen ist. Beim zweiten Konstruktor muss der Wert als Parameter angegeben werden.</p>
+<p>Die Methoden <strong><code>an</code></strong> und <strong><code>aus</code></strong> verwenden jetzt den Wert des Attributs <strong><code>onLevel</code></strong>. Durch den <strong><code>!</code></strong>-Operator wird dieser Wert beim Ausschalten umgekehrt.</p>
+<p>Analog dazu können auch Methoden der Klasse überladen werden.</p>
 
             
             
