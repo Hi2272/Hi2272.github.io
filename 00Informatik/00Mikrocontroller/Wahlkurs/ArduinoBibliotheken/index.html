@@ -149,6 +149,28 @@
 <h2 id="grundlagen">Grundlagen</h2>
 <p>Wolfgang Ewald beschreibt auf seiner Internetseite die Grundlagen zur Objektorientierten Programmierung und zu Bibliotheken für Arduino:<br>
 <a href="https://wolles-elektronikkiste.de/bibliotheken-und-klassen-erstellen-teil-i">https://wolles-elektronikkiste.de/bibliotheken-und-klassen-erstellen-teil-i</a></p>
+<h2 id="ordnerstruktur">Ordnerstruktur</h2>
+<h3 id="gezippter-ordner">Gezippter Ordner</h3>
+<p>Eine Arduino-Bibliothek kann als gezippter Ordner gespeichert, heruntergeladen und installiert werden:</p>
+<ul>
+<li>SimpleRobot_RH.zip</li>
+</ul>
+<p>Der Name muss eindeutig sein, deshalb hängen wir das Kürzel <strong>_RH</strong> an.</p>
+<p>In diesem Ordner müssen mindestens zwei Dateien enthalten sein:</p>
+<h3 id="header-datei-simpleroboth">Header-Datei: SimpleRobot.h</h3>
+<pre><code class="language-C++"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> SIMPLE_ROBOT</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> SIMPLE_ROBOT</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Arduino.h&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleRobot</span>{
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-built_in">SimpleRobot</span>();  <span class="hljs-comment">// Konstruktur</span>
+        
+
+}
+
+</code></pre>
+<h2 id="quell-datei-meineneuebibcpp">Quell-Datei: MeineNeueBib.cpp</h2>
 
             
             <script async type="text/javascript">
