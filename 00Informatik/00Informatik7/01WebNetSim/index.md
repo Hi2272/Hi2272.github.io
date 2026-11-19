@@ -12,6 +12,8 @@
  
 3.  Klicke auf PROVIDER  
 ![alt text](002.png)  
+**Aktiviere unbedingt den Netzwerkproblemmodus**
+
 4. Trage einen beliebigen Namen für deinen Provider ein und klicke auf OK  
 ![alt text](003.png)  
 5. Du siehst die IP-Adresse deines Routers im Spiel. Klicke auf OK.  
